@@ -2,7 +2,7 @@
 
 ## Overview
 
-`mpComponents` is a shared, reusable React component library built with **Radix UI primitives**, **TanStack Form & Tables**, and **CSS Modules** for styling. Located within KanbanReact2/src, it serves as the foundation for UI consistency and can be extracted to a shared package later if needed.
+`mpComponents` is a shared, reusable React component library built with **Radix UI primitives**, **TanStack Form & Tables**, and **plain CSS** for styling. It serves as the foundation for UI consistency and provides reusable components with accessibility and type safety built-in.
 
 ---
 
@@ -11,7 +11,7 @@
 ✅ **Standardized UI Components** — Centralized component definitions using Radix primitives  
 ✅ **Type-Safe Forms** — Robust form handling with TanStack Form  
 ✅ **Advanced Tables** — Flexible, feature-rich tables with TanStack Table  
-✅ **Scalable Styling** — CSS Modules for scoped, maintainable styles  
+✅ **Scalable Styling** — Plain CSS with BEM naming for predictable, maintainable styles  
 ✅ **Easy Consumption** — Clean barrel exports and comprehensive documentation  
 ✅ **Reusability** — Components built for multiple applications (KanbanReact, KanbanReact2, future apps)
 
@@ -20,96 +20,96 @@
 ## Directory Structure (Current)
 
 ```
-KanbanReact2/src/mpComponents/
+mpComponents/
 ├── index.ts                            # Main barrel export
 │
 ├── common/                             # Base UI primitives (Radix components)
 │   ├── Button/
 │   │   ├── Button.tsx
-│   │   ├── Button.module.css
+│   │   ├── Button.css
 │   │   └── index.ts
 │   ├── Input/
 │   │   ├── Input.tsx
-│   │   ├── Input.module.css
+│   │   ├── Input.css
 │   │   └── index.ts
 │   ├── Badge/
 │   │   ├── Badge.tsx
-│   │   ├── Badge.module.css
+│   │   ├── Badge.css
 │   │   └── index.ts
 │   ├── Dialog/
 │   │   ├── Dialog.tsx
-│   │   ├── Dialog.module.css
+│   │   ├── Dialog.css
 │   │   └── index.ts
 │   ├── Dropdown/
 │   │   ├── Dropdown.tsx
-│   │   ├── Dropdown.module.css
+│   │   ├── Dropdown.css
 │   │   └── index.ts
 │   ├── Tooltip/
 │   │   ├── Tooltip.tsx
-│   │   ├── Tooltip.module.css
+│   │   ├── Tooltip.css
 │   │   └── index.ts
 │   ├── Tabs/
 │   │   ├── Tabs.tsx
-│   │   ├── Tabs.module.css
+│   │   ├── Tabs.css
 │   │   └── index.ts
 │   ├── Accordion/
 │   │   ├── Accordion.tsx
-│   │   ├── Accordion.module.css
+│   │   ├── Accordion.css
 │   │   └── index.ts
 │   ├── Popover/
 │   │   ├── Popover.tsx
-│   │   ├── Popover.module.css
+│   │   ├── Popover.css
 │   │   └── index.ts
 │   ├── Checkbox/
 │   │   ├── Checkbox.tsx
-│   │   ├── Checkbox.module.css
+│   │   ├── Checkbox.css
 │   │   └── index.ts
 │   ├── RadioGroup/
 │   │   ├── RadioGroup.tsx
-│   │   ├── RadioGroup.module.css
+│   │   ├── RadioGroup.css
 │   │   └── index.ts
 │   ├── Separator/
 │   │   ├── Separator.tsx
-│   │   ├── Separator.module.css
+│   │   ├── Separator.css
 │   │   └── index.ts
 │   ├── Slider/
 │   │   ├── Slider.tsx
-│   │   ├── Slider.module.css
+│   │   ├── Slider.css
 │   │   └── index.ts
 │   ├── Spinner/
 │   │   ├── Spinner.tsx
-│   │   ├── Spinner.module.css
+│   │   ├── Spinner.css
 │   │   └── index.ts
 │   ├── Skeleton/
 │   │   ├── Skeleton.tsx
-│   │   ├── Skeleton.module.css
+│   │   ├── Skeleton.css
 │   │   └── index.ts
 │   └── index.ts                        # Common components barrel export
 │
 ├── controls/                           # Interactive & form control components
 │   ├── FormField/
 │   │   ├── FormField.tsx
-│   │   ├── FormField.module.css
+│   │   ├── FormField.css
 │   │   └── index.ts
 │   ├── FormInput/
 │   │   ├── FormInput.tsx
-│   │   ├── FormInput.module.css
+│   │   ├── FormInput.css
 │   │   └── index.ts
 │   ├── FormSelect/
 │   │   ├── FormSelect.tsx
-│   │   ├── FormSelect.module.css
+│   │   ├── FormSelect.css
 │   │   └── index.ts
 │   ├── FormCheckbox/
 │   │   ├── FormCheckbox.tsx
-│   │   ├── FormCheckbox.module.css
+│   │   ├── FormCheckbox.css
 │   │   └── index.ts
 │   ├── FormTextarea/
 │   │   ├── FormTextarea.tsx
-│   │   ├── FormTextarea.module.css
+│   │   ├── FormTextarea.css
 │   │   └── index.ts
 │   ├── FormError/
 │   │   ├── FormError.tsx
-│   │   ├── FormError.module.css
+│   │   ├── FormError.css
 │   │   └── index.ts
 │   ├── useForm/
 │   │   ├── useForm.ts                # Custom hook wrapping TanStack Form
@@ -119,27 +119,27 @@ KanbanReact2/src/mpComponents/
 ├── data-display/                       # Data presentation components
 │   ├── Table/
 │   │   ├── Table.tsx
-│   │   ├── Table.module.css
+│   │   ├── Table.css
 │   │   └── index.ts
 │   ├── TableHeader/
 │   │   ├── TableHeader.tsx
-│   │   ├── TableHeader.module.css
+│   │   ├── TableHeader.css
 │   │   └── index.ts
 │   ├── TableBody/
 │   │   ├── TableBody.tsx
-│   │   ├── TableBody.module.css
+│   │   ├── TableBody.css
 │   │   └── index.ts
 │   ├── TableRow/
 │   │   ├── TableRow.tsx
-│   │   ├── TableRow.module.css
+│   │   ├── TableRow.css
 │   │   └── index.ts
 │   ├── TableCell/
 │   │   ├── TableCell.tsx
-│   │   ├── TableCell.module.css
+│   │   ├── TableCell.css
 │   │   └── index.ts
 │   ├── DataTable/
 │   │   ├── DataTable.tsx               # Composite table with sorting, filtering, pagination
-│   │   ├── DataTable.module.css
+│   │   ├── DataTable.css
 │   │   └── index.ts
 │   ├── usePagination/
 │   │   ├── usePagination.ts            # Pagination logic hook
@@ -149,11 +149,11 @@ KanbanReact2/src/mpComponents/
 │   │   └── index.ts
 │   ├── Alert/
 │   │   ├── Alert.tsx
-│   │   ├── Alert.module.css
+│   │   ├── Alert.css
 │   │   └── index.ts
 │   ├── Toast/
 │   │   ├── Toast.tsx
-│   │   ├── Toast.module.css
+│   │   ├── Toast.css
 │   │   ├── useToast.ts
 │   │   └── index.ts
 │   └── index.ts                        # Data display barrel export
@@ -161,19 +161,19 @@ KanbanReact2/src/mpComponents/
 ├── layout/                             # Layout & structural components
 │   ├── Container/
 │   │   ├── Container.tsx
-│   │   ├── Container.module.css
+│   │   ├── Container.css
 │   │   └── index.ts
 │   ├── Stack/
 │   │   ├── Stack.tsx                   # Flexbox-based layout
-│   │   ├── Stack.module.css
+│   │   ├── Stack.css
 │   │   └── index.ts
 │   ├── Grid/
 │   │   ├── Grid.tsx                    # CSS Grid layout
-│   │   ├── Grid.module.css
+│   │   ├── Grid.css
 │   │   └── index.ts
 │   ├── Flex/
 │   │   ├── Flex.tsx
-│   │   ├── Flex.module.css
+│   │   ├── Flex.css
 │   │   └── index.ts
 │   └── index.ts                        # Layout barrel export
 │
@@ -185,7 +185,7 @@ KanbanReact2/src/mpComponents/
 │   └── index.ts
 │
 ├── styles/                             # Global styles & design tokens
-│   ├── variables.module.css            # CSS custom properties for theming
+│   ├── variables.css            # CSS custom properties for theming
 │   ├── reset.css                       # CSS reset
 │   ├── globals.css                     # Global typography, spacing
 │   └── index.css
@@ -223,7 +223,7 @@ KanbanReact2/src/mpComponents/
 1. **Initialize Package Structure**
    - Create `package.json` with dependencies (Radix UI, TanStack, TypeScript, Vite)
    - Set up TypeScript configuration
-   - Configure Vite build system with CSS Modules support
+   - Configure Vite build system with plain CSS support
    - Configure ESLint and Prettier
 
 2. **Install Dependencies**
@@ -271,7 +271,7 @@ KanbanReact2/src/mpComponents/
 
 1. **Table Foundation**
    - Base Table, TableHeader, TableBody, TableRow, TableCell components
-   - Each with CSS Modules for styling
+   - Each with plain CSS for styling using BEM naming convention
 
 2. **DataTable Composite**
    - `DataTable` component with built-in:
@@ -295,7 +295,7 @@ KanbanReact2/src/mpComponents/
 
 1. **Layout Components**
    - Container, Stack (flexbox), Grid, Flex wrappers
-   - CSS Modules for responsive behavior
+   - Plain CSS for responsive behavior using BEM naming
 
 2. **Feedback Components**
    - Alert component for messages
@@ -373,24 +373,24 @@ Each component follows this pattern within its category folder:
 ```
 common/Button/
 ├── Button.tsx           # Component logic
-├── Button.module.css    # Scoped styles
+├── Button.css    # Scoped styles
 └── index.ts            # Clean export
 ```
 
-### Imports Within KanbanReact2
+### Imports Within the Repository
 
-Since components are in the same application, use path aliases:
+Use direct imports for components and styles:
 
 ```tsx
 import { Button } from "@/mpComponents/common";
 import { FormInput, useForm } from "@/mpComponents/controls";
-import styles from "@/mpComponents/common/Button/Button.module.css";
+import "./Button.css"; // Import CSS directly, not as module
 ```
 
-### CSS Modules Best Practices
+### Plain CSS Best Practices
 
 **Theme Management Pattern:**
-All color and dark mode styling is managed exclusively through design tokens in `styles/variables.css`. Component CSS Modules should **not** define colors, backgrounds, or dark mode overrides. This ensures:
+All color and dark mode styling is managed exclusively through design tokens in `styles/variables.css`. Component CSS files should **not** define colors, backgrounds, or dark mode overrides. This ensures:
 
 - ✅ Single source of truth for theming
 - ✅ Easy global theme switching (light/dark modes)
@@ -411,7 +411,7 @@ All color and dark mode styling is managed exclusively through design tokens in 
 **Example:**
 
 ```css
-/* Button.module.css */
+/* Button.css */
 .button {
   display: inline-flex;
   align-items: center;
@@ -563,28 +563,28 @@ export function UserTable({ data }) {
 
 ---
 
-## Integration with KanbanReact2
+## Integration and Usage
 
-### Within KanbanReact2
+### Within the Library
 
-Since `mpComponents` is located in `KanbanReact2/src/mpComponents`, it's part of the KanbanReact2 application and can be imported directly:
+Since this is a standalone component library, it can be imported in applications:
 
 ```tsx
-// In KanbanReact2 components
-import { Button, Badge, Spinner } from "@/mpComponents/common";
-import { FormField, FormInput, useForm } from "@/mpComponents/controls";
-import { DataTable, Table, Alert } from "@/mpComponents/data-display";
-import { Container, Stack, Grid } from "@/mpComponents/layout";
-import styles from "./MyComponent.module.css";
+// In applications using mpComponents
+import { Button, Badge, Spinner } from "@konradullrich/mp-components";
+import { FormField, FormInput, useForm } from "@konradullrich/mp-components/controls";
+import { DataTable, Table, Alert } from "@konradullrich/mp-components/data-display";
+import { Container, Stack, Grid } from "@konradullrich/mp-components/layout";
+import "@konradullrich/mp-components/styles";
 ```
 
-### Future Migration to Shared Package
+### Future Package Distribution
 
-When ready, mpComponents can be extracted to a standalone package at the root level and consumed as a workspace dependency by both KanbanReact and KanbanReact2:
+The library is already set up as a standalone package and can be published to npm or consumed via workspace dependencies:
 
 ```json
 {
-  "workspaces": ["mpComponents", "KanbanReact", "KanbanReact2"]
+  "workspaces": ["packages/mpComponents", "apps/KanbanReact", "apps/KanbanReact2"]
 }
 ```
 
@@ -592,7 +592,7 @@ When ready, mpComponents can be extracted to a standalone package at the root le
 
 ## Design Tokens & Theming
 
-### CSS Variables (styles/variables.module.css)
+### CSS Variables (styles/variables.css)
 
 ```css
 :root {
@@ -661,7 +661,7 @@ When ready, mpComponents can be extracted to a standalone package at the root le
 ✅ All primitive components built and tested  
 ✅ Form system fully integrated with TanStack Form  
 ✅ Table system fully integrated with TanStack Table  
-✅ CSS Modules properly scoped to avoid style conflicts  
+✅ Plain CSS with BEM naming properly scoped to avoid style conflicts  
 ✅ Documentation complete with examples  
 ✅ >80% test coverage for critical components  
 ✅ Successfully consumed by KanbanReact & KanbanReact2  
@@ -674,7 +674,7 @@ When ready, mpComponents can be extracted to a standalone package at the root le
 - **Radix UI Documentation**: https://www.radix-ui.com
 - **TanStack Form**: https://tanstack.com/form/latest
 - **TanStack Table**: https://tanstack.com/table/latest
-- **CSS Modules**: https://github.com/css-modules/css-modules
+- **BEM Naming Convention**: https://getbem.com/
 - **Vite Documentation**: https://vitejs.dev
 
 ---
