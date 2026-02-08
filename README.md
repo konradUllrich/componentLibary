@@ -1,6 +1,6 @@
 # mpComponents
 
-A reusable React component library built with **Radix UI primitives**, **TanStack Form & Tables**, and **plain CSS** for styling. Designed for consistency across Intrexx applications.
+A reusable React component library built with **Radix UI primitives**, **TanStack Form & Tables**, and **plain CSS** for styling.
 
 ## Features
 
@@ -14,16 +14,16 @@ A reusable React component library built with **Radix UI primitives**, **TanStac
 ## Installation
 
 ```bash
-npm install @intrexx/mp-components
+npm install @konradullrich/mp-components
 # or
-pnpm add @intrexx/mp-components
+pnpm add @konradullrich/mp-components
 ```
 
 ## Usage
 
 ```tsx
-import { Button, Input, Dialog } from '@intrexx/mp-components';
-import '@intrexx/mp-components/styles';
+import { Button, Input, Dialog } from '@konradullrich/mp-components';
+import '@konradullrich/mp-components/styles';
 
 export function App() {
   return (
@@ -146,4 +146,4 @@ Contributions are welcome! Please ensure:
 
 ## Support
 
-For issues or questions, please open an issue on GitHub or contact the Intrexx development team.
+For issues or questions, please open an issue on GitHub.
