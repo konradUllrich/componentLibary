@@ -116,11 +116,13 @@
 
 .button--ghost:hover:not(:disabled) {
   background-color: var(--color-gray-100);
+  color: var(--color-foreground);
   border-color: var(--color-gray-300);
 }
 
 .button--ghost:active:not(:disabled) {
   background-color: var(--color-gray-200);
+  color: var(--color-foreground);
   border-color: var(--color-gray-400);
 }
 
@@ -180,11 +182,13 @@
 
   .button--ghost:hover:not(:disabled) {
     background-color: var(--color-gray-800);
+    color: var(--color-foreground);
     border-color: var(--color-gray-600);
   }
 
   .button--ghost:active:not(:disabled) {
     background-color: var(--color-gray-700);
+    color: var(--color-foreground);
     border-color: var(--color-gray-500);
   }
 }
