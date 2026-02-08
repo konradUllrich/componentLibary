@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import { Button, Badge, Text, Disclosure, Accordion } from "./common";
+import { Button, Badge, Text, Disclosure, Accordion, Tabs, UserAvatar, UserAvatars, DateComponent } from "./common";
 import {
   Input,
   Checkbox,
@@ -8,8 +8,8 @@ import {
   FormControl,
   CheckboxGroup,
 } from "./controls";
-import { Panel } from "./layout";
-import { Pagination, createPaginationStore } from "./data-display/Pagination";
+import { Panel, Card, CardHeader, CardContent, Flex, HorizontalNav } from "./layout";
+import { Pagination, createPaginationStore, Table, TableHeader, TableBody, TableRow, TableCell } from "./data-display";
 import "./ComponentShowcase.css";
 
 const paginationStore = createPaginationStore(10);
@@ -352,6 +352,140 @@ export const ComponentShowcase: React.FC = () => {
 
         <div className="showcase__group">
           <Pagination store={paginationStore} />
+        </div>
+      </section>
+
+      {/* Tabs Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Tabs
+        </Text>
+
+        <div className="showcase__group">
+          <Tabs
+            items={[
+              { id: "tab1", label: "Tab 1", content: <Text>Content for tab 1</Text> },
+              { id: "tab2", label: "Tab 2", content: <Text>Content for tab 2</Text> },
+              { id: "tab3", label: "Tab 3", content: <Text>Content for tab 3</Text> },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* User Avatars Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          User Avatars
+        </Text>
+
+        <div className="showcase__group">
+          <UserAvatars
+            users={[
+              { id: "1", name: "John Doe", email: "john@example.com" },
+              { id: "2", name: "Jane Smith", email: "jane@example.com" },
+              { id: "3", name: "Bob Johnson", email: "bob@example.com" },
+            ]}
+            maxVisible={3}
+            size="sm"
+          />
+        </div>
+      </section>
+
+      {/* Date Component Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Date Component
+        </Text>
+
+        <div className="showcase__group">
+          <div className="showcase__column">
+            <Text>Short: <DateComponent date={new Date()} format="short" /></Text>
+            <Text>Long: <DateComponent date={new Date()} format="long" /></Text>
+            <Text>DateTime: <DateComponent date={new Date()} format="datetime" /></Text>
+          </div>
+        </div>
+      </section>
+
+      {/* Table Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Table
+        </Text>
+
+        <div className="showcase__group">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableCell as="th">Name</TableCell>
+                <TableCell as="th">Email</TableCell>
+                <TableCell as="th">Role</TableCell>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>John Doe</TableCell>
+                <TableCell>john@example.com</TableCell>
+                <TableCell>Admin</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Jane Smith</TableCell>
+                <TableCell>jane@example.com</TableCell>
+                <TableCell>User</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+      </section>
+
+      {/* Card Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Card
+        </Text>
+
+        <div className="showcase__group">
+          <div className="showcase__row">
+            <Card variant="elevated" padding="md">
+              <CardHeader>
+                <Text weight="semibold">Card Title</Text>
+              </CardHeader>
+              <CardContent>
+                <Text color="secondary" size="sm">Card content goes here</Text>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Flex Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Flex
+        </Text>
+
+        <div className="showcase__group">
+          <Flex direction="row" justify="space-between" align="center" gap="md">
+            <Button size="sm">Left</Button>
+            <Button size="sm">Center</Button>
+            <Button size="sm">Right</Button>
+          </Flex>
+        </div>
+      </section>
+
+      {/* Horizontal Nav Section */}
+      <section className="showcase__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Horizontal Navigation
+        </Text>
+
+        <div className="showcase__group">
+          <HorizontalNav
+            items={[
+              { id: "home", label: "Home", href: "#home", isActive: true },
+              { id: "about", label: "About", href: "#about" },
+              { id: "contact", label: "Contact", href: "#contact" },
+            ]}
+          />
         </div>
       </section>
     </div>
