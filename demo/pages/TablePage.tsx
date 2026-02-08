@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, TableHeader, TableBody, TableRow, TableCell, Text } from '../../data-display';
+import { Table, TableHeader, TableBody, TableRow, TableCell } from '../../data-display';
+import { Text } from '../../common';
 
 export const TablePage: React.FC = () => {
   const sampleData = [

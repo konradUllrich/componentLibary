@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardHeader, CardContent, CardFooter, Text, Button } from '../../';
+import { Card, CardHeader, CardContent, CardFooter } from '../../layout';
+import { Text, Button } from '../../common';
 
 export const CardPage: React.FC = () => {
   return (

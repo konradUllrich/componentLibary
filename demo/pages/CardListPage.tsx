@@ -1,6 +1,7 @@
 import React from 'react';
-import { CardList, Text } from '../../data-display';
+import { CardList } from '../../data-display';
 import { Card, CardHeader, CardContent } from '../../layout';
+import { Text } from '../../common';
 
 export const CardListPage: React.FC = () => {
   const cards = [

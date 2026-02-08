@@ -4,8 +4,8 @@ import {
   AppHeader,
   AppSidebar,
   AppMain,
-  Text
-} from '../../';
+} from '../../layout';
+import { Text } from '../../common';
 
 export const AppLayoutPage: React.FC = () => {
   return (

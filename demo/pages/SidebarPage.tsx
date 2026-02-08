@@ -5,8 +5,8 @@ import {
   SidebarNav, 
   SidebarItem, 
   SidebarSubItem,
-  Text 
-} from '../../';
+} from '../../layout';
+import { Text } from '../../common';
 
 export const SidebarPage: React.FC = () => {
   return (

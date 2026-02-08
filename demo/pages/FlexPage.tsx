@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flex, Text, Button } from '../../';
+import { Flex } from '../../layout';
+import { Text, Button } from '../../common';
 
 export const FlexPage: React.FC = () => {
   return (

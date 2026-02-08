@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { HorizontalNav, Text } from '../../';
+import { HorizontalNav } from '../../layout';
+import { Text } from '../../common';
 
 export const HorizontalNavPage: React.FC = () => {
   const [activeId, setActiveId] = useState('home');
