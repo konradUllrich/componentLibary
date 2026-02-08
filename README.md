@@ -2,6 +2,12 @@
 
 A reusable React component library built with **Radix UI primitives**, **TanStack Form & Tables**, and **plain CSS** for styling.
 
+## 📚 Documentation & Examples
+
+**[View Live Documentation & Component Examples →](https://konradullrich.github.io/componentLibary/)**
+
+Explore interactive examples of all components, view usage documentation, and see the component library in action on our GitHub Pages site.
+
 ## Features
 
 - ✅ **Type-Safe Components** — Built with TypeScript
@@ -74,6 +80,22 @@ Page layout components
 Global CSS variables, themes, and utility styles
 
 ## Development
+
+### Demo Site
+
+Run the demo site locally:
+
+```bash
+npm run demo
+```
+
+Build the demo site:
+
+```bash
+npm run demo:build
+```
+
+The demo site showcases all components with interactive examples and documentation.
 
 ### Setup
 
