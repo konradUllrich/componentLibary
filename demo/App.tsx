@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from '@tanstack/react-router';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Text, ThemePanel } from '../common';
 import {

@@ -2,19 +2,22 @@ import { useNavigate, useSearch, useLocation } from '@tanstack/react-router';
 import { useCallback, useMemo } from 'react';
 import { getRouterConfig } from './routerConfig';
 
+// Type for search params when in param mode
+type SearchParams = Record<string, string | undefined>;
+
 /**
  * Custom navigation hook that handles both URL and param modes
  */
 export function useAppNavigation() {
   const navigate = useNavigate();
   const config = getRouterConfig();
-  const search = useSearch({ strict: false });
+  const search = useSearch({ strict: false }) as SearchParams;
   const location = useLocation();
 
   // Get current route from URL or param
   const currentRoute = useMemo(() => {
     if (config.mode === 'param') {
-      return (search as any)?.[config.paramName] || '/';
+      return search[config.paramName] || '/';
     }
     return location.pathname;
   }, [config, search, location.pathname]);
