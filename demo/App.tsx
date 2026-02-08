@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ComponentShowcase } from '../ComponentShowcase';
-import { Text, ThemePanel } from '../common';
+import { Text, ThemePanel, Button } from '../common';
 import {
   Sidebar,
   SidebarToggle,
@@ -8,6 +8,8 @@ import {
   SidebarNav,
   SidebarItem,
   SidebarSubItem,
+  Card,
+  Panel,
 } from '../layout';
 import {
   ButtonPage,
@@ -29,21 +31,19 @@ import {
   SidebarPage,
   AppLayoutPage,
 } from './pages';
+import { useAppNavigation } from './useAppNavigation';
 import './App.css';
 import './pages/ComponentPage.css';
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'components' | 'docs'>('home');
-  const [currentComponent, setCurrentComponent] = useState<string | null>(null);
+  const { currentPage, currentComponent, navigateTo, isRouteActive } = useAppNavigation();
 
   const handleComponentClick = (component: string) => {
-    setCurrentPage('components');
-    setCurrentComponent(component);
+    navigateTo(`/components/${component}`);
   };
 
   const handleComponentsClick = () => {
-    setCurrentPage('components');
-    setCurrentComponent(null);
+    navigateTo('/components');
   };
 
   return (
@@ -61,14 +61,17 @@ export const App: React.FC = () => {
             isActive={currentPage === 'home'}
             onClick={(e) => {
               e.preventDefault();
-              setCurrentPage('home');
-              setCurrentComponent(null);
+              navigateTo('/');
             }}
           />
           <SidebarItem 
             label="Components" 
             icon="🧩"
             isActive={currentPage === 'components' && !currentComponent}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo('/components');
+            }}
           >
             <SidebarSubItem 
               label="Button" 
@@ -221,8 +224,7 @@ export const App: React.FC = () => {
             isActive={currentPage === 'docs'}
             onClick={(e) => {
               e.preventDefault();
-              setCurrentPage('docs');
-              setCurrentComponent(null);
+              navigateTo('/docs');
             }}
           />
           <SidebarItem 
@@ -254,38 +256,38 @@ export const App: React.FC = () => {
                 A reusable React component library built with Radix UI primitives and TanStack
               </Text>
               <div className="hero-actions">
-                <button 
-                  className="button button-primary"
-                  onClick={() => setCurrentPage('components')}
+                <Button 
+                  variant="primary"
+                  onClick={() => navigateTo('/components')}
                 >
                   View Components
-                </button>
-                <button 
-                  className="button button-secondary"
-                  onClick={() => setCurrentPage('docs')}
+                </Button>
+                <Button 
+                  variant="secondary"
+                  onClick={() => navigateTo('/docs')}
                 >
                   Read Documentation
-                </button>
+                </Button>
               </div>
             </div>
 
             <div className="features">
-              <div className="feature">
+              <Card variant="elevated" padding="lg">
                 <Text as="h3" size="lg" weight="semibold">Type-Safe Components</Text>
                 <Text color="secondary">Built with TypeScript for full type safety</Text>
-              </div>
-              <div className="feature">
+              </Card>
+              <Card variant="elevated" padding="lg">
                 <Text as="h3" size="lg" weight="semibold">Radix UI Primitives</Text>
                 <Text color="secondary">Accessible, unstyled component foundations</Text>
-              </div>
-              <div className="feature">
+              </Card>
+              <Card variant="elevated" padding="lg">
                 <Text as="h3" size="lg" weight="semibold">TanStack Integration</Text>
                 <Text color="secondary">Advanced form and table handling</Text>
-              </div>
-              <div className="feature">
+              </Card>
+              <Card variant="elevated" padding="lg">
                 <Text as="h3" size="lg" weight="semibold">CSS-Based Styling</Text>
                 <Text color="secondary">Plain CSS for predictable styling</Text>
-              </div>
+              </Card>
             </div>
           </div>
         )}
@@ -300,185 +302,239 @@ export const App: React.FC = () => {
                 </Text>
 
                 <div className="component-grid">
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('button')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Button</Text>
                     <Text size="sm" color="secondary">
                       Versatile button component with multiple variants
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('badge')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Badge</Text>
                     <Text size="sm" color="secondary">
                       Small status indicators with different colors
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('text')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Text</Text>
                     <Text size="sm" color="secondary">
                       Flexible text component with styling options
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('form-controls')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Form Controls</Text>
                     <Text size="sm" color="secondary">
                       Input, checkbox, radio, and select components
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('panel')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Panel</Text>
                     <Text size="sm" color="secondary">
                       Container component with different styles
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('accordion')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Accordion</Text>
                     <Text size="sm" color="secondary">
                       Collapsible content sections
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('disclosure')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Disclosure</Text>
                     <Text size="sm" color="secondary">
                       Simple collapsible content
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('pagination')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Pagination</Text>
                     <Text size="sm" color="secondary">
                       Navigate through pages of data
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('tabs')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Tabs</Text>
                     <Text size="sm" color="secondary">
                       Tabbed interface with multiple variants
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('user-avatars')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">User Avatars</Text>
                     <Text size="sm" color="secondary">
                       Display user avatars individually or in groups
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('date')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Date</Text>
                     <Text size="sm" color="secondary">
                       Format and display dates in multiple locales
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('table')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Table</Text>
                     <Text size="sm" color="secondary">
                       Display structured data in table format
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('card-list')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Card List</Text>
                     <Text size="sm" color="secondary">
                       Grid of cards for structured content
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('card')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Card</Text>
                     <Text size="sm" color="secondary">
                       Flexible container with variants
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('flex')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Flex</Text>
                     <Text size="sm" color="secondary">
                       Flexbox layout wrapper component
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('horizontal-nav')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Horizontal Nav</Text>
                     <Text size="sm" color="secondary">
                       Responsive horizontal navigation
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('sidebar')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">Sidebar</Text>
                     <Text size="sm" color="secondary">
                       Collapsible sidebar navigation
                     </Text>
-                  </button>
+                  </Card>
 
-                  <button 
-                    className="component-card"
+                  <Card 
+                    variant="outlined" 
+                    padding="lg" 
+                    interactive
                     onClick={() => handleComponentClick('app-layout')}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Text as="h3" size="lg" weight="semibold">App Layout</Text>
                     <Text size="sm" color="secondary">
                       Complete application layout structure
                     </Text>
-                  </button>
+                  </Card>
                 </div>
               </div>
             )}
@@ -504,12 +560,12 @@ export const App: React.FC = () => {
 
             {currentComponent && (
               <div className="back-button-container">
-                <button 
-                  className="button button-secondary"
-                  onClick={() => setCurrentComponent(null)}
+                <Button 
+                  variant="secondary"
+                  onClick={() => navigateTo('/components')}
                 >
                   ← Back to Components
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -519,19 +575,19 @@ export const App: React.FC = () => {
           <div className="docs-page">
             <Text as="h1" size="3xl" weight="bold">Documentation</Text>
             
-            <section className="docs-section">
+            <Panel variant="elevated" padding="lg">
               <Text as="h2" size="2xl" weight="semibold">Installation</Text>
-              <pre className="code-block">
-                <code>{`npm install @konradullrich/mp-components
+              <Panel variant="subtle" padding="md" style={{ marginTop: 'var(--spacing-4)' }}>
+                <code style={{ fontSize: '0.875rem', lineHeight: '1.5' }}>{`npm install @konradullrich/mp-components
 # or
 pnpm add @konradullrich/mp-components`}</code>
-              </pre>
-            </section>
+              </Panel>
+            </Panel>
 
-            <section className="docs-section">
+            <Panel variant="elevated" padding="lg">
               <Text as="h2" size="2xl" weight="semibold">Usage</Text>
-              <pre className="code-block">
-                <code>{`import { Button, Input, Dialog } from '@konradullrich/mp-components';
+              <Panel variant="subtle" padding="md" style={{ marginTop: 'var(--spacing-4)' }}>
+                <code style={{ fontSize: '0.875rem', lineHeight: '1.5', whiteSpace: 'pre' }}>{`import { Button, Input, Dialog } from '@konradullrich/mp-components';
 import '@konradullrich/mp-components/styles';
 
 export function App() {
@@ -542,38 +598,38 @@ export function App() {
     </div>
   );
 }`}</code>
-              </pre>
-            </section>
+              </Panel>
+            </Panel>
 
-            <section className="docs-section">
+            <Panel variant="elevated" padding="lg">
               <Text as="h2" size="2xl" weight="semibold">Component Categories</Text>
               
-              <div className="category">
+              <Panel variant="subtle" padding="lg" style={{ marginTop: 'var(--spacing-4)' }}>
                 <Text as="h3" size="xl" weight="semibold">common/</Text>
                 <Text color="secondary">General-purpose components used across the app</Text>
                 <Text>Button, Badge, Icon, Text, Accordion, Disclosure</Text>
-              </div>
+              </Panel>
 
-              <div className="category">
+              <Panel variant="subtle" padding="lg" style={{ marginTop: 'var(--spacing-3)' }}>
                 <Text as="h3" size="xl" weight="semibold">controls/</Text>
                 <Text color="secondary">Form elements and interactive controls</Text>
                 <Text>Input, Select, Checkbox, Radio, FormControl</Text>
-              </div>
+              </Panel>
 
-              <div className="category">
+              <Panel variant="subtle" padding="lg" style={{ marginTop: 'var(--spacing-3)' }}>
                 <Text as="h3" size="xl" weight="semibold">data-display/</Text>
                 <Text color="secondary">Components that present data</Text>
                 <Text>Table, Pagination, CardList, Datalist</Text>
-              </div>
+              </Panel>
 
-              <div className="category">
+              <Panel variant="subtle" padding="lg" style={{ marginTop: 'var(--spacing-3)' }}>
                 <Text as="h3" size="xl" weight="semibold">layout/</Text>
                 <Text color="secondary">Page layout components</Text>
                 <Text>Panel, Card, Flex, Sidebar, AppLayout, HorizontalNav</Text>
-              </div>
-            </section>
+              </Panel>
+            </Panel>
 
-            <section className="docs-section">
+            <Panel variant="elevated" padding="lg">
               <Text as="h2" size="2xl" weight="semibold">Features</Text>
               <ul className="feature-list">
                 <li>✅ Type-Safe Components — Built with TypeScript</li>
@@ -583,7 +639,7 @@ export function App() {
                 <li>✅ Barrel Exports — Clean, intuitive import paths</li>
                 <li>✅ Fully Reusable — Components for multiple applications</li>
               </ul>
-            </section>
+            </Panel>
           </div>
         )}
       </main>
