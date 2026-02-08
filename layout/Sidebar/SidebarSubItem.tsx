@@ -8,7 +8,12 @@ export interface SidebarSubItemProps extends React.AnchorHTMLAttributes<HTMLAnch
   href?: string;
 
   /**
-   * Sub-item label
+   * Sub-item label (can use label prop or children for text)
+   */
+  label?: string;
+
+  /**
+   * Sub-item content
    */
   children?: React.ReactNode;
 
@@ -60,6 +65,7 @@ export const SidebarSubItem = React.forwardRef<
   (
     {
       href = "#",
+      label,
       children,
       isActive = false,
       icon,
@@ -69,6 +75,8 @@ export const SidebarSubItem = React.forwardRef<
     }: SidebarSubItemProps,
     ref,
   ) => {
+    const displayLabel = label || children;
+    
     return (
       <a
         ref={ref}
@@ -82,7 +90,7 @@ export const SidebarSubItem = React.forwardRef<
         {...props}
       >
         {icon && <span className="sidebar-subitem__icon">{icon}</span>}
-        <span className="sidebar-subitem__label">{children}</span>
+        <span className="sidebar-subitem__label">{displayLabel}</span>
       </a>
     );
   },
