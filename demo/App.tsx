@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../common';
 import {
+  Sidebar,
+  SidebarToggle,
+  SidebarMobileToggle,
+  SidebarNav,
+  SidebarItem,
+  SidebarSubItem,
+} from '../layout';
+import {
   ButtonPage,
   BadgePage,
   TextPage,
@@ -39,48 +47,200 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <div className="app-header-content">
-          <div className="app-logo">
-            <Text as="h1" size="xl" weight="bold">mpComponents</Text>
-          </div>
-          <nav className="app-nav">
-            <button 
-              className={`nav-link ${currentPage === 'home' ? 'active' : ''}`}
-              onClick={() => {
-                setCurrentPage('home');
-                setCurrentComponent(null);
-              }}
-            >
-              Home
-            </button>
-            <button 
-              className={`nav-link ${currentPage === 'components' ? 'active' : ''}`}
-              onClick={handleComponentsClick}
-            >
-              Components
-            </button>
-            <button 
-              className={`nav-link ${currentPage === 'docs' ? 'active' : ''}`}
-              onClick={() => {
-                setCurrentPage('docs');
-                setCurrentComponent(null);
-              }}
-            >
-              Documentation
-            </button>
-            <a 
-              href="https://github.com/konradUllrich/componentLibary" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="nav-link"
-            >
-              GitHub
-            </a>
-          </nav>
+    <div className="app app-with-sidebar">
+      <Sidebar defaultOpen={true} width="280px">
+        <div className="sidebar-header">
+          <Text as="h2" size="lg" weight="bold">mpComponents</Text>
         </div>
-      </header>
+        <SidebarToggle />
+        <SidebarNav>
+          <SidebarItem 
+            label="Home" 
+            icon="🏠"
+            isActive={currentPage === 'home'}
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentPage('home');
+              setCurrentComponent(null);
+            }}
+          />
+          <SidebarItem 
+            label="Components" 
+            icon="🧩"
+            isActive={currentPage === 'components' && !currentComponent}
+          >
+            <SidebarSubItem 
+              label="Button" 
+              isActive={currentComponent === 'button'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('button');
+              }}
+            />
+            <SidebarSubItem 
+              label="Badge" 
+              isActive={currentComponent === 'badge'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('badge');
+              }}
+            />
+            <SidebarSubItem 
+              label="Text" 
+              isActive={currentComponent === 'text'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('text');
+              }}
+            />
+            <SidebarSubItem 
+              label="Form Controls" 
+              isActive={currentComponent === 'form-controls'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('form-controls');
+              }}
+            />
+            <SidebarSubItem 
+              label="Panel" 
+              isActive={currentComponent === 'panel'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('panel');
+              }}
+            />
+            <SidebarSubItem 
+              label="Accordion" 
+              isActive={currentComponent === 'accordion'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('accordion');
+              }}
+            />
+            <SidebarSubItem 
+              label="Disclosure" 
+              isActive={currentComponent === 'disclosure'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('disclosure');
+              }}
+            />
+            <SidebarSubItem 
+              label="Pagination" 
+              isActive={currentComponent === 'pagination'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('pagination');
+              }}
+            />
+            <SidebarSubItem 
+              label="Tabs" 
+              isActive={currentComponent === 'tabs'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('tabs');
+              }}
+            />
+            <SidebarSubItem 
+              label="User Avatars" 
+              isActive={currentComponent === 'user-avatars'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('user-avatars');
+              }}
+            />
+            <SidebarSubItem 
+              label="Date" 
+              isActive={currentComponent === 'date'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('date');
+              }}
+            />
+            <SidebarSubItem 
+              label="Table" 
+              isActive={currentComponent === 'table'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('table');
+              }}
+            />
+            <SidebarSubItem 
+              label="Card List" 
+              isActive={currentComponent === 'card-list'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('card-list');
+              }}
+            />
+            <SidebarSubItem 
+              label="Card" 
+              isActive={currentComponent === 'card'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('card');
+              }}
+            />
+            <SidebarSubItem 
+              label="Flex" 
+              isActive={currentComponent === 'flex'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('flex');
+              }}
+            />
+            <SidebarSubItem 
+              label="Horizontal Nav" 
+              isActive={currentComponent === 'horizontal-nav'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('horizontal-nav');
+              }}
+            />
+            <SidebarSubItem 
+              label="Sidebar" 
+              isActive={currentComponent === 'sidebar'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('sidebar');
+              }}
+            />
+            <SidebarSubItem 
+              label="App Layout" 
+              isActive={currentComponent === 'app-layout'}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick('app-layout');
+              }}
+            />
+          </SidebarItem>
+          <SidebarItem 
+            label="Documentation" 
+            icon="📖"
+            isActive={currentPage === 'docs'}
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentPage('docs');
+              setCurrentComponent(null);
+            }}
+          />
+          <SidebarItem 
+            label="GitHub" 
+            icon="⭐"
+            href="https://github.com/konradUllrich/componentLibary"
+          />
+        </SidebarNav>
+      </Sidebar>
+      
+      <div className="app-content">
+        <header className="app-header">
+          <div className="app-header-content">
+            <SidebarMobileToggle />
+            <div className="app-logo">
+              <Text as="h1" size="xl" weight="bold">mpComponents</Text>
+            </div>
+          </div>
+        </header>
 
       <main className="app-main">
         {currentPage === 'home' && (
@@ -432,6 +592,7 @@ export function App() {
           © 2024 mpComponents. Licensed under MIT.
         </Text>
       </footer>
+      </div>
     </div>
   );
 };

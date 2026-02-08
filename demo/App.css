@@ -4,6 +4,42 @@
   flex-direction: column;
 }
 
+/* App with Sidebar Layout */
+.app-with-sidebar {
+  display: flex;
+  flex-direction: row;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-left: 280px; /* Match sidebar width */
+  transition: margin-left 0.3s ease;
+}
+
+/* When sidebar is collapsed on desktop */
+@media (min-width: 769px) {
+  .sidebar--collapsed + .app-content {
+    margin-left: 60px;
+  }
+}
+
+/* Mobile: no left margin, sidebar is overlay */
+@media (max-width: 768px) {
+  .app-content {
+    margin-left: 0;
+  }
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+}
+
 /* Header */
 .app-header {
   background: white;
@@ -21,6 +57,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .app-logo {

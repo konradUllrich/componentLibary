@@ -8,7 +8,12 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   href?: string;
 
   /**
-   * Item label
+   * Item label (can use label prop or children for text, label takes precedence)
+   */
+  label?: string;
+
+  /**
+   * Item content - can be text label or nested SidebarSubItem components
    */
   children?: React.ReactNode;
 
@@ -24,7 +29,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   icon?: React.ReactNode;
 
   /**
-   * Nested items for dropdown/collapsable menu
+   * Nested items for dropdown/collapsable menu (alternative to using children)
    */
   items?: SidebarItemProps[];
 
@@ -65,6 +70,7 @@ export const SidebarItem = React.forwardRef<
   (
     {
       href = "#",
+      label,
       children,
       isActive = false,
       icon,
@@ -76,7 +82,20 @@ export const SidebarItem = React.forwardRef<
     ref,
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const hasNestedItems = items.length > 0;
+    
+    // Check if children contains React components (nested items like SidebarSubItem)
+    const hasChildrenItems = React.Children.count(children) > 0 && 
+      React.Children.toArray(children).some(
+        (child) => React.isValidElement(child) && typeof child.type !== 'string'
+      );
+    
+    const hasNestedItems = (items?.length ?? 0) > 0 || hasChildrenItems;
+    
+    // Determine what to display as label
+    const displayLabel = label || (typeof children === 'string' ? children : undefined);
+    
+    // Separate nested items from label content
+    const nestedContent = hasChildrenItems ? children : null;
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (hasNestedItems) {
@@ -109,13 +128,16 @@ export const SidebarItem = React.forwardRef<
             </span>
           )}
           {icon && <span className="sidebar-item__icon">{icon}</span>}
-          <span className="sidebar-item__label">{children}</span>
+          <span className="sidebar-item__label">{displayLabel}</span>
         </a>
         {hasNestedItems && isExpanded && (
           <div className="sidebar-item--nested">
-            {items.map((item, index) => (
-              <SidebarItem key={index} {...item} />
-            ))}
+            {(items?.length ?? 0) > 0
+              ? items.map((item, index) => (
+                  <SidebarItem key={index} {...item} />
+                ))
+              : nestedContent
+            }
           </div>
         )}
       </>
