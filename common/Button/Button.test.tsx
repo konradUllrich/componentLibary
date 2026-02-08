@@ -150,4 +150,162 @@ test.describe('Button Component', () => {
     await page.waitForTimeout(100);
     expect(clicked).toBe(true);
   });
+
+  test.describe('Hover States', () => {
+    test('should have hover CSS rules for all button variants', async ({ mount, page }) => {
+      await mount(
+        <div>
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="ghost">Ghost</Button>
+        </div>
+      );
+      
+      // Verify hover CSS rules are defined in stylesheets
+      const hasHoverRules = await page.evaluate(() => {
+        const rules = Array.from(document.styleSheets)
+          .flatMap(sheet => {
+            try {
+              return Array.from(sheet.cssRules || []);
+            } catch {
+              return [];
+            }
+          })
+          .filter(rule => rule instanceof CSSStyleRule)
+          .map(rule => (rule as CSSStyleRule).selectorText);
+        
+        return {
+          primary: rules.some(r => r?.includes('.button--primary:hover')),
+          secondary: rules.some(r => r?.includes('.button--secondary:hover')),
+          destructive: rules.some(r => r?.includes('.button--destructive:hover')),
+          ghost: rules.some(r => r?.includes('.button--ghost:hover'))
+        };
+      });
+      
+      expect(hasHoverRules.primary).toBe(true);
+      expect(hasHoverRules.secondary).toBe(true);
+      expect(hasHoverRules.destructive).toBe(true);
+      expect(hasHoverRules.ghost).toBe(true);
+    });
+
+    test('ghost button hover should have explicit color defined', async ({ mount, page }) => {
+      await mount(<Button variant="ghost">Ghost</Button>);
+      
+      // Verify that ghost button hover rules include explicit color property
+      const hasColorInHover = await page.evaluate(() => {
+        const rules = Array.from(document.styleSheets)
+          .flatMap(sheet => {
+            try {
+              return Array.from(sheet.cssRules || []);
+            } catch {
+              return [];
+            }
+          })
+          .filter(rule => rule instanceof CSSStyleRule) as CSSStyleRule[];
+        
+        // Find the ghost hover rule
+        const ghostHoverRule = rules.find(rule => 
+          rule.selectorText?.includes('.button--ghost:hover')
+        );
+        
+        if (!ghostHoverRule) return false;
+        
+        // Check if it has a color property defined
+        const style = ghostHoverRule.style;
+        return style.color !== '' && style.color !== undefined;
+      });
+      
+      expect(hasColorInHover).toBe(true);
+    });
+
+    test('disabled buttons should have disabled hover rules', async ({ mount, page }) => {
+      await mount(<Button disabled>Disabled</Button>);
+      
+      // Verify CSS rules for disabled state
+      const hasDisabledRules = await page.evaluate(() => {
+        const rules = Array.from(document.styleSheets)
+          .flatMap(sheet => {
+            try {
+              return Array.from(sheet.cssRules || []);
+            } catch {
+              return [];
+            }
+          })
+          .filter(rule => rule instanceof CSSStyleRule)
+          .map(rule => (rule as CSSStyleRule).selectorText);
+        
+        // Check for :hover:not(:disabled) patterns
+        return rules.some(r => r?.includes(':hover') && r?.includes(':not(:disabled)'));
+      });
+      
+      expect(hasDisabledRules).toBe(true);
+    });
+
+    test('ghost button should maintain foreground color in hover state', async ({ mount, page }) => {
+      await mount(<Button variant="ghost">Ghost Button</Button>);
+      
+      // Check that the ghost button hover rule has the same color as default
+      const colorConsistency = await page.evaluate(() => {
+        const rules = Array.from(document.styleSheets)
+          .flatMap(sheet => {
+            try {
+              return Array.from(sheet.cssRules || []);
+            } catch {
+              return [];
+            }
+          })
+          .filter(rule => rule instanceof CSSStyleRule) as CSSStyleRule[];
+        
+        const defaultRule = rules.find(r => 
+          r.selectorText === '.button--ghost'
+        );
+        const hoverRule = rules.find(r => 
+          r.selectorText?.includes('.button--ghost:hover:not(:disabled)')
+        );
+        
+        if (!defaultRule || !hoverRule) return false;
+        
+        // Both should reference the same color variable
+        const defaultColor = defaultRule.style.color;
+        const hoverColor = hoverRule.style.color;
+        
+        return defaultColor === hoverColor && defaultColor.includes('--color-foreground');
+      });
+      
+      expect(colorConsistency).toBe(true);
+    });
+
+    test('ghost button hover should have background and border colors defined', async ({ mount, page }) => {
+      await mount(<Button variant="ghost">Ghost Button</Button>);
+      
+      // Verify hover styles are properly defined
+      const hasRequiredStyles = await page.evaluate(() => {
+        const rules = Array.from(document.styleSheets)
+          .flatMap(sheet => {
+            try {
+              return Array.from(sheet.cssRules || []);
+            } catch {
+              return [];
+            }
+          })
+          .filter(rule => rule instanceof CSSStyleRule) as CSSStyleRule[];
+        
+        const hoverRule = rules.find(r => 
+          r.selectorText?.includes('.button--ghost:hover:not(:disabled)')
+        );
+        
+        if (!hoverRule) return false;
+        
+        const style = hoverRule.style;
+        return (
+          style.backgroundColor !== '' && 
+          style.borderColor !== '' &&
+          style.color !== ''
+        );
+      });
+      
+      expect(hasRequiredStyles).toBe(true);
+    });
+  });
 });
