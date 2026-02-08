@@ -7,6 +7,7 @@ export const ThemePanel: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleColorChange = (colorKey: keyof typeof theme.colors, value: number) => {
+    if (isNaN(value)) return; // Prevent NaN from corrupting theme state
     updateTheme({
       colors: {
         ...theme.colors,
@@ -16,6 +17,7 @@ export const ThemePanel: React.FC = () => {
   };
 
   const handleTypographyChange = (key: keyof typeof theme.typography, value: number) => {
+    if (isNaN(value)) return; // Prevent NaN from corrupting theme state
     updateTheme({
       typography: {
         ...theme.typography,
@@ -25,6 +27,7 @@ export const ThemePanel: React.FC = () => {
   };
 
   const handleBorderRadiusChange = (value: number) => {
+    if (isNaN(value)) return; // Prevent NaN from corrupting theme state
     updateTheme({
       borderRadius: {
         base: value,

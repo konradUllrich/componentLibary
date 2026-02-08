@@ -123,7 +123,7 @@
 .theme-panel__range:focus {
   outline: none;
   border-color: var(--color-ring);
-  box-shadow: 0 0 0 3px oklab(0.649 0.189 0.106 / 0.1);
+  box-shadow: 0 0 0 3px var(--input-focus-box-shadow);
 }
 
 .theme-panel__range {

@@ -95,7 +95,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const resetTheme = useCallback(() => {
     setTheme(defaultTheme);
-    localStorage.removeItem(THEME_STORAGE_KEY);
+    try {
+      localStorage.removeItem(THEME_STORAGE_KEY);
+    } catch (error) {
+      console.error('Failed to remove theme from storage:', error);
+    }
   }, []);
 
   return (
