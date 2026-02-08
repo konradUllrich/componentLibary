@@ -64,7 +64,7 @@ export const DateComponent: FC<DateComponentProps> = ({
     );
     return <>{formatted}</>;
   } catch (error) {
-    console.error("Date formatting error:", error, "Input:", date);
+    // Date formatting failed, show fallback
     return <>{fallback}</>;
   }
 };

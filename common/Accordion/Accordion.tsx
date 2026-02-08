@@ -92,7 +92,7 @@ export interface AccordionProps {
  *   multiple
  *   items={[...]}
  *   value={values}
- *   onValueChange={setValues as any}
+ *   onValueChange={setValues}
  * />
  *
  * // Cannot close all items

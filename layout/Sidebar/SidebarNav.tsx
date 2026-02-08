@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 import "./SidebarNav.css";
 
@@ -36,7 +37,7 @@ export const SidebarNav = React.forwardRef<HTMLDivElement, SidebarNavProps>(
     return (
       <nav
         ref={ref}
-        className={`sidebar__nav   ${className}`.trim()}
+        className={clsx("sidebar__nav", className)}
         {...props}
       >
         {children}
