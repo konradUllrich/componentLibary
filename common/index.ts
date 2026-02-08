@@ -30,3 +30,12 @@ export {
 } from "./UserAvatars";
 
 export { DateComponent, type DateComponentProps } from "./Date";
+
+export {
+  ThemeProvider,
+  useTheme,
+  ThemePanel,
+  type ThemeConfig,
+  type ThemeColors,
+  defaultTheme,
+} from "./ThemeProvider";
