@@ -1,0 +1,147 @@
+import React, { ChangeEvent, useState } from 'react';
+import { Input, Checkbox, Radio, Select, FormControl, CheckboxGroup } from '../../controls';
+import { Text } from '../../common';
+
+export const FormControlsPage: React.FC = () => {
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+  const [radioValue, setRadioValue] = useState('option1');
+  const [checkboxGroup, setCheckboxGroup] = useState<string[]>(['option1']);
+
+  return (
+    <div className="component-page">
+      <div className="component-page__header">
+        <Text as="h1" size="3xl" weight="bold">Form Controls</Text>
+        <Text color="secondary">
+          Form input components with validation and error handling
+        </Text>
+      </div>
+
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Input</Text>
+        <Text color="secondary" size="sm">
+          Text input with label and helper text
+        </Text>
+        <div className="component-page__demo-column">
+          <FormControl label="Input" helperText="This is a helper text">
+            <Input placeholder="Enter text..." />
+          </FormControl>
+
+          <FormControl
+            label="Input with Error"
+            errorMessage="This field is required"
+          >
+            <Input placeholder="Enter text..." />
+          </FormControl>
+        </div>
+      </section>
+
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Checkbox</Text>
+        <Text color="secondary" size="sm">
+          Single checkbox with label
+        </Text>
+        <div className="component-page__demo-column">
+          <FormControl label="Checkbox">
+            <Checkbox
+              checked={checkboxChecked}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setCheckboxChecked(e.target.checked)
+              }
+            >
+              Accept terms and conditions
+            </Checkbox>
+          </FormControl>
+        </div>
+      </section>
+
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Radio Group</Text>
+        <Text color="secondary" size="sm">
+          Multiple radio options
+        </Text>
+        <div className="component-page__demo-column">
+          <FormControl label="Radio Group">
+            <div className="component-page__demo-column">
+              <Radio
+                name="radio-group"
+                value="option1"
+                checked={radioValue === 'option1'}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setRadioValue(e.target.value)
+                }
+              >
+                Option 1
+              </Radio>
+              <Radio
+                name="radio-group"
+                value="option2"
+                checked={radioValue === 'option2'}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setRadioValue(e.target.value)
+                }
+              >
+                Option 2
+              </Radio>
+            </div>
+          </FormControl>
+        </div>
+      </section>
+
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Checkbox Group</Text>
+        <Text color="secondary" size="sm">
+          Multiple checkbox options
+        </Text>
+        <div className="component-page__demo-column">
+          <FormControl label="Checkbox Group">
+            <CheckboxGroup
+              options={[
+                { value: 'option1', label: 'Option 1' },
+                { value: 'option2', label: 'Option 2' },
+                { value: 'option3', label: 'Option 3' },
+              ]}
+              value={checkboxGroup}
+              onChange={setCheckboxGroup}
+            />
+          </FormControl>
+        </div>
+      </section>
+
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Select</Text>
+        <Text color="secondary" size="sm">
+          Dropdown selection
+        </Text>
+        <div className="component-page__demo-column">
+          <FormControl label="Select">
+            <Select
+              placeholder="Select an option..."
+              options={[
+                { value: '1', label: 'Option 1' },
+                { value: '2', label: 'Option 2' },
+                { value: '3', label: 'Option 3' },
+              ]}
+            />
+          </FormControl>
+        </div>
+      </section>
+
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <pre className="code-block">
+          <code>{`import { Input, Checkbox, Select, FormControl } from '@konradullrich/mp-components';
+
+<FormControl label="Email" helperText="Enter your email address">
+  <Input type="email" placeholder="email@example.com" />
+</FormControl>
+
+<FormControl label="Subscribe to newsletter">
+  <Checkbox checked={subscribed} onChange={handleChange}>
+    Send me updates
+  </Checkbox>
+</FormControl>`}</code>
+        </pre>
+      </section>
+    </div>
+  );
+};

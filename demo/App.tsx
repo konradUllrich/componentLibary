@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Text } from '../common';
+import {
+  ButtonPage,
+  BadgePage,
+  TextPage,
+  FormControlsPage,
+  PanelPage,
+  AccordionPage,
+  DisclosurePage,
+  PaginationPage,
+} from './pages';
 import './App.css';
+import './pages/ComponentPage.css';
 
 export const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'home' | 'components' | 'docs'>('home');
+  const [currentComponent, setCurrentComponent] = useState<string | null>(null);
+
+  const handleComponentClick = (component: string) => {
+    setCurrentPage('components');
+    setCurrentComponent(component);
+  };
+
+  const handleComponentsClick = () => {
+    setCurrentPage('components');
+    setCurrentComponent(null);
+  };
 
   return (
     <div className="app">
@@ -16,19 +38,25 @@ export const App: React.FC = () => {
           <nav className="app-nav">
             <button 
               className={`nav-link ${currentPage === 'home' ? 'active' : ''}`}
-              onClick={() => setCurrentPage('home')}
+              onClick={() => {
+                setCurrentPage('home');
+                setCurrentComponent(null);
+              }}
             >
               Home
             </button>
             <button 
               className={`nav-link ${currentPage === 'components' ? 'active' : ''}`}
-              onClick={() => setCurrentPage('components')}
+              onClick={handleComponentsClick}
             >
               Components
             </button>
             <button 
               className={`nav-link ${currentPage === 'docs' ? 'active' : ''}`}
-              onClick={() => setCurrentPage('docs')}
+              onClick={() => {
+                setCurrentPage('docs');
+                setCurrentComponent(null);
+              }}
             >
               Documentation
             </button>
@@ -93,7 +121,116 @@ export const App: React.FC = () => {
 
         {currentPage === 'components' && (
           <div className="components-page">
-            <ComponentShowcase />
+            {!currentComponent && (
+              <div className="component-list">
+                <Text as="h1" size="3xl" weight="bold">Components</Text>
+                <Text color="secondary">
+                  Browse all available components in the library
+                </Text>
+
+                <div className="component-grid">
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('button')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Button</Text>
+                    <Text size="sm" color="secondary">
+                      Versatile button component with multiple variants
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('badge')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Badge</Text>
+                    <Text size="sm" color="secondary">
+                      Small status indicators with different colors
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('text')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Text</Text>
+                    <Text size="sm" color="secondary">
+                      Flexible text component with styling options
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('form-controls')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Form Controls</Text>
+                    <Text size="sm" color="secondary">
+                      Input, checkbox, radio, and select components
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('panel')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Panel</Text>
+                    <Text size="sm" color="secondary">
+                      Container component with different styles
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('accordion')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Accordion</Text>
+                    <Text size="sm" color="secondary">
+                      Collapsible content sections
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('disclosure')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Disclosure</Text>
+                    <Text size="sm" color="secondary">
+                      Simple collapsible content
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('pagination')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Pagination</Text>
+                    <Text size="sm" color="secondary">
+                      Navigate through pages of data
+                    </Text>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {currentComponent === 'button' && <ButtonPage />}
+            {currentComponent === 'badge' && <BadgePage />}
+            {currentComponent === 'text' && <TextPage />}
+            {currentComponent === 'form-controls' && <FormControlsPage />}
+            {currentComponent === 'panel' && <PanelPage />}
+            {currentComponent === 'accordion' && <AccordionPage />}
+            {currentComponent === 'disclosure' && <DisclosurePage />}
+            {currentComponent === 'pagination' && <PaginationPage />}
+
+            {currentComponent && (
+              <div className="back-button-container">
+                <button 
+                  className="button button-secondary"
+                  onClick={() => setCurrentComponent(null)}
+                >
+                  ← Back to Components
+                </button>
+              </div>
+            )}
           </div>
         )}
 
