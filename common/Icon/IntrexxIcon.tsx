@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 interface KanbanIconProps {
   iconClass: string;
@@ -10,6 +11,6 @@ export const IntrexxIcon: React.FC<KanbanIconProps> = ({
   className = "",
 }) => {
   return (
-    <i className={`kanban-icon ${iconClass} ${className}`} aria-hidden="true" />
+    <i className={clsx("kanban-icon", iconClass, className)} aria-hidden="true" />
   );
 };

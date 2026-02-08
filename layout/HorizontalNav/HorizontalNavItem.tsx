@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import "./HorizontalNavItem.css";
 
 export interface HorizontalNavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -77,7 +78,11 @@ export const HorizontalNavItem = React.forwardRef<
       <a
         ref={ref}
         href={href}
-        className={`horizontal-nav-item ${isActive ? "horizontal-nav-item--active" : ""} ${className}`.trim()}
+        className={clsx(
+          "horizontal-nav-item",
+          isActive && "horizontal-nav-item--active",
+          className
+        )}
         onClick={handleClick}
         {...props}
       >
