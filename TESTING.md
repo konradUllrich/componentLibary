@@ -1,14 +1,18 @@
 # Testing Guide
 
-This project uses **Playwright component testing** with **axe-core** for accessibility testing.
+This project uses **Playwright component testing** with **axe-core** for accessibility testing, and **Playwright E2E testing** for end-to-end documentation website testing.
 
 ## Overview
 
 - **Playwright Component Testing**: Tests components in isolation with real browser rendering
 - **axe-core**: Automated accessibility testing to ensure WCAG 2.1 AA compliance
 - **Test Location**: Tests are co-located with components (e.g., `Button.test.tsx` next to `Button.tsx`)
+- **Playwright E2E Testing**: Tests the full documentation website with real user flows
+- **E2E Test Location**: All e2e tests are in the `e2e/` directory (see [E2E_TESTING.md](./E2E_TESTING.md) for details)
 
 ## Running Tests
+
+### Component Tests
 
 ```bash
 # Run all component tests
@@ -23,6 +27,24 @@ npm run test:ct:ui
 # Run in debug mode (step through tests)
 npm run test:ct:debug
 ```
+
+### E2E Tests
+
+```bash
+# Run all e2e tests (documentation website)
+npm run test:e2e
+
+# Run with browser UI (see tests execute)
+npm run test:e2e:headed
+
+# Run with Playwright UI (interactive test runner)
+npm run test:e2e:ui
+
+# Run in debug mode (step through tests)
+npm run test:e2e:debug
+```
+
+For detailed information about e2e testing, see [E2E_TESTING.md](./E2E_TESTING.md).
 
 ## Writing Tests
 
