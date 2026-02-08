@@ -2,11 +2,13 @@
 
 A reusable React component library built with **Radix UI primitives**, **TanStack Form & Tables**, and **plain CSS** for styling.
 
-## 📚 Documentation & Examples
+## 📚 Documentation
 
-**[View Live Documentation & Component Examples →](https://konradullrich.github.io/componentLibary/)**
-
-Explore interactive examples of all components, view usage documentation, and see the component library in action on our GitHub Pages site.
+- **[📖 View Live Documentation & Examples →](https://konradullrich.github.io/componentLibary/)**
+- **[🤝 Contributing Guide](./CONTRIBUTING.md)** - Get started with development
+- **[⚡ Quick Reference](./QUICK_REFERENCE.md)** - One-page cheat sheet for component development
+- **[📋 Full Guidelines](./mpComponents.instructions.md)** - Complete development standards
+- **[🧪 Testing Guide](./TESTING.md)** - Component testing documentation
 
 ## Features
 
@@ -40,6 +42,25 @@ export function App() {
   );
 }
 ```
+
+## 🎨 Component Development
+
+### Core Principles
+
+This library follows strict guidelines to ensure quality, accessibility, and maintainability:
+
+- **TypeScript Strict Mode** - Zero type errors, no `any` or `unknown`
+- **Plain CSS + BEM** - No CSS modules or CSS-in-JS
+- **Accessibility First** - WCAG 2.1 AA compliance required
+- **Small Files** - Target ≤100 lines per component/CSS file
+- **Radix UI** - Use primitives for complex interactive components
+- **Testing Required** - Playwright component tests with a11y checks
+
+### Quick Links
+
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Start here for development
+- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) - Cheat sheet for guidelines
+- [mpComponents.instructions.md](./mpComponents.instructions.md) - Complete standards
 
 ## Component Categories
 
@@ -162,10 +183,6 @@ pnpm test
 pnpm test:ui  # With UI
 ```
 
-## Component Guidelines
-
-For detailed guidelines on creating and maintaining components, see [mpComponents.instructions.md](./mpComponents.instructions.md).
-
 ## Structure
 
 ```
@@ -186,14 +203,21 @@ MIT
 
 ## Contributing
 
-Contributions are welcome! Please ensure:
+**Please read our [Contributing Guide](./CONTRIBUTING.md) before submitting contributions.**
 
-1. Components follow the structure defined in `mpComponents.instructions.md`
-2. All components are properly exported via barrel exports
-3. Styles are written in plain CSS
-4. Components are fully typed with TypeScript
-5. Components pass linting and type checks
-6. New components include Playwright component tests with accessibility checks
+Key requirements:
+
+1. Components follow the structure defined in [mpComponents.instructions.md](./mpComponents.instructions.md)
+2. All code passes TypeScript checks (`pnpm type-check`)
+3. Styles use plain CSS with BEM naming convention
+4. Components meet WCAG 2.1 AA accessibility standards
+5. All components have Playwright component tests with accessibility checks
+6. Component files are ≤ ~100 lines (split if larger)
+
+For detailed guidelines, templates, and checklists, see:
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Quick start and templates
+- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) - One-page reference
+- [mpComponents.instructions.md](./mpComponents.instructions.md) - Complete guidelines
 
 ## Support
 

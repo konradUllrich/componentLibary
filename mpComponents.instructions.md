@@ -1,6 +1,58 @@
 # mpComponents Instructions
 
-This file defines the standards and conventions for the mpComponents folder structure and component development.
+**Complete guidelines for developing components in the mpComponents library.**
+
+> 📖 **Quick Start:** New to the project? Check [CONTRIBUTING.md](./CONTRIBUTING.md) for a quick overview.  
+> ⚡ **Quick Reference:** Need a cheat sheet? See [QUICK_REFERENCE.md](./QUICK_REFERENCE.md).
+
+This document defines comprehensive standards and conventions for the mpComponents folder structure, component development, styling, accessibility, and TypeScript usage.
+
+## Table of Contents
+
+1. [Folder Organization](#folder-organization)
+2. [Component Structure](#component-structure)
+3. [CSS/Styling Conventions](#cssstyling-conventions)
+4. [Component Export Pattern](#component-export-pattern)
+5. [Component Development Standards](#component-development-standards)
+6. [TypeScript Requirements](#typescript-requirements)
+7. [Accessibility (A11y) Standards](#accessibility-a11y-standards)
+
+---
+
+---
+
+## 🎯 Critical Requirements
+
+**All components MUST meet these requirements before being merged:**
+
+### TypeScript Strictness
+- ✅ **Pass `tsc --noEmit`** with zero errors or warnings
+- ❌ **No `any` or `unknown`** types (unless absolutely unavoidable with documented justification)
+- ❌ **No type assertions** (`as`) unless absolutely necessary with clear comments
+- ❌ **Never leave type errors** for later - fix immediately
+
+### CSS & Styling
+- ✅ **Plain CSS only** - Use `.css` files, not CSS modules or CSS-in-JS
+- ✅ **BEM naming convention** - `.block`, `.block__element`, `.block--modifier`
+- ✅ **Use `clsx`** for conditional class names, not string concatenation
+
+### File Size & Organization
+- ✅ **≤ ~100 lines per file** - Split components and CSS aggressively
+- ✅ **Single responsibility** - One component, one purpose per file
+
+### Accessibility (Non-Negotiable)
+- ✅ **WCAG 2.1 AA minimum** - All components must be accessible
+- ✅ **4.5:1 color contrast** for normal text (tested with WebAIM)
+- ✅ **Full keyboard navigation** - Tab, Enter, Arrows, Escape
+- ✅ **Proper ARIA attributes** and semantic HTML
+- ✅ **Screen reader tested** - Verify with VoiceOver or NVDA
+
+### Component Best Practices
+- ✅ **Use Radix UI** for complex interactive components (dialogs, dropdowns, etc.)
+- ✅ **React best practices** - Functional components, hooks, `forwardRef`
+- ✅ **Comprehensive tests** - Playwright component tests with accessibility checks
+
+---
 
 ## Folder Organization
 
@@ -750,5 +802,103 @@ Before publishing a component:
 - [WebAIM](https://webaim.org/)
 - [Inclusive Components](https://inclusive-components.design/)
 - [A11ycasts](https://www.youtube.com/playlist?list=PLNYkxOF6rcICWx0C9Xc-RgEzwLvoPccPQp) - Video series
+
+---
+
+## 📋 Component Development Checklist
+
+Use this comprehensive checklist when creating or updating components:
+
+### Setup & Structure
+- [ ] Component placed in correct category (`common/`, `controls/`, `data-display/`, or `layout/`)
+- [ ] Follows file structure: `ComponentName.tsx`, `ComponentName.css`, `ComponentName.test.tsx`, `index.ts`
+- [ ] Component ≤ ~100 lines
+- [ ] CSS file ≤ ~100 lines
+- [ ] Split into sub-components if too large
+
+### TypeScript
+- [ ] Proper TypeScript interface defined
+- [ ] Extends appropriate HTML element attributes (`React.HTMLAttributes<...>`)
+- [ ] All props documented with JSDoc comments
+- [ ] Default values documented in JSDoc (`@default`)
+- [ ] No `any`, `unknown`, or unnecessary type assertions
+- [ ] Uses `React.forwardRef` if ref forwarding needed
+- [ ] Display name set: `Component.displayName = "Component"`
+- [ ] `pnpm type-check` passes with zero errors
+
+### Styling (Plain CSS + BEM)
+- [ ] Uses plain CSS import: `import "./Component.css"`
+- [ ] All classes follow BEM: `.block`, `.block__element`, `.block--modifier`
+- [ ] Uses `clsx` for conditional classes
+- [ ] CSS organized: Block → Modifiers → Elements → Responsive
+- [ ] Uses CSS variables (`var(--spacing-2)`, `var(--color-primary)`)
+- [ ] No CSS modules, styled-components, or CSS-in-JS
+
+### Accessibility (WCAG 2.1 AA)
+- [ ] **Color Contrast**: 4.5:1 minimum for text (tested with WebAIM)
+- [ ] **Keyboard Navigation**: Tab, Enter, Space, Arrows, Escape work correctly
+- [ ] **Focus Visible**: Clear 2px focus indicator with 2px offset
+- [ ] **ARIA Attributes**: Correct roles, labels, states (aria-label, aria-describedby, etc.)
+- [ ] **Semantic HTML**: Using `<button>`, `<nav>`, `<main>`, etc. (not divs)
+- [ ] **Form Labels**: All inputs have associated labels (`htmlFor` or `aria-label`)
+- [ ] **Error Messages**: Linked with `aria-describedby` and `role="alert"`
+- [ ] **Screen Reader**: Tested with VoiceOver (macOS) or NVDA (Windows)
+- [ ] **No Color-Only**: Information conveyed through text/icons, not just color
+- [ ] **Images/Icons**: Alt text provided or `aria-hidden="true"` for decorative
+
+### Radix UI Integration
+- [ ] Uses Radix primitives for complex components (if applicable)
+- [ ] Wraps Radix in custom component with consistent API
+- [ ] Applies BEM classes to Radix components
+- [ ] Preserves Radix accessibility features
+
+### Testing
+- [ ] Component test file created (`ComponentName.test.tsx`)
+- [ ] Basic render test included
+- [ ] Accessibility test with `jest-axe` or Playwright axe
+- [ ] Keyboard navigation test included
+- [ ] Interactive behavior tests (if applicable)
+- [ ] Tests pass: `pnpm test:ct`
+
+### Code Quality
+- [ ] Follows existing component patterns in the repo
+- [ ] Code is readable and well-organized
+- [ ] Complex logic extracted into hooks (if needed)
+- [ ] No console.log or debug code left behind
+- [ ] Linting passes: `pnpm lint`
+- [ ] Component exported in category `index.ts`
+
+### Documentation
+- [ ] Component has JSDoc comment block with description
+- [ ] Usage examples provided in JSDoc (`@example`)
+- [ ] Props interface clearly documents each prop
+- [ ] Special usage notes included (if any)
+
+### Final Validation
+- [ ] `pnpm type-check` - Passes ✅
+- [ ] `pnpm lint` - Passes ✅
+- [ ] `pnpm test:ct` - All tests pass ✅
+- [ ] Demo site (`pnpm demo`) - Component renders correctly
+- [ ] Accessibility tools - No violations (axe DevTools)
+- [ ] Manual testing - Works in Chrome, Firefox, Safari
+
+---
+
+## 🚀 Getting Started
+
+1. **Read the guidelines** in this document
+2. **Review existing components** in `common/Button/` or `common/Badge/` for examples
+3. **Use the templates** in [CONTRIBUTING.md](./CONTRIBUTING.md)
+4. **Follow the checklist** above when developing
+5. **Run all checks** before submitting PR
+
+---
+
+## 📚 Additional Resources
+
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Quick start guide for contributors
+- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) - One-page cheat sheet
+- [TESTING.md](./TESTING.md) - Comprehensive testing guide
+- [README.md](./README.md) - Project overview and setup
 
 ---
