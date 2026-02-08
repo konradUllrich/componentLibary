@@ -86,7 +86,7 @@ const columns: ColumnDef<User>[] = [
 ];
 
 const table = useReactTable({
-  data: users,
+  data: sampleData,
   columns,
   getCoreRowModel: getCoreRowModel(),
 });
