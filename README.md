@@ -97,6 +97,21 @@ npm run demo:build
 
 The demo site showcases all components with interactive examples and documentation.
 
+#### Router Configuration
+
+The demo site uses TanStack Router with configurable routing modes:
+
+- **URL Mode** (default): Traditional routing with clean URLs (e.g., `/components/button`)
+- **Param Mode**: Routes stored in URL parameters (e.g., `/?route=/components/button`)
+
+To use param mode:
+
+```bash
+VITE_ROUTER_MODE=param npm run demo
+```
+
+For more details, see [demo/ROUTER_CONFIG.md](./demo/ROUTER_CONFIG.md).
+
 ### Setup
 
 ```bash
