@@ -24,7 +24,7 @@
   box-shadow: var(--button-focus-shadow);
 }
 
-.button:hover:not(:disabled) {
+.button:hover:not(:disabled):not(.button--ghost) {
   opacity: var(--button-hover-opacity);
 }
 
