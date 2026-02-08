@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import "./CardList.css";
 
 export interface CardListProps<T> {
@@ -114,7 +115,7 @@ function CardListInner<T>(
         } as React.CSSProperties
       }
     >
-      <div className={`card-list__grid ${className || ""}`}>
+      <div className={clsx("card-list__grid", className)}>
         {items.map((item, index) => (
           <div
             key={getKey ? getKey(item, index) : index}

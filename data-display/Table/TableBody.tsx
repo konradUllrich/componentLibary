@@ -11,8 +11,11 @@ export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionEle
     id: string;
     getVisibleCells: () => Array<{
       id: string;
-      column: { getSize: () => number; columnDef: any };
-      getContext: () => any;
+      column: { 
+        getSize: () => number; 
+        columnDef: { cell: unknown };
+      };
+      getContext: () => unknown;
     }>;
   }>;
 

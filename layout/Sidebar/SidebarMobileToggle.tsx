@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import { useSidebar } from "./useSidebar";
 import "./SidebarMobileToggle.css";
 
@@ -54,7 +55,7 @@ export const SidebarMobileToggle = React.forwardRef<
     return (
       <button
         ref={ref}
-        className={`sidebar__mobile-toggle ${className}`.trim()}
+        className={clsx("sidebar__mobile-toggle", className)}
         onClick={handleClick}
         aria-expanded={mobileOpen}
         aria-label={ariaLabel || "Toggle mobile menu"}

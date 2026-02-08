@@ -22,8 +22,7 @@ export interface DatalistProps<T> {
   /**
    * Column definitions
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  columns: ColumnDef<T, any>[];
+  columns: ColumnDef<T, unknown>[];
 
   /**
    * Display variant

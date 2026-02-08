@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import clsx from "clsx";
 import { useSidebarStore } from "./sidebarStore";
 import "./Sidebar.css";
 
@@ -56,9 +57,12 @@ export function Sidebar({
 
   return (
     <div
-      className={`sidebar ${isOpen ? "sidebar--expanded" : "sidebar--collapsed"} ${
-        isMobile ? "sidebar--mobile" : "sidebar--desktop"
-      } ${className}`.trim()}
+      className={clsx(
+        "sidebar",
+        isOpen ? "sidebar--expanded" : "sidebar--collapsed",
+        isMobile ? "sidebar--mobile" : "sidebar--desktop",
+        className
+      )}
       style={{ "--sidebar-width": width } as React.CSSProperties}
     >
       <div className="sidebar__wrapper">{children}</div>

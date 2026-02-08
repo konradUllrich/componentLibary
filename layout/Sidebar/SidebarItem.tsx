@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import clsx from "clsx";
 import "./SidebarItem.css";
 
 export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -110,19 +111,22 @@ export const SidebarItem = React.forwardRef<
         <a
           ref={ref}
           href={href}
-          className={`
-            sidebar-item
-            ${isActive ? "sidebar-item--active" : ""}
-            ${hasNestedItems ? "sidebar-item--expandable" : ""}
-            ${className}
-          `.trim()}
+          className={clsx(
+            "sidebar-item",
+            isActive && "sidebar-item--active",
+            hasNestedItems && "sidebar-item--expandable",
+            className
+          )}
           onClick={handleClick}
           aria-expanded={hasNestedItems ? isExpanded : undefined}
           {...props}
         >
           {hasNestedItems && (
             <span
-              className={`sidebar-item__chevron ${isExpanded ? "sidebar-item__chevron--open" : ""}`}
+              className={clsx(
+                "sidebar-item__chevron",
+                isExpanded && "sidebar-item__chevron--open"
+              )}
             >
               ▼
             </span>

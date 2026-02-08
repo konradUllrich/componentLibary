@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 import { useTheme } from './ThemeContext';
 import './ThemePanel.css';
 
@@ -36,7 +37,7 @@ export const ThemePanel: React.FC = () => {
   };
 
   return (
-    <div className={`theme-panel ${isCollapsed ? 'theme-panel--collapsed' : ''}`}>
+    <div className={clsx("theme-panel", isCollapsed && "theme-panel--collapsed")}>
       <button
         className="theme-panel__toggle"
         onClick={() => setIsCollapsed(!isCollapsed)}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import clsx from "clsx";
 import "./HorizontalNav.css";
 import { HorizontalNavItem } from "./HorizontalNavItem";
 
@@ -109,7 +110,7 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
     if (isMobile) {
       return (
         <div
-          className={`horizontal-nav horizontal-nav--mobile ${className}`.trim()}
+          className={clsx("horizontal-nav", "horizontal-nav--mobile", className)}
         >
           <select
             className="horizontal-nav__select"
@@ -134,7 +135,7 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
     return (
       <nav
         ref={ref}
-        className={`horizontal-nav ${className}`.trim()}
+        className={clsx("horizontal-nav", className)}
         {...props}
       >
         {items.map((item) => (
