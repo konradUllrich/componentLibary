@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentShowcase } from '../ComponentShowcase';
-import { Text } from '../common';
+import { Text, ThemePanel } from '../common';
 import {
   Sidebar,
   SidebarToggle,
@@ -48,6 +48,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="app app-with-sidebar">
+      <ThemePanel />
       <Sidebar defaultOpen={true} width="280px">
         <div className="sidebar-header">
           <Text as="h2" size="lg" weight="bold">mpComponents</Text>
