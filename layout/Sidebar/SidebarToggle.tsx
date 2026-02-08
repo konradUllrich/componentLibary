@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import { useSidebar } from "./useSidebar";
 import "./SidebarToggle.css";
 
@@ -57,7 +58,7 @@ export const SidebarToggle = React.forwardRef<
     return (
       <button
         ref={ref}
-        className={`sidebar__toggle ${className}`.trim()}
+        className={clsx("sidebar__toggle", className)}
         onClick={handleClick}
         aria-expanded={isOpen}
         aria-label={ariaLabel || "Toggle sidebar"}
