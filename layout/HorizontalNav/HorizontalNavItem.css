@@ -1,0 +1,100 @@
+/* Horizontal Nav Item Styles */
+
+/* Block: Horizontal Nav Item */
+.horizontal-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  height: 35px;
+  padding: 0 var(--spacing-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-200) var(--ease-in-out);
+  cursor: pointer;
+  white-space: nowrap;
+  /* Reset anchor tag defaults */
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+.horizontal-nav-item[href] {
+  color: inherit;
+  text-decoration: none;
+}
+
+.horizontal-nav-item:visited {
+  color: inherit;
+}
+
+.horizontal-nav-item:link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.horizontal-nav-item:hover {
+  background-color: var(--color-background);
+}
+
+.horizontal-nav-item:focus-visible {
+  box-shadow: var(--focus-shadow);
+  outline: none;
+}
+
+/* Modifier: Active state */
+.horizontal-nav-item--active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.horizontal-nav-item--active:visited {
+  color: var(--color-primary-foreground);
+}
+
+.horizontal-nav-item--active[href] {
+  color: var(--color-primary-foreground);
+}
+
+.horizontal-nav-item--active:hover {
+  background-color: var(--color-primary);
+  opacity: 0.9;
+}
+
+/* Element: Item Icon */
+.horizontal-nav-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Element: Item Label */
+.horizontal-nav-item__label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .horizontal-nav-item {
+    padding: 0 var(--spacing-2);
+    gap: var(--spacing-2);
+  }
+
+  .horizontal-nav-item__icon {
+    width: 20px;
+    height: 20px;
+    min-width: 18px;
+  }
+}

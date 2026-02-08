@@ -1,0 +1,105 @@
+/* Native Select Styles */
+
+/* Element: Container */
+.native-select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Block: Native Select */
+.native-select {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-200) var(--ease-in-out);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  padding-right: var(--spacing-8);
+}
+
+.native-select:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.native-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-shadow);
+}
+
+/* Variant: Default */
+.native-select--default {
+  background-color: var(--color-background);
+}
+
+/* Variant: Filled */
+.native-select--filled {
+  background-color: var(--color-background-secondary);
+  border-color: transparent;
+}
+
+.native-select--filled:hover:not(:disabled) {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.native-select--filled:focus {
+  background-color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+/* Variant: Outline */
+.native-select--outline {
+  border-width: 2px;
+}
+
+/* Size: Small */
+.native-select--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-sm);
+}
+
+/* Size: Medium */
+.native-select--md {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-base);
+}
+
+/* Size: Large */
+.native-select--lg {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-lg);
+}
+
+/* Modifier: Error */
+.native-select--error {
+  border-color: var(--color-error);
+}
+
+.native-select--error:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px var(--color-error-light);
+}
+
+/* Modifier: Disabled */
+.native-select--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-background-secondary);
+}
+
+/* Element: Select Icon */
+.native-select-icon {
+  position: absolute;
+  right: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: var(--color-foreground);
+  pointer-events: none;
+}

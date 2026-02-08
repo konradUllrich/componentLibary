@@ -1,0 +1,163 @@
+/* Select Styles */
+
+/* Block: Select Trigger */
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-200) var(--ease-in-out);
+  outline: none;
+  cursor: pointer;
+}
+
+.select-trigger:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.select-trigger:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-shadow);
+}
+
+.select-trigger[data-placeholder] {
+  color: var(--color-foreground-secondary);
+}
+
+/* Variant: Default */
+.select-trigger--default {
+  background-color: var(--color-background);
+}
+
+/* Variant: Filled */
+.select-trigger--filled {
+  background-color: var(--color-background-secondary);
+  border-color: transparent;
+}
+
+.select-trigger--filled:hover:not(:disabled) {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.select-trigger--filled:focus {
+  background-color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+/* Variant: Outline */
+.select-trigger--outline {
+  border-width: 2px;
+}
+
+/* Size: Small */
+.select-trigger--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-sm);
+}
+
+/* Size: Medium */
+.select-trigger--md {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-base);
+}
+
+/* Size: Large */
+.select-trigger--lg {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-lg);
+}
+
+/* Modifier: Error */
+.select-trigger--error {
+  border-color: var(--color-error);
+}
+
+.select-trigger--error:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px var(--color-error-light);
+}
+
+/* Modifier: Disabled */
+.select-trigger--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-background-secondary);
+}
+
+/* Element: Select Icon */
+.select-icon {
+  font-size: 0.8em;
+  transition: transform var(--duration-200) var(--ease-in-out);
+}
+
+.select-trigger[data-state="open"] .select-icon {
+  transform: rotate(180deg);
+}
+
+/* Block: Select Content */
+.select-content {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: var(--z-dropdown);
+}
+
+/* Element: Select Viewport */
+.select-viewport {
+  padding: var(--spacing-1);
+}
+
+/* Block: Select Item */
+.select-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  padding-right: var(--spacing-8);
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.select-item:hover {
+  background-color: var(--color-background-secondary);
+}
+
+.select-item:focus {
+  background-color: var(--color-background-secondary);
+}
+
+.select-item[data-state="checked"] {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Modifier: Disabled Item */
+.select-item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Element: Item Indicator */
+.select-item-indicator {
+  position: absolute;
+  right: var(--spacing-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}

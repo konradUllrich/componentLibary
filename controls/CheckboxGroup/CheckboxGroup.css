@@ -1,0 +1,43 @@
+/* CheckboxGroup Styles */
+
+/* Block: Checkbox Group */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+/* Modifier: Horizontal Layout */
+.checkbox-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+/* Modifier: Vertical Layout */
+.checkbox-group--vertical {
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+/* Modifier: Error State */
+.checkbox-group--error {
+  /* Error state inherited from individual checkboxes */
+}
+
+/* Remove extra spacing from individual checkboxes in group */
+.checkbox-group .form-control {
+  margin-bottom: 0;
+  gap: 0;
+}
+
+/* Override checkbox container spacing in group context */
+.checkbox-group .checkbox-container {
+  gap: var(--spacing-2);
+}
+
+/* Horizontal layout - tighter spacing */
+.checkbox-group--horizontal .checkbox-container {
+  gap: var(--spacing-2);
+}

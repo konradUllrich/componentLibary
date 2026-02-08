@@ -1,0 +1,94 @@
+/* Flex Component Styles */
+
+.flex {
+  display: flex;
+}
+
+/* Direction */
+.flex--direction-row {
+  flex-direction: row;
+}
+
+.flex--direction-column {
+  flex-direction: column;
+}
+
+.flex--direction-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex--direction-column-reverse {
+  flex-direction: column-reverse;
+}
+
+/* Justify Content */
+.flex--justify-flex-start {
+  justify-content: flex-start;
+}
+
+.flex--justify-center {
+  justify-content: center;
+}
+
+.flex--justify-flex-end {
+  justify-content: flex-end;
+}
+
+.flex--justify-space-between {
+  justify-content: space-between;
+}
+
+.flex--justify-space-around {
+  justify-content: space-around;
+}
+
+.flex--justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+/* Align Items */
+.flex--align-flex-start {
+  align-items: flex-start;
+}
+
+.flex--align-center {
+  align-items: center;
+}
+
+.flex--align-flex-end {
+  align-items: flex-end;
+}
+
+.flex--align-stretch {
+  align-items: stretch;
+}
+
+.flex--align-baseline {
+  align-items: baseline;
+}
+
+/* Gap Presets */
+.flex--gap-xs {
+  gap: var(--spacing-1);
+}
+
+.flex--gap-sm {
+  gap: var(--spacing-2);
+}
+
+.flex--gap-md {
+  gap: var(--spacing-3);
+}
+
+.flex--gap-lg {
+  gap: var(--spacing-4);
+}
+
+.flex--gap-xl {
+  gap: var(--spacing-6);
+}
+
+/* Wrap */
+.flex--wrap {
+  flex-wrap: wrap;
+}

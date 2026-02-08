@@ -1,0 +1,144 @@
+/* Checkbox Styles */
+
+/* Block: Checkbox Container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Block: Checkbox Input (Hidden) */
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Block: Checkbox Label */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  transition: color var(--duration-200) var(--ease-in-out);
+}
+
+.checkbox-label:hover:not(:has(input:disabled)) {
+  color: var(--color-primary);
+}
+
+/* Element: Checkbox Text */
+.checkbox-text {
+  display: inline-block;
+}
+
+/* Element: Custom Checkbox Box */
+.checkbox-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-input-background);
+  transition: all var(--duration-200) var(--ease-in-out);
+}
+
+.checkbox-custom::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  border: solid var(--color-background);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-1px);
+  opacity: 0;
+  transition: opacity var(--duration-200) var(--ease-in-out);
+}
+
+/* Variant: Default */
+.checkbox-custom--default {
+  background-color: var(--color-input-background);
+  border: 1px solid var(--color-input-border);
+}
+
+/* Variant: Filled */
+.checkbox-custom--filled {
+  background-color: var(--color-background-secondary);
+  border: 1px solid transparent;
+}
+
+.checkbox-custom--filled:hover:not(:has(input:disabled)) {
+  background-color: var(--color-background);
+  border-color: var(--color-input-border);
+}
+
+/* Variant: Outline */
+.checkbox-custom--outline {
+  border-width: 2px;
+  background-color: transparent;
+}
+
+/* Modifier: Checked State */
+.checkbox-input:checked + .checkbox-label .checkbox-custom {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkbox-input:checked + .checkbox-label .checkbox-custom--outline {
+  background-color: var(--color-primary);
+}
+
+.checkbox-input:checked + .checkbox-label .checkbox-custom::after {
+  opacity: 1;
+}
+
+/* Modifier: Hover State */
+.checkbox-input:not(:disabled) + .checkbox-label:hover .checkbox-custom {
+  border-color: var(--color-primary);
+}
+
+/* Modifier: Focus State */
+.checkbox-input:focus-visible + .checkbox-label {
+  box-shadow: var(--focus-shadow);
+  border-radius: var(--radius-md);
+}
+
+/* .checkbox-input:focus-visible + .checkbox-label .checkbox-custom {
+  box-shadow: var(--focus-shadow);
+} */
+
+/* Modifier: Error State */
+.checkbox-input--error + .checkbox-label .checkbox-custom {
+  border-color: var(--color-destructive);
+}
+
+.checkbox-input--error:checked + .checkbox-label .checkbox-custom {
+  background-color: var(--color-destructive);
+  border-color: var(--color-destructive);
+}
+
+.checkbox-input--error:focus-visible + .checkbox-label .checkbox-custom {
+  box-shadow: var(--focus-shadow-error);
+}
+
+/* Modifier: Disabled State */
+.checkbox-input--disabled + .checkbox-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+  color: var(--color-foreground-secondary);
+}
+
+.checkbox-input--disabled + .checkbox-label .checkbox-custom {
+  background-color: var(--color-background-secondary);
+  border-color: var(--color-border-light);
+  cursor: not-allowed;
+}

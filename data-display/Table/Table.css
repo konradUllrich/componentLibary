@@ -1,0 +1,111 @@
+/* Table Styles */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  background-color: var(--color-background);
+}
+
+/* Table Head */
+.table__head {
+  background-color: var(--color-background-secondary);
+  border-bottom: 2px solid var(--color-border);
+}
+
+/* Table Body */
+.table__body {
+  background-color: var(--color-background);
+}
+
+/* Table Row */
+.table__row {
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--duration-200) var(--ease-in-out);
+}
+
+.table__row:last-child {
+  border-bottom: none;
+}
+
+/* Hoverable Row (tbody rows) */
+.table__body .table__row:hover {
+  background-color: var(--color-background-secondary);
+}
+
+/* Selected Row */
+.table__row--selected {
+  background-color: oklab(var(--color-primary-a) var(--color-primary-b) / 0.1);
+}
+
+/* Table Cell (td/th) */
+.table__cell {
+  padding: var(--spacing-3) var(--spacing-4);
+  text-align: left;
+  vertical-align: middle;
+  color: var(--color-foreground);
+}
+
+/* Header Cell */
+.table__cell--header {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-foreground-secondary);
+  user-select: none;
+}
+
+/* Sortable Header */
+.table__cell--sortable {
+  cursor: pointer;
+  transition: background-color var(--duration-200) var(--ease-in-out);
+}
+
+.table__cell--sortable:hover {
+  background-color: var(--color-border);
+}
+
+.table__header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.table__sort-indicator {
+  display: inline-block;
+  min-width: 1em;
+  font-size: 0.875em;
+  opacity: 0.6;
+}
+
+.table__cell--sortable:hover .table__sort-indicator {
+  opacity: 1;
+}
+
+/* Cell Alignment Modifiers */
+.table__cell--align-center {
+  text-align: center;
+}
+
+.table__cell--align-right {
+  text-align: right;
+}
+
+.table__cell--align-left {
+  text-align: left;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table {
+    font-size: var(--font-size-sm);
+  }
+
+  .table__cell {
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+
+  .table__cell--header {
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+}

@@ -1,0 +1,39 @@
+/* Sidebar Navigation Styles */
+
+/* Element: Navigation Container */
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  gap: var(--spacing-2);
+  transition: all var(--duration-300) var(--ease-in-out);
+  padding: var(--spacing-1);
+  position: relative;
+}
+
+.sidebar__nav--expanded {
+  width: var(--sidebar-width);
+}
+
+.sidebar__nav--collapsed {
+  width: var(--sidebar-width-collapsed);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar__nav--closed {
+    transform: translateX(-100%);
+  }
+
+  .sidebar__nav--open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar__nav {
+    position: relative;
+    height: auto;
+  }
+}

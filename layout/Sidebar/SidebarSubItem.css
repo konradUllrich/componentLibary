@@ -1,0 +1,95 @@
+/* Sidebar Sub Item Styles */
+
+/* Block: Sub Item */
+.sidebar-subitem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-bottom: var(--spacing-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-200) var(--ease-in-out);
+  cursor: pointer;
+  text-align: left;
+  margin-left: var(--spacing-6);
+  border-left: 3px solid transparent;
+  /* Reset anchor tag defaults */
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: var(--color-foreground);
+  font-family: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+.sidebar-subitem[href] {
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.sidebar-subitem:visited {
+  color: var(--color-foreground);
+}
+
+.sidebar-subitem:link {
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.sidebar-subitem:hover {
+  background-color: var(--color-background);
+}
+
+.sidebar-subitem:focus-visible {
+  box-shadow: var(--focus-shadow);
+  outline: none;
+}
+
+/* Modifier: Active state */
+.sidebar-subitem--active {
+  background-color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sidebar-subitem--active:visited {
+  color: var(--color-primary-foreground);
+}
+
+.sidebar-subitem--active[href] {
+  color: var(--color-primary-foreground);
+}
+
+.sidebar-subitem--active:hover {
+  opacity: 0.9;
+}
+
+/* Element: Sub Item Icon */
+.sidebar-subitem__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Element: Sub Item Label */
+.sidebar-subitem__label {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed state - hide sub-items */
+.sidebar__nav--collapsed .sidebar-subitem {
+  display: none;
+}

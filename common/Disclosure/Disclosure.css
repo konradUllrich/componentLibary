@@ -1,0 +1,110 @@
+/* Disclosure Styles */
+
+/* Block: Disclosure Container */
+.disclosure {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Block: Disclosure Trigger */
+.disclosure-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-background);
+  border: none;
+  color: var(--color-foreground);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--duration-200) var(--ease-in-out);
+  outline: none;
+}
+
+.disclosure-trigger:hover {
+  background-color: var(--color-background-secondary);
+}
+
+.disclosure-trigger:focus-visible {
+  box-shadow: var(--focus-shadow);
+}
+
+/* Element: Disclosure Icon */
+.disclosure-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1em;
+}
+
+/* Element: Disclosure Label */
+.disclosure-label {
+  flex: 1;
+  display: block;
+}
+
+/* Element: Disclosure Chevron */
+.disclosure-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75em;
+  transition: transform var(--duration-200) var(--ease-in-out);
+  color: var(--color-foreground-secondary);
+}
+
+.disclosure[data-state="open"] .disclosure-chevron {
+  transform: rotate(180deg);
+}
+
+/* Block: Disclosure Content */
+.disclosure-content {
+  overflow: hidden;
+  animation: slide-down var(--duration-200) var(--ease-in-out);
+}
+
+.disclosure[data-state="closed"] .disclosure-content {
+  animation: slide-up var(--duration-200) var(--ease-in-out);
+}
+
+.disclosure-content > * {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.disclosure-content > *:first-child {
+  padding-top: var(--spacing-3);
+}
+
+.disclosure-content > *:last-child {
+  padding-bottom: var(--spacing-3);
+}
+
+@keyframes slide-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}

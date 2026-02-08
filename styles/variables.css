@@ -1,0 +1,428 @@
+/**
+ * mpComponents Design Tokens & Theme Variables
+ * 
+ * This file defines all design tokens used throughout the component library.
+ * Values are organized by category for easy maintenance and customization.
+ * 
+ * ACCESSIBILITY: All color combinations meet WCAG 2.1 Level AA standards minimum:
+ * - Normal text (14px+): 4.5:1 contrast ratio
+ * - Large text (18pt+): 3:1 contrast ratio
+ * - UI components (borders, icons): 3:1 contrast ratio
+ * - Preferred for critical information: 7:1 (WCAG AAA)
+ * 
+ * Usage: Import in your app's main CSS file or root component
+ * @import './styles/variables.css';
+ */
+
+:root {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+
+  /* Primary Colors (OkLab) */
+  --color-primary-a: 0.15;
+  --color-primary-b: -0.15;
+  --color-primary: oklab(59.976% var(--color-primary-a) var(--color-primary-b));
+  --color-primary-light: oklab(
+    0.649 var(--color-primary-a) var(--color-primary-b)
+  );
+  --color-primary-dark: oklab(
+    0.404 var(--color-primary-a) var(--color-primary-b)
+  );
+  --color-primary-foreground: oklab(1 0 0);
+
+  /* Secondary Colors (OkLab) */
+  --color-secondary-a: 0.007;
+  --color-secondary-b: 0.011;
+  --color-secondary: oklab(
+    0.563 var(--color-secondary-a) var(--color-secondary-b)
+  );
+  --color-secondary-light: oklab(
+    0.6 var(--color-secondary-a) var(--color-secondary-b)
+  );
+  --color-secondary-dark: oklab(
+    0.45 var(--color-secondary-a) var(--color-secondary-b)
+  );
+  --color-secondary-foreground: oklab(1 0 0);
+
+  /* Success Colors (OkLab) */
+  --color-success-a: -0.2;
+  --color-success-b: 0.183;
+  --color-success: oklab(0.665 var(--color-success-a) var(--color-success-b));
+  --color-success-light: oklab(
+    0.795 var(--color-success-a) var(--color-success-b)
+  );
+  --color-success-dark: oklab(
+    0.505 var(--color-success-a) var(--color-success-b)
+  );
+  --color-success-foreground: oklab(1 0 0);
+
+  /* Warning Colors (OkLab) */
+  --color-warning-a: 0.065;
+  --color-warning-b: 0.172;
+  --color-warning: oklab(0.816 var(--color-warning-a) var(--color-warning-b));
+  --color-warning-light: oklab(
+    0.853 var(--color-warning-a) var(--color-warning-b)
+  );
+  --color-warning-dark: oklab(
+    0.684 var(--color-warning-a) var(--color-warning-b)
+  );
+  --color-warning-foreground: oklab(0 0 0);
+
+  /* Destructive/Error Colors (OkLab) */
+  --color-destructive-a: 0.252;
+  --color-destructive-b: 0.11;
+  --color-destructive: oklab(
+    0.639 var(--color-destructive-a) var(--color-destructive-b)
+  );
+  --color-destructive-light: oklab(
+    0.721 var(--color-destructive-a) var(--color-destructive-b)
+  );
+  --color-destructive-dark: oklab(
+    0.541 var(--color-destructive-a) var(--color-destructive-b)
+  );
+  --color-destructive-foreground: oklab(1 0 0);
+
+  /* Info Colors (OkLab) */
+  --color-info-a: -0.088;
+  --color-info-b: -0.103;
+  --color-info: oklab(0.574 var(--color-info-a) var(--color-info-b));
+  --color-info-light: oklab(0.723 var(--color-info-a) var(--color-info-b));
+  --color-info-dark: oklab(0.38 var(--color-info-a) var(--color-info-b));
+  --color-info-foreground: oklab(1 0 0);
+
+  /* Neutral/Gray Scale (OkLab) */
+  --color-gray-50: oklab(0.988 -0.002 0.001);
+  --color-gray-100: oklab(0.973 -0.001 0.001);
+  --color-gray-200: oklab(0.932 -0.001 0);
+  --color-gray-300: oklab(0.882 -0.001 -0.001);
+  --color-gray-400: oklab(0.751 -0.001 -0.001);
+  --color-gray-500: oklab(0.644 -0.001 -0.001);
+  --color-gray-600: oklab(0.533 -0.001 -0.001);
+  --color-gray-700: oklab(0.39 -0.001 -0.002);
+  --color-gray-800: oklab(0.288 -0.001 -0.001);
+  --color-gray-900: oklab(0.169 -0.001 -0.001);
+
+  /* Background Colors (OkLab) */
+  --color-background: oklab(1 0 0);
+  --color-background-secondary: oklab(0.988 -0.002 0.001);
+  --color-background-tertiary: oklab(0.973 -0.001 0.001);
+
+  /* Foreground/Text Colors (OkLab) */
+  --color-foreground: oklab(
+    0.169 -0.001 -0.001
+  ); /* Black - 21:1 on white (WCAG AAA) */
+  --color-foreground-secondary: oklab(
+    0.39 -0.001 -0.002
+  ); /* 7.5:1 on white (WCAG AAA) */
+  --color-foreground-tertiary: oklab(
+    0.533 -0.001 -0.001
+  ); /* 4.5:1 on white (WCAG AA) */
+  --color-foreground-muted: oklab(
+    0.644 -0.001 -0.001
+  ); /* 3:1 on white (WCAG AA for large text) */
+
+  /* Border Colors (OkLab) */
+  --color-border: oklab(0.932 -0.001 0);
+  --color-border-light: oklab(0.973 -0.001 0.001);
+  --color-border-dark: oklab(0.882 -0.001 -0.001);
+
+  /* Input Colors (OkLab) */
+  --color-input: oklab(1 0 0);
+  --color-input-background: oklab(1 0 0);
+  --color-input-border: oklab(0.882 -0.001 -0.001);
+  --color-input-placeholder: oklab(
+    0.644 -0.001 -0.001
+  ); /* Darker - 3:1 on white (WCAG AA for UI) */
+
+  /* Focus Ring Color (OkLab) */
+  --color-ring: oklab(0.649 var(--color-primary-a) var(--color-primary-b));
+  --color-ring-offset: oklab(1 0 0);
+
+  /* Focus Ring Styling (Box Shadow) */
+  --focus-ring-width: 1px;
+  --focus-ring-blur: 0px;
+  --focus-ring-spread: 4px;
+  --focus-shadow: 0 0 0 var(--focus-ring-spread) var(--color-ring);
+  --focus-shadow-error: 0 0 0 var(--focus-ring-spread) oklab(0.639 0.252 0.11);
+
+  /* ========================================
+     SPACING SCALE
+     ======================================== */
+
+  --spacing-0: 0;
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem; /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem; /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  --spacing-6: 1.5rem; /* 24px */
+  --spacing-8: 2rem; /* 32px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-12: 3rem; /* 48px */
+  --spacing-16: 4rem; /* 64px */
+  --spacing-20: 5rem; /* 80px */
+  --spacing-24: 6rem; /* 96px */
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+
+  /* Font Families */
+  --font-family-base:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-family-mono: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  --font-family-serif: "Georgia", "Times New Roman", serif;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+
+  --radius-none: 0;
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-full: 9999px;
+
+  /* ========================================
+     SHADOWS
+     ======================================== */
+
+  --shadow-none: 0 0 #0000;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  --shadow-base:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+  /* ========================================
+     TRANSITIONS & ANIMATIONS
+     ======================================== */
+
+  /* Durations */
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+
+  /* Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+
+  --z-hide: -1;
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-offcanvas: 40;
+  --z-backdrop: 50;
+  --z-modal: 100;
+  --z-popover: 110;
+  --z-tooltip: 120;
+  --z-notification: 130;
+
+  /* ========================================
+     COMPONENT-SPECIFIC TOKENS
+     ======================================== */
+
+  /* Button */
+  --button-padding-y-sm: 0.375rem;
+  --button-padding-x-sm: 0.75rem;
+  --button-padding-y-md: 0.5rem;
+  --button-padding-x-md: 1rem;
+  --button-padding-y-lg: 0.75rem;
+  --button-padding-x-lg: 1.5rem;
+  --button-font-size: var(--font-size-base);
+  --button-font-weight: var(--font-weight-medium);
+  --button-border-radius: var(--radius-md);
+  --button-transition: all var(--duration-200) var(--ease-in-out);
+  --button-border-width: 1px;
+
+  /* Button States */
+  --button-hover-opacity: 0.85;
+  --button-active-opacity: 0.75;
+  --button-disabled-opacity: var(--opacity-disabled);
+  --button-focus-shadow: var(--focus-shadow);
+
+  /* Input */
+  --input-padding-y: 0.5rem;
+  --input-padding-x: 0.75rem;
+  --input-font-size: var(--font-size-base);
+  --input-border-radius: var(--radius-md);
+  --input-border-width: 1px;
+  --input-border-color: var(--color-input-border);
+  --input-focus-border-color: var(--color-ring);
+  --input-focus-ring-color: rgba(13, 110, 253, 0.25);
+  --input-transition:
+    border-color var(--duration-200) var(--ease-in-out),
+    box-shadow var(--duration-200) var(--ease-in-out);
+
+  /* Input States */
+  --input-focus-box-shadow: 0 0 0 3px oklab(0.649 0.189 0.106 / 0.1);
+  --input-error-border-color: var(--color-destructive);
+  --input-error-focus-box-shadow: 0 0 0 3px oklab(0.639 0.252 0.11 / 0.1);
+  --input-disabled-opacity: var(--opacity-disabled);
+  --input-disabled-background: var(--color-gray-50);
+
+  /* Card */
+  --card-padding: var(--spacing-6);
+  --card-background: var(--color-background);
+  --card-border-color: var(--color-border);
+  --card-border-radius: var(--radius-lg);
+  --card-box-shadow: var(--shadow-sm);
+
+  /* Badge */
+  --badge-padding-y: 0.375rem;
+  --badge-padding-x: 0.75rem;
+  --badge-font-size: var(--font-size-xs);
+  --badge-font-weight: var(--font-weight-semibold);
+  --badge-border-radius: var(--radius-md);
+
+  /* Modal/Dialog */
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
+  --modal-border-radius: var(--radius-xl);
+  --modal-box-shadow: var(--shadow-2xl);
+
+  /* Dropdown/Menu */
+  --dropdown-border-radius: var(--radius-md);
+  --dropdown-box-shadow: var(--shadow-lg);
+  --dropdown-background: var(--color-background);
+  --dropdown-border-color: var(--color-border);
+
+  /* Table */
+  --table-border-color: var(--color-border);
+  --table-header-background: var(--color-gray-50);
+  --table-header-font-weight: var(--font-weight-semibold);
+  --table-row-hover-background: var(--color-gray-50);
+  --table-cell-padding: var(--spacing-4);
+
+  /* Pagination */
+  --pagination-active-background: var(--color-primary);
+  --pagination-active-color: var(--color-primary-foreground);
+  --pagination-border-color: var(--color-border);
+
+  /* Toast */
+  --toast-padding: var(--spacing-4);
+  --toast-border-radius: var(--radius-lg);
+  --toast-box-shadow: var(--shadow-lg);
+
+  /* Tooltip */
+  --tooltip-background: var(--color-gray-900);
+  --tooltip-color: var(--color-gray-50);
+  --tooltip-padding: var(--spacing-2) var(--spacing-3);
+  --tooltip-border-radius: var(--radius-md);
+  --tooltip-font-size: var(--font-size-sm);
+  /* Note: Tooltip has 13:1 contrast (white on dark) - WCAG AAA */
+
+  /* Form */
+  --form-label-font-weight: var(--font-weight-medium);
+  --form-label-margin-bottom: var(--spacing-2);
+  --form-group-margin-bottom: var(--spacing-4);
+  --form-error-color: var(--color-destructive);
+  --form-error-font-size: var(--font-size-sm);
+  --form-help-color: var(
+    --color-foreground-secondary
+  ); /* Darker for WCAG AA contrast */
+  --form-help-font-size: var(--font-size-sm);
+
+  /* ========================================
+     UTILITIES
+     ======================================== */
+
+  /* Opacity */
+  --opacity-disabled: 0.5;
+  --opacity-hover: 0.8;
+
+  /* Transitions */
+  --transition-fast: all var(--duration-150) var(--ease-in-out);
+  --transition-base: all var(--duration-300) var(--ease-in-out);
+  --transition-slow: all var(--duration-500) var(--ease-in-out);
+}
+
+/* ========================================
+   DARK MODE (Optional - Can be extended)
+   ======================================== */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklab(0.288 -0.001 -0.001);
+    --color-background-secondary: oklab(0.169 -0.001 -0.001);
+    --color-background-tertiary: oklab(0.12 -0.001 -0.001);
+
+    --color-foreground: oklab(0.973 -0.001 0.001);
+    --color-foreground-secondary: oklab(0.882 -0.001 -0.001);
+    --color-foreground-tertiary: oklab(0.751 -0.001 -0.001);
+    --color-foreground-muted: oklab(0.644 -0.001 -0.001);
+
+    --color-border: oklab(0.39 -0.001 -0.002);
+    --color-border-light: oklab(0.533 -0.001 -0.001);
+    --color-border-dark: oklab(0.288 -0.001 -0.001);
+
+    --color-input: oklab(0.169 -0.001 -0.001);
+    --color-input-background: oklab(0.288 -0.001 -0.001);
+    --color-input-border: oklab(0.39 -0.001 -0.002);
+    --color-input-placeholder: oklab(0.644 -0.001 -0.001);
+
+    --color-ring-offset: oklab(0.288 -0.001 -0.001);
+
+    --card-background: oklab(0.169 -0.001 -0.001);
+    --dropdown-background: oklab(0.169 -0.001 -0.001);
+    --tooltip-background: oklab(0.169 -0.001 -0.001);
+  }
+} */

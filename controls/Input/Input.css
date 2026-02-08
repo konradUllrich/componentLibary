@@ -1,0 +1,88 @@
+/* Input Styles */
+
+/* Block: Input */
+.input {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-200) var(--ease-in-out);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-foreground-secondary);
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-shadow);
+}
+
+/* Variant: Default */
+.input--default {
+  background-color: var(--color-background);
+}
+
+/* Variant: Filled */
+.input--filled {
+  background-color: var(--color-background-secondary);
+  border-color: transparent;
+}
+
+.input--filled:hover:not(:disabled) {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.input--filled:focus {
+  background-color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+/* Variant: Outline */
+.input--outline {
+  border-width: 2px;
+}
+
+/* Size: Small */
+.input--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-sm);
+}
+
+/* Size: Medium */
+.input--md {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-base);
+}
+
+/* Size: Large */
+.input--lg {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-lg);
+}
+
+/* Modifier: Error */
+.input--error {
+  border-color: var(--color-error);
+}
+
+.input--error:focus {
+  border-color: var(--color-destructive);
+  box-shadow: var(--focus-shadow-error);
+}
+
+/* Modifier: Disabled */
+.input--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-background-secondary);
+}

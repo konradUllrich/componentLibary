@@ -1,0 +1,48 @@
+/* CardList Component Styles */
+
+.card-list {
+  width: 100%;
+}
+
+.card-list__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--card-list-columns, 3), 1fr);
+  gap: var(--card-list-gap, 1rem);
+}
+
+.card-list__item {
+  width: 100%;
+}
+
+/* Loading State */
+.card-list__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  color: var(--color-foreground-secondary);
+  font-size: var(--font-size-base);
+}
+
+/* Empty State */
+.card-list__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  color: var(--color-foreground-secondary);
+  font-size: var(--font-size-base);
+}
+
+/* Responsive Grid */
+@media (max-width: 1024px) {
+  .card-list__grid {
+    grid-template-columns: repeat(min(var(--card-list-columns, 3), 2), 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-list__grid {
+    grid-template-columns: 1fr;
+  }
+}
