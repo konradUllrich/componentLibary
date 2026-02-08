@@ -1,5 +1,5 @@
 // playwright/test-utils.ts
-import { expect } from '@playwright/experimental-ct-react';
+import { expect, Page, Locator } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 /**
@@ -8,7 +8,7 @@ import AxeBuilder from '@axe-core/playwright';
  * @param options - Optional configuration for axe
  */
 export async function checkA11y(
-  page: any,
+  page: Page,
   options?: {
     disableRules?: string[];
     tags?: string[];
@@ -32,20 +32,20 @@ export async function checkA11y(
 /**
  * Check if an element is visible
  */
-export async function expectVisible(locator: any) {
+export async function expectVisible(locator: Locator) {
   await expect(locator).toBeVisible();
 }
 
 /**
  * Check if an element has accessible name
  */
-export async function expectAccessibleName(locator: any, name: string | RegExp) {
+export async function expectAccessibleName(locator: Locator, name: string | RegExp) {
   await expect(locator).toHaveAccessibleName(name);
 }
 
 /**
  * Check if an element has accessible role
  */
-export async function expectAccessibleRole(locator: any, role: string) {
+export async function expectAccessibleRole(locator: Locator, role: string) {
   await expect(locator).toHaveRole(role as any);
 }
