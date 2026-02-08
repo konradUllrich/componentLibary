@@ -19,8 +19,6 @@ This document defines comprehensive standards and conventions for the mpComponen
 
 ---
 
----
-
 ## 🎯 Critical Requirements
 
 **All components MUST meet these requirements before being merged:**
