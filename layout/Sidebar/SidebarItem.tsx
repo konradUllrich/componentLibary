@@ -8,7 +8,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   href?: string;
 
   /**
-   * Item label (can use label prop or children for text, children takes precedence)
+   * Item label (can use label prop or children for text, label takes precedence)
    */
   label?: string;
 
@@ -83,16 +83,16 @@ export const SidebarItem = React.forwardRef<
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
     
-    // Check if children contains SidebarSubItem components (nested items)
+    // Check if children contains React components (nested items like SidebarSubItem)
     const hasChildrenItems = React.Children.count(children) > 0 && 
       React.Children.toArray(children).some(
         (child) => React.isValidElement(child) && typeof child.type !== 'string'
       );
     
-    const hasNestedItems = items.length > 0 || hasChildrenItems;
+    const hasNestedItems = (items?.length ?? 0) > 0 || hasChildrenItems;
     
     // Determine what to display as label
-    const displayLabel = label || (typeof children === 'string' ? children : label);
+    const displayLabel = label || (typeof children === 'string' ? children : undefined);
     
     // Separate nested items from label content
     const nestedContent = hasChildrenItems ? children : null;
@@ -132,7 +132,7 @@ export const SidebarItem = React.forwardRef<
         </a>
         {hasNestedItems && isExpanded && (
           <div className="sidebar-item--nested">
-            {items.length > 0 
+            {(items?.length ?? 0) > 0
               ? items.map((item, index) => (
                   <SidebarItem key={index} {...item} />
                 ))

@@ -228,9 +228,6 @@ export const App: React.FC = () => {
             label="GitHub" 
             icon="⭐"
             href="https://github.com/konradUllrich/componentLibary"
-            onClick={(e) => {
-              // Let default link behavior happen for external links
-            }}
           />
         </SidebarNav>
       </Sidebar>
