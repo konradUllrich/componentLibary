@@ -10,6 +10,16 @@ import {
   AccordionPage,
   DisclosurePage,
   PaginationPage,
+  TabsPage,
+  UserAvatarsPage,
+  DatePage,
+  TablePage,
+  CardListPage,
+  CardPage,
+  FlexPage,
+  HorizontalNavPage,
+  SidebarPage,
+  AppLayoutPage,
 } from './pages';
 import './App.css';
 import './pages/ComponentPage.css';
@@ -208,6 +218,106 @@ export const App: React.FC = () => {
                       Navigate through pages of data
                     </Text>
                   </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('tabs')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Tabs</Text>
+                    <Text size="sm" color="secondary">
+                      Tabbed interface with multiple variants
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('user-avatars')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">User Avatars</Text>
+                    <Text size="sm" color="secondary">
+                      Display user avatars individually or in groups
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('date')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Date</Text>
+                    <Text size="sm" color="secondary">
+                      Format and display dates in multiple locales
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('table')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Table</Text>
+                    <Text size="sm" color="secondary">
+                      Display structured data in table format
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('card-list')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Card List</Text>
+                    <Text size="sm" color="secondary">
+                      Grid of cards for structured content
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('card')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Card</Text>
+                    <Text size="sm" color="secondary">
+                      Flexible container with variants
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('flex')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Flex</Text>
+                    <Text size="sm" color="secondary">
+                      Flexbox layout wrapper component
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('horizontal-nav')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Horizontal Nav</Text>
+                    <Text size="sm" color="secondary">
+                      Responsive horizontal navigation
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('sidebar')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">Sidebar</Text>
+                    <Text size="sm" color="secondary">
+                      Collapsible sidebar navigation
+                    </Text>
+                  </button>
+
+                  <button 
+                    className="component-card"
+                    onClick={() => handleComponentClick('app-layout')}
+                  >
+                    <Text as="h3" size="lg" weight="semibold">App Layout</Text>
+                    <Text size="sm" color="secondary">
+                      Complete application layout structure
+                    </Text>
+                  </button>
                 </div>
               </div>
             )}
@@ -220,6 +330,16 @@ export const App: React.FC = () => {
             {currentComponent === 'accordion' && <AccordionPage />}
             {currentComponent === 'disclosure' && <DisclosurePage />}
             {currentComponent === 'pagination' && <PaginationPage />}
+            {currentComponent === 'tabs' && <TabsPage />}
+            {currentComponent === 'user-avatars' && <UserAvatarsPage />}
+            {currentComponent === 'date' && <DatePage />}
+            {currentComponent === 'table' && <TablePage />}
+            {currentComponent === 'card-list' && <CardListPage />}
+            {currentComponent === 'card' && <CardPage />}
+            {currentComponent === 'flex' && <FlexPage />}
+            {currentComponent === 'horizontal-nav' && <HorizontalNavPage />}
+            {currentComponent === 'sidebar' && <SidebarPage />}
+            {currentComponent === 'app-layout' && <AppLayoutPage />}
 
             {currentComponent && (
               <div className="back-button-container">
