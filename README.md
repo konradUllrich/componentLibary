@@ -129,6 +129,19 @@ pnpm type-check
 
 ### Testing
 
+Run component tests with Playwright:
+
+```bash
+pnpm test:ct          # Run component tests
+pnpm test:ct:headed   # Run with browser UI
+pnpm test:ct:ui       # Run with Playwright UI
+pnpm test:ct:debug    # Run in debug mode
+```
+
+Component tests use Playwright component testing with axe-core for accessibility validation. Tests are located alongside components (e.g., `Button.test.tsx`).
+
+Run unit tests with Vitest:
+
 ```bash
 pnpm test
 pnpm test:ui  # With UI
@@ -165,6 +178,7 @@ Contributions are welcome! Please ensure:
 3. Styles are written in plain CSS
 4. Components are fully typed with TypeScript
 5. Components pass linting and type checks
+6. New components include Playwright component tests with accessibility checks
 
 ## Support
 
