@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Outlet } from '@tanstack/react-router';
 import { ComponentShowcase } from '../ComponentShowcase';
 import { Text, ThemePanel } from '../common';
 import {
@@ -29,21 +30,19 @@ import {
   SidebarPage,
   AppLayoutPage,
 } from './pages';
+import { useAppNavigation } from './useAppNavigation';
 import './App.css';
 import './pages/ComponentPage.css';
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'components' | 'docs'>('home');
-  const [currentComponent, setCurrentComponent] = useState<string | null>(null);
+  const { currentPage, currentComponent, navigateTo, isRouteActive } = useAppNavigation();
 
   const handleComponentClick = (component: string) => {
-    setCurrentPage('components');
-    setCurrentComponent(component);
+    navigateTo(`/components/${component}`);
   };
 
   const handleComponentsClick = () => {
-    setCurrentPage('components');
-    setCurrentComponent(null);
+    navigateTo('/components');
   };
 
   return (
@@ -61,14 +60,17 @@ export const App: React.FC = () => {
             isActive={currentPage === 'home'}
             onClick={(e) => {
               e.preventDefault();
-              setCurrentPage('home');
-              setCurrentComponent(null);
+              navigateTo('/');
             }}
           />
           <SidebarItem 
             label="Components" 
             icon="🧩"
             isActive={currentPage === 'components' && !currentComponent}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo('/components');
+            }}
           >
             <SidebarSubItem 
               label="Button" 
@@ -221,8 +223,7 @@ export const App: React.FC = () => {
             isActive={currentPage === 'docs'}
             onClick={(e) => {
               e.preventDefault();
-              setCurrentPage('docs');
-              setCurrentComponent(null);
+              navigateTo('/docs');
             }}
           />
           <SidebarItem 
@@ -256,13 +257,13 @@ export const App: React.FC = () => {
               <div className="hero-actions">
                 <button 
                   className="button button-primary"
-                  onClick={() => setCurrentPage('components')}
+                  onClick={() => navigateTo('/components')}
                 >
                   View Components
                 </button>
                 <button 
                   className="button button-secondary"
-                  onClick={() => setCurrentPage('docs')}
+                  onClick={() => navigateTo('/docs')}
                 >
                   Read Documentation
                 </button>
