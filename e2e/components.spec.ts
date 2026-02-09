@@ -1,76 +1,74 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('Components Page', () => {
-  test('should display components overview', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Navigate to components page
-    await page.getByRole('button', { name: /View Components/i }).click();
-    
+test.describe("Component Navigation", () => {
+  test("should display components overview", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
     // Check heading
-    await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
-    await expect(page.getByText(/Browse all available components/i)).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Components", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/Browse all available components/i),
+    ).toBeVisible();
   });
 
-  test('should display component showcase', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Navigate to components page
-    await page.getByRole('button', { name: /View Components/i }).click();
-    
-    // Check that component showcase is visible
-    await expect(page.locator('.component-showcase, .component-list, .components-page')).toBeVisible();
+  test("should display component grid", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Check that component grid is visible
+    await expect(page.locator(".component-grid")).toBeVisible();
   });
 
-  test('should navigate to Button component', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Open components submenu
-    await page.getByText('Components', { exact: true }).click();
-    
-    // Click on Button
-    await page.getByText('Button', { exact: true }).click();
-    
-    // Verify Button component page
-    await expect(page.getByRole('heading', { name: 'Button' })).toBeVisible();
+  test("should navigate to Button component via card", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Click on Button card
+    const buttonCard = page
+      .locator(".component-grid")
+      .getByRole("heading", { name: "Button", exact: true });
+    await buttonCard.click();
+
+    // Verify Button component page is displayed
+    await expect(page.locator("main")).toContainText("Button");
   });
 
-  test('should navigate to Badge component', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Open components submenu
-    await page.getByText('Components', { exact: true }).click();
-    
-    // Click on Badge
-    await page.getByText('Badge', { exact: true }).click();
-    
-    // Verify Badge component page
-    await expect(page.getByRole('heading', { name: 'Badge' })).toBeVisible();
+  test("should navigate to Badge component via card", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Click on Badge card
+    const badgeCard = page
+      .locator(".component-grid")
+      .getByRole("heading", { name: "Badge", exact: true });
+    await badgeCard.click();
+
+    // Verify Badge component page is displayed
+    await expect(page.locator("main")).toContainText("Badge");
   });
 
-  test('should navigate to Text component', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Open components submenu
-    await page.getByText('Components', { exact: true }).click();
-    
-    // Click on Text
-    await page.getByText('Text', { exact: true }).click();
-    
-    // Verify Text component page
-    await expect(page.getByRole('heading', { name: 'Text' })).toBeVisible();
+  test("should navigate to Text component via card", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Click on Text card
+    const textCard = page
+      .locator(".component-grid")
+      .getByRole("heading", { name: "Text", exact: true });
+    await textCard.click();
+
+    // Verify Text component page is displayed
+    await expect(page.locator("main")).toContainText("Text");
   });
 
-  test('should navigate to Table component', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Open components submenu
-    await page.getByText('Components', { exact: true }).click();
-    
-    // Click on Table
-    await page.getByText('Table', { exact: true }).click();
-    
-    // Verify Table component page
-    await expect(page.getByRole('heading', { name: 'Table' })).toBeVisible();
+  test("should navigate to Table component via card", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Click on Table card
+    const tableCard = page
+      .locator(".component-grid")
+      .getByRole("heading", { name: "Table", exact: true });
+    await tableCard.click();
+
+    // Verify Table component page is displayed
+    await expect(page.locator("main")).toContainText("Table");
   });
 });

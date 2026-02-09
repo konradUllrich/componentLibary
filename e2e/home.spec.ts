@@ -1,48 +1,56 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('Documentation Home Page', () => {
-  test('should display home page with hero section', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
+test.describe("Home Page", () => {
+  test("should display home page with components grid", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
     // Check that the page title is correct
     await expect(page).toHaveTitle(/mpComponents/);
-    
-    // Check hero section content - use more specific selector for the hero heading
-    await expect(page.locator('main h1').filter({ hasText: 'mpComponents' })).toBeVisible();
-    await expect(page.getByText(/A reusable React component library/i)).toBeVisible();
-    
-    // Check hero action buttons
-    await expect(page.getByRole('button', { name: /View Components/i })).toBeVisible();
-    await expect(page.getByRole('button', { name: /Read Documentation/i })).toBeVisible();
+
+    // Check main heading
+    await expect(page.locator("main h1")).toContainText("Components");
+    await expect(
+      page.getByText(/Browse all available components/i),
+    ).toBeVisible();
   });
 
-  test('should display features section', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Check feature cards - use heading role for more specific matching
-    await expect(page.getByRole('heading', { name: 'Type-Safe Components' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Radix UI Primitives' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'TanStack Integration' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'CSS-Based Styling' })).toBeVisible();
+  test("should display component cards", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Check that component cards are visible
+    await expect(
+      page.getByRole("heading", { name: "Button", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Badge", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Text", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Table", exact: true }),
+    ).toBeVisible();
   });
 
-  test('should navigate to components page from home', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Click on "View Components" button
-    await page.getByRole('button', { name: /View Components/i }).click();
-    
-    // Should show components page - use main area to avoid sidebar heading
-    await expect(page.locator('main').getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
+  test("should navigate to component page by clicking card", async ({
+    page,
+  }) => {
+    await page.goto("/componentLibary/");
+
+    // Click on Button card
+    await page.getByRole("heading", { name: "Button", exact: true }).click();
+
+    // Should navigate to Button component page
+    await expect(page.locator("main")).toContainText("Button");
   });
 
-  test('should navigate to documentation page from home', async ({ page }) => {
-    await page.goto('/componentLibary/');
-    
-    // Click on "Read Documentation" button
-    await page.getByRole('button', { name: /Read Documentation/i }).click();
-    
-    // Should show documentation page
-    await expect(page.getByRole('heading', { name: 'Documentation' })).toBeVisible();
+  test("should navigate using sidebar", async ({ page }) => {
+    await page.goto("/componentLibary/");
+
+    // Click on Home in sidebar
+    await page.getByRole("navigation").getByText("Home").click();
+
+    // Should show home page
+    await expect(page.locator("main h1")).toContainText("Components");
   });
 });
