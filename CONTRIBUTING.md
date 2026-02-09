@@ -225,7 +225,17 @@ Place your component in the appropriate category:
 1. Ensure all checklist items are complete
 2. Create a pull request with a clear description
 3. Address review feedback promptly
-4. Ensure CI checks pass
+4. Ensure CI checks pass (type checking, linting, and tests run automatically)
+
+### Required CI Checks
+
+All pull requests must pass the following automated checks before merge:
+
+- **Type checking**: `npm run type-check` must pass
+- **Linting**: `npm run lint` must pass with no warnings
+- **Component tests**: `npm run test:ct` must pass
+
+These checks run automatically via GitHub Actions when you open or update a pull request.
 
 ## 📚 Resources
 
