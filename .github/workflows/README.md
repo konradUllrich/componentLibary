@@ -13,7 +13,6 @@ Runs automated tests on every pull request and push to main branch.
 
 **Checks:**
 - Type checking (`npm run type-check`)
-- Linting (`npm run lint`)
 - Component tests (`npm run test:ct`)
 
 **Duration:** ~2-5 minutes
@@ -56,9 +55,6 @@ Before pushing your changes, run these commands locally to catch issues early:
 ```bash
 # Type checking
 npm run type-check
-
-# Linting
-npm run lint
 
 # Component tests
 npm run test:ct
