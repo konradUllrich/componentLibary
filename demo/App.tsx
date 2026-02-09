@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemePanel } from "../common";
-import { SidebarMobileToggle, AppLayout } from "../layout";
+import { SidebarMobileToggle, AppLayout, HorizontalNav, Flex } from "../layout";
 import {
   ButtonPage,
   BadgePage,
@@ -30,42 +30,69 @@ import { ComponentsPage } from "./pages/ComponentsPage";
 import { DocsPage } from "./pages/DocsPage";
 
 export const App: React.FC = () => {
-  const { currentPage, currentComponent } = useAppNavigation();
+  const { currentPage, currentComponent, navigateTo } = useAppNavigation();
 
   return (
-    <AppLayout
-      header={
-        <>
-          <ThemePanel />
-          <SidebarMobileToggle />
-          {/* <Text as="h1" size="xl" weight="bold">
+    <>
+      {/* <ThemePanel /> */}
+      <AppLayout
+        header={
+          <>
+            <SidebarMobileToggle />
+            <Flex justify="flex-end">
+              <HorizontalNav
+                items={[
+                  {
+                    id: "docs",
+                    label: "Documentation",
+                    isActive: currentPage == "docs",
+                    onClick: () => {
+                      navigateTo("/docs");
+                    },
+                  },
+                  {
+                    id: "github",
+                    label: "GitHub",
+                    icon: "⭐",
+                    href: "https://github.com/konradUllrich/componentLibary",
+                  },
+                  {
+                    id: "theme",
+                    label: "Theme",
+                  },
+                ]}
+              />
+            </Flex>
+
+            {/* <Text as="h1" size="xl" weight="bold">
             mpComponents
           </Text> */}
-        </>
-      }
-      sidebar={<DemoSideBar />}
-    >
-      {currentPage === "home" && <HomePage />}
-      {currentPage === "components" && <ComponentsPage />}
-      {currentPage === "docs" && <DocsPage />}
-      {currentComponent === "button" && <ButtonPage />}
-      {currentComponent === "badge" && <BadgePage />}
-      {currentComponent === "text" && <TextPage />}
-      {currentComponent === "form-controls" && <FormControlsPage />}
-      {currentComponent === "panel" && <PanelPage />}
-      {currentComponent === "accordion" && <AccordionPage />}
-      {currentComponent === "disclosure" && <DisclosurePage />}
-      {currentComponent === "pagination" && <PaginationPage />}
-      {currentComponent === "tabs" && <TabsPage />}
-      {currentComponent === "user-avatars" && <UserAvatarsPage />}
-      {currentComponent === "date" && <DatePage />}
-      {currentComponent === "table" && <TablePage />}
-      {currentComponent === "card-list" && <CardListPage />}
-      {currentComponent === "card" && <CardPage />}
-      {currentComponent === "flex" && <FlexPage />}
-      {currentComponent === "horizontal-nav" && <HorizontalNavPage />}
-      {currentComponent === "sidebar" && <SidebarPage />}
-      {currentComponent === "app-layout" && <AppLayoutPage />}
-    </AppLayout>
+          </>
+        }
+        sidebar={<DemoSideBar />}
+      >
+        {currentPage === "home" && <HomePage />}
+        {currentPage === "components" && <ComponentsPage />}
+        {currentPage === "docs" && <DocsPage />}
+        {currentComponent === "button" && <ButtonPage />}
+        {currentComponent === "badge" && <BadgePage />}
+        {currentComponent === "text" && <TextPage />}
+        {currentComponent === "form-controls" && <FormControlsPage />}
+        {currentComponent === "panel" && <PanelPage />}
+        {currentComponent === "accordion" && <AccordionPage />}
+        {currentComponent === "disclosure" && <DisclosurePage />}
+        {currentComponent === "pagination" && <PaginationPage />}
+        {currentComponent === "tabs" && <TabsPage />}
+        {currentComponent === "user-avatars" && <UserAvatarsPage />}
+        {currentComponent === "date" && <DatePage />}
+        {currentComponent === "table" && <TablePage />}
+        {currentComponent === "card-list" && <CardListPage />}
+        {currentComponent === "card" && <CardPage />}
+        {currentComponent === "flex" && <FlexPage />}
+        {currentComponent === "horizontal-nav" && <HorizontalNavPage />}
+        {currentComponent === "sidebar" && <SidebarPage />}
+        {currentComponent === "app-layout" && <AppLayoutPage />}
+      </AppLayout>
+    </>
   );
 };

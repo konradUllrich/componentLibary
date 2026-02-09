@@ -1,6 +1,6 @@
-import { useNavigate, useSearch, useLocation } from '@tanstack/react-router';
-import { useCallback, useMemo } from 'react';
-import { getRouterConfig } from './routerConfig';
+import { useNavigate, useSearch, useLocation } from "@tanstack/react-router";
+import { useCallback, useMemo } from "react";
+import { getRouterConfig } from "./routerConfig";
 
 // Type for search params when in param mode
 type SearchParams = Record<string, string | undefined>;
@@ -16,8 +16,8 @@ export function useAppNavigation() {
 
   // Get current route from URL or param
   const currentRoute = useMemo(() => {
-    if (config.mode === 'param') {
-      return search[config.paramName] || '/';
+    if (config.mode === "param") {
+      return search[config.paramName] || "/";
     }
     return location.pathname;
   }, [config, search, location.pathname]);
@@ -25,10 +25,10 @@ export function useAppNavigation() {
   // Navigate to a route
   const navigateTo = useCallback(
     (path: string) => {
-      if (config.mode === 'param') {
+      if (config.mode === "param") {
         // In param mode, update the URL parameter
         navigate({
-          to: '/',
+          to: "/",
           search: { [config.paramName]: path },
         });
       } else {
@@ -36,39 +36,39 @@ export function useAppNavigation() {
         navigate({ to: path });
       }
     },
-    [config, navigate]
+    [config, navigate],
   );
 
   // Check if a route is active
   const isRouteActive = useCallback(
     (path: string) => {
-      return currentRoute === path || currentRoute.startsWith(path + '/');
+      return currentRoute === path || currentRoute.startsWith(path + "/");
     },
-    [currentRoute]
+    [currentRoute],
   );
 
   // Get the current page and component from the route
   const { currentPage, currentComponent } = useMemo(() => {
     const route = currentRoute;
-    
-    if (route === '/' || route === '') {
-      return { currentPage: 'home', currentComponent: null };
+
+    if (route === "/" || route === "") {
+      return { currentPage: "home", currentComponent: null };
     }
-    
-    if (route === '/docs') {
-      return { currentPage: 'docs', currentComponent: null };
+
+    if (route === "/docs") {
+      return { currentPage: "docs", currentComponent: null };
     }
-    
-    if (route === '/components') {
-      return { currentPage: 'components', currentComponent: null };
+
+    if (route === "/components") {
+      return { currentPage: "components", currentComponent: null };
     }
-    
-    if (route.startsWith('/components/')) {
-      const component = route.replace('/components/', '');
-      return { currentPage: 'components', currentComponent: component };
+
+    if (route.startsWith("/components/")) {
+      const component = route.replace("/components/", "");
+      return { currentPage: "components", currentComponent: component };
     }
-    
-    return { currentPage: 'home', currentComponent: null };
+
+    return { currentPage: "home", currentComponent: null };
   }, [currentRoute]);
 
   return {

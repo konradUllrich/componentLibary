@@ -40,15 +40,34 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const endItem = Math.min(page * pageSize, totalItems);
 
     const getPageNumbers = () => {
-      const delta = 2;
+      const delta = 1;
       const pages: (number | string)[] = [];
 
-      for (
-        let i = Math.max(1, page - delta);
-        i <= Math.min(totalPages, page + delta);
-        i++
-      ) {
+      // Always show first page
+      pages.push(1);
+
+      // Calculate range around current page
+      const rangeStart = Math.max(2, page - delta);
+      const rangeEnd = Math.min(totalPages - 1, page + delta);
+
+      // Add ellipsis after page 1 if needed
+      if (rangeStart > 2) {
+        pages.push("...");
+      }
+
+      // Add pages in range
+      for (let i = rangeStart; i <= rangeEnd; i++) {
         pages.push(i);
+      }
+
+      // Add ellipsis before last page if needed
+      if (rangeEnd < totalPages - 1) {
+        pages.push("...");
+      }
+
+      // Always show last page (if more than 1 page)
+      if (totalPages > 1) {
+        pages.push(totalPages);
       }
 
       return pages;
