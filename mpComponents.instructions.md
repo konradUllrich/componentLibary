@@ -16,6 +16,7 @@ This document defines comprehensive standards and conventions for the mpComponen
 5. [Component Development Standards](#component-development-standards)
 6. [TypeScript Requirements](#typescript-requirements)
 7. [Accessibility (A11y) Standards](#accessibility-a11y-standards)
+8. [Testing Standards](#testing-standards)
 
 ---
 
@@ -803,6 +804,424 @@ Before publishing a component:
 
 ---
 
+## Testing Standards
+
+**All components MUST be tested before being merged.**
+
+This project uses two types of testing:
+
+1. **Playwright Component Testing** - Tests individual components in isolation with real browser rendering
+2. **Playwright E2E Testing** - Tests the full documentation website with real user flows
+
+For detailed information, see [TESTING.md](./TESTING.md) and [E2E_TESTING.md](./E2E_TESTING.md).
+
+### Component Testing Overview
+
+Component tests use **Playwright Component Testing** with real browser rendering, providing:
+
+- ✅ Real browser behavior (DOM, CSS, interactions)
+- ✅ Accessibility testing with axe-core (WCAG 2.1 AA)
+- ✅ Keyboard navigation testing
+- ✅ Visual regression testing
+- ✅ Full component lifecycle testing
+
+### Test File Structure
+
+Each component should have a co-located test file:
+
+```
+ComponentName/
+├── ComponentName.tsx          # Component implementation
+├── ComponentName.css          # Component styles
+├── ComponentName.test.tsx     # Component tests ← Test file
+├── ComponentName.stories.tsx  # (optional) Test stories for complex wrappers
+└── index.ts                   # Exports
+```
+
+### Running Tests
+
+```bash
+# Run all component tests
+npm run test:ct
+
+# Run with browser UI (see tests execute)
+npm run test:ct:headed
+
+# Run with Playwright UI (interactive test runner)
+npm run test:ct:ui
+
+# Run in debug mode (step through tests)
+npm run test:ct:debug
+
+# Run all E2E tests (documentation site)
+npm run test:e2e
+
+# Run E2E tests with browser UI
+npm run test:e2e:headed
+```
+
+### Basic Component Test Structure
+
+Every component test should follow this structure:
+
+```tsx
+import { test, expect } from '@playwright/experimental-ct-react';
+import { ComponentName } from './ComponentName';
+import { checkA11y } from '../../playwright/test-utils';
+
+test.describe('ComponentName', () => {
+  // 1. Basic Rendering Test
+  test('should render correctly', async ({ mount }) => {
+    const component = await mount(<ComponentName>Content</ComponentName>);
+    await expect(component).toBeVisible();
+    await expect(component).toHaveText('Content');
+  });
+
+  // 2. Props Testing
+  test('should render different variants', async ({ mount }) => {
+    const component = await mount(
+      <div>
+        <ComponentName variant="primary">Primary</ComponentName>
+        <ComponentName variant="secondary">Secondary</ComponentName>
+      </div>
+    );
+    
+    const buttons = component.locator('button');
+    await expect(buttons.nth(0)).toHaveClass(/component--primary/);
+    await expect(buttons.nth(1)).toHaveClass(/component--secondary/);
+  });
+
+  // 3. Interaction Testing
+  test('should handle user interactions', async ({ mount, page }) => {
+    let clicked = false;
+    const component = await mount(
+      <ComponentName onClick={() => { clicked = true; }}>
+        Click me
+      </ComponentName>
+    );
+    
+    await component.click();
+    expect(clicked).toBe(true);
+  });
+
+  // 4. Keyboard Navigation Testing
+  test('should support keyboard navigation', async ({ mount, page }) => {
+    const component = await mount(<ComponentName>Test</ComponentName>);
+    await component.focus();
+    await expect(component).toBeFocused();
+    await page.keyboard.press('Enter');
+    // Assert expected behavior
+  });
+
+  // 5. Accessibility Testing (REQUIRED)
+  test('should pass accessibility checks', async ({ mount, page }) => {
+    await mount(
+      <div>
+        <ComponentName variant="primary">Primary</ComponentName>
+        <ComponentName variant="secondary">Secondary</ComponentName>
+      </div>
+    );
+    
+    await checkA11y(page);
+  });
+});
+```
+
+### Required Tests for Every Component
+
+**Minimum test coverage for ALL components:**
+
+1. ✅ **Basic rendering** - Component renders without errors
+2. ✅ **Props/variants** - All variants and important props work correctly
+3. ✅ **User interactions** - Click, hover, input events work as expected
+4. ✅ **Keyboard navigation** - Tab, Enter, Space, Arrow keys, Escape
+5. ✅ **Accessibility** - Must pass axe-core checks (WCAG 2.1 AA)
+
+**Optional but recommended:**
+
+- State management - Component state updates correctly
+- Edge cases - Empty states, loading states, error states
+- Custom className - User-provided classes are applied
+- ARIA attributes - Correct roles, labels, and descriptions
+
+### Test Utilities
+
+Use the helper functions in `playwright/test-utils.ts`:
+
+```tsx
+import {
+  checkA11y,
+  expectVisible,
+  expectAccessibleName,
+  expectAccessibleRole,
+} from '../../playwright/test-utils';
+
+// Run accessibility checks
+await checkA11y(page);
+
+// Disable specific rules if needed
+await checkA11y(page, { disableRules: ['color-contrast'] });
+
+// Check visible elements
+await expectVisible(component.locator('.button'));
+
+// Check accessible names
+await expectAccessibleName(component, 'Submit Form');
+
+// Check accessible roles
+await expectAccessibleRole(component, 'button');
+```
+
+### Testing Complex Components with Wrappers
+
+When testing components that require complex setup (stores, contexts, wrappers), create a separate **test story file**:
+
+**❌ Bad - Wrapper in test file (will fail):**
+
+```tsx
+// ComponentName.test.tsx
+const TestWrapper = ({ children }) => {
+  const store = createStore();
+  return <Provider store={store}>{children}</Provider>;
+};
+
+test('should work', async ({ mount }) => {
+  // ❌ This will fail - Playwright can't mount components defined in test files
+  await mount(<TestWrapper><ComponentName /></TestWrapper>);
+});
+```
+
+**✅ Good - Test story in separate file:**
+
+```tsx
+// ComponentName.stories.tsx
+export const ComponentNameTestWrapper: React.FC<Props> = (props) => {
+  const store = React.useMemo(() => createStore(), []);
+  return (
+    <Provider store={store}>
+      <ComponentName {...props} />
+    </Provider>
+  );
+};
+```
+
+```tsx
+// ComponentName.test.tsx
+import { ComponentNameTestWrapper } from './ComponentName.stories';
+
+test('should work', async ({ mount }) => {
+  // ✅ This works - wrapper is in a separate file
+  await mount(<ComponentNameTestWrapper />);
+});
+```
+
+### Testing Best Practices
+
+#### 1. Mount Multiple Variants Together
+
+❌ **Don't mount in a loop:**
+
+```tsx
+for (const variant of variants) {
+  await mount(<Button variant={variant} />); // Error! React root conflicts
+}
+```
+
+✅ **Do mount all variants at once:**
+
+```tsx
+const component = await mount(
+  <div>
+    <Button variant="primary">Primary</Button>
+    <Button variant="secondary">Secondary</Button>
+    <Button variant="destructive">Destructive</Button>
+  </div>
+);
+```
+
+#### 2. Use Semantic Queries
+
+✅ **Prefer semantic queries over CSS selectors:**
+
+```tsx
+// Good: Semantic queries
+const button = component.getByRole('button', { name: 'Submit' });
+const input = component.getByLabel('Email');
+const heading = component.getByRole('heading', { level: 1 });
+
+// Also good: Test IDs when needed
+const element = component.getByTestId('user-profile');
+
+// Acceptable: CSS selectors for specific cases
+const wrapper = component.locator('.button-wrapper');
+```
+
+#### 3. Test Behavior, Not Implementation
+
+❌ **Don't test internal implementation:**
+
+```tsx
+// Bad: Testing internal class names
+await expect(component).toHaveClass('button__internal-wrapper');
+
+// Bad: Testing internal state
+expect(component.state.isLoading).toBe(true);
+```
+
+✅ **Do test user-visible behavior:**
+
+```tsx
+// Good: Testing visible behavior
+await expect(component).toBeVisible();
+await expect(component).toBeDisabled();
+await expect(component).toHaveText('Loading...');
+await expect(component).toHaveAttribute('aria-busy', 'true');
+```
+
+#### 4. Always Test Accessibility
+
+✅ **Include accessibility tests for EVERY component:**
+
+```tsx
+test('should be accessible', async ({ mount, page }) => {
+  await mount(<ComponentName />);
+  await checkA11y(page); // REQUIRED
+});
+```
+
+**Common accessibility checks:**
+
+- ARIA attributes are correct
+- Color contrast meets WCAG AA (4.5:1 for normal text)
+- Keyboard navigation works (Tab, Enter, Space, Arrows, Escape)
+- Form inputs have labels
+- Error messages are associated with inputs
+- Focus indicators are visible
+
+#### 5. Test Keyboard Navigation
+
+✅ **Test keyboard interactions:**
+
+```tsx
+test('should support keyboard navigation', async ({ mount, page }) => {
+  const component = await mount(<Button>Press me</Button>);
+  
+  // Focus with Tab
+  await page.keyboard.press('Tab');
+  await expect(component).toBeFocused();
+  
+  // Activate with Enter
+  await page.keyboard.press('Enter');
+  
+  // Activate with Space
+  await page.keyboard.press('Space');
+  
+  // Close with Escape (for dialogs, dropdowns)
+  await page.keyboard.press('Escape');
+});
+```
+
+#### 6. Test Edge Cases
+
+✅ **Test empty states, errors, and loading:**
+
+```tsx
+test('should handle empty state', async ({ mount }) => {
+  const component = await mount(<List items={[]} />);
+  await expect(component).toContainText('No items found');
+});
+
+test('should show loading state', async ({ mount }) => {
+  const component = await mount(<Button isLoading>Submit</Button>);
+  await expect(component).toBeDisabled();
+  await expect(component).toHaveAttribute('aria-busy', 'true');
+});
+
+test('should show error state', async ({ mount }) => {
+  const component = await mount(
+    <Input error="Email is required" />
+  );
+  await expect(component.locator('[role="alert"]')).toBeVisible();
+});
+```
+
+### Troubleshooting Tests
+
+#### Tests timing out
+
+Increase the timeout in `playwright-ct.config.ts`:
+
+```ts
+timeout: 30 * 1000, // 30 seconds
+```
+
+#### CSS not loading
+
+Ensure styles are imported in `playwright/index.tsx`:
+
+```tsx
+import '../styles/variables.css';
+import '../common/Button/Button.css';
+```
+
+#### React root conflicts
+
+Mount all variants in a single `mount()` call instead of looping.
+
+#### Component wrapper errors
+
+Move wrapper components to a separate `.stories.tsx` file.
+
+### E2E Testing Overview
+
+E2E tests verify the documentation website works correctly. These tests are located in the `e2e/` directory and use **Playwright E2E Testing**.
+
+**What E2E tests cover:**
+
+- Navigation between pages
+- Component demonstrations work correctly
+- User flows (search, navigation, interactions)
+- Page load performance
+- Responsive design
+
+**Example E2E test:**
+
+```tsx
+import { test, expect } from '@playwright/test';
+
+test('should navigate to components page', async ({ page }) => {
+  await page.goto('/');
+  await page.click('text=Components');
+  await expect(page).toHaveURL(/\/components/);
+});
+```
+
+For more details, see [E2E_TESTING.md](./E2E_TESTING.md).
+
+### Testing Checklist
+
+Before publishing a component, verify:
+
+- [ ] **Basic rendering test** - Component renders without errors
+- [ ] **Props/variants test** - All variants and important props work
+- [ ] **User interactions test** - Click, hover, input events work
+- [ ] **Keyboard navigation test** - Tab, Enter, Space, Arrows, Escape
+- [ ] **Accessibility test** - Passes axe-core checks (REQUIRED)
+- [ ] **Edge cases** - Empty, loading, error states (if applicable)
+- [ ] **Custom className** - User classes are applied correctly
+- [ ] **All tests pass** - `npm run test:ct` passes with zero failures
+
+### Testing Resources
+
+- [Playwright Component Testing Docs](https://playwright.dev/docs/test-components)
+- [Playwright E2E Testing Docs](https://playwright.dev/docs/intro)
+- [axe-core Rules](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [TESTING.md](./TESTING.md) - Full testing guide
+- [E2E_TESTING.md](./E2E_TESTING.md) - E2E testing guide
+
+---
+
 ## 📋 Component Development Checklist
 
 Use this comprehensive checklist when creating or updating components:
@@ -850,13 +1269,16 @@ Use this comprehensive checklist when creating or updating components:
 - [ ] Applies BEM classes to Radix components
 - [ ] Preserves Radix accessibility features
 
-### Testing
+### Testing (Playwright Component Testing)
 - [ ] Component test file created (`ComponentName.test.tsx`)
-- [ ] Basic render test included
-- [ ] Accessibility test with `jest-axe` or Playwright axe
-- [ ] Keyboard navigation test included
-- [ ] Interactive behavior tests (if applicable)
-- [ ] Tests pass: `pnpm test:ct`
+- [ ] Basic rendering test - Component renders without errors
+- [ ] Props/variants test - All variants and important props work
+- [ ] User interactions test - Click, hover, input events work
+- [ ] Keyboard navigation test - Tab, Enter, Space, Arrows, Escape
+- [ ] Accessibility test - Passes axe-core checks (REQUIRED)
+- [ ] Edge cases tested - Empty, loading, error states (if applicable)
+- [ ] Custom className test - User classes are applied correctly
+- [ ] All tests pass: `npm run test:ct` passes with zero failures
 
 ### Code Quality
 - [ ] Follows existing component patterns in the repo
