@@ -11,7 +11,7 @@ test.describe('Radio Component', () => {
     );
     
     const input = component.locator('input[type="radio"]');
-    await expect(input).toBeVisible();
+    await expect(input).toBeAttached(); // Input exists in DOM (but is visually hidden for custom styling)
   });
 
   test('should render with label', async ({ mount }) => {
@@ -119,8 +119,8 @@ test.describe('Radio Component', () => {
       />
     );
     
-    const formControl = component.locator('.form-control');
-    await expect(formControl).toHaveClass(/custom-radio/);
+    // The custom className is applied to the FormControl wrapper
+    await expect(component).toHaveClass(/custom-radio/);
   });
 
   test('should support custom children', async ({ mount }) => {
@@ -274,14 +274,15 @@ test.describe('Radio Component', () => {
       );
       
       const inputs = component.locator('input[type="radio"]');
+      const labels = component.locator('.radio-label');
       
-      // Click first radio
-      await inputs.nth(0).click();
+      // Click first radio label
+      await labels.nth(0).click();
       await expect(inputs.nth(0)).toBeChecked();
       await expect(inputs.nth(1)).not.toBeChecked();
       
-      // Click second radio - first should be unchecked
-      await inputs.nth(1).click();
+      // Click second radio label - first should be unchecked
+      await labels.nth(1).click();
       await expect(inputs.nth(0)).not.toBeChecked();
       await expect(inputs.nth(1)).toBeChecked();
     });

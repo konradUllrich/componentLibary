@@ -10,3 +10,4 @@ import '../common/Button/Button.css';
 import '../controls/Input/Input.css';
 import '../controls/FormControl/FormControl.css';
 import '../controls/Checkbox/Checkbox.css';
+import '../data-display/Pagination/pagination.css';

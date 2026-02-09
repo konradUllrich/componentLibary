@@ -139,6 +139,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               "radio-input--disabled": disabled,
             })}
             disabled={disabled}
+            required={required}
             {...props}
           />
           <label htmlFor={radioId} className="radio-label">
