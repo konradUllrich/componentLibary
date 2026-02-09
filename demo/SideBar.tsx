@@ -5,13 +5,13 @@ import {
   SidebarNav,
   SidebarItem,
   SidebarSubItem,
+  SidebarDivider,
 } from "../layout";
 import { Text } from "../common";
 import { useAppNavigation } from "./useAppNavigation";
 
 export const DemoSideBar = () => {
-  const { currentPage, currentComponent, navigateTo, isRouteActive } =
-    useAppNavigation();
+  const { currentPage, currentComponent, navigateTo } = useAppNavigation();
 
   const handleComponentClick = (component: string) => {
     navigateTo(`/components/${component}`);
@@ -47,13 +47,15 @@ export const DemoSideBar = () => {
             e.preventDefault();
             navigateTo("/components");
           }}
-        >
+        />
+        <SidebarDivider label="Components" />
+        <SidebarItem label="Common" icon="⚡">
           <SidebarSubItem
-            label="Button"
-            isActive={currentComponent === "button"}
+            label="Accordion"
+            isActive={currentComponent === "accordion"}
             onClick={(e) => {
               e.preventDefault();
-              handleComponentClick("button");
+              handleComponentClick("accordion");
             }}
           />
           <SidebarSubItem
@@ -65,67 +67,11 @@ export const DemoSideBar = () => {
             }}
           />
           <SidebarSubItem
-            label="Text"
-            isActive={currentComponent === "text"}
+            label="Button"
+            isActive={currentComponent === "button"}
             onClick={(e) => {
               e.preventDefault();
-              handleComponentClick("text");
-            }}
-          />
-          <SidebarSubItem
-            label="Form Controls"
-            isActive={currentComponent === "form-controls"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("form-controls");
-            }}
-          />
-          <SidebarSubItem
-            label="Panel"
-            isActive={currentComponent === "panel"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("panel");
-            }}
-          />
-          <SidebarSubItem
-            label="Accordion"
-            isActive={currentComponent === "accordion"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("accordion");
-            }}
-          />
-          <SidebarSubItem
-            label="Disclosure"
-            isActive={currentComponent === "disclosure"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("disclosure");
-            }}
-          />
-          <SidebarSubItem
-            label="Pagination"
-            isActive={currentComponent === "pagination"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("pagination");
-            }}
-          />
-          <SidebarSubItem
-            label="Tabs"
-            isActive={currentComponent === "tabs"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("tabs");
-            }}
-          />
-          <SidebarSubItem
-            label="User Avatars"
-            isActive={currentComponent === "user-avatars"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("user-avatars");
+              handleComponentClick("button");
             }}
           />
           <SidebarSubItem
@@ -137,6 +83,66 @@ export const DemoSideBar = () => {
             }}
           />
           <SidebarSubItem
+            label="Disclosure"
+            isActive={currentComponent === "disclosure"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("disclosure");
+            }}
+          />
+          <SidebarSubItem
+            label="Tabs"
+            isActive={currentComponent === "tabs"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("tabs");
+            }}
+          />
+          <SidebarSubItem
+            label="Text"
+            isActive={currentComponent === "text"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("text");
+            }}
+          />
+          <SidebarSubItem
+            label="User Avatars"
+            isActive={currentComponent === "user-avatars"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("user-avatars");
+            }}
+          />
+        </SidebarItem>
+        <SidebarItem label="Controls" icon="🎛️">
+          <SidebarSubItem
+            label="Form Controls"
+            isActive={currentComponent === "form-controls"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("form-controls");
+            }}
+          />
+        </SidebarItem>
+        <SidebarItem label="Data Display" icon="📊">
+          <SidebarSubItem
+            label="Card List"
+            isActive={currentComponent === "card-list"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("card-list");
+            }}
+          />
+          <SidebarSubItem
+            label="Pagination"
+            isActive={currentComponent === "pagination"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("pagination");
+            }}
+          />
+          <SidebarSubItem
             label="Table"
             isActive={currentComponent === "table"}
             onClick={(e) => {
@@ -144,12 +150,14 @@ export const DemoSideBar = () => {
               handleComponentClick("table");
             }}
           />
+        </SidebarItem>
+        <SidebarItem label="Layout" icon="📐">
           <SidebarSubItem
-            label="Card List"
-            isActive={currentComponent === "card-list"}
+            label="App Layout"
+            isActive={currentComponent === "app-layout"}
             onClick={(e) => {
               e.preventDefault();
-              handleComponentClick("card-list");
+              handleComponentClick("app-layout");
             }}
           />
           <SidebarSubItem
@@ -177,6 +185,14 @@ export const DemoSideBar = () => {
             }}
           />
           <SidebarSubItem
+            label="Panel"
+            isActive={currentComponent === "panel"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("panel");
+            }}
+          />
+          <SidebarSubItem
             label="Sidebar"
             isActive={currentComponent === "sidebar"}
             onClick={(e) => {
@@ -184,29 +200,7 @@ export const DemoSideBar = () => {
               handleComponentClick("sidebar");
             }}
           />
-          <SidebarSubItem
-            label="App Layout"
-            isActive={currentComponent === "app-layout"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("app-layout");
-            }}
-          />
         </SidebarItem>
-        <SidebarItem
-          label="Documentation"
-          icon="📖"
-          isActive={currentPage === "docs"}
-          onClick={(e) => {
-            e.preventDefault();
-            navigateTo("/docs");
-          }}
-        />
-        <SidebarItem
-          label="GitHub"
-          icon="⭐"
-          href="https://github.com/konradUllrich/componentLibary"
-        />
       </SidebarNav>
     </Sidebar>
   );

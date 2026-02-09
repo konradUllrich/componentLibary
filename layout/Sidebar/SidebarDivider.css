@@ -1,0 +1,46 @@
+/* Sidebar Divider Styles */
+
+.sidebar-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  width: 100%;
+}
+
+.sidebar-divider__line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.sidebar-divider__line--left,
+.sidebar-divider__line--right {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.sidebar-divider__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-foreground-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Collapsed sidebar - hide label, show only line */
+.sidebar__nav--collapsed .sidebar-divider__label {
+  display: none;
+}
+
+.sidebar__nav--collapsed .sidebar-divider {
+  padding: var(--spacing-2);
+  justify-content: center;
+}
+
+.sidebar__nav--collapsed .sidebar-divider__line--left,
+.sidebar__nav--collapsed .sidebar-divider__line--right {
+  display: none;
+}
