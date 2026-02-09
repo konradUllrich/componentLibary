@@ -67,7 +67,7 @@
 
 /* Variant: Primary - Solid */
 .badge--primary.badge--solid {
-  background-color: oklab(0.99 var(--color-primary-a) var(--color-primary-b));
+  background-color: color-mix(in oklch, var(--color-primary-base), white 75%);
   color: var(--color-primary-dark);
 }
 
@@ -80,13 +80,13 @@
 
 /* Variant: Primary - Subtle */
 .badge--primary.badge--subtle {
-  background-color: oklab(0.99 var(--color-primary-a) var(--color-primary-b));
+  background-color: color-mix(in oklch, var(--color-primary-base), white 75%);
   color: var(--color-primary-dark);
 }
 
 /* Variant: Success - Solid */
 .badge--success.badge--solid {
-  background-color: oklab(0.99 var(--color-success-a) var(--color-success-b));
+  background-color: color-mix(in oklch, var(--color-success-base), white 75%);
   color: var(--color-success-dark);
 }
 
@@ -99,13 +99,13 @@
 
 /* Variant: Success - Subtle */
 .badge--success.badge--subtle {
-  background-color: oklab(0.99 var(--color-success-a) var(--color-success-b));
+  background-color: color-mix(in oklch, var(--color-success-base), white 75%);
   color: var(--color-success-dark);
 }
 
 /* Variant: Warning - Solid */
 .badge--warning.badge--solid {
-  background-color: oklab(0.99 var(--color-warning-a) var(--color-warning-b));
+  background-color: color-mix(in oklch, var(--color-warning-base), white 75%);
   color: var(--color-warning-dark);
 }
 
@@ -118,14 +118,16 @@
 
 /* Variant: Warning - Subtle */
 .badge--warning.badge--subtle {
-  background-color: oklab(0.99 var(--color-warning-a) var(--color-warning-b));
+  background-color: color-mix(in oklch, var(--color-warning-base), white 75%);
   color: var(--color-warning-dark);
 }
 
 /* Variant: Destructive - Solid */
 .badge--destructive.badge--solid {
-  background-color: oklab(
-    0.99 var(--color-destructive-a) var(--color-destructive-b)
+  background-color: color-mix(
+    in oklch,
+    var(--color-destructive-base),
+    white 75%
   );
   color: var(--color-destructive-dark);
 }
@@ -139,15 +141,17 @@
 
 /* Variant: Destructive - Subtle */
 .badge--destructive.badge--subtle {
-  background-color: oklab(
-    0.99 var(--color-destructive-a) var(--color-destructive-b)
+  background-color: color-mix(
+    in oklch,
+    var(--color-destructive-base),
+    white 75%
   );
   color: var(--color-destructive-dark);
 }
 
 /* Variant: Info - Solid */
 .badge--info.badge--solid {
-  background-color: oklab(0.99 var(--color-info-a) var(--color-info-b));
+  background-color: color-mix(in oklch, var(--color-info-base), white 75%);
   color: var(--color-info-dark);
 }
 
@@ -160,6 +164,6 @@
 
 /* Variant: Info - Subtle */
 .badge--info.badge--subtle {
-  background-color: oklab(0.99 var(--color-info-a) var(--color-info-b));
+  background-color: color-mix(in oklch, var(--color-info-base), white 75%);
   color: var(--color-info-dark);
 }

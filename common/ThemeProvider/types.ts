@@ -1,27 +1,11 @@
 export interface ThemeColors {
-  // Primary colors
-  primaryA: number;
-  primaryB: number;
-  
-  // Secondary colors
-  secondaryA: number;
-  secondaryB: number;
-  
-  // Success colors
-  successA: number;
-  successB: number;
-  
-  // Warning colors
-  warningA: number;
-  warningB: number;
-  
-  // Destructive colors
-  destructiveA: number;
-  destructiveB: number;
-  
-  // Info colors
-  infoA: number;
-  infoB: number;
+  // Base hex colors (easy to customize)
+  primary: string;
+  secondary: string;
+  success: string;
+  warning: string;
+  destructive: string;
+  info: string;
 }
 
 export interface ThemeConfig {
@@ -40,18 +24,12 @@ export interface ThemeConfig {
 
 export const defaultTheme: ThemeConfig = {
   colors: {
-    primaryA: 0.15,
-    primaryB: -0.15,
-    secondaryA: 0.007,
-    secondaryB: 0.011,
-    successA: -0.2,
-    successB: 0.183,
-    warningA: 0.065,
-    warningB: 0.172,
-    destructiveA: 0.252,
-    destructiveB: 0.11,
-    infoA: -0.088,
-    infoB: -0.103,
+    primary: "#7c3aed", // Purple
+    secondary: "#64748b", // Slate gray
+    success: "#22c55e", // Green
+    warning: "#f59e0b", // Amber
+    destructive: "#ef4444", // Red
+    info: "#3b82f6", // Blue
   },
   spacing: {
     base: 1,

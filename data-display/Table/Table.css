@@ -37,7 +37,11 @@
 
 /* Selected Row */
 .table__row--selected {
-  background-color: oklab(var(--color-primary-a) var(--color-primary-b) / 0.1);
+  background-color: color-mix(
+    in oklch,
+    var(--color-primary-base),
+    transparent 90%
+  );
 }
 
 /* Table Cell (td/th) */

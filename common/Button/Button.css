@@ -113,7 +113,6 @@
   color: var(--color-foreground);
   border-color: transparent;
 }
-
 .button--ghost:hover:not(:disabled) {
   background-color: var(--color-gray-100);
   color: var(--color-foreground);

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import { useTheme } from './ThemeContext';
-import './ThemePanel.css';
+import React, { useState } from "react";
+import clsx from "clsx";
+import { useTheme } from "./ThemeContext";
+import "./ThemePanel.css";
 
 export const ThemePanel: React.FC = () => {
   const { theme, updateTheme, resetTheme } = useTheme();
   const [isCollapsed, setIsCollapsed] = useState(true);
 
-  const handleColorChange = (colorKey: keyof typeof theme.colors, value: number) => {
-    if (isNaN(value)) return; // Prevent NaN from corrupting theme state
+  const handleColorChange = (
+    colorKey: keyof typeof theme.colors,
+    value: string,
+  ) => {
     updateTheme({
       colors: {
         ...theme.colors,
@@ -17,7 +19,10 @@ export const ThemePanel: React.FC = () => {
     });
   };
 
-  const handleTypographyChange = (key: keyof typeof theme.typography, value: number) => {
+  const handleTypographyChange = (
+    key: keyof typeof theme.typography,
+    value: number,
+  ) => {
     if (isNaN(value)) return; // Prevent NaN from corrupting theme state
     updateTheme({
       typography: {
@@ -36,14 +41,27 @@ export const ThemePanel: React.FC = () => {
     });
   };
 
+  if (isCollapsed) {
+    return (
+      <button
+        onClick={() => setIsCollapsed(false)}
+        aria-label="Open theme panel"
+      >
+        Theme
+      </button>
+    );
+  }
+
   return (
-    <div className={clsx("theme-panel", isCollapsed && "theme-panel--collapsed")}>
+    <div
+      className={clsx("theme-panel", isCollapsed && "theme-panel--collapsed")}
+    >
       <button
         className="theme-panel__toggle"
         onClick={() => setIsCollapsed(!isCollapsed)}
-        aria-label={isCollapsed ? 'Open theme panel' : 'Close theme panel'}
+        aria-label={isCollapsed ? "Open theme panel" : "Close theme panel"}
       >
-        {isCollapsed ? '🎨' : '✕'}
+        {isCollapsed ? "🎨" : "✕"}
       </button>
 
       <div className="theme-panel__header">
@@ -55,183 +73,71 @@ export const ThemePanel: React.FC = () => {
           <h3 className="theme-panel__section-title">Colors</h3>
 
           <div className="theme-panel__control">
-            <label className="theme-panel__label">Primary Color (OkLab A/B)</label>
-            <div className="theme-panel__color-inputs">
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.primaryA}
-                  onChange={(e) => handleColorChange('primaryA', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">A</span>
-              </div>
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.primaryB}
-                  onChange={(e) => handleColorChange('primaryB', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">B</span>
-              </div>
-            </div>
+            <label className="theme-panel__label">Primary Color</label>
+            <input
+              type="color"
+              className="theme-panel__input theme-panel__color-picker"
+              value={theme.colors.primary}
+              onChange={(e) => handleColorChange("primary", e.target.value)}
+            />
+            <span className="theme-panel__value">{theme.colors.primary}</span>
           </div>
 
           <div className="theme-panel__control">
-            <label className="theme-panel__label">Secondary Color (OkLab A/B)</label>
-            <div className="theme-panel__color-inputs">
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.secondaryA}
-                  onChange={(e) => handleColorChange('secondaryA', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">A</span>
-              </div>
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.secondaryB}
-                  onChange={(e) => handleColorChange('secondaryB', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">B</span>
-              </div>
-            </div>
+            <label className="theme-panel__label">Secondary Color</label>
+            <input
+              type="color"
+              className="theme-panel__input theme-panel__color-picker"
+              value={theme.colors.secondary}
+              onChange={(e) => handleColorChange("secondary", e.target.value)}
+            />
+            <span className="theme-panel__value">{theme.colors.secondary}</span>
           </div>
 
           <div className="theme-panel__control">
-            <label className="theme-panel__label">Success Color (OkLab A/B)</label>
-            <div className="theme-panel__color-inputs">
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.successA}
-                  onChange={(e) => handleColorChange('successA', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">A</span>
-              </div>
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.successB}
-                  onChange={(e) => handleColorChange('successB', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">B</span>
-              </div>
-            </div>
+            <label className="theme-panel__label">Success Color</label>
+            <input
+              type="color"
+              className="theme-panel__input theme-panel__color-picker"
+              value={theme.colors.success}
+              onChange={(e) => handleColorChange("success", e.target.value)}
+            />
+            <span className="theme-panel__value">{theme.colors.success}</span>
           </div>
 
           <div className="theme-panel__control">
-            <label className="theme-panel__label">Warning Color (OkLab A/B)</label>
-            <div className="theme-panel__color-inputs">
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.warningA}
-                  onChange={(e) => handleColorChange('warningA', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">A</span>
-              </div>
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.warningB}
-                  onChange={(e) => handleColorChange('warningB', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">B</span>
-              </div>
-            </div>
+            <label className="theme-panel__label">Warning Color</label>
+            <input
+              type="color"
+              className="theme-panel__input theme-panel__color-picker"
+              value={theme.colors.warning}
+              onChange={(e) => handleColorChange("warning", e.target.value)}
+            />
+            <span className="theme-panel__value">{theme.colors.warning}</span>
           </div>
 
           <div className="theme-panel__control">
-            <label className="theme-panel__label">Destructive Color (OkLab A/B)</label>
-            <div className="theme-panel__color-inputs">
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.destructiveA}
-                  onChange={(e) => handleColorChange('destructiveA', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">A</span>
-              </div>
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.destructiveB}
-                  onChange={(e) => handleColorChange('destructiveB', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">B</span>
-              </div>
-            </div>
+            <label className="theme-panel__label">Destructive Color</label>
+            <input
+              type="color"
+              className="theme-panel__input theme-panel__color-picker"
+              value={theme.colors.destructive}
+              onChange={(e) => handleColorChange("destructive", e.target.value)}
+            />
+            <span className="theme-panel__value">
+              {theme.colors.destructive}
+            </span>
           </div>
 
           <div className="theme-panel__control">
-            <label className="theme-panel__label">Info Color (OkLab A/B)</label>
-            <div className="theme-panel__color-inputs">
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.infoA}
-                  onChange={(e) => handleColorChange('infoA', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">A</span>
-              </div>
-              <div className="theme-panel__color-input">
-                <input
-                  type="number"
-                  className="theme-panel__input theme-panel__number-input"
-                  value={theme.colors.infoB}
-                  onChange={(e) => handleColorChange('infoB', parseFloat(e.target.value))}
-                  step="0.01"
-                  min="-0.5"
-                  max="0.5"
-                />
-                <span className="theme-panel__value">B</span>
-              </div>
-            </div>
+            <label className="theme-panel__label">Info Color</label>
+            <input
+              type="color"
+              className="theme-panel__input theme-panel__color-picker"
+              value={theme.colors.info}
+              onChange={(e) => handleColorChange("info", e.target.value)}
+            />
+            <span className="theme-panel__value">{theme.colors.info}</span>
           </div>
         </section>
 
@@ -246,7 +152,9 @@ export const ThemePanel: React.FC = () => {
               type="range"
               className="theme-panel__range"
               value={theme.typography.baseFontSize}
-              onChange={(e) => handleTypographyChange('baseFontSize', parseInt(e.target.value))}
+              onChange={(e) =>
+                handleTypographyChange("baseFontSize", parseInt(e.target.value))
+              }
               min="12"
               max="20"
               step="1"
@@ -261,7 +169,12 @@ export const ThemePanel: React.FC = () => {
               type="range"
               className="theme-panel__range"
               value={theme.typography.baseLineHeight}
-              onChange={(e) => handleTypographyChange('baseLineHeight', parseFloat(e.target.value))}
+              onChange={(e) =>
+                handleTypographyChange(
+                  "baseLineHeight",
+                  parseFloat(e.target.value),
+                )
+              }
               min="1.2"
               max="2"
               step="0.05"
@@ -280,7 +193,9 @@ export const ThemePanel: React.FC = () => {
               type="range"
               className="theme-panel__range"
               value={theme.borderRadius.base}
-              onChange={(e) => handleBorderRadiusChange(parseFloat(e.target.value))}
+              onChange={(e) =>
+                handleBorderRadiusChange(parseFloat(e.target.value))
+              }
               min="0"
               max="2"
               step="0.1"

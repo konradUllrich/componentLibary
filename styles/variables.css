@@ -19,132 +19,134 @@
      COLOR PALETTE
      ======================================== */
 
-  /* Primary Colors (OkLab) */
-  --color-primary-a: 0.15;
-  --color-primary-b: -0.15;
-  --color-primary: oklab(59.976% var(--color-primary-a) var(--color-primary-b));
-  --color-primary-light: oklab(
-    0.649 var(--color-primary-a) var(--color-primary-b)
-  );
-  --color-primary-dark: oklab(
-    0.404 var(--color-primary-a) var(--color-primary-b)
-  );
-  --color-primary-foreground: oklab(1 0 0);
+  /* Base Colors (Hex - Easy to customize) */
+  --color-primary-base: #7c3aed;
+  --color-secondary-base: #64748b;
+  --color-success-base: #22c55e;
+  --color-warning-base: #f59e0b;
+  --color-destructive-base: #ef4444;
+  --color-info-base: #3b82f6;
 
-  /* Secondary Colors (OkLab) */
-  --color-secondary-a: 0.007;
-  --color-secondary-b: 0.011;
-  --color-secondary: oklab(
-    0.563 var(--color-secondary-a) var(--color-secondary-b)
+  /* Primary Colors (Auto-generated variants with color-mix) */
+  --color-primary: var(--color-primary-base);
+  --color-primary-light: color-mix(
+    in oklch,
+    var(--color-primary-base),
+    white 25%
   );
-  --color-secondary-light: oklab(
-    0.6 var(--color-secondary-a) var(--color-secondary-b)
+  --color-primary-dark: color-mix(
+    in oklch,
+    var(--color-primary-base),
+    black 15%
   );
-  --color-secondary-dark: oklab(
-    0.45 var(--color-secondary-a) var(--color-secondary-b)
+  --color-primary-foreground: white;
+
+  /* Secondary Colors */
+  --color-secondary: var(--color-secondary-base);
+  --color-secondary-light: color-mix(
+    in oklch,
+    var(--color-secondary-base),
+    white 20%
   );
-  --color-secondary-foreground: oklab(1 0 0);
-
-  /* Success Colors (OkLab) */
-  --color-success-a: -0.2;
-  --color-success-b: 0.183;
-  --color-success: oklab(0.665 var(--color-success-a) var(--color-success-b));
-  --color-success-light: oklab(
-    0.795 var(--color-success-a) var(--color-success-b)
+  --color-secondary-dark: color-mix(
+    in oklch,
+    var(--color-secondary-base),
+    black 15%
   );
-  --color-success-dark: oklab(
-    0.505 var(--color-success-a) var(--color-success-b)
+  --color-secondary-foreground: white;
+
+  /* Success Colors */
+  --color-success: var(--color-success-base);
+  --color-success-light: color-mix(
+    in oklch,
+    var(--color-success-base),
+    white 30%
   );
-  --color-success-foreground: oklab(1 0 0);
-
-  /* Warning Colors (OkLab) */
-  --color-warning-a: 0.065;
-  --color-warning-b: 0.172;
-  --color-warning: oklab(0.816 var(--color-warning-a) var(--color-warning-b));
-  --color-warning-light: oklab(
-    0.853 var(--color-warning-a) var(--color-warning-b)
+  --color-success-dark: color-mix(
+    in oklch,
+    var(--color-success-base),
+    black 20%
   );
-  --color-warning-dark: oklab(
-    0.684 var(--color-warning-a) var(--color-warning-b)
+  --color-success-foreground: white;
+
+  /* Warning Colors */
+  --color-warning: var(--color-warning-base);
+  --color-warning-light: color-mix(
+    in oklch,
+    var(--color-warning-base),
+    white 15%
   );
-  --color-warning-foreground: oklab(0 0 0);
-
-  /* Destructive/Error Colors (OkLab) */
-  --color-destructive-a: 0.252;
-  --color-destructive-b: 0.11;
-  --color-destructive: oklab(
-    0.639 var(--color-destructive-a) var(--color-destructive-b)
+  --color-warning-dark: color-mix(
+    in oklch,
+    var(--color-warning-base),
+    black 20%
   );
-  --color-destructive-light: oklab(
-    0.721 var(--color-destructive-a) var(--color-destructive-b)
+  --color-warning-foreground: black;
+
+  /* Destructive/Error Colors */
+  --color-destructive: var(--color-destructive-base);
+  --color-destructive-light: color-mix(
+    in oklch,
+    var(--color-destructive-base),
+    white 20%
   );
-  --color-destructive-dark: oklab(
-    0.541 var(--color-destructive-a) var(--color-destructive-b)
+  --color-destructive-dark: color-mix(
+    in oklch,
+    var(--color-destructive-base),
+    black 15%
   );
-  --color-destructive-foreground: oklab(1 0 0);
+  --color-destructive-foreground: white;
 
-  /* Info Colors (OkLab) */
-  --color-info-a: -0.088;
-  --color-info-b: -0.103;
-  --color-info: oklab(0.574 var(--color-info-a) var(--color-info-b));
-  --color-info-light: oklab(0.723 var(--color-info-a) var(--color-info-b));
-  --color-info-dark: oklab(0.38 var(--color-info-a) var(--color-info-b));
-  --color-info-foreground: oklab(1 0 0);
+  /* Info Colors */
+  --color-info: var(--color-info-base);
+  --color-info-light: color-mix(in oklch, var(--color-info-base), white 30%);
+  --color-info-dark: color-mix(in oklch, var(--color-info-base), black 20%);
+  --color-info-foreground: white;
 
-  /* Neutral/Gray Scale (OkLab) */
-  --color-gray-50: oklab(0.988 -0.002 0.001);
-  --color-gray-100: oklab(0.973 -0.001 0.001);
-  --color-gray-200: oklab(0.932 -0.001 0);
-  --color-gray-300: oklab(0.882 -0.001 -0.001);
-  --color-gray-400: oklab(0.751 -0.001 -0.001);
-  --color-gray-500: oklab(0.644 -0.001 -0.001);
-  --color-gray-600: oklab(0.533 -0.001 -0.001);
-  --color-gray-700: oklab(0.39 -0.001 -0.002);
-  --color-gray-800: oklab(0.288 -0.001 -0.001);
-  --color-gray-900: oklab(0.169 -0.001 -0.001);
+  /* Neutral/Gray Scale (Hex) */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e0;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
 
-  /* Background Colors (OkLab) */
-  --color-background: oklab(1 0 0);
-  --color-background-secondary: oklab(0.988 -0.002 0.001);
-  --color-background-tertiary: oklab(0.973 -0.001 0.001);
+  /* Background Colors (Hex) */
+  --color-background: #ffffff;
+  --color-background-secondary: #f8fafc;
+  --color-background-tertiary: #f1f5f9;
 
-  /* Foreground/Text Colors (OkLab) */
-  --color-foreground: oklab(
-    0.169 -0.001 -0.001
-  ); /* Black - 21:1 on white (WCAG AAA) */
-  --color-foreground-secondary: oklab(
-    0.39 -0.001 -0.002
-  ); /* 7.5:1 on white (WCAG AAA) */
-  --color-foreground-tertiary: oklab(
-    0.533 -0.001 -0.001
-  ); /* 4.5:1 on white (WCAG AA) */
-  --color-foreground-muted: oklab(
-    0.644 -0.001 -0.001
-  ); /* 3:1 on white (WCAG AA for large text) */
+  /* Foreground/Text Colors (Hex - WCAG AA compliant) */
+  --color-foreground: #0f172a; /* 21:1 on white (WCAG AAA) */
+  --color-foreground-secondary: #334155; /* 7.5:1 on white (WCAG AAA) */
+  --color-foreground-tertiary: #475569; /* 4.5:1 on white (WCAG AA) */
+  --color-foreground-muted: #64748b; /* 3:1 on white (WCAG AA for large text) */
 
-  /* Border Colors (OkLab) */
-  --color-border: oklab(0.932 -0.001 0);
-  --color-border-light: oklab(0.973 -0.001 0.001);
-  --color-border-dark: oklab(0.882 -0.001 -0.001);
+  /* Border Colors (Hex) */
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
+  --color-border-dark: #cbd5e0;
 
-  /* Input Colors (OkLab) */
-  --color-input: oklab(1 0 0);
-  --color-input-background: oklab(1 0 0);
-  --color-input-border: oklab(0.882 -0.001 -0.001);
-  --color-input-placeholder: oklab(
-    0.644 -0.001 -0.001
-  ); /* Darker - 3:1 on white (WCAG AA for UI) */
+  /* Input Colors (Hex) */
+  --color-input: #ffffff;
+  --color-input-background: #ffffff;
+  --color-input-border: #cbd5e0;
+  --color-input-placeholder: #64748b; /* 3:1 on white (WCAG AA for UI) */
 
-  /* Focus Ring Color (OkLab) */
-  --color-ring: oklab(0.649 var(--color-primary-a) var(--color-primary-b));
-  --color-ring-offset: oklab(1 0 0);
+  /* Focus Ring Color */
+  --color-ring: var(--color-primary-light);
+  --color-ring-offset: #ffffff;
 
   /* Focus Ring Styling (Box Shadow) */
   --focus-ring-width: 1px;
   --focus-ring-blur: 0px;
   --focus-ring-spread: 4px;
   --focus-shadow: 0 0 0 var(--focus-ring-spread) var(--color-ring);
-  --focus-shadow-error: 0 0 0 var(--focus-ring-spread) oklab(0.639 0.252 0.11);
+  --focus-shadow-error: 0 0 0 var(--focus-ring-spread) var(--color-destructive);
 
   /* ========================================
      SPACING SCALE
@@ -314,9 +316,11 @@
     box-shadow var(--duration-200) var(--ease-in-out);
 
   /* Input States */
-  --input-focus-box-shadow: 0 0 0 3px oklab(0.649 0.189 0.106 / 0.1);
+  --input-focus-box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--color-primary), transparent 85%);
   --input-error-border-color: var(--color-destructive);
-  --input-error-focus-box-shadow: 0 0 0 3px oklab(0.639 0.252 0.11 / 0.1);
+  --input-error-focus-box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--color-destructive), transparent 85%);
   --input-disabled-opacity: var(--opacity-disabled);
   --input-disabled-background: var(--color-gray-50);
 
@@ -401,28 +405,28 @@
 
 /* @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: oklab(0.288 -0.001 -0.001);
-    --color-background-secondary: oklab(0.169 -0.001 -0.001);
-    --color-background-tertiary: oklab(0.12 -0.001 -0.001);
+    --color-background: #0f172a;
+    --color-background-secondary: #1e293b;
+    --color-background-tertiary: #334155;
 
-    --color-foreground: oklab(0.973 -0.001 0.001);
-    --color-foreground-secondary: oklab(0.882 -0.001 -0.001);
-    --color-foreground-tertiary: oklab(0.751 -0.001 -0.001);
-    --color-foreground-muted: oklab(0.644 -0.001 -0.001);
+    --color-foreground: #f1f5f9;
+    --color-foreground-secondary: #cbd5e0;
+    --color-foreground-tertiary: #94a3b8;
+    --color-foreground-muted: #64748b;
 
-    --color-border: oklab(0.39 -0.001 -0.002);
-    --color-border-light: oklab(0.533 -0.001 -0.001);
-    --color-border-dark: oklab(0.288 -0.001 -0.001);
+    --color-border: #334155;
+    --color-border-light: #475569;
+    --color-border-dark: #1e293b;
 
-    --color-input: oklab(0.169 -0.001 -0.001);
-    --color-input-background: oklab(0.288 -0.001 -0.001);
-    --color-input-border: oklab(0.39 -0.001 -0.002);
-    --color-input-placeholder: oklab(0.644 -0.001 -0.001);
+    --color-input: #0f172a;
+    --color-input-background: #1e293b;
+    --color-input-border: #334155;
+    --color-input-placeholder: #64748b;
 
-    --color-ring-offset: oklab(0.288 -0.001 -0.001);
+    --color-ring-offset: #0f172a;
 
-    --card-background: oklab(0.169 -0.001 -0.001);
-    --dropdown-background: oklab(0.169 -0.001 -0.001);
-    --tooltip-background: oklab(0.169 -0.001 -0.001);
+    --card-background: #1e293b;
+    --dropdown-background: #1e293b;
+    --tooltip-background: #1e293b;
   }
 } */

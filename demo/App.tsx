@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, ThemePanel } from "../common";
+import { ThemePanel } from "../common";
 import { SidebarMobileToggle, AppLayout } from "../layout";
 import {
   ButtonPage,
@@ -30,8 +30,7 @@ import { ComponentsPage } from "./pages/ComponentsPage";
 import { DocsPage } from "./pages/DocsPage";
 
 export const App: React.FC = () => {
-  const { currentPage, currentComponent, navigateTo, isRouteActive } =
-    useAppNavigation();
+  const { currentPage, currentComponent } = useAppNavigation();
 
   return (
     <AppLayout
@@ -39,9 +38,9 @@ export const App: React.FC = () => {
         <>
           <ThemePanel />
           <SidebarMobileToggle />
-          <Text as="h1" size="xl" weight="bold">
+          {/* <Text as="h1" size="xl" weight="bold">
             mpComponents
-          </Text>
+          </Text> */}
         </>
       }
       sidebar={<DemoSideBar />}
