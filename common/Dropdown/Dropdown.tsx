@@ -8,11 +8,6 @@ export interface DropdownProps {
    * Dropdown content
    */
   children: React.ReactNode;
-
-  /**
-   * Additional CSS classes
-   */
-  className?: string;
 }
 
 export interface DropdownContentProps {
@@ -104,7 +99,7 @@ export interface DropdownSeparatorProps {
  * </Dropdown>
  * ```
  */
-export const Dropdown: React.FC<DropdownProps> = ({ children, className }) => {
+export const Dropdown: React.FC<DropdownProps> = ({ children }) => {
   return (
     <DropdownMenuPrimitive.Root>
       {children}

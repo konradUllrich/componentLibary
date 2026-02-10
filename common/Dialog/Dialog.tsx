@@ -18,11 +18,6 @@ export interface DialogProps {
    * Dialog content
    */
   children: React.ReactNode;
-
-  /**
-   * Additional CSS classes
-   */
-  className?: string;
 }
 
 export interface DialogContentProps {
@@ -104,7 +99,7 @@ export interface DialogCloseProps {
  * </Dialog>
  * ```
  */
-export const Dialog: React.FC<DialogProps> = ({ open, onOpenChange, children, className }) => {
+export const Dialog: React.FC<DialogProps> = ({ open, onOpenChange, children }) => {
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       {children}
