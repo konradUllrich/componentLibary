@@ -75,6 +75,13 @@
   }
 }
 
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dropdown__content {
+    animation: none;
+  }
+}
+
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
   .dropdown__content {

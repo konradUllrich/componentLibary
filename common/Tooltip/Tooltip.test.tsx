@@ -8,7 +8,7 @@ test.describe('Tooltip Component', () => {
     const component = await mount(
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -27,7 +27,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -53,7 +53,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -80,7 +80,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Focus me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -102,7 +102,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Focus me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -129,7 +129,7 @@ test.describe('Tooltip Component', () => {
       <TooltipProvider delayDuration={0}>
         <div style={{ display: 'flex', gap: '100px', padding: '100px' }}>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <button data-testid="top">Top</button>
             </TooltipTrigger>
             <TooltipContent side="top">
@@ -138,7 +138,7 @@ test.describe('Tooltip Component', () => {
           </Tooltip>
           
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <button data-testid="bottom">Bottom</button>
             </TooltipTrigger>
             <TooltipContent side="bottom">
@@ -147,7 +147,7 @@ test.describe('Tooltip Component', () => {
           </Tooltip>
           
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <button data-testid="left">Left</button>
             </TooltipTrigger>
             <TooltipContent side="left">
@@ -156,7 +156,7 @@ test.describe('Tooltip Component', () => {
           </Tooltip>
           
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <button data-testid="right">Right</button>
             </TooltipTrigger>
             <TooltipContent side="right">
@@ -185,7 +185,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={500}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -218,7 +218,7 @@ test.describe('Tooltip Component', () => {
       return (
         <TooltipProvider>
           <Tooltip open={open} onOpenChange={(o) => { setOpen(o); isOpen = o; }}>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <button>Hover me</button>
             </TooltipTrigger>
             <TooltipContent>
@@ -247,7 +247,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -268,7 +268,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -289,7 +289,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover for info</button>
           </TooltipTrigger>
           <TooltipContent>
@@ -309,7 +309,7 @@ test.describe('Tooltip Component', () => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
           <TooltipContent className="custom-class">

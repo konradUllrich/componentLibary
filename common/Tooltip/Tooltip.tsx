@@ -112,7 +112,7 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({
  * ```tsx
  * <TooltipProvider>
  *   <Tooltip>
- *     <TooltipTrigger>
+ *     <TooltipTrigger asChild>
  *       <button>Hover me</button>
  *     </TooltipTrigger>
  *     <TooltipContent>

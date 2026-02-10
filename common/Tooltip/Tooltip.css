@@ -32,6 +32,13 @@
   }
 }
 
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip__content {
+    animation: none;
+  }
+}
+
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
   .tooltip__content {

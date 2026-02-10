@@ -66,7 +66,7 @@ export interface DialogDescriptionProps {
   className?: string;
 }
 
-export interface DialogCloseProps {
+export interface DialogCloseProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close> {
   /**
    * Button content
    */
@@ -94,7 +94,9 @@ export interface DialogCloseProps {
  * <Dialog open={isOpen} onOpenChange={setIsOpen}>
  *   <DialogContent title="Dialog Title" description="Dialog description">
  *     <p>Dialog body content</p>
- *     <DialogClose>Close</DialogClose>
+ *     <DialogClose asChild>
+ *       <button>Close</button>
+ *     </DialogClose>
  *   </DialogContent>
  * </Dialog>
  * ```

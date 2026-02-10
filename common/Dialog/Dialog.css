@@ -99,6 +99,17 @@
   }
 }
 
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dialog__overlay {
+    animation: none;
+  }
+
+  .dialog__content {
+    animation: none;
+  }
+}
+
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
   .dialog__overlay {

@@ -84,7 +84,7 @@ export interface DropdownSeparatorProps {
  * @example
  * ```tsx
  * <Dropdown>
- *   <DropdownTrigger>
+ *   <DropdownTrigger asChild>
  *     <Button>Open Menu</Button>
  *   </DropdownTrigger>
  *   <DropdownContent>

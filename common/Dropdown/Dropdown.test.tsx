@@ -6,7 +6,7 @@ test.describe('Dropdown Component', () => {
   test('should render trigger button', async ({ mount }) => {
     const component = await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -23,7 +23,7 @@ test.describe('Dropdown Component', () => {
   test('should open dropdown when trigger is clicked', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -46,7 +46,7 @@ test.describe('Dropdown Component', () => {
   test('should render dropdown items', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -72,7 +72,7 @@ test.describe('Dropdown Component', () => {
     
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -98,7 +98,7 @@ test.describe('Dropdown Component', () => {
   test('should close dropdown after item selection', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -124,7 +124,7 @@ test.describe('Dropdown Component', () => {
   test('should render labels and separators', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -154,7 +154,7 @@ test.describe('Dropdown Component', () => {
     
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -182,7 +182,7 @@ test.describe('Dropdown Component', () => {
   test('should handle keyboard navigation', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -215,7 +215,7 @@ test.describe('Dropdown Component', () => {
   test('should close on Escape key', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -238,7 +238,7 @@ test.describe('Dropdown Component', () => {
   test('should have proper ARIA attributes', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -260,7 +260,7 @@ test.describe('Dropdown Component', () => {
   test('should pass accessibility audit', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent>
@@ -282,7 +282,7 @@ test.describe('Dropdown Component', () => {
   test('should apply custom className', async ({ mount, page }) => {
     await mount(
       <Dropdown>
-        <DropdownTrigger>
+        <DropdownTrigger asChild>
           <button>Open Menu</button>
         </DropdownTrigger>
         <DropdownContent className="custom-class">
