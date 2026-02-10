@@ -3,16 +3,13 @@ import { Card } from "../../layout";
 import { useAppNavigation } from "../useAppNavigation";
 
 export const HomePage = () => {
-  const { currentPage, currentComponent, navigateTo, isRouteActive } =
+  const { navigateTo } =
     useAppNavigation();
 
   const handleComponentClick = (component: string) => {
     navigateTo(`/components/${component}`);
   };
 
-  const handleComponentsClick = () => {
-    navigateTo("/components");
-  };
   return (
     <div className="component-list">
       <Text as="h1" size="3xl" weight="bold">

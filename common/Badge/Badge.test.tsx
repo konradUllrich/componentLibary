@@ -163,7 +163,7 @@ test.describe('Badge Component', () => {
       await expect(badges.nth(2)).toHaveClass(/badge--subtle/);
     });
 
-    test('should render with proper inline-flex display', async ({ mount, page }) => {
+    test('should render with proper inline-flex display', async ({ mount }) => {
       const component = await mount(<Badge>Inline Badge</Badge>);
       
       const display = await component.evaluate((el) => 

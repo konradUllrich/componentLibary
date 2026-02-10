@@ -220,7 +220,7 @@ test.describe('Text Component', () => {
       await expect(h3).toHaveClass(/text--xl/);
     });
 
-    test('should maintain proper text flow', async ({ mount, page }) => {
+    test('should maintain proper text flow', async ({ mount }) => {
       const component = await mount(
         <div style={{ width: '200px' }}>
           <Text>

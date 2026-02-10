@@ -1,4 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
 import {
   Sidebar,
   SidebarToggle,
@@ -15,10 +14,6 @@ export const DemoSideBar = () => {
 
   const handleComponentClick = (component: string) => {
     navigateTo(`/components/${component}`);
-  };
-
-  const handleComponentsClick = () => {
-    navigateTo("/components");
   };
 
   return (

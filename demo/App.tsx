@@ -1,5 +1,4 @@
 import React from "react";
-import { ThemePanel } from "../common";
 import { SidebarMobileToggle, AppLayout, HorizontalNav, Flex } from "../layout";
 import {
   ButtonPage,

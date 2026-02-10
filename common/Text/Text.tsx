@@ -103,7 +103,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
   ) => {
     return (
       <Element
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLElement>}
         className={clsx(
           "text",
           `text--${size}`,

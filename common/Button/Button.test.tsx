@@ -81,7 +81,7 @@ test.describe('Button Component', () => {
     expect(clicked).toBe(false);
   });
 
-  test('should have correct accessible role', async ({ mount, page }) => {
+  test('should have correct accessible role', async ({ mount }) => {
     const component = await mount(<Button>Accessible Button</Button>);
     await expectAccessibleRole(component, 'button');
   });

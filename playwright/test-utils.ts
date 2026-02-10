@@ -46,6 +46,6 @@ export async function expectAccessibleName(locator: Locator, name: string | RegE
 /**
  * Check if an element has accessible role
  */
-export async function expectAccessibleRole(locator: Locator, role: string) {
-  await expect(locator).toHaveRole(role as any);
+export async function expectAccessibleRole(locator: Locator, role: 'button' | 'link' | 'heading' | 'textbox' | string) {
+  await expect(locator).toHaveRole(role as 'button' | 'link' | 'heading' | 'textbox');
 }

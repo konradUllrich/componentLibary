@@ -3,16 +3,13 @@ import { Card } from "../../layout";
 import { useAppNavigation } from "../useAppNavigation";
 
 export const ComponentsPage = () => {
-  const { currentPage, currentComponent, navigateTo, isRouteActive } =
+  const { currentComponent, navigateTo } =
     useAppNavigation();
 
   const handleComponentClick = (component: string) => {
     navigateTo(`/components/${component}`);
   };
 
-  const handleComponentsClick = () => {
-    navigateTo("/components");
-  };
   if (currentComponent) return null; // Don't render the list if a specific component is selected
   return (
     <div className="components-page">

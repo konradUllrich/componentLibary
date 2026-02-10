@@ -43,7 +43,7 @@ test.describe('Accordion Component', () => {
     
     // Expand
     await firstTrigger.click();
-    let content = component.locator('.accordion-content', { hasText: 'Content 1' });
+    const content = component.locator('.accordion-content', { hasText: 'Content 1' });
     await expect(content).toBeVisible();
     
     // Collapse

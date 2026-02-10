@@ -63,7 +63,7 @@ export const DateComponent: FC<DateComponentProps> = ({
       dateObj,
     );
     return <>{formatted}</>;
-  } catch (error) {
+  } catch {
     // Date formatting failed, show fallback
     return <>{fallback}</>;
   }

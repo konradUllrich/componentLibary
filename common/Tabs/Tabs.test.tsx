@@ -157,7 +157,7 @@ test.describe('Tabs Component', () => {
   });
 
   test.describe('Visual States', () => {
-    test('should show active state styling', async ({ mount, page }) => {
+    test('should show active state styling', async ({ mount }) => {
       const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
       
       const activeTab = component.locator('.tabs-trigger[data-state="active"]');
