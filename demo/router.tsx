@@ -71,6 +71,9 @@ export function createAppRouter(config: RouterConfig) {
     { path: "/components/horizontal-nav", name: "horizontal-nav" },
     { path: "/components/sidebar", name: "sidebar" },
     { path: "/components/app-layout", name: "app-layout" },
+    { path: "/components/dialog", name: "dialog" },
+    { path: "/components/dropdown", name: "dropdown" },
+    { path: "/components/tooltip", name: "tooltip" },
   ].map(({ path }) =>
     createRoute({
       getParentRoute: () => rootRoute,

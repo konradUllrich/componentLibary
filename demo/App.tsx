@@ -20,6 +20,9 @@ import {
   HorizontalNavPage,
   SidebarPage,
   AppLayoutPage,
+  DialogPage,
+  DropdownPage,
+  TooltipPage,
 } from "./pages";
 import { useAppNavigation } from "./useAppNavigation";
 import "./App.css";
@@ -92,6 +95,9 @@ export const App: React.FC = () => {
         {currentComponent === "horizontal-nav" && <HorizontalNavPage />}
         {currentComponent === "sidebar" && <SidebarPage />}
         {currentComponent === "app-layout" && <AppLayoutPage />}
+        {currentComponent === "dialog" && <DialogPage />}
+        {currentComponent === "dropdown" && <DropdownPage />}
+        {currentComponent === "tooltip" && <TooltipPage />}
       </AppLayout>
     </>
   );
