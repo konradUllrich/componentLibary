@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/experimental-ct-react';
-import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogTrigger } from './Dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from './Dialog';
 import { DialogWithState, DialogWithContent } from './Dialog.stories';
 import { checkA11y } from '../../playwright/test-utils';
-import { useState } from 'react';
 
 test.describe('Dialog Component', () => {
   test('should render when open', async ({ mount, page }) => {
@@ -127,9 +126,6 @@ test.describe('Dialog Component', () => {
     await expect(content).toBeVisible();
     
     // Focus should be trapped within dialog
-    const buttons = page.locator('button');
-    const closeButton = page.locator('.dialog__close');
-    
     // The dialog automatically focuses the first focusable element
     // So we just need to verify we can tab through elements
     await page.keyboard.press('Tab');

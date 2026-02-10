@@ -39,25 +39,29 @@ export interface TableRowProps<
  * ))}
  * ```
  */
-export const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  TableRowProps<any>
->(({ row, isSelected = false, className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={clsx(
-      "table__row",
-      isSelected && "table__row--selected",
-      className,
-    )}
-    {...props}
-  >
-    {row.getVisibleCells().map((cell) => (
-      <td key={cell.id} className="table__cell">
-        {cell.getValue() as React.ReactNode}
-      </td>
-    ))}
-  </tr>
-));
+export const TableRow = React.forwardRef(function TableRow<T>(
+  { row, isSelected = false, className, ...props }: TableRowProps<T>,
+  ref: React.Ref<HTMLTableRowElement>
+) {
+  return (
+    <tr
+      ref={ref}
+      className={clsx(
+        "table__row",
+        isSelected && "table__row--selected",
+        className,
+      )}
+      {...props}
+    >
+      {row.getVisibleCells().map((cell) => (
+        <td key={cell.id} className="table__cell">
+          {cell.getValue() as React.ReactNode}
+        </td>
+      ))}
+    </tr>
+  );
+}) as <T>(
+  props: TableRowProps<T> & { ref?: React.Ref<HTMLTableRowElement> }
+) => React.ReactElement;
 
 TableRow.displayName = "TableRow";
