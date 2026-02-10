@@ -5,7 +5,7 @@ test.describe('Documentation Page', () => {
     await page.goto('/componentLibary/');
     
     // Navigate to documentation
-    await page.getByRole('button', { name: /Read Documentation/i }).click();
+    await page.getByRole('link', { name: /Documentation/i }).click();
     
     // Check heading
     await expect(page.getByRole('heading', { name: 'Documentation' })).toBeVisible();
