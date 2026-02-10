@@ -4,10 +4,9 @@ test.describe('Theme Functionality', () => {
   test('should have theme panel visible', async ({ page }) => {
     await page.goto('/componentLibary/');
     
-    // Check if theme panel or theme toggle exists
-    // The theme panel might be a button or a dedicated panel
-    const themeElements = await page.locator('[class*="theme"], button[class*="theme"]').count();
-    expect(themeElements).toBeGreaterThan(0);
+    // Check if theme link exists in horizontal nav
+    const themeLink = page.getByRole('navigation').getByText('Theme');
+    await expect(themeLink).toBeVisible();
   });
 
   test('should be able to interact with theme controls', async ({ page }) => {
@@ -26,16 +25,16 @@ test.describe('Theme Functionality', () => {
   test('should maintain theme across navigation', async ({ page }) => {
     await page.goto('/componentLibary/');
     
-    // Navigate to components
-    await page.getByRole('button', { name: /View Components/i }).click();
+    // Navigate to components via sidebar icon
+    await page.getByText('🧩').click();
     await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
     
-    // Navigate to documentation
-    await page.getByText('Documentation', { exact: true }).click();
+    // Navigate to documentation via horizontal nav
+    await page.getByRole('navigation').getByText('Documentation').click();
     await expect(page.getByRole('heading', { name: 'Documentation' })).toBeVisible();
     
     // Navigate back to home
     await page.getByText('🏠').click();
-    await expect(page.locator('h1').filter({ hasText: 'mpComponents' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
   });
 });
