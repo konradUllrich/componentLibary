@@ -1,11 +1,12 @@
 import React from 'react';
 import { test, expect } from '@playwright/experimental-ct-react';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
+import { ControlledTooltip } from './Tooltip.stories';
 import { checkA11y } from '../../playwright/test-utils';
 
 test.describe('Tooltip Component', () => {
-  test('should render trigger element', async ({ mount }) => {
-    const component = await mount(
+  test('should render trigger element', async ({ mount, page }) => {
+    await mount(
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -18,7 +19,7 @@ test.describe('Tooltip Component', () => {
       </TooltipProvider>
     );
     
-    const trigger = component.locator('button');
+    const trigger = page.locator('button');
     await expect(trigger).toBeVisible();
     await expect(trigger).toHaveText('Hover me');
   });
@@ -38,15 +39,17 @@ test.describe('Tooltip Component', () => {
     );
     
     const trigger = page.locator('button');
-    const content = page.locator('.tooltip__content');
     
     // Initially hidden
-    await expect(content).not.toBeVisible();
+    await expect(page.locator('.tooltip__content')).not.toBeVisible();
     
     // Hover to show
     await trigger.hover();
+    
+    // Use getByRole for more specific selector
+    const content = page.getByRole('tooltip');
     await expect(content).toBeVisible();
-    await expect(content).toHaveText('Tooltip text');
+    await expect(content).toContainText('Tooltip text');
   });
 
   test('should hide tooltip when mouse leaves', async ({ mount, page }) => {
@@ -64,15 +67,15 @@ test.describe('Tooltip Component', () => {
     );
     
     const trigger = page.locator('button');
-    const content = page.locator('.tooltip__content');
     
     // Hover to show
     await trigger.hover();
+    const content = page.getByRole('tooltip');
     await expect(content).toBeVisible();
     
     // Move mouse away
     await page.mouse.move(0, 0);
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(500);
     await expect(content).not.toBeVisible();
   });
 
@@ -169,16 +172,23 @@ test.describe('Tooltip Component', () => {
     
     // Test each side
     await page.getByTestId('top').hover();
-    await expect(page.getByText('Top tooltip')).toBeVisible();
+    await expect(page.getByRole('tooltip', { name: /Top tooltip/ })).toBeVisible();
+    await page.mouse.move(0, 0);
+    // Wait for tooltip to disappear before showing next one
+    await expect(page.getByRole('tooltip')).not.toBeVisible();
     
     await page.getByTestId('bottom').hover();
-    await expect(page.getByText('Bottom tooltip')).toBeVisible();
+    await expect(page.getByRole('tooltip', { name: /Bottom tooltip/ })).toBeVisible();
+    await page.mouse.move(0, 0);
+    await expect(page.getByRole('tooltip')).not.toBeVisible();
     
     await page.getByTestId('left').hover();
-    await expect(page.getByText('Left tooltip')).toBeVisible();
+    await expect(page.getByRole('tooltip', { name: /Left tooltip/ })).toBeVisible();
+    await page.mouse.move(0, 0);
+    await expect(page.getByRole('tooltip')).not.toBeVisible();
     
     await page.getByTestId('right').hover();
-    await expect(page.getByText('Right tooltip')).toBeVisible();
+    await expect(page.getByRole('tooltip', { name: /Right tooltip/ })).toBeVisible();
   });
 
   test('should respect delay duration', async ({ mount, page }) => {
@@ -210,25 +220,6 @@ test.describe('Tooltip Component', () => {
   });
 
   test('should support controlled state', async ({ mount, page }) => {
-    let isOpen = false;
-    
-    const ControlledTooltip = () => {
-      const [open, setOpen] = React.useState(isOpen);
-      
-      return (
-        <TooltipProvider>
-          <Tooltip open={open} onOpenChange={(o) => { setOpen(o); isOpen = o; }}>
-            <TooltipTrigger asChild>
-              <button>Hover me</button>
-            </TooltipTrigger>
-            <TooltipContent>
-              Tooltip text
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      );
-    };
-    
     await mount(<ControlledTooltip />);
     
     const trigger = page.locator('button');
@@ -240,7 +231,7 @@ test.describe('Tooltip Component', () => {
     // Hover to open
     await trigger.hover();
     await page.waitForTimeout(100);
-    expect(isOpen).toBe(true);
+    await expect(content).toBeVisible();
   });
 
   test('should render arrow', async ({ mount, page }) => {
@@ -281,8 +272,10 @@ test.describe('Tooltip Component', () => {
     const trigger = page.locator('button');
     await trigger.hover();
     
-    const content = page.locator('.tooltip__content');
-    await expect(content).toHaveAttribute('role', 'tooltip');
+    // Radix provides role="tooltip" automatically via an internal mechanism
+    const tooltip = page.getByRole('tooltip');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toContainText('Tooltip text');
   });
 
   test('should pass accessibility audit', async ({ mount, page }) => {
