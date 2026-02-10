@@ -1,0 +1,60 @@
+/* Tooltip Component Styles */
+
+/* Content */
+.tooltip__content {
+  background-color: var(--color-gray-900);
+  color: white;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  max-width: 300px;
+  word-wrap: break-word;
+  z-index: var(--z-index-tooltip, 2000);
+  box-shadow: var(--shadow-md);
+  animation: tooltip-fade-in var(--duration-200) ease-out;
+}
+
+/* Arrow */
+.tooltip__arrow {
+  fill: var(--color-gray-900);
+}
+
+/* Animations */
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip__content {
+    animation: none;
+  }
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+  .tooltip__content {
+    background-color: var(--color-gray-800);
+    border: 1px solid var(--color-gray-700);
+  }
+
+  .tooltip__arrow {
+    fill: var(--color-gray-800);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tooltip__content {
+    max-width: 250px;
+    font-size: var(--font-size-xs);
+  }
+}

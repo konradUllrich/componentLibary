@@ -20,11 +20,13 @@
      ======================================== */
 
   /* Base Colors (Hex - Easy to customize) */
-  --color-primary-base: #7c3aed;
+  /* Primary color adjusted for WCAG AA contrast (4.5:1 minimum with white text) */
+  --color-primary-base: #7333e0;
   --color-secondary-base: #64748b;
   --color-success-base: #22c55e;
   --color-warning-base: #f59e0b;
-  --color-destructive-base: #ef4444;
+  /* Destructive color adjusted for WCAG AA contrast (4.5:1 minimum with white text) */
+  --color-destructive-base: #dc2626;
   --color-info-base: #3b82f6;
 
   /* Primary Colors (Auto-generated variants with color-mix) */

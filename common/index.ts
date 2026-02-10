@@ -14,6 +14,41 @@ export {
   type AccordionItem,
 } from "./Accordion";
 export {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+  type DialogProps,
+  type DialogContentProps,
+  type DialogTitleProps,
+  type DialogDescriptionProps,
+  type DialogCloseProps,
+} from "./Dialog";
+export {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+  type DropdownProps,
+  type DropdownContentProps,
+  type DropdownItemProps,
+  type DropdownLabelProps,
+  type DropdownSeparatorProps,
+} from "./Dropdown";
+export {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  type TooltipProviderProps,
+  type TooltipProps,
+  type TooltipContentProps,
+} from "./Tooltip";
+export {
   Text,
   type TextProps,
   type TextElement,

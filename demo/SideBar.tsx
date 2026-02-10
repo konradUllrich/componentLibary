@@ -83,11 +83,27 @@ export const DemoSideBar = () => {
             }}
           />
           <SidebarSubItem
+            label="Dialog"
+            isActive={currentComponent === "dialog"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("dialog");
+            }}
+          />
+          <SidebarSubItem
             label="Disclosure"
             isActive={currentComponent === "disclosure"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("disclosure");
+            }}
+          />
+          <SidebarSubItem
+            label="Dropdown"
+            isActive={currentComponent === "dropdown"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("dropdown");
             }}
           />
           <SidebarSubItem
@@ -104,6 +120,14 @@ export const DemoSideBar = () => {
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("text");
+            }}
+          />
+          <SidebarSubItem
+            label="Tooltip"
+            isActive={currentComponent === "tooltip"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("tooltip");
             }}
           />
           <SidebarSubItem

@@ -16,3 +16,6 @@ export { FlexPage } from './FlexPage';
 export { HorizontalNavPage } from './HorizontalNavPage';
 export { SidebarPage } from './SidebarPage';
 export { AppLayoutPage } from './AppLayoutPage';
+export { DialogPage } from './DialogPage';
+export { DropdownPage } from './DropdownPage';
+export { TooltipPage } from './TooltipPage';
