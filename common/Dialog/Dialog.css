@@ -1,0 +1,129 @@
+/* Dialog Component Styles */
+
+/* Overlay */
+.dialog__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-index-modal, 1000);
+  animation: dialog-overlay-fade-in var(--duration-200) ease-out;
+}
+
+/* Content Container */
+.dialog__content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-6);
+  max-width: 500px;
+  width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  z-index: var(--z-index-modal, 1000);
+  animation: dialog-content-slide-in var(--duration-200) ease-out;
+}
+
+.dialog__content:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Title */
+.dialog__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-foreground);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+/* Description */
+.dialog__description {
+  font-size: var(--font-size-md);
+  color: var(--color-foreground-muted);
+  margin: 0 0 var(--spacing-4) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Close Button */
+.dialog__close {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  color: var(--color-foreground-muted);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  transition: var(--transition-fast);
+}
+
+.dialog__close:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-foreground);
+}
+
+.dialog__close:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes dialog-overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-content-slide-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+  .dialog__overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .dialog__content {
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--color-gray-800);
+  }
+
+  .dialog__close:hover {
+    background-color: var(--color-gray-800);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dialog__content {
+    width: 95vw;
+    max-width: none;
+    padding: var(--spacing-4);
+  }
+
+  .dialog__title {
+    font-size: var(--font-size-lg);
+  }
+}

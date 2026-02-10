@@ -14,6 +14,19 @@ export {
   type AccordionItem,
 } from "./Accordion";
 export {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+  type DialogProps,
+  type DialogContentProps,
+  type DialogTitleProps,
+  type DialogDescriptionProps,
+  type DialogCloseProps,
+} from "./Dialog";
+export {
   Text,
   type TextProps,
   type TextElement,
