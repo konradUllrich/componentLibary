@@ -1,56 +1,15 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import React from "react";
-import { Pagination } from "./Pagination";
-import { createPaginationStore } from "./paginationStore";
+import { PaginationTestWrapper } from "./Pagination.stories";
 import { checkA11y } from "../../playwright/test-utils";
-
-// Wrapper component to handle Zustand store initialization properly
-const PaginationTestWrapper: React.FC<{
-  totalItems: number;
-  pageSize?: number;
-  currentPage?: number;
-  showSizeSelector?: boolean;
-  pageSizeOptions?: number[];
-  className?: string;
-}> = ({
-  totalItems,
-  pageSize = 10,
-  currentPage = 1,
-  showSizeSelector,
-  pageSizeOptions,
-  className,
-}) => {
-  // Create store with useMemo to ensure it's stable across re-renders
-  const useStore = React.useMemo(
-    () => createPaginationStore(pageSize),
-    [pageSize],
-  );
-
-  // Initialize store data
-  React.useEffect(() => {
-    const state = useStore.getState();
-    state.setTotalItems(totalItems);
-    if (currentPage > 1) {
-      state.setPage(currentPage);
-    }
-  }, [totalItems, currentPage, useStore]);
-
-  return (
-    <Pagination
-      store={useStore}
-      showSizeSelector={showSizeSelector}
-      pageSizeOptions={pageSizeOptions}
-      className={className}
-    />
-  );
-};
 
 test.describe("Pagination Component", () => {
   test("should render with basic pagination controls", async ({ mount }) => {
     const component = await mount(
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
-    await expect(component.locator(".pagination")).toBeVisible();
+    // The component root IS the .pagination element
+    await expect(component).toBeVisible();
 
     // Check pagination info
     const info = component.locator(".pagination__info");
@@ -105,15 +64,15 @@ test.describe("Pagination Component", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
 
-    // Click on page 3
-    const page3Button = component
+    // Click on page 2 (which is visible on first page)
+    const page2Button = component
       .locator(".pagination-button")
-      .filter({ hasText: /^3$/ });
-    await page3Button.click();
+      .filter({ hasText: /^2$/ });
+    await page2Button.click();
 
     // Check if page changed
     const info = component.locator(".pagination__info");
-    await expect(info).toContainText("Showing 21 to 30 of 100 entries");
+    await expect(info).toContainText("Showing 11 to 20 of 100 entries");
   });
 
   test("should highlight active page", async ({ mount }) => {
@@ -208,8 +167,8 @@ test.describe("Pagination Component", () => {
       />,
     );
 
-    const pagination = component.locator(".pagination");
-    await expect(pagination).toHaveClass(/custom-pagination/);
+    // The component root IS the .pagination element
+    await expect(component).toHaveClass(/custom-pagination/);
   });
 
   test("should have correct ARIA attributes", async ({ mount }) => {
