@@ -124,7 +124,7 @@ export const DropdownPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Dropdown can be positioned on different sides of the trigger
         </Text>
-        <div className="component-page__demo" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <div className="component-page__demo">
           <Dropdown>
             <DropdownTrigger asChild>
               <Button variant="ghost">Bottom (default)</Button>

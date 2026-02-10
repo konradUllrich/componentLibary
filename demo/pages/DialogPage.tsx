@@ -27,7 +27,7 @@ export const DialogPage: React.FC = () => {
             </DialogTrigger>
             <DialogContent title="Welcome" description="This is a basic dialog example">
               <Text>This dialog demonstrates the basic usage with title and description.</Text>
-              <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+              <div className="component-page__actions">
                 <DialogClose asChild>
                   <Button variant="secondary">Close</Button>
                 </DialogClose>

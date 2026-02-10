@@ -42,7 +42,7 @@ export const TooltipPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Tooltips can be positioned on different sides of the trigger
         </Text>
-        <div className="component-page__demo" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', padding: '2rem' }}>
+        <div className="component-page__demo component-page__demo--centered">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -88,7 +88,7 @@ export const TooltipPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Tooltips work with all button variants and other components
         </Text>
-        <div className="component-page__demo" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <div className="component-page__demo">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -134,7 +134,7 @@ export const TooltipPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Customize the delay before tooltips appear
         </Text>
-        <div className="component-page__demo" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <div className="component-page__demo">
           <TooltipProvider delayDuration={0}>
             <Tooltip>
               <TooltipTrigger asChild>
