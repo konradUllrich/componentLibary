@@ -1,6 +1,27 @@
 import { Text } from "../../common";
 import { Card } from "../../layout";
 import { useAppNavigation } from "../useAppNavigation";
+import {
+  MousePointerClick,
+  Tag,
+  Type,
+  FormInput,
+  RectangleVertical,
+  ChevronDown,
+  Eye,
+  ListOrdered,
+  LayoutPanelTop,
+  Users,
+  Calendar,
+  Table2,
+  LayoutGrid,
+  CreditCard,
+  BoxSelect,
+  Navigation,
+  PanelLeft,
+  LayoutDashboard,
+} from "lucide-react";
+import "./HomePage.css";
 
 export const HomePage = () => {
   const { navigateTo } =
@@ -12,12 +33,14 @@ export const HomePage = () => {
 
   return (
     <div className="component-list">
-      <Text as="h1" size="3xl" weight="bold">
-        Components
-      </Text>
-      <Text color="secondary">
-        Browse all available components in the library
-      </Text>
+      <div className="home-header">
+        <Text as="h1" size="3xl" weight="bold">
+          Component Library
+        </Text>
+        <Text color="secondary" size="lg">
+          Explore our collection of modern, accessible React components
+        </Text>
+      </div>
 
       <div className="component-grid">
         <Card
@@ -25,8 +48,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("button")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <MousePointerClick size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Button
           </Text>
@@ -40,8 +66,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("badge")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Tag size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Badge
           </Text>
@@ -55,8 +84,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("text")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Type size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Text
           </Text>
@@ -70,8 +102,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("form-controls")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <FormInput size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Form Controls
           </Text>
@@ -85,8 +120,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("panel")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <RectangleVertical size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Panel
           </Text>
@@ -100,8 +138,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("accordion")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <ChevronDown size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Accordion
           </Text>
@@ -115,8 +156,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("disclosure")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Eye size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Disclosure
           </Text>
@@ -130,8 +174,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("pagination")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <ListOrdered size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Pagination
           </Text>
@@ -145,8 +192,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("tabs")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <LayoutPanelTop size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Tabs
           </Text>
@@ -160,8 +210,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("user-avatars")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Users size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             User Avatars
           </Text>
@@ -175,8 +228,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("date")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Calendar size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Date
           </Text>
@@ -190,8 +246,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("table")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Table2 size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Table
           </Text>
@@ -205,8 +264,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("card-list")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <LayoutGrid size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Card List
           </Text>
@@ -220,8 +282,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("card")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <CreditCard size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Card
           </Text>
@@ -235,8 +300,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("flex")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <BoxSelect size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Flex
           </Text>
@@ -250,8 +318,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("horizontal-nav")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <Navigation size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Horizontal Nav
           </Text>
@@ -265,8 +336,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("sidebar")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <PanelLeft size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             Sidebar
           </Text>
@@ -280,8 +354,11 @@ export const HomePage = () => {
           padding="lg"
           interactive
           onClick={() => handleComponentClick("app-layout")}
-          style={{ cursor: "pointer" }}
+          className="component-card"
         >
+          <div className="component-card__icon">
+            <LayoutDashboard size={24} />
+          </div>
           <Text as="h3" size="lg" weight="semibold">
             App Layout
           </Text>

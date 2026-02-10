@@ -19,11 +19,13 @@
   flex-direction: column;
   width: var(--sidebar-width);
   height: 100vh;
-  background-color: var(--color-background);
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  border-right: 1px solid var(--color-border-light);
   transition: width var(--duration-300) var(--ease-in-out);
   gap: var(--spacing-2);
   overflow-y: auto;
   flex-shrink: 0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
 }
 
 /* Desktop collapsed state */

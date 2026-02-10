@@ -8,6 +8,14 @@ import {
 } from "../layout";
 import { Text } from "../common";
 import { useAppNavigation } from "./useAppNavigation";
+import {
+  Home,
+  Package,
+  Sparkles,
+  Settings,
+  Database,
+  Layout,
+} from "lucide-react";
 
 export const DemoSideBar = () => {
   const { currentPage, currentComponent, navigateTo } = useAppNavigation();
@@ -27,7 +35,7 @@ export const DemoSideBar = () => {
       <SidebarNav>
         <SidebarItem
           label="Home"
-          icon="🏠"
+          icon={<Home size={18} />}
           isActive={currentPage === "home"}
           onClick={(e) => {
             e.preventDefault();
@@ -36,7 +44,7 @@ export const DemoSideBar = () => {
         />
         <SidebarItem
           label="Components"
-          icon="🧩"
+          icon={<Package size={18} />}
           isActive={currentPage === "components" && !currentComponent}
           onClick={(e) => {
             e.preventDefault();
@@ -44,7 +52,7 @@ export const DemoSideBar = () => {
           }}
         />
         <SidebarDivider label="Components" />
-        <SidebarItem label="Common" icon="⚡">
+        <SidebarItem label="Common" icon={<Sparkles size={18} />}>
           <SidebarSubItem
             label="Accordion"
             isActive={currentComponent === "accordion"}
@@ -134,7 +142,7 @@ export const DemoSideBar = () => {
             }}
           />
         </SidebarItem>
-        <SidebarItem label="Controls" icon="🎛️">
+        <SidebarItem label="Controls" icon={<Settings size={18} />}>
           <SidebarSubItem
             label="Form Controls"
             isActive={currentComponent === "form-controls"}
@@ -144,7 +152,7 @@ export const DemoSideBar = () => {
             }}
           />
         </SidebarItem>
-        <SidebarItem label="Data Display" icon="📊">
+        <SidebarItem label="Data Display" icon={<Database size={18} />}>
           <SidebarSubItem
             label="Card List"
             isActive={currentComponent === "card-list"}
@@ -170,7 +178,7 @@ export const DemoSideBar = () => {
             }}
           />
         </SidebarItem>
-        <SidebarItem label="Layout" icon="📐">
+        <SidebarItem label="Layout" icon={<Layout size={18} />}>
           <SidebarSubItem
             label="App Layout"
             isActive={currentComponent === "app-layout"}

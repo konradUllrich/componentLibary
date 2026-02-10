@@ -40,7 +40,7 @@
 }
 
 .sidebar-item:hover {
-  background-color: var(--color-background);
+  background-color: var(--color-gray-50);
 }
 
 .sidebar-item:focus-visible {
@@ -50,8 +50,9 @@
 
 /* Modifier: Active state */
 .sidebar-item--active {
-  background-color: var(--color-primary);
+  background: var(--color-primary-gradient);
   color: var(--color-primary-foreground);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
 }
 
 .sidebar-item--active:visited {
@@ -63,8 +64,8 @@
 }
 
 .sidebar-item--active:hover {
-  background-color: var(--color-primary);
-  opacity: 0.9;
+  background: var(--color-primary-gradient);
+  opacity: 0.95;
 }
 
 /* Modifier: Expandable */
