@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/experimental-ct-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogTrigger } from './Dialog';
-import { DialogWithState, DialogWithStateForOverlay, DialogWithStateForEscape } from './Dialog.stories';
+import { DialogWithState, DialogWithContent } from './Dialog.stories';
 import { checkA11y } from '../../playwright/test-utils';
 import { useState } from 'react';
 
@@ -87,7 +87,7 @@ test.describe('Dialog Component', () => {
   });
 
   test('should handle overlay click to close', async ({ mount, page }) => {
-    await mount(<DialogWithStateForOverlay />);
+    await mount(<DialogWithContent />);
     
     const content = page.locator('.dialog__content');
     await expect(content).toBeVisible();
@@ -100,7 +100,7 @@ test.describe('Dialog Component', () => {
   });
 
   test('should handle escape key to close', async ({ mount, page }) => {
-    await mount(<DialogWithStateForEscape />);
+    await mount(<DialogWithContent />);
     
     const content = page.locator('.dialog__content');
     await expect(content).toBeVisible();

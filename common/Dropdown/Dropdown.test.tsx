@@ -276,11 +276,10 @@ test.describe('Dropdown Component', () => {
     // Check accessibility when closed
     await checkA11y(page);
     
-    // Open dropdown and check accessibility of the dropdown content
+    // Verify dropdown can be opened
     await page.locator('button').click();
     await page.waitForTimeout(100);
     
-    // Check accessibility - focus on the dropdown content only to avoid the aria-hidden issue
     const dropdownContent = page.locator('.dropdown__content');
     await expect(dropdownContent).toBeVisible();
   });

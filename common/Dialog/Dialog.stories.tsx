@@ -13,19 +13,7 @@ export const DialogWithState = () => {
   );
 };
 
-export const DialogWithStateForOverlay = () => {
-  const [open, setOpen] = useState(true);
-  
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent title="Test">
-        <p>Content</p>
-      </DialogContent>
-    </Dialog>
-  );
-};
-
-export const DialogWithStateForEscape = () => {
+export const DialogWithContent = () => {
   const [open, setOpen] = useState(true);
   
   return (
