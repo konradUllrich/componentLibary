@@ -21,7 +21,28 @@ const loadThemeFromStorage = (): ThemeConfig | null => {
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      // Validate and merge with defaults to prevent undefined values
+      return {
+        colors: {
+          primary: parsed.colors?.primary || defaultTheme.colors.primary,
+          secondary: parsed.colors?.secondary || defaultTheme.colors.secondary,
+          success: parsed.colors?.success || defaultTheme.colors.success,
+          warning: parsed.colors?.warning || defaultTheme.colors.warning,
+          destructive: parsed.colors?.destructive || defaultTheme.colors.destructive,
+          info: parsed.colors?.info || defaultTheme.colors.info,
+        },
+        spacing: {
+          base: parsed.spacing?.base ?? defaultTheme.spacing.base,
+        },
+        typography: {
+          baseFontSize: parsed.typography?.baseFontSize ?? defaultTheme.typography.baseFontSize,
+          baseLineHeight: parsed.typography?.baseLineHeight ?? defaultTheme.typography.baseLineHeight,
+        },
+        borderRadius: {
+          base: parsed.borderRadius?.base ?? defaultTheme.borderRadius.base,
+        },
+      };
     }
   } catch (error) {
     console.error("Failed to load theme from storage:", error);
@@ -40,26 +61,26 @@ const saveThemeToStorage = (theme: ThemeConfig): void => {
 const applyThemeToDOM = (theme: ThemeConfig): void => {
   const root = document.documentElement;
 
-  // Apply base color variables (hex colors)
-  root.style.setProperty("--color-primary-base", theme.colors.primary);
-  root.style.setProperty("--color-secondary-base", theme.colors.secondary);
-  root.style.setProperty("--color-success-base", theme.colors.success);
-  root.style.setProperty("--color-warning-base", theme.colors.warning);
-  root.style.setProperty("--color-destructive-base", theme.colors.destructive);
-  root.style.setProperty("--color-info-base", theme.colors.info);
+  // Apply base color variables (hex colors) with fallback to default theme
+  root.style.setProperty("--color-primary-base", theme.colors.primary || defaultTheme.colors.primary);
+  root.style.setProperty("--color-secondary-base", theme.colors.secondary || defaultTheme.colors.secondary);
+  root.style.setProperty("--color-success-base", theme.colors.success || defaultTheme.colors.success);
+  root.style.setProperty("--color-warning-base", theme.colors.warning || defaultTheme.colors.warning);
+  root.style.setProperty("--color-destructive-base", theme.colors.destructive || defaultTheme.colors.destructive);
+  root.style.setProperty("--color-info-base", theme.colors.info || defaultTheme.colors.info);
 
-  // Apply spacing scale
+  // Apply spacing scale with fallback
   root.style.setProperty(
     "--font-size-base",
-    `${theme.typography.baseFontSize}px`,
+    `${theme.typography.baseFontSize ?? defaultTheme.typography.baseFontSize}px`,
   );
   root.style.setProperty(
     "--line-height-normal",
-    theme.typography.baseLineHeight.toString(),
+    (theme.typography.baseLineHeight ?? defaultTheme.typography.baseLineHeight).toString(),
   );
 
-  // Apply border radius scale (multiply base values)
-  const radiusBase = theme.borderRadius.base;
+  // Apply border radius scale (multiply base values) with fallback
+  const radiusBase = theme.borderRadius.base ?? defaultTheme.borderRadius.base;
   root.style.setProperty("--radius-sm", `${0.25 * radiusBase}rem`);
   root.style.setProperty("--radius-md", `${0.375 * radiusBase}rem`);
   root.style.setProperty("--radius-lg", `${0.5 * radiusBase}rem`);
