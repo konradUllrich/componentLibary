@@ -10,30 +10,24 @@
   border: none;
   border-radius: var(--radius-md, 8px);
   cursor: pointer;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 6px;
-  transition: background-color var(--duration-200, 0.2s)
-    var(--ease-in-out, ease);
+  justify-content: center;
+  color: var(--color-white, #ffffff);
+  transition: all var(--duration-200, 0.2s) var(--ease-in-out, ease);
 }
 
 .sidebar__mobile-toggle:hover {
   background-color: var(--color-primary-hover, #0060df);
+  transform: scale(1.05);
 }
 
 .sidebar__mobile-toggle:active {
   transform: scale(0.95);
 }
 
-/* Hamburger lines */
-.sidebar__mobile-line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--color-white, #ffffff);
-  border-radius: 2px;
-  transition: transform var(--duration-200, 0.2s) var(--ease-in-out, ease);
+.sidebar__mobile-toggle:focus-visible {
+  box-shadow: var(--focus-shadow);
+  outline: none;
 }
 
 /* Show only on mobile */
