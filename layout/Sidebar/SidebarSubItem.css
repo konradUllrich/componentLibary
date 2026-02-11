@@ -53,7 +53,7 @@
 /* Modifier: Active state */
 .sidebar-subitem--active {
   background-color: var(--color-primary);
-  border-left-color: var(--color-primary);
+  border-left-color: var(--color-primary-dark);
   color: var(--color-primary-foreground);
   font-weight: var(--font-weight-semibold);
 }
@@ -67,6 +67,7 @@
 }
 
 .sidebar-subitem--active:hover {
+  background-color: var(--color-primary);
   opacity: 0.9;
 }
 
