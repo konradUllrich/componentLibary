@@ -8,9 +8,9 @@ test.describe("Home Page", () => {
     await expect(page).toHaveTitle(/mpComponents/);
 
     // Check main heading
-    await expect(page.locator("main h1")).toContainText("Components");
+    await expect(page.locator("main h1")).toContainText(/Component Library/i);
     await expect(
-      page.getByText(/Browse all available components/i),
+      page.getByText(/Explore our collection/i),
     ).toBeVisible();
   });
 
@@ -48,9 +48,9 @@ test.describe("Home Page", () => {
     await page.goto("/componentLibary/");
 
     // Click on Home in sidebar
-    await page.getByRole("navigation").getByText("Home").click();
+    await page.getByRole("navigation").getByRole("link", { name: /^Home$/i }).click();
 
     // Should show home page
-    await expect(page.locator("main h1")).toContainText("Components");
+    await expect(page.locator("main h1")).toContainText(/Component Library/i);
   });
 });

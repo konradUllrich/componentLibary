@@ -25,8 +25,8 @@ test.describe('Theme Functionality', () => {
   test('should maintain theme across navigation', async ({ page }) => {
     await page.goto('/componentLibary/');
     
-    // Navigate to components via sidebar icon
-    await page.getByText('🧩').click();
+    // Navigate to components via sidebar link
+    await page.getByRole('link', { name: /^Components$/i }).click();
     await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
     
     // Navigate to documentation via horizontal nav
@@ -34,7 +34,7 @@ test.describe('Theme Functionality', () => {
     await expect(page.getByRole('heading', { name: 'Documentation' })).toBeVisible();
     
     // Navigate back to home
-    await page.getByText('🏠').click();
-    await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
+    await page.getByRole('link', { name: /^Home$/i }).click();
+    await expect(page.getByRole('heading', { name: /Component Library/i })).toBeVisible();
   });
 });

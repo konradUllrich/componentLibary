@@ -9,26 +9,26 @@ test.describe('Sidebar Navigation', () => {
     
     // Check main navigation items - sidebar items are links
     await expect(page.getByRole('link', { name: /Home/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /🧩.*Components/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Components/i })).toBeVisible();
   });
 
   test('should navigate to home from sidebar', async ({ page }) => {
     await page.goto('/componentLibary/');
     
-    // First navigate away from home by clicking Components icon
-    await page.getByText('🧩').click();
+    // First navigate away from home by clicking Components link
+    await page.getByRole('link', { name: /^Components$/i }).click();
     await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
     
     // Navigate back to home
-    await page.getByText('🏠').click();
-    await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
+    await page.getByRole('link', { name: /^Home$/i }).click();
+    await expect(page.getByRole('heading', { name: /Component Library/i })).toBeVisible();
   });
 
   test('should navigate to components from sidebar', async ({ page }) => {
     await page.goto('/componentLibary/');
     
     // Click on Components in sidebar
-    await page.getByText('🧩').click();
+    await page.getByRole('link', { name: /^Components$/i }).click();
     
     // Should show components page
     await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
@@ -38,7 +38,7 @@ test.describe('Sidebar Navigation', () => {
     await page.goto('/componentLibary/');
     
     // Click on Common category link to expand
-    await page.getByRole('link', { name: /⚡.*Common/i }).click();
+    await page.getByRole('link', { name: /Common/i }).click();
     
     // Check that component items are visible as links
     await expect(page.getByRole('link', { name: 'Button' })).toBeVisible();
@@ -50,13 +50,13 @@ test.describe('Sidebar Navigation', () => {
     await page.goto('/componentLibary/');
     
     // Click on Common category link to expand
-    await page.getByRole('link', { name: /⚡.*Common/i }).click();
+    await page.getByRole('link', { name: /Common/i }).click();
     
     // Click on Button component link
     await page.getByRole('link', { name: 'Button' }).click();
     
     // Should show Button component page
-    await expect(page.getByRole('heading', { name: 'Button' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Button Component' })).toBeVisible();
   });
 
   test('should toggle sidebar on desktop', async ({ page }) => {

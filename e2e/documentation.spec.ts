@@ -49,7 +49,7 @@ test.describe('Documentation Page', () => {
     await expect(page.getByRole('heading', { name: 'Documentation' })).toBeVisible();
     
     // Navigate to components from sidebar
-    await page.getByText('🧩').click();
+    await page.getByRole('link', { name: /^Components$/i }).click();
     await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
   });
 });
