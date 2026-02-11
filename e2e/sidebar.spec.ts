@@ -73,4 +73,32 @@ test.describe('Sidebar Navigation', () => {
     // The sidebar should still be in the DOM but might be collapsed
     await expect(page.getByRole('heading', { name: 'mpComponents', level: 2 })).toBeVisible();
   });
+
+  test('should close mobile sidebar when navigation item is clicked', async ({ page }) => {
+    // Set viewport to mobile size
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/componentLibary/');
+    
+    // Open the mobile sidebar using the mobile toggle button
+    const mobileToggle = page.getByRole('button', { name: /Toggle mobile menu/i });
+    await mobileToggle.click();
+    
+    // Wait for sidebar to open
+    await page.waitForTimeout(300);
+    
+    // Click on a navigation item (e.g., Components)
+    await page.getByRole('link', { name: /^Components$/i }).click();
+    
+    // Wait for navigation and sidebar animation
+    await page.waitForTimeout(300);
+    
+    // Check that we navigated to Components page
+    await expect(page.getByRole('heading', { name: 'Components', exact: true })).toBeVisible();
+    
+    // The sidebar should be closed (overlay/backdrop should not be visible)
+    // In mobile mode, the sidebar uses a ::before pseudo-element for the overlay
+    // We can check if the sidebar is not in the expanded state by checking if the sidebar wrapper is off-screen
+    const sidebar = page.locator('.sidebar--mobile.sidebar--expanded');
+    await expect(sidebar).toHaveCount(0);
+  });
 });

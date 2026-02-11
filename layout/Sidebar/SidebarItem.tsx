@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
+import { useSidebarStore } from "./sidebarStore";
 import "./SidebarItem.css";
 
 export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -83,6 +84,7 @@ export const SidebarItem = React.forwardRef<
     ref,
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
     
     // Check if children contains React components (nested items like SidebarSubItem)
     const hasChildrenItems = React.Children.count(children) > 0 && 
@@ -102,6 +104,9 @@ export const SidebarItem = React.forwardRef<
       if (hasNestedItems) {
         e.preventDefault();
         setIsExpanded((prev) => !prev);
+      } else {
+        // Close mobile sidebar when navigating
+        setMobileOpen(false);
       }
       onClick?.(e);
     };

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSidebarStore } from "./sidebarStore";
 import "./SidebarSubItem.css";
 
 export interface SidebarSubItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -76,6 +77,13 @@ export const SidebarSubItem = React.forwardRef<
     ref,
   ) => {
     const displayLabel = label || children;
+    const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
+    
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      // Close mobile sidebar when navigating
+      setMobileOpen(false);
+      onClick?.(e);
+    };
     
     return (
       <a
@@ -86,7 +94,7 @@ export const SidebarSubItem = React.forwardRef<
           ${isActive ? "sidebar-subitem--active" : ""}
           ${className}
         `.trim()}
-        onClick={onClick}
+        onClick={handleClick}
         {...props}
       >
         {icon && <span className="sidebar-subitem__icon">{icon}</span>}
