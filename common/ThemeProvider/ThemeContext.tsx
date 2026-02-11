@@ -72,15 +72,15 @@ const applyThemeToDOM = (theme: ThemeConfig): void => {
   // Apply spacing scale with fallback
   root.style.setProperty(
     "--font-size-base",
-    `${theme.typography.baseFontSize || defaultTheme.typography.baseFontSize}px`,
+    `${theme.typography.baseFontSize ?? defaultTheme.typography.baseFontSize}px`,
   );
   root.style.setProperty(
     "--line-height-normal",
-    (theme.typography.baseLineHeight || defaultTheme.typography.baseLineHeight).toString(),
+    (theme.typography.baseLineHeight ?? defaultTheme.typography.baseLineHeight).toString(),
   );
 
   // Apply border radius scale (multiply base values) with fallback
-  const radiusBase = theme.borderRadius.base || defaultTheme.borderRadius.base;
+  const radiusBase = theme.borderRadius.base ?? defaultTheme.borderRadius.base;
   root.style.setProperty("--radius-sm", `${0.25 * radiusBase}rem`);
   root.style.setProperty("--radius-md", `${0.375 * radiusBase}rem`);
   root.style.setProperty("--radius-lg", `${0.5 * radiusBase}rem`);
