@@ -59,6 +59,20 @@ https://konradullrich.github.io/componentLibary/
 
 The base path `/componentLibary/` is configured in `vite.config.demo.ts` to match the GitHub Pages URL structure.
 
+## Routing Solution
+
+The demo site uses client-side routing with TanStack Router. To handle direct URL access and page reloads on GitHub Pages, we've implemented a custom 404 redirect solution:
+
+- **404.html**: Captures non-existent routes and redirects to index.html with the path preserved
+- **index.html**: Contains a script that restores the original URL from the redirect
+
+This allows users to:
+- Visit any route directly (e.g., `https://konradullrich.github.io/componentLibary/components`)
+- Reload the page without getting a 404 error
+- Share links to specific pages
+
+For detailed information about how this works, see [ROUTING_SOLUTION.md](ROUTING_SOLUTION.md).
+
 ## Updating the Demo
 
 To update the demo site:
