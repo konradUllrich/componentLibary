@@ -6,10 +6,10 @@ test.describe("Component Navigation", () => {
 
     // Check heading
     await expect(
-      page.getByRole("heading", { name: "Components", exact: true }),
+      page.getByRole("heading", { name: /Component Library/i }),
     ).toBeVisible();
     await expect(
-      page.getByText(/Browse all available components/i),
+      page.getByText(/Explore our collection/i),
     ).toBeVisible();
   });
 

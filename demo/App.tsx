@@ -30,6 +30,7 @@ import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { DocsPage } from "./pages/DocsPage";
+import { BookOpen, Github, Palette } from "lucide-react";
 
 export const App: React.FC = () => {
   const { currentPage, currentComponent, navigateTo } = useAppNavigation();
@@ -47,6 +48,7 @@ export const App: React.FC = () => {
                   {
                     id: "docs",
                     label: "Documentation",
+                    icon: <BookOpen size={18} />,
                     isActive: currentPage == "docs",
                     onClick: () => {
                       navigateTo("/docs");
@@ -55,12 +57,13 @@ export const App: React.FC = () => {
                   {
                     id: "github",
                     label: "GitHub",
-                    icon: "⭐",
+                    icon: <Github size={18} />,
                     href: "https://github.com/konradUllrich/componentLibary",
                   },
                   {
                     id: "theme",
                     label: "Theme",
+                    icon: <Palette size={18} />,
                   },
                 ]}
               />
