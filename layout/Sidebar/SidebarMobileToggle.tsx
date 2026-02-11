@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { Menu, X } from "lucide-react";
 import { useSidebar } from "./useSidebar";
 import "./SidebarMobileToggle.css";
 
@@ -62,11 +63,11 @@ export const SidebarMobileToggle = React.forwardRef<
         {...props}
       >
         {children || (
-          <>
-            <span className="sidebar__mobile-line" />
-            <span className="sidebar__mobile-line" />
-            <span className="sidebar__mobile-line" />
-          </>
+          mobileOpen ? (
+            <X size={24} aria-hidden="true" />
+          ) : (
+            <Menu size={24} aria-hidden="true" />
+          )
         )}
       </button>
     );

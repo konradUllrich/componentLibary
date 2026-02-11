@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSidebar } from "./useSidebar";
 import "./SidebarToggle.css";
 
@@ -65,11 +66,11 @@ export const SidebarToggle = React.forwardRef<
         {...props}
       >
         {children || (
-          <>
-            <span className="sidebar__line" />
-            <span className="sidebar__line" />
-            <span className="sidebar__line" />
-          </>
+          isOpen ? (
+            <ChevronLeft size={20} aria-hidden="true" />
+          ) : (
+            <ChevronRight size={20} aria-hidden="true" />
+          )
         )}
       </button>
     );
