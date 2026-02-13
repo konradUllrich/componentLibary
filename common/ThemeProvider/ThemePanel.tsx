@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useTheme } from "./ThemeContext";
 import "./ThemePanel.css";
 
 export const ThemePanel: React.FC = () => {
   const { theme, updateTheme, resetTheme } = useTheme();
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const navigate = useNavigate();
+  const search = useSearch({ strict: false }) as Record<string, string | undefined>;
+  
+  const isOpen = search.themeEditor === "open";
 
   const handleColorChange = (
     colorKey: keyof typeof theme.colors,
@@ -41,27 +45,26 @@ export const ThemePanel: React.FC = () => {
     });
   };
 
-  if (isCollapsed) {
-    return (
-      <button
-        onClick={() => setIsCollapsed(false)}
-        aria-label="Open theme panel"
-      >
-        Theme
-      </button>
-    );
-  }
+  const toggleThemeEditor = () => {
+    const newSearch = { ...search };
+    if (isOpen) {
+      delete newSearch.themeEditor;
+    } else {
+      newSearch.themeEditor = "open";
+    }
+    navigate({ search: newSearch });
+  };
 
   return (
     <div
-      className={clsx("theme-panel", isCollapsed && "theme-panel--collapsed")}
+      className={clsx("theme-panel", !isOpen && "theme-panel--collapsed")}
     >
       <button
         className="theme-panel__toggle"
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        aria-label={isCollapsed ? "Open theme panel" : "Close theme panel"}
+        onClick={toggleThemeEditor}
+        aria-label={isOpen ? "Close theme panel" : "Open theme panel"}
       >
-        {isCollapsed ? "🎨" : "✕"}
+        {isOpen ? "✕" : "🎨"}
       </button>
 
       <div className="theme-panel__header">
