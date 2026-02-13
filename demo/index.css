@@ -6,6 +6,13 @@
   padding: 0;
 }
 
+/* Prevent document-level scrolling; main content area handles all scrolling */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -22,5 +29,5 @@ code {
 }
 
 #root {
-  min-height: 100vh;
+  height: 100%;
 }
