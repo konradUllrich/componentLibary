@@ -1,4 +1,4 @@
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useNavigate, useSearch, useLocation } from "@tanstack/react-router";
 
 type SearchParams = Record<string, string | undefined>;
 
@@ -8,6 +8,7 @@ type SearchParams = Record<string, string | undefined>;
 export function useThemeEditor() {
   const navigate = useNavigate();
   const search = useSearch({ strict: false }) as SearchParams;
+  const location = useLocation();
   
   const isOpen = search.themeEditor === "open";
   
@@ -18,7 +19,7 @@ export function useThemeEditor() {
     } else {
       newSearch.themeEditor = "open";
     }
-    navigate({ search: newSearch });
+    navigate({ to: location.pathname, search: newSearch });
   };
   
   return { isOpen, toggle };
