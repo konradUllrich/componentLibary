@@ -16,6 +16,7 @@
   text-align: left;
   margin-left: var(--spacing-6);
   border-left: 3px solid transparent;
+  box-sizing: border-box;
   /* Reset anchor tag defaults */
   background: transparent;
   border: none;
