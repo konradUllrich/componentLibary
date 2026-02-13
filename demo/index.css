@@ -6,6 +6,7 @@
   padding: 0;
 }
 
+/* Prevent document-level scrolling; main content area handles all scrolling */
 html,
 body {
   height: 100%;
