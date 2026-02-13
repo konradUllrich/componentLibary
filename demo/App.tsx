@@ -30,25 +30,11 @@ import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
 import { DocsPage } from "./pages/DocsPage";
 import { BookOpen, Github, Palette } from "lucide-react";
-import { ThemePanel } from "../common/ThemeProvider";
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { ThemePanel, useThemeEditor } from "../common/ThemeProvider";
 
 export const App: React.FC = () => {
   const { currentPage, currentComponent, navigateTo } = useAppNavigation();
-  const navigate = useNavigate();
-  const search = useSearch({ strict: false }) as Record<string, string | undefined>;
-  
-  const isThemeEditorOpen = search.themeEditor === "open";
-  
-  const toggleThemeEditor = () => {
-    const newSearch = { ...search };
-    if (isThemeEditorOpen) {
-      delete newSearch.themeEditor;
-    } else {
-      newSearch.themeEditor = "open";
-    }
-    navigate({ search: newSearch });
-  };
+  const { isOpen, toggle } = useThemeEditor();
 
   return (
     <>
@@ -79,10 +65,10 @@ export const App: React.FC = () => {
                     id: "theme",
                     label: "Theme",
                     icon: <Palette size={18} />,
-                    isActive: isThemeEditorOpen,
+                    isActive: isOpen,
                     onClick: (e) => {
                       e.preventDefault();
-                      toggleThemeEditor();
+                      toggle();
                     },
                   },
                 ]}

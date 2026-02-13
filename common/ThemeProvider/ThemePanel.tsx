@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import clsx from "clsx";
-import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useTheme } from "./ThemeContext";
+import { useThemeEditor } from "./useThemeEditor";
 import "./ThemePanel.css";
 
 export const ThemePanel: React.FC = () => {
   const { theme, updateTheme, resetTheme } = useTheme();
-  const navigate = useNavigate();
-  const search = useSearch({ strict: false }) as Record<string, string | undefined>;
-  
-  const isOpen = search.themeEditor === "open";
+  const { isOpen, toggle } = useThemeEditor();
 
   const handleColorChange = (
     colorKey: keyof typeof theme.colors,
@@ -45,23 +42,13 @@ export const ThemePanel: React.FC = () => {
     });
   };
 
-  const toggleThemeEditor = () => {
-    const newSearch = { ...search };
-    if (isOpen) {
-      delete newSearch.themeEditor;
-    } else {
-      newSearch.themeEditor = "open";
-    }
-    navigate({ search: newSearch });
-  };
-
   return (
     <div
       className={clsx("theme-panel", !isOpen && "theme-panel--collapsed")}
     >
       <button
         className="theme-panel__toggle"
-        onClick={toggleThemeEditor}
+        onClick={toggle}
         aria-label={isOpen ? "Close theme panel" : "Open theme panel"}
       >
         {isOpen ? "✕" : "🎨"}
