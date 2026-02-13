@@ -16,8 +16,8 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const layout = component.locator('.app-layout');
-    await expect(layout).toBeVisible();
+    // The component itself is the .app-layout element
+    await expect(component).toBeVisible();
   });
 
   test('should render children in main content area', async ({ mount }) => {
@@ -108,9 +108,9 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const layout = component.locator('.app-layout');
-    await expect(layout).toHaveClass(/app-layout/);
-    await expect(layout).toHaveClass(/custom-layout/);
+    // The component itself is the .app-layout element
+    await expect(component).toHaveClass(/app-layout/);
+    await expect(component).toHaveClass(/custom-layout/);
   });
 
   test('should have proper semantic HTML structure', async ({ mount }) => {
@@ -310,8 +310,8 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const layout = component.locator('.app-layout');
-    await expect(layout).toBeVisible();
+    // The component itself is the .app-layout element
+    await expect(component).toBeVisible();
     
     const container = component.locator('.app-layout__container');
     await expect(container).toBeVisible();
