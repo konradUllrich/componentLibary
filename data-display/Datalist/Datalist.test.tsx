@@ -439,8 +439,10 @@ test.describe('Datalist Component', () => {
         { name: 'Item B', value: 2 },
       ];
 
+      // Create properly typed column helper for ItemWithoutId
+      const itemColumnHelper = createColumnHelper<ItemWithoutId>();
       const noIdColumns = [
-        columnHelper.accessor('name' as any, {
+        itemColumnHelper.accessor('name', {
           header: 'Name',
           cell: info => info.getValue(),
         }),
@@ -450,6 +452,8 @@ test.describe('Datalist Component', () => {
         <div>{item.name}</div>
       );
 
+      // Note: Type assertion needed here because Datalist expects items with id field for keys
+      // This is testing the edge case where items don't have ids
       await mount(
         <Datalist
           data={itemsWithoutId as any}

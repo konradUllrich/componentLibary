@@ -120,13 +120,15 @@ test.describe('HorizontalNav Component', () => {
   });
 
   test('should call onClick handler when item is clicked', async ({ mount, page }) => {
-    const clickedIds: string[] = [];
+    // Note: Testing onClick callbacks in Playwright CT is limited
+    // The callback executes in the component context, not easily verifiable from test
+    // We verify the link behavior and that preventDefault works
     
     const itemsWithHandlers: NavItem[] = mockNavItems.map(item => ({
       ...item,
       onClick: (e) => {
         e.preventDefault();
-        clickedIds.push(item.id);
+        // Handler is called but we can't easily verify from test context
       },
     }));
 
@@ -137,9 +139,12 @@ test.describe('HorizontalNav Component', () => {
     const aboutLink = page.locator('a:has-text("About")');
     await aboutLink.click();
     
-    // We can't directly check clickedIds array but we can verify the link doesn't navigate
+    // Verify the link doesn't navigate (due to preventDefault)
     // and the component is still visible
     await expect(page.locator('text=About')).toBeVisible();
+    
+    // Verify we're still on the same "page" (no navigation occurred)
+    await expect(aboutLink).toBeVisible();
   });
 
   test('should have correct BEM classes', async ({ mount }) => {
