@@ -59,10 +59,6 @@ export function useAppNavigation() {
       return { currentPage: "docs", currentComponent: null };
     }
 
-    if (route === "/components") {
-      return { currentPage: "components", currentComponent: null };
-    }
-
     if (route.startsWith("/components/")) {
       const component = route.replace("/components/", "");
       return { currentPage: "components", currentComponent: component };
