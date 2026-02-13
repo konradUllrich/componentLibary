@@ -45,33 +45,27 @@ test.describe('Sidebar Component', () => {
   });
 
   test('should apply collapsed class when collapsed', async ({ mount }) => {
-    const TestSidebar = () => {
-      // Set collapsed state before render
-      useSidebarStore.setState({ isCollapsed: true, isMobile: false });
-      return (
-        <Sidebar>
-          <div>Content</div>
-        </Sidebar>
-      );
-    };
-
-    const component = await mount(<TestSidebar />);
+    // Set collapsed state before render
+    useSidebarStore.setState({ isCollapsed: true, isMobile: false });
+    
+    const component = await mount(
+      <Sidebar>
+        <div>Content</div>
+      </Sidebar>
+    );
     
     const sidebar = component.locator('.sidebar');
     await expect(sidebar).toHaveClass(/sidebar--collapsed/);
   });
 
   test('should apply expanded class when not collapsed', async ({ mount }) => {
-    const TestSidebar = () => {
-      useSidebarStore.setState({ isCollapsed: false, isMobile: false });
-      return (
-        <Sidebar defaultOpen={true}>
-          <div>Content</div>
-        </Sidebar>
-      );
-    };
-
-    const component = await mount(<TestSidebar />);
+    useSidebarStore.setState({ isCollapsed: false, isMobile: false });
+    
+    const component = await mount(
+      <Sidebar defaultOpen={true}>
+        <div>Content</div>
+      </Sidebar>
+    );
     
     // Wait for state initialization
     await component.locator('.sidebar').waitFor();
@@ -84,16 +78,13 @@ test.describe('Sidebar Component', () => {
     // Set viewport to mobile size
     await page.setViewportSize({ width: 400, height: 800 });
     
-    const TestSidebar = () => {
-      useSidebarStore.setState({ isMobile: true, mobileOpen: false });
-      return (
-        <Sidebar mobileBreakpoint={768}>
-          <div>Content</div>
-        </Sidebar>
-      );
-    };
-
-    const component = await mount(<TestSidebar />);
+    useSidebarStore.setState({ isMobile: true, mobileOpen: false });
+    
+    const component = await mount(
+      <Sidebar mobileBreakpoint={768}>
+        <div>Content</div>
+      </Sidebar>
+    );
     
     const sidebar = component.locator('.sidebar');
     await expect(sidebar).toHaveClass(/sidebar--mobile/);
@@ -103,16 +94,13 @@ test.describe('Sidebar Component', () => {
     // Set viewport to desktop size
     await page.setViewportSize({ width: 1024, height: 768 });
     
-    const TestSidebar = () => {
-      useSidebarStore.setState({ isMobile: false, isCollapsed: false });
-      return (
-        <Sidebar mobileBreakpoint={768}>
-          <div>Content</div>
-        </Sidebar>
-      );
-    };
-
-    const component = await mount(<TestSidebar />);
+    useSidebarStore.setState({ isMobile: false, isCollapsed: false });
+    
+    const component = await mount(
+      <Sidebar mobileBreakpoint={768}>
+        <div>Content</div>
+      </Sidebar>
+    );
     
     const sidebar = component.locator('.sidebar');
     await expect(sidebar).toHaveClass(/sidebar--desktop/);
@@ -209,16 +197,13 @@ test.describe('Sidebar Component', () => {
   });
 
   test('should render in mobile open state', async ({ mount }) => {
-    const TestSidebar = () => {
-      useSidebarStore.setState({ isMobile: true, mobileOpen: true });
-      return (
-        <Sidebar>
-          <div>Mobile Content</div>
-        </Sidebar>
-      );
-    };
-
-    const component = await mount(<TestSidebar />);
+    useSidebarStore.setState({ isMobile: true, mobileOpen: true });
+    
+    const component = await mount(
+      <Sidebar>
+        <div>Mobile Content</div>
+      </Sidebar>
+    );
     
     const sidebar = component.locator('.sidebar');
     await expect(sidebar).toHaveClass(/sidebar--expanded/);
@@ -226,16 +211,13 @@ test.describe('Sidebar Component', () => {
   });
 
   test('should render in mobile closed state', async ({ mount }) => {
-    const TestSidebar = () => {
-      useSidebarStore.setState({ isMobile: true, mobileOpen: false });
-      return (
-        <Sidebar>
-          <div>Mobile Content</div>
-        </Sidebar>
-      );
-    };
-
-    const component = await mount(<TestSidebar />);
+    useSidebarStore.setState({ isMobile: true, mobileOpen: false });
+    
+    const component = await mount(
+      <Sidebar>
+        <div>Mobile Content</div>
+      </Sidebar>
+    );
     
     const sidebar = component.locator('.sidebar');
     await expect(sidebar).toHaveClass(/sidebar--collapsed/);
