@@ -10,7 +10,6 @@ import { Text } from "../common";
 import { useAppNavigation } from "./useAppNavigation";
 import {
   Home,
-  Package,
   Sparkles,
   Settings,
   Database,
@@ -61,15 +60,6 @@ export const DemoSideBar = () => {
           onClick={(e) => {
             e.preventDefault();
             navigateTo("/");
-          }}
-        />
-        <SidebarItem
-          label="Components"
-          icon={<Package size={18} />}
-          isActive={currentPage === "components" && !currentComponent}
-          onClick={(e) => {
-            e.preventDefault();
-            navigateTo("/components");
           }}
         />
         <SidebarDivider label="Components" />

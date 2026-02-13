@@ -41,11 +41,6 @@ export function createAppRouter(config: RouterConfig) {
     path: "/",
   });
 
-  const componentsRoute = createRoute({
-    getParentRoute: () => rootRoute,
-    path: "/components",
-  });
-
   const docsRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: "/docs",
@@ -83,7 +78,6 @@ export function createAppRouter(config: RouterConfig) {
 
   const routeTree = rootRoute.addChildren([
     indexRoute,
-    componentsRoute,
     docsRoute,
     ...componentRoutes,
   ]);
@@ -98,7 +92,6 @@ export function createAppRouter(config: RouterConfig) {
 // Export route paths for easy access
 export const ROUTES = {
   HOME: "/",
-  COMPONENTS: "/components",
   DOCS: "/docs",
   COMPONENT: (name: string) => `/components/${name}`,
 };

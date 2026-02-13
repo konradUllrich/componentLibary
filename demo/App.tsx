@@ -28,7 +28,6 @@ import "./App.css";
 import "./pages/ComponentPage.css";
 import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
-import { ComponentsPage } from "./pages/ComponentsPage";
 import { DocsPage } from "./pages/DocsPage";
 import { BookOpen, Github, Palette } from "lucide-react";
 
@@ -77,7 +76,6 @@ export const App: React.FC = () => {
         sidebar={<DemoSideBar />}
       >
         {currentPage === "home" && <HomePage />}
-        {currentPage === "components" && <ComponentsPage />}
         {currentPage === "docs" && <DocsPage />}
         {currentComponent === "button" && <ButtonPage />}
         {currentComponent === "badge" && <BadgePage />}
