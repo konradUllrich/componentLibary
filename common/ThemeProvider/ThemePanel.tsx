@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import clsx from "clsx";
 import { useTheme } from "./ThemeContext";
+import { useThemeEditor } from "./useThemeEditor";
 import "./ThemePanel.css";
 
 export const ThemePanel: React.FC = () => {
   const { theme, updateTheme, resetTheme } = useTheme();
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const { isOpen, toggle } = useThemeEditor();
 
   const handleColorChange = (
     colorKey: keyof typeof theme.colors,
@@ -41,27 +42,16 @@ export const ThemePanel: React.FC = () => {
     });
   };
 
-  if (isCollapsed) {
-    return (
-      <button
-        onClick={() => setIsCollapsed(false)}
-        aria-label="Open theme panel"
-      >
-        Theme
-      </button>
-    );
-  }
-
   return (
     <div
-      className={clsx("theme-panel", isCollapsed && "theme-panel--collapsed")}
+      className={clsx("theme-panel", !isOpen && "theme-panel--collapsed")}
     >
       <button
         className="theme-panel__toggle"
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        aria-label={isCollapsed ? "Open theme panel" : "Close theme panel"}
+        onClick={toggle}
+        aria-label={isOpen ? "Close theme panel" : "Open theme panel"}
       >
-        {isCollapsed ? "🎨" : "✕"}
+        {isOpen ? "✕" : "🎨"}
       </button>
 
       <div className="theme-panel__header">

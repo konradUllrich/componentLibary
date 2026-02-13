@@ -30,13 +30,15 @@ import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
 import { DocsPage } from "./pages/DocsPage";
 import { BookOpen, Github, Palette } from "lucide-react";
+import { ThemePanel, useThemeEditor } from "../common/ThemeProvider";
 
 export const App: React.FC = () => {
   const { currentPage, currentComponent, navigateTo } = useAppNavigation();
+  const { isOpen, toggle } = useThemeEditor();
 
   return (
     <>
-      {/* <ThemePanel /> */}
+      <ThemePanel />
       <AppLayout
         header={
           <>
@@ -63,6 +65,11 @@ export const App: React.FC = () => {
                     id: "theme",
                     label: "Theme",
                     icon: <Palette size={18} />,
+                    isActive: isOpen,
+                    onClick: (e) => {
+                      e.preventDefault();
+                      toggle();
+                    },
                   },
                 ]}
               />
