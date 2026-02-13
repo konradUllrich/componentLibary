@@ -44,3 +44,10 @@
 .sidebar__nav--collapsed .sidebar-divider__line--right {
   display: none;
 }
+
+/* Show a single clear line when collapsed with a label */
+.sidebar__nav--collapsed .sidebar-divider__line--left {
+  display: block;
+  flex: none;
+  width: 30px;
+}
