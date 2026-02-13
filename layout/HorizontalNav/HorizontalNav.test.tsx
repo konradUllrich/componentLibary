@@ -3,6 +3,34 @@ import { HorizontalNav, NavItem } from './HorizontalNav';
 import { checkA11y } from '../../playwright/test-utils';
 import React from 'react';
 
+/**
+ * Test Component: HorizontalNav (Medium Priority)
+ * 
+ * Tests for HorizontalNav component - horizontal navigation with responsive mobile dropdown
+ * 
+ * Coverage:
+ * - Navigation items rendering in desktop view
+ * - All navigation items displayed
+ * - Active state application
+ * - Custom className support
+ * - Items with href attributes
+ * - Items with icons
+ * - onClick handler callbacks
+ * - BEM class structure
+ * - Semantic nav element usage
+ * - Ref forwarding to nav element
+ * - Additional HTML attributes spreading
+ * - Accessibility with and without icons
+ * - Keyboard navigation (Tab and Enter)
+ * - Edge cases: empty items, single item, no href, no isActive, complex labels
+ * - Active state handling (multiple active, no active default)
+ * 
+ * ⚠️ MOBILE VIEW TESTING LIMITATION:
+ * Mobile/responsive behavior testing is challenging in Playwright component tests
+ * The window.innerWidth check and resize events are difficult to reliably simulate
+ * Mobile view tests included but may be unreliable - recommend E2E tests for full coverage
+ */
+
 // Test Component: HorizontalNav
 test.describe('HorizontalNav Component', () => {
   const mockNavItems: NavItem[] = [

@@ -4,6 +4,32 @@ import { checkA11y } from '../../playwright/test-utils';
 import { createColumnHelper } from '@tanstack/react-table';
 import React from 'react';
 
+/**
+ * Test Component: Datalist (Medium Priority)
+ * 
+ * Tests for Datalist component - flexible data display with table and card variants
+ * Wraps TanStack Table for data management and sorting
+ * 
+ * Coverage:
+ * - Default table variant rendering
+ * - Data rendering in table variant
+ * - Card variant with custom renderCard
+ * - Default card renderer when renderCard not provided
+ * - Loading state display
+ * - Empty state with custom messages
+ * - Custom className application (table and card variants)
+ * - cardColumns setting in card variant
+ * - cardGap setting in card variant
+ * - Sorting in uncontrolled mode
+ * - Controlled sorting support
+ * - Ref forwarding in table variant
+ * - Accessibility for table, card, loading, and empty states
+ * - TanStack Table integration for data management
+ * - Column definitions handling
+ * - Generic type support with different data types
+ * - Edge cases: null/undefined data, large datasets, items without id field
+ */
+
 // Test Component: Datalist
 test.describe('Datalist Component', () => {
   interface TestUser {

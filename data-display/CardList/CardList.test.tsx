@@ -3,6 +3,29 @@ import { CardList } from './CardList';
 import { checkA11y } from '../../playwright/test-utils';
 import React from 'react';
 
+/**
+ * Test Component: CardList (Medium Priority)
+ * 
+ * Tests for CardList component - displays items in a responsive grid of cards
+ * 
+ * Coverage:
+ * - Custom renderCard function
+ * - Card content rendering
+ * - Loading state display
+ * - Empty state with custom messages
+ * - Column configuration (default 3, custom values)
+ * - Custom gap settings
+ * - Custom className application
+ * - Custom getKey function
+ * - Index as fallback key
+ * - BEM class structure
+ * - Ref forwarding
+ * - RenderCard receives correct item and index
+ * - Generic type support with different item types
+ * - Accessibility for normal, loading, and empty states
+ * - Edge cases: single item, large datasets, columns=1, null values
+ */
+
 // Test Component: CardList
 test.describe('CardList Component', () => {
   interface TestItem {
@@ -26,16 +49,19 @@ test.describe('CardList Component', () => {
     </div>
   );
 
-  test('should render items with custom renderCard function', async ({ mount }) => {
-    const component = await mount(
+  test('should render items with custom renderCard function', async ({ mount, page }) => {
+    await mount(
       <CardList
         items={mockItems.slice(0, 3)}
         renderCard={defaultRenderCard}
       />
     );
     
-    await expect(component).toBeVisible();
-    const cards = component.locator('.card-list__item');
+    // Use page locator instead of component locator
+    const cardList = page.locator('.card-list');
+    await expect(cardList).toBeVisible();
+    
+    const cards = page.locator('.card-list__item');
     await expect(cards).toHaveCount(3);
   });
 

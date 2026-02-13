@@ -2,6 +2,26 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import { Disclosure } from './Disclosure';
 import { checkA11y } from '../../playwright/test-utils';
 
+/**
+ * Test Component: Disclosure (Medium Priority)
+ * 
+ * Tests for Disclosure component - collapsible content section with keyboard support
+ * Built on Radix UI Collapsible primitives
+ * 
+ * Coverage:
+ * - Default closed state and defaultOpen prop
+ * - Click toggle functionality
+ * - Controlled and uncontrolled modes
+ * - Custom icon rendering
+ * - Chevron indicator with aria-hidden
+ * - Custom classNames (root, trigger, content)
+ * - BEM class structure
+ * - Keyboard navigation (Space and Enter keys)
+ * - Radix UI data-state attributes
+ * - Complex React nodes as labels and content
+ * - Accessibility in open and closed states
+ */
+
 // Test Component: Disclosure
 test.describe('Disclosure Component', () => {
   test('should render with default props', async ({ mount }) => {
