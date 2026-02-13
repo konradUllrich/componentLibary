@@ -114,7 +114,7 @@
   border-color: transparent;
 }
 .button--ghost:hover:not(:disabled) {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-200);
   color: var(--color-foreground);
   border-color: var(--color-gray-300);
 }
@@ -170,24 +170,5 @@
 @keyframes button-spin {
   to {
     transform: rotate(360deg);
-  }
-}
-
-/* Dark Mode Adjustments */
-@media (prefers-color-scheme: dark) {
-  .button--ghost {
-    color: var(--color-foreground);
-  }
-
-  .button--ghost:hover:not(:disabled) {
-    background-color: var(--color-gray-800);
-    color: var(--color-foreground);
-    border-color: var(--color-gray-600);
-  }
-
-  .button--ghost:active:not(:disabled) {
-    background-color: var(--color-gray-700);
-    color: var(--color-foreground);
-    border-color: var(--color-gray-500);
   }
 }
