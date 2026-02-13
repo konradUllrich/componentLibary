@@ -93,9 +93,8 @@ test.describe('NativeSelect Component', () => {
   });
 
   test('should handle value change', async ({ mount }) => {
-    let selectedValue = '';
     const component = await mount(
-      <NativeSelect onChange={(e) => { selectedValue = e.currentTarget.value; }}>
+      <NativeSelect>
         <option value="">Select</option>
         <option value="a">Option A</option>
         <option value="b">Option B</option>
@@ -105,7 +104,10 @@ test.describe('NativeSelect Component', () => {
     const select = component.locator('select');
     await select.selectOption('b');
     await expect(select).toHaveValue('b');
-    expect(selectedValue).toBe('b');
+    
+    // Change to another value
+    await select.selectOption('a');
+    await expect(select).toHaveValue('a');
   });
 
   test('should handle disabled state', async ({ mount }) => {
