@@ -50,7 +50,8 @@
 
 /* Modifier: Active state */
 .horizontal-nav-item--active {
-  background-color: var(--color-primary);
+  /* Use darker primary color for WCAG AA contrast compliance (4.5:1 minimum) */
+  background-color: var(--color-primary-dark);
   color: var(--color-primary-foreground);
 }
 
@@ -63,7 +64,7 @@
 }
 
 .horizontal-nav-item--active:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
   opacity: 0.9;
 }
 
