@@ -152,7 +152,7 @@ test.describe('HorizontalNav Component', () => {
       <HorizontalNav items={mockNavItems} />
     );
     
-    await expect(component.locator('.horizontal-nav')).toBeVisible();
+    await expect(component).toBeVisible();
   });
 
   test('should use semantic nav element', async ({ mount }) => {

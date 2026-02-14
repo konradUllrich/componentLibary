@@ -226,7 +226,7 @@ test.describe('CardList Component', () => {
       />
     );
     
-    await expect(component.locator('.card-list')).toBeVisible();
+    await expect(component).toBeVisible();
     await expect(component.locator('.card-list__grid')).toBeVisible();
     await expect(component.locator('.card-list__item')).toHaveCount(2);
   });

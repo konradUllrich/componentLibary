@@ -45,8 +45,8 @@ test.describe('Disclosure Component', () => {
     );
     
     // Check that content is not visible initially (Radix uses data-state)
-    const root = component.locator('.disclosure');
-    const state = await root.getAttribute('data-state');
+    // The component itself is the .disclosure element
+    const state = await component.getAttribute('data-state');
     expect(state).toBe('closed');
   });
 
@@ -57,7 +57,7 @@ test.describe('Disclosure Component', () => {
       </Disclosure>
     );
     
-    const root = component.locator('.disclosure');
+    const root = component;
     const state = await root.getAttribute('data-state');
     expect(state).toBe('open');
   });
@@ -70,7 +70,7 @@ test.describe('Disclosure Component', () => {
     );
     
     const trigger = component.locator('.disclosure-trigger');
-    const root = component.locator('.disclosure');
+    const root = component;
     
     // Initially closed
     let state = await root.getAttribute('data-state');
@@ -102,7 +102,7 @@ test.describe('Disclosure Component', () => {
       </Disclosure>
     );
     
-    const root = component.locator('.disclosure');
+    const root = component;
     const state = await root.getAttribute('data-state');
     expect(state).toBe('closed');
   });
@@ -124,7 +124,7 @@ test.describe('Disclosure Component', () => {
     await trigger.click();
     // Note: We can't directly check changeEvents array as it's in test context
     // but we can verify the component state changed
-    const root = component.locator('.disclosure');
+    const root = component;
     const state = await root.getAttribute('data-state');
     expect(state).toBe('open');
   });
@@ -214,7 +214,7 @@ test.describe('Disclosure Component', () => {
       </Disclosure>
     );
     
-    await expect(component.locator('.disclosure')).toBeVisible();
+    await expect(component.locator('.disclosure-trigger')).toBeVisible();
     await expect(component.locator('.disclosure-trigger')).toBeVisible();
     await expect(component.locator('.disclosure-label')).toBeVisible();
     await expect(component.locator('.disclosure-chevron')).toBeVisible();
@@ -229,7 +229,7 @@ test.describe('Disclosure Component', () => {
     );
     
     const trigger = component.locator('.disclosure-trigger');
-    const root = component.locator('.disclosure');
+    const root = component;
     
     // Focus the trigger
     await trigger.focus();
@@ -253,7 +253,7 @@ test.describe('Disclosure Component', () => {
     );
     
     const trigger = component.locator('.disclosure-trigger');
-    const root = component.locator('.disclosure');
+    const root = component;
     
     await trigger.focus();
     await trigger.press('Enter');
@@ -361,7 +361,7 @@ test.describe('Disclosure Component', () => {
         </Disclosure>
       );
       
-      const root = component.locator('.disclosure');
+      const root = component;
       
       // Radix adds data-state attribute
       const state = await root.getAttribute('data-state');
