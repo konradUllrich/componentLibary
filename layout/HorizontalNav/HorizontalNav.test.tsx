@@ -152,7 +152,7 @@ test.describe('HorizontalNav Component', () => {
       <HorizontalNav items={mockNavItems} />
     );
     
-    await expect(component.locator('.horizontal-nav')).toBeVisible();
+    await expect(component).toBeVisible();
   });
 
   test('should use semantic nav element', async ({ mount }) => {
@@ -234,7 +234,6 @@ test.describe('HorizontalNav Component', () => {
       
       // Should render mobile version with select dropdown
       // Note: This may not work as expected in component tests due to timing
-      const mobileNav = component.locator('.horizontal-nav--mobile');
       const select = component.locator('.horizontal-nav__select');
       
       // Try to detect mobile view

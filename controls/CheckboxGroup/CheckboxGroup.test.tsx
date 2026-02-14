@@ -21,7 +21,7 @@ test.describe('CheckboxGroup Component', () => {
       <CheckboxGroup options={testOptions} />
     );
     
-    const group = component.locator('.checkbox-group');
+    const group = component;
     await expect(group).toBeVisible();
     await expect(group).toHaveAttribute('role', 'group');
   });
@@ -139,7 +139,7 @@ test.describe('CheckboxGroup Component', () => {
       <CheckboxGroup options={testOptions} />
     );
     
-    const group = component.locator('.checkbox-group');
+    const group = component;
     await expect(group).toHaveClass(/checkbox-group--vertical/);
   });
 
@@ -148,7 +148,7 @@ test.describe('CheckboxGroup Component', () => {
       <CheckboxGroup options={testOptions} direction="horizontal" />
     );
     
-    const group = component.locator('.checkbox-group');
+    const group = component;
     await expect(group).toHaveClass(/checkbox-group--horizontal/);
   });
 
@@ -161,7 +161,7 @@ test.describe('CheckboxGroup Component', () => {
       />
     );
     
-    const group = component.locator('.checkbox-group');
+    const group = component;
     await expect(group).toHaveClass(/checkbox-group--error/);
     
     const errorMessage = component.locator('.form-control__message--error');

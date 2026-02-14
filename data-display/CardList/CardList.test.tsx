@@ -137,7 +137,7 @@ test.describe('CardList Component', () => {
     // Check CSS variable is set
     const columns = await component.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return (style as any)['--card-list-columns'];
+      return style.getPropertyValue('--card-list-columns');
     });
     
     expect(columns).toBe('3');
@@ -154,7 +154,7 @@ test.describe('CardList Component', () => {
     
     const columns = await component.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return (style as any)['--card-list-columns'];
+      return style.getPropertyValue('--card-list-columns');
     });
     
     expect(columns).toBe('4');
@@ -171,7 +171,7 @@ test.describe('CardList Component', () => {
     
     const gap = await component.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return (style as any)['--card-list-gap'];
+      return style.getPropertyValue('--card-list-gap');
     });
     
     expect(gap).toBe('2rem');
@@ -226,7 +226,7 @@ test.describe('CardList Component', () => {
       />
     );
     
-    await expect(component.locator('.card-list')).toBeVisible();
+    await expect(component).toBeVisible();
     await expect(component.locator('.card-list__grid')).toBeVisible();
     await expect(component.locator('.card-list__item')).toHaveCount(2);
   });
@@ -376,7 +376,7 @@ test.describe('CardList Component', () => {
       
       const columns = await component.evaluate((el) => {
         const style = window.getComputedStyle(el);
-        return (style as any)['--card-list-columns'];
+        return style.getPropertyValue('--card-list-columns');
       });
       
       expect(columns).toBe('1');
