@@ -122,7 +122,11 @@
   --color-background: #ffffff;
   --color-background-secondary: #f8fafc;
   --color-background-tertiary: #f1f5f9;
-  --color-background-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --color-background-gradient: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  );
 
   /* Foreground/Text Colors (Hex - WCAG AA compliant) */
   --color-foreground: #0f172a; /* 21:1 on white (WCAG AAA) */
@@ -405,34 +409,7 @@
   --transition-slow: all var(--duration-500) var(--ease-in-out);
 }
 
-/* ========================================
-   DARK MODE (Optional - Can be extended)
-   ======================================== */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0f172a;
-    --color-background-secondary: #1e293b;
-    --color-background-tertiary: #334155;
-
-    --color-foreground: #f1f5f9;
-    --color-foreground-secondary: #cbd5e0;
-    --color-foreground-tertiary: #94a3b8;
-    --color-foreground-muted: #64748b;
-
-    --color-border: #334155;
-    --color-border-light: #475569;
-    --color-border-dark: #1e293b;
-
-    --color-input: #0f172a;
-    --color-input-background: #1e293b;
-    --color-input-border: #334155;
-    --color-input-placeholder: #64748b;
-
-    --color-ring-offset: #0f172a;
-
-    --card-background: #1e293b;
-    --dropdown-background: #1e293b;
-    --tooltip-background: #1e293b;
-  }
-} */
+body {
+  color: var(--color-foreground, #0f172a) !important;
+  background-color: var(--color-background, #ffffff) !important;
+}
