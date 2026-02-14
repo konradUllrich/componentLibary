@@ -88,33 +88,26 @@ function CardListInner<T>(
   }: CardListProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ): React.ReactElement | null {
-  if (isLoading) {
-    return (
-      <div className="card-list__loading">
-        <span>Loading...</span>
-      </div>
-    );
-  }
+  const hasItems = Array.isArray(items) && items.length > 0;
 
-  if (!items || items.length === 0) {
-    return (
-      <div className="card-list__empty">
-        <span>{emptyMessage}</span>
-      </div>
-    );
-  }
+  const content = (() => {
+    if (isLoading) {
+      return (
+        <div className="card-list__loading" role="status" aria-live="polite">
+          <span>Loading...</span>
+        </div>
+      );
+    }
 
-  return (
-    <div
-      ref={ref}
-      className="card-list"
-      style={
-        {
-          "--card-list-columns": columns,
-          "--card-list-gap": gap,
-        } as React.CSSProperties
-      }
-    >
+    if (!hasItems) {
+      return (
+        <div className="card-list__empty" role="status" aria-live="polite">
+          <span>{emptyMessage}</span>
+        </div>
+      );
+    }
+
+    return (
       <div className={clsx("card-list__grid", className)}>
         {items.map((item, index) => (
           <div
@@ -125,6 +118,22 @@ function CardListInner<T>(
           </div>
         ))}
       </div>
+    );
+  })();
+
+  return (
+    <div
+      ref={ref}
+      className="card-list"
+      data-state={isLoading ? "loading" : hasItems ? "ready" : "empty"}
+      style={
+        {
+          "--card-list-columns": String(columns),
+          "--card-list-gap": gap,
+        } as React.CSSProperties
+      }
+    >
+      {content}
     </div>
   );
 }
