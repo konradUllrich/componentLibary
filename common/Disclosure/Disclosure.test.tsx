@@ -88,9 +88,8 @@ test.describe('Disclosure Component', () => {
   });
 
   test('should support controlled mode with open prop', async ({ mount }) => {
-    let isOpen = false;
-    const handleOpenChange = (open: boolean) => {
-      isOpen = open;
+    const handleOpenChange = (_open: boolean) => {
+      // Track state changes
     };
 
     const component = await mount(

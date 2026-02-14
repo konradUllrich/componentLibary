@@ -456,10 +456,10 @@ test.describe('Datalist Component', () => {
       // This is testing the edge case where items don't have ids
       await mount(
         <Datalist
-          data={itemsWithoutId as any}
+          data={itemsWithoutId as unknown as DataItem[]}
           columns={noIdColumns}
           variant="card"
-          renderCard={renderNoId as any}
+          renderCard={renderNoId as (item: DataItem) => JSX.Element}
         />
       );
       
