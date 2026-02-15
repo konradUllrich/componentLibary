@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import { CheckboxGroup } from "./CheckboxGroup";
 import { checkA11y } from "../../playwright/test-utils";
-import { useState } from "react";
 
 /**
  * CheckboxGroup Component Tests
