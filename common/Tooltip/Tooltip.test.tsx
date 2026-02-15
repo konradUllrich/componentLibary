@@ -1,133 +1,131 @@
-import React from 'react';
-import { test, expect } from '@playwright/experimental-ct-react';
-import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
-import { ControlledTooltip } from './Tooltip.stories';
-import { checkA11y } from '../../playwright/test-utils';
+import React from "react";
+import { test, expect } from "@playwright/experimental-ct-react";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "./Tooltip";
+import { ControlledTooltip } from "./Tooltip.stories";
+import { checkA11y } from "../../playwright/test-utils";
 
-test.describe('Tooltip Component', () => {
-  test('should render trigger element', async ({ mount, page }) => {
+test.describe("Tooltip Component", () => {
+  test("should render trigger element", async ({ mount, page }) => {
     await mount(
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
+
+    const trigger = page.locator("button");
     await expect(trigger).toBeVisible();
-    await expect(trigger).toHaveText('Hover me');
+    await expect(trigger).toHaveText("Hover me");
   });
 
-  test('should show tooltip on hover', async ({ mount, page }) => {
+  test("should show tooltip on hover", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
-    
+
+    const trigger = page.locator("button");
+
     // Initially hidden
-    await expect(page.locator('.tooltip__content')).not.toBeVisible();
-    
+    await expect(page.locator(".tooltip__content")).not.toBeVisible();
+
     // Hover to show
     await trigger.hover();
-    
+
     // Use getByRole for more specific selector
-    const content = page.getByRole('tooltip');
+    const content = page.getByRole("tooltip");
     await expect(content).toBeVisible();
-    await expect(content).toContainText('Tooltip text');
+    await expect(content).toContainText("Tooltip text");
   });
 
   // Skip this test as it's testing Radix UI's tooltip hide behavior which can be flaky
   // The core functionality (showing tooltip on hover) is tested in other tests
-  test.skip('should hide tooltip when mouse leaves', async ({ mount, page }) => {
+  test.skip("should hide tooltip when mouse leaves", async ({
+    mount,
+    page,
+  }) => {
     // This test verifies tooltip hides, but due to Radix UI's skip delay behavior,
     // exact timing can be unpredictable in tests. We verify the show/hide mechanism works.
     await mount(
       <TooltipProvider delayDuration={0} skipDelayDuration={0}>
-        <div style={{ padding: '100px' }}>
+        <div style={{ padding: "100px" }}>
           <Tooltip>
             <TooltipTrigger asChild>
               <button data-testid="trigger">Hover me</button>
             </TooltipTrigger>
-            <TooltipContent>
-              Tooltip text
-            </TooltipContent>
+            <TooltipContent>Tooltip text</TooltipContent>
           </Tooltip>
         </div>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.getByTestId('trigger');
-    
+
+    const trigger = page.getByTestId("trigger");
+
     // Hover to show
     await trigger.hover();
-    await expect(page.getByRole('tooltip')).toBeVisible();
-    
+    await expect(page.getByRole("tooltip")).toBeVisible();
+
     // Move mouse far away from both trigger and tooltip
     await page.mouse.move(1000, 1000);
-    
+
     // Tooltip should eventually hide (give it generous timeout)
-    await expect(page.getByRole('tooltip')).not.toBeVisible({ timeout: 3000 });
+    await expect(page.getByRole("tooltip")).not.toBeVisible({ timeout: 3000 });
   });
 
-  test('should show tooltip on focus', async ({ mount, page }) => {
+  test("should show tooltip on focus", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Focus me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
-    const content = page.locator('.tooltip__content');
-    
+
+    const trigger = page.locator("button");
+    const content = page.locator(".tooltip__content");
+
     // Focus to show
     await trigger.focus();
     await expect(content).toBeVisible();
   });
 
-  test('should hide tooltip on blur', async ({ mount, page }) => {
+  test("should hide tooltip on blur", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Focus me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
-    const content = page.locator('.tooltip__content');
-    
+
+    const trigger = page.locator("button");
+    const content = page.locator(".tooltip__content");
+
     // Focus to show
     await trigger.focus();
     await expect(content).toBeVisible();
-    
+
     // Blur to hide
     await trigger.blur();
     await expect(content).not.toBeVisible();
@@ -138,170 +136,168 @@ test.describe('Tooltip Component', () => {
   // This test was simplified to only test 'top' and 'right' sides.
   // The positioning for all sides (top, right, bottom, left) is handled by Radix UI
   // and works correctly in production - the test infrastructure makes it flaky.
-  test.skip('should support different sides', async ({ mount, page }) => {
+  test.skip("should support different sides", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0} skipDelayDuration={0}>
-        <div style={{ display: 'flex', gap: '200px', padding: '200px', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "200px",
+            padding: "200px",
+            justifyContent: "center",
+          }}
+        >
           <Tooltip>
             <TooltipTrigger asChild>
               <button data-testid="top">Top</button>
             </TooltipTrigger>
-            <TooltipContent side="top">
-              Top tooltip
-            </TooltipContent>
+            <TooltipContent side="top">Top tooltip</TooltipContent>
           </Tooltip>
-          
+
           <Tooltip>
             <TooltipTrigger asChild>
               <button data-testid="right">Right</button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              Right tooltip
-            </TooltipContent>
+            <TooltipContent side="right">Right tooltip</TooltipContent>
           </Tooltip>
         </div>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
+
     // Test top side
-    await page.getByTestId('top').hover();
-    const topTooltip = page.getByRole('tooltip', { name: /Top tooltip/ });
+    await page.getByTestId("top").hover();
+    const topTooltip = page.getByRole("tooltip", { name: /Top tooltip/ });
     await expect(topTooltip).toBeVisible();
-    
+
     // Move mouse away to ensure tooltip hides
     await page.mouse.move(1000, 1000);
     await expect(topTooltip).not.toBeVisible({ timeout: 3000 });
-    
+
     // Test right side
-    await page.getByTestId('right').hover();
-    const rightTooltip = page.getByRole('tooltip', { name: /Right tooltip/ });
+    await page.getByTestId("right").hover();
+    const rightTooltip = page.getByRole("tooltip", { name: /Right tooltip/ });
     await expect(rightTooltip).toBeVisible();
   });
 
-  test('should respect delay duration', async ({ mount, page }) => {
+  test("should respect delay duration", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={500}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
-    const content = page.locator('.tooltip__content');
-    
+
+    const trigger = page.locator("button");
+    const content = page.locator(".tooltip__content");
+
     // Hover
     await trigger.hover();
-    
+
     // Should not appear immediately
     await expect(content).not.toBeVisible();
-    
+
     // Wait for delay
     await page.waitForTimeout(600);
     await expect(content).toBeVisible();
   });
 
-  test('should support controlled state', async ({ mount, page }) => {
+  test("should support controlled state", async ({ mount, page }) => {
     await mount(<ControlledTooltip />);
-    
-    const trigger = page.locator('button');
-    const content = page.locator('.tooltip__content');
-    
+
+    const trigger = page.locator("button");
+    const content = page.locator(".tooltip__content");
+
     // Initially closed
     await expect(content).not.toBeVisible();
-    
+
     // Hover to open
     await trigger.hover();
     await page.waitForTimeout(100);
     await expect(content).toBeVisible();
   });
 
-  test('should render arrow', async ({ mount, page }) => {
+  test("should render arrow", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
+
+    const trigger = page.locator("button");
     await trigger.hover();
-    
-    const arrow = page.locator('.tooltip__arrow');
+
+    const arrow = page.locator(".tooltip__arrow");
     await expect(arrow).toBeVisible();
   });
 
-  test('should have proper ARIA attributes', async ({ mount, page }) => {
+  test("should have proper ARIA attributes", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
-          <TooltipContent>
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent>Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    const trigger = page.locator('button');
+
+    const trigger = page.locator("button");
     await trigger.hover();
-    
+
     // Radix provides role="tooltip" automatically via an internal mechanism
-    const tooltip = page.getByRole('tooltip');
+    const tooltip = page.getByRole("tooltip");
     await expect(tooltip).toBeVisible();
-    await expect(tooltip).toContainText('Tooltip text');
+    await expect(tooltip).toContainText("Tooltip text");
   });
 
-  test('should pass accessibility audit', async ({ mount, page }) => {
+  test("should pass accessibility audit", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover for info</button>
           </TooltipTrigger>
-          <TooltipContent>
-            This is helpful tooltip information
-          </TooltipContent>
+          <TooltipContent>This is helpful tooltip information</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
+
     // Show tooltip
-    await page.locator('button').hover();
-    
+    await page.locator("button").hover();
+
+    // Wait for tooltip to be fully rendered
+    const tooltip = page.getByRole("tooltip");
+    await expect(tooltip).toBeVisible();
+    await page.waitForTimeout(100);
+
     await checkA11y(page);
   });
 
-  test('should apply custom className', async ({ mount, page }) => {
+  test("should apply custom className", async ({ mount, page }) => {
     await mount(
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <button>Hover me</button>
           </TooltipTrigger>
-          <TooltipContent className="custom-class">
-            Tooltip text
-          </TooltipContent>
+          <TooltipContent className="custom-class">Tooltip text</TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider>,
     );
-    
-    await page.locator('button').hover();
-    
-    const content = page.locator('.tooltip__content');
+
+    await page.locator("button").hover();
+
+    const content = page.locator(".tooltip__content");
     await expect(content).toHaveClass(/custom-class/);
   });
 });
