@@ -331,7 +331,7 @@ test.describe("Combobox Component", () => {
     expect(selectedValue).toBe("");
   });
 
-  test("should work with controlled value", async ({ mount, page }) => {
+  test("should work with controlled value", async ({ mount }) => {
     const component = await mount(
       <Combobox options={testOptions} value="uk" />,
     );
