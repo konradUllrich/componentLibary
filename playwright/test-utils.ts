@@ -1,6 +1,6 @@
 // playwright/test-utils.ts
-import { expect, Page, Locator } from '@playwright/experimental-ct-react';
-import AxeBuilder from '@axe-core/playwright';
+import { expect, Page, Locator } from "@playwright/experimental-ct-react";
+import AxeBuilder from "@axe-core/playwright";
 
 /**
  * Run accessibility checks on a locator using axe-core
@@ -12,16 +12,15 @@ export async function checkA11y(
   options?: {
     disableRules?: string[];
     tags?: string[];
-  }
+  },
 ) {
-  const builder = new AxeBuilder({ page })
-    .withTags(options?.tags || ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']);
+  let builder = new AxeBuilder({ page }).withTags(
+    options?.tags || ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"],
+  );
 
   // Disable specific rules if requested
-  if (options?.disableRules) {
-    for (const rule of options.disableRules) {
-      builder.disableRules([rule]);
-    }
+  if (options?.disableRules && options.disableRules.length > 0) {
+    builder = builder.disableRules(options.disableRules);
   }
 
   const accessibilityScanResults = await builder.analyze();
@@ -39,13 +38,21 @@ export async function expectVisible(locator: Locator) {
 /**
  * Check if an element has accessible name
  */
-export async function expectAccessibleName(locator: Locator, name: string | RegExp) {
+export async function expectAccessibleName(
+  locator: Locator,
+  name: string | RegExp,
+) {
   await expect(locator).toHaveAccessibleName(name);
 }
 
 /**
  * Check if an element has accessible role
  */
-export async function expectAccessibleRole(locator: Locator, role: 'button' | 'link' | 'heading' | 'textbox' | string) {
-  await expect(locator).toHaveRole(role as 'button' | 'link' | 'heading' | 'textbox');
+export async function expectAccessibleRole(
+  locator: Locator,
+  role: "button" | "link" | "heading" | "textbox" | string,
+) {
+  await expect(locator).toHaveRole(
+    role as "button" | "link" | "heading" | "textbox",
+  );
 }
