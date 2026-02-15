@@ -225,19 +225,18 @@ test.describe("Dropdown Component", () => {
 
     const trigger = page.locator("button");
 
-    // Open with Enter
+    // Open with Enter - Radix auto-focuses first item
     await trigger.focus();
     await page.keyboard.press("Enter");
 
     const content = page.locator(".dropdown__content");
     await expect(content).toBeVisible();
 
-    // Navigate with arrow keys
-    await page.keyboard.press("ArrowDown");
-    await page.waitForTimeout(100); // Wait for focus to settle
+    // After opening with Enter, first item should already be focused
     const firstItem = page.locator(".dropdown__item").first();
     await expect(firstItem).toBeFocused();
 
+    // Navigate to second item with arrow key
     await page.keyboard.press("ArrowDown");
     const secondItem = page.locator(".dropdown__item").nth(1);
     await expect(secondItem).toBeFocused();
