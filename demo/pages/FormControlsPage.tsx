@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Input, Checkbox, Radio, Select, FormControl, CheckboxGroup } from '../../controls';
+import { Input, Checkbox, Radio, Select, FormControl, CheckboxGroup, Combobox } from '../../controls';
 import { Text } from '../../common';
 
 export const FormControlsPage: React.FC = () => {
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('option1');
   const [checkboxGroup, setCheckboxGroup] = useState<string[]>(['option1']);
+  const [comboboxValue, setComboboxValue] = useState('');
 
   return (
     <div className="component-page">
@@ -127,9 +128,80 @@ export const FormControlsPage: React.FC = () => {
       </section>
 
       <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">Combobox</Text>
+        <Text color="secondary" size="sm">
+          Searchable autocomplete dropdown with keyboard navigation
+        </Text>
+        <div className="component-page__demo-column">
+          <Combobox
+            label="Country"
+            placeholder="Search countries..."
+            helperText="Type to filter options"
+            options={[
+              { value: 'us', label: 'United States' },
+              { value: 'uk', label: 'United Kingdom' },
+              { value: 'ca', label: 'Canada' },
+              { value: 'au', label: 'Australia' },
+              { value: 'de', label: 'Germany' },
+              { value: 'fr', label: 'France' },
+              { value: 'it', label: 'Italy' },
+              { value: 'es', label: 'Spain' },
+              { value: 'jp', label: 'Japan' },
+              { value: 'cn', label: 'China' },
+            ]}
+            value={comboboxValue}
+            onValueChange={setComboboxValue}
+          />
+
+          <Combobox
+            label="Combobox with Variants"
+            placeholder="Filled variant..."
+            variant="filled"
+            options={[
+              { value: '1', label: 'Option 1' },
+              { value: '2', label: 'Option 2' },
+              { value: '3', label: 'Option 3' },
+            ]}
+          />
+
+          <Combobox
+            label="Combobox with Error"
+            placeholder="Search..."
+            error
+            errorMessage="Please select a valid option"
+            options={[
+              { value: '1', label: 'Option 1' },
+              { value: '2', label: 'Option 2' },
+              { value: '3', label: 'Option 3' },
+            ]}
+          />
+
+          <Combobox
+            label="Disabled Combobox"
+            placeholder="This is disabled..."
+            disabled
+            options={[
+              { value: '1', label: 'Option 1' },
+              { value: '2', label: 'Option 2' },
+            ]}
+          />
+
+          <Combobox
+            label="With Disabled Options"
+            placeholder="Search..."
+            options={[
+              { value: '1', label: 'Available Option 1' },
+              { value: '2', label: 'Disabled Option', disabled: true },
+              { value: '3', label: 'Available Option 2' },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="component-page__section">
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
-          <code>{`import { Input, Checkbox, Select, FormControl } from '@konradullrich/mp-components';
+          <code>{`import { Input, Checkbox, Select, Combobox, FormControl } from '@konradullrich/mp-components';
 
 <FormControl label="Email" helperText="Enter your email address">
   <Input type="email" placeholder="email@example.com" />
@@ -139,7 +211,18 @@ export const FormControlsPage: React.FC = () => {
   <Checkbox checked={subscribed} onChange={handleChange}>
     Send me updates
   </Checkbox>
-</FormControl>`}</code>
+</FormControl>
+
+<Combobox
+  label="Country"
+  placeholder="Search countries..."
+  options={[
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+  ]}
+  onValueChange={(value) => console.log(value)}
+/>`}</code>
         </pre>
       </section>
     </div>
