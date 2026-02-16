@@ -1,0 +1,184 @@
+/* Combobox Styles */
+
+/* Block: Combobox */
+.combobox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Element: Combobox Input */
+.combobox__input {
+  flex: 1;
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-200) var(--ease-in-out);
+  outline: none;
+}
+
+.combobox__input:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.combobox__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-shadow);
+}
+
+.combobox__input::placeholder {
+  color: var(--color-foreground-secondary);
+}
+
+/* Variant: Default */
+.combobox__input--default {
+  background-color: var(--color-background);
+}
+
+/* Variant: Filled */
+.combobox__input--filled {
+  background-color: var(--color-background-secondary);
+  border-color: transparent;
+}
+
+.combobox__input--filled:hover:not(:disabled) {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+}
+
+.combobox__input--filled:focus {
+  background-color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+/* Variant: Outline */
+.combobox__input--outline {
+  border-width: 2px;
+}
+
+/* Size: Small */
+.combobox__input--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  padding-right: var(--spacing-8);
+  font-size: var(--font-size-sm);
+}
+
+/* Size: Medium */
+.combobox__input--md {
+  padding: var(--spacing-2) var(--spacing-3);
+  padding-right: var(--spacing-8);
+  font-size: var(--font-size-base);
+}
+
+/* Size: Large */
+.combobox__input--lg {
+  padding: var(--spacing-3) var(--spacing-4);
+  padding-right: var(--spacing-10);
+  font-size: var(--font-size-lg);
+}
+
+/* Modifier: Error */
+.combobox__input--error {
+  border-color: var(--color-error);
+}
+
+.combobox__input--error:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px var(--color-error-light);
+}
+
+/* Modifier: Disabled */
+.combobox__input--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--color-background-secondary);
+}
+
+/* Element: Combobox Icon */
+.combobox__icon {
+  position: absolute;
+  right: var(--spacing-3);
+  font-size: 0.8em;
+  color: var(--color-foreground-secondary);
+  pointer-events: none;
+  transition: transform var(--duration-200) var(--ease-in-out);
+}
+
+/* Block: Combobox Content */
+.combobox__content {
+  min-width: var(--radix-popover-trigger-width);
+  max-width: var(--radix-popover-trigger-width);
+  max-height: 300px;
+  overflow: hidden;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+}
+
+/* Element: Combobox Listbox */
+.combobox__listbox {
+  max-height: 300px;
+  padding: var(--spacing-1);
+  overflow-y: auto;
+}
+
+/* Element: Combobox Option */
+.combobox__option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: background-color var(--duration-100) var(--ease-in-out);
+}
+
+.combobox__option:hover {
+  background-color: var(--color-background-secondary);
+}
+
+/* Modifier: Highlighted Option */
+.combobox__option--highlighted {
+  background-color: var(--color-background-secondary);
+}
+
+/* Modifier: Selected Option */
+.combobox__option--selected {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Modifier: Disabled Option */
+.combobox__option--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Element: Check Icon */
+.combobox__check {
+  margin-left: var(--spacing-2);
+  font-size: 0.9em;
+  color: var(--color-primary);
+}
+
+/* Element: Empty State */
+.combobox__empty {
+  padding: var(--spacing-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-foreground-secondary);
+  text-align: center;
+}
