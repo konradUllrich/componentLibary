@@ -1,5 +1,12 @@
 /* Table Styles */
 
+/* Table Container - provides horizontal scroll on mobile */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
