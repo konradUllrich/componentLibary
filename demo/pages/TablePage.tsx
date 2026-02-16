@@ -1,16 +1,16 @@
-import React from 'react';
-import { 
-  Table, 
-  useReactTable, 
-  getCoreRowModel, 
+import React from "react";
+import {
+  Table,
+  useReactTable,
+  getCoreRowModel,
   getSortedRowModel,
   getGroupedRowModel,
   getExpandedRowModel,
   type ColumnDef,
   type SortingState,
   type GroupingState,
-} from '../../data-display/Table';
-import { Text } from '../../common';
+} from "../../data-display/Table";
+import { Text } from "../../common";
 
 interface User {
   id: number;
@@ -21,103 +21,162 @@ interface User {
   status: string;
 }
 
-export const TablePage: React.FC = () => {
-  const sampleData: User[] = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', department: 'Engineering', status: 'Active' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', department: 'Marketing', status: 'Active' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor', department: 'Engineering', status: 'Inactive' },
-    { id: 4, name: 'Alice Williams', email: 'alice@example.com', role: 'User', department: 'Sales', status: 'Active' },
-    { id: 5, name: 'Charlie Brown', email: 'charlie@example.com', role: 'Admin', department: 'Engineering', status: 'Active' },
-    { id: 6, name: 'Diana Prince', email: 'diana@example.com', role: 'Editor', department: 'Marketing', status: 'Active' },
-    { id: 7, name: 'Eve Davis', email: 'eve@example.com', role: 'User', department: 'Sales', status: 'Inactive' },
-  ];
+const sampleData: User[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    role: "Admin",
+    department: "Engineering",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane@example.com",
+    role: "User",
+    department: "Marketing",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    role: "Editor",
+    department: "Engineering",
+    status: "Inactive",
+  },
+  {
+    id: 4,
+    name: "Alice Williams",
+    email: "alice@example.com",
+    role: "User",
+    department: "Sales",
+    status: "Active",
+  },
+  {
+    id: 5,
+    name: "Charlie Brown",
+    email: "charlie@example.com",
+    role: "Admin",
+    department: "Engineering",
+    status: "Active",
+  },
+  {
+    id: 6,
+    name: "Diana Prince",
+    email: "diana@example.com",
+    role: "Editor",
+    department: "Marketing",
+    status: "Active",
+  },
+  {
+    id: 7,
+    name: "Eve Davis",
+    email: "eve@example.com",
+    role: "User",
+    department: "Sales",
+    status: "Inactive",
+  },
+];
 
+export const TablePage: React.FC = () => {
   // Basic table columns
-  const columns: ColumnDef<User>[] = [
-    {
-      accessorKey: 'id',
-      header: 'ID',
-    },
-    {
-      accessorKey: 'name',
-      header: 'Name',
-    },
-    {
-      accessorKey: 'email',
-      header: 'Email',
-    },
-    {
-      accessorKey: 'role',
-      header: 'Role',
-    },
-  ];
+  const columns = React.useMemo<ColumnDef<User>[]>(
+    () => [
+      {
+        accessorKey: "id",
+        header: "ID",
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+    ],
+    [],
+  );
 
   // Sortable table state and columns
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  
-  const sortableColumns: ColumnDef<User>[] = [
-    {
-      accessorKey: 'id',
-      header: 'ID',
-      enableSorting: true,
-    },
-    {
-      accessorKey: 'name',
-      header: 'Name',
-      enableSorting: true,
-    },
-    {
-      accessorKey: 'email',
-      header: 'Email',
-      enableSorting: true,
-    },
-    {
-      accessorKey: 'role',
-      header: 'Role',
-      enableSorting: true,
-    },
-  ];
+
+  const sortableColumns = React.useMemo<ColumnDef<User>[]>(
+    () => [
+      {
+        accessorKey: "id",
+        header: "ID",
+        enableSorting: true,
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+        enableSorting: true,
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        enableSorting: true,
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+        enableSorting: true,
+      },
+    ],
+    [],
+  );
 
   // Grouping table state and columns
-  const [grouping, setGrouping] = React.useState<GroupingState>(['department']);
-  
-  const groupableColumns: ColumnDef<User>[] = [
-    {
-      accessorKey: 'department',
-      header: 'Department',
-      cell: ({ row, getValue }) => (
-        <div style={{ paddingLeft: `${row.depth * 2}rem` }}>
-          {row.getIsGrouped() ? (
-            <button
-              onClick={row.getToggleExpandedHandler()}
-              style={{ 
-                background: 'none', 
-                border: 'none', 
-                cursor: 'pointer',
-                fontWeight: 'bold',
-              }}
-            >
-              {row.getIsExpanded() ? '▼' : '▶'} {getValue<string>()} ({row.subRows.length})
-            </button>
-          ) : (
-            getValue<string>()
-          )}
-        </div>
-      ),
-    },
-    {
-      accessorKey: 'name',
-      header: 'Name',
-    },
-    {
-      accessorKey: 'role',
-      header: 'Role',
-    },
-    {
-      accessorKey: 'status',
-      header: 'Status',
-    },
-  ];
+  const [grouping, setGrouping] = React.useState<GroupingState>(["department"]);
+
+  const groupableColumns = React.useMemo<ColumnDef<User>[]>(
+    () => [
+      {
+        accessorKey: "department",
+        header: "Department",
+        cell: ({ row, getValue }) => (
+          <div style={{ paddingLeft: `${row.depth * 2}rem` }}>
+            {row.getIsGrouped() ? (
+              <button
+                onClick={row.getToggleExpandedHandler()}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+              >
+                {row.getIsExpanded() ? "▼" : "▶"} {getValue<string>()} (
+                {row.subRows.length})
+              </button>
+            ) : (
+              getValue<string>()
+            )}
+          </div>
+        ),
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+      },
+    ],
+    [],
+  );
 
   // Basic table
   const table = useReactTable({
@@ -154,16 +213,22 @@ export const TablePage: React.FC = () => {
   return (
     <div className="component-page">
       <div className="component-page__header">
-        <Text as="h1" size="3xl" weight="bold">Table Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Table Component
+        </Text>
         <Text color="secondary">
-          Flexible table component for displaying structured data with sorting and grouping
+          Flexible table component for displaying structured data with sorting
+          and grouping
         </Text>
       </div>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Basic Table</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Basic Table
+        </Text>
         <Text color="secondary" size="sm">
-          Simple table with header and body using TanStack Table. Scrollable on mobile devices.
+          Simple table with header and body using TanStack Table. Scrollable on
+          mobile devices.
         </Text>
         <div className="component-page__demo">
           <Table table={table} />
@@ -171,9 +236,12 @@ export const TablePage: React.FC = () => {
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Sortable Table</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Sortable Table
+        </Text>
         <Text color="secondary" size="sm">
-          Click on column headers to sort the data. Click again to reverse the sort order.
+          Click on column headers to sort the data. Click again to reverse the
+          sort order.
         </Text>
         <div className="component-page__demo">
           <Table table={sortableTable} />
@@ -181,9 +249,12 @@ export const TablePage: React.FC = () => {
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Grouped Table</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Grouped Table
+        </Text>
         <Text color="secondary" size="sm">
-          Table grouped by department. Click the expand/collapse buttons to show or hide department members.
+          Table grouped by department. Click the expand/collapse buttons to show
+          or hide department members.
         </Text>
         <div className="component-page__demo">
           <Table table={groupingTable} />
@@ -191,7 +262,9 @@ export const TablePage: React.FC = () => {
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Basic Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Basic Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { 
   Table, 
@@ -225,7 +298,9 @@ const table = useReactTable({
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Sorting Example</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Sorting Example
+        </Text>
         <pre className="code-block">
           <code>{`import { 
   Table, 
@@ -259,7 +334,9 @@ const table = useReactTable({
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Grouping Example</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Grouping Example
+        </Text>
         <pre className="code-block">
           <code>{`import { 
   Table, 
