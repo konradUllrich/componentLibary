@@ -193,4 +193,83 @@ test.describe("Pagination Component", () => {
     await mount(<PaginationTestWrapper totalItems={100} pageSize={10} />);
     await checkA11y(page);
   });
+
+  test.describe("Responsive Behavior", () => {
+    test("should display all controls on desktop", async ({ mount, page }) => {
+      await page.setViewportSize({ width: 1024, height: 768 });
+      const component = await mount(
+        <PaginationTestWrapper totalItems={100} pageSize={10} />,
+      );
+
+      // All navigation buttons should be visible
+      await expect(component.locator(".pagination-button--first")).toBeVisible();
+      await expect(component.locator(".pagination-button--last")).toBeVisible();
+      await expect(component.locator(".pagination-button--prev")).toBeVisible();
+      await expect(component.locator(".pagination-button--next")).toBeVisible();
+    });
+
+    test("should stack elements vertically on tablet", async ({
+      mount,
+      page,
+    }) => {
+      await page.setViewportSize({ width: 768, height: 1024 });
+      const component = await mount(
+        <PaginationTestWrapper totalItems={100} pageSize={10} />,
+      );
+
+      // Component should still be visible
+      await expect(component).toBeVisible();
+
+      // All controls should still be present
+      await expect(component.locator(".pagination__info")).toBeVisible();
+      await expect(component.locator(".pagination__controls")).toBeVisible();
+    });
+
+    test("should hide first/last buttons on mobile", async ({
+      mount,
+      page,
+    }) => {
+      await page.setViewportSize({ width: 480, height: 800 });
+      const component = await mount(
+        <PaginationTestWrapper totalItems={100} pageSize={10} />,
+      );
+
+      // First and last buttons should be hidden on mobile
+      const firstButton = component.locator(".pagination-button--first");
+      const lastButton = component.locator(".pagination-button--last");
+
+      await expect(firstButton).not.toBeVisible();
+      await expect(lastButton).not.toBeVisible();
+
+      // But prev/next should still be visible
+      await expect(component.locator(".pagination-button--prev")).toBeVisible();
+      await expect(component.locator(".pagination-button--next")).toBeVisible();
+    });
+
+    test("should remain functional on small screens", async ({
+      mount,
+      page,
+    }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+      const component = await mount(
+        <PaginationTestWrapper totalItems={100} pageSize={10} />,
+      );
+
+      // Should still be able to navigate
+      const nextButton = component.locator(".pagination-button--next");
+      await nextButton.click();
+
+      const info = component.locator(".pagination__info");
+      await expect(info).toContainText("Showing 11 to 20 of 100 entries");
+    });
+
+    test("should maintain accessibility on mobile", async ({
+      mount,
+      page,
+    }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+      await mount(<PaginationTestWrapper totalItems={100} pageSize={10} />);
+      await checkA11y(page);
+    });
+  });
 });
