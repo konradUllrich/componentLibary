@@ -3,6 +3,72 @@
 > **Scope:** These instructions apply to all component work in this repository.  
 > **Full docs:** See `/mpComponents.instructions.md` for exhaustive standards.
 
+## 📋 Project Overview
+
+**mpComponents** is a modern, accessible React component library built with:
+- **React 19** with TypeScript in strict mode
+- **Radix UI primitives** for complex interactions
+- **TanStack Form & Tables** for advanced data handling
+- **Plain CSS** with BEM naming convention
+- **Playwright & Vitest** for comprehensive testing
+
+**Purpose:** Provide reusable, accessible, type-safe UI components for building modern web applications.
+
+---
+
+## 🛠️ Essential Commands
+
+Before making changes, always check the current state:
+
+```bash
+# Type checking (MUST pass before committing)
+pnpm type-check
+
+# Linting (MUST pass before committing)
+pnpm lint
+
+# Run component tests
+pnpm test:ct
+
+# Run component tests with UI
+pnpm test:ct:ui
+
+# Run E2E tests
+pnpm test:e2e
+
+# Build library
+pnpm build
+
+# Run demo site locally for development
+pnpm demo
+
+# Build demo site
+pnpm demo:build
+```
+
+**CI/CD:** All PRs must pass `pnpm type-check`, `pnpm lint`, and `pnpm test:ct` before merge.
+
+---
+
+## 📂 Project Structure
+
+```
+/home/runner/work/componentLibary/componentLibary/
+├── common/              # Shared UI (Button, Badge, Icon, Text, Dialog, Dropdown)
+├── controls/            # Form elements (Input, Select, Checkbox, Radio, Toggle)
+├── data-display/        # Data components (Table, List, Card, Tree)
+├── layout/              # Layout components (Sidebar, Header, Footer, Navigation)
+├── styles/              # Global CSS variables, themes, design tokens
+│   └── variables.css    # Design system tokens (colors, spacing, etc.)
+├── demo/                # Interactive demo site with examples
+├── e2e/                 # End-to-end tests
+├── playwright/          # Playwright test configuration
+├── .github/             # GitHub workflows and this file
+├── index.ts             # Main barrel export
+├── package.json         # Dependencies and scripts
+└── mpComponents.instructions.md  # Complete development guidelines
+```
+
 ---
 
 ## 🚨 Non-Negotiable Rules
@@ -283,6 +349,53 @@ describe("ComponentName", () => {
 
 ---
 
+## 🚫 Boundaries & Restrictions
+
+**DO NOT:**
+- ❌ Modify files in `.git/`, `.husky/`, or `node_modules/`
+- ❌ Change build configurations (`vite.config.ts`, `tsconfig.json`) without explicit approval
+- ❌ Use CSS modules, styled-components, or any CSS-in-JS solutions
+- ❌ Add new dependencies without checking for vulnerabilities and necessity
+- ❌ Use `any`, `unknown`, or type assertions without clear justification
+- ❌ Remove or modify existing tests unless fixing them is the explicit task
+- ❌ Commit secrets, API keys, or sensitive data
+- ❌ Break existing component APIs without migration path
+
+**ALWAYS:**
+- ✅ Run `pnpm type-check` and `pnpm lint` before committing
+- ✅ Write tests for new components (Playwright component tests)
+- ✅ Follow BEM naming for all CSS classes
+- ✅ Ensure WCAG 2.1 AA accessibility compliance
+- ✅ Keep files under ~100 lines (split if needed)
+- ✅ Use design tokens from `styles/variables.css`
+- ✅ Add JSDoc comments to public component APIs
+- ✅ Export components in category `index.ts` files
+
+---
+
+## 🎯 Development Workflow
+
+1. **Explore before changing**: Understand existing patterns before adding new components
+2. **Check existing components**: Look for similar components to maintain consistency
+3. **Run tests early**: Execute `pnpm test:ct` frequently during development
+4. **Use the demo site**: Test components visually with `pnpm demo`
+5. **Type-check continuously**: Fix TypeScript errors immediately, don't accumulate them
+6. **Test accessibility**: Use keyboard navigation and screen readers
+7. **Review before commit**: Ensure code meets all requirements in checklist
+
+---
+
+## 📚 Key Documentation Files
+
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** - Start here for development setup
+- **[mpComponents.instructions.md](../mpComponents.instructions.md)** - Complete guidelines (37KB, exhaustive)
+- **[QUICK_REFERENCE.md](../QUICK_REFERENCE.md)** - One-page cheat sheet
+- **[TESTING.md](../TESTING.md)** - Testing practices and examples
+- **[README.md](../README.md)** - Project overview and usage
+- **[styles/THEMING.md](../styles/THEMING.md)** - Theming and design tokens
+
+---
+
 ## Common Mistakes to Avoid
 
 ```tsx
@@ -310,3 +423,231 @@ Button.displayName = "Button";
 // ✅ Use semantic elements
 <button type="button" onClick={handleClick}>
 ```
+
+---
+
+## ✅ Example: Well-Structured Component
+
+Here's what a complete, properly structured component looks like:
+
+### Good Component Example (Button.tsx)
+
+```tsx
+import React, { forwardRef } from "react";
+import clsx from "clsx";
+import "./Button.css";
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Visual style variant of the button
+   * @default "primary"
+   */
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
+  /**
+   * Size of the button
+   * @default "md"
+   */
+  size?: "sm" | "md" | "lg";
+  /**
+   * Whether the button should take full width of container
+   * @default false
+   */
+  fullWidth?: boolean;
+  /** Button content */
+  children: React.ReactNode;
+}
+
+/**
+ * Button component - Primary action element
+ *
+ * Accessible, keyboard-navigable button with multiple variants and sizes.
+ * Follows WCAG 2.1 AA guidelines with proper focus indicators.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="primary" size="md" onClick={handleClick}>
+ *   Click me
+ * </Button>
+ * ```
+ */
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { 
+      variant = "primary", 
+      size = "md", 
+      fullWidth = false,
+      className, 
+      children, 
+      type = "button",
+      ...props 
+    },
+    ref
+  ) => {
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={clsx(
+          "button",
+          `button--${variant}`,
+          `button--${size}`,
+          fullWidth && "button--full-width",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
+```
+
+### Good CSS Example (Button.css)
+
+```css
+/* Button - Primary action element */
+
+/* Base button styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+/* Size variants */
+.button--sm {
+  height: var(--size-8);
+  padding: 0 var(--spacing-3);
+  font-size: var(--font-size-sm);
+}
+
+.button--md {
+  height: var(--size-10);
+  padding: 0 var(--spacing-4);
+  font-size: var(--font-size-md);
+}
+
+.button--lg {
+  height: var(--size-12);
+  padding: 0 var(--spacing-6);
+  font-size: var(--font-size-lg);
+}
+
+/* Style variants */
+.button--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.button--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+.button--secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-foreground);
+}
+
+/* Focus state (mandatory for accessibility) */
+.button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Full width modifier */
+.button--full-width {
+  width: 100%;
+}
+```
+
+### Good Test Example (Button.test.tsx)
+
+```tsx
+import { test, expect } from "@playwright/experimental-ct-react";
+import { injectAxe, checkA11y } from "axe-playwright";
+import { Button } from "./Button";
+
+test.describe("Button", () => {
+  test("should render with default props", async ({ mount }) => {
+    const component = await mount(<Button>Click me</Button>);
+    await expect(component).toBeVisible();
+    await expect(component).toHaveText("Click me");
+  });
+
+  test("should apply variant classes correctly", async ({ mount }) => {
+    const component = await mount(<Button variant="secondary">Test</Button>);
+    await expect(component).toHaveClass(/button--secondary/);
+  });
+
+  test("should handle click events", async ({ mount }) => {
+    let clicked = false;
+    const component = await mount(
+      <Button onClick={() => (clicked = true)}>Click</Button>
+    );
+    await component.click();
+    expect(clicked).toBe(true);
+  });
+
+  test("should be keyboard accessible", async ({ mount, page }) => {
+    await mount(<Button>Focus me</Button>);
+    await page.keyboard.press("Tab");
+    await expect(page.locator(".button")).toBeFocused();
+    await page.keyboard.press("Enter");
+  });
+
+  test("should have no accessibility violations", async ({ mount, page }) => {
+    await mount(<Button>Accessible</Button>);
+    await injectAxe(page);
+    await checkA11y(page);
+  });
+
+  test("should be disabled when disabled prop is true", async ({ mount }) => {
+    const component = await mount(<Button disabled>Disabled</Button>);
+    await expect(component).toBeDisabled();
+  });
+});
+```
+
+---
+
+## 🔍 When Working on Tasks
+
+1. **Read existing code first**: Check similar components to match patterns
+2. **Ask if unclear**: If requirements are ambiguous, ask for clarification
+3. **Make minimal changes**: Only modify what's necessary for the task
+4. **Test thoroughly**: Use `pnpm demo` to test visually, `pnpm test:ct` for automated tests
+5. **Document your work**: Update comments, JSDoc, and examples as needed
+6. **Check accessibility**: Test with keyboard, verify color contrast, check ARIA
+7. **Verify types**: Ensure `pnpm type-check` passes with zero errors
+8. **Review your changes**: Before finalizing, review all modified files
+
+---
+
+## 🎓 Learning Resources
+
+- **Radix UI Documentation**: https://www.radix-ui.com/docs/primitives
+- **WCAG 2.1 Guidelines**: https://www.w3.org/WAI/WCAG21/quickref/
+- **BEM Methodology**: http://getbem.com/
+- **TypeScript Documentation**: https://www.typescriptlang.org/docs/
+- **React Best Practices**: https://react.dev/learn
+- **Playwright Testing**: https://playwright.dev/docs/test-components
+
+---
+
+**Remember:** Quality over speed. Take time to write clean, accessible, well-tested code that matches the existing patterns in this repository.
