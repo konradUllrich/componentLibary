@@ -3,6 +3,8 @@ import { test, expect } from "@playwright/test";
 test.describe("Component Navigation", () => {
   test("should display components overview", async ({ page }) => {
     await page.goto("/componentLibary/");
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector("h1", { timeout: 15000 });
 
     // Check heading
     await expect(

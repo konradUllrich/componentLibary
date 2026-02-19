@@ -3,6 +3,8 @@ import { test, expect } from "@playwright/test";
 test.describe("Sidebar Navigation", () => {
   test("should display sidebar with navigation items", async ({ page }) => {
     await page.goto("/componentLibary/");
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector("h1, h2", { timeout: 15000 });
 
     // Check that sidebar is visible
     await expect(

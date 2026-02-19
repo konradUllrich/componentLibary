@@ -3,15 +3,15 @@ import { test, expect } from "@playwright/test";
 test.describe("Home Page", () => {
   test("should display home page with components grid", async ({ page }) => {
     await page.goto("/componentLibary/");
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector("h1", { timeout: 15000 });
 
     // Check that the page title is correct
     await expect(page).toHaveTitle(/mpComponents/);
 
     // Check main heading
     await expect(page.locator("main h1")).toContainText(/Component Library/i);
-    await expect(
-      page.getByText(/Explore our collection/i),
-    ).toBeVisible();
+    await expect(page.getByText(/Explore our collection/i)).toBeVisible();
   });
 
   test("should display component cards", async ({ page }) => {
@@ -48,7 +48,10 @@ test.describe("Home Page", () => {
     await page.goto("/componentLibary/");
 
     // Click on Home in sidebar
-    await page.getByRole("navigation").getByRole("link", { name: /^Home$/i }).click();
+    await page
+      .getByRole("navigation")
+      .getByRole("link", { name: /^Home$/i })
+      .click();
 
     // Should show home page
     await expect(page.locator("main h1")).toContainText(/Component Library/i);

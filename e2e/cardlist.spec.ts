@@ -3,6 +3,12 @@ import { test, expect } from "@playwright/test";
 test.describe("CardList Component", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/componentLibary/components/card-list");
+    // Wait for page to fully load including React hydration
+    await page.waitForLoadState("networkidle");
+    // Wait for the main h1 heading to render (confirms React has mounted)
+    await page.waitForSelector("h1", { timeout: 15000 });
+    // Extra buffer for React to finish rendering all components
+    await page.waitForTimeout(500);
   });
 
   test("should display CardList component page", async ({ page }) => {
@@ -102,9 +108,7 @@ test.describe("CardList Component", () => {
     // Check that blog post cards are visible
     await expect(page.getByText("Getting Started with React")).toBeVisible();
     await expect(page.getByText("TypeScript Best Practices")).toBeVisible();
-    await expect(
-      page.getByText("Component Design Patterns"),
-    ).toBeVisible();
+    await expect(page.getByText("Component Design Patterns")).toBeVisible();
   });
 
   test("should display blog post details correctly", async ({ page }) => {
@@ -112,7 +116,9 @@ test.describe("CardList Component", () => {
       .locator(".card-list__item")
       .filter({ hasText: "Getting Started with React" });
 
-    await expect(firstPost.getByText("Getting Started with React")).toBeVisible();
+    await expect(
+      firstPost.getByText("Getting Started with React"),
+    ).toBeVisible();
     await expect(
       firstPost.getByText(/Learn the basics of React/i),
     ).toBeVisible();
@@ -170,7 +176,9 @@ test.describe("CardList Component", () => {
 
   test("should display empty state message", async ({ page }) => {
     // Scroll to empty state section
-    await page.getByRole("heading", { name: "Empty State" }).scrollIntoViewIfNeeded();
+    await page
+      .getByRole("heading", { name: "Empty State" })
+      .scrollIntoViewIfNeeded();
 
     // Verify empty state section
     await expect(
@@ -257,7 +265,9 @@ test.describe("CardList Component", () => {
 
     // Verify headings are present
     await expect(
-      productSection.getByRole("heading", { name: "Product Cards (3 columns)" }),
+      productSection.getByRole("heading", {
+        name: "Product Cards (3 columns)",
+      }),
     ).toBeVisible();
 
     // Verify buttons have accessible labels

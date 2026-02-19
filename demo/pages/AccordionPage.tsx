@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { Accordion, Text } from '../../common';
+import React, { useState } from "react";
+import { Accordion, Text } from "../../common";
 
 export const AccordionPage: React.FC = () => {
-  const [accordionValue, setAccordionValue] = useState('item1');
+  const [accordionValue, setAccordionValue] = useState("item1");
 
   return (
     <div className="component-page">
       <div className="component-page__header">
-        <Text as="h1" size="3xl" weight="bold">Accordion Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Accordion Component
+        </Text>
         <Text color="secondary">
           Collapsible content sections with vertical or tabs layout
         </Text>
       </div>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Vertical (Default)</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Vertical (Default)
+        </Text>
         <Text color="secondary" size="sm">
           Traditional accordion with collapsible sections
         </Text>
@@ -22,25 +26,25 @@ export const AccordionPage: React.FC = () => {
           <Accordion
             items={[
               {
-                id: 'item1',
-                title: 'Section 1',
+                id: "item1",
+                title: "Section 1",
                 content: <Text>Content for section 1</Text>,
               },
               {
-                id: 'item2',
-                title: 'Section 2',
+                id: "item2",
+                title: "Section 2",
                 content: <Text>Content for section 2</Text>,
               },
               {
-                id: 'item3',
-                title: 'Section 3',
+                id: "item3",
+                title: "Section 3",
                 content: <Text>Content for section 3</Text>,
               },
             ]}
             value={accordionValue as string | undefined}
             onValueChange={(value: string | string[] | undefined) =>
               setAccordionValue(
-                Array.isArray(value) ? value[0] : value || 'item1',
+                Array.isArray(value) ? value[0] : value || "item1",
               )
             }
           />
@@ -48,7 +52,9 @@ export const AccordionPage: React.FC = () => {
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Tabs Variant</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Tabs Variant
+        </Text>
         <Text color="secondary" size="sm">
           Horizontal tabs layout
         </Text>
@@ -57,18 +63,18 @@ export const AccordionPage: React.FC = () => {
             variant="tabs"
             items={[
               {
-                id: 'tab1',
-                title: 'Tab 1',
+                id: "tab1",
+                title: "Tab 1",
                 content: <Text>Content for tab 1</Text>,
               },
               {
-                id: 'tab2',
-                title: 'Tab 2',
+                id: "tab2",
+                title: "Tab 2",
                 content: <Text>Content for tab 2</Text>,
               },
               {
-                id: 'tab3',
-                title: 'Tab 3',
+                id: "tab3",
+                title: "Tab 3",
                 content: <Text>Content for tab 3</Text>,
               },
             ]}
@@ -77,7 +83,9 @@ export const AccordionPage: React.FC = () => {
       </section>
 
       <section className="component-page__section">
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { Accordion } from '@konradullrich/mp-components';
 
