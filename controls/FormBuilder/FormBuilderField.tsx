@@ -9,8 +9,8 @@ import type { FieldDef } from "./types";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyFieldApi = FieldApi<any, any, any, any, any>;
 
-interface FormBuilderFieldProps {
-  field: FieldDef<Record<string, unknown>>;
+interface FormBuilderFieldProps<TData extends object> {
+  field: FieldDef<TData>;
   fieldApi: AnyFieldApi;
 }
 
@@ -18,7 +18,10 @@ interface FormBuilderFieldProps {
  * Renders the correct control component for a single field definition.
  * This is an internal sub-component used by FormBuilder.
  */
-export function FormBuilderField({ field, fieldApi }: FormBuilderFieldProps) {
+export function FormBuilderField<TData extends object>({
+  field,
+  fieldApi,
+}: FormBuilderFieldProps<TData>) {
   const { state, handleChange, handleBlur } = fieldApi;
   const textareaId = useId();
   const hasError = state.meta.errors.length > 0;

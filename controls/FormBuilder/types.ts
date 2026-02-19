@@ -59,10 +59,7 @@ export interface SelectOption {
 
 // ─── Base field definition ────────────────────────────────────────────────────
 
-interface BaseField<
-  TData extends Record<string, unknown>,
-  TName extends keyof TData & string,
-> {
+interface BaseField<TData extends object, TName extends keyof TData & string> {
   /** Key in the form data object – constrained by the value type */
   name: TName;
   /** Visible label rendered above the control */
@@ -80,7 +77,7 @@ interface BaseField<
 // ─── Concrete field types ─────────────────────────────────────────────────────
 
 /** Single-line text input – `name` must map to a `string` value */
-export type TextField<TData extends Record<string, unknown>> = BaseField<
+export type TextField<TData extends object> = BaseField<
   TData,
   StringKeys<TData>
 > & {
@@ -90,7 +87,7 @@ export type TextField<TData extends Record<string, unknown>> = BaseField<
 };
 
 /** Multi-line textarea – `name` must map to a `string` value */
-export type TextareaField<TData extends Record<string, unknown>> = BaseField<
+export type TextareaField<TData extends object> = BaseField<
   TData,
   StringKeys<TData>
 > & {
@@ -102,7 +99,7 @@ export type TextareaField<TData extends Record<string, unknown>> = BaseField<
 };
 
 /** Numeric input – `name` must map to a `number` value */
-export type NumberField<TData extends Record<string, unknown>> = BaseField<
+export type NumberField<TData extends object> = BaseField<
   TData,
   NumberKeys<TData>
 > & {
@@ -115,7 +112,7 @@ export type NumberField<TData extends Record<string, unknown>> = BaseField<
 };
 
 /** Native `<select>` dropdown – `name` must map to a `string` value */
-export type SelectField<TData extends Record<string, unknown>> = BaseField<
+export type SelectField<TData extends object> = BaseField<
   TData,
   StringKeys<TData>
 > & {
@@ -127,7 +124,7 @@ export type SelectField<TData extends Record<string, unknown>> = BaseField<
 };
 
 /** Checkbox – `name` must map to a `boolean` value */
-export type CheckboxField<TData extends Record<string, unknown>> = BaseField<
+export type CheckboxField<TData extends object> = BaseField<
   TData,
   BooleanKeys<TData>
 > & {
@@ -140,7 +137,7 @@ export type CheckboxField<TData extends Record<string, unknown>> = BaseField<
 // ─── Union ────────────────────────────────────────────────────────────────────
 
 /** All supported field definitions for a given form data type */
-export type FieldDef<TData extends Record<string, unknown>> =
+export type FieldDef<TData extends object> =
   | TextField<TData>
   | TextareaField<TData>
   | NumberField<TData>
@@ -149,7 +146,7 @@ export type FieldDef<TData extends Record<string, unknown>> =
 
 // ─── FormBuilder props ────────────────────────────────────────────────────────
 
-export interface FormBuilderProps<TData extends Record<string, unknown>> {
+export interface FormBuilderProps<TData extends object> {
   /**
    * Initial (default) values for every field.
    * The generic `TData` is inferred from this prop, so no explicit

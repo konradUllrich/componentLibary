@@ -11,15 +11,17 @@ import "./FormBuilder.css";
  * Converts a `FieldDef` `validate` object into the `validators` shape
  * expected by TanStack Form's `form.Field`.
  */
-function buildValidators(field: FieldDef<Record<string, unknown>>) {
+function buildValidators<TData extends object>(field: FieldDef<TData>) {
   const v = field.validate;
   if (!v) return undefined;
   return {
     onChange: v.onChange
-      ? ({ value }: { value: unknown }) => v.onChange!(value as never) ?? undefined
+      ? ({ value }: { value: unknown }) =>
+          v.onChange!(value as never) ?? undefined
       : undefined,
     onBlur: v.onBlur
-      ? ({ value }: { value: unknown }) => v.onBlur!(value as never) ?? undefined
+      ? ({ value }: { value: unknown }) =>
+          v.onBlur!(value as never) ?? undefined
       : undefined,
   };
 }
@@ -52,7 +54,7 @@ function buildValidators(field: FieldDef<Record<string, unknown>>) {
  * />
  * ```
  */
-export function FormBuilder<TData extends Record<string, unknown>>({
+export function FormBuilder<TData extends object>({
   defaultValues,
   fields,
   onSubmit,
@@ -86,21 +88,16 @@ export function FormBuilder<TData extends Record<string, unknown>>({
       {fields.map((field) => (
         <form.Field
           key={field.name}
-          name={field.name as DeepKeys<TData>}
-          validators={buildValidators(field as FieldDef<Record<string, unknown>>)}
+          name={field.name as unknown as DeepKeys<TData>}
+          validators={buildValidators(field)}
         >
-          {(fieldApi) => (
-            <FormBuilderField
-              field={field as FieldDef<Record<string, unknown>>}
-              fieldApi={fieldApi}
-            />
-          )}
+          {(fieldApi) => <FormBuilderField field={field} fieldApi={fieldApi} />}
         </form.Field>
       ))}
 
       <div className="form-builder__actions">
         {resetLabel && (
-          <Button type="reset" variant="outline">
+          <Button type="reset" variant="ghost">
             {resetLabel}
           </Button>
         )}
