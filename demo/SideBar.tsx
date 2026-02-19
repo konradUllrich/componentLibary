@@ -174,6 +174,15 @@ export const DemoSideBar = () => {
               handleComponentClick("form-controls");
             }}
           />
+          <SidebarSubItem
+            label="Form Builder"
+            icon={<FormInput size={16} />}
+            isActive={currentComponent === "form-builder"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("form-builder");
+            }}
+          />
         </SidebarItem>
         <SidebarItem label="Data Display" icon={<Database size={18} />}>
           <SidebarSubItem

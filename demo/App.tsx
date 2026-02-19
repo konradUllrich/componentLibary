@@ -5,6 +5,7 @@ import {
   BadgePage,
   TextPage,
   FormControlsPage,
+  FormBuilderPage,
   PanelPage,
   AccordionPage,
   DisclosurePage,
@@ -88,6 +89,7 @@ export const App: React.FC = () => {
         {currentComponent === "badge" && <BadgePage />}
         {currentComponent === "text" && <TextPage />}
         {currentComponent === "form-controls" && <FormControlsPage />}
+        {currentComponent === "form-builder" && <FormBuilderPage />}
         {currentComponent === "panel" && <PanelPage />}
         {currentComponent === "accordion" && <AccordionPage />}
         {currentComponent === "disclosure" && <DisclosurePage />}

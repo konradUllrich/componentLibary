@@ -52,6 +52,7 @@ export function createAppRouter(config: RouterConfig) {
     { path: "/components/badge", name: "badge" },
     { path: "/components/text", name: "text" },
     { path: "/components/form-controls", name: "form-controls" },
+    { path: "/components/form-builder", name: "form-builder" },
     { path: "/components/panel", name: "panel" },
     { path: "/components/accordion", name: "accordion" },
     { path: "/components/disclosure", name: "disclosure" },
