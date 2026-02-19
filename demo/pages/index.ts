@@ -2,6 +2,7 @@ export { ButtonPage } from './ButtonPage';
 export { BadgePage } from './BadgePage';
 export { TextPage } from './TextPage';
 export { FormControlsPage } from './FormControlsPage';
+export { FormBuilderPage } from './FormBuilderPage';
 export { PanelPage } from './PanelPage';
 export { AccordionPage } from './AccordionPage';
 export { DisclosurePage } from './DisclosurePage';

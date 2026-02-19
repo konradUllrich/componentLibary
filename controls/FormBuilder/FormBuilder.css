@@ -1,0 +1,54 @@
+/* FormBuilder – form layout and actions */
+
+.form-builder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+/* ── Textarea field ─────────────────────────────────────────── */
+
+.form-builder__textarea {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  transition: var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.form-builder__textarea::placeholder {
+  color: var(--color-muted-foreground);
+}
+
+.form-builder__textarea:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+}
+
+.form-builder__textarea:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+.form-builder__textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  resize: none;
+}
+
+/* ── Actions row ────────────────────────────────────────────── */
+
+.form-builder__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding-top: var(--spacing-2);
+}

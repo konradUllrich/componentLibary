@@ -1,3 +1,4 @@
+export * from "./FormBuilder";
 export * from "./FormControl";
 export * from "./Input";
 export * from "./Label";
