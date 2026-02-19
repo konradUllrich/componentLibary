@@ -31,6 +31,7 @@ export function FormBuilderField<TData extends object>({
     return (
       <>
         {field.render({
+          label: field.label,
           value: state.value,
           onChange: handleChange,
           onBlur: handleBlur,

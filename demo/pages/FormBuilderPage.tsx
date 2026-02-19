@@ -324,9 +324,9 @@ export const FormBuilderPage: React.FC = () => {
                 fieldType: "custom",
                 label: "Rating",
                 colSpan: 1,
-                render: ({ value, onChange, hasError, errorMessage }) => (
+                render: ({ label, value, onChange, hasError, errorMessage }) => (
                   <FormControl
-                    label="Rating"
+                    label={label}
                     error={hasError}
                     errorMessage={errorMessage}
                   >

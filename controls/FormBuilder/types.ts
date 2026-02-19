@@ -152,6 +152,8 @@ export type CheckboxField<TData extends object> = BaseField<
  * and any validation error state so it can integrate with TanStack Form.
  */
 export interface CustomFieldRenderProps {
+  /** The field's label (from the field definition) */
+  label: string;
   /** Current field value (narrowed at runtime by the consumer) */
   value: unknown;
   /** Update the field value */

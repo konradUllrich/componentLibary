@@ -98,7 +98,7 @@ export function FormBuilder<TData extends object>({
           className="form-builder__field"
           style={
             isGrid && (field.colSpan ?? 1) > 1
-              ? { gridColumn: `span ${Math.min(field.colSpan!, columns)}` }
+              ? { gridColumn: `span ${Math.min(field.colSpan ?? 1, columns)}` }
               : undefined
           }
         >
