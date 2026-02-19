@@ -7,6 +7,8 @@ export type {
   NumberField,
   SelectField,
   CheckboxField,
+  CustomField,
+  CustomFieldRenderProps,
   SelectOption,
   FieldValidation,
   FieldValidatorFn,

@@ -8,10 +8,13 @@
  *  – only string keys may be used with text / email / password / textarea / select fields
  *  – only number keys may be used with number fields
  *  – only boolean keys may be used with checkbox fields
+ *  – any key may be used with custom fields
  *
  * Validator functions receive a value that is already narrowed to the
  * correct primitive type for their field, so IDEs provide full autocomplete.
  */
+
+import type React from "react";
 
 // ─── Key-type helpers ─────────────────────────────────────────────────────────
 
@@ -72,6 +75,13 @@ interface BaseField<TData extends object, TName extends keyof TData & string> {
   disabled?: boolean;
   /** Additional CSS class applied to the field wrapper */
   className?: string;
+  /**
+   * Number of grid columns this field spans when the form uses a multi-column
+   * layout via the `columns` prop.  Values are clamped to the total column
+   * count.  Has no effect when `columns` is 1 (the default).
+   * @default 1
+   */
+  colSpan?: number;
 }
 
 // ─── Concrete field types ─────────────────────────────────────────────────────
@@ -134,6 +144,41 @@ export type CheckboxField<TData extends object> = BaseField<
   validate?: FieldValidation<boolean>;
 };
 
+// ─── Custom field ─────────────────────────────────────────────────────────────
+
+/**
+ * Props passed to the `render` function of a `CustomField`.
+ * The custom renderer receives the current value, change/blur handlers,
+ * and any validation error state so it can integrate with TanStack Form.
+ */
+export interface CustomFieldRenderProps {
+  /** Current field value (narrowed at runtime by the consumer) */
+  value: unknown;
+  /** Update the field value */
+  onChange: (value: unknown) => void;
+  /** Notify form that the field has lost focus */
+  onBlur: () => void;
+  /** Whether the field currently has a validation error */
+  hasError: boolean;
+  /** Validation error message, if any */
+  errorMessage: string | undefined;
+}
+
+/**
+ * Custom field – renders any React element via a `render` function.
+ * Use this when no built-in `fieldType` suits your needs (e.g. a date picker,
+ * colour input, or any compound control).  `name` may be any key in `TData`.
+ */
+export type CustomField<TData extends object> = BaseField<
+  TData,
+  keyof TData & string
+> & {
+  fieldType: "custom";
+  /** Render function for the custom control */
+  render: (props: CustomFieldRenderProps) => React.ReactNode;
+  validate?: FieldValidation<unknown>;
+};
+
 // ─── Union ────────────────────────────────────────────────────────────────────
 
 /** All supported field definitions for a given form data type */
@@ -142,7 +187,8 @@ export type FieldDef<TData extends object> =
   | TextareaField<TData>
   | NumberField<TData>
   | SelectField<TData>
-  | CheckboxField<TData>;
+  | CheckboxField<TData>
+  | CustomField<TData>;
 
 // ─── FormBuilder props ────────────────────────────────────────────────────────
 
@@ -178,4 +224,12 @@ export interface FormBuilderProps<TData extends object> {
 
   /** Additional CSS class applied to the `<form>` element */
   className?: string;
+
+  /**
+   * Number of columns in the form grid layout.
+   * When greater than 1 a CSS grid is applied and individual fields can
+   * span multiple columns via their `colSpan` property.
+   * @default 1
+   */
+  columns?: number;
 }
