@@ -342,4 +342,122 @@ test.describe("FormBuilder", () => {
 
     await checkA11y(page, { disableRules: ["color-contrast"] });
   });
+
+  // ─── Custom field type ──────────────────────────────────────────────────────
+
+  test("renders custom field via render prop", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ rating: 0 }}
+        fields={[
+          {
+            name: "rating",
+            fieldType: "custom",
+            label: "Rating",
+            render: ({ value, onChange }) => (
+              <button
+                type="button"
+                data-testid="custom-control"
+                onClick={() => onChange(5)}
+              >
+                {String(value)}
+              </button>
+            ),
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(
+      component.locator('[data-testid="custom-control"]'),
+    ).toBeVisible();
+    await expect(
+      component.locator('[data-testid="custom-control"]'),
+    ).toHaveText("0");
+  });
+
+  test("custom field receives updated value on change", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ rating: 0 }}
+        fields={[
+          {
+            name: "rating",
+            fieldType: "custom",
+            label: "Rating",
+            render: ({ value, onChange }) => (
+              <button
+                type="button"
+                data-testid="custom-control"
+                onClick={() => onChange(5)}
+              >
+                {String(value)}
+              </button>
+            ),
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await component.locator('[data-testid="custom-control"]').click();
+    await expect(
+      component.locator('[data-testid="custom-control"]'),
+    ).toHaveText("5");
+  });
+
+  // ─── Grid layout ───────────────────────────────────────────────────────────
+
+  test("applies grid class when columns > 1", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ name: "", email: "" }}
+        columns={2}
+        fields={[
+          { name: "name", fieldType: "text", label: "Name" },
+          { name: "email", fieldType: "email", label: "Email" },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.locator("form.form-builder--grid")).toBeAttached();
+  });
+
+  test("does not apply grid class when columns is 1", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ name: "" }}
+        columns={1}
+        fields={[{ name: "name", fieldType: "text", label: "Name" }]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(
+      component.locator("form.form-builder--grid"),
+    ).not.toBeAttached();
+  });
+
+  test("field wrapper has gridColumn span style when colSpan > 1", async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ name: "" }}
+        columns={2}
+        fields={[
+          { name: "name", fieldType: "text", label: "Name", colSpan: 2 },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    const fieldWrapper = component
+      .locator(".form-builder__field")
+      .first();
+    const style = await fieldWrapper.getAttribute("style");
+    expect(style).toContain("grid-column");
+  });
 });

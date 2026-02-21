@@ -7,6 +7,22 @@
   width: 100%;
 }
 
+/* ── Grid layout modifier ───────────────────────────────────── */
+
+.form-builder--grid {
+  display: grid;
+  /* grid-template-columns is set via inline style (repeat(N, 1fr)) */
+  align-items: start;
+}
+
+.form-builder--grid .form-builder__field {
+  min-width: 0; /* prevent grid blowout */
+}
+
+.form-builder--grid .form-builder__actions {
+  grid-column: 1 / -1; /* always span all columns */
+}
+
 /* ── Textarea field ─────────────────────────────────────────── */
 
 .form-builder__textarea {

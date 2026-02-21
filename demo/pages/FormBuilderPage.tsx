@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text } from "../../common";
 import { FormBuilder } from "../../controls";
+import { FormControl } from "../../controls";
 
 // ─── Demo: Contact form ───────────────────────────────────────────────────────
 
@@ -40,11 +41,30 @@ const signUpDefaults: SignUpForm = {
   agreeTerms: false,
 };
 
+// ─── Demo: Grid + custom field form ──────────────────────────────────────────
+
+interface ProfileForm {
+  firstName: string;
+  lastName: string;
+  bio: string;
+  rating: number;
+  country: string;
+}
+
+const profileDefaults: ProfileForm = {
+  firstName: "",
+  lastName: "",
+  bio: "",
+  rating: 3,
+  country: "",
+};
+
 // ─── Page component ───────────────────────────────────────────────────────────
 
 export const FormBuilderPage: React.FC = () => {
   const [contactResult, setContactResult] = useState<ContactForm | null>(null);
   const [signUpResult, setSignUpResult] = useState<SignUpForm | null>(null);
+  const [profileResult, setProfileResult] = useState<ProfileForm | null>(null);
 
   return (
     <div className="component-page">
@@ -57,7 +77,9 @@ export const FormBuilderPage: React.FC = () => {
           Field names are constrained by value type — text/select/textarea
           accept only <code>string</code> keys, number fields only{" "}
           <code>number</code> keys, and checkbox fields only{" "}
-          <code>boolean</code> keys.
+          <code>boolean</code> keys. Use <code>fieldType: "custom"</code> to
+          render any control, and the <code>columns</code> prop for a
+          responsive grid layout.
         </Text>
       </div>
 
@@ -250,6 +272,125 @@ export const FormBuilderPage: React.FC = () => {
               }}
             >
               {JSON.stringify(signUpResult, null, 2)}
+            </pre>
+          )}
+        </div>
+      </section>
+
+      {/* ── Grid layout + custom field ─────────────────────────── */}
+      <section className="component-page__section">
+        <Text as="h2" size="2xl" weight="semibold">
+          Grid Layout &amp; Custom Field
+        </Text>
+        <Text color="secondary" size="sm">
+          Use <code>columns</code> to arrange fields in a multi-column grid.
+          Each field can declare <code>colSpan</code> to occupy more columns.
+          The <code>fieldType: "custom"</code> variant lets you embed any
+          control — here a star-rating picker built with plain buttons.
+        </Text>
+
+        <div className="component-page__demo-column">
+          <FormBuilder<ProfileForm>
+            defaultValues={profileDefaults}
+            columns={2}
+            fields={[
+              {
+                name: "firstName",
+                fieldType: "text",
+                label: "First name",
+                placeholder: "Jane",
+                required: true,
+              },
+              {
+                name: "lastName",
+                fieldType: "text",
+                label: "Last name",
+                placeholder: "Doe",
+                required: true,
+              },
+              {
+                name: "country",
+                fieldType: "select",
+                label: "Country",
+                placeholder: "Select a country…",
+                options: [
+                  { label: "Germany", value: "de" },
+                  { label: "United States", value: "us" },
+                  { label: "United Kingdom", value: "uk" },
+                ],
+              },
+              {
+                name: "rating",
+                fieldType: "custom",
+                label: "Rating",
+                colSpan: 1,
+                render: ({ label, value, onChange, hasError, errorMessage }) => (
+                  <FormControl
+                    label={label}
+                    error={hasError}
+                    errorMessage={errorMessage}
+                  >
+                    <div
+                      role="group"
+                      aria-label="Star rating"
+                      style={{ display: "flex", gap: "var(--spacing-1)" }}
+                    >
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          aria-label={`${star} star${star > 1 ? "s" : ""}`}
+                          aria-pressed={(value as number) >= star}
+                          onClick={() => onChange(star)}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",
+                            fontSize: "1.5rem",
+                            padding: "0",
+                            color:
+                              (value as number) >= star
+                                ? "var(--color-warning, #f59e0b)"
+                                : "var(--color-border)",
+                          }}
+                        >
+                          ★
+                        </button>
+                      ))}
+                    </div>
+                  </FormControl>
+                ),
+                validate: {
+                  onChange: (v) =>
+                    (v as number) < 1 ? "Please select a rating" : undefined,
+                },
+              },
+              {
+                name: "bio",
+                fieldType: "textarea",
+                label: "Bio",
+                placeholder: "Tell us about yourself…",
+                rows: 3,
+                colSpan: 2,
+              },
+            ]}
+            onSubmit={(values) => setProfileResult(values)}
+            submitLabel="Save profile"
+            resetLabel="Reset"
+            onReset={() => setProfileResult(null)}
+          />
+
+          {profileResult && (
+            <pre
+              style={{
+                background: "var(--color-muted)",
+                padding: "var(--spacing-4)",
+                borderRadius: "var(--radius-md)",
+                fontSize: "var(--font-size-sm)",
+                overflowX: "auto",
+              }}
+            >
+              {JSON.stringify(profileResult, null, 2)}
             </pre>
           )}
         </div>

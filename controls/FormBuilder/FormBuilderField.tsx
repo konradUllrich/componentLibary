@@ -27,6 +27,21 @@ export function FormBuilderField<TData extends object>({
   const hasError = state.meta.errors.length > 0;
   const errorMessage = hasError ? String(state.meta.errors[0]) : undefined;
 
+  if (field.fieldType === "custom") {
+    return (
+      <>
+        {field.render({
+          label: field.label,
+          value: state.value,
+          onChange: handleChange,
+          onBlur: handleBlur,
+          hasError,
+          errorMessage,
+        })}
+      </>
+    );
+  }
+
   if (field.fieldType === "checkbox") {
     return (
       <Checkbox

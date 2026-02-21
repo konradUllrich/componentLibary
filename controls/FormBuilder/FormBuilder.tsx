@@ -36,9 +36,13 @@ function buildValidators<TData extends object>(field: FieldDef<TData>) {
  * - `'text' | 'email' | 'password' | 'textarea' | 'select'` → `string` keys only
  * - `'number'` → `number` keys only
  * - `'checkbox'` → `boolean` keys only
+ * - `'custom'` → any key, renders via a `render` prop
  *
  * Each field can carry a `validate` object with typed `onChange`/`onBlur`
  * functions that receive the correct primitive value type.
+ *
+ * Use the `columns` prop for a multi-column grid layout; individual fields
+ * can span multiple columns with the `colSpan` field property.
  *
  * @example
  * ```tsx
@@ -62,7 +66,9 @@ export function FormBuilder<TData extends object>({
   resetLabel,
   onReset,
   className,
+  columns,
 }: FormBuilderProps<TData>) {
+  const isGrid = columns !== undefined && columns > 1;
   const form = useForm<TData>({
     defaultValues,
     onSubmit: async ({ value }) => {
@@ -72,7 +78,8 @@ export function FormBuilder<TData extends object>({
 
   return (
     <form
-      className={clsx("form-builder", className)}
+      className={clsx("form-builder", isGrid && "form-builder--grid", className)}
+      style={isGrid ? { gridTemplateColumns: `repeat(${columns}, 1fr)` } : undefined}
       onSubmit={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -86,13 +93,22 @@ export function FormBuilder<TData extends object>({
       noValidate
     >
       {fields.map((field) => (
-        <form.Field
+        <div
           key={field.name}
-          name={field.name as unknown as DeepKeys<TData>}
-          validators={buildValidators(field)}
+          className="form-builder__field"
+          style={
+            isGrid && (field.colSpan ?? 1) > 1
+              ? { gridColumn: `span ${Math.min(field.colSpan ?? 1, columns)}` }
+              : undefined
+          }
         >
-          {(fieldApi) => <FormBuilderField field={field} fieldApi={fieldApi} />}
-        </form.Field>
+          <form.Field
+            name={field.name as unknown as DeepKeys<TData>}
+            validators={buildValidators(field)}
+          >
+            {(fieldApi) => <FormBuilderField field={field} fieldApi={fieldApi} />}
+          </form.Field>
+        </div>
       ))}
 
       <div className="form-builder__actions">
