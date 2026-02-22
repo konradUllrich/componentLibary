@@ -1,83 +1,130 @@
-import React from 'react';
-import { DateComponent, Text } from '../../common';
+import React from "react";
+import { DateComponent, Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 export const DatePage: React.FC = () => {
-  const sampleDate = new Date('2024-03-15T14:30:00');
+  const sampleDate = new Date("2024-03-15T14:30:00");
 
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Date Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Date Component
+        </Text>
         <Text color="secondary">
           Display formatted dates with multiple format options and locales
         </Text>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Format Options</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Format Options
+        </Text>
         <Text color="secondary" size="sm">
           Different date formatting options
         </Text>
         <div className="component-page__demo">
           <div>
-            <Text weight="medium" size="sm">Short format (default):</Text>
-            <Text><DateComponent date={sampleDate} format="short" /></Text>
+            <Text weight="medium" size="sm">
+              Short format (default):
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="short" />
+            </Text>
           </div>
           <div>
-            <Text weight="medium" size="sm">Long format:</Text>
-            <Text><DateComponent date={sampleDate} format="long" /></Text>
+            <Text weight="medium" size="sm">
+              Long format:
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="long" />
+            </Text>
           </div>
           <div>
-            <Text weight="medium" size="sm">DateTime format:</Text>
-            <Text><DateComponent date={sampleDate} format="datetime" /></Text>
+            <Text weight="medium" size="sm">
+              DateTime format:
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="datetime" />
+            </Text>
           </div>
           <div>
-            <Text weight="medium" size="sm">Time only:</Text>
-            <Text><DateComponent date={sampleDate} format="time" /></Text>
+            <Text weight="medium" size="sm">
+              Time only:
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="time" />
+            </Text>
           </div>
         </div>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Locales</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Locales
+        </Text>
         <Text color="secondary" size="sm">
           Support for different locale formats (default: de-DE)
         </Text>
         <div className="component-page__demo">
           <div>
-            <Text weight="medium" size="sm">German (de-DE):</Text>
-            <Text><DateComponent date={sampleDate} format="long" locale="de-DE" /></Text>
+            <Text weight="medium" size="sm">
+              German (de-DE):
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="long" locale="de-DE" />
+            </Text>
           </div>
           <div>
-            <Text weight="medium" size="sm">US English (en-US):</Text>
-            <Text><DateComponent date={sampleDate} format="long" locale="en-US" /></Text>
+            <Text weight="medium" size="sm">
+              US English (en-US):
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="long" locale="en-US" />
+            </Text>
           </div>
           <div>
-            <Text weight="medium" size="sm">British English (en-GB):</Text>
-            <Text><DateComponent date={sampleDate} format="long" locale="en-GB" /></Text>
+            <Text weight="medium" size="sm">
+              British English (en-GB):
+            </Text>
+            <Text>
+              <DateComponent date={sampleDate} format="long" locale="en-GB" />
+            </Text>
           </div>
         </div>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Null/Undefined Handling</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Null/Undefined Handling
+        </Text>
         <Text color="secondary" size="sm">
           Graceful handling of missing dates with fallback
         </Text>
         <div className="component-page__demo">
           <div>
-            <Text weight="medium" size="sm">Null date (default fallback):</Text>
-            <Text><DateComponent date={null} /></Text>
+            <Text weight="medium" size="sm">
+              Null date (default fallback):
+            </Text>
+            <Text>
+              <DateComponent date={null} />
+            </Text>
           </div>
           <div>
-            <Text weight="medium" size="sm">Null date (custom fallback):</Text>
-            <Text><DateComponent date={null} fallback="No date available" /></Text>
+            <Text weight="medium" size="sm">
+              Null date (custom fallback):
+            </Text>
+            <Text>
+              <DateComponent date={null} fallback="No date available" />
+            </Text>
           </div>
         </div>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { DateComponent } from '@konradullrich/mp-components';
 

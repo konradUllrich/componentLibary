@@ -1,42 +1,75 @@
-import React from 'react';
-import { Sidebar, 
-  SidebarToggle, 
-  SidebarNav, 
-  SidebarItem, 
-  SidebarSubItem, Page, Section } from '../../layout';
-import { Text } from '../../common';
+import React from "react";
+import {
+  Sidebar,
+  SidebarToggle,
+  SidebarNav,
+  SidebarItem,
+  SidebarSubItem,
+  Page,
+  Section,
+  Page,
+  Section,
+} from "../../layout";
+import { Text } from "../../common";
 
 export const SidebarPage: React.FC = () => {
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Sidebar Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Sidebar Component
+        </Text>
         <Text color="secondary">
-          Responsive sidebar with collapsible navigation for desktop and mobile drawer
+          Responsive sidebar with collapsible navigation for desktop and mobile
+          drawer
         </Text>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Features</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Features
+        </Text>
         <Text color="secondary" size="sm">
           The Sidebar component provides:
         </Text>
-        <ul style={{ marginTop: '1rem', marginLeft: '1.5rem' }}>
-          <li><Text>Responsive design: drawer on mobile, collapsible on desktop</Text></li>
-          <li><Text>Toggle button for expanding/collapsing</Text></li>
-          <li><Text>Nested navigation with sub-items</Text></li>
-          <li><Text>Active state tracking</Text></li>
-          <li><Text>Customizable width and breakpoint</Text></li>
+        <ul style={{ marginTop: "1rem", marginLeft: "1.5rem" }}>
+          <li>
+            <Text>
+              Responsive design: drawer on mobile, collapsible on desktop
+            </Text>
+          </li>
+          <li>
+            <Text>Toggle button for expanding/collapsing</Text>
+          </li>
+          <li>
+            <Text>Nested navigation with sub-items</Text>
+          </li>
+          <li>
+            <Text>Active state tracking</Text>
+          </li>
+          <li>
+            <Text>Customizable width and breakpoint</Text>
+          </li>
         </ul>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Basic Example</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Basic Example
+        </Text>
         <Text color="secondary" size="sm">
           Sidebar with navigation items
         </Text>
         <div className="component-page__demo">
-          <div style={{ height: '400px', position: 'relative', border: '1px solid #e0e0e0', borderRadius: '4px', overflow: 'hidden' }}>
+          <div
+            style={{
+              height: "400px",
+              position: "relative",
+              border: "1px solid #e0e0e0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+          >
             <Sidebar defaultOpen={true}>
               <SidebarToggle />
               <SidebarNav>
@@ -54,7 +87,9 @@ export const SidebarPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { 
   Sidebar, 

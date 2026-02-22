@@ -1,5 +1,6 @@
 import React from "react";
 import { UserAvatar, UserAvatars, Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 const sampleUsers = [
   { id: 1, fullName: "John Doe", initials: "JD" },

@@ -15,7 +15,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleResolution": "bundler",
@@ -23,6 +23,17 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": [
+    "vite-env.d.ts",
+    "index.ts",
+    "common",
+    "controls",
+    "data-display",
+    "layout",
+    "styles",
+    "demo",
+    "e2e",
+    "playwright"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,24 +1,37 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Input, Checkbox, Radio, Select, FormControl, CheckboxGroup, Combobox } from '../../controls';
-import { Text } from '../../common';
+import React, { ChangeEvent, useState } from "react";
+import {
+  Input,
+  Checkbox,
+  Radio,
+  Select,
+  FormControl,
+  CheckboxGroup,
+  Combobox,
+} from "../../controls";
+import { Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 export const FormControlsPage: React.FC = () => {
   const [checkboxChecked, setCheckboxChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState('option1');
-  const [checkboxGroup, setCheckboxGroup] = useState<string[]>(['option1']);
-  const [comboboxValue, setComboboxValue] = useState('');
+  const [radioValue, setRadioValue] = useState("option1");
+  const [checkboxGroup, setCheckboxGroup] = useState<string[]>(["option1"]);
+  const [comboboxValue, setComboboxValue] = useState("");
 
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Form Controls</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Form Controls
+        </Text>
         <Text color="secondary">
           Form input components with validation and error handling
         </Text>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Input</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Input
+        </Text>
         <Text color="secondary" size="sm">
           Text input with label and helper text
         </Text>
@@ -37,7 +50,9 @@ export const FormControlsPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Checkbox</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Checkbox
+        </Text>
         <Text color="secondary" size="sm">
           Single checkbox with label
         </Text>
@@ -56,7 +71,9 @@ export const FormControlsPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Radio Group</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Radio Group
+        </Text>
         <Text color="secondary" size="sm">
           Multiple radio options
         </Text>
@@ -66,7 +83,7 @@ export const FormControlsPage: React.FC = () => {
               <Radio
                 name="radio-group"
                 value="option1"
-                checked={radioValue === 'option1'}
+                checked={radioValue === "option1"}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setRadioValue(e.target.value)
                 }
@@ -76,7 +93,7 @@ export const FormControlsPage: React.FC = () => {
               <Radio
                 name="radio-group"
                 value="option2"
-                checked={radioValue === 'option2'}
+                checked={radioValue === "option2"}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setRadioValue(e.target.value)
                 }
@@ -89,7 +106,9 @@ export const FormControlsPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Checkbox Group</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Checkbox Group
+        </Text>
         <Text color="secondary" size="sm">
           Multiple checkbox options
         </Text>
@@ -97,9 +116,9 @@ export const FormControlsPage: React.FC = () => {
           <FormControl label="Checkbox Group">
             <CheckboxGroup
               options={[
-                { value: 'option1', label: 'Option 1' },
-                { value: 'option2', label: 'Option 2' },
-                { value: 'option3', label: 'Option 3' },
+                { value: "option1", label: "Option 1" },
+                { value: "option2", label: "Option 2" },
+                { value: "option3", label: "Option 3" },
               ]}
               value={checkboxGroup}
               onChange={setCheckboxGroup}
@@ -109,7 +128,9 @@ export const FormControlsPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Select</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Select
+        </Text>
         <Text color="secondary" size="sm">
           Dropdown selection
         </Text>
@@ -118,9 +139,9 @@ export const FormControlsPage: React.FC = () => {
             <Select
               placeholder="Select an option..."
               options={[
-                { value: '1', label: 'Option 1' },
-                { value: '2', label: 'Option 2' },
-                { value: '3', label: 'Option 3' },
+                { value: "1", label: "Option 1" },
+                { value: "2", label: "Option 2" },
+                { value: "3", label: "Option 3" },
               ]}
             />
           </FormControl>
@@ -128,7 +149,9 @@ export const FormControlsPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Combobox</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Combobox
+        </Text>
         <Text color="secondary" size="sm">
           Searchable autocomplete dropdown with keyboard navigation
         </Text>
@@ -138,16 +161,16 @@ export const FormControlsPage: React.FC = () => {
             placeholder="Search countries..."
             helperText="Type to filter options"
             options={[
-              { value: 'us', label: 'United States' },
-              { value: 'uk', label: 'United Kingdom' },
-              { value: 'ca', label: 'Canada' },
-              { value: 'au', label: 'Australia' },
-              { value: 'de', label: 'Germany' },
-              { value: 'fr', label: 'France' },
-              { value: 'it', label: 'Italy' },
-              { value: 'es', label: 'Spain' },
-              { value: 'jp', label: 'Japan' },
-              { value: 'cn', label: 'China' },
+              { value: "us", label: "United States" },
+              { value: "uk", label: "United Kingdom" },
+              { value: "ca", label: "Canada" },
+              { value: "au", label: "Australia" },
+              { value: "de", label: "Germany" },
+              { value: "fr", label: "France" },
+              { value: "it", label: "Italy" },
+              { value: "es", label: "Spain" },
+              { value: "jp", label: "Japan" },
+              { value: "cn", label: "China" },
             ]}
             value={comboboxValue}
             onValueChange={setComboboxValue}
@@ -158,9 +181,9 @@ export const FormControlsPage: React.FC = () => {
             placeholder="Filled variant..."
             variant="filled"
             options={[
-              { value: '1', label: 'Option 1' },
-              { value: '2', label: 'Option 2' },
-              { value: '3', label: 'Option 3' },
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+              { value: "3", label: "Option 3" },
             ]}
           />
 
@@ -170,9 +193,9 @@ export const FormControlsPage: React.FC = () => {
             error
             errorMessage="Please select a valid option"
             options={[
-              { value: '1', label: 'Option 1' },
-              { value: '2', label: 'Option 2' },
-              { value: '3', label: 'Option 3' },
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
+              { value: "3", label: "Option 3" },
             ]}
           />
 
@@ -181,8 +204,8 @@ export const FormControlsPage: React.FC = () => {
             placeholder="This is disabled..."
             disabled
             options={[
-              { value: '1', label: 'Option 1' },
-              { value: '2', label: 'Option 2' },
+              { value: "1", label: "Option 1" },
+              { value: "2", label: "Option 2" },
             ]}
           />
 
@@ -190,16 +213,18 @@ export const FormControlsPage: React.FC = () => {
             label="With Disabled Options"
             placeholder="Search..."
             options={[
-              { value: '1', label: 'Available Option 1' },
-              { value: '2', label: 'Disabled Option', disabled: true },
-              { value: '3', label: 'Available Option 2' },
+              { value: "1", label: "Available Option 1" },
+              { value: "2", label: "Disabled Option", disabled: true },
+              { value: "3", label: "Available Option 2" },
             ]}
           />
         </div>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { Input, Checkbox, Select, Combobox, FormControl } from '@konradullrich/mp-components';
 
