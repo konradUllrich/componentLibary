@@ -1,6 +1,6 @@
 {
   "name": "@konradullrich/mp-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable React component library built with Radix UI primitives and TanStack Form & Tables",
   "type": "module",
   "main": "./dist/index.js",
