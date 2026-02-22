@@ -1,7 +1,7 @@
 ---
 
-name:
-description: Custom mpComponents Client
+name:Custom mpComponents Client
+description: 
 Custom Copilot agent for the **mpComponents** React component library.  
 This agent enforces project standards and guarantees all tests pass at every step.
 ---
