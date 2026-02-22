@@ -86,44 +86,40 @@ export interface TextProps extends React.HTMLAttributes<HTMLElement> {
  * <Text truncate={3}>Multi-line text truncated after 3 lines...</Text>
  * ```
  */
-export const Text = React.forwardRef<HTMLElement, TextProps>(
-  (
+export const Text = React.forwardRef<HTMLElement, TextProps>((props, ref) => {
+  const {
+    as: Element = "p",
+    size = "base",
+    weight = "normal",
+    align,
+    color = "default",
+    truncate,
+    className,
+    children,
+    ...restProps
+  } = props;
+
+  return React.createElement(
+    Element as React.ElementType,
     {
-      as: Element = "p",
-      size = "base",
-      weight = "normal",
-      align,
-      color = "default",
-      truncate,
-      className,
-      children,
-      ...props
+      ref,
+      className: clsx(
+        "text",
+        `text--${size}`,
+        `text--${weight}`,
+        align && `text--${align}`,
+        `text--${color}`,
+        truncate && "text--truncate",
+        className,
+      ),
+      style: {
+        ...(truncate && ({ "--line-clamp": truncate } as React.CSSProperties)),
+        ...restProps.style,
+      },
+      ...restProps,
     },
-    ref,
-  ) => {
-    return (
-      <Element
-        ref={ref as React.Ref<HTMLElement>}
-        className={clsx(
-          "text",
-          `text--${size}`,
-          `text--${weight}`,
-          align && `text--${align}`,
-          `text--${color}`,
-          truncate && "text--truncate",
-          className,
-        )}
-        style={{
-          ...(truncate &&
-            ({ "--line-clamp": truncate } as React.CSSProperties)),
-          ...props.style,
-        }}
-        {...props}
-      >
-        {children}
-      </Element>
-    );
-  },
-);
+    children,
+  );
+});
 
 Text.displayName = "Text";

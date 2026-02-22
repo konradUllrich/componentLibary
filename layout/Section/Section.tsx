@@ -38,18 +38,23 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
  * ```
  */
 export const Section = React.forwardRef<HTMLElement, SectionProps>(
-  (
-    { as: Element = "section", variant = "default", className, children, ...props },
-    ref,
-  ) => {
-    return (
-      <Element
-        ref={ref as React.Ref<HTMLElement>}
-        className={clsx("section", `section--${variant}`, className)}
-        {...props}
-      >
-        {children}
-      </Element>
+  (props, ref) => {
+    const {
+      as: Element = "section",
+      variant = "default",
+      className,
+      children,
+      ...restProps
+    } = props;
+
+    return React.createElement(
+      Element as React.ElementType,
+      {
+        ref,
+        className: clsx("section", `section--${variant}`, className),
+        ...restProps,
+      },
+      children,
     );
   },
 );

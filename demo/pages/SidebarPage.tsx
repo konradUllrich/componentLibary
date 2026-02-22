@@ -7,8 +7,6 @@ import {
   SidebarSubItem,
   Page,
   Section,
-  Page,
-  Section,
 } from "../../layout";
 import { Text } from "../../common";
 

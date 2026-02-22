@@ -1,5 +1,8 @@
-import { Member } from "@store/boardData";
-import { createElement } from "../../util/createElement";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+// NOTE: This is an orphaned file. Not used in the component library.
+// import { Member } from "@store/boardData";
+// import { createElement } from "../../util/createElement";
 import { getInitialsColor } from "./utils";
 
 import "./UserAvatars.css";
@@ -61,8 +64,8 @@ export class VanillaUserAvatars {
       size === "small"
         ? "userAvatars-avatarSm"
         : size === "large"
-        ? "userAvatars-avatarLg"
-        : "userAvatars-avatarMd";
+          ? "userAvatars-avatarLg"
+          : "userAvatars-avatarMd";
 
     const avatarClass = `userAvatars-avatar ${sizeClass} ${className}`.trim();
 
@@ -136,14 +139,14 @@ export class VanillaUserAvatars {
       maxVisible?: number;
       showAddUser?: boolean;
       cardId?: string;
-    } = {}
+    } = {},
   ) {
     const { maxVisible = 5, showAddUser = false, ...avatarOptions } = options;
     const visibleMembers = members.slice(0, maxVisible);
     const remainingCount = members.length - maxVisible;
 
     const avatars = visibleMembers.map((member) =>
-      this.getUserAvatar(member, avatarOptions)
+      this.getUserAvatar(member, avatarOptions),
     );
 
     if (remainingCount > 0) {
@@ -151,8 +154,8 @@ export class VanillaUserAvatars {
         avatarOptions.size === "small"
           ? "userAvatars-avatarSm"
           : avatarOptions.size === "large"
-          ? "userAvatars-avatarLg"
-          : "userAvatars-avatarMd";
+            ? "userAvatars-avatarLg"
+            : "userAvatars-avatarMd";
       avatars.push(
         this.createElement({
           tag: "div",
@@ -161,7 +164,7 @@ export class VanillaUserAvatars {
           attributes: [
             ...this.getAccessibleTitle(`${remainingCount} weitere Mitglieder`),
           ],
-        })
+        }),
       );
     }
 
@@ -172,7 +175,7 @@ export class VanillaUserAvatars {
           size: avatarOptions.size || "medium",
           className: avatarOptions.className,
           cardId: options.cardId,
-        })
+        }),
       );
     }
 
@@ -191,8 +194,8 @@ export class VanillaUserAvatars {
       size === "small"
         ? "userAvatars-avatarSm"
         : size === "large"
-        ? "userAvatars-avatarLg"
-        : "userAvatars-avatarMd";
+          ? "userAvatars-avatarLg"
+          : "userAvatars-avatarMd";
     const avatarClass =
       `userAvatars-avatar ${sizeClass} userAvatars-addUser ${className}`.trim();
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { RadixSelect, SelectItem } from "../ReactSelect";
+import { ReactSelect, ReactSelectItem } from "../ReactSelect";
 import { NativeSelect } from "../NativeSelect";
 import { useIsMobile } from "./useIsMobile";
 
@@ -155,7 +155,7 @@ export const Select = ({
   }
 
   return (
-    <RadixSelect
+    <ReactSelect
       variant={variant}
       size={size}
       error={error}
@@ -170,15 +170,15 @@ export const Select = ({
       className={className}
     >
       {options.map((option) => (
-        <SelectItem
+        <ReactSelectItem
           key={option.value}
           value={option.value}
           disabled={option.disabled}
         >
           {option.label}
-        </SelectItem>
+        </ReactSelectItem>
       ))}
-    </RadixSelect>
+    </ReactSelect>
   );
 };
 

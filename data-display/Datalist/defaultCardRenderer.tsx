@@ -5,9 +5,7 @@ import { Card, CardContent } from "../../layout/Card";
  * Default card renderer for Datalist component
  * Automatically renders all columns as card fields
  */
-export const createDefaultCardRenderer = <T extends Record<string, unknown>>(
-  table: TanstackTable<T>,
-) => {
+export const createDefaultCardRenderer = <T,>(table: TanstackTable<T>) => {
   return (item: T, index: number) => {
     // Find the row in the table that matches this item
     const row = table.getRowModel().rows.find((r) => r.original === item);

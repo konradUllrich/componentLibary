@@ -11,8 +11,8 @@ export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionEle
     id: string;
     getVisibleCells: () => Array<{
       id: string;
-      column: { 
-        getSize: () => number; 
+      column: {
+        getSize: () => number;
         columnDef: { cell: unknown };
       };
       getContext: () => unknown;
@@ -49,7 +49,11 @@ export const TableBody = React.forwardRef<
             className="table__cell"
             style={{ width: cell.column.getSize() }}
           >
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            {flexRender(
+              cell.column.columnDef.cell as React.ReactNode,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              cell.getContext() as any,
+            )}
           </td>
         ))}
       </tr>

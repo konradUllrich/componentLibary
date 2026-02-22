@@ -102,7 +102,7 @@ export interface DatalistProps<T> {
  * />
  * ```
  */
-const DatalistComponent = <T extends Record<string, unknown>>(
+const DatalistComponent = <T,>(
   {
     data,
     columns,
@@ -192,9 +192,7 @@ const DatalistComponent = <T extends Record<string, unknown>>(
   );
 };
 
-const DatalistWithRef = React.forwardRef(DatalistComponent) as <
-  T extends Record<string, unknown>,
->(
+const DatalistWithRef = React.forwardRef(DatalistComponent) as <T>(
   props: DatalistProps<T> & {
     ref?: React.ForwardedRef<HTMLTableElement>;
   },

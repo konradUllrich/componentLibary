@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import { Datalist } from "./Datalist";
 import { checkA11y } from "../../playwright/test-utils";
-import { createColumnHelper } from "@tanstack/react-table";
+import { createColumnHelper, type ColumnDef } from "@tanstack/react-table";
 import React from "react";
 
 /**
@@ -299,7 +299,9 @@ test.describe("Datalist Component", () => {
     );
 
     expect(refElement).toBeTruthy();
-    expect(refElement?.tagName).toBe("TABLE");
+    if (refElement) {
+      expect((refElement as HTMLTableElement).tagName).toBe("TABLE");
+    }
   });
 
   test("should pass accessibility checks in table variant", async ({
@@ -459,10 +461,19 @@ test.describe("Datalist Component", () => {
       // This is testing the edge case where items don't have ids
       await mount(
         <Datalist
-          data={itemsWithoutId as unknown as DataItem[]}
-          columns={noIdColumns}
+          data={itemsWithoutId as unknown as Array<Record<string, unknown>>}
+          columns={
+            noIdColumns as unknown as ColumnDef<
+              Record<string, unknown>,
+              unknown
+            >[]
+          }
           variant="card"
-          renderCard={renderNoId as (item: DataItem) => JSX.Element}
+          renderCard={
+            renderNoId as unknown as (
+              item: Record<string, unknown>,
+            ) => React.ReactNode
+          }
         />,
       );
 

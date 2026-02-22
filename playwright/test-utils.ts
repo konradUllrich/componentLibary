@@ -1,5 +1,6 @@
 // playwright/test-utils.ts
-import { expect, Page, Locator } from "@playwright/experimental-ct-react";
+import { expect } from "@playwright/experimental-ct-react";
+import { Page, Locator } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 /**

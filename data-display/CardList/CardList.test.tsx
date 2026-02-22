@@ -199,33 +199,31 @@ test.describe("CardList Component", () => {
       mount,
       page,
     }) => {
-      const component = await mount(
+      await mount(
         <CardList items={mockItems.slice(0, 3)} renderCard={renderCard} />,
       );
 
-      await checkA11y(page, component);
+      await checkA11y(page);
     });
 
     test("should pass accessibility audit when loading", async ({
       mount,
       page,
     }) => {
-      const component = await mount(
+      await mount(
         <CardList items={mockItems} renderCard={renderCard} isLoading={true} />,
       );
 
-      await checkA11y(page, component);
+      await checkA11y(page);
     });
 
     test("should pass accessibility audit when empty", async ({
       mount,
       page,
     }) => {
-      const component = await mount(
-        <CardList items={[]} renderCard={renderCard} />,
-      );
+      await mount(<CardList items={[]} renderCard={renderCard} />);
 
-      await checkA11y(page, component);
+      await checkA11y(page);
     });
   });
 

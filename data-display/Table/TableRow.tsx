@@ -41,7 +41,7 @@ export interface TableRowProps<
  */
 export const TableRow = React.forwardRef(function TableRow<T>(
   { row, isSelected = false, className, ...props }: TableRowProps<T>,
-  ref: React.Ref<HTMLTableRowElement>
+  ref: React.Ref<HTMLTableRowElement>,
 ) {
   return (
     <tr
@@ -61,7 +61,7 @@ export const TableRow = React.forwardRef(function TableRow<T>(
     </tr>
   );
 }) as <T>(
-  props: TableRowProps<T> & { ref?: React.Ref<HTMLTableRowElement> }
+  props: TableRowProps<T> & { ref?: React.Ref<HTMLTableRowElement> },
 ) => React.ReactElement;
 
-TableRow.displayName = "TableRow";
+(TableRow as unknown as { displayName: string }).displayName = "TableRow";

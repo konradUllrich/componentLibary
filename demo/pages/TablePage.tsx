@@ -232,7 +232,8 @@ export const TablePage: React.FC = () => {
           mobile devices.
         </Text>
         <div className="component-page__demo">
-          <Table table={table} />
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <Table table={table as any} />
         </div>
       </Section>
 
@@ -245,7 +246,8 @@ export const TablePage: React.FC = () => {
           sort order.
         </Text>
         <div className="component-page__demo">
-          <Table table={sortableTable} />
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <Table table={sortableTable as any} />
         </div>
       </Section>
 
@@ -258,7 +260,8 @@ export const TablePage: React.FC = () => {
           or hide department members.
         </Text>
         <div className="component-page__demo">
-          <Table table={groupingTable} />
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <Table table={groupingTable as any} />
         </div>
       </Section>
 

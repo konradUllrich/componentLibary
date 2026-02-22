@@ -171,7 +171,9 @@ test.describe("HorizontalNav Component", () => {
     );
 
     expect(refElement).toBeTruthy();
-    expect(refElement?.tagName).toBe("NAV");
+    if (refElement) {
+      expect((refElement as HTMLElement).tagName).toBe("NAV");
+    }
   });
 
   test("should spread additional HTML attributes", async ({ mount }) => {
