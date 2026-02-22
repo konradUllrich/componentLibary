@@ -133,10 +133,6 @@
   display: none;
 }
 
-.sidebar__nav--collapsed .sidebar-item__chevron {
-  display: none;
-}
-
 /* Modifier: Nested container */
 .sidebar-item--nested {
   border-left: 2px solid var(--color-primary-light);

@@ -3,7 +3,7 @@
  * Controls whether routes use normal URL paths or URL parameters
  */
 
-export type RouterMode = 'url' | 'param';
+export type RouterMode = "url" | "param";
 
 export interface RouterConfig {
   mode: RouterMode;
@@ -15,8 +15,8 @@ export interface RouterConfig {
  * Can be overridden by environment variables or runtime configuration
  */
 export const defaultRouterConfig: RouterConfig = {
-  mode: (import.meta.env.VITE_ROUTER_MODE as RouterMode) || 'url',
-  paramName: 'route',
+  mode: "param",
+  paramName: "my-approute",
 };
 
 /**

@@ -83,11 +83,13 @@ export function createAppRouter(config: RouterConfig) {
     ...componentRoutes,
   ]);
 
-  return createRouter({
+  const router = createRouter({
     routeTree,
     defaultPreload: "intent",
     basepath: import.meta.env.BASE_URL || "/",
   });
+
+  return router;
 }
 
 // Export route paths for easy access

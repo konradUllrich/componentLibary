@@ -1,7 +1,7 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
 import { FormBuilder } from "./FormBuilder";
-import { BlurValidationForm } from "./FormBuilder.fixtures";
+import { BlurValidationForm, CustomFieldForm } from "./FormBuilder.fixtures";
 import { checkA11y } from "../../playwright/test-utils";
 
 // ─── Shared test data ─────────────────────────────────────────────────────────
@@ -144,9 +144,9 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    await expect(
-      component.locator('button[type="submit"]'),
-    ).toContainText("Submit");
+    await expect(component.locator('button[type="submit"]')).toContainText(
+      "Submit",
+    );
   });
 
   test("renders custom submit label", async ({ mount }) => {
@@ -162,7 +162,9 @@ test.describe("FormBuilder", () => {
     await expect(component.locator('button[type="submit"]')).toHaveText("Send");
   });
 
-  test("renders reset button when resetLabel is provided", async ({ mount }) => {
+  test("renders reset button when resetLabel is provided", async ({
+    mount,
+  }) => {
     const component = await mount(
       <FormBuilder
         defaultValues={{ name: "" }}
@@ -202,18 +204,16 @@ test.describe("FormBuilder", () => {
     await expect(component.locator('input[type="text"]')).toHaveValue("Alice");
   });
 
-  test("shows validation error after field is blurred", async ({
-    mount,
-  }) => {
+  test("shows validation error after field is blurred", async ({ mount }) => {
     // BlurValidationForm uses a module-level onBlur validator so it runs
     // fully in the browser context (no cross-process callback round-trip).
     const component = await mount(<BlurValidationForm />);
     const input = component.locator('input[type="text"]');
     await input.click();
     await input.evaluate((el) => (el as HTMLInputElement).blur());
-    await expect(
-      component.locator(".form-control__message--error"),
-    ).toHaveText("Name is required");
+    await expect(component.locator(".form-control__message--error")).toHaveText(
+      "Name is required",
+    );
   });
 
   test("calls onSubmit with typed values", async ({ mount }) => {
@@ -236,12 +236,8 @@ test.describe("FormBuilder", () => {
     await component.locator('input[type="email"]').fill("bob@example.com");
     await component.locator('button[type="submit"]').click();
 
-    await expect
-      .poll(() => submittedValues?.name)
-      .toBe("Bob");
-    await expect
-      .poll(() => submittedValues?.email)
-      .toBe("bob@example.com");
+    await expect.poll(() => submittedValues?.name).toBe("Bob");
+    await expect.poll(() => submittedValues?.email).toBe("bob@example.com");
   });
 
   test("resets form on reset button click", async ({ mount }) => {
@@ -346,28 +342,7 @@ test.describe("FormBuilder", () => {
   // ─── Custom field type ──────────────────────────────────────────────────────
 
   test("renders custom field via render prop", async ({ mount }) => {
-    const component = await mount(
-      <FormBuilder
-        defaultValues={{ rating: 0 }}
-        fields={[
-          {
-            name: "rating",
-            fieldType: "custom",
-            label: "Rating",
-            render: ({ value, onChange }) => (
-              <button
-                type="button"
-                data-testid="custom-control"
-                onClick={() => onChange(5)}
-              >
-                {String(value)}
-              </button>
-            ),
-          },
-        ]}
-        onSubmit={() => {}}
-      />,
-    );
+    const component = await mount(<CustomFieldForm />);
 
     await expect(
       component.locator('[data-testid="custom-control"]'),
@@ -378,28 +353,7 @@ test.describe("FormBuilder", () => {
   });
 
   test("custom field receives updated value on change", async ({ mount }) => {
-    const component = await mount(
-      <FormBuilder
-        defaultValues={{ rating: 0 }}
-        fields={[
-          {
-            name: "rating",
-            fieldType: "custom",
-            label: "Rating",
-            render: ({ value, onChange }) => (
-              <button
-                type="button"
-                data-testid="custom-control"
-                onClick={() => onChange(5)}
-              >
-                {String(value)}
-              </button>
-            ),
-          },
-        ]}
-        onSubmit={() => {}}
-      />,
-    );
+    const component = await mount(<CustomFieldForm />);
 
     await component.locator('[data-testid="custom-control"]').click();
     await expect(
@@ -422,7 +376,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    await expect(component.locator("form.form-builder--grid")).toBeAttached();
+    await expect(component).toHaveClass(/form-builder--grid/);
   });
 
   test("does not apply grid class when columns is 1", async ({ mount }) => {
@@ -435,9 +389,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    await expect(
-      component.locator("form.form-builder--grid"),
-    ).not.toBeAttached();
+    await expect(component).not.toHaveClass(/form-builder--grid/);
   });
 
   test("field wrapper has gridColumn span style when colSpan > 1", async ({
@@ -454,9 +406,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    const fieldWrapper = component
-      .locator(".form-builder__field")
-      .first();
+    const fieldWrapper = component.locator(".form-builder__field").first();
     const style = await fieldWrapper.getAttribute("style");
     expect(style).toContain("grid-column");
   });

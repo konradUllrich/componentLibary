@@ -14,7 +14,7 @@
   transition: all var(--duration-200) var(--ease-in-out);
   cursor: pointer;
   text-align: left;
-  margin-left: var(--spacing-6);
+  margin-left: var(--spacing-1);
   border-left: 3px solid transparent;
   box-sizing: border-box;
   /* Reset anchor tag defaults */
@@ -89,9 +89,4 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-/* Collapsed state - hide sub-items */
-.sidebar__nav--collapsed .sidebar-subitem {
-  display: none;
 }

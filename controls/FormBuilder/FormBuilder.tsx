@@ -68,7 +68,8 @@ export function FormBuilder<TData extends object>({
   className,
   columns,
 }: FormBuilderProps<TData>) {
-  const isGrid = columns !== undefined && columns > 1;
+  const gridColumns = Number(columns ?? 1);
+  const isGrid = Number.isFinite(gridColumns) && gridColumns > 1;
   const form = useForm<TData>({
     defaultValues,
     onSubmit: async ({ value }) => {
@@ -78,8 +79,16 @@ export function FormBuilder<TData extends object>({
 
   return (
     <form
-      className={clsx("form-builder", isGrid && "form-builder--grid", className)}
-      style={isGrid ? { gridTemplateColumns: `repeat(${columns}, 1fr)` } : undefined}
+      className={clsx(
+        "form-builder",
+        isGrid && "form-builder--grid",
+        className,
+      )}
+      style={
+        isGrid
+          ? { gridTemplateColumns: `repeat(${gridColumns}, 1fr)` }
+          : undefined
+      }
       onSubmit={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -98,7 +107,12 @@ export function FormBuilder<TData extends object>({
           className="form-builder__field"
           style={
             isGrid && (field.colSpan ?? 1) > 1
-              ? { gridColumn: `span ${Math.min(field.colSpan ?? 1, columns)}` }
+              ? {
+                  gridColumn: `span ${Math.min(
+                    field.colSpan ?? 1,
+                    gridColumns,
+                  )}`,
+                }
               : undefined
           }
         >
@@ -106,7 +120,9 @@ export function FormBuilder<TData extends object>({
             name={field.name as unknown as DeepKeys<TData>}
             validators={buildValidators(field)}
           >
-            {(fieldApi) => <FormBuilderField field={field} fieldApi={fieldApi} />}
+            {(fieldApi) => (
+              <FormBuilderField field={field} fieldApi={fieldApi} />
+            )}
           </form.Field>
         </div>
       ))}
