@@ -240,7 +240,7 @@ test.describe("CardList Component", () => {
   test("should display all 6 product cards", async ({ page }) => {
     // Count product cards in the first section
     const productCards = page
-      .locator(".component-page__section")
+      .locator(".section")
       .filter({ hasText: "Product Cards (3 columns)" })
       .locator(".card-list__item");
 
@@ -250,7 +250,7 @@ test.describe("CardList Component", () => {
   test("should display all 3 blog post cards", async ({ page }) => {
     // Count blog post cards
     const blogCards = page
-      .locator(".component-page__section")
+      .locator(".section")
       .filter({ hasText: "Blog Posts (2 columns)" })
       .locator(".card-list__item");
 
@@ -260,7 +260,7 @@ test.describe("CardList Component", () => {
   test("should have accessible card structure", async ({ page }) => {
     // Check that cards are properly structured with semantic elements
     const productSection = page
-      .locator(".component-page__section")
+      .locator(".section")
       .filter({ hasText: "Product Cards (3 columns)" });
 
     // Verify headings are present

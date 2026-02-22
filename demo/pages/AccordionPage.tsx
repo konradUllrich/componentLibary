@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Accordion, Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Page, Panel, Section } from "../../layout";
 
 export const AccordionPage: React.FC = () => {
   const [accordionValue, setAccordionValue] = useState("item1");
@@ -23,7 +23,8 @@ export const AccordionPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Traditional accordion with collapsible sections
         </Text>
-        <div className="component-page__demo-column">
+
+        <Panel variant="subtle">
           <Accordion
             items={[
               {
@@ -49,7 +50,7 @@ export const AccordionPage: React.FC = () => {
               )
             }
           />
-        </div>
+        </Panel>
       </Section>
 
       <Section>

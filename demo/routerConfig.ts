@@ -15,7 +15,7 @@ export interface RouterConfig {
  * Can be overridden by environment variables or runtime configuration
  */
 export const defaultRouterConfig: RouterConfig = {
-  mode: "param",
+  mode: "url", // Use URL paths by default
   paramName: "my-approute",
 };
 

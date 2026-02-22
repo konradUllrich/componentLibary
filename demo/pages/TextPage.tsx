@@ -1,18 +1,23 @@
-import React from 'react';
-import { Text } from '../../common';
+import React from "react";
+import { Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 export const TextPage: React.FC = () => {
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Text Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Text Component
+        </Text>
         <Text color="secondary">
           Flexible text component with semantic HTML and styling options
         </Text>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Sizes</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Sizes
+        </Text>
         <Text color="secondary" size="sm">
           Various text sizes from extra small to 3xl
         </Text>
@@ -28,7 +33,9 @@ export const TextPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Weights</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Weights
+        </Text>
         <Text color="secondary" size="sm">
           Different font weights
         </Text>
@@ -41,7 +48,9 @@ export const TextPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Colors</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Colors
+        </Text>
         <Text color="secondary" size="sm">
           Semantic color options
         </Text>
@@ -55,7 +64,9 @@ export const TextPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { Text } from '@konradullrich/mp-components';
 
