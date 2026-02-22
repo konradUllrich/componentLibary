@@ -5,15 +5,15 @@ export const DatePage: React.FC = () => {
   const sampleDate = new Date('2024-03-15T14:30:00');
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Date Component</Text>
         <Text color="secondary">
           Display formatted dates with multiple format options and locales
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Format Options</Text>
         <Text color="secondary" size="sm">
           Different date formatting options
@@ -36,9 +36,9 @@ export const DatePage: React.FC = () => {
             <Text><DateComponent date={sampleDate} format="time" /></Text>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Locales</Text>
         <Text color="secondary" size="sm">
           Support for different locale formats (default: de-DE)
@@ -57,9 +57,9 @@ export const DatePage: React.FC = () => {
             <Text><DateComponent date={sampleDate} format="long" locale="en-GB" /></Text>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Null/Undefined Handling</Text>
         <Text color="secondary" size="sm">
           Graceful handling of missing dates with fallback
@@ -74,9 +74,9 @@ export const DatePage: React.FC = () => {
             <Text><DateComponent date={null} fallback="No date available" /></Text>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { DateComponent } from '@konradullrich/mp-components';
@@ -103,7 +103,7 @@ export const DatePage: React.FC = () => {
   fallback="No date available" 
 />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

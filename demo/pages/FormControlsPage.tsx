@@ -9,15 +9,15 @@ export const FormControlsPage: React.FC = () => {
   const [comboboxValue, setComboboxValue] = useState('');
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Form Controls</Text>
         <Text color="secondary">
           Form input components with validation and error handling
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Input</Text>
         <Text color="secondary" size="sm">
           Text input with label and helper text
@@ -34,9 +34,9 @@ export const FormControlsPage: React.FC = () => {
             <Input placeholder="Enter text..." />
           </FormControl>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Checkbox</Text>
         <Text color="secondary" size="sm">
           Single checkbox with label
@@ -53,9 +53,9 @@ export const FormControlsPage: React.FC = () => {
             </Checkbox>
           </FormControl>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Radio Group</Text>
         <Text color="secondary" size="sm">
           Multiple radio options
@@ -86,9 +86,9 @@ export const FormControlsPage: React.FC = () => {
             </div>
           </FormControl>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Checkbox Group</Text>
         <Text color="secondary" size="sm">
           Multiple checkbox options
@@ -106,9 +106,9 @@ export const FormControlsPage: React.FC = () => {
             />
           </FormControl>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Select</Text>
         <Text color="secondary" size="sm">
           Dropdown selection
@@ -125,9 +125,9 @@ export const FormControlsPage: React.FC = () => {
             />
           </FormControl>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Combobox</Text>
         <Text color="secondary" size="sm">
           Searchable autocomplete dropdown with keyboard navigation
@@ -196,9 +196,9 @@ export const FormControlsPage: React.FC = () => {
             ]}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Input, Checkbox, Select, Combobox, FormControl } from '@konradullrich/mp-components';
@@ -224,7 +224,7 @@ export const FormControlsPage: React.FC = () => {
   onValueChange={(value) => console.log(value)}
 />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

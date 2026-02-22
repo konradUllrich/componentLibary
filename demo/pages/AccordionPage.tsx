@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { Accordion, Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 export const AccordionPage: React.FC = () => {
   const [accordionValue, setAccordionValue] = useState("item1");
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
           Accordion Component
         </Text>
         <Text color="secondary">
           Collapsible content sections with vertical or tabs layout
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Vertical (Default)
         </Text>
@@ -49,9 +50,9 @@ export const AccordionPage: React.FC = () => {
             }
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Tabs Variant
         </Text>
@@ -80,9 +81,9 @@ export const AccordionPage: React.FC = () => {
             ]}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Usage
         </Text>
@@ -106,7 +107,7 @@ export const AccordionPage: React.FC = () => {
   ]}
 />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

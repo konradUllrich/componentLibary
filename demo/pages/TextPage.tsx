@@ -3,15 +3,15 @@ import { Text } from '../../common';
 
 export const TextPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Text Component</Text>
         <Text color="secondary">
           Flexible text component with semantic HTML and styling options
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Sizes</Text>
         <Text color="secondary" size="sm">
           Various text sizes from extra small to 3xl
@@ -25,9 +25,9 @@ export const TextPage: React.FC = () => {
           <Text size="2xl">2XL Text</Text>
           <Text size="3xl">3XL Text</Text>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Weights</Text>
         <Text color="secondary" size="sm">
           Different font weights
@@ -38,9 +38,9 @@ export const TextPage: React.FC = () => {
           <Text weight="semibold">Semibold Weight</Text>
           <Text weight="bold">Bold Weight</Text>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Colors</Text>
         <Text color="secondary" size="sm">
           Semantic color options
@@ -52,9 +52,9 @@ export const TextPage: React.FC = () => {
           <Text color="primary">Primary Color</Text>
           <Text color="destructive">Destructive Color</Text>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Text } from '@konradullrich/mp-components';
@@ -67,7 +67,7 @@ export const TextPage: React.FC = () => {
   Secondary paragraph text
 </Text>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

@@ -48,3 +48,6 @@ export {
   type HorizontalNavProps,
   type HorizontalNavItemProps,
 } from "./HorizontalNav";
+
+export { Page, type PageProps } from "./Page";
+export { Section, type SectionProps } from "./Section";

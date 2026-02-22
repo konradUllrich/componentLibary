@@ -1,5 +1,5 @@
 import { Text } from "../../common";
-import { Card } from "../../layout";
+import { Card, Page } from "../../layout";
 import { useAppNavigation } from "../useAppNavigation";
 import {
   MousePointerClick,
@@ -32,7 +32,7 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="component-list">
+    <Page maxWidth="xl">
       <div className="home-header">
         <Text as="h1" size="3xl" weight="bold">
           Component Library
@@ -367,6 +367,6 @@ export const HomePage = () => {
           </Text>
         </Card>
       </div>
-    </div>
+    </Page>
   );
 };

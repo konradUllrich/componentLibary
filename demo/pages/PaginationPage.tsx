@@ -7,15 +7,15 @@ paginationStore.getState().setTotalItems(100);
 
 export const PaginationPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Pagination Component</Text>
         <Text color="secondary">
           Navigate through pages of data
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Basic Pagination</Text>
         <Text color="secondary" size="sm">
           Standard pagination with page numbers and navigation
@@ -23,9 +23,9 @@ export const PaginationPage: React.FC = () => {
         <div className="component-page__demo-column">
           <Pagination store={paginationStore} />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Pagination, createPaginationStore } from '@konradullrich/mp-components';
@@ -35,7 +35,7 @@ paginationStore.getState().setTotalItems(100);
 
 <Pagination store={paginationStore} />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

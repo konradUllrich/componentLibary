@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CardList } from '../../data-display';
-import { Card, CardHeader, CardContent, CardFooter } from '../../layout';
+import { Card, CardHeader, CardContent, CardFooter, Page, Section } from '../../layout';
 import { Text, Button, Badge } from '../../common';
 
 interface Product {
@@ -95,15 +95,15 @@ export const CardListPage: React.FC = () => {
   );
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">CardList Component</Text>
         <Text color="secondary">
           Display a responsive grid of cards for structured content
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Product Cards (3 columns)</Text>
         <Text color="secondary" size="sm">
           A grid of product cards with interactive elements
@@ -116,9 +116,9 @@ export const CardListPage: React.FC = () => {
             columns={3}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Blog Posts (2 columns)</Text>
         <Text color="secondary" size="sm">
           Blog post cards with tags and metadata
@@ -131,9 +131,9 @@ export const CardListPage: React.FC = () => {
             columns={2}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Loading State</Text>
         <Text color="secondary" size="sm">
           Display loading indicator
@@ -156,9 +156,9 @@ export const CardListPage: React.FC = () => {
             columns={3}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Empty State</Text>
         <Text color="secondary" size="sm">
           Display message when no items are available
@@ -172,9 +172,9 @@ export const CardListPage: React.FC = () => {
             columns={3}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { CardList } from '@konradullrich/mp-components';
@@ -207,7 +207,7 @@ const products: Product[] = [
   columns={3}
 />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

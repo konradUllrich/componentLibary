@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogTrigger, Button, Text } from '../../common';
+import { Page, Section } from "../../layout";
 
 export const DialogPage: React.FC = () => {
   const [basicOpen, setBasicOpen] = useState(false);
@@ -7,15 +8,15 @@ export const DialogPage: React.FC = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Dialog Component</Text>
         <Text color="secondary">
           Accessible modal dialog with focus trap, keyboard navigation, and overlay
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Basic Dialog</Text>
         <Text color="secondary" size="sm">
           Simple dialog with title and description
@@ -35,9 +36,9 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
           </Dialog>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Custom Content</Text>
         <Text color="secondary" size="sm">
           Dialog with custom title, description, and content structure
@@ -70,9 +71,9 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
           </Dialog>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Confirmation Dialog</Text>
         <Text color="secondary" size="sm">
           Dialog for confirming destructive actions
@@ -98,9 +99,9 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
           </Dialog>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Keyboard Navigation</Text>
         <Text color="secondary" size="sm">
           Dialog supports keyboard interactions for accessibility
@@ -110,9 +111,9 @@ export const DialogPage: React.FC = () => {
           <li><Text size="sm"><strong>Tab</strong> - Navigates between focusable elements (trapped within dialog)</Text></li>
           <li><Text size="sm"><strong>Click overlay</strong> - Closes the dialog</Text></li>
         </ul>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { 
@@ -155,7 +156,7 @@ export const DialogPage: React.FC = () => {
   </DialogContent>
 </Dialog>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

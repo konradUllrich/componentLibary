@@ -11,6 +11,7 @@ import {
   type GroupingState,
 } from "../../data-display/Table";
 import { Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 interface User {
   id: number;
@@ -211,8 +212,8 @@ export const TablePage: React.FC = () => {
   });
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
           Table Component
         </Text>
@@ -220,9 +221,9 @@ export const TablePage: React.FC = () => {
           Flexible table component for displaying structured data with sorting
           and grouping
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Basic Table
         </Text>
@@ -233,9 +234,9 @@ export const TablePage: React.FC = () => {
         <div className="component-page__demo">
           <Table table={table} />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Sortable Table
         </Text>
@@ -246,9 +247,9 @@ export const TablePage: React.FC = () => {
         <div className="component-page__demo">
           <Table table={sortableTable} />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Grouped Table
         </Text>
@@ -259,9 +260,9 @@ export const TablePage: React.FC = () => {
         <div className="component-page__demo">
           <Table table={groupingTable} />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Basic Usage
         </Text>
@@ -295,9 +296,9 @@ const table = useReactTable({
 
 <Table table={table} />`}</code>
         </pre>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Sorting Example
         </Text>
@@ -331,9 +332,9 @@ const table = useReactTable({
 
 <Table table={table} />`}</code>
         </pre>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Grouping Example
         </Text>
@@ -380,7 +381,7 @@ const table = useReactTable({
 
 <Table table={table} />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

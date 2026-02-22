@@ -1,0 +1,43 @@
+/* Section - Content section block */
+
+.section--default {
+  margin-bottom: var(--spacing-12);
+  background: var(--color-background);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Hero variant – for page-level headers/introductions */
+.section--hero {
+  margin-bottom: var(--spacing-10);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.03) 0%,
+    rgba(139, 92, 246, 0.03) 100%
+  );
+  padding: var(--spacing-8);
+  border-radius: var(--radius-xl);
+  border-bottom: 2px solid var(--color-border-light);
+}
+
+.section--hero h1 {
+  margin-bottom: var(--spacing-3);
+  background: var(--color-primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section--default {
+    padding: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .section--hero {
+    padding: var(--spacing-6);
+  }
+}

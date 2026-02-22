@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HorizontalNav } from '../../layout';
+import { HorizontalNav, Page, Section } from '../../layout';
 import { Text } from '../../common';
 
 export const HorizontalNavPage: React.FC = () => {
@@ -49,15 +49,15 @@ export const HorizontalNavPage: React.FC = () => {
   ];
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Horizontal Nav Component</Text>
         <Text color="secondary">
           Horizontal navigation that adapts to mobile with select dropdown
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Basic Navigation</Text>
         <Text color="secondary" size="sm">
           Horizontal navigation bar with active state
@@ -65,9 +65,9 @@ export const HorizontalNavPage: React.FC = () => {
         <div className="component-page__demo">
           <HorizontalNav items={navItems} />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Responsive Behavior</Text>
         <Text color="secondary" size="sm">
           On mobile (width &lt; 768px), the navigation automatically converts to a dropdown select
@@ -77,9 +77,9 @@ export const HorizontalNavPage: React.FC = () => {
             Try resizing your browser window to see the mobile dropdown version
           </Text>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { HorizontalNav } from '@konradullrich/mp-components';
@@ -111,7 +111,7 @@ const navItems = [
 
 <HorizontalNav items={navItems} />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

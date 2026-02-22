@@ -6,15 +6,15 @@ export const TabsPage: React.FC = () => {
   const [pillsTab, setPillsTab] = useState('pills1');
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Tabs Component</Text>
         <Text color="secondary">
           Flexible tabbed interface with keyboard navigation and multiple variants
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Default Variant</Text>
         <Text color="secondary" size="sm">
           Standard tab interface with default styling
@@ -42,9 +42,9 @@ export const TabsPage: React.FC = () => {
             onActiveChange={setActiveTab}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Underline Variant</Text>
         <Text color="secondary" size="sm">
           Tabs with underline indicator for active tab
@@ -71,9 +71,9 @@ export const TabsPage: React.FC = () => {
             ]}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Pills Variant</Text>
         <Text color="secondary" size="sm">
           Tabs styled as pills for a more compact look
@@ -102,9 +102,9 @@ export const TabsPage: React.FC = () => {
             onActiveChange={setPillsTab}
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Tabs } from '@konradullrich/mp-components';
@@ -133,7 +133,7 @@ const [activeTab, setActiveTab] = useState('tab1');
   items={[...]}
 />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

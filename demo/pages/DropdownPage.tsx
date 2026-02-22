@@ -1,4 +1,5 @@
 import React from 'react';
+import { Page, Section } from "../../layout";
 import { 
   Dropdown, 
   DropdownTrigger, 
@@ -14,15 +15,15 @@ export const DropdownPage: React.FC = () => {
   const [lastAction, setLastAction] = React.useState<string>('');
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Dropdown Component</Text>
         <Text color="secondary">
           Accessible dropdown menu with keyboard navigation, item grouping, and positioning
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Basic Dropdown</Text>
         <Text color="secondary" size="sm">
           Simple dropdown menu with basic items
@@ -51,9 +52,9 @@ export const DropdownPage: React.FC = () => {
             </Text>
           )}
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Grouped Items</Text>
         <Text color="secondary" size="sm">
           Dropdown with labels and separators to organize items
@@ -88,9 +89,9 @@ export const DropdownPage: React.FC = () => {
             </DropdownContent>
           </Dropdown>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Disabled Items</Text>
         <Text color="secondary" size="sm">
           Some menu items can be disabled
@@ -117,9 +118,9 @@ export const DropdownPage: React.FC = () => {
             </DropdownContent>
           </Dropdown>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Positioning</Text>
         <Text color="secondary" size="sm">
           Dropdown can be positioned on different sides of the trigger
@@ -181,9 +182,9 @@ export const DropdownPage: React.FC = () => {
             </DropdownContent>
           </Dropdown>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Keyboard Navigation</Text>
         <Text color="secondary" size="sm">
           Dropdown supports keyboard interactions for accessibility
@@ -195,9 +196,9 @@ export const DropdownPage: React.FC = () => {
           <li><Text size="sm"><strong>Escape</strong> - Closes the menu</Text></li>
           <li><Text size="sm"><strong>Enter</strong> - Selects the focused menu item</Text></li>
         </ul>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { 
@@ -245,7 +246,7 @@ export const DropdownPage: React.FC = () => {
   ...
 </DropdownContent>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

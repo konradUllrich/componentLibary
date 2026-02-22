@@ -1,18 +1,18 @@
 import React from 'react';
-import { Flex } from '../../layout';
+import { Flex, Page, Section } from '../../layout';
 import { Text, Button } from '../../common';
 
 export const FlexPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Flex Component</Text>
         <Text color="secondary">
           Flexible wrapper component for creating flexbox layouts
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Direction</Text>
         <Text color="secondary" size="sm">
           Control flex direction (row or column)
@@ -35,9 +35,9 @@ export const FlexPage: React.FC = () => {
             </Flex>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Justify Content</Text>
         <Text color="secondary" size="sm">
           Control horizontal alignment
@@ -66,9 +66,9 @@ export const FlexPage: React.FC = () => {
             </Flex>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Align Items</Text>
         <Text color="secondary" size="sm">
           Control vertical alignment
@@ -83,9 +83,9 @@ export const FlexPage: React.FC = () => {
             </Flex>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Gap Sizes</Text>
         <Text color="secondary" size="sm">
           Different spacing options between items
@@ -108,9 +108,9 @@ export const FlexPage: React.FC = () => {
             </Flex>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Wrap</Text>
         <Text color="secondary" size="sm">
           Items wrap to next line when space is limited
@@ -127,9 +127,9 @@ export const FlexPage: React.FC = () => {
             <Button>Button 8</Button>
           </Flex>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Flex } from '@konradullrich/mp-components';
@@ -152,7 +152,7 @@ export const FlexPage: React.FC = () => {
   {items.map(item => <div key={item.id}>{item.name}</div>)}
 </Flex>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

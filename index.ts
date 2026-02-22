@@ -103,6 +103,10 @@ export {
   type AppHeaderProps,
   type AppSidebarProps,
   type AppMainProps,
+  Page,
+  type PageProps,
+  Section,
+  type SectionProps,
 } from "./layout";
 
 // ========================================

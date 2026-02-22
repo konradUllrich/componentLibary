@@ -11,17 +11,17 @@ const sampleUsers = [
 
 export const UserAvatarsPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
           User Avatars Component
         </Text>
         <Text color="secondary">
           Display user avatars individually or in groups with overflow indicator
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Single Avatar
         </Text>
@@ -33,9 +33,9 @@ export const UserAvatarsPage: React.FC = () => {
           <UserAvatar user={sampleUsers[0]} size="md" />
           <UserAvatar user={sampleUsers[0]} size="lg" />
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Avatar Group
         </Text>
@@ -62,9 +62,9 @@ export const UserAvatarsPage: React.FC = () => {
             <UserAvatars users={sampleUsers} maxVisible={2} size="lg" />
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Usage
         </Text>
@@ -88,7 +88,7 @@ export const UserAvatarsPage: React.FC = () => {
   size="sm"
 />`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };
