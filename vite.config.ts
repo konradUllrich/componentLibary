@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'index.ts'),
       name: 'mpComponents',
       formats: ['es', 'umd'],
       fileName: (format) => `index.${format === 'es' ? 'js' : 'umd.js'}`
