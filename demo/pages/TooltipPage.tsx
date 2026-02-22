@@ -7,18 +7,19 @@ import {
   Button,
   Text 
 } from '../../common';
+import { Page, Section } from "../../layout";
 
 export const TooltipPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Tooltip Component</Text>
         <Text color="secondary">
           Accessible tooltip with hover/focus triggers, configurable delays, and positioning
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Basic Tooltip</Text>
         <Text color="secondary" size="sm">
           Simple tooltip that appears on hover or focus
@@ -35,9 +36,9 @@ export const TooltipPage: React.FC = () => {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Tooltip Positioning</Text>
         <Text color="secondary" size="sm">
           Tooltips can be positioned on different sides of the trigger
@@ -81,9 +82,9 @@ export const TooltipPage: React.FC = () => {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">With Different Variants</Text>
         <Text color="secondary" size="sm">
           Tooltips work with all button variants and other components
@@ -127,9 +128,9 @@ export const TooltipPage: React.FC = () => {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Custom Delay</Text>
         <Text color="secondary" size="sm">
           Customize the delay before tooltips appear
@@ -168,9 +169,9 @@ export const TooltipPage: React.FC = () => {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Long Content</Text>
         <Text color="secondary" size="sm">
           Tooltips automatically wrap long content
@@ -189,9 +190,9 @@ export const TooltipPage: React.FC = () => {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Accessibility Features</Text>
         <Text color="secondary" size="sm">
           Tooltip behavior and keyboard support
@@ -203,9 +204,9 @@ export const TooltipPage: React.FC = () => {
           <li><Text size="sm"><strong>Pointer leave</strong> - Hides tooltip when mouse leaves</Text></li>
           <li><Text size="sm"><strong>Role tooltip</strong> - Proper ARIA role for screen readers</Text></li>
         </ul>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { 
@@ -249,7 +250,7 @@ export const TooltipPage: React.FC = () => {
   </Tooltip>
 </TooltipProvider>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

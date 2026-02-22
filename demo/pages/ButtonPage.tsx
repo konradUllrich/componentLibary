@@ -1,20 +1,21 @@
 import React from "react";
 import { Button } from "../../common";
 import { Text } from "../../common";
+import { Page, Section } from "../../layout";
 
 export const ButtonPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
           Button Component
         </Text>
         <Text color="secondary">
           Versatile button component with multiple variants, sizes, and states
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Variants
         </Text>
@@ -27,9 +28,9 @@ export const ButtonPage: React.FC = () => {
           <Button variant="destructive">Destructive</Button>
           <Button variant="ghost">Ghost</Button>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Sizes
         </Text>
@@ -41,9 +42,9 @@ export const ButtonPage: React.FC = () => {
           <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           States
         </Text>
@@ -72,9 +73,9 @@ export const ButtonPage: React.FC = () => {
             Loading
           </Button>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Usage
         </Text>
@@ -93,7 +94,7 @@ export const ButtonPage: React.FC = () => {
   Processing...
 </Button>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

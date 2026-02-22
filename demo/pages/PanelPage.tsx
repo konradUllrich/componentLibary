@@ -1,18 +1,18 @@
 import React from 'react';
-import { Panel } from '../../layout';
+import { Panel, Page, Section } from '../../layout';
 import { Text } from '../../common';
 
 export const PanelPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Panel Component</Text>
         <Text color="secondary">
           Container component with different visual styles
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Variants</Text>
         <Text color="secondary" size="sm">
           Different panel styles for different contexts
@@ -46,9 +46,9 @@ export const PanelPage: React.FC = () => {
             </Text>
           </Panel>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Panel } from '@konradullrich/mp-components';
@@ -58,7 +58,7 @@ export const PanelPage: React.FC = () => {
   <p>Card content goes here</p>
 </Panel>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

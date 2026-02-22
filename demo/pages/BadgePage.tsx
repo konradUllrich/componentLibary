@@ -1,17 +1,18 @@
 import React from 'react';
 import { Badge, Text } from '../../common';
+import { Page, Section } from '../../layout';
 
 export const BadgePage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Badge Component</Text>
         <Text color="secondary">
           Small status indicators with different colors and styles
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Variants</Text>
         <Text color="secondary" size="sm">
           Different badge colors for different purposes
@@ -24,9 +25,9 @@ export const BadgePage: React.FC = () => {
           <Badge variant="info">Info</Badge>
           <Badge variant="destructive">Destructive</Badge>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Appearances</Text>
         <Text color="secondary" size="sm">
           Different visual styles
@@ -36,9 +37,9 @@ export const BadgePage: React.FC = () => {
           <Badge appearance="outline">Outline</Badge>
           <Badge appearance="subtle">Subtle</Badge>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { Badge } from '@konradullrich/mp-components';
@@ -47,7 +48,7 @@ export const BadgePage: React.FC = () => {
 <Badge variant="warning" appearance="outline">Pending</Badge>
 <Badge variant="destructive">Error</Badge>`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

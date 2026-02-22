@@ -1,11 +1,11 @@
 import React from "react";
-import { AppLayout, AppHeader, AppSidebar, AppMain } from "../../layout";
+import { AppLayout, AppHeader, AppSidebar, AppMain, Page, Section } from '../../layout';
 import { Text } from "../../common";
 
 export const AppLayoutPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
           AppLayout Component
         </Text>
@@ -13,9 +13,9 @@ export const AppLayoutPage: React.FC = () => {
           Complete application layout with header, sidebar, and main content
           area
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Features
         </Text>
@@ -36,9 +36,9 @@ export const AppLayoutPage: React.FC = () => {
             <Text>Responsive layout that adapts to mobile</Text>
           </li>
         </ul>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Basic Example
         </Text>
@@ -84,9 +84,9 @@ export const AppLayoutPage: React.FC = () => {
             </AppLayout>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Usage
         </Text>
@@ -121,7 +121,7 @@ function App() {
   );
 }`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

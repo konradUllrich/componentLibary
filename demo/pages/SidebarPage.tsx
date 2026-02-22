@@ -1,24 +1,22 @@
 import React from 'react';
-import { 
-  Sidebar, 
+import { Sidebar, 
   SidebarToggle, 
   SidebarNav, 
   SidebarItem, 
-  SidebarSubItem,
-} from '../../layout';
+  SidebarSubItem, Page, Section } from '../../layout';
 import { Text } from '../../common';
 
 export const SidebarPage: React.FC = () => {
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">Sidebar Component</Text>
         <Text color="secondary">
           Responsive sidebar with collapsible navigation for desktop and mobile drawer
         </Text>
-      </div>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Features</Text>
         <Text color="secondary" size="sm">
           The Sidebar component provides:
@@ -30,9 +28,9 @@ export const SidebarPage: React.FC = () => {
           <li><Text>Active state tracking</Text></li>
           <li><Text>Customizable width and breakpoint</Text></li>
         </ul>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Basic Example</Text>
         <Text color="secondary" size="sm">
           Sidebar with navigation items
@@ -53,9 +51,9 @@ export const SidebarPage: React.FC = () => {
             </Sidebar>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">Usage</Text>
         <pre className="code-block">
           <code>{`import { 
@@ -87,7 +85,7 @@ import { useSidebar } from '@konradullrich/mp-components';
 
 const { isCollapsed, toggleCollapsed } = useSidebar();`}</code>
         </pre>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };

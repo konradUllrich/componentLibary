@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text } from "../../common";
 import { FormBuilder } from "../../controls";
 import { FormControl } from "../../controls";
+import { Page, Section } from "../../layout";
 
 // ─── Demo: Contact form ───────────────────────────────────────────────────────
 
@@ -67,8 +68,8 @@ export const FormBuilderPage: React.FC = () => {
   const [profileResult, setProfileResult] = useState<ProfileForm | null>(null);
 
   return (
-    <div className="component-page">
-      <div className="component-page__header">
+    <Page>
+      <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
           Form Builder
         </Text>
@@ -81,10 +82,10 @@ export const FormBuilderPage: React.FC = () => {
           render any control, and the <code>columns</code> prop for a
           responsive grid layout.
         </Text>
-      </div>
+      </Section>
 
       {/* ── Contact form ───────────────────────────────────────── */}
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Contact Form
         </Text>
@@ -196,10 +197,10 @@ export const FormBuilderPage: React.FC = () => {
             </pre>
           )}
         </div>
-      </section>
+      </Section>
 
       {/* ── Sign-up form ───────────────────────────────────────── */}
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Sign-up Form
         </Text>
@@ -275,10 +276,10 @@ export const FormBuilderPage: React.FC = () => {
             </pre>
           )}
         </div>
-      </section>
+      </Section>
 
       {/* ── Grid layout + custom field ─────────────────────────── */}
-      <section className="component-page__section">
+      <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Grid Layout &amp; Custom Field
         </Text>
@@ -394,7 +395,7 @@ export const FormBuilderPage: React.FC = () => {
             </pre>
           )}
         </div>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 };
