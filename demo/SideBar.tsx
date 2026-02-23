@@ -35,6 +35,7 @@ import {
   Menu,
   PanelLeft,
   Sidebar as SidebarIcon,
+  Route,
 } from "lucide-react";
 
 export const DemoSideBar = () => {
@@ -161,6 +162,15 @@ export const DemoSideBar = () => {
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("user-avatars");
+            }}
+          />
+          <SidebarSubItem
+            label="Router"
+            icon={<Route size={16} />}
+            isActive={currentComponent === "router"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleComponentClick("router");
             }}
           />
         </SidebarItem>
