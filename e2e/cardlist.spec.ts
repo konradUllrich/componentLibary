@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("CardList Component", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/componentLibary/components/card-list");
+    await page.goto("/componentLibary/?appRoute=/components/card-list");
     // Wait for page to fully load including React hydration
     await page.waitForLoadState("networkidle");
     // Wait for the main h1 heading to render (confirms React has mounted)
