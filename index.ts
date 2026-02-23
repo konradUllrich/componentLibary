@@ -115,6 +115,20 @@ export {
 // export { useMediaQuery, useClickOutside, useFocus, useDebounce } from './hooks';
 
 // ========================================
+// Router
+// ========================================
+export {
+  Router,
+  Route,
+  Link,
+  useSearch,
+  useLocation,
+  useParams,
+  useRoute,
+  useSearchParams,
+} from "./Router";
+
+// ========================================
 // Types
 // ========================================
 // export type { ComponentProps } from './types';

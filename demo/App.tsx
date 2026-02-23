@@ -23,6 +23,7 @@ import {
   DialogPage,
   DropdownPage,
   TooltipPage,
+  RouterPage,
 } from "./pages";
 import { useAppNavigation } from "./useAppNavigation";
 import "./App.css";
@@ -107,6 +108,7 @@ export const App: React.FC = () => {
         {currentComponent === "dialog" && <DialogPage />}
         {currentComponent === "dropdown" && <DropdownPage />}
         {currentComponent === "tooltip" && <TooltipPage />}
+        {currentComponent === "router" && <RouterPage />}
       </AppLayout>
     </>
   );

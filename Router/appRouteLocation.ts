@@ -1,4 +1,12 @@
-// appRouteLocation.ts
+/**
+ * appRouteLocation.ts
+ *
+ * Custom wouter location and search hooks that store the current route in a
+ * URL search parameter (`appRoute`). This is useful when the application is
+ * embedded in an environment where the URL path cannot be changed freely
+ * (e.g. iframes, static hosts). Navigation still triggers `popstate` events
+ * so the browser back/forward buttons work as expected.
+ */
 import { useCallback, useSyncExternalStore } from "react";
 import type { BaseSearchHook, BaseLocationHook } from "wouter";
 
@@ -24,7 +32,6 @@ function setAppRoute(route: string, replace = false) {
   url.searchParams.set(APP_ROUTE_KEY, route);
   if (replace) {
     window.history.replaceState({}, "", url);
-    console.log("replace");
   } else {
     window.history.pushState({}, "", url);
   }

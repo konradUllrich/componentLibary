@@ -70,6 +70,7 @@ export function createAppRouter(config: RouterConfig) {
     { path: "/components/dialog", name: "dialog" },
     { path: "/components/dropdown", name: "dropdown" },
     { path: "/components/tooltip", name: "tooltip" },
+    { path: "/components/router", name: "router" },
   ].map(({ path }) =>
     createRoute({
       getParentRoute: () => rootRoute,

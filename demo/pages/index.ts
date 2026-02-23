@@ -1,3 +1,4 @@
+export { RouterPage } from './RouterPage';
 export { ButtonPage } from './ButtonPage';
 export { BadgePage } from './BadgePage';
 export { TextPage } from './TextPage';
