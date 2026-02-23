@@ -21,7 +21,7 @@ import {
   LayoutDashboard,
 } from "lucide-react";
 import "./HomePage.css";
-import { useLocation } from "wouter";
+import { useLocation } from "../../Router/hooks";
 
 const COMPONENTS = [
   {
