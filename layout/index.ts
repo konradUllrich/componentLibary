@@ -41,6 +41,7 @@ export {
 } from "./Card";
 
 export { Flex, type FlexProps } from "./Flex";
+export { Grid, GridItem, type GridProps, type GridItemProps } from "./Grid";
 
 export {
   HorizontalNav,

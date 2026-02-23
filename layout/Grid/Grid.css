@@ -1,0 +1,226 @@
+/* Grid Component Styles */
+
+.grid {
+  display: grid;
+}
+
+/* Column presets */
+.grid--cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid--cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--cols-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.grid--cols-12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* Align items (block axis) */
+.grid--align-start {
+  align-items: start;
+}
+
+.grid--align-center {
+  align-items: center;
+}
+
+.grid--align-end {
+  align-items: end;
+}
+
+.grid--align-stretch {
+  align-items: stretch;
+}
+
+/* Justify items (inline axis) */
+.grid--justify-start {
+  justify-items: start;
+}
+
+.grid--justify-center {
+  justify-items: center;
+}
+
+.grid--justify-end {
+  justify-items: end;
+}
+
+.grid--justify-stretch {
+  justify-items: stretch;
+}
+
+/* Auto-flow */
+.grid--flow-column {
+  grid-auto-flow: column;
+}
+
+.grid--flow-dense {
+  grid-auto-flow: dense;
+}
+
+.grid--flow-row-dense {
+  grid-auto-flow: row dense;
+}
+
+.grid--flow-column-dense {
+  grid-auto-flow: column dense;
+}
+
+/* Gap presets */
+.grid--gap-xs {
+  gap: var(--spacing-1);
+}
+
+.grid--gap-sm {
+  gap: var(--spacing-2);
+}
+
+.grid--gap-md {
+  gap: var(--spacing-3);
+}
+
+.grid--gap-lg {
+  gap: var(--spacing-4);
+}
+
+.grid--gap-xl {
+  gap: var(--spacing-6);
+}
+
+/* Column gap presets */
+.grid--col-gap-xs {
+  column-gap: var(--spacing-1);
+}
+
+.grid--col-gap-sm {
+  column-gap: var(--spacing-2);
+}
+
+.grid--col-gap-md {
+  column-gap: var(--spacing-3);
+}
+
+.grid--col-gap-lg {
+  column-gap: var(--spacing-4);
+}
+
+.grid--col-gap-xl {
+  column-gap: var(--spacing-6);
+}
+
+/* Row gap presets */
+.grid--row-gap-xs {
+  row-gap: var(--spacing-1);
+}
+
+.grid--row-gap-sm {
+  row-gap: var(--spacing-2);
+}
+
+.grid--row-gap-md {
+  row-gap: var(--spacing-3);
+}
+
+.grid--row-gap-lg {
+  row-gap: var(--spacing-4);
+}
+
+.grid--row-gap-xl {
+  row-gap: var(--spacing-6);
+}
+
+/* -----------------------------------------------------------------------
+   GridItem
+----------------------------------------------------------------------- */
+
+/* Column span presets */
+.grid-item--col-span-1 {
+  grid-column: span 1;
+}
+
+.grid-item--col-span-2 {
+  grid-column: span 2;
+}
+
+.grid-item--col-span-3 {
+  grid-column: span 3;
+}
+
+.grid-item--col-span-4 {
+  grid-column: span 4;
+}
+
+.grid-item--col-span-5 {
+  grid-column: span 5;
+}
+
+.grid-item--col-span-6 {
+  grid-column: span 6;
+}
+
+.grid-item--col-span-7 {
+  grid-column: span 7;
+}
+
+.grid-item--col-span-8 {
+  grid-column: span 8;
+}
+
+.grid-item--col-span-9 {
+  grid-column: span 9;
+}
+
+.grid-item--col-span-10 {
+  grid-column: span 10;
+}
+
+.grid-item--col-span-11 {
+  grid-column: span 11;
+}
+
+.grid-item--col-span-12 {
+  grid-column: span 12;
+}
+
+.grid-item--col-span-full {
+  grid-column: 1 / -1;
+}
+
+/* Row span presets */
+.grid-item--row-span-1 {
+  grid-row: span 1;
+}
+
+.grid-item--row-span-2 {
+  grid-row: span 2;
+}
+
+.grid-item--row-span-3 {
+  grid-row: span 3;
+}
+
+.grid-item--row-span-4 {
+  grid-row: span 4;
+}
+
+.grid-item--row-span-5 {
+  grid-row: span 5;
+}
+
+.grid-item--row-span-6 {
+  grid-row: span 6;
+}

@@ -7,7 +7,6 @@ import {
   SidebarDivider,
 } from "../layout";
 import { Text } from "../common";
-import { useAppNavigation } from "./useAppNavigation";
 import {
   Home,
   Sparkles,
@@ -37,13 +36,16 @@ import {
   Sidebar as SidebarIcon,
   Route,
 } from "lucide-react";
+import { useLocation } from "../Router/hooks";
 
 export const DemoSideBar = () => {
-  const { currentPage, currentComponent, navigateTo } = useAppNavigation();
+  const [location, navigate] = useLocation();
 
   const handleComponentClick = (component: string) => {
-    navigateTo(`/components/${component}`);
+    navigate(`/components/${component}`);
   };
+
+  console.log({ location });
 
   return (
     <Sidebar defaultOpen={true} width="280px">
@@ -57,10 +59,10 @@ export const DemoSideBar = () => {
         <SidebarItem
           label="Home"
           icon={<Home size={18} />}
-          isActive={currentPage === "home"}
+          isActive={location === "home"}
           onClick={(e) => {
             e.preventDefault();
-            navigateTo("/");
+            navigate("/");
           }}
         />
         <SidebarDivider label="Components" />
@@ -68,7 +70,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Accordion"
             icon={<ChevronDown size={16} />}
-            isActive={currentComponent === "accordion"}
+            isActive={location === "accordion"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("accordion");
@@ -77,7 +79,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Badge"
             icon={<Tag size={16} />}
-            isActive={currentComponent === "badge"}
+            isActive={location === "badge"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("badge");
@@ -86,7 +88,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Button"
             icon={<MousePointer size={16} />}
-            isActive={currentComponent === "button"}
+            isActive={location === "button"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("button");
@@ -95,7 +97,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Date"
             icon={<Calendar size={16} />}
-            isActive={currentComponent === "date"}
+            isActive={location === "date"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("date");
@@ -104,7 +106,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Dialog"
             icon={<MessageSquare size={16} />}
-            isActive={currentComponent === "dialog"}
+            isActive={location === "dialog"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("dialog");
@@ -113,7 +115,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Disclosure"
             icon={<EyeOff size={16} />}
-            isActive={currentComponent === "disclosure"}
+            isActive={location === "disclosure"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("disclosure");
@@ -122,7 +124,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Dropdown"
             icon={<ChevronRight size={16} />}
-            isActive={currentComponent === "dropdown"}
+            isActive={location === "dropdown"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("dropdown");
@@ -131,7 +133,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Tabs"
             icon={<Rows3 size={16} />}
-            isActive={currentComponent === "tabs"}
+            isActive={location === "tabs"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("tabs");
@@ -140,7 +142,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Text"
             icon={<Type size={16} />}
-            isActive={currentComponent === "text"}
+            isActive={location === "text"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("text");
@@ -149,7 +151,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Tooltip"
             icon={<Info size={16} />}
-            isActive={currentComponent === "tooltip"}
+            isActive={location === "tooltip"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("tooltip");
@@ -158,7 +160,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="User Avatars"
             icon={<UserCircle size={16} />}
-            isActive={currentComponent === "user-avatars"}
+            isActive={location === "user-avatars"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("user-avatars");
@@ -167,7 +169,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Router"
             icon={<Route size={16} />}
-            isActive={currentComponent === "router"}
+            isActive={location === "router"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("router");
@@ -178,7 +180,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Form Controls"
             icon={<FormInput size={16} />}
-            isActive={currentComponent === "form-controls"}
+            isActive={location === "form-controls"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("form-controls");
@@ -187,7 +189,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Form Builder"
             icon={<FormInput size={16} />}
-            isActive={currentComponent === "form-builder"}
+            isActive={location === "form-builder"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("form-builder");
@@ -198,7 +200,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Card List"
             icon={<Grid3x3 size={16} />}
-            isActive={currentComponent === "card-list"}
+            isActive={location === "card-list"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("card-list");
@@ -207,7 +209,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Pagination"
             icon={<Hash size={16} />}
-            isActive={currentComponent === "pagination"}
+            isActive={location === "pagination"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("pagination");
@@ -216,7 +218,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Table"
             icon={<Table size={16} />}
-            isActive={currentComponent === "table"}
+            isActive={location === "table"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("table");
@@ -227,7 +229,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="App Layout"
             icon={<LayoutGrid size={16} />}
-            isActive={currentComponent === "app-layout"}
+            isActive={location === "app-layout"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("app-layout");
@@ -236,7 +238,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Card"
             icon={<CreditCard size={16} />}
-            isActive={currentComponent === "card"}
+            isActive={location === "card"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("card");
@@ -245,7 +247,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Flex"
             icon={<AlignHorizontalSpaceAround size={16} />}
-            isActive={currentComponent === "flex"}
+            isActive={location === "flex"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("flex");
@@ -254,7 +256,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Horizontal Nav"
             icon={<Menu size={16} />}
-            isActive={currentComponent === "horizontal-nav"}
+            isActive={location === "horizontal-nav"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("horizontal-nav");
@@ -263,7 +265,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Panel"
             icon={<PanelLeft size={16} />}
-            isActive={currentComponent === "panel"}
+            isActive={location === "panel"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("panel");
@@ -272,7 +274,7 @@ export const DemoSideBar = () => {
           <SidebarSubItem
             label="Sidebar"
             icon={<SidebarIcon size={16} />}
-            isActive={currentComponent === "sidebar"}
+            isActive={location === "sidebar"}
             onClick={(e) => {
               e.preventDefault();
               handleComponentClick("sidebar");

@@ -107,6 +107,10 @@ export {
   type PageProps,
   Section,
   type SectionProps,
+  Grid,
+  GridItem,
+  type GridProps,
+  type GridItemProps,
 } from "./layout";
 
 // ========================================

@@ -25,7 +25,7 @@ import {
   TooltipPage,
   RouterPage,
 } from "./pages";
-import { useAppNavigation } from "./useAppNavigation";
+
 import "./App.css";
 import "./pages/ComponentPage.css";
 import { DemoSideBar } from "./SideBar";
@@ -33,9 +33,11 @@ import { HomePage } from "./pages/HomePage";
 import { DocsPage } from "./pages/DocsPage";
 import { BookOpen, Github, Palette } from "lucide-react";
 import { ThemePanel, useThemeEditor } from "../common/ThemeProvider";
+import { Route } from "../Router";
+import { useLocation } from "../Router/hooks";
 
 export const App: React.FC = () => {
-  const { currentPage, currentComponent, navigateTo } = useAppNavigation();
+  const [location, navigate] = useLocation(); // Ensure the router's location hook is initialized at the top level of the app
   const { isOpen, toggle } = useThemeEditor();
 
   return (
@@ -52,9 +54,9 @@ export const App: React.FC = () => {
                     id: "docs",
                     label: "Documentation",
                     icon: <BookOpen size={18} />,
-                    isActive: currentPage == "docs",
+                    isActive: location === "docs",
                     onClick: () => {
-                      navigateTo("/docs");
+                      navigate("/docs");
                     },
                   },
                   {
@@ -84,31 +86,34 @@ export const App: React.FC = () => {
         }
         sidebar={<DemoSideBar />}
       >
-        {currentPage === "home" && <HomePage />}
-        {currentPage === "docs" && <DocsPage />}
-        {currentComponent === "button" && <ButtonPage />}
-        {currentComponent === "badge" && <BadgePage />}
-        {currentComponent === "text" && <TextPage />}
-        {currentComponent === "form-controls" && <FormControlsPage />}
-        {currentComponent === "form-builder" && <FormBuilderPage />}
-        {currentComponent === "panel" && <PanelPage />}
-        {currentComponent === "accordion" && <AccordionPage />}
-        {currentComponent === "disclosure" && <DisclosurePage />}
-        {currentComponent === "pagination" && <PaginationPage />}
-        {currentComponent === "tabs" && <TabsPage />}
-        {currentComponent === "user-avatars" && <UserAvatarsPage />}
-        {currentComponent === "date" && <DatePage />}
-        {currentComponent === "table" && <TablePage />}
-        {currentComponent === "card-list" && <CardListPage />}
-        {currentComponent === "card" && <CardPage />}
-        {currentComponent === "flex" && <FlexPage />}
-        {currentComponent === "horizontal-nav" && <HorizontalNavPage />}
-        {currentComponent === "sidebar" && <SidebarPage />}
-        {currentComponent === "app-layout" && <AppLayoutPage />}
-        {currentComponent === "dialog" && <DialogPage />}
-        {currentComponent === "dropdown" && <DropdownPage />}
-        {currentComponent === "tooltip" && <TooltipPage />}
-        {currentComponent === "router" && <RouterPage />}
+        <Route path="/" component={HomePage} />
+        <Route path="/docs" component={DocsPage} />
+        <Route path="/components/button" component={ButtonPage} />
+        <Route path="/components/badge" component={BadgePage} />
+        <Route path="/components/text" component={TextPage} />
+        <Route path="/components/form-controls" component={FormControlsPage} />
+        <Route path="/components/form-builder" component={FormBuilderPage} />
+        <Route path="/components/panel" component={PanelPage} />
+        <Route path="/components/accordion" component={AccordionPage} />
+        <Route path="/components/disclosure" component={DisclosurePage} />
+        <Route path="/components/pagination" component={PaginationPage} />
+        <Route path="/components/tabs" component={TabsPage} />
+        <Route path="/components/user-avatars" component={UserAvatarsPage} />
+        <Route path="/components/date" component={DatePage} />
+        <Route path="/components/table" component={TablePage} />
+        <Route path="/components/card-list" component={CardListPage} />
+        <Route path="/components/card" component={CardPage} />
+        <Route path="/components/flex" component={FlexPage} />
+        <Route
+          path="/components/horizontal-nav"
+          component={HorizontalNavPage}
+        />
+        <Route path="/components/sidebar" component={SidebarPage} />
+        <Route path="/components/app-layout" component={AppLayoutPage} />
+        <Route path="/components/dialog" component={DialogPage} />
+        <Route path="/components/dropdown" component={DropdownPage} />
+        <Route path="/components/tooltip" component={TooltipPage} />
+        <Route path="/components/router" component={RouterPage} />
       </AppLayout>
     </>
   );
