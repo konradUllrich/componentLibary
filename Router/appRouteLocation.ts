@@ -24,7 +24,6 @@ function setAppRoute(route: string, replace = false) {
   url.searchParams.set(APP_ROUTE_KEY, route);
   if (replace) {
     window.history.replaceState({}, "", url);
-    console.log("replace");
   } else {
     window.history.pushState({}, "", url);
   }

@@ -30,6 +30,7 @@
     "controls",
     "data-display",
     "layout",
+    "Router",
     "styles",
     "demo",
     "e2e",

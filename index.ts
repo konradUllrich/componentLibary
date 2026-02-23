@@ -110,6 +110,18 @@ export {
 } from "./layout";
 
 // ========================================
+// Router
+// ========================================
+export { Router, Route, Link } from "./Router";
+export {
+  useSearch,
+  useLocation,
+  useParams,
+  useRoute,
+  useSearchParams,
+} from "./Router/hooks";
+
+// ========================================
 // Shared Hooks
 // ========================================
 // export { useMediaQuery, useClickOutside, useFocus, useDebounce } from './hooks';
