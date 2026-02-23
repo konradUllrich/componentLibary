@@ -3,13 +3,6 @@ import { Router as WRouter } from "wouter";
 import { useAppRouteLocation, useAppRouteSearch } from "./appRouteLocation";
 
 export { Route, Link } from "wouter";
-export {
-  useSearch,
-  useLocation,
-  useParams,
-  useRoute,
-  useSearchParams,
-} from "./hooks";
 
 /**
  * Router – param-based application router built on top of wouter.

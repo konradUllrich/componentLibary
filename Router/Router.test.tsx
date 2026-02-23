@@ -32,18 +32,18 @@ test.describe("Router Component", () => {
     await expect(component.getByText("Other page")).not.toBeVisible();
   });
 
-  test("should render Link as an anchor element", async ({ mount }) => {
-    const component = await mount(
+  test("should render Link as an anchor element", async ({ mount, page }) => {
+    await mount(
       <Router>
         <Link href="/about">About</Link>
       </Router>,
     );
-    const link = component.getByRole("link", { name: "About" });
+    const link = page.getByRole("link", { name: /about/i });
     await expect(link).toBeVisible();
   });
 
   test("should navigate when a Link is clicked", async ({ mount, page }) => {
-    const component = await mount(
+    await mount(
       <Router>
         <Link href="/about">Go to About</Link>
         <Route path="/">Home</Route>
@@ -51,19 +51,19 @@ test.describe("Router Component", () => {
       </Router>,
     );
 
-    await expect(component.getByText("Home")).toBeVisible();
-    await expect(component.getByText("About page")).not.toBeVisible();
+    await expect(page.getByText("Home")).toBeVisible();
+    await expect(page.getByText("About page")).not.toBeVisible();
 
-    await component.getByRole("link", { name: "Go to About" }).click();
+    await page.getByRole("link", { name: "Go to About" }).click();
 
-    await expect(component.getByText("About page")).toBeVisible();
+    await expect(page.getByText("About page")).toBeVisible();
   });
 
   test("should update the URL search param when navigating", async ({
     mount,
     page,
   }) => {
-    const component = await mount(
+    await mount(
       <Router>
         <Link href="/about">Go to About</Link>
         <Route path="/">Home</Route>
@@ -71,13 +71,16 @@ test.describe("Router Component", () => {
       </Router>,
     );
 
-    await component.getByRole("link", { name: "Go to About" }).click();
-    await expect(component.getByText("About page")).toBeVisible();
+    await page.getByRole("link", { name: "Go to About" }).click();
+    await expect(page.getByText("About page")).toBeVisible();
     await expect(page.url()).toContain("appRoute=%2Fabout");
   });
 
-  test("should render multiple routes independently", async ({ mount }) => {
-    const component = await mount(
+  test("should render multiple routes independently", async ({
+    mount,
+    page,
+  }) => {
+    await mount(
       <Router>
         <Link href="/page-a">Page A</Link>
         <Link href="/page-b">Page B</Link>
@@ -87,14 +90,14 @@ test.describe("Router Component", () => {
       </Router>,
     );
 
-    await expect(component.getByText("Default")).toBeVisible();
+    await expect(page.getByText("Default")).toBeVisible();
 
-    await component.getByRole("link", { name: "Page A" }).click();
-    await expect(component.getByText("Content A")).toBeVisible();
-    await expect(component.getByText("Content B")).not.toBeVisible();
+    await page.getByRole("link", { name: "Page A" }).click();
+    await expect(page.getByText("Content A")).toBeVisible();
+    await expect(page.getByText("Content B")).not.toBeVisible();
 
-    await component.getByRole("link", { name: "Page B" }).click();
-    await expect(component.getByText("Content B")).toBeVisible();
-    await expect(component.getByText("Content A")).not.toBeVisible();
+    await page.getByRole("link", { name: "Page B" }).click();
+    await expect(page.getByText("Content B")).toBeVisible();
+    await expect(page.getByText("Content A")).not.toBeVisible();
   });
 });
