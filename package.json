@@ -1,6 +1,6 @@
 {
   "name": "@mp-ku/mp-components",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "publishConfig": {
     "access": "public"
   },
@@ -16,7 +16,8 @@
     "./styles": {
       "import": "./dist/style.css",
       "types": "./style.d.ts"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "files": [
     "dist",
