@@ -121,16 +121,15 @@ export {
 // ========================================
 // Router
 // ========================================
+export { Router, Route, Link } from "./Router";
+
 export {
-  Router,
-  Route,
-  Link,
   useSearch,
   useLocation,
   useParams,
   useRoute,
   useSearchParams,
-} from "./Router";
+} from "./Router/hooks";
 
 // ========================================
 // Types
