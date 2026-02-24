@@ -38,6 +38,110 @@ import {
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 
+const SIDEBAR_ELEMENTS = {
+  components: {
+    common: [
+      {
+        name: "Accordion",
+        icon: <ChevronDown size={16} />,
+        link: "/components/accordion",
+      },
+      { name: "Badge", icon: <Tag size={16} />, link: "/components/badge" },
+      {
+        name: "Button",
+        icon: <MousePointer size={16} />,
+        link: "/components/button",
+      },
+      { name: "Date", icon: <Calendar size={16} />, link: "/components/date" },
+      {
+        name: "Dialog",
+        icon: <MessageSquare size={16} />,
+        link: "/components/dialog",
+      },
+      {
+        name: "Disclosure",
+        icon: <EyeOff size={16} />,
+        link: "/components/disclosure",
+      },
+      {
+        name: "Dropdown",
+        icon: <ChevronRight size={16} />,
+        link: "/components/dropdown",
+      },
+      { name: "Tabs", icon: <Rows3 size={16} />, link: "/components/tabs" },
+      { name: "Text", icon: <Type size={16} />, link: "/components/text" },
+      {
+        name: "Tooltip  ",
+        icon: <Info size={16} />,
+        link: "/components/tooltip",
+      },
+      {
+        name: "User Avatars",
+        icon: <UserCircle size={16} />,
+        link: "/components/user-avatars",
+      },
+      { name: "Router", icon: <Route size={16} />, link: "/components/router" },
+    ],
+    controls: [
+      {
+        name: "Form Controls",
+        icon: <FormInput size={16} />,
+        link: "/components/form-controls",
+      },
+      {
+        name: "Form Builder",
+        icon: <FormInput size={16} />,
+        link: "/components/form-builder",
+      },
+    ],
+    dataDisplay: [
+      {
+        name: "Card List",
+        icon: <Grid3x3 size={16} />,
+        link: "/components/card-list",
+      },
+      {
+        name: "Pagination",
+        icon: <Hash size={16} />,
+        link: "/components/pagination",
+      },
+      { name: "Table", icon: <Table size={16} />, link: "/components/table" },
+    ],
+    layout: [
+      {
+        name: "App Layout",
+        icon: <LayoutGrid size={16} />,
+        link: "/components/app-layout",
+      },
+      {
+        name: "Card",
+        icon: <CreditCard size={16} />,
+        link: "/components/card",
+      },
+      {
+        name: "Flex",
+        icon: <AlignHorizontalSpaceAround size={16} />,
+        link: "/components/flex",
+      },
+      {
+        name: "Horizontal Nav",
+        icon: <Menu size={16} />,
+        link: "/components/horizontal-nav",
+      },
+      {
+        name: "Panel",
+        icon: <PanelLeft size={16} />,
+        link: "/components/panel",
+      },
+      {
+        name: "Sidebar",
+        icon: <SidebarIcon size={16} />,
+        link: "/components/sidebar",
+      },
+    ],
+  },
+};
+
 export const DemoSideBar = () => {
   const [location, navigate] = useLocation();
 
@@ -45,7 +149,9 @@ export const DemoSideBar = () => {
     navigate(`/components/${component}`);
   };
 
-  console.log({ location });
+  const isComponentLoaction = (_location: string) => {
+    return location === `/components/${_location}`;
+  };
 
   return (
     <Sidebar defaultOpen={true} width="280px">
@@ -59,7 +165,7 @@ export const DemoSideBar = () => {
         <SidebarItem
           label="Home"
           icon={<Home size={18} />}
-          isActive={location === "home"}
+          isActive={location === "/"}
           onClick={(e) => {
             e.preventDefault();
             navigate("/");
@@ -67,219 +173,60 @@ export const DemoSideBar = () => {
         />
         <SidebarDivider label="Components" />
         <SidebarItem label="Common" icon={<Sparkles size={18} />}>
-          <SidebarSubItem
-            label="Accordion"
-            icon={<ChevronDown size={16} />}
-            isActive={location === "accordion"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("accordion");
-            }}
-          />
-          <SidebarSubItem
-            label="Badge"
-            icon={<Tag size={16} />}
-            isActive={location === "badge"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("badge");
-            }}
-          />
-          <SidebarSubItem
-            label="Button"
-            icon={<MousePointer size={16} />}
-            isActive={location === "button"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("button");
-            }}
-          />
-          <SidebarSubItem
-            label="Date"
-            icon={<Calendar size={16} />}
-            isActive={location === "date"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("date");
-            }}
-          />
-          <SidebarSubItem
-            label="Dialog"
-            icon={<MessageSquare size={16} />}
-            isActive={location === "dialog"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("dialog");
-            }}
-          />
-          <SidebarSubItem
-            label="Disclosure"
-            icon={<EyeOff size={16} />}
-            isActive={location === "disclosure"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("disclosure");
-            }}
-          />
-          <SidebarSubItem
-            label="Dropdown"
-            icon={<ChevronRight size={16} />}
-            isActive={location === "dropdown"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("dropdown");
-            }}
-          />
-          <SidebarSubItem
-            label="Tabs"
-            icon={<Rows3 size={16} />}
-            isActive={location === "tabs"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("tabs");
-            }}
-          />
-          <SidebarSubItem
-            label="Text"
-            icon={<Type size={16} />}
-            isActive={location === "text"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("text");
-            }}
-          />
-          <SidebarSubItem
-            label="Tooltip"
-            icon={<Info size={16} />}
-            isActive={location === "tooltip"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("tooltip");
-            }}
-          />
-          <SidebarSubItem
-            label="User Avatars"
-            icon={<UserCircle size={16} />}
-            isActive={location === "user-avatars"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("user-avatars");
-            }}
-          />
-          <SidebarSubItem
-            label="Router"
-            icon={<Route size={16} />}
-            isActive={location === "router"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("router");
-            }}
-          />
+          {SIDEBAR_ELEMENTS.components.common.map((component) => (
+            <SidebarSubItem
+              key={component.name}
+              label={component.name}
+              icon={component.icon}
+              isActive={isComponentLoaction(component.link.split("/").pop()!)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick(component.link.split("/").pop()!);
+              }}
+            />
+          ))}
         </SidebarItem>
         <SidebarItem label="Controls" icon={<Settings size={18} />}>
-          <SidebarSubItem
-            label="Form Controls"
-            icon={<FormInput size={16} />}
-            isActive={location === "form-controls"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("form-controls");
-            }}
-          />
-          <SidebarSubItem
-            label="Form Builder"
-            icon={<FormInput size={16} />}
-            isActive={location === "form-builder"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("form-builder");
-            }}
-          />
+          {SIDEBAR_ELEMENTS.components.controls.map((component) => (
+            <SidebarSubItem
+              key={component.name}
+              label={component.name}
+              icon={component.icon}
+              isActive={isComponentLoaction(component.link.split("/").pop()!)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick(component.link.split("/").pop()!);
+              }}
+            />
+          ))}
         </SidebarItem>
         <SidebarItem label="Data Display" icon={<Database size={18} />}>
-          <SidebarSubItem
-            label="Card List"
-            icon={<Grid3x3 size={16} />}
-            isActive={location === "card-list"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("card-list");
-            }}
-          />
-          <SidebarSubItem
-            label="Pagination"
-            icon={<Hash size={16} />}
-            isActive={location === "pagination"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("pagination");
-            }}
-          />
-          <SidebarSubItem
-            label="Table"
-            icon={<Table size={16} />}
-            isActive={location === "table"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("table");
-            }}
-          />
+          {SIDEBAR_ELEMENTS.components.dataDisplay.map((component) => (
+            <SidebarSubItem
+              key={component.name}
+              label={component.name}
+              icon={component.icon}
+              isActive={isComponentLoaction(component.link.split("/").pop()!)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick(component.link.split("/").pop()!);
+              }}
+            />
+          ))}
         </SidebarItem>
         <SidebarItem label="Layout" icon={<Layout size={18} />}>
-          <SidebarSubItem
-            label="App Layout"
-            icon={<LayoutGrid size={16} />}
-            isActive={location === "app-layout"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("app-layout");
-            }}
-          />
-          <SidebarSubItem
-            label="Card"
-            icon={<CreditCard size={16} />}
-            isActive={location === "card"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("card");
-            }}
-          />
-          <SidebarSubItem
-            label="Flex"
-            icon={<AlignHorizontalSpaceAround size={16} />}
-            isActive={location === "flex"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("flex");
-            }}
-          />
-          <SidebarSubItem
-            label="Horizontal Nav"
-            icon={<Menu size={16} />}
-            isActive={location === "horizontal-nav"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("horizontal-nav");
-            }}
-          />
-          <SidebarSubItem
-            label="Panel"
-            icon={<PanelLeft size={16} />}
-            isActive={location === "panel"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("panel");
-            }}
-          />
-          <SidebarSubItem
-            label="Sidebar"
-            icon={<SidebarIcon size={16} />}
-            isActive={location === "sidebar"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleComponentClick("sidebar");
-            }}
-          />
+          {SIDEBAR_ELEMENTS.components.layout.map((component) => (
+            <SidebarSubItem
+              key={component.name}
+              label={component.name}
+              icon={component.icon}
+              isActive={isComponentLoaction(component.link.split("/").pop()!)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick(component.link.split("/").pop()!);
+              }}
+            />
+          ))}
         </SidebarItem>
       </SidebarNav>
     </Sidebar>

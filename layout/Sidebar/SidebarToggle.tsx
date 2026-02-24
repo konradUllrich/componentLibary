@@ -57,22 +57,23 @@ export const SidebarToggle = React.forwardRef<
     };
 
     return (
-      <button
-        ref={ref}
-        className={clsx("sidebar__toggle", className)}
-        onClick={handleClick}
-        aria-expanded={isOpen}
-        aria-label={ariaLabel || "Toggle sidebar"}
-        {...props}
-      >
-        {children || (
-          isOpen ? (
-            <ChevronLeft size={20} aria-hidden="true" />
-          ) : (
-            <ChevronRight size={20} aria-hidden="true" />
-          )
-        )}
-      </button>
+      <div className="sidebar__toggle-wrapper">
+        <button
+          ref={ref}
+          className={clsx("sidebar__toggle", className)}
+          onClick={handleClick}
+          aria-expanded={isOpen}
+          aria-label={ariaLabel || "Toggle sidebar"}
+          {...props}
+        >
+          {children ||
+            (isOpen ? (
+              <ChevronLeft size={20} aria-hidden="true" />
+            ) : (
+              <ChevronRight size={20} aria-hidden="true" />
+            ))}
+        </button>
+      </div>
     );
   },
 );
