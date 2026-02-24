@@ -1,6 +1,6 @@
 {
-  "name": "@uk/mp-components",
-  "version": "0.1.6",
+  "name": "@mp-uk/mp-components",
+  "version": "0.1.7",
   "publishConfig": {
     "access": "public"
   },
