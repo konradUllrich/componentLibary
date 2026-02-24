@@ -272,4 +272,104 @@ test.describe("Pagination Component", () => {
       await checkA11y(page);
     });
   });
+
+  test.describe("Fixed item count (no flicker)", () => {
+    test("should always render the same number of page items for large page count", async ({
+      mount,
+    }) => {
+      // 20 pages — navigate from page 1 to 20 and verify count stays constant
+      const component = await mount(
+        <PaginationTestWrapper totalItems={200} pageSize={10} />,
+      );
+
+      const getCount = () =>
+        component
+          .locator(".pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)")
+          .count();
+
+      // Page 1 → record baseline count
+      const baselineCount = await getCount();
+
+      // Navigate through every page and assert the count is unchanged
+      const nextButton = component.locator(".pagination-button--next");
+      for (let p = 2; p <= 20; p++) {
+        await nextButton.click();
+        const count = await getCount();
+        expect(count).toBe(baselineCount);
+      }
+    });
+
+    test("should always render the same number of page items when totalPages ≤ 7", async ({
+      mount,
+    }) => {
+      // 5 pages — all pages should always be visible (no ellipsis)
+      const component = await mount(
+        <PaginationTestWrapper totalItems={50} pageSize={10} />,
+      );
+
+      const getCount = () =>
+        component
+          .locator(".pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)")
+          .count();
+
+      const baselineCount = await getCount();
+      expect(baselineCount).toBe(5);
+
+      const nextButton = component.locator(".pagination-button--next");
+      for (let p = 2; p <= 5; p++) {
+        await nextButton.click();
+        const count = await getCount();
+        expect(count).toBe(baselineCount);
+      }
+    });
+
+    test("should always include the active page in the visible items", async ({
+      mount,
+    }) => {
+      const component = await mount(
+        <PaginationTestWrapper totalItems={200} pageSize={10} />,
+      );
+
+      const nextButton = component.locator(".pagination-button--next");
+      for (let p = 1; p <= 20; p++) {
+        const activeButton = component.locator(".pagination-button--active");
+        await expect(activeButton).toBeVisible();
+
+        const activeText = await activeButton.textContent();
+        expect(activeText?.trim()).toBe(String(p));
+
+        if (p < 20) {
+          await nextButton.click();
+        }
+      }
+    });
+
+    test("should show exactly 7 page items for page counts > 7", async ({
+      mount,
+    }) => {
+      const component = await mount(
+        <PaginationTestWrapper
+          totalItems={200}
+          pageSize={10}
+          currentPage={1}
+        />,
+      );
+
+      for (const currentPage of [1, 4, 5, 10, 16, 17, 20]) {
+        await component.update(
+          <PaginationTestWrapper
+            totalItems={200}
+            pageSize={10}
+            currentPage={currentPage}
+          />,
+        );
+
+        const count = await component
+          .locator(".pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)")
+          .count();
+
+        expect(count).toBe(7);
+      }
+    });
+  });
 });

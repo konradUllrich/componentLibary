@@ -39,38 +39,41 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const startItem = (page - 1) * pageSize + 1;
     const endItem = Math.min(page * pageSize, totalItems);
 
-    const getPageNumbers = () => {
-      const delta = 1;
-      const pages: (number | string)[] = [];
+    const getPageNumbers = (): (number | string)[] => {
+      // Fixed window size: the total number of clickable items (numbers + ellipsis)
+      // is always the same for a given totalPages, preventing layout flicker.
+      const WINDOW_SIZE = 7;
 
-      // Always show first page
-      pages.push(1);
-
-      // Calculate range around current page
-      const rangeStart = Math.max(2, page - delta);
-      const rangeEnd = Math.min(totalPages - 1, page + delta);
-
-      // Add ellipsis after page 1 if needed
-      if (rangeStart > 2) {
-        pages.push("...");
+      // For small page counts show all pages — no ellipsis needed
+      if (totalPages <= WINDOW_SIZE) {
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
 
-      // Add pages in range
-      for (let i = rangeStart; i <= rangeEnd; i++) {
-        pages.push(i);
+      // For larger page counts always return exactly WINDOW_SIZE items:
+      //   near-start  → [1, 2, 3, 4, 5, "...", N]
+      //   near-end    → [1, "...", N-4, N-3, N-2, N-1, N]
+      //   middle      → [1, "...", p-1, p, p+1, "...", N]
+      const nearStart = page <= 4;
+      const nearEnd = page >= totalPages - 3;
+
+      if (nearStart) {
+        return [1, 2, 3, 4, 5, "...", totalPages];
       }
 
-      // Add ellipsis before last page if needed
-      if (rangeEnd < totalPages - 1) {
-        pages.push("...");
+      if (nearEnd) {
+        return [
+          1,
+          "...",
+          totalPages - 4,
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages,
+        ];
       }
 
-      // Always show last page (if more than 1 page)
-      if (totalPages > 1) {
-        pages.push(totalPages);
-      }
-
-      return pages;
+      // Middle: current page and its immediate neighbours, bounded by 1 and totalPages
+      return [1, "...", page - 1, page, page + 1, "...", totalPages];
     };
 
     if (totalPages <= 1 && !showSizeSelector) return null;
