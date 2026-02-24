@@ -118,6 +118,128 @@ test.describe("Pagination Component", () => {
     await expect(page20Button).toBeVisible();
   });
 
+  test.describe("Fixed item count (no flickering)", () => {
+    test("should always render 7 page items regardless of current page (totalPages >= 8)", async ({
+      mount,
+    }) => {
+      // Use a page count > 7 to trigger the fixed-window algorithm
+      // 20 pages = 200 items / 10 per page.
+      // Navigate from page 1 to 20 by clicking next and verify count stays at 7.
+      const component = await mount(
+        <PaginationTestWrapper totalItems={200} pageSize={10} currentPage={1} />,
+      );
+      const pageItems = component.locator(
+        ".pagination__controls .pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)",
+      );
+
+      for (let p = 1; p <= 20; p++) {
+        await expect(pageItems).toHaveCount(7);
+        if (p < 20) {
+          await component.locator(".pagination-button--next").click();
+        }
+      }
+    });
+
+    test("should show correct pages near start (page <= 4)", async ({
+      mount,
+    }) => {
+      const component = await mount(
+        <PaginationTestWrapper totalItems={200} pageSize={10} currentPage={2} />,
+      );
+      // Pattern: [1, 2, 3, 4, 5, ..., 20]
+      const controls = component.locator(".pagination__controls");
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^1$/ }),
+      ).toBeVisible();
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^5$/ }),
+      ).toBeVisible();
+      await expect(
+        controls
+          .locator(".pagination-button--ellipsis")
+          .filter({ hasText: "..." }),
+      ).toHaveCount(1);
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^20$/ }),
+      ).toBeVisible();
+    });
+
+    test("should show correct pages in the middle", async ({ mount }) => {
+      const component = await mount(
+        <PaginationTestWrapper
+          totalItems={200}
+          pageSize={10}
+          currentPage={10}
+        />,
+      );
+      // Pattern: [1, ..., 9, 10, 11, ..., 20]
+      const controls = component.locator(".pagination__controls");
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^1$/ }),
+      ).toBeVisible();
+      await expect(
+        controls.locator(".pagination-button--ellipsis"),
+      ).toHaveCount(2);
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^9$/ }),
+      ).toBeVisible();
+      await expect(
+        controls.locator(".pagination-button--active"),
+      ).toHaveText("10");
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^11$/ }),
+      ).toBeVisible();
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^20$/ }),
+      ).toBeVisible();
+    });
+
+    test("should show correct pages near end (page >= totalPages - 3)", async ({
+      mount,
+    }) => {
+      const component = await mount(
+        <PaginationTestWrapper
+          totalItems={200}
+          pageSize={10}
+          currentPage={19}
+        />,
+      );
+      // Pattern: [1, ..., 16, 17, 18, 19, 20]
+      const controls = component.locator(".pagination__controls");
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^1$/ }),
+      ).toBeVisible();
+      await expect(
+        controls.locator(".pagination-button--ellipsis").filter({ hasText: "..." }),
+      ).toHaveCount(1);
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^16$/ }),
+      ).toBeVisible();
+      await expect(
+        controls.locator(".pagination-button").filter({ hasText: /^20$/ }),
+      ).toBeVisible();
+    });
+
+    test("should show all pages when totalPages <= 7 (no ellipsis)", async ({
+      mount,
+    }) => {
+      // 5 pages = 50 items / 10 per page
+      const component = await mount(
+        <PaginationTestWrapper totalItems={50} pageSize={10} currentPage={3} />,
+      );
+      const controls = component.locator(".pagination__controls");
+      // No ellipsis should appear
+      await expect(controls.locator(".pagination-button--ellipsis")).toHaveCount(
+        0,
+      );
+      // All 5 page buttons should be present
+      const pageItems = controls.locator(
+        ".pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)",
+      );
+      await expect(pageItems).toHaveCount(5);
+    });
+  });
+
   test("should render page size selector by default", async ({ mount }) => {
     const component = await mount(
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
