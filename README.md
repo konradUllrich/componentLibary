@@ -2,13 +2,10 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/@konradullrich/mp-components.svg?style=flat-square)](https://www.npmjs.com/package/@konradullrich/mp-components)
-[![npm downloads](https://img.shields.io/npm/dm/@konradullrich/mp-components.svg?style=flat-square)](https://www.npmjs.com/package/@konradullrich/mp-components)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/konradUllrich/componentLibary/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/konradUllrich/componentLibary/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/github/actions/workflow/status/konradUllrich/componentLibary/test.yml?branch=main&style=flat-square&label=Tests)](https://github.com/konradUllrich/componentLibary/actions/workflows/test.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb.svg?style=flat-square)](https://react.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 
 **A modern, accessible React component library built with Radix UI primitives, TanStack Form & Tables, and plain CSS.**
 
@@ -56,8 +53,8 @@ yarn add @konradullrich/mp-components
 Import components and styles in your React application:
 
 ```tsx
-import { Button, Input, Dialog } from '@konradullrich/mp-components';
-import '@konradullrich/mp-components/styles';
+import { Button, Input, Dialog } from "@konradullrich/mp-components";
+import "@konradullrich/mp-components/styles";
 
 export function App() {
   return (
@@ -91,6 +88,7 @@ Components are organized into logical categories for easy discovery and usage:
 <td width="25%">
 
 ### `common/`
+
 General-purpose components
 
 - **Button** - Primary action element
@@ -104,6 +102,7 @@ General-purpose components
 <td width="25%">
 
 ### `controls/`
+
 Form elements & inputs
 
 - **Input** - Text input fields
@@ -116,6 +115,7 @@ Form elements & inputs
 <td width="25%">
 
 ### `data-display/`
+
 Data presentation
 
 - **Table** - Data tables
@@ -127,6 +127,7 @@ Data presentation
 <td width="25%">
 
 ### `layout/`
+
 Page structure
 
 - **Sidebar** - Side navigation
@@ -139,6 +140,7 @@ Page structure
 </table>
 
 ### `styles/`
+
 Global CSS variables, themes, and utility styles for consistent design.
 
 ## 🛠️ Development
@@ -160,30 +162,32 @@ pnpm install
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm build` | Build the library for production |
-| `pnpm build:watch` | Build in watch mode for development |
-| `pnpm demo` | Run the interactive demo site locally |
-| `pnpm demo:build` | Build the demo site for deployment |
-| `pnpm lint` | Lint all TypeScript and TSX files |
-| `pnpm type-check` | Run TypeScript compiler checks |
-| `pnpm test` | Run unit tests with Vitest |
-| `pnpm test:ui` | Run unit tests with Vitest UI |
-| `pnpm test:ct` | Run component tests with Playwright |
-| `pnpm test:ct:ui` | Run component tests with Playwright UI |
-| `pnpm test:e2e` | Run end-to-end tests |
+| Command            | Description                            |
+| ------------------ | -------------------------------------- |
+| `pnpm build`       | Build the library for production       |
+| `pnpm build:watch` | Build in watch mode for development    |
+| `pnpm demo`        | Run the interactive demo site locally  |
+| `pnpm demo:build`  | Build the demo site for deployment     |
+| `pnpm lint`        | Lint all TypeScript and TSX files      |
+| `pnpm type-check`  | Run TypeScript compiler checks         |
+| `pnpm test`        | Run unit tests with Vitest             |
+| `pnpm test:ui`     | Run unit tests with Vitest UI          |
+| `pnpm test:ct`     | Run component tests with Playwright    |
+| `pnpm test:ct:ui`  | Run component tests with Playwright UI |
+| `pnpm test:e2e`    | Run end-to-end tests                   |
 
 ### Demo Site
 
 The demo site showcases all components with interactive examples and comprehensive documentation.
 
 **Run locally:**
+
 ```bash
 pnpm demo
 ```
 
 **Build for production:**
+
 ```bash
 pnpm demo:build
 ```
@@ -239,15 +243,15 @@ All tests run automatically in CI/CD pipeline on every commit.
 
 This library follows strict guidelines to ensure quality, accessibility, and maintainability:
 
-| Guideline | Requirement |
-|-----------|-------------|
-| **TypeScript** | Strict mode enabled - Zero type errors, no `any` or `unknown` |
-| **Styling** | Plain CSS with BEM naming convention - No CSS modules or CSS-in-JS |
-| **Accessibility** | WCAG 2.1 AA compliance required - Full keyboard navigation |
-| **File Size** | Components ≤ 100 lines - Split into smaller files if needed |
-| **Radix UI** | Use Radix primitives for complex interactive components |
-| **Testing** | Playwright component tests with a11y checks required |
-| **Documentation** | JSDoc comments and interactive examples required |
+| Guideline         | Requirement                                                        |
+| ----------------- | ------------------------------------------------------------------ |
+| **TypeScript**    | Strict mode enabled - Zero type errors, no `any` or `unknown`      |
+| **Styling**       | Plain CSS with BEM naming convention - No CSS modules or CSS-in-JS |
+| **Accessibility** | WCAG 2.1 AA compliance required - Full keyboard navigation         |
+| **File Size**     | Components ≤ 100 lines - Split into smaller files if needed        |
+| **Radix UI**      | Use Radix primitives for complex interactive components            |
+| **Testing**       | Playwright component tests with a11y checks required               |
+| **Documentation** | JSDoc comments and interactive examples required                   |
 
 ### 📚 Documentation Resources
 
