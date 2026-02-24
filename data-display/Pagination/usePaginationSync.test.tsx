@@ -18,10 +18,7 @@ async function getUrlParam(page: TestPage, name: string) {
 }
 
 /** Inject search params into the URL *before* mounting so the hook can restore them. */
-async function setUrlParams(
-  page: TestPage,
-  params: Record<string, string>,
-) {
+async function setUrlParams(page: TestPage, params: Record<string, string>) {
   await page.evaluate((entries) => {
     const url = new URL(window.location.href);
     for (const [k, v] of Object.entries(entries)) {
@@ -33,10 +30,7 @@ async function setUrlParams(
 }
 
 /** Remove search params from the URL (cleanup between tests). */
-async function clearUrlParams(
-  page: TestPage,
-  ...names: string[]
-) {
+async function clearUrlParams(page: TestPage, ...names: string[]) {
   await page.evaluate((keys) => {
     const url = new URL(window.location.href);
     for (const k of keys) url.searchParams.delete(k);
@@ -157,14 +151,19 @@ test.describe("usePaginationSync", () => {
     await component.locator(".pagination-button--next").click();
 
     // history.length must not grow (replace: true)
-    expect(await page.evaluate(() => window.history.length)).toBe(historyBefore);
+    expect(await page.evaluate(() => window.history.length)).toBe(
+      historyBefore,
+    );
   });
 
   // -------------------------------------------------------------------------
   // key namespacing
   // -------------------------------------------------------------------------
 
-  test("namespaces URL params using the key option", async ({ mount, page }) => {
+  test("namespaces URL params using the key option", async ({
+    mount,
+    page,
+  }) => {
     const component = await mount(
       <PaginationSyncTestWrapper totalItems={100} syncKey="tableA" />,
     );
