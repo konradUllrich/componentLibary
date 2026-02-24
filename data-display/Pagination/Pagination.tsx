@@ -36,6 +36,17 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       setPageSize,
     } = store();
 
+    console.log({
+      page,
+      totalPages,
+      totalItems,
+      pageSize,
+      hasNext,
+      hasPrevious,
+      setPage,
+      setPageSize,
+    });
+
     const startItem = (page - 1) * pageSize + 1;
     const endItem = Math.min(page * pageSize, totalItems);
 
