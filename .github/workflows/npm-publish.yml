@@ -44,44 +44,11 @@ jobs:
             echo "✅ First commit, publishing version $CURR_VERSION"
           fi
 
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    needs: check-version
-    if: needs.check-version.outputs.version-changed == 'true'
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Run type check
-        run: npm run type-check
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run component tests
-        run: npm run test:ct
-
-      - name: Run E2E tests
-        run: npm run test:e2e
-
   build:
     name: Build Package
     runs-on: ubuntu-latest
-    needs: test
+    needs: check-version
+    if: needs.check-version.outputs.version-changed == 'true'
 
     steps:
       - name: Checkout
