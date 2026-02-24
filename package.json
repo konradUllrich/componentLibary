@@ -1,6 +1,6 @@
 {
   "name": "@mp-ku/mp-components",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "publishConfig": {
     "access": "public"
   },
@@ -13,7 +13,7 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/styles/index.css"
+    "./styles": "./dist/style.css"
   },
   "files": [
     "dist",
