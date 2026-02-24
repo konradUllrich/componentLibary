@@ -1,6 +1,6 @@
 {
   "name": "@mp-ku/mp-components",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "publishConfig": {
     "access": "public"
   },
@@ -13,11 +13,15 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/style.css"
+    "./styles": {
+      "import": "./dist/style.css",
+      "types": "./style.d.ts"
+    }
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "style.d.ts"
   ],
   "scripts": {
     "build": "vite build",
