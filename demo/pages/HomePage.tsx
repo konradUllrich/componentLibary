@@ -20,7 +20,6 @@ import {
   PanelLeft,
   LayoutDashboard,
 } from "lucide-react";
-import "./HomePage.css";
 import { useLocation } from "../../Router/hooks";
 
 const COMPONENTS = [
@@ -153,7 +152,11 @@ export const HomePage = () => {
       </Section>
 
       <Section>
-        <Grid columns="repeat(auto-fill, minmax(250px, 1fr))" gap="lg">
+        <Grid
+          data-testid="componentGrid"
+          columns="repeat(auto-fill, minmax(250px, 1fr))"
+          gap="lg"
+        >
           {COMPONENTS.map(({ name, teaser, icon, link }) => (
             <Card
               key={link}

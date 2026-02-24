@@ -17,7 +17,7 @@ test.describe("Component Navigation", () => {
     await page.goto("/componentLibary/");
 
     // Check that component grid is visible
-    await expect(page.locator(".component-grid")).toBeVisible();
+    await expect(page.locator(".grid")).toBeVisible();
   });
 
   test("should navigate to Button component via card", async ({ page }) => {
@@ -25,7 +25,7 @@ test.describe("Component Navigation", () => {
 
     // Click on Button card
     const buttonCard = page
-      .locator(".component-grid")
+      .getByTestId("componentGrid")
       .getByRole("heading", { name: "Button", exact: true });
     await buttonCard.click();
 
@@ -38,7 +38,7 @@ test.describe("Component Navigation", () => {
 
     // Click on Badge card
     const badgeCard = page
-      .locator(".component-grid")
+      .getByTestId("componentGrid")
       .getByRole("heading", { name: "Badge", exact: true });
     await badgeCard.click();
 
@@ -51,7 +51,7 @@ test.describe("Component Navigation", () => {
 
     // Click on Text card
     const textCard = page
-      .locator(".component-grid")
+      .getByTestId("componentGrid")
       .getByRole("heading", { name: "Text", exact: true });
     await textCard.click();
 
