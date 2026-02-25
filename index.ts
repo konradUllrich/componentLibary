@@ -135,6 +135,7 @@ export {
   useParams,
   useRoute,
   useSearchParams,
+  useParamState,
 } from "./Router/hooks";
 
 // ========================================
