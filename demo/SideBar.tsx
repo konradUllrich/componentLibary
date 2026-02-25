@@ -36,6 +36,7 @@ import {
   Sidebar as SidebarIcon,
   Route,
   RectangleHorizontal,
+  SquareDashed,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 
@@ -86,6 +87,11 @@ const SIDEBAR_ELEMENTS = {
         name: "Skeleton",
         icon: <RectangleHorizontal size={16} />,
         link: "/components/skeleton",
+      },
+      {
+        name: "Empty State",
+        icon: <SquareDashed size={16} />,
+        link: "/components/empty-state",
       },
     ],
     controls: [

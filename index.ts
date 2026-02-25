@@ -56,6 +56,10 @@ export {
   type TooltipContentProps,
   Skeleton,
   type SkeletonProps,
+  EmptyState,
+  type EmptyStateProps,
+  type EmptyStateVariant,
+  type EmptyStateSize,
 } from "./common";
 
 // ========================================
