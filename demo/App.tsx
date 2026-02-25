@@ -25,6 +25,7 @@ import {
   TooltipPage,
   RouterPage,
   SkeletonPage,
+  EmptyStatePage,
 } from "./pages";
 
 import "./App.css";
@@ -116,6 +117,7 @@ export const App: React.FC = () => {
         <Route path="/components/tooltip" component={TooltipPage} />
         <Route path="/components/router" component={RouterPage} />
         <Route path="/components/skeleton" component={SkeletonPage} />
+        <Route path="/components/empty-state" component={EmptyStatePage} />
       </AppLayout>
     </>
   );

@@ -22,3 +22,4 @@ export { DialogPage } from './DialogPage';
 export { DropdownPage } from './DropdownPage';
 export { TooltipPage } from './TooltipPage';
 export { SkeletonPage } from './SkeletonPage';
+export { EmptyStatePage } from './EmptyStatePage';

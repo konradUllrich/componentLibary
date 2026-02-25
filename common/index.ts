@@ -69,6 +69,13 @@ export { DateComponent, type DateComponentProps } from "./Date";
 export { Skeleton, type SkeletonProps } from "./Skeleton";
 
 export {
+  EmptyState,
+  type EmptyStateProps,
+  type EmptyStateVariant,
+  type EmptyStateSize,
+} from "./EmptyState";
+
+export {
   ThemeProvider,
   useTheme,
   ThemePanel,
