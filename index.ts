@@ -54,6 +54,8 @@ export {
   type TooltipProviderProps,
   type TooltipProps,
   type TooltipContentProps,
+  Skeleton,
+  type SkeletonProps,
 } from "./common";
 
 // ========================================

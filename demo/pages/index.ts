@@ -21,3 +21,4 @@ export { AppLayoutPage } from './AppLayoutPage';
 export { DialogPage } from './DialogPage';
 export { DropdownPage } from './DropdownPage';
 export { TooltipPage } from './TooltipPage';
+export { SkeletonPage } from './SkeletonPage';

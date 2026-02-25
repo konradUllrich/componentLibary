@@ -35,6 +35,7 @@ import {
   PanelLeft,
   Sidebar as SidebarIcon,
   Route,
+  RectangleHorizontal,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 
@@ -81,6 +82,11 @@ const SIDEBAR_ELEMENTS = {
         link: "/components/user-avatars",
       },
       { name: "Router", icon: <Route size={16} />, link: "/components/router" },
+      {
+        name: "Skeleton",
+        icon: <RectangleHorizontal size={16} />,
+        link: "/components/skeleton",
+      },
     ],
     controls: [
       {

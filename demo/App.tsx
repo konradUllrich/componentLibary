@@ -24,6 +24,7 @@ import {
   DropdownPage,
   TooltipPage,
   RouterPage,
+  SkeletonPage,
 } from "./pages";
 
 import "./App.css";
@@ -114,6 +115,7 @@ export const App: React.FC = () => {
         <Route path="/components/dropdown" component={DropdownPage} />
         <Route path="/components/tooltip" component={TooltipPage} />
         <Route path="/components/router" component={RouterPage} />
+        <Route path="/components/skeleton" component={SkeletonPage} />
       </AppLayout>
     </>
   );
