@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Tabs, Text } from "../../common";
 import { Page, Section } from "../../layout";
+import { useParamState } from "../../Router/hooks";
 
 export const TabsPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("tab1");
+  // const [activeTab, setActiveTab] = useState("tab1");
   const [pillsTab, setPillsTab] = useState("pills1");
-
+  const [activeTab, setActiveTab] = useParamState("activeTab", "tab1");
   return (
     <Page>
       <Section variant="hero">
