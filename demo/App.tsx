@@ -32,7 +32,7 @@ import "./pages/ComponentPage.css";
 import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
 import { DocsPage } from "./pages/DocsPage";
-import { BookOpen, Github, Palette } from "lucide-react";
+import { BookOpen, Github, Palette, Home } from "lucide-react";
 import { ThemePanel, useThemeEditor } from "../common/ThemeProvider";
 import { Route } from "../Router";
 import { useLocation } from "../Router/hooks";
@@ -40,6 +40,8 @@ import { useLocation } from "../Router/hooks";
 export const App: React.FC = () => {
   const [location, navigate] = useLocation(); // Ensure the router's location hook is initialized at the top level of the app
   const { isOpen, toggle } = useThemeEditor();
+
+  console.log({ location });
 
   return (
     <>
@@ -52,10 +54,19 @@ export const App: React.FC = () => {
               <HorizontalNav
                 items={[
                   {
+                    id: "home",
+                    label: "Home",
+                    icon: <Home size={18} />,
+                    isActive: location === "/",
+                    onClick: () => {
+                      navigate("/");
+                    },
+                  },
+                  {
                     id: "docs",
                     label: "Documentation",
                     icon: <BookOpen size={18} />,
-                    isActive: location === "docs",
+                    isActive: location === "/docs",
                     onClick: () => {
                       navigate("/docs");
                     },
