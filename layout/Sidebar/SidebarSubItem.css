@@ -8,6 +8,7 @@
   width: 100%;
   padding: var(--spacing-2) var(--spacing-3);
   margin-bottom: var(--spacing-1);
+  min-height: var(--sidebar-item-height);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   border-radius: var(--radius-md);
