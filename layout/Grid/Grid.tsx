@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import "./Grid.css";
 
-const COLUMN_PRESETS = ["1", "2", "3", "4", "6", "12"] as const;
+const COLUMN_PRESETS = ["1", "2", "3", "4", "5", "6", "12"] as const;
 const GAP_PRESETS = ["xs", "sm", "md", "lg", "xl"] as const;
 
 type ColumnPreset = (typeof COLUMN_PRESETS)[number];
