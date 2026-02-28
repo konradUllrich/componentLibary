@@ -67,7 +67,14 @@ export {
 // ========================================
 // Control Components (Forms)
 // ========================================
-// export { FormField, FormInput, FormSelect, FormCheckbox, FormTextarea, FormError } from './controls';
+export {
+  Checkbox,
+  type CheckboxProps,
+  CheckboxGroup,
+  type CheckboxGroupProps,
+  FormBuilder,
+  type FormBuilderProps,
+} from "./controls";
 // export { useForm } from './controls';
 
 // ========================================
