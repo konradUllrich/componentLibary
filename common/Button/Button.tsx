@@ -71,6 +71,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       children,
       "aria-label": ariaLabel,
+      type = "button",
       ...props
     },
     ref,
@@ -87,6 +88,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           isLoading && "button--loading",
           className,
         )}
+        type={type}
         disabled={isDisabled}
         aria-disabled={isDisabled}
         aria-busy={isLoading}
