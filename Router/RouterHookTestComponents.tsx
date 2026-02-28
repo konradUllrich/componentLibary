@@ -9,6 +9,7 @@ import {
   useParams,
   useRoute,
   useSearchParams,
+  useNavigation,
 } from "./hooks";
 import { Link, Route } from "./index";
 
@@ -100,3 +101,18 @@ export const NavigateWithQuery = () => {
   );
 };
 NavigateWithQuery.displayName = "NavigateWithQuery";
+
+export const NavigationScene = () => {
+  const { navigate, back } = useNavigation();
+  return (
+    <div>
+      <button type="button" onClick={() => navigate("/nav-target")}>
+        go
+      </button>
+      <button type="button" onClick={() => back()}>
+        back
+      </button>
+    </div>
+  );
+};
+NavigationScene.displayName = "NavigationScene";

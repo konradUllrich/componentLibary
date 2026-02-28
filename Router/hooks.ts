@@ -1,5 +1,5 @@
 export { useSearch, useLocation, useParams, useRoute } from "wouter";
-import { useSearchParams as useSearchParamsw } from "wouter";
+import { useLocation, useSearchParams as useSearchParamsw } from "wouter";
 
 /**
  * Hook for accessing and modifying search parameters in the URL.
@@ -32,4 +32,21 @@ export const useParamState = <T>(
   };
 
   return [getParamValue(), setParamValue];
+};
+
+/**
+ * Hook for navigating programmatically within the router.
+ * Returns an object with `navigate` to go to a path and `back` to go back in history.
+ *
+ * @returns {{ navigate: (to: string, opts?: { replace?: boolean }) => void, back: () => void }}
+ *
+ * @example
+ * const { navigate, back } = useNavigation();
+ * navigate('/about');
+ * back();
+ */
+export const useNavigation = () => {
+  const [, navigate] = useLocation();
+  const back = () => window.history.back();
+  return { navigate, back };
 };
