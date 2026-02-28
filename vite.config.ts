@@ -14,6 +14,8 @@ export default defineConfig({
     }),
   ],
   build: {
+    // Avoid removing dist between rebuilds so consumers don't 404 mid-watch.
+    emptyOutDir: false,
     lib: {
       entry: path.resolve(__dirname, "index.ts"),
       name: "mpComponents",
