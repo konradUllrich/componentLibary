@@ -1,7 +1,5 @@
-import React from "react";
 import clsx from "clsx";
-import { useForm } from "@tanstack/react-form";
-import type { DeepKeys } from "@tanstack/form-core";
+import { useForm, DeepKeys } from "@tanstack/react-form";
 import { Button } from "../../common/Button";
 import { FormBuilderField } from "./FormBuilderField";
 import type { FieldDef, FormBuilderProps } from "./types";
