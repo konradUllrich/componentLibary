@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import { Datalist } from "./Datalist";
+import { createColumns } from "./createColumns";
 import { checkA11y } from "../../playwright/test-utils";
 import { createColumnHelper, type ColumnDef } from "@tanstack/react-table";
 import React from "react";
@@ -526,6 +527,113 @@ test.describe("Datalist Component", () => {
 
       await expect(page.locator("text=Laptop")).toBeVisible();
       await expect(page.locator("text=$999")).toBeVisible();
+    });
+  });
+
+  test.describe("createColumns helper", () => {
+    interface Employee {
+      id: number;
+      name: string;
+      address: { city: string; country: string };
+    }
+
+    const employees: Employee[] = [
+      { id: 1, name: "Alice", address: { city: "Berlin", country: "Germany" } },
+      { id: 2, name: "Bob", address: { city: "Paris", country: "France" } },
+    ];
+
+    test("should render table with key-based columns", async ({
+      mount,
+      page,
+    }) => {
+      const columns = createColumns<Employee>([
+        { key: "id", header: "ID" },
+        { key: "name", header: "Name" },
+      ]);
+
+      await mount(<Datalist data={employees} columns={columns} />);
+
+      const table = page.locator("table");
+      await expect(table).toBeVisible();
+
+      // Headers should be rendered
+      await expect(page.locator("thead th").nth(0)).toContainText("ID");
+      await expect(page.locator("thead th").nth(1)).toContainText("Name");
+    });
+
+    test("should render table with accessorFn for nested object access", async ({
+      mount,
+      page,
+    }) => {
+      const columns = createColumns<Employee>([
+        { key: "name", header: "Name" },
+        {
+          id: "city",
+          header: "City",
+          accessorFn: (row) => row.address.city,
+        },
+        {
+          id: "country",
+          header: "Country",
+          accessorFn: (row) => row.address.country,
+        },
+      ]);
+
+      await mount(<Datalist data={employees} columns={columns} />);
+
+      const table = page.locator("table");
+      await expect(table).toBeVisible();
+
+      // All three headers should be rendered
+      const headers = page.locator("thead th");
+      await expect(headers).toHaveCount(3);
+      await expect(headers.nth(1)).toContainText("City");
+      await expect(headers.nth(2)).toContainText("Country");
+    });
+
+    test("should render table with action columns", async ({ mount, page }) => {
+      const columns = createColumns<Employee>([
+        { key: "name", header: "Name" },
+        {
+          id: "actions",
+          header: "Actions",
+          // Note: cell functions cannot be serialized in Playwright CT, so only
+          // the column structure (header) is verified here.
+          // See PLAYWRIGHT_CT_LIMITATIONS.md for details.
+        },
+      ]);
+
+      await mount(<Datalist data={employees} columns={columns} />);
+
+      const table = page.locator("table");
+      await expect(table).toBeVisible();
+
+      // Actions header should be rendered – verifies the column was created
+      const headers = page.locator("thead th");
+      await expect(headers).toHaveCount(2);
+      await expect(headers.nth(1)).toContainText("Actions");
+    });
+
+    test("should pass accessibility checks with createColumns", async ({
+      mount,
+      page,
+    }) => {
+      const columns = createColumns<Employee>([
+        { key: "name", header: "Name" },
+        {
+          id: "city",
+          header: "City",
+          accessorFn: (row) => row.address.city,
+        },
+        {
+          id: "actions",
+          header: "Actions",
+        },
+      ]);
+
+      await mount(<Datalist data={employees} columns={columns} />);
+
+      await checkA11y(page);
     });
   });
 });

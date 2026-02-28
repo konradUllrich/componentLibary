@@ -113,6 +113,11 @@ const SIDEBAR_ELEMENTS = {
         link: "/components/card-list",
       },
       {
+        name: "Datalist",
+        icon: <Table size={16} />,
+        link: "/components/datalist",
+      },
+      {
         name: "Pagination",
         icon: <Hash size={16} />,
         link: "/components/pagination",

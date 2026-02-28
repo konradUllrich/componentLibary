@@ -15,6 +15,7 @@ import {
   DatePage,
   TablePage,
   CardListPage,
+  DatalistPage,
   CardPage,
   FlexPage,
   HorizontalNavPage,
@@ -115,6 +116,7 @@ export const App: React.FC = () => {
         <Route path="/components/date" component={DatePage} />
         <Route path="/components/table" component={TablePage} />
         <Route path="/components/card-list" component={CardListPage} />
+        <Route path="/components/datalist" component={DatalistPage} />
         <Route path="/components/card" component={CardPage} />
         <Route path="/components/flex" component={FlexPage} />
         <Route
