@@ -1,7 +1,7 @@
 /* Section - Content section block */
 
 .section--default {
-  margin-bottom: var(--spacing-12);
+  margin-top: var(--spacing-4);
   background: var(--color-background);
   padding: var(--spacing-8);
   border-radius: var(--radius-xl);
@@ -11,7 +11,7 @@
 
 /* Hero variant – for page-level headers/introductions */
 .section--hero {
-  margin-bottom: var(--spacing-10);
+  margin-top: var(--spacing-10);
   background: linear-gradient(
     135deg,
     rgba(99, 102, 241, 0.03) 0%,
@@ -23,7 +23,7 @@
 }
 
 .section--hero h1 {
-  margin-bottom: var(--spacing-3);
+  margin-top: var(--spacing-3);
   background: var(--color-primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -34,7 +34,7 @@
 @media (max-width: 768px) {
   .section--default {
     padding: var(--spacing-6);
-    margin-bottom: var(--spacing-8);
+    margin-top: var(--spacing-8);
   }
 
   .section--hero {
