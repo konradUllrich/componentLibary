@@ -8,6 +8,7 @@ import {
   MatchWithNav,
   ParamsScene,
   NavigateWithQuery,
+  NavigationScene,
 } from "./RouterHookTestComponents";
 
 test.describe("Router Hooks", () => {
@@ -125,6 +126,33 @@ test.describe("Router Hooks", () => {
       await expect(page.getByTestId("search-params")).toHaveText("none");
       await page.getByRole("button", { name: "query" }).click();
       await expect(page.getByTestId("search-params")).toHaveText("world");
+    });
+  });
+
+  test.describe("useNavigation", () => {
+    test("should navigate to a path", async ({ mount, page }) => {
+      await mount(
+        <Router>
+          <LocationDisplay />
+          <NavigationScene />
+        </Router>,
+      );
+      await expect(page.getByTestId("location")).toHaveText("/");
+      await page.getByRole("button", { name: "go" }).click();
+      await expect(page.getByTestId("location")).toHaveText("/nav-target");
+    });
+
+    test("should go back after navigation", async ({ mount, page }) => {
+      await mount(
+        <Router>
+          <LocationDisplay />
+          <NavigationScene />
+        </Router>,
+      );
+      await page.getByRole("button", { name: "go" }).click();
+      await expect(page.getByTestId("location")).toHaveText("/nav-target");
+      await page.getByRole("button", { name: "back" }).click();
+      await expect(page.getByTestId("location")).toHaveText("/");
     });
   });
 });
