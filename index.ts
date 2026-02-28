@@ -80,13 +80,14 @@ export {
   TableRow,
   TableCell,
   Datalist,
-  createColumnHelper,
+  createColumns,
   type TableProps,
   type TableHeaderProps,
   type TableBodyProps,
   type TableRowProps,
   type TableCellProps,
   type DatalistProps,
+  type ColumnConfig,
 } from "./data-display";
 
 // ========================================
