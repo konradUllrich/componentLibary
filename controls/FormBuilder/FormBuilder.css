@@ -38,6 +38,7 @@
   resize: vertical;
   transition: var(--transition-fast);
   box-sizing: border-box;
+  outline: none;
 }
 
 .form-builder__textarea::placeholder {
@@ -48,10 +49,9 @@
   border-color: var(--color-border-hover);
 }
 
-.form-builder__textarea:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
+.form-builder__textarea:focus {
   border-color: var(--color-primary);
+  box-shadow: var(--focus-shadow);
 }
 
 .form-builder__textarea:disabled {
