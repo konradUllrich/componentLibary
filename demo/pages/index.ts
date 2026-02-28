@@ -13,6 +13,7 @@ export { UserAvatarsPage } from './UserAvatarsPage';
 export { DatePage } from './DatePage';
 export { TablePage } from './TablePage';
 export { CardListPage } from './CardListPage';
+export { DatalistPage } from './DatalistPage';
 export { CardPage } from './CardPage';
 export { FlexPage } from './FlexPage';
 export { HorizontalNavPage } from './HorizontalNavPage';
