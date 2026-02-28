@@ -60,6 +60,8 @@ export {
   type EmptyStateProps,
   type EmptyStateVariant,
   type EmptyStateSize,
+  Text,
+  type TextProps,
 } from "./common";
 
 // ========================================
@@ -78,6 +80,7 @@ export {
   TableRow,
   TableCell,
   Datalist,
+  createColumnHelper,
   type TableProps,
   type TableHeaderProps,
   type TableBodyProps,
@@ -95,12 +98,14 @@ export {
   SidebarNav,
   SidebarItem,
   SidebarSubItem,
+  SidebarDivider,
   useSidebar,
   type SidebarProps,
   type SidebarToggleProps,
   type SidebarNavProps,
   type SidebarItemProps,
   type SidebarSubItemProps,
+  type SidebarDividerProps,
   AppLayout,
   AppHeader,
   AppSidebar,
