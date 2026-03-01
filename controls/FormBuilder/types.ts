@@ -15,6 +15,7 @@
  */
 
 import type React from "react";
+import { CheckboxProps } from "../Checkbox";
 
 // ─── Key-type helpers ─────────────────────────────────────────────────────────
 
@@ -139,6 +140,7 @@ export type CheckboxField<TData extends object> = BaseField<
   BooleanKeys<TData>
 > & {
   fieldType: "checkbox";
+  variant?: CheckboxProps["variant"];
   /** Inline label text rendered next to the checkbox */
   inlineLabel?: string;
   validate?: FieldValidation<boolean>;

@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import type { FieldApi } from "@tanstack/form-core";
+import type { FieldApi } from "@tanstack/react-form";
 import { Input } from "../Input";
 import { NativeSelect } from "../NativeSelect";
 import { Checkbox } from "../Checkbox";
@@ -45,6 +45,7 @@ export function FormBuilderField<TData extends object>({
   if (field.fieldType === "checkbox") {
     return (
       <Checkbox
+        variant={field.variant}
         className={field.className}
         label={field.label}
         inlineLabel={field.inlineLabel}
