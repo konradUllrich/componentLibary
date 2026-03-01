@@ -1,0 +1,107 @@
+/* Toggle Styles - Radix UI */
+
+/* Block: Toggle Base */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family-base);
+  line-height: 1;
+  cursor: pointer;
+  transition: all var(--duration-200) var(--ease-in-out);
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+/* Focus visible state */
+.toggle:focus-visible {
+  box-shadow: var(--focus-shadow);
+}
+
+/* Disabled state */
+.toggle:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==============================
+   Size Modifiers
+   ============================== */
+
+.toggle--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-sm);
+  min-height: 2rem;
+}
+
+.toggle--md {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-base);
+  min-height: 2.5rem;
+}
+
+.toggle--lg {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-lg);
+  min-height: 3rem;
+}
+
+/* ==============================
+   Variant: Default
+   ============================== */
+
+.toggle--default {
+  background-color: transparent;
+  color: var(--color-foreground-secondary);
+  border-color: transparent;
+}
+
+.toggle--default:hover:not(:disabled):not([data-state="on"]) {
+  background-color: var(--color-background-tertiary);
+  color: var(--color-foreground);
+}
+
+.toggle--default[data-state="on"] {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+.toggle--default[data-state="on"]:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+/* ==============================
+   Variant: Outline
+   ============================== */
+
+.toggle--outline {
+  background-color: transparent;
+  color: var(--color-foreground-secondary);
+  border-color: var(--color-border);
+}
+
+.toggle--outline:hover:not(:disabled):not([data-state="on"]) {
+  background-color: var(--color-background-tertiary);
+  color: var(--color-foreground);
+  border-color: var(--color-border-dark);
+}
+
+.toggle--outline[data-state="on"] {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+.toggle--outline[data-state="on"]:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
