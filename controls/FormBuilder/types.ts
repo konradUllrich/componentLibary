@@ -53,6 +53,24 @@ export interface FieldValidation<TValue> {
   onBlur?: FieldValidatorFn<TValue>;
 }
 
+/**
+ * A minimal schema interface compatible with Zod (and any library whose
+ * objects expose a `safeParse` method with the same signature).
+ *
+ * Pass a Zod schema directly:
+ * @example
+ * import { z } from 'zod';
+ * // inside a field definition:
+ * schema: z.string().email('Invalid email')
+ */
+export interface FieldSchema<TValue> {
+  safeParse: (
+    value: TValue,
+  ) =>
+    | { success: true; data: TValue }
+    | { success: false; error: { issues: ReadonlyArray<{ message: string }> } };
+}
+
 // ─── Option type (for select fields) ─────────────────────────────────────────
 
 /** A single option rendered inside a `<select>` element */
@@ -95,6 +113,8 @@ export type TextField<TData extends object> = BaseField<
   fieldType: "text" | "email" | "password";
   placeholder?: string;
   validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
 };
 
 /** Multi-line textarea – `name` must map to a `string` value */
@@ -107,6 +127,8 @@ export type TextareaField<TData extends object> = BaseField<
   /** Number of visible rows @default 3 */
   rows?: number;
   validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
 };
 
 /** Numeric input – `name` must map to a `number` value */
@@ -120,6 +142,8 @@ export type NumberField<TData extends object> = BaseField<
   max?: number;
   step?: number;
   validate?: FieldValidation<number>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<number>;
 };
 
 /** Native `<select>` dropdown – `name` must map to a `string` value */
@@ -132,6 +156,8 @@ export type SelectField<TData extends object> = BaseField<
   /** Placeholder option shown when no value is selected */
   placeholder?: string;
   validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
 };
 
 /** Checkbox – `name` must map to a `boolean` value */
@@ -144,6 +170,8 @@ export type CheckboxField<TData extends object> = BaseField<
   /** Inline label text rendered next to the checkbox */
   inlineLabel?: string;
   validate?: FieldValidation<boolean>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<boolean>;
 };
 
 // ─── Custom field ─────────────────────────────────────────────────────────────
@@ -181,6 +209,8 @@ export type CustomField<TData extends object> = BaseField<
   /** Render function for the custom control */
   render: (props: CustomFieldRenderProps) => React.ReactNode;
   validate?: FieldValidation<unknown>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<unknown>;
 };
 
 // ─── Union ────────────────────────────────────────────────────────────────────
