@@ -72,6 +72,32 @@ export const FormControlsPage: React.FC = () => {
 
       <Section>
         <Text as="h2" size="2xl" weight="semibold">
+          Toggle
+        </Text>
+        <Text color="secondary" size="sm">
+          Checkbox styled as a toggle switch
+        </Text>
+        <div className="component-page__demo-column">
+          <Checkbox
+            variant="toggle"
+            label="Notifications"
+            inlineLabel="Enable email updates"
+          />
+          <Checkbox
+            variant="toggle"
+            inlineLabel="Dark mode"
+            defaultChecked
+          />
+          <Checkbox
+            variant="toggle"
+            inlineLabel="Disabled toggle"
+            disabled
+          />
+        </div>
+      </Section>
+
+      <Section>
+        <Text as="h2" size="2xl" weight="semibold">
           Radio Group
         </Text>
         <Text color="secondary" size="sm">

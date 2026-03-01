@@ -123,3 +123,79 @@ test.describe('Checkbox Component', () => {
     await checkA11y(page, { disableRules: ['color-contrast'] });
   });
 });
+
+test.describe('Checkbox Toggle Variant', () => {
+  test('should render toggle variant', async ({ mount }) => {
+    const component = await mount(
+      <Checkbox variant="toggle" inlineLabel="Enable notifications" />
+    );
+    await expect(component.locator('.checkbox-toggle')).toBeVisible();
+    await expect(component.locator('input[type="checkbox"]')).toBeAttached();
+  });
+
+  test('should toggle on click (toggle variant)', async ({ mount }) => {
+    const component = await mount(
+      <Checkbox variant="toggle" inlineLabel="Toggle me" />
+    );
+    const checkbox = component.locator('input[type="checkbox"]');
+    const label = component.locator('.checkbox-label');
+
+    await expect(checkbox).not.toBeChecked();
+    await label.click();
+    await expect(checkbox).toBeChecked();
+    await label.click();
+    await expect(checkbox).not.toBeChecked();
+  });
+
+  test('should render toggle with defaultChecked', async ({ mount }) => {
+    const component = await mount(
+      <Checkbox variant="toggle" inlineLabel="Always on" defaultChecked />
+    );
+    await expect(component.locator('input[type="checkbox"]')).toBeChecked();
+  });
+
+  test('should handle disabled state (toggle variant)', async ({ mount }) => {
+    const component = await mount(
+      <Checkbox variant="toggle" inlineLabel="Disabled toggle" disabled />
+    );
+    await expect(component.locator('input[type="checkbox"]')).toBeDisabled();
+  });
+
+  test('should handle error state (toggle variant)', async ({ mount }) => {
+    const component = await mount(
+      <Checkbox
+        variant="toggle"
+        label="Setting"
+        inlineLabel="Enable feature"
+        error
+        errorMessage="This setting is required"
+      />
+    );
+    const errorMsg = component.locator('.form-control__message--error');
+    await expect(errorMsg).toBeVisible();
+    await expect(errorMsg).toContainText('This setting is required');
+  });
+
+  test('should support keyboard interaction (toggle variant)', async ({ mount, page }) => {
+    const component = await mount(
+      <Checkbox variant="toggle" inlineLabel="Press Space" />
+    );
+    const checkbox = component.locator('input[type="checkbox"]');
+
+    await checkbox.focus();
+    await expect(checkbox).toBeFocused();
+
+    await page.keyboard.press('Space');
+    await expect(checkbox).toBeChecked();
+  });
+
+  test('should pass accessibility checks (toggle variant)', async ({ mount, page }) => {
+    await mount(
+      <div>
+        <Checkbox variant="toggle" label="Notifications" inlineLabel="Email updates" />
+        <Checkbox variant="toggle" inlineLabel="Newsletter" defaultChecked />
+      </div>
+    );
+    await checkA11y(page, { disableRules: ['color-contrast'] });
+  });
+});

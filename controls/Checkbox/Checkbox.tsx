@@ -11,7 +11,7 @@ export interface CheckboxProps extends Omit<
    * Checkbox variant (only used if no custom children provided)
    * @default "default"
    */
-  variant?: "default" | "filled" | "outline";
+  variant?: "default" | "filled" | "outline" | "toggle";
 
   /**
    * Label text displayed above checkbox
@@ -83,6 +83,13 @@ export interface CheckboxProps extends Omit<
  *   errorMessage="You must accept the terms"
  * />
  *
+ * // Toggle variant
+ * <Checkbox
+ *   variant="toggle"
+ *   label="Notifications"
+ *   inlineLabel="Enable email updates"
+ * />
+ *
  * // With custom trigger (e.g., Badge)
  * <Checkbox
  *   name="filters"
@@ -141,12 +148,16 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               <>{children}</>
             ) : (
               <>
-                <span
-                  className={clsx(
-                    "checkbox-custom",
-                    `checkbox-custom--${variant}`,
-                  )}
-                />
+                {variant === "toggle" ? (
+                  <span className="checkbox-toggle" aria-hidden="true" />
+                ) : (
+                  <span
+                    className={clsx(
+                      "checkbox-custom",
+                      `checkbox-custom--${variant}`,
+                    )}
+                  />
+                )}
                 {inlineLabel && (
                   <span className="checkbox-text">{inlineLabel}</span>
                 )}
