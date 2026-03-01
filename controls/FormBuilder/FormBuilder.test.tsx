@@ -1,7 +1,12 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
 import { FormBuilder } from "./FormBuilder";
-import { BlurValidationForm, CustomFieldForm } from "./FormBuilder.fixtures";
+import {
+  BlurValidationForm,
+  CustomFieldForm,
+  ZodEmailValidationForm,
+  ZodAndValidateFnForm,
+} from "./FormBuilder.fixtures";
 import { checkA11y } from "../../playwright/test-utils";
 
 // ─── Shared test data ─────────────────────────────────────────────────────────
@@ -409,5 +414,53 @@ test.describe("FormBuilder", () => {
     const fieldWrapper = component.locator(".form-builder__field").first();
     const style = await fieldWrapper.getAttribute("style");
     expect(style).toContain("grid-column");
+  });
+
+  // ─── Zod schema validation ──────────────────────────────────────────────────
+
+  test("shows zod schema error on invalid onChange input", async ({
+    mount,
+  }) => {
+    const component = await mount(<ZodEmailValidationForm />);
+    const input = component.locator('input[type="email"]');
+    await input.fill("not-an-email");
+    await expect(component.locator(".form-control__message--error")).toHaveText(
+      "Invalid email address",
+    );
+  });
+
+  test("clears zod schema error when input becomes valid", async ({
+    mount,
+  }) => {
+    const component = await mount(<ZodEmailValidationForm />);
+    const input = component.locator('input[type="email"]');
+    await input.fill("not-an-email");
+    await expect(component.locator(".form-control__message--error")).toBeVisible();
+    await input.fill("user@example.com");
+    await expect(
+      component.locator(".form-control__message--error"),
+    ).not.toBeAttached();
+  });
+
+  test("zod schema error takes priority over validate fn error", async ({
+    mount,
+  }) => {
+    const component = await mount(<ZodAndValidateFnForm />);
+    const input = component.locator('input[type="text"]');
+    // Single character → fails zod min(2) before the validate fn is reached
+    await input.fill("a");
+    await expect(component.locator(".form-control__message--error")).toHaveText(
+      "Name must be at least 2 characters",
+    );
+  });
+
+  test("validate fn error shown when zod schema passes", async ({ mount }) => {
+    const component = await mount(<ZodAndValidateFnForm />);
+    const input = component.locator('input[type="text"]');
+    // "admin" is long enough for zod but rejected by the validate fn
+    await input.fill("admin");
+    await expect(component.locator(".form-control__message--error")).toHaveText(
+      "Username 'admin' is reserved",
+    );
   });
 });

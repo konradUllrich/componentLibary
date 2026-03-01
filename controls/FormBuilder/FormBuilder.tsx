@@ -2,25 +2,41 @@ import clsx from "clsx";
 import { useForm, DeepKeys } from "@tanstack/react-form";
 import { Button } from "../../common/Button";
 import { FormBuilderField } from "./FormBuilderField";
-import type { FieldDef, FormBuilderProps } from "./types";
+import type { FieldDef, FieldSchema, FormBuilderProps } from "./types";
 import "./FormBuilder.css";
 
 /**
- * Converts a `FieldDef` `validate` object into the `validators` shape
- * expected by TanStack Form's `form.Field`.
+ * Converts a `FieldDef` `validate` object and optional `schema` into the
+ * `validators` shape expected by TanStack Form's `form.Field`.
+ *
+ * When a `schema` is provided its `safeParse` is run first (on both
+ * `onChange` and `onBlur`); if validation passes the optional `validate`
+ * function for that trigger is run next.  Either check may return an error
+ * message string; `undefined` means valid.
  */
 function buildValidators<TData extends object>(field: FieldDef<TData>) {
-  const v = field.validate;
-  if (!v) return undefined;
+  const { validate: v, schema } = field;
+  if (!v && !schema) return undefined;
+
+  const applySchema = (value: unknown): string | undefined => {
+    if (!schema) return undefined;
+    const result = (schema as FieldSchema<unknown>).safeParse(value);
+    return result.success ? undefined : result.error.issues[0]?.message;
+  };
+
   return {
-    onChange: v.onChange
-      ? ({ value }: { value: unknown }) =>
-          v.onChange!(value as never) ?? undefined
-      : undefined,
-    onBlur: v.onBlur
-      ? ({ value }: { value: unknown }) =>
-          v.onBlur!(value as never) ?? undefined
-      : undefined,
+    onChange:
+      v?.onChange || schema
+        ? ({ value }: { value: unknown }) =>
+            applySchema(value) ??
+            (v?.onChange ? (v.onChange(value as never) ?? undefined) : undefined)
+        : undefined,
+    onBlur:
+      v?.onBlur || schema
+        ? ({ value }: { value: unknown }) =>
+            applySchema(value) ??
+            (v?.onBlur ? (v.onBlur(value as never) ?? undefined) : undefined)
+        : undefined,
   };
 }
 
