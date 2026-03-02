@@ -1,0 +1,49 @@
+/* Textarea Styles */
+
+/* Block: Textarea */
+.textarea {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  transition: all var(--duration-200) var(--ease-in-out);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--color-foreground-secondary);
+}
+
+.textarea:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-shadow);
+}
+
+/* Modifier: Error */
+.textarea--error {
+  border-color: var(--color-error);
+}
+
+.textarea--error:focus {
+  border-color: var(--color-destructive);
+  box-shadow: var(--focus-shadow-error);
+}
+
+/* Modifier: Disabled */
+.textarea--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  resize: none;
+  background-color: var(--color-background-secondary);
+}

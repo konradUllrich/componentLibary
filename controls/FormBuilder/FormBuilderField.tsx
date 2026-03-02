@@ -1,9 +1,9 @@
-import React, { useId } from "react";
+import React from "react";
 import type { FieldApi } from "@tanstack/react-form";
 import { Input } from "../Input";
 import { NativeSelect } from "../NativeSelect";
 import { Checkbox } from "../Checkbox";
-import { FormControl } from "../FormControl";
+import { Textarea } from "../Textarea";
 import type { FieldDef } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,7 +23,6 @@ export function FormBuilderField<TData extends object>({
   fieldApi,
 }: FormBuilderFieldProps<TData>) {
   const { state, handleChange, handleBlur } = fieldApi;
-  const textareaId = useId();
   const hasError = state.meta.errors.length > 0;
   const errorMessage = hasError ? String(state.meta.errors[0]) : undefined;
 
@@ -86,26 +85,20 @@ export function FormBuilderField<TData extends object>({
 
   if (field.fieldType === "textarea") {
     return (
-      <FormControl
+      <Textarea
         className={field.className}
         label={field.label}
-        htmlFor={textareaId}
         helperText={field.helperText}
         required={field.required}
+        disabled={field.disabled}
         error={hasError}
         errorMessage={errorMessage}
-      >
-        <textarea
-          id={textareaId}
-          className="form-builder__textarea"
-          placeholder={field.placeholder}
-          rows={field.rows ?? 3}
-          disabled={field.disabled}
-          value={String(state.value ?? "")}
-          onChange={(e) => handleChange(e.target.value)}
-          onBlur={handleBlur}
-        />
-      </FormControl>
+        placeholder={field.placeholder}
+        rows={field.rows ?? 3}
+        value={String(state.value ?? "")}
+        onChange={(e) => handleChange(e.target.value)}
+        onBlur={handleBlur}
+      />
     );
   }
 

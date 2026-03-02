@@ -23,43 +23,6 @@
   grid-column: 1 / -1; /* always span all columns */
 }
 
-/* ── Textarea field ─────────────────────────────────────────── */
-
-.form-builder__textarea {
-  display: block;
-  width: 100%;
-  padding: var(--spacing-2) var(--spacing-3);
-  font-family: var(--font-family);
-  font-size: var(--font-size-md);
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  resize: vertical;
-  transition: var(--transition-fast);
-  box-sizing: border-box;
-  outline: none;
-}
-
-.form-builder__textarea::placeholder {
-  color: var(--color-muted-foreground);
-}
-
-.form-builder__textarea:hover:not(:disabled) {
-  border-color: var(--color-border-hover);
-}
-
-.form-builder__textarea:focus {
-  border-color: var(--color-primary);
-  box-shadow: var(--focus-shadow);
-}
-
-.form-builder__textarea:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  resize: none;
-}
-
 /* ── Actions row ────────────────────────────────────────────── */
 
 .form-builder__actions {
