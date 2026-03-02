@@ -24,3 +24,5 @@ export { DropdownPage } from './DropdownPage';
 export { TooltipPage } from './TooltipPage';
 export { SkeletonPage } from './SkeletonPage';
 export { EmptyStatePage } from './EmptyStatePage';
+export { TogglePage } from './TogglePage';
+export { ToggleGroupPage } from './ToggleGroupPage';

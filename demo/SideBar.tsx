@@ -37,6 +37,8 @@ import {
   Route,
   RectangleHorizontal,
   SquareDashed,
+  ToggleLeft,
+  Layers,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 
@@ -92,6 +94,16 @@ const SIDEBAR_ELEMENTS = {
         name: "Empty State",
         icon: <SquareDashed size={16} />,
         link: "/components/empty-state",
+      },
+      {
+        name: "Toggle",
+        icon: <ToggleLeft size={16} />,
+        link: "/components/toggle",
+      },
+      {
+        name: "Toggle Group",
+        icon: <Layers size={16} />,
+        link: "/components/toggle-group",
       },
     ],
     controls: [

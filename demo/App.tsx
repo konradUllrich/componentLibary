@@ -27,6 +27,8 @@ import {
   RouterPage,
   SkeletonPage,
   EmptyStatePage,
+  TogglePage,
+  ToggleGroupPage,
 } from "./pages";
 
 import "./App.css";
@@ -131,6 +133,8 @@ export const App: React.FC = () => {
         <Route path="/components/router" component={RouterPage} />
         <Route path="/components/skeleton" component={SkeletonPage} />
         <Route path="/components/empty-state" component={EmptyStatePage} />
+        <Route path="/components/toggle" component={TogglePage} />
+        <Route path="/components/toggle-group" component={ToggleGroupPage} />
       </AppLayout>
     </>
   );
