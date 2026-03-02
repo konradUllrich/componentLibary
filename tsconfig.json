@@ -27,13 +27,15 @@
     "vite-env.d.ts",
     "index.ts",
     "common",
+    "intrexx",
     "controls",
     "data-display",
     "layout",
     "styles",
     "demo",
     "e2e",
-    "playwright"
+    "playwright",
+    "intrexx/**/*"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

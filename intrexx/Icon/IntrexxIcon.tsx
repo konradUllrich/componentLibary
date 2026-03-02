@@ -10,7 +10,5 @@ export const IntrexxIcon: React.FC<KanbanIconProps> = ({
   iconClass,
   className = "",
 }) => {
-  return (
-    <i className={clsx("kanban-icon", iconClass, className)} aria-hidden="true" />
-  );
+  return <i className={clsx(iconClass, className)} aria-hidden="true" />;
 };

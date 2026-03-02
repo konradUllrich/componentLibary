@@ -162,6 +162,12 @@ export {
 } from "./layout";
 
 // ========================================
+// Intrexx Components
+// ========================================
+
+export { IntrexxIcon } from "./intrexx/Icon/IntrexxIcon";
+
+// ========================================
 // Shared Hooks
 // ========================================
 // export { useMediaQuery, useClickOutside, useFocus, useDebounce } from './hooks';
