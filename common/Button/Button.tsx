@@ -82,10 +82,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={clsx(
-          "button",
-          `button--${variant}`,
-          `button--${size}`,
-          isLoading && "button--loading",
+          "mp-button",
+          `mp-button--${variant}`,
+          `mp-button--${size}`,
+          isLoading && "mp-button--loading",
           className,
         )}
         type={type}
@@ -96,11 +96,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading && (
-          <span className="button__spinner" aria-hidden="true">
-            <span className="button__spinner-dot"></span>
+          <span className="mp-button__spinner" aria-hidden="true">
+            <span className="mp-button__spinner-dot"></span>
           </span>
         )}
-        <span className="button__content">{children}</span>
+        <span className="mp-button__content">{children}</span>
       </button>
     );
   },

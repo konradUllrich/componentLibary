@@ -71,6 +71,8 @@ export {
   type ToggleGroupItemProps,
   Image,
   type ImageProps,
+  Badge,
+  type BadgeProps,
 } from "./common";
 
 // ========================================

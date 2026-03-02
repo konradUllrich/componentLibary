@@ -1,7 +1,7 @@
 /* Button Component Styles */
 
 /* Block: Button */
-.button {
+.mp-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -20,128 +20,128 @@
   outline: none;
 }
 
-.button:focus-visible {
+.mp-button:focus-visible {
   box-shadow: var(--button-focus-shadow);
 }
 
-.button:hover:not(:disabled):not(.button--ghost) {
+.mp-button:hover:not(:disabled):not(.button--ghost) {
   opacity: var(--button-hover-opacity);
 }
 
-.button:active:not(:disabled) {
+.mp-button:active:not(:disabled) {
   opacity: var(--button-active-opacity);
 }
 
-.button:disabled {
+.mp-button:disabled {
   opacity: var(--button-disabled-opacity);
   cursor: not-allowed;
 }
 
 /* Modifier: Sizes */
-.button--sm {
+.mp-button--sm {
   padding: var(--button-padding-y-sm) var(--button-padding-x-sm);
   font-size: var(--font-size-sm);
 }
 
-.button--md {
+.mp-button--md {
   padding: var(--button-padding-y-md) var(--button-padding-x-md);
 }
 
-.button--lg {
+.mp-button--lg {
   padding: var(--button-padding-y-lg) var(--button-padding-x-lg);
   font-size: var(--font-size-lg);
 }
 
 /* Modifier: Primary Variant */
-.button--primary {
+.mp-button--primary {
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
   border-color: var(--color-primary);
 }
 
-.button--primary:hover:not(:disabled) {
+.mp-button--primary:hover:not(:disabled) {
   background-color: var(--color-primary-light);
   border-color: var(--color-primary-light);
 }
 
-.button--primary:active:not(:disabled) {
+.mp-button--primary:active:not(:disabled) {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
 }
 
 /* Modifier: Secondary Variant */
-.button--secondary {
+.mp-button--secondary {
   background-color: var(--color-secondary);
   color: var(--color-secondary-foreground);
   border-color: var(--color-secondary);
 }
 
-.button--secondary:hover:not(:disabled) {
+.mp-button--secondary:hover:not(:disabled) {
   background-color: var(--color-secondary-light);
   border-color: var(--color-secondary-light);
 }
 
-.button--secondary:active:not(:disabled) {
+.mp-button--secondary:active:not(:disabled) {
   background-color: var(--color-secondary-dark);
   border-color: var(--color-secondary-dark);
 }
 
 /* Modifier: Destructive Variant */
-.button--destructive {
+.mp-button--destructive {
   background-color: var(--color-destructive);
   color: var(--color-destructive-foreground);
   border-color: var(--color-destructive);
 }
 
-.button--destructive:hover:not(:disabled) {
+.mp-button--destructive:hover:not(:disabled) {
   background-color: var(--color-destructive-light);
   border-color: var(--color-destructive-light);
 }
 
-.button--destructive:active:not(:disabled) {
+.mp-button--destructive:active:not(:disabled) {
   background-color: var(--color-destructive-dark);
   border-color: var(--color-destructive-dark);
 }
 
-.button--destructive:focus-visible {
+.mp-button--destructive:focus-visible {
   box-shadow: 0 0 0 2px var(--color-destructive);
 }
 
 /* Modifier: Ghost Variant */
-.button--ghost {
+.mp-button--ghost {
   background-color: transparent;
   color: var(--color-foreground);
   border-color: transparent;
 }
-.button--ghost:hover:not(:disabled) {
+.mp-button--ghost:hover:not(:disabled) {
   background-color: var(--color-gray-200);
   color: var(--color-foreground);
   border-color: var(--color-gray-300);
 }
 
-.button--ghost:active:not(:disabled) {
+.mp-button--ghost:active:not(:disabled) {
   background-color: var(--color-gray-200);
   color: var(--color-foreground);
   border-color: var(--color-gray-400);
 }
 
-.button--ghost:focus-visible {
+.mp-button--ghost:focus-visible {
   box-shadow: var(--button-focus-shadow);
   background-color: var(--color-gray-50);
 }
 
 /* Modifier: Loading State */
-.button--loading {
+.mp-button--loading {
   position: relative;
   color: transparent;
 }
 
-.button--loading .button__content {
+.mp-button--loading .button__content {
   visibility: hidden;
 }
 
 /* Element: Spinner */
-.button__spinner {
+.mp-button__spinner {
   position: absolute;
   display: inline-flex;
   align-items: center;
@@ -151,7 +151,7 @@
   animation: button-spin var(--duration-1000) linear infinite;
 }
 
-.button__spinner-dot {
+.mp-button__spinner-dot {
   width: 0.35em;
   height: 0.35em;
   border-radius: 50%;
@@ -160,7 +160,7 @@
 }
 
 /* Element: Content Wrapper */
-.button__content {
+.mp-button__content {
   display: inherit;
   align-items: inherit;
   gap: inherit;
