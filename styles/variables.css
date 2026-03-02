@@ -413,3 +413,40 @@ body {
   color: var(--color-foreground, #0f172a) !important;
   background-color: var(--color-background, #ffffff) !important;
 }
+
+.mp-mt-1 {
+  margin-top: var(--spacing-1);
+}
+.mp-mt-2 {
+  margin-top: var(--spacing-2);
+}
+.mp-mt-3 {
+  margin-top: var(--spacing-3);
+}
+.mp-mt-4 {
+  margin-top: var(--spacing-4);
+}
+.mp-mt-5 {
+  margin-top: var(--spacing-5);
+}
+.mp-mt-6 {
+  margin-top: var(--spacing-6);
+}
+.mp-mt-8 {
+  margin-top: var(--spacing-8);
+}
+.mp-mt-10 {
+  margin-top: var(--spacing-10);
+}
+.mp-mt-12 {
+  margin-top: var(--spacing-12);
+}
+.mp-mt-16 {
+  margin-top: var(--spacing-16);
+}
+.mp-mt-20 {
+  margin-top: var(--spacing-20);
+}
+.mp-mt-24 {
+  margin-top: var(--spacing-24);
+}

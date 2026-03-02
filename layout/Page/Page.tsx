@@ -17,7 +17,8 @@ export interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 
   title?: string;
-  subtitle?: string;
+  header?: React.ReactNode;
+  subHeader?: React.ReactNode;
   actions?: React.ReactNode;
 }
 
@@ -43,7 +44,8 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>(
       className,
       children,
       title,
-      subtitle,
+      header,
+      subHeader,
       actions,
       ...props
     },
@@ -58,9 +60,9 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>(
         <Flex justify="space-between" align="center">
           <div>
             <Text as="h1" size="3xl" weight="bold">
-              {title}
+              {header || title}
             </Text>
-            <Text color="secondary">{subtitle}</Text>
+            <Text color="secondary">{subHeader}</Text>
           </div>
           {actions}
         </Flex>

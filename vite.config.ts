@@ -7,8 +7,22 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ["index.ts", "common", "controls", "data-display", "layout"],
-      exclude: ["**/*.test.tsx", "**/*.test.ts", "**/*.stories.tsx", "demo", "e2e", "playwright"],
+      include: [
+        "index.ts",
+        "common",
+        "controls",
+        "data-display",
+        "layout",
+        "intrexx",
+      ],
+      exclude: [
+        "**/*.test.tsx",
+        "**/*.test.ts",
+        "**/*.stories.tsx",
+        "demo",
+        "e2e",
+        "playwright",
+      ],
       tsconfigPath: "./tsconfig.json",
       rollupTypes: true,
     }),

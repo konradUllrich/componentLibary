@@ -1,12 +1,12 @@
 import React from "react";
 import clsx from "clsx";
 
-interface KanbanIconProps {
+export type IntrexxIconProps = {
   iconClass: string;
   className?: string;
-}
+};
 
-export const IntrexxIcon: React.FC<KanbanIconProps> = ({
+export const IntrexxIcon: React.FC<IntrexxIconProps> = ({
   iconClass,
   className = "",
 }) => {

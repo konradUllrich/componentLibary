@@ -34,8 +34,7 @@
     "styles",
     "demo",
     "e2e",
-    "playwright",
-    "intrexx/**/*"
+    "playwright"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

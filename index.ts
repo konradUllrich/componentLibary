@@ -90,6 +90,8 @@ export {
   type FormBuilderProps,
   FormControl,
   type FormControlProps,
+  Input,
+  type InputProps,
 } from "./controls";
 // export { useForm } from './controls';
 
@@ -121,14 +123,14 @@ export {
 // ========================================
 export {
   Sidebar,
+  type SidebarProps,
   SidebarToggle,
+  type SidebarToggleProps,
   SidebarNav,
   SidebarItem,
   SidebarSubItem,
   SidebarDivider,
   useSidebar,
-  type SidebarProps,
-  type SidebarToggleProps,
   type SidebarNavProps,
   type SidebarItemProps,
   type SidebarSubItemProps,
@@ -165,7 +167,7 @@ export {
 // Intrexx Components
 // ========================================
 
-export { IntrexxIcon } from "./intrexx/Icon/IntrexxIcon";
+export { IntrexxIcon, type IntrexxIconProps } from "./intrexx";
 
 // ========================================
 // Shared Hooks
