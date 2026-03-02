@@ -83,6 +83,8 @@ export {
   Radio,
   FormBuilder,
   type FormBuilderProps,
+  FormControl,
+  type FormControlProps,
 } from "./controls";
 // export { useForm } from './controls';
 
