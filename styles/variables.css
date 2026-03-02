@@ -26,8 +26,8 @@
   --color-secondary-base: #64748b;
   --color-success-base: #10b981;
   --color-warning-base: #f59e0b;
-  /* Destructive color adjusted for WCAG AA contrast (4.5:1 minimum with white text) */
-  --color-destructive-base: #ef4444;
+  /* Destructive color adjusted for WCAG AA contrast (4.78:1 on white, meets 4.5:1 minimum) */
+  --color-destructive-base: #dc2626;
   --color-info-base: #3b82f6;
 
   /* Primary Colors (Auto-generated variants with color-mix) */
