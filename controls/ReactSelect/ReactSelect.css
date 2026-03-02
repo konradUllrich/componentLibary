@@ -141,7 +141,7 @@
 
 .select-item[data-state="checked"] {
   background-color: var(--color-primary-light);
-  color: var(--color-primary);
+  color: var(--color-foreground);
   font-weight: var(--font-weight-medium);
 }
 

@@ -307,9 +307,39 @@ test.describe("Select Component", () => {
     // Note: Disabling label-title-only as Radix Select combobox doesn't have
     // direct label association - the label is in FormControl wrapper
     // Disabling button-name as Radix Select trigger button accessibility is handled via aria-labelledby
-    // Disabling color-contrast for generated Radix content
     await checkA11y(page, {
-      disableRules: ["label-title-only", "button-name", "color-contrast"],
+      disableRules: ["label-title-only", "button-name"],
+    });
+  });
+
+  test("should pass accessibility checks with open overlay (color contrast)", async ({
+    mount,
+    page,
+  }) => {
+    const component = await mount(
+      <Select
+        label="Country"
+        options={testOptions}
+        defaultValue="uk"
+        placeholder="Select a country"
+        forceMobile={false}
+      />,
+    );
+
+    // Open the dropdown to render overlay items in the portal
+    const trigger = component.locator(".select-trigger");
+    await trigger.click();
+
+    // Verify overlay is visible
+    const content = page.locator(".select-content");
+    await expect(content).toBeVisible();
+
+    // Check that overlay items meet color contrast requirements
+    // Note: Disabling aria-hidden-focus as Radix UI intentionally sets aria-hidden on the
+    // root element when the portal is open (focus trap is in the portal overlay)
+    // Disabling label-title-only and button-name for the same reasons as other desktop tests
+    await checkA11y(page, {
+      disableRules: ["aria-hidden-focus", "label-title-only", "button-name"],
     });
   });
 
@@ -359,13 +389,11 @@ test.describe("Select Component", () => {
     // Wait for components to be fully rendered
     await page.waitForTimeout(100);
 
-    // Note: Disabling color-contrast check as error text color may have
-    // pre-existing design with lower contrast ratio
-    // Disabling label-title-only as Radix Select combobox doesn't have
+    // Note: Disabling label-title-only as Radix Select combobox doesn't have
     // direct label association - the label is in FormControl wrapper
     // Disabling button-name as Radix Select trigger button accessibility is handled via aria-labelledby
     await checkA11y(page, {
-      disableRules: ["color-contrast", "label-title-only", "button-name"],
+      disableRules: ["label-title-only", "button-name"],
     });
   });
 
