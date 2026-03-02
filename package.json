@@ -17,11 +17,14 @@
       "import": "./dist/style.css",
       "types": "./style.d.ts"
     },
+    "./styles/variables.css": "./styles/variables.css",
+    "./variables.css": "./styles/variables.css",
     "./dist/style.css": "./dist/style.css"
   },
   "files": [
     "dist",
     "src",
+    "styles",
     "style.d.ts"
   ],
   "scripts": {

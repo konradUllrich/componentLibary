@@ -1,6 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import "./Section.css";
+import { Flex } from "../Flex";
+import { Text } from "../../common";
 
 type SectionElement = "section" | "div" | "article" | "aside";
 
@@ -19,6 +21,9 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
   /** Section content */
   children?: React.ReactNode;
+  title?: string;
+  subtitle?: string;
+  actions?: React.ReactNode;
 }
 
 /**
@@ -44,8 +49,26 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       variant = "default",
       className,
       children,
+      title,
+      subtitle,
+      actions,
       ...restProps
     } = props;
+
+    const inner = (
+      <>
+        <Flex justify="space-between" align="center">
+          <div>
+            <Text as="h2" size="lg" weight="bold">
+              {title}
+            </Text>
+            <Text color="secondary">{subtitle}</Text>
+          </div>
+          {actions}
+        </Flex>
+        {children}
+      </>
+    );
 
     return React.createElement(
       Element as React.ElementType,
@@ -54,7 +77,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
         className: clsx("section", `section--${variant}`, className),
         ...restProps,
       },
-      children,
+      inner,
     );
   },
 );
