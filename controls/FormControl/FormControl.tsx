@@ -51,8 +51,6 @@ export interface FormControlProps {
  * Shared wrapper for consistent form control layout across Input, Select, Checkbox, etc.
  * Handles top label, helper text, and error messages.
  *
- * @internal Use within form control components
- *
  * @example
  * ```tsx
  * <FormControl label="Email" htmlFor="email-input">
