@@ -69,6 +69,8 @@ export {
   ToggleGroupItem,
   type ToggleGroupProps,
   type ToggleGroupItemProps,
+  Badge,
+  type BadgeProps,
 } from "./common";
 
 // ========================================
