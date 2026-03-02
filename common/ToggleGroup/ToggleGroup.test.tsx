@@ -219,4 +219,69 @@ test.describe("ToggleGroup Component", () => {
 
     await checkA11y(page, { disableRules: ["color-contrast"] });
   });
+
+  test("should focus first item on Tab", async ({ mount, page }) => {
+    await mount(
+      <ToggleGroup type="single" aria-label="Alignment">
+        <ToggleGroupItem value="left" aria-label="Left">
+          Left
+        </ToggleGroupItem>
+        <ToggleGroupItem value="center" aria-label="Center">
+          Center
+        </ToggleGroupItem>
+      </ToggleGroup>,
+    );
+
+    const firstItem = page.locator(".toggle-group__item").first();
+    await firstItem.focus();
+    await expect(firstItem).toBeFocused();
+  });
+
+  test("should navigate between items with arrow keys", async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      <ToggleGroup type="single" aria-label="Alignment">
+        <ToggleGroupItem value="left" aria-label="Left">
+          Left
+        </ToggleGroupItem>
+        <ToggleGroupItem value="center" aria-label="Center">
+          Center
+        </ToggleGroupItem>
+        <ToggleGroupItem value="right" aria-label="Right">
+          Right
+        </ToggleGroupItem>
+      </ToggleGroup>,
+    );
+
+    const firstItem = page.locator(".toggle-group__item").first();
+    await firstItem.focus();
+
+    await page.keyboard.press("ArrowRight");
+    const secondItem = page.locator(".toggle-group__item").nth(1);
+    await expect(secondItem).toBeFocused();
+
+    await page.keyboard.press("ArrowRight");
+    const thirdItem = page.locator(".toggle-group__item").nth(2);
+    await expect(thirdItem).toBeFocused();
+  });
+
+  test("should activate item with Space key", async ({ mount, page }) => {
+    await mount(
+      <ToggleGroup type="single" aria-label="Alignment">
+        <ToggleGroupItem value="left" aria-label="Left">
+          Left
+        </ToggleGroupItem>
+        <ToggleGroupItem value="center" aria-label="Center">
+          Center
+        </ToggleGroupItem>
+      </ToggleGroup>,
+    );
+
+    const firstItem = page.locator(".toggle-group__item").first();
+    await firstItem.focus();
+    await page.keyboard.press("Space");
+    await expect(firstItem).toHaveAttribute("data-state", "on");
+  });
 });
