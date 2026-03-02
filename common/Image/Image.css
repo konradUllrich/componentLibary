@@ -1,0 +1,70 @@
+/* Image Styles */
+
+/* Block: Image */
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Object-fit modifiers */
+.image--cover {
+  object-fit: cover;
+}
+
+.image--contain {
+  object-fit: contain;
+}
+
+.image--fill {
+  object-fit: fill;
+}
+
+.image--none {
+  object-fit: none;
+}
+
+.image--scale-down {
+  object-fit: scale-down;
+}
+
+/* Rounded modifiers */
+.image--rounded-none {
+  border-radius: var(--radius-none);
+}
+
+.image--rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.image--rounded-md {
+  border-radius: var(--radius-md);
+}
+
+.image--rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.image--rounded-full {
+  border-radius: var(--radius-full);
+}
+
+/* Aspect ratio modifiers */
+.image--aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.image--aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.image--aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* Error state */
+.image--error {
+  background-color: var(--color-gray-100, #f3f4f6);
+  min-width: 48px;
+  min-height: 48px;
+}

@@ -91,3 +91,5 @@ export {
   type ToggleGroupProps,
   type ToggleGroupItemProps,
 } from "./ToggleGroup";
+
+export { Image, type ImageProps } from "./Image";
