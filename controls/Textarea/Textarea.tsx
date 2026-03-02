@@ -65,7 +65,7 @@ export const Textarea = React.forwardRef<
     ref,
   ) => {
     const textareaId =
-      id || `textarea-${Math.random().toString(36).substr(2, 9)}`;
+      id || `textarea-${Math.random().toString(36).substring(2, 11)}`;
 
     return (
       <FormControl
