@@ -9,3 +9,4 @@ export * from "./Checkbox";
 export * from "./CheckboxGroup";
 export * from "./Radio";
 export * from "./Combobox";
+export * from "./Textarea";
