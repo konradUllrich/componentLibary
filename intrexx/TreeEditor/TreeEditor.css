@@ -7,11 +7,6 @@
   padding: var(--spacing-4);
 }
 
-.tree-node__drop-sink {
-  height: 0;
-  overflow: hidden;
-}
-
 .tree-editor__tree {
   list-style: none;
   margin: 0;
