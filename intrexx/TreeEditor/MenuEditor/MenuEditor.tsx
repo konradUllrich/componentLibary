@@ -2,11 +2,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { MenuEditorItem } from "./MenuItem/MenuEditorItem";
 import "./menuEditor.css";
-import {
-  useMenuEditorStore,
-  BaseMenuItem,
-  MenuEditorState,
-} from "./menuEditorState";
+import { BaseMenuItem, MenuEditorState } from "./menuEditorState";
 import { StoreApi, UseBoundStore } from "zustand";
 
 interface MenuEditorProps<T extends BaseMenuItem> {
@@ -34,7 +30,7 @@ const MenuEditor = <T extends BaseMenuItem>({
           {menuItems.map((menu, index) => (
             <MenuEditorItem
               isLast={index === menuItems.length - 1}
-              renderItem={renderItem as any}
+              renderItem={renderItem as (item: BaseMenuItem) => React.ReactNode}
               key={menu.id}
               {...menu}
               index={index}

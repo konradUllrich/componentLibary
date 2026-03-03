@@ -1,4 +1,3 @@
-export { IntrexxIcon, type IntrexxIconProps } from "./Icon/IntrexxIcon";
 export { TreeEditor, type TreeEditorProps } from "./TreeEditor";
 export {
   createTreeEditorStore,
@@ -10,4 +9,6 @@ export {
   type TreeEditorState,
   type TreeEditorInitialState,
   type TreeAction,
-} from "./TreeEditor/treeEditorState";
+  type DragItem,
+  type DropResult,
+} from "./treeEditorState";

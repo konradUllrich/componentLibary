@@ -122,3 +122,9 @@
     padding: var(--spacing-6);
   }
 }
+
+
+/* Tree Editor Page */
+.tree-editor-page__item-icon {
+  margin-right: var(--spacing-2);
+}

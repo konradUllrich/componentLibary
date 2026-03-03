@@ -26,3 +26,4 @@ export { SkeletonPage } from './SkeletonPage';
 export { EmptyStatePage } from './EmptyStatePage';
 export { TogglePage } from './TogglePage';
 export { ToggleGroupPage } from './ToggleGroupPage';
+export { TreeEditorPage } from './TreeEditorPage';

@@ -39,6 +39,7 @@ import {
   SquareDashed,
   ToggleLeft,
   Layers,
+  GitBranch,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 
@@ -168,6 +169,13 @@ const SIDEBAR_ELEMENTS = {
         link: "/components/sidebar",
       },
     ],
+    intrexx: [
+      {
+        name: "Tree Editor",
+        icon: <GitBranch size={16} />,
+        link: "/components/tree-editor",
+      },
+    ],
   },
 };
 
@@ -245,6 +253,20 @@ export const DemoSideBar = () => {
         </SidebarItem>
         <SidebarItem label="Layout" icon={<Layout size={18} />}>
           {SIDEBAR_ELEMENTS.components.layout.map((component) => (
+            <SidebarSubItem
+              key={component.name}
+              label={component.name}
+              icon={component.icon}
+              isActive={isComponentLoaction(component.link.split("/").pop()!)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleComponentClick(component.link.split("/").pop()!);
+              }}
+            />
+          ))}
+        </SidebarItem>
+        <SidebarItem label="Intrexx" icon={<GitBranch size={18} />}>
+          {SIDEBAR_ELEMENTS.components.intrexx.map((component) => (
             <SidebarSubItem
               key={component.name}
               label={component.name}
