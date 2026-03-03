@@ -39,10 +39,10 @@ export const MenuEditorItem = <T extends BaseMenuItem>(
   const menuitem = { ...rest, title, children, id, parentId } as unknown as T;
 
   // Use provided store or default store
-  const defaultStore = useMenuEditorStore as unknown as UseBoundStore<
-    StoreApi<any>
-  >;
-  const currentStore = store || defaultStore;
+  const currentStore = (store ||
+    (useMenuEditorStore as unknown as UseBoundStore<
+      StoreApi<MenuEditorState<T>>
+    >));
 
   const moveMenuItem = currentStore((state) => state.moveMenuItem);
   const reorderMenuItems = currentStore((state) => state.reorderMenuItems);

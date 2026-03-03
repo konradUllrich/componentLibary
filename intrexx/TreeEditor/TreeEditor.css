@@ -1,0 +1,189 @@
+/* ========================
+   Tree Editor
+   ======================== */
+.tree-editor {
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.tree-node__drop-sink {
+  height: 0;
+  overflow: hidden;
+}
+
+.tree-editor__tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.tree-editor__root-item {
+  list-style: none;
+}
+
+/* ========================
+   Tree Node
+   ======================== */
+.tree-node {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.tree-node:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tree-node:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.tree-node--selected {
+  border-color: var(--color-primary);
+  background: color-mix(in oklch, var(--color-primary), transparent 92%);
+}
+
+.tree-node--dragging {
+  opacity: 0;
+}
+
+.tree-node--drop-target {
+  background: color-mix(in oklch, var(--color-success), transparent 90%);
+  border-color: var(--color-success);
+  border-style: dashed;
+}
+
+/* Node content row */
+.tree-node__content {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  min-height: 36px;
+  gap: var(--spacing-2);
+  user-select: none;
+}
+
+.tree-node__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  color: var(--color-foreground-secondary);
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+
+.tree-node__toggle:hover {
+  background: var(--color-background-tertiary);
+  color: var(--color-foreground);
+}
+
+.tree-node__toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.tree-node__spacer {
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.tree-node__label {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-foreground);
+  font-weight: 500;
+}
+
+.tree-node__count {
+  font-size: var(--font-size-xs);
+  color: var(--color-foreground-tertiary);
+  background: var(--color-background-tertiary);
+  padding: 2px 6px;
+  border-radius: var(--radius-full, 9999px); /* pill shape — fallback for environments without --radius-full token */
+}
+
+/* Children */
+.tree-node__children {
+  list-style: none;
+  padding: var(--spacing-1) var(--spacing-2) var(--spacing-2) var(--spacing-4);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  border-top: 1px solid var(--color-border-light);
+  background: var(--color-background-secondary);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.tree-node__child-item {
+  list-style: none;
+}
+
+/* ========================
+   Drop Indicator
+   ======================== */
+.drop-indicator {
+  height: 2px;
+  background: transparent;
+  border-radius: 2px;
+  transition: var(--transition-fast);
+  margin: 1px 0;
+}
+
+.drop-indicator--active {
+  background: var(--color-primary);
+  height: 3px;
+  box-shadow: 0 0 4px var(--color-primary-light);
+}
+
+/* ========================
+   Drag Layer (portal overlay)
+   ======================== */
+.tree-drag-layer {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  inset: 0;
+}
+
+.tree-drag-layer__preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color-background);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-foreground);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ========================
+   Reduced motion
+   ======================== */
+@media (prefers-reduced-motion: reduce) {
+  .tree-node,
+  .tree-node__toggle,
+  .drop-indicator {
+    transition: none;
+  }
+}

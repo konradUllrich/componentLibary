@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 import { BaseMenuItem } from "../menuEditorState";
 

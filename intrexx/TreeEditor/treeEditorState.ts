@@ -2,19 +2,38 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { useMemo } from "react";
 
+// Constant for the drag item type
+export const TREE_ITEM_TYPE = "TREE_ITEM";
+
 // Generic base type
-export interface BaseMenuItem {
+export interface BaseTreeItem {
   id: string;
-  title: string;
-  children?: BaseMenuItem[];
+  label: string;
+  children?: BaseTreeItem[];
   // Allow index signature to support extending types accessing generic properties
   [key: string]: unknown;
 }
 
-export type MenuAction<T extends BaseMenuItem> =
+// TreeItem type alias
+export type TreeItem = BaseTreeItem;
+
+export interface DragItem {
+  type: string;
+  id: string;
+  parentId?: string;
+  index: number;
+  label: string;
+}
+
+export interface DropResult {
+  parentId?: string;
+  position?: number;
+}
+
+export type TreeAction<T extends BaseTreeItem> =
   | {
       action: "move";
-      menuItemId: string;
+      treeItemId: string;
       parentId: string;
       afterItemId?: string | null;
       order: number;
@@ -28,78 +47,78 @@ export type MenuAction<T extends BaseMenuItem> =
     }
   | {
       action: "delete";
-      menuItemId: string;
+      treeItemId: string;
     }
   | {
       action: "update";
-      menuItemId: string;
+      treeItemId: string;
       updates: Partial<T>;
     };
 
-export interface MenuEditorState<T extends BaseMenuItem> {
+export interface TreeEditorState<T extends BaseTreeItem> {
   // State
-  menuItems: T[];
+  treeItems: T[];
   selectedItemId: string | null;
   expandedItems: Set<string>;
-  actions: MenuAction<T>[];
+  actions: TreeAction<T>[];
 
   // Actions
-  setMenuItems: (items: T[]) => void;
-  addMenuItem: (item: T, parentId?: string) => void;
-  updateMenuItem: (id: string, updates: Partial<T>) => void;
-  deleteMenuItem: (id: string) => void;
-  moveMenuItem: (
+  setTreeItems: (items: T[]) => void;
+  addTreeItem: (item: T, parentId?: string) => void;
+  updateTreeItem: (id: string, updates: Partial<T>) => void;
+  deleteTreeItem: (id: string) => void;
+  moveTreeItem: (
     itemId: string,
     newParentId: string | null,
     newIndex: number
   ) => void;
-  reorderMenuItems: (
+  reorderTreeItems: (
     oldIndex: number,
     newIndex: number,
     parentId?: string
   ) => void;
 
   // Action Management
-  addAction: (action: MenuAction<T>) => void;
+  addAction: (action: TreeAction<T>) => void;
   removeAction: (index: number) => void;
   clearActions: () => void;
-  getActions: () => MenuAction<T>[];
+  getActions: () => TreeAction<T>[];
 
   // UI State
   setSelectedItem: (id: string | null) => void;
   toggleExpanded: (id: string) => void;
   setExpandedItems: (ids: Set<string>) => void;
 
-  initializeStore: (menuItems: T[]) => void;
+  initializeStore: (treeItems: T[]) => void;
 }
 
-export interface MenuEditorInitialState<T extends BaseMenuItem> {
-  menuItems?: T[];
+export interface TreeEditorInitialState<T extends BaseTreeItem> {
+  treeItems?: T[];
   selectedItemId?: string | null;
   expandedItems?: Set<string>;
 }
 
-export const createMenuEditorStore = <T extends BaseMenuItem>(
-  storeName = "menu-editor-store",
-  initialState?: MenuEditorInitialState<T>
+export const createTreeEditorStore = <T extends BaseTreeItem>(
+  storeName = "tree-editor-store",
+  initialState?: TreeEditorInitialState<T>
 ) => {
-  return create<MenuEditorState<T>>()(
+  return create<TreeEditorState<T>>()(
     devtools(
       (set, get) => ({
         // State with initial values
-        menuItems: initialState?.menuItems || [],
-        selectedItemId: initialState?.selectedItemId || null,
-        expandedItems: initialState?.expandedItems || new Set(),
+        treeItems: initialState?.treeItems ?? [],
+        selectedItemId: initialState?.selectedItemId ?? null,
+        expandedItems: initialState?.expandedItems ?? new Set(),
         actions: [],
 
         // Actions
-        setMenuItems: (items: T[]) =>
-          set({ menuItems: items }, false, "setMenuItems"),
+        setTreeItems: (items: T[]) =>
+          set({ treeItems: items }, false, "setTreeItems"),
 
-        addMenuItem: (item: T, parentId?: string) => {
+        addTreeItem: (item: T, parentId?: string) => {
           const state = get();
 
-          let order = state.menuItems.length;
+          let order = state.treeItems.length;
           if (parentId) {
             const findParent = (items: T[]): T | undefined => {
               for (const i of items) {
@@ -111,187 +130,182 @@ export const createMenuEditorStore = <T extends BaseMenuItem>(
               }
               return undefined;
             };
-            const parent = findParent(state.menuItems);
+            const parent = findParent(state.treeItems);
             if (parent) {
               order = parent.children ? parent.children.length : 0;
             }
           }
 
-          const addAction: MenuAction<T> = {
+          const addAction: TreeAction<T> = {
             action: "add",
             item,
-            parentId: parentId || "",
+            parentId: parentId ?? "",
             order,
           };
 
           if (!parentId) {
-            // Add to root level
             set(
               {
-                menuItems: [...state.menuItems, item],
+                treeItems: [...state.treeItems, item],
                 actions: [...state.actions, addAction],
               },
               false,
-              "addMenuItem"
+              "addTreeItem"
             );
           } else {
-            // Add to specific parent
             const updatedItems = addItemToParent(
-              state.menuItems,
+              state.treeItems,
               item,
               parentId
             );
             set(
               {
-                menuItems: updatedItems,
+                treeItems: updatedItems,
                 actions: [...state.actions, addAction],
               },
               false,
-              "addMenuItem"
+              "addTreeItem"
             );
           }
         },
 
-        updateMenuItem: (id: string, updates: Partial<T>) => {
+        updateTreeItem: (id: string, updates: Partial<T>) => {
           const state = get();
           const updatedItems = updateItemRecursively(
-            state.menuItems,
+            state.treeItems,
             id,
             updates
           );
-          const updateAction: MenuAction<T> = {
+          const updateAction: TreeAction<T> = {
             action: "update",
-            menuItemId: id,
+            treeItemId: id,
             updates,
           };
           set(
             {
-              menuItems: updatedItems,
+              treeItems: updatedItems,
               actions: [...state.actions, updateAction],
             },
             false,
-            "updateMenuItem"
+            "updateTreeItem"
           );
         },
 
-        deleteMenuItem: (id: string) => {
+        deleteTreeItem: (id: string) => {
           const state = get();
-          const updatedItems = deleteItemRecursively(state.menuItems, id);
-          const deleteAction: MenuAction<T> = {
+          const updatedItems = deleteItemRecursively(state.treeItems, id);
+          const deleteAction: TreeAction<T> = {
             action: "delete",
-            menuItemId: id,
+            treeItemId: id,
           };
           set(
             {
-              menuItems: updatedItems,
+              treeItems: updatedItems,
               actions: [...state.actions, deleteAction],
             },
             false,
-            "deleteMenuItem"
+            "deleteTreeItem"
           );
         },
 
-        moveMenuItem: (
+        moveTreeItem: (
           itemId: string,
           newParentId: string | null,
           newIndex: number
         ) => {
           const state = get();
           const updatedItems = moveItemToNewParent(
-            state.menuItems,
+            state.treeItems,
             itemId,
             newParentId,
             newIndex
           );
 
-          // Find the item that comes after the new position to use as afterItemId
           const afterItemId = getAfterItemId(
             updatedItems,
             newParentId,
             newIndex
           );
 
-          const moveAction: MenuAction<T> = {
+          const moveAction: TreeAction<T> = {
             action: "move",
-            menuItemId: itemId,
-            parentId: newParentId || "",
+            treeItemId: itemId,
+            parentId: newParentId ?? "",
             afterItemId: afterItemId,
             order: newIndex,
           };
 
-          // Remove any existing move action for this menu item and add the new one
           const actionsWithoutDuplicate = state.actions.filter(
             (action) =>
-              !(action.action === "move" && action.menuItemId === itemId)
+              !(action.action === "move" && action.treeItemId === itemId)
           );
 
           set(
             {
-              menuItems: updatedItems,
+              treeItems: updatedItems,
               actions: [...actionsWithoutDuplicate, moveAction],
             },
             false,
-            "moveMenuItem"
+            "moveTreeItem"
           );
         },
 
-        reorderMenuItems: (
+        reorderTreeItems: (
           oldIndex: number,
           newIndex: number,
           parentId?: string
         ) => {
           const state = get();
           const updatedItems = reorderItems(
-            state.menuItems,
+            state.treeItems,
             oldIndex,
             newIndex,
             parentId
           );
 
-          // Get the item that was moved to track the action
           const movedItemId = getMovedItemId(
-            state.menuItems,
+            state.treeItems,
             oldIndex,
             parentId
           );
 
           if (movedItemId) {
-            // Find the item that comes after the new position
             const afterItemId = getAfterItemId(
               updatedItems,
-              parentId || null,
+              parentId ?? null,
               newIndex
             );
 
-            const moveAction: MenuAction<T> = {
+            const moveAction: TreeAction<T> = {
               action: "move",
-              menuItemId: movedItemId,
-              parentId: parentId || "",
+              treeItemId: movedItemId,
+              parentId: parentId ?? "",
               afterItemId: afterItemId,
               order: newIndex,
             };
 
-            // Remove any existing move action for this menu item and add the new one
             const actionsWithoutDuplicate = state.actions.filter(
               (action) =>
-                !(action.action === "move" && action.menuItemId === movedItemId)
+                !(
+                  action.action === "move" && action.treeItemId === movedItemId
+                )
             );
 
             set(
               {
-                menuItems: updatedItems,
+                treeItems: updatedItems,
                 actions: [...actionsWithoutDuplicate, moveAction],
               },
               false,
-              "reorderMenuItems"
+              "reorderTreeItems"
             );
           } else {
-            set({ menuItems: updatedItems }, false, "reorderMenuItems");
+            set({ treeItems: updatedItems }, false, "reorderTreeItems");
           }
         },
 
         // Action Management
-        addAction: (action: MenuAction<T>) => {
+        addAction: (action: TreeAction<T>) => {
           const state = get();
           set({ actions: [...state.actions, action] }, false, "addAction");
         },
@@ -332,11 +346,10 @@ export const createMenuEditorStore = <T extends BaseMenuItem>(
           set({ expandedItems: ids }, false, "setExpandedItems"),
 
         // Initialization
-        initializeStore: (menuItems = []) => {
-          // Initialize with sample data or load from API
+        initializeStore: (treeItems = []) => {
           set(
             {
-              menuItems,
+              treeItems,
               selectedItemId: null,
               expandedItems: new Set(),
               actions: [],
@@ -351,17 +364,20 @@ export const createMenuEditorStore = <T extends BaseMenuItem>(
   );
 };
 
-// Custom hook for creating and memoizing menu editor stores
-export const useCreateMenuEditorStore = <T extends BaseMenuItem>(
-  storeName = "menu-editor-store",
-  initialState?: MenuEditorInitialState<T>
+// Custom hook for creating and memoizing tree editor stores
+export const useCreateTreeEditorStore = <T extends BaseTreeItem>(
+  storeName = "tree-editor-store",
+  initialState?: TreeEditorInitialState<T>
 ) => {
   return useMemo(
-    () => createMenuEditorStore<T>(storeName, initialState),
+    () => createTreeEditorStore<T>(storeName, initialState),
+    // Intentionally track only primitive/stable properties of initialState (not the
+    // object reference itself) so that inline object literals as props don't cause
+    // the store to be recreated on every render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       storeName,
-      initialState?.menuItems,
+      initialState?.treeItems,
       initialState?.selectedItemId,
       initialState?.expandedItems,
     ]
@@ -369,15 +385,14 @@ export const useCreateMenuEditorStore = <T extends BaseMenuItem>(
 };
 
 // Helper functions - properly typed with Generics
-function addItemToParent<T extends BaseMenuItem>(
+function addItemToParent<T extends BaseTreeItem>(
   items: T[],
   newItem: T,
   parentId: string
 ): T[] {
   return items.map((item) => {
     if (item.id === parentId) {
-      // We need to cast children to T[] because Typescript finds it hard to verify recursion
-      const currentChildren = (item.children || []) as T[];
+      const currentChildren = (item.children ?? []) as T[];
       return {
         ...item,
         children: [...currentChildren, newItem],
@@ -392,7 +407,7 @@ function addItemToParent<T extends BaseMenuItem>(
   });
 }
 
-function updateItemRecursively<T extends BaseMenuItem>(
+function updateItemRecursively<T extends BaseTreeItem>(
   items: T[],
   id: string,
   updates: Partial<T>
@@ -410,28 +425,29 @@ function updateItemRecursively<T extends BaseMenuItem>(
   });
 }
 
-function deleteItemRecursively<T extends BaseMenuItem>(
+function deleteItemRecursively<T extends BaseTreeItem>(
   items: T[],
   id: string
 ): T[] {
-  return items.filter((item) => {
-    if (item.id === id) {
-      return false;
-    }
-    if (item.children) {
-      item.children = deleteItemRecursively(item.children as T[], id);
-    }
-    return true;
-  });
+  return items
+    .filter((item) => item.id !== id)
+    .map((item) => {
+      if (item.children) {
+        return {
+          ...item,
+          children: deleteItemRecursively(item.children as T[], id),
+        };
+      }
+      return item;
+    });
 }
 
-function moveItemToNewParent<T extends BaseMenuItem>(
+function moveItemToNewParent<T extends BaseTreeItem>(
   items: T[],
   itemId: string,
   newParentId: string | null,
   newIndex: number
 ): T[] {
-  // First, find and remove the item
   let itemToMove: T | null = null;
   const itemsWithoutMoved = removeItemRecursively(items, itemId, (item) => {
     itemToMove = item;
@@ -439,14 +455,11 @@ function moveItemToNewParent<T extends BaseMenuItem>(
 
   if (!itemToMove) return items;
 
-  // Then add it to the new location
   if (newParentId === null) {
-    // Move to root level
     const result = [...itemsWithoutMoved];
     result.splice(newIndex, 0, itemToMove);
     return result;
   } else {
-    // Move to specific parent
     return addItemToParentAtIndex(
       itemsWithoutMoved,
       itemToMove,
@@ -456,24 +469,31 @@ function moveItemToNewParent<T extends BaseMenuItem>(
   }
 }
 
-function removeItemRecursively<T extends BaseMenuItem>(
+function removeItemRecursively<T extends BaseTreeItem>(
   items: T[],
   id: string,
   onRemove?: (item: T) => void
 ): T[] {
-  return items.filter((item) => {
-    if (item.id === id) {
-      if (onRemove) onRemove(item);
-      return false;
-    }
-    if (item.children) {
-      item.children = removeItemRecursively(item.children as T[], id, onRemove);
-    }
-    return true;
-  });
+  return items
+    .filter((item) => {
+      if (item.id === id) {
+        if (onRemove) onRemove(item);
+        return false;
+      }
+      return true;
+    })
+    .map((item) => {
+      if (item.children) {
+        return {
+          ...item,
+          children: removeItemRecursively(item.children as T[], id, onRemove),
+        };
+      }
+      return item;
+    });
 }
 
-function addItemToParentAtIndex<T extends BaseMenuItem>(
+function addItemToParentAtIndex<T extends BaseTreeItem>(
   items: T[],
   newItem: T,
   parentId: string,
@@ -481,7 +501,7 @@ function addItemToParentAtIndex<T extends BaseMenuItem>(
 ): T[] {
   return items.map((item) => {
     if (item.id === parentId) {
-      const children = [...((item.children || []) as T[])];
+      const children = [...((item.children ?? []) as T[])];
       children.splice(index, 0, newItem);
       return { ...item, children };
     } else if (item.children) {
@@ -499,14 +519,13 @@ function addItemToParentAtIndex<T extends BaseMenuItem>(
   });
 }
 
-function reorderItems<T extends BaseMenuItem>(
+function reorderItems<T extends BaseTreeItem>(
   items: T[],
   oldIndex: number,
   newIndex: number,
   parentId?: string
 ): T[] {
   if (parentId) {
-    // Reorder within a specific parent
     return items.map((item) => {
       if (item.id === parentId && item.children) {
         const children = [...(item.children as T[])];
@@ -527,7 +546,6 @@ function reorderItems<T extends BaseMenuItem>(
       return item;
     });
   } else {
-    // Reorder at root level
     const result = [...items];
     const [movedItem] = result.splice(oldIndex, 1);
     result.splice(newIndex, 0, movedItem);
@@ -535,18 +553,16 @@ function reorderItems<T extends BaseMenuItem>(
   }
 }
 
-function getAfterItemId<T extends BaseMenuItem>(
+function getAfterItemId<T extends BaseTreeItem>(
   items: T[],
   parentId: string | null,
   index: number
 ): string | null {
   if (parentId === null) {
-    // Root level - check if there's an item after the given index
     return index < items.length - 1 ? items[index + 1].id : null;
   } else {
-    // Find the parent and check its children
-    const findAfterItem = (menuItems: T[]): string | null => {
-      for (const item of menuItems) {
+    const findAfterItem = (treeItems: T[]): string | null => {
+      for (const item of treeItems) {
         if (item.id === parentId && item.children) {
           return index < item.children.length - 1
             ? item.children[index + 1].id
@@ -563,18 +579,16 @@ function getAfterItemId<T extends BaseMenuItem>(
   }
 }
 
-function getMovedItemId<T extends BaseMenuItem>(
+function getMovedItemId<T extends BaseTreeItem>(
   items: T[],
   index: number,
   parentId?: string
 ): string | null {
   if (parentId) {
-    // Find the specific parent and get the item at the index
-    const findMovedItem = (menuItems: T[]): string | null => {
-      for (const item of menuItems) {
+    const findMovedItem = (treeItems: T[]): string | null => {
+      for (const item of treeItems) {
         if (item.id === parentId && item.children) {
-          // Cast to T[]
-          return (item.children as T[])[index]?.id || null;
+          return (item.children as T[])[index]?.id ?? null;
         }
         if (item.children) {
           const result = findMovedItem(item.children as T[]);
@@ -585,10 +599,9 @@ function getMovedItemId<T extends BaseMenuItem>(
     };
     return findMovedItem(items);
   } else {
-    // Root level - get the item at the index
-    return items[index]?.id || null;
+    return items[index]?.id ?? null;
   }
 }
 
-// Default store instance for backwards compatibility
-export const useMenuEditorStore = createMenuEditorStore();
+// Default store instance
+export const useTreeEditorStore = createTreeEditorStore();
