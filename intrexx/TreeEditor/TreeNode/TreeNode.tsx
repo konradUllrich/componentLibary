@@ -209,7 +209,9 @@ export const TreeNode = <T extends BaseTreeItem>(
 
   return (
     <>
-      <DropIndicator isActive={isOver && dropPosition === "before"} position="before" label={dragItem?.label} />
+      {index === 0 && (
+        <DropIndicator isActive={isOver && dropPosition === "before"} position="before" label={dragItem?.label} />
+      )}
       <div
         ref={ref}
         data-id={id}
