@@ -13,6 +13,18 @@ import {
 import { DropIndicator } from "./DropIndicator";
 import { TreeNodeChildren } from "./TreeNodeChildren";
 
+type DropPosition = "before" | "after" | "nest" | null;
+
+/**
+ * Zone thresholds for drag-and-drop position detection.
+ * Items are divided into three zones (top 30% / middle 40% / bottom 30%):
+ *   - 0–30%   → "before": reorder the dragged item BEFORE this node
+ *   - 30–70%  → "nest": make the dragged item a child of this node
+ *   - 70–100% → "after": reorder the dragged item AFTER this node
+ */
+const NEST_ZONE_START = 0.3;
+const NEST_ZONE_END = 0.7;
+
 export type TreeNodeProps<T extends BaseTreeItem> = {
   parentId?: string;
   index: number;
@@ -36,7 +48,6 @@ export const TreeNode = <T extends BaseTreeItem>(
     store,
     renderItem,
     canDrag = () => true,
-    isLast,
     level = 1,
     setSize = 1,
     ...rest
@@ -62,15 +73,13 @@ export const TreeNode = <T extends BaseTreeItem>(
 
   const hasChildren = Array.isArray(children) && children.length > 0;
   const ref = useRef<HTMLDivElement>(null);
-  const dropBetweenRef = useRef<HTMLDivElement>(null);
-  const dropUnderRef = useRef<HTMLDivElement>(null);
   const isSelected = selectedItemId === id;
   const isExpanded = expandedItems.has(id);
 
   const [{ canDrop, isOver, dropPosition }, drop] = useDrop<
     DragItem,
     DropResult,
-    { canDrop: boolean; isOver: boolean; dropPosition: "before" | "after" | null }
+    { canDrop: boolean; isOver: boolean; dropPosition: DropPosition }
   >({
     accept: TREE_ITEM_TYPE,
     drop: (dragItem: DragItem, monitor: DropTargetMonitor) => {
@@ -79,22 +88,21 @@ export const TreeNode = <T extends BaseTreeItem>(
         const clientOffset = monitor.getClientOffset();
 
         if (hoverBoundingRect && clientOffset) {
-          const hoverMiddleY =
-            (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+          const height = hoverBoundingRect.bottom - hoverBoundingRect.top;
           const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+          const pct = hoverClientY / height;
 
           if (dragItem.id !== id) {
-            if (
-              hoverClientY > hoverMiddleY * 0.3 &&
-              hoverClientY < hoverMiddleY * 1.7
-            ) {
+            if (pct >= NEST_ZONE_START && pct <= NEST_ZONE_END) {
+              // Nest: drop INTO the item
               moveTreeItem(
                 dragItem.id,
                 id,
                 hasChildren ? (children as BaseTreeItem[]).length : 0
               );
             } else {
-              const dropBefore = hoverClientY < hoverMiddleY;
+              // Reorder: before or after this item
+              const dropBefore = pct < 0.5;
               if (dragItem.parentId === parentId) {
                 const dragIndex = dragItem.index;
                 const targetIndex = dropBefore ? index : index + 1;
@@ -117,17 +125,20 @@ export const TreeNode = <T extends BaseTreeItem>(
     collect: (monitor) => {
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const clientOffset = monitor.getClientOffset();
-      let position: "before" | "after" | null = null;
+      let position: DropPosition = null;
 
       if (
         monitor.isOver({ shallow: true }) &&
         hoverBoundingRect &&
         clientOffset
       ) {
-        const hoverMiddleY =
-          (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+        const height = hoverBoundingRect.bottom - hoverBoundingRect.top;
         const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-        position = hoverClientY < hoverMiddleY ? "before" : "after";
+        const pct = hoverClientY / height;
+
+        if (pct < NEST_ZONE_START) position = "before";
+        else if (pct > NEST_ZONE_END) position = "after";
+        else position = "nest";
       }
 
       return {
@@ -150,59 +161,7 @@ export const TreeNode = <T extends BaseTreeItem>(
     }),
   });
 
-  const [{ isOverBetween }, dropBetween] = useDrop<
-    DragItem,
-    DropResult,
-    { isOverBetween: boolean }
-  >({
-    accept: TREE_ITEM_TYPE,
-    drop: (dragItem: DragItem, monitor: DropTargetMonitor) => {
-      if (!monitor.didDrop() && dragItem.id !== id) {
-        if (dragItem.parentId === parentId) {
-          const dragIndex = dragItem.index;
-          if (dragIndex !== index) {
-            reorderTreeItems(dragIndex, index, parentId);
-          }
-        } else {
-          moveTreeItem(dragItem.id, parentId ?? null, index);
-        }
-      }
-      return { parentId };
-    },
-    collect: (monitor) => ({
-      isOverBetween: monitor.isOver({ shallow: true }),
-    }),
-    canDrop: (dragItem) => dragItem.id !== id,
-  });
-
-  const [{ isUnderLast }, dropUnder] = useDrop<
-    DragItem,
-    DropResult,
-    { isUnderLast: boolean }
-  >({
-    accept: TREE_ITEM_TYPE,
-    drop: (dragItem: DragItem, monitor: DropTargetMonitor) => {
-      if (!monitor.didDrop() && dragItem.id !== id) {
-        if (dragItem.parentId === parentId) {
-          const dragIndex = dragItem.index;
-          if (dragIndex !== index) {
-            reorderTreeItems(dragIndex, index, parentId);
-          }
-        } else {
-          moveTreeItem(dragItem.id, parentId ?? null, index);
-        }
-      }
-      return { parentId };
-    },
-    collect: (monitor) => ({
-      isUnderLast: monitor.isOver({ shallow: true }),
-    }),
-    canDrop: (dragItem) => dragItem.id !== id,
-  });
-
-  dropBetween(dropBetweenRef);
   drag(drop(ref));
-  dropUnder(dropUnderRef);
 
   const handleToggleExpanded = useCallback(
     (e: React.MouseEvent) => {
@@ -249,7 +208,7 @@ export const TreeNode = <T extends BaseTreeItem>(
 
   return (
     <>
-      <DropIndicator isActive={isOverBetween} position="before" />
+      <DropIndicator isActive={isOver && dropPosition === "before"} position="before" />
       <div
         ref={ref}
         data-id={id}
@@ -264,9 +223,7 @@ export const TreeNode = <T extends BaseTreeItem>(
           "tree-node",
           isDragging && "tree-node--dragging",
           isSelected && "tree-node--selected",
-          canDrop && isOver && "tree-node--drop-target",
-          dropPosition === "before" && "tree-node--drop-before",
-          dropPosition === "after" && "tree-node--drop-after"
+          canDrop && isOver && dropPosition === "nest" && "tree-node--drop-target",
         )}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
@@ -312,10 +269,7 @@ export const TreeNode = <T extends BaseTreeItem>(
           />
         )}
       </div>
-      {isLast && (
-        <DropIndicator isActive={isUnderLast} position="after" />
-      )}
-      <div ref={dropUnderRef} className="tree-node__drop-sink" aria-hidden="true" />
+      <DropIndicator isActive={isOver && dropPosition === "after"} position="after" />
     </>
   );
 };
