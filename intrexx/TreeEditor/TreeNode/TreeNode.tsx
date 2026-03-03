@@ -76,10 +76,10 @@ export const TreeNode = <T extends BaseTreeItem>(
   const isSelected = selectedItemId === id;
   const isExpanded = expandedItems.has(id);
 
-  const [{ canDrop, isOver, dropPosition }, drop] = useDrop<
+  const [{ canDrop, isOver, dropPosition, dragItem }, drop] = useDrop<
     DragItem,
     DropResult,
-    { canDrop: boolean; isOver: boolean; dropPosition: DropPosition }
+    { canDrop: boolean; isOver: boolean; dropPosition: DropPosition; dragItem: DragItem | null }
   >({
     accept: TREE_ITEM_TYPE,
     drop: (dragItem: DragItem, monitor: DropTargetMonitor) => {
@@ -145,6 +145,7 @@ export const TreeNode = <T extends BaseTreeItem>(
         isOver: monitor.isOver({ shallow: true }),
         canDrop: monitor.canDrop(),
         dropPosition: position,
+        dragItem: monitor.getItem() as DragItem | null,
       };
     },
     canDrop: (dragItem) => dragItem.id !== id,
@@ -208,7 +209,7 @@ export const TreeNode = <T extends BaseTreeItem>(
 
   return (
     <>
-      <DropIndicator isActive={isOver && dropPosition === "before"} position="before" />
+      <DropIndicator isActive={isOver && dropPosition === "before"} position="before" label={dragItem?.label} />
       <div
         ref={ref}
         data-id={id}
@@ -269,7 +270,7 @@ export const TreeNode = <T extends BaseTreeItem>(
           />
         )}
       </div>
-      <DropIndicator isActive={isOver && dropPosition === "after"} position="after" />
+      <DropIndicator isActive={isOver && dropPosition === "after"} position="after" label={dragItem?.label} />
     </>
   );
 };
