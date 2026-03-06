@@ -1,13 +1,20 @@
 import React, { forwardRef } from "react";
 import { GripHorizontal } from "lucide-react";
+import clsx from "clsx";
 import { Button } from "../../common";
+import "./TreeEditor2.css";
 
 export const Handle = forwardRef<
   HTMLButtonElement,
   React.HTMLAttributes<HTMLButtonElement>
->(({ ...props }, ref) => {
+>(({ className, ...props }, ref) => {
   return (
-    <Button ref={ref} variant="ghost" {...props}>
+    <Button
+      ref={ref}
+      variant="ghost"
+      className={clsx("sortable-tree__drag-handle", className)}
+      {...props}
+    >
       <GripHorizontal size={16} />
     </Button>
   );

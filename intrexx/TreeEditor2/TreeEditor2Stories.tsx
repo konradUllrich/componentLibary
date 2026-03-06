@@ -88,7 +88,7 @@ export const MenuActionsSortableTree = () => {
             data-testid={`add-after-${item.id}`}
             onClick={() =>
               actions.addItemAfter({
-                id: `new-${item.id}`,
+                id: crypto.randomUUID(),
                 label: "New Item",
               })
             }

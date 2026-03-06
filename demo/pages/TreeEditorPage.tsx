@@ -200,7 +200,7 @@ export const TreeEditorPage: React.FC = () => {
                   title="Add item after"
                   onClick={() =>
                     actions.addItemAfter({
-                      id: `new-${Date.now()}`,
+                      id: crypto.randomUUID(),
                       label: "New Item",
                       icon: "📄",
                     })
@@ -214,7 +214,7 @@ export const TreeEditorPage: React.FC = () => {
                   title="Add child"
                   onClick={() =>
                     actions.addChild({
-                      id: `child-${Date.now()}`,
+                      id: crypto.randomUUID(),
                       label: "New Child",
                       icon: "📄",
                     })
