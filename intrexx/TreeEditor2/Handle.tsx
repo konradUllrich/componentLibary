@@ -2,8 +2,6 @@ import React, { forwardRef } from "react";
 import { GripHorizontal } from "lucide-react";
 import clsx from "clsx";
 import { Button } from "../../common";
-import "./TreeEditor2.css";
-
 export const Handle = forwardRef<
   HTMLButtonElement,
   React.HTMLAttributes<HTMLButtonElement>
