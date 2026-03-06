@@ -13,7 +13,7 @@ import {
 } from "./utilities";
 import { TreeItem } from "./TreeItem";
 import { TreeItemOverlay } from "./TreeItemOverlay";
-import styles from "./Tree.module.css";
+import "./TreeEditor2.css";
 
 export interface ItemMenuActions<T extends Item> {
   erase: () => void;
@@ -178,7 +178,7 @@ export function Tree<T extends Item>({
         onChange(updatedTree);
       }}
     >
-      <ul className={styles.Tree}>
+      <ul className="sortable-tree">
         {flattenedItems.map((item, index) => {
           const actions: ItemMenuActions<T> = {
             erase: () => {

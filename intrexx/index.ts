@@ -11,3 +11,12 @@ export {
   type TreeEditorInitialState,
   type TreeAction,
 } from "./TreeEditor/treeEditorState";
+export {
+  Tree as SortableTree,
+  type ItemMenuActions as SortableTreeItemMenuActions,
+} from "./TreeEditor2";
+export type {
+  Item as SortableTreeItem,
+  FlattenedItem as SortableTreeFlattenedItem,
+} from "./TreeEditor2";
+

@@ -1,7 +1,7 @@
 import type { UniqueIdentifier } from "@dnd-kit/abstract";
 
 import { Handle } from "./Handle.tsx";
-import styles from "./Tree.module.css";
+import "./TreeEditor2.css";
 
 interface Props {
   id: UniqueIdentifier;
@@ -10,10 +10,10 @@ interface Props {
 
 export function TreeItemOverlay({ id, count }: Props) {
   return (
-    <div className={styles.TreeItem} data-overlay>
+    <div className="sortable-tree__item" data-overlay>
       <Handle />
       {id}
-      {count > 0 ? <span className={styles.Badge}>{count}</span> : null}
+      {count > 0 ? <span className="sortable-tree__badge">{count}</span> : null}
     </div>
   );
 }

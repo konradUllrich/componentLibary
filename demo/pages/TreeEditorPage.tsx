@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import { Text } from "../../common";
+import { Button, Text } from "../../common";
 import { Page, Panel, Section } from "../../layout";
-// import {
-//   TreeEditor,
-//   createTreeEditorStore,
-//   BaseTreeItem,
-// } from "../../intrexx/TreeEditor";
-import { Tree } from "../../intrexx/TreeEditor2/Tree";
-// import { BaseTreeItem } from "../../intrexx";
-import { Item } from "../../intrexx/TreeEditor2/types";
+import { Tree } from "../../intrexx/TreeEditor2";
+import type { Item, FlattenedItem } from "../../intrexx/TreeEditor2";
 
 interface MyTreeItem extends Item {
   label: string;
@@ -16,238 +10,354 @@ interface MyTreeItem extends Item {
   children: MyTreeItem[];
 }
 
-// interface ExtendedTreeItem extends BaseTreeItem {
-//   icon?: string;
-//   children?: ExtendedTreeItem[];
-// }
+const basicItems: MyTreeItem[] = [
+  {
+    id: "home",
+    label: "Home",
+    icon: "🏠",
+    children: [],
+  },
+  {
+    id: "collections",
+    label: "Collections",
+    icon: "📁",
+    children: [
+      {
+        id: "spring",
+        label: "Spring Collection",
+        icon: "🌸",
+        children: [],
+      },
+      {
+        id: "summer",
+        label: "Summer Collection",
+        icon: "☀️",
+        children: [],
+      },
+      { id: "fall", label: "Fall Collection", icon: "🍂", children: [] },
+      {
+        id: "winter",
+        label: "Winter Collection",
+        icon: "❄️",
+        children: [],
+      },
+    ],
+  },
+  {
+    id: "about",
+    label: "About Us",
+    icon: "ℹ️",
+    children: [],
+  },
+  {
+    id: "account",
+    label: "My Account",
+    icon: "👤",
+    children: [
+      { id: "addresses", label: "Addresses", icon: "📍", children: [] },
+      {
+        id: "orders",
+        label: "Order History",
+        icon: "📦",
+        children: [],
+      },
+    ],
+  },
+];
 
-// const sampleItems: ExtendedTreeItem[] = [
-//   {
-//     id: "1",
-//     label: "Documents",
-//     icon: "📁",
-//     children: [
-//       {
-//         id: "1-1",
-//         label: "Work",
-//         icon: "📁",
-//         children: [
-//           { id: "1-1-1", label: "Project A", icon: "📄" },
-//           { id: "1-1-2", label: "Project B", icon: "📄" },
-//         ],
-//       },
-//       { id: "1-2", label: "Personal", icon: "📁" },
-//     ],
-//   },
-//   {
-//     id: "2",
-//     label: "Images",
-//     icon: "🖼️",
-//     children: [
-//       { id: "2-1", label: "Vacation", icon: "📷" },
-//       { id: "2-2", label: "Screenshots", icon: "📷" },
-//     ],
-//   },
-//   {
-//     id: "3",
-//     label: "Downloads",
-//     icon: "📥",
-//   },
-// ];
+const restrictedItems: MyTreeItem[] = [
+  {
+    id: "docs",
+    label: "Documents",
+    icon: "📁",
+    children: [
+      {
+        id: "work",
+        label: "Work",
+        icon: "💼",
+        children: [
+          { id: "proj-a", label: "Project A", icon: "📄", children: [] },
+        ],
+      },
+    ],
+  },
+  { id: "leaf-a", label: "Leaf Node A", icon: "🍃", children: [] },
+  { id: "leaf-b", label: "Leaf Node B", icon: "🍃", children: [] },
+];
 
-// const treeStore = createTreeEditorStore<ExtendedTreeItem>("demo-tree", {
-//   treeItems: sampleItems,
-// });
-
+/** ─── Demo Page ─────────────────────────────────────────── */
 export const TreeEditorPage: React.FC = () => {
-  const [items, setItems] = useState<MyTreeItem[]>([
+  /* ── Basic tree state ─────────────────────────────────── */
+  const [basicState, setBasicState] = useState<MyTreeItem[]>(basicItems);
+
+  /* ── Full-featured tree state ────────────────────────── */
+  const [fullState, setFullState] = useState<MyTreeItem[]>([
+    { id: "f1", label: "Menu Item 1", icon: "📄", children: [] },
     {
-      id: "Home",
-      label: "Home",
-      icon: "🏠",
-      children: [],
-    },
-    {
-      id: "Collections",
-      label: "Collections",
+      id: "f2",
+      label: "Menu Item 2",
       icon: "📁",
       children: [
-        { id: "Spring", label: "Spring Collection", icon: "🌸", children: [] },
-        { id: "Summer", label: "Summer Collection", icon: "☀️", children: [] },
-        { id: "Fall", label: "Fall Collection", icon: "🍂", children: [] },
-        { id: "Winter", label: "Winter Collection", icon: "❄️", children: [] },
+        { id: "f2-1", label: "Sub Item 2.1", icon: "📄", children: [] },
+        { id: "f2-2", label: "Sub Item 2.2", icon: "📄", children: [] },
       ],
     },
-    {
-      id: "About Us",
-      label: "About Us",
-      icon: "ℹ️",
-      children: [],
-    },
-    {
-      id: "My Account",
-      label: "My Account",
-      icon: "👤",
-      children: [
-        { id: "Addresses", label: "Addresses", icon: "📍", children: [] },
-        {
-          id: "Order History",
-          label: "Order History",
-          icon: "📦",
-          children: [],
-        },
-      ],
-    },
+    { id: "f3", label: "Menu Item 3", icon: "📄", children: [] },
   ]);
+
+  /* ── Read-only tree state ────────────────────────────── */
+  const [readOnlyState, setReadOnlyState] = useState<MyTreeItem[]>([
+    { id: "ro-locked", label: "🔒 Locked (cannot move)", icon: "🔒", children: [] },
+    { id: "ro-free1", label: "Free Item 1", icon: "📄", children: [] },
+    { id: "ro-free2", label: "Free Item 2", icon: "📄", children: [] },
+    { id: "ro-locked2", label: "🔒 Also Locked", icon: "🔒", children: [] },
+  ]);
+
+  /* ── Restricted nesting state ───────────────────────── */
+  const [restrictedState, setRestrictedState] =
+    useState<MyTreeItem[]>(restrictedItems);
 
   return (
     <Page>
+      {/* ── Hero ────────────────────────────────────────── */}
       <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
-          Tree Editor
+          Sortable Tree Editor
         </Text>
         <Text color="secondary">
-          Drag-and-drop tree editor with keyboard navigation and accessibility
-          support
+          A drag-and-drop tree editor built on{" "}
+          <strong>@dnd-kit/react</strong>. Supports keyboard navigation,
+          arbitrary nesting, and a fully customisable item renderer and action
+          menu.
         </Text>
       </Section>
 
+      {/* ── Basic usage ─────────────────────────────────── */}
       <Section>
         <Text as="h2" size="2xl" weight="semibold">
-          Basic Tree Editor
+          Basic Usage
         </Text>
         <Text color="secondary" size="sm">
-          Drag items to reorder or nest them. Click to select. Click ▶ to
-          expand.
+          Provide <code>items</code>, <code>onChange</code>, and a{" "}
+          <code>renderItem</code> callback. Drag to reorder or nest.
         </Text>
 
         <Panel variant="subtle">
           <Tree
-            items={items}
-            onChange={setItems}
-            renderItem={({ label, icon }) => (
-              <div>
-                {icon} {label}
-              </div>
-            )}
-            itemMenu={(item, actions) => {
-              return null;
-              return (
-                <div style={{ display: "flex", gap: "4px", marginLeft: "8px" }}>
-                  <button
-                    onClick={actions.moveUp}
-                    title="Move up"
-                    style={{ padding: "2px 6px", fontSize: "12px" }}
-                  >
-                    ↑
-                  </button>
-                  <button
-                    onClick={actions.moveDown}
-                    title="Move down"
-                    style={{ padding: "2px 6px", fontSize: "12px" }}
-                  >
-                    ↓
-                  </button>
-                  <button
-                    onClick={() => {
-                      const newId = `new-${Date.now()}`;
-                      actions.addItemAfter({
-                        id: newId,
-                        label: "New Item",
-                        icon: "📄",
-                      });
-                    }}
-                    title="Add item after"
-                    style={{ padding: "2px 6px", fontSize: "12px" }}
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => {
-                      const newId = `child-${Date.now()}`;
-                      actions.addChild({
-                        id: newId,
-                        label: "New Child",
-                        icon: "📄",
-                      });
-                    }}
-                    title="Add child"
-                    style={{ padding: "2px 6px", fontSize: "12px" }}
-                  >
-                    +↳
-                  </button>
-                  <button
-                    onClick={actions.erase}
-                    title="Delete"
-                    style={{
-                      padding: "2px 6px",
-                      fontSize: "12px",
-                      color: "red",
-                    }}
-                  >
-                    ×
-                  </button>
-                </div>
-              );
-            }}
-            canMove={(item) => item.label !== "Fall Collection"}
-            canReceiveChildren={(item) =>
-              !["About Us", "Order History", "Addresses"].includes(item.label)
-            }
-          />
-          {/* <TreeEditor<ExtendedTreeItem>
-            store={treeStore}
-            renderItem={(item) => (
+            items={basicState}
+            onChange={setBasicState}
+            renderItem={({ label, icon }: FlattenedItem<MyTreeItem>) => (
               <span>
-                {item.icon && (
-                  <span className="tree-editor-page__item-icon">{item.icon}</span>
-                )}
-                {item.label}
+                {icon} {label}
               </span>
             )}
-          /> */}
+          />
         </Panel>
       </Section>
 
+      {/* ── Full-featured ────────────────────────────────── */}
+      <Section>
+        <Text as="h2" size="2xl" weight="semibold">
+          Full-Featured — with Item Menu
+        </Text>
+        <Text color="secondary" size="sm">
+          Pass an <code>itemMenu</code> callback to render action buttons for
+          each item. Available actions: <code>moveUp</code>,{" "}
+          <code>moveDown</code>, <code>addItemAfter</code>,{" "}
+          <code>addChild</code>, and <code>erase</code>.
+        </Text>
+
+        <Panel variant="subtle">
+          <Tree
+            items={fullState}
+            onChange={setFullState}
+            renderItem={({ label, icon }: FlattenedItem<MyTreeItem>) => (
+              <span style={{ flex: 1 }}>
+                {icon} {label}
+              </span>
+            )}
+            itemMenu={(item, actions) => (
+              <div style={{ display: "flex", gap: "var(--spacing-1)" }}>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  title="Move up"
+                  onClick={actions.moveUp}
+                >
+                  ↑
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  title="Move down"
+                  onClick={actions.moveDown}
+                >
+                  ↓
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  title="Add item after"
+                  onClick={() =>
+                    actions.addItemAfter({
+                      id: `new-${Date.now()}`,
+                      label: "New Item",
+                      icon: "📄",
+                    })
+                  }
+                >
+                  +
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  title="Add child"
+                  onClick={() =>
+                    actions.addChild({
+                      id: `child-${Date.now()}`,
+                      label: "New Child",
+                      icon: "📄",
+                    })
+                  }
+                >
+                  +↳
+                </Button>
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  title="Delete"
+                  onClick={actions.erase}
+                >
+                  ×
+                </Button>
+              </div>
+            )}
+          />
+        </Panel>
+      </Section>
+
+      {/* ── Read-only / non-movable ───────────────────────── */}
+      <Section>
+        <Text as="h2" size="2xl" weight="semibold">
+          Read-Only / Non-Movable Items
+        </Text>
+        <Text color="secondary" size="sm">
+          Use <code>canMove</code> to prevent specific items from being dragged.
+          Locked items are shown at reduced opacity.
+        </Text>
+
+        <Panel variant="subtle">
+          <Tree
+            items={readOnlyState}
+            onChange={setReadOnlyState}
+            renderItem={({ label }: FlattenedItem<MyTreeItem>) => (
+              <span>{label}</span>
+            )}
+            canMove={(item) => !item.id.startsWith("ro-locked")}
+          />
+        </Panel>
+      </Section>
+
+      {/* ── Restricted nesting ───────────────────────────── */}
+      <Section>
+        <Text as="h2" size="2xl" weight="semibold">
+          Restricted Nesting
+        </Text>
+        <Text color="secondary" size="sm">
+          Use <code>canReceiveChildren</code> to prevent certain items from
+          becoming parent nodes. Leaf nodes below will not accept children when
+          dragged over.
+        </Text>
+
+        <Panel variant="subtle">
+          <Tree
+            items={restrictedState}
+            onChange={setRestrictedState}
+            renderItem={({ label, icon }: FlattenedItem<MyTreeItem>) => (
+              <span>
+                {icon} {label}
+              </span>
+            )}
+            canReceiveChildren={(item) => !item.id.startsWith("leaf-")}
+          />
+        </Panel>
+      </Section>
+
+      {/* ── Live state ───────────────────────────────────── */}
+      <Section>
+        <Text as="h2" size="2xl" weight="semibold">
+          Live State (Full-Featured Tree)
+        </Text>
+        <Text color="secondary" size="sm">
+          The JSON below updates in real-time as you modify the tree above.
+        </Text>
+
+        <Panel variant="subtle">
+          <pre
+            style={{
+              fontSize: "var(--font-size-xs)",
+              overflowX: "auto",
+              margin: 0,
+            }}
+          >
+            {JSON.stringify(fullState, null, 2)}
+          </pre>
+        </Panel>
+      </Section>
+
+      {/* ── API reference ────────────────────────────────── */}
       <Section>
         <Text as="h2" size="2xl" weight="semibold">
           Usage
         </Text>
-        <pre className="code-block">
-          <code>{`import { Tree } from '@mp-ku/mp-components/intrexx/TreeEditor/TreeEditor2';
-import { Item } from '@mp-ku/mp-components/intrexx/TreeEditor/TreeEditor2/types';
 
-// Define your custom tree item type
-interface MyTreeItem extends Item {
+        <pre className="code-block">
+          <code>{`import { SortableTree } from '@mp-ku/mp-components/intrexx';
+import type { SortableTreeItem, SortableTreeFlattenedItem } from '@mp-ku/mp-components/intrexx';
+
+// 1. Define your custom item type (must extend SortableTreeItem)
+interface NavItem extends SortableTreeItem {
   label: string;
   icon?: string;
-  children: MyTreeItem[];
+  children: NavItem[];
 }
 
-const [items, setItems] = useState<MyTreeItem[]>([...]);
+// 2. Control state yourself
+const [items, setItems] = useState<NavItem[]>([...]);
 
-// Use the component
-<Tree
+// 3. Render the tree
+<SortableTree<NavItem>
   items={items}
   onChange={setItems}
-  renderItem={(item) => (
-    <div>{item.icon} {item.label}</div>
+
+  // Custom renderer for each item
+  renderItem={(item: SortableTreeFlattenedItem<NavItem>) => (
+    <span>{item.icon} {item.label}</span>
   )}
+
+  // Action menu per item
   itemMenu={(item, actions) => (
     <div>
       <button onClick={actions.moveUp}>↑</button>
       <button onClick={actions.moveDown}>↓</button>
-      <button onClick={() => actions.addItemAfter({ id: 'new', label: 'New' })}>
+      <button onClick={() => actions.addItemAfter({ id: 'new-1', label: 'New' })}>
         Add After
       </button>
-      <button onClick={() => actions.addChild({ id: 'child', label: 'Child' })}>
+      <button onClick={() => actions.addChild({ id: 'child-1', label: 'Child' })}>
         Add Child
       </button>
       <button onClick={actions.erase}>Delete</button>
     </div>
   )}
-  canMove={(item) => item.label !== "Locked Item"}
-  canReceiveChildren={(item) => item.label !== "Leaf Node"}
+
+  // Optional: prevent certain items from being moved
+  canMove={(item) => item.id !== 'locked-item'}
+
+  // Optional: prevent certain items from receiving children
+  canReceiveChildren={(item) => item.id !== 'leaf-node'}
+
+  // Optional: override indentation (default: 50px per level)
+  indentation={40}
 />`}</code>
         </pre>
       </Section>
