@@ -4,7 +4,7 @@ import { useSortable } from "@dnd-kit/react/sortable";
 import { Handle } from "./Handle.tsx";
 
 import { FlattenedItem, Item } from "./types.ts";
-import styles from "./Tree.module.css";
+import "./TreeEditor2.css";
 import type { ItemMenuActions } from "./Tree.tsx";
 
 export type Props<T extends Item> = FlattenedItem<T> & {
@@ -64,13 +64,13 @@ export function TreeItem<T extends Item>({
   return (
     <li
       ref={ref}
-      className={styles.TreeItem}
+      className="sortable-tree__item"
       style={{
         marginLeft: depth * INDENTATION,
       }}
       aria-hidden={isDragSource}
     >
-      <span className={styles.Handle}>
+      <span className="sortable-tree__handle">
         <Handle ref={handleRef} />
       </span>
       {renderItem ? (
@@ -81,7 +81,7 @@ export function TreeItem<T extends Item>({
         </>
       )}
       {itemMenu && actions && (
-        <div className={styles.Action}>{itemMenu(item, actions)}</div>
+        <div className="sortable-tree__action">{itemMenu(item, actions)}</div>
       )}
     </li>
   );
