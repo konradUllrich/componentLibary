@@ -36,9 +36,7 @@ export type TreeNodeProps<T extends BaseTreeItem> = {
   canDrag?: (item: T) => boolean;
 } & T;
 
-export const TreeNode = <T extends BaseTreeItem>(
-  props: TreeNodeProps<T>
-) => {
+export const TreeNode = <T extends BaseTreeItem>(props: TreeNodeProps<T>) => {
   const {
     label,
     children,
@@ -79,7 +77,12 @@ export const TreeNode = <T extends BaseTreeItem>(
   const [{ canDrop, isOver, dropPosition, dragItem }, drop] = useDrop<
     DragItem,
     DropResult,
-    { canDrop: boolean; isOver: boolean; dropPosition: DropPosition; dragItem: DragItem | null }
+    {
+      canDrop: boolean;
+      isOver: boolean;
+      dropPosition: DropPosition;
+      dragItem: DragItem | null;
+    }
   >({
     accept: TREE_ITEM_TYPE,
     drop: (dragItem: DragItem, monitor: DropTargetMonitor) => {
@@ -98,7 +101,7 @@ export const TreeNode = <T extends BaseTreeItem>(
               moveTreeItem(
                 dragItem.id,
                 id,
-                hasChildren ? (children as BaseTreeItem[]).length : 0
+                hasChildren ? (children as BaseTreeItem[]).length : 0,
               );
             } else {
               // Reorder: before or after this item
@@ -151,7 +154,11 @@ export const TreeNode = <T extends BaseTreeItem>(
     canDrop: (dragItem) => dragItem.id !== id,
   });
 
-  const [{ isDragging }, drag] = useDrag<DragItem, DropResult, { isDragging: boolean }>({
+  const [{ isDragging }, drag] = useDrag<
+    DragItem,
+    DropResult,
+    { isDragging: boolean }
+  >({
     type: TREE_ITEM_TYPE,
     item: () => ({ id, parentId, index, type: TREE_ITEM_TYPE, label }),
     // Delegate drag permission to the canDrag prop so the hook itself controls
@@ -171,7 +178,7 @@ export const TreeNode = <T extends BaseTreeItem>(
         toggleExpanded(id);
       }
     },
-    [hasChildren, id, toggleExpanded]
+    [hasChildren, id, toggleExpanded],
   );
 
   const handleClick = useCallback(
@@ -179,7 +186,7 @@ export const TreeNode = <T extends BaseTreeItem>(
       e.stopPropagation();
       setSelectedItem(id);
     },
-    [id, setSelectedItem]
+    [id, setSelectedItem],
   );
 
   const handleKeyDown = useCallback(
@@ -204,13 +211,17 @@ export const TreeNode = <T extends BaseTreeItem>(
           break;
       }
     },
-    [id, hasChildren, isExpanded, setSelectedItem, toggleExpanded]
+    [id, hasChildren, isExpanded, setSelectedItem, toggleExpanded],
   );
 
   return (
     <>
       {index === 0 && (
-        <DropIndicator isActive={isOver && dropPosition === "before"} position="before" label={dragItem?.label} />
+        <DropIndicator
+          isActive={isOver && dropPosition === "before"}
+          position="before"
+          label={dragItem?.label}
+        />
       )}
       <div
         ref={ref}
@@ -226,7 +237,10 @@ export const TreeNode = <T extends BaseTreeItem>(
           "tree-node",
           isDragging && "tree-node--dragging",
           isSelected && "tree-node--selected",
-          canDrop && isOver && dropPosition === "nest" && "tree-node--drop-target",
+          canDrop &&
+            isOver &&
+            dropPosition === "nest" &&
+            "tree-node--drop-target",
         )}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
@@ -272,7 +286,11 @@ export const TreeNode = <T extends BaseTreeItem>(
           />
         )}
       </div>
-      <DropIndicator isActive={isOver && dropPosition === "after"} position="after" label={dragItem?.label} />
+      <DropIndicator
+        isActive={isOver && dropPosition === "after"}
+        position="after"
+        label={dragItem?.label}
+      />
     </>
   );
 };
