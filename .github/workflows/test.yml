@@ -11,31 +11,31 @@ jobs:
   component-tests:
     name: Component Tests
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-      
+          node-version: "20"
+          cache: "pnpm"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
-      
+
       - name: Run component tests
         run: pnpm test:ct
-      
+
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
@@ -47,34 +47,34 @@ jobs:
   e2e-tests:
     name: E2E Tests
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-      
+          node-version: "20"
+          cache: "pnpm"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
-      
+
       - name: Build demo site
         run: pnpm demo:build
-      
+
       - name: Run E2E tests
         run: pnpm test:e2e
-      
+
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
@@ -86,58 +86,58 @@ jobs:
   type-check:
     name: TypeScript Type Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-      
+          node-version: "20"
+          cache: "pnpm"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Run type check
         run: pnpm type-check
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      pnpm'
-      
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Run linter
-        run: pnpm
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-      
-      - name: Run linter
-        run: npm run lint
+        run: pnpm lint
 
   all-tests-passed:
     name: All Tests Passed
     runs-on: ubuntu-latest
     needs: [component-tests, e2e-tests, type-check, lint]
-    
+
     steps:
       - name: All tests passed
         run: echo "All tests passed successfully!"
