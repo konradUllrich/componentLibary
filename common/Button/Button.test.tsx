@@ -21,10 +21,10 @@ test.describe('Button Component', () => {
     );
     
     const buttons = component.locator('button');
-    await expect(buttons.nth(0)).toHaveClass(/button--primary/);
-    await expect(buttons.nth(1)).toHaveClass(/button--secondary/);
-    await expect(buttons.nth(2)).toHaveClass(/button--destructive/);
-    await expect(buttons.nth(3)).toHaveClass(/button--ghost/);
+    await expect(buttons.nth(0)).toHaveClass(/mp-button--primary/);
+    await expect(buttons.nth(1)).toHaveClass(/mp-button--secondary/);
+    await expect(buttons.nth(2)).toHaveClass(/mp-button--destructive/);
+    await expect(buttons.nth(3)).toHaveClass(/mp-button--ghost/);
   });
 
   test('should render different sizes', async ({ mount }) => {
@@ -38,9 +38,9 @@ test.describe('Button Component', () => {
     );
     
     const buttons = component.locator('button');
-    await expect(buttons.nth(0)).toHaveClass(/button--sm/);
-    await expect(buttons.nth(1)).toHaveClass(/button--md/);
-    await expect(buttons.nth(2)).toHaveClass(/button--lg/);
+    await expect(buttons.nth(0)).toHaveClass(/mp-button--sm/);
+    await expect(buttons.nth(1)).toHaveClass(/mp-button--md/);
+    await expect(buttons.nth(2)).toHaveClass(/mp-button--lg/);
   });
 
   test('should handle disabled state', async ({ mount }) => {
@@ -53,10 +53,10 @@ test.describe('Button Component', () => {
     const component = await mount(<Button isLoading>Loading</Button>);
     await expect(component).toBeDisabled();
     await expect(component).toHaveAttribute('aria-busy', 'true');
-    await expect(component).toHaveClass(/button--loading/);
+    await expect(component).toHaveClass(/mp-button--loading/);
     
     // Check for spinner
-    const spinner = component.locator('.button__spinner');
+    const spinner = component.locator('.mp-button__spinner');
     await expect(spinner).toBeVisible();
   });
 
@@ -176,10 +176,10 @@ test.describe('Button Component', () => {
           .map(rule => (rule as CSSStyleRule).selectorText);
         
         return {
-          primary: rules.some(r => r?.includes('.button--primary:hover')),
-          secondary: rules.some(r => r?.includes('.button--secondary:hover')),
-          destructive: rules.some(r => r?.includes('.button--destructive:hover')),
-          ghost: rules.some(r => r?.includes('.button--ghost:hover'))
+          primary: rules.some(r => r?.includes('.mp-button--primary:hover')),
+          secondary: rules.some(r => r?.includes('.mp-button--secondary:hover')),
+          destructive: rules.some(r => r?.includes('.mp-button--destructive:hover')),
+          ghost: rules.some(r => r?.includes('.mp-button--ghost:hover'))
         };
       });
       
@@ -206,7 +206,7 @@ test.describe('Button Component', () => {
         
         // Find the ghost hover rule
         const ghostHoverRule = rules.find(rule => 
-          rule.selectorText?.includes('.button--ghost:hover')
+          rule.selectorText?.includes('.mp-button--ghost:hover')
         );
         
         if (!ghostHoverRule) return false;
@@ -258,10 +258,10 @@ test.describe('Button Component', () => {
           .filter(rule => rule instanceof CSSStyleRule) as CSSStyleRule[];
         
         const defaultRule = rules.find(r => 
-          r.selectorText === '.button--ghost'
+          r.selectorText === '.mp-button--ghost'
         );
         const hoverRule = rules.find(r => 
-          r.selectorText?.includes('.button--ghost:hover:not(:disabled)')
+          r.selectorText?.includes('.mp-button--ghost:hover:not(:disabled)')
         );
         
         if (!defaultRule || !hoverRule) return false;
@@ -292,7 +292,7 @@ test.describe('Button Component', () => {
           .filter(rule => rule instanceof CSSStyleRule) as CSSStyleRule[];
         
         const hoverRule = rules.find(r => 
-          r.selectorText?.includes('.button--ghost:hover:not(:disabled)')
+          r.selectorText?.includes('.mp-button--ghost:hover:not(:disabled)')
         );
         
         if (!hoverRule) return false;

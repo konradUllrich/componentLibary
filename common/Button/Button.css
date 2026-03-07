@@ -24,7 +24,7 @@
   box-shadow: var(--button-focus-shadow);
 }
 
-.mp-button:hover:not(:disabled):not(.button--ghost) {
+.mp-button:hover:not(:disabled):not(.mp-button--ghost) {
   opacity: var(--button-hover-opacity);
 }
 
@@ -136,7 +136,7 @@
   color: transparent;
 }
 
-.mp-button--loading .button__content {
+.mp-button--loading .mp-button__content {
   visibility: hidden;
 }
 
