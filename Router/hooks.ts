@@ -1,4 +1,5 @@
 export { useSearch, useLocation, useParams, useRoute } from "wouter";
+export type { SetSearchParams, URLSearchParamsInit } from "wouter";
 import { useLocation, useSearchParams as useSearchParamsw } from "wouter";
 
 /**
@@ -10,6 +11,49 @@ import { useLocation, useSearchParams as useSearchParamsw } from "wouter";
  * @example
  * const [searchParams, setSearchParams] = useSearchParams();
  * const query = new URLSearchParams(searchParams).get('q');
+ * 
+ * 
+ * import { useSearchParams } from 'wouter';
+
+const [searchParams, setSearchParams] = useSearchParams();
+
+// extract a specific search parameter
+const id = searchParams.get('id');
+
+// modify a specific search parameter
+setSearchParams((prev) => {
+  prev.set('tab', 'settings');
+  return prev;
+});
+
+// override all search parameters
+setSearchParams({
+  id: 1234,
+  tab: 'settings',
+});
+
+// by default, setSearchParams() will push a new history entry
+// to avoid this, set `replace` option to `true`
+setSearchParams(
+  (prev) => {
+    prev.set('order', 'desc');
+    return prev;
+  },
+  {
+    replace: true,
+  },
+);
+
+// you can also pass a history state in options
+setSearchParams(
+  (prev) => {
+    prev.set('foo', 'bar');
+    return prev;
+  },
+  {
+    state: 'hello',
+  },
+);
  */
 export const useSearchParams = useSearchParamsw;
 

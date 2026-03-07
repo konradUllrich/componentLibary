@@ -4,7 +4,7 @@ import { useSortable } from "@dnd-kit/react/sortable";
 import { Handle } from "./Handle.tsx";
 
 import { FlattenedItem, Item } from "./types.ts";
-import "./TreeEditor2.css";
+import "./TreeEditor.css";
 import type { ItemMenuActions } from "./Tree.tsx";
 
 export type Props<T extends Item> = FlattenedItem<T> & {
@@ -77,7 +77,7 @@ export function TreeItem<T extends Item>({
         renderItem(item)
       ) : (
         <>
-          {id} {children.length > 0 ? `(${children.length})` : null}
+          {id} {children && children.length > 0 ? `(${children.length})` : null}
         </>
       )}
       {itemMenu && actions && (

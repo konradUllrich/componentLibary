@@ -28,7 +28,7 @@ export function buildTree<T extends Item>(
     const parentId = item.parentId ?? root.id;
     const parent = nodes[parentId] ?? items.find(({ id }) => id === parentId);
 
-    if (!parent) continue;
+    if (!parent || !parent.children) continue;
 
     nodes[id] = { ...item, children } as unknown as T;
     parent.children.push(item as unknown as T);

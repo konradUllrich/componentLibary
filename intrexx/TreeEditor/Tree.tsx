@@ -13,7 +13,7 @@ import {
 } from "./utilities";
 import { TreeItem } from "./TreeItem";
 import { TreeItemOverlay } from "./TreeItemOverlay";
-import "./TreeEditor2.css";
+import "./TreeEditor.css";
 
 export interface ItemMenuActions<T extends Item> {
   erase: () => void;

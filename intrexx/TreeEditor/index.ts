@@ -1,14 +1,2 @@
-export { TreeEditor, type TreeEditorProps } from "./TreeEditor";
-export {
-  createTreeEditorStore,
-  useCreateTreeEditorStore,
-  useTreeEditorStore,
-  TREE_ITEM_TYPE,
-  type BaseTreeItem,
-  type TreeItem,
-  type TreeEditorState,
-  type TreeEditorInitialState,
-  type TreeAction,
-  type DragItem,
-  type DropResult,
-} from "./treeEditorState";
+export { Tree, type ItemMenuActions } from "./Tree";
+export type { Item, FlattenedItem } from "./types";

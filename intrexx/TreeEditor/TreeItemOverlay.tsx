@@ -1,7 +1,7 @@
 import type { UniqueIdentifier } from "@dnd-kit/abstract";
 
 import { Handle } from "./Handle.tsx";
-import "./TreeEditor2.css";
+import "./TreeEditor.css";
 
 interface Props {
   id: UniqueIdentifier;

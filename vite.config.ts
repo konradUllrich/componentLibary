@@ -14,6 +14,7 @@ export default defineConfig({
         "data-display",
         "layout",
         "intrexx",
+        "Router",
       ],
       exclude: [
         "**/*.test.tsx",

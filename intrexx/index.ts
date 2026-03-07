@@ -1,5 +1,5 @@
 export { IntrexxIcon, type IntrexxIconProps } from "./Icon/IntrexxIcon";
-export { TreeEditor, type TreeEditorProps } from "./TreeEditor";
+export { TreeEditor, type TreeEditorProps } from "./TreeEditorOld";
 export {
   createTreeEditorStore,
   useCreateTreeEditorStore,
@@ -10,13 +10,12 @@ export {
   type TreeEditorState,
   type TreeEditorInitialState,
   type TreeAction,
-} from "./TreeEditor/treeEditorState";
+} from "./TreeEditorOld/treeEditorState";
 export {
   Tree as SortableTree,
   type ItemMenuActions as SortableTreeItemMenuActions,
-} from "./TreeEditor2";
+} from "./TreeEditor";
 export type {
   Item as SortableTreeItem,
   FlattenedItem as SortableTreeFlattenedItem,
-} from "./TreeEditor2";
-
+} from "./TreeEditor";

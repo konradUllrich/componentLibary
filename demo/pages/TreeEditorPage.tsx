@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Text } from "../../common";
 import { Page, Panel, Section } from "../../layout";
-import { Tree } from "../../intrexx/TreeEditor2";
-import type { Item, FlattenedItem } from "../../intrexx/TreeEditor2";
+import { Tree } from "../../intrexx/TreeEditor";
+import type { Item, FlattenedItem } from "../../intrexx/TreeEditor";
 
 interface MyTreeItem extends Item {
   label: string;
@@ -107,7 +107,12 @@ export const TreeEditorPage: React.FC = () => {
 
   /* ── Read-only tree state ────────────────────────────── */
   const [readOnlyState, setReadOnlyState] = useState<MyTreeItem[]>([
-    { id: "ro-locked", label: "🔒 Locked (cannot move)", icon: "🔒", children: [] },
+    {
+      id: "ro-locked",
+      label: "🔒 Locked (cannot move)",
+      icon: "🔒",
+      children: [],
+    },
     { id: "ro-free1", label: "Free Item 1", icon: "📄", children: [] },
     { id: "ro-free2", label: "Free Item 2", icon: "📄", children: [] },
     { id: "ro-locked2", label: "🔒 Also Locked", icon: "🔒", children: [] },
@@ -125,10 +130,9 @@ export const TreeEditorPage: React.FC = () => {
           Sortable Tree Editor
         </Text>
         <Text color="secondary">
-          A drag-and-drop tree editor built on{" "}
-          <strong>@dnd-kit/react</strong>. Supports keyboard navigation,
-          arbitrary nesting, and a fully customisable item renderer and action
-          menu.
+          A drag-and-drop tree editor built on <strong>@dnd-kit/react</strong>.
+          Supports keyboard navigation, arbitrary nesting, and a fully
+          customisable item renderer and action menu.
         </Text>
       </Section>
 

@@ -167,7 +167,7 @@ export {
 // Intrexx Components
 // ========================================
 
-export { IntrexxIcon, type IntrexxIconProps } from "./intrexx";
+export { IntrexxIcon, type IntrexxIconProps, SortableTree } from "./intrexx";
 
 // ========================================
 // Shared Hooks
@@ -188,6 +188,8 @@ export {
   useParamState,
   useNavigation,
 } from "./Router/hooks";
+
+export type { SetSearchParams, URLSearchParamsInit } from "./Router/hooks";
 
 // ========================================
 // Types
