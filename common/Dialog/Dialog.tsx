@@ -40,6 +40,11 @@ export interface DialogContentProps {
    * Dialog description for accessibility
    */
   description?: string;
+
+  /**
+   * Dialog width size variant
+   */
+  size?: "sm" | "md" | "lg" | "xl" | "full";
 }
 
 export interface DialogTitleProps {
@@ -66,7 +71,9 @@ export interface DialogDescriptionProps {
   className?: string;
 }
 
-export interface DialogCloseProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close> {
+export interface DialogCloseProps extends React.ComponentPropsWithoutRef<
+  typeof DialogPrimitive.Close
+> {
   /**
    * Button content
    */
@@ -101,7 +108,11 @@ export interface DialogCloseProps extends React.ComponentPropsWithoutRef<typeof 
  * </Dialog>
  * ```
  */
-export const Dialog: React.FC<DialogProps> = ({ open, onOpenChange, children }) => {
+export const Dialog: React.FC<DialogProps> = ({
+  open,
+  onOpenChange,
+  children,
+}) => {
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       {children}
@@ -114,31 +125,37 @@ export const Dialog: React.FC<DialogProps> = ({ open, onOpenChange, children }) 
  *
  * Button that opens the dialog when clicked.
  */
-export const DialogTrigger = DialogPrimitive.Trigger;
+export const DialogTrigger: typeof DialogPrimitive.Trigger =
+  DialogPrimitive.Trigger;
 
 /**
  * Dialog Content Component
  *
  * The main dialog content container with overlay.
  */
-export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
-  ({ children, className, title, description, ...props }, ref) => {
-    return (
-      <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="dialog__overlay" />
-        <DialogPrimitive.Content
-          ref={ref}
-          className={clsx("dialog__content", className)}
-          {...props}
-        >
-          {title && <DialogTitle>{title}</DialogTitle>}
-          {description && <DialogDescription>{description}</DialogDescription>}
-          {children}
-        </DialogPrimitive.Content>
-      </DialogPrimitive.Portal>
-    );
-  },
-);
+export const DialogContent = React.forwardRef<
+  HTMLDivElement,
+  DialogContentProps
+>(({ children, className, title, description, size = "md", ...props }, ref) => {
+  return (
+    <DialogPrimitive.Portal>
+      <DialogPrimitive.Overlay className="dialog__overlay" />
+      <DialogPrimitive.Content
+        ref={ref}
+        className={clsx(
+          "dialog__content",
+          `dialog__content--${size}`,
+          className,
+        )}
+        {...props}
+      >
+        {title && <DialogTitle>{title}</DialogTitle>}
+        {description && <DialogDescription>{description}</DialogDescription>}
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
+  );
+});
 
 DialogContent.displayName = "DialogContent";
 
@@ -147,19 +164,20 @@ DialogContent.displayName = "DialogContent";
  *
  * Accessible dialog title.
  */
-export const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <DialogPrimitive.Title
-        ref={ref}
-        className={clsx("dialog__title", className)}
-        {...props}
-      >
-        {children}
-      </DialogPrimitive.Title>
-    );
-  },
-);
+export const DialogTitle = React.forwardRef<
+  HTMLHeadingElement,
+  DialogTitleProps
+>(({ children, className, ...props }, ref) => {
+  return (
+    <DialogPrimitive.Title
+      ref={ref}
+      className={clsx("dialog__title", className)}
+      {...props}
+    >
+      {children}
+    </DialogPrimitive.Title>
+  );
+});
 
 DialogTitle.displayName = "DialogTitle";
 
@@ -168,19 +186,20 @@ DialogTitle.displayName = "DialogTitle";
  *
  * Accessible dialog description.
  */
-export const DialogDescription = React.forwardRef<HTMLParagraphElement, DialogDescriptionProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <DialogPrimitive.Description
-        ref={ref}
-        className={clsx("dialog__description", className)}
-        {...props}
-      >
-        {children}
-      </DialogPrimitive.Description>
-    );
-  },
-);
+export const DialogDescription = React.forwardRef<
+  HTMLParagraphElement,
+  DialogDescriptionProps
+>(({ children, className, ...props }, ref) => {
+  return (
+    <DialogPrimitive.Description
+      ref={ref}
+      className={clsx("dialog__description", className)}
+      {...props}
+    >
+      {children}
+    </DialogPrimitive.Description>
+  );
+});
 
 DialogDescription.displayName = "DialogDescription";
 
@@ -189,8 +208,14 @@ DialogDescription.displayName = "DialogDescription";
  *
  * Button to close the dialog.
  */
-export const DialogClose = React.forwardRef<HTMLButtonElement, DialogCloseProps>(
-  ({ children, className, "aria-label": ariaLabel = "Close", ...props }, ref) => {
+export const DialogClose = React.forwardRef<
+  HTMLButtonElement,
+  DialogCloseProps
+>(
+  (
+    { children, className, "aria-label": ariaLabel = "Close", ...props },
+    ref,
+  ) => {
     return (
       <DialogPrimitive.Close
         ref={ref}

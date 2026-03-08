@@ -30,6 +30,26 @@
   animation: dialog-content-slide-in var(--duration-200) ease-out;
 }
 
+.dialog__content--sm {
+  max-width: 400px;
+}
+
+.dialog__content--md {
+  max-width: 500px;
+}
+
+.dialog__content--lg {
+  max-width: 700px;
+}
+
+.dialog__content--xl {
+  max-width: 900px;
+}
+
+.dialog__content--full {
+  max-width: 95vw;
+}
+
 .dialog__content:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;

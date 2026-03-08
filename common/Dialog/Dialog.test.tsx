@@ -218,4 +218,17 @@ test.describe("Dialog Component", () => {
     const content = page.locator(".dialog__content");
     await expect(content).toHaveClass(/custom-class/);
   });
+
+  test("should apply size variant", async ({ mount, page }) => {
+    await mount(
+      <Dialog open={true}>
+        <DialogContent size="lg" title="Test">
+          <p>Content</p>
+        </DialogContent>
+      </Dialog>,
+    );
+
+    const content = page.locator(".dialog__content");
+    await expect(content).toHaveClass(/dialog__content--lg/);
+  });
 });
