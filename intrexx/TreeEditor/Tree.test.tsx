@@ -7,6 +7,7 @@ import {
   MenuActionsSortableTree,
   NonMovableSortableTree,
   HandleVisibilitySortableTree,
+  OnActionSortableTree,
 } from "./TreeEditor2Stories";
 
 /**
@@ -128,5 +129,88 @@ test.describe("Tree (SortableTree)", () => {
 
     await expect(component.getByTestId("item-locked")).toBeVisible();
     await expect(component.getByTestId("item-free")).toBeVisible();
+  });
+
+  test.describe("onAction callback", () => {
+    test("should fire delete action when erase is triggered", async ({
+      mount,
+    }) => {
+      const component = await mount(<OnActionSortableTree />);
+
+      await component.getByTestId("delete-x").click();
+
+      const lastAction = component.getByTestId("last-action");
+      await expect(lastAction).toBeVisible();
+      const text = await lastAction.textContent();
+      const action = JSON.parse(text!);
+      expect(action.action).toBe("delete");
+      expect(action.menuItemId).toBe("x");
+    });
+
+    test("should fire add action when addItemAfter is triggered", async ({
+      mount,
+    }) => {
+      const component = await mount(<OnActionSortableTree />);
+
+      await component.getByTestId("add-after-x").click();
+
+      const lastAction = component.getByTestId("last-action");
+      await expect(lastAction).toBeVisible();
+      const text = await lastAction.textContent();
+      const action = JSON.parse(text!);
+      expect(action.action).toBe("add");
+      expect(action.item.id).toBe("new-1");
+      expect(action.parentId).toBe("");
+      expect(typeof action.order).toBe("number");
+    });
+
+    test("should fire add action when addChild is triggered", async ({
+      mount,
+    }) => {
+      const component = await mount(<OnActionSortableTree />);
+
+      await component.getByTestId("add-child-x").click();
+
+      const lastAction = component.getByTestId("last-action");
+      await expect(lastAction).toBeVisible();
+      const text = await lastAction.textContent();
+      const action = JSON.parse(text!);
+      expect(action.action).toBe("add");
+      expect(action.item.id).toBe("child-1");
+      expect(action.parentId).toBe("x");
+      expect(action.order).toBe(0);
+    });
+
+    test("should fire move action when moveDown is triggered", async ({
+      mount,
+    }) => {
+      const component = await mount(<OnActionSortableTree />);
+
+      await component.getByTestId("move-down-x").click();
+
+      const lastAction = component.getByTestId("last-action");
+      await expect(lastAction).toBeVisible();
+      const text = await lastAction.textContent();
+      const action = JSON.parse(text!);
+      expect(action.action).toBe("move");
+      expect(action.menuItemId).toBe("x");
+      expect(action.order).toBe(1);
+    });
+
+    test("should fire move action when moveUp is triggered", async ({
+      mount,
+    }) => {
+      const component = await mount(<OnActionSortableTree />);
+
+      await component.getByTestId("move-up-y").click();
+
+      const lastAction = component.getByTestId("last-action");
+      await expect(lastAction).toBeVisible();
+      const text = await lastAction.textContent();
+      const action = JSON.parse(text!);
+      expect(action.action).toBe("move");
+      expect(action.menuItemId).toBe("y");
+      expect(action.order).toBe(0);
+    });
   });
 });
