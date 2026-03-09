@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 export type IntrexxIconProps = {
-  iconClass: string;
+  iconClass?: string;
   className?: string;
 };
 
