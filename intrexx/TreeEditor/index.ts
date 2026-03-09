@@ -1,2 +1,2 @@
 export { Tree, type ItemMenuActions } from "./Tree";
-export type { Item, FlattenedItem } from "./types";
+export type { Item, FlattenedItem, Action } from "./types";

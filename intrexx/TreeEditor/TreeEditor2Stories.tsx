@@ -8,7 +8,7 @@
  */
 import React, { useState } from "react";
 import { Tree } from "./Tree";
-import type { Item, FlattenedItem } from "./types";
+import type { Item, FlattenedItem, Action } from "./types";
 
 /** Shared custom item type for tests */
 interface LabelItem extends Item {
@@ -141,3 +141,87 @@ export const HandleVisibilitySortableTree = () => {
   );
 };
 HandleVisibilitySortableTree.displayName = "HandleVisibilitySortableTree";
+
+/** Items without children property — tests that flattenTree handles missing children */
+export const NoChildrenSortableTree = () => {
+  // Items deliberately omit the children property to reproduce the crash
+  const [items, setItems] = useState<Item[]>([
+    { id: "p" },
+    { id: "q" },
+    { id: "r" },
+  ]);
+  return (
+    <Tree
+      items={items}
+      onChange={setItems}
+      renderItem={(item: FlattenedItem<Item>) => (
+        <span data-testid={`item-${item.id}`}>{item.id}</span>
+      )}
+    />
+  );
+};
+NoChildrenSortableTree.displayName = "NoChildrenSortableTree";
+
+/** onAction callback — captures actions to a log for testing */
+export const OnActionSortableTree = () => {
+  const [items, setItems] = useState<LabelItem[]>([
+    { id: "x", label: "Item X", children: [] },
+    { id: "y", label: "Item Y", children: [] },
+  ]);
+  const [lastAction, setLastAction] = useState<Action<LabelItem> | null>(null);
+
+  return (
+    <div>
+      <Tree
+        items={items}
+        onChange={setItems}
+        onAction={setLastAction}
+        renderItem={(item: FlattenedItem<LabelItem>) => (
+          <span>{item.label}</span>
+        )}
+        itemMenu={(item, actions) => (
+          <div style={{ display: "flex", gap: "4px" }}>
+            <button
+              data-testid={`delete-${item.id}`}
+              onClick={actions.erase}
+            >
+              Delete
+            </button>
+            <button
+              data-testid={`add-after-${item.id}`}
+              onClick={() =>
+                actions.addItemAfter({ id: "new-1", label: "New" })
+              }
+            >
+              Add After
+            </button>
+            <button
+              data-testid={`add-child-${item.id}`}
+              onClick={() =>
+                actions.addChild({ id: "child-1", label: "Child" })
+              }
+            >
+              Add Child
+            </button>
+            <button
+              data-testid={`move-up-${item.id}`}
+              onClick={actions.moveUp}
+            >
+              Up
+            </button>
+            <button
+              data-testid={`move-down-${item.id}`}
+              onClick={actions.moveDown}
+            >
+              Down
+            </button>
+          </div>
+        )}
+      />
+      {lastAction && (
+        <div data-testid="last-action">{JSON.stringify(lastAction)}</div>
+      )}
+    </div>
+  );
+};
+OnActionSortableTree.displayName = "OnActionSortableTree";

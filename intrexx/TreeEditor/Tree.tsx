@@ -3,7 +3,7 @@ import { DragDropProvider, DragOverlay } from "@dnd-kit/react";
 import { isKeyboardEvent } from "@dnd-kit/dom/utilities";
 import { move } from "@dnd-kit/helpers";
 
-import { FlattenedItem, type Item } from "./types";
+import { Action, FlattenedItem, type Item } from "./types";
 import {
   flattenTree,
   buildTree,
@@ -14,6 +14,21 @@ import {
 import { TreeItem } from "./TreeItem";
 import { TreeItemOverlay } from "./TreeItemOverlay";
 import "./TreeEditor.css";
+
+function getSiblingContext<T extends Item>(
+  flatItems: FlattenedItem<T>[],
+  itemId: string,
+  parentId: string | null,
+): { afterItemId: string | null; beforeItemId: string | null; order: number } {
+  const siblings = flatItems.filter((i) => i.parentId === parentId);
+  const sibIdx = siblings.findIndex((i) => i.id === itemId);
+  return {
+    afterItemId: sibIdx > 0 ? siblings[sibIdx - 1].id : null,
+    beforeItemId:
+      sibIdx < siblings.length - 1 ? siblings[sibIdx + 1].id : null,
+    order: sibIdx,
+  };
+}
 
 export interface ItemMenuActions<T extends Item> {
   erase: () => void;
@@ -31,6 +46,7 @@ interface Props<T extends Item> {
   canMove?(item: FlattenedItem<T>): boolean;
   canReceiveChildren?(item: FlattenedItem<T>): boolean;
   onChange(items: T[]): void;
+  onAction?(action: Action<T>): void;
 }
 
 export function Tree<T extends Item>({
@@ -41,6 +57,7 @@ export function Tree<T extends Item>({
   canMove,
   canReceiveChildren,
   onChange,
+  onAction,
 }: Props<T>) {
   const [flattenedItems, setFlattenedItems] = useState<FlattenedItem<T>[]>(() =>
     flattenTree(items),
@@ -173,9 +190,23 @@ export function Tree<T extends Item>({
           ...sourceChildren.current,
         ]);
 
-        setFlattenedItems(flattenTree(updatedTree));
-
+        const newFlat = flattenTree(updatedTree);
+        setFlattenedItems(newFlat);
         onChange(updatedTree);
+
+        if (onAction) {
+          const sourceId = String(event.operation.source!.id);
+          const movedItem = newFlat.find((i) => i.id === sourceId);
+          if (movedItem) {
+            const ctx = getSiblingContext(newFlat, sourceId, movedItem.parentId);
+            onAction({
+              action: "move",
+              menuItemId: sourceId,
+              parentId: movedItem.parentId ?? "",
+              ...ctx,
+            });
+          }
+        }
       }}
     >
       <ul className="sortable-tree">
@@ -189,6 +220,7 @@ export function Tree<T extends Item>({
               const tree = buildTree(newItems);
               setFlattenedItems(flattenTree(tree));
               onChange(tree);
+              onAction?.({ action: "delete", menuItemId: item.id });
             },
             addItemAfter: (newItem) => {
               const newItemWithChildren = {
@@ -210,8 +242,23 @@ export function Tree<T extends Item>({
                 ...flattenedItems.slice(itemIndex + 1),
               ];
               const tree = buildTree(newFlattenedItems);
-              setFlattenedItems(flattenTree(tree));
+              const newFlat = flattenTree(tree);
+              setFlattenedItems(newFlat);
               onChange(tree);
+
+              if (onAction) {
+                const ctx = getSiblingContext(
+                  newFlat,
+                  newItemWithChildren.id,
+                  newFlattenedItem.parentId,
+                );
+                onAction({
+                  action: "add",
+                  item: newItemWithChildren,
+                  parentId: newFlattenedItem.parentId ?? "",
+                  ...ctx,
+                });
+              }
             },
             addChild: (newItem) => {
               const newItemWithChildren = {
@@ -233,8 +280,23 @@ export function Tree<T extends Item>({
                 ...flattenedItems.slice(itemIndex + 1),
               ];
               const tree = buildTree(newFlattenedItems);
-              setFlattenedItems(flattenTree(tree));
+              const newFlat = flattenTree(tree);
+              setFlattenedItems(newFlat);
               onChange(tree);
+
+              if (onAction) {
+                const ctx = getSiblingContext(
+                  newFlat,
+                  newItemWithChildren.id,
+                  item.id,
+                );
+                onAction({
+                  action: "add",
+                  item: newItemWithChildren,
+                  parentId: item.id,
+                  ...ctx,
+                });
+              }
             },
             moveDown: () => {
               const itemIndex = flattenedItems.findIndex(
@@ -258,8 +320,19 @@ export function Tree<T extends Item>({
                   newFlattenedItems[itemIndex],
                 ];
                 const tree = buildTree(newFlattenedItems);
-                setFlattenedItems(flattenTree(tree));
+                const newFlat = flattenTree(tree);
+                setFlattenedItems(newFlat);
                 onChange(tree);
+
+                if (onAction) {
+                  const ctx = getSiblingContext(newFlat, item.id, item.parentId);
+                  onAction({
+                    action: "move",
+                    menuItemId: item.id,
+                    parentId: item.parentId ?? "",
+                    ...ctx,
+                  });
+                }
               }
             },
             moveUp: () => {
@@ -284,8 +357,19 @@ export function Tree<T extends Item>({
                   newFlattenedItems[itemIndex - 1],
                 ];
                 const tree = buildTree(newFlattenedItems);
-                setFlattenedItems(flattenTree(tree));
+                const newFlat = flattenTree(tree);
+                setFlattenedItems(newFlat);
                 onChange(tree);
+
+                if (onAction) {
+                  const ctx = getSiblingContext(newFlat, item.id, item.parentId);
+                  onAction({
+                    action: "move",
+                    menuItemId: item.id,
+                    parentId: item.parentId ?? "",
+                    ...ctx,
+                  });
+                }
               }
             },
           };
