@@ -175,6 +175,11 @@ const SIDEBAR_ELEMENTS = {
         icon: <GitBranch size={16} />,
         link: "/components/tree-editor",
       },
+      {
+        name: "Icon Picker",
+        icon: <Grid3x3 size={16} />,
+        link: "/components/icon-picker",
+      },
     ],
   },
 };
