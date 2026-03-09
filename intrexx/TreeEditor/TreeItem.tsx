@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
 import { useSortable } from "@dnd-kit/react/sortable";
 
 import { Handle } from "./Handle.tsx";
@@ -50,7 +50,7 @@ export function TreeItem<T extends Item>({
     ...rest,
   } as FlattenedItem<T>;
   const isMovable = canMove ? canMove(item) : true;
-  const { ref, handleRef, isDragSource } = useSortable({
+  const { ref, handleRef, isDragSource, sortable } = useSortable({
     ...config,
     id,
     index,
@@ -60,6 +60,15 @@ export function TreeItem<T extends Item>({
       parentId,
     },
   });
+
+  // `useSortable`'s `disabled` prop disables both the drag source *and* the
+  // drop target for the item.  Non-moveable items should remain valid drop
+  // targets so that moveable items can still be sorted past them.
+  // `isMovable` is intentionally included in the deps: when it changes,
+  // useSortable re-disables the droppable and we must undo that immediately.
+  useEffect(() => {
+    sortable.droppable.disabled = false;
+  }, [sortable, isMovable]);
 
   return (
     <li

@@ -127,6 +127,43 @@ export const NonMovableSortableTree = () => {
 };
 NonMovableSortableTree.displayName = "NonMovableSortableTree";
 
+/**
+ * canMove — a single moveable item sandwiched between non-moveable items.
+ * Regression test: the free item must still be moveable via the moveUp/moveDown
+ * buttons even when all its neighbours are locked.
+ */
+export const SandwichedMovableSortableTree = () => {
+  const [items, setItems] = useState<LabelItem[]>([
+    { id: "locked-top", label: "Locked Top", children: [] },
+    { id: "free", label: "Free", children: [] },
+    { id: "locked-bottom", label: "Locked Bottom", children: [] },
+  ]);
+  return (
+    <Tree
+      items={items}
+      onChange={setItems}
+      renderItem={(item: FlattenedItem<LabelItem>) => (
+        <span data-testid={`item-${item.id}`}>{item.label}</span>
+      )}
+      itemMenu={(item, actions) => (
+        <div data-testid={`menu-${item.id}`}>
+          <button data-testid={`move-up-${item.id}`} onClick={actions.moveUp}>
+            Up
+          </button>
+          <button
+            data-testid={`move-down-${item.id}`}
+            onClick={actions.moveDown}
+          >
+            Down
+          </button>
+        </div>
+      )}
+      canMove={(item) => item.id === "free"}
+    />
+  );
+};
+SandwichedMovableSortableTree.displayName = "SandwichedMovableSortableTree";
+
 /** Handle visibility — all items should show a drag handle */
 export const HandleVisibilitySortableTree = () => {
   const [items, setItems] = useState<LabelItem[]>(sampleItems);
