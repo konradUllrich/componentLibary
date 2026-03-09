@@ -11,7 +11,7 @@ export function flattenTree<T extends Item>(
     return [
       ...acc,
       { ...item, parentId, depth, index },
-      ...flattenTree(item.children as T[], item.id, depth + 1),
+      ...flattenTree((item.children ?? []) as T[], item.id, depth + 1),
     ];
   }, []);
 }

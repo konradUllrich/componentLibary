@@ -142,6 +142,26 @@ export const HandleVisibilitySortableTree = () => {
 };
 HandleVisibilitySortableTree.displayName = "HandleVisibilitySortableTree";
 
+/** Items without children property — tests that flattenTree handles missing children */
+export const NoChildrenSortableTree = () => {
+  // Items deliberately omit the children property to reproduce the crash
+  const [items, setItems] = useState<Item[]>([
+    { id: "p" },
+    { id: "q" },
+    { id: "r" },
+  ]);
+  return (
+    <Tree
+      items={items}
+      onChange={setItems}
+      renderItem={(item: FlattenedItem<Item>) => (
+        <span data-testid={`item-${item.id}`}>{item.id}</span>
+      )}
+    />
+  );
+};
+NoChildrenSortableTree.displayName = "NoChildrenSortableTree";
+
 /** onAction callback — captures actions to a log for testing */
 export const OnActionSortableTree = () => {
   const [items, setItems] = useState<LabelItem[]>([

@@ -8,6 +8,7 @@ import {
   NonMovableSortableTree,
   HandleVisibilitySortableTree,
   OnActionSortableTree,
+  NoChildrenSortableTree,
 } from "./TreeEditor2Stories";
 
 /**
@@ -129,6 +130,16 @@ test.describe("Tree (SortableTree)", () => {
 
     await expect(component.getByTestId("item-locked")).toBeVisible();
     await expect(component.getByTestId("item-free")).toBeVisible();
+  });
+
+  test("should render items that have no children property", async ({
+    mount,
+  }) => {
+    const component = await mount(<NoChildrenSortableTree />);
+
+    await expect(component.getByTestId("item-p")).toBeVisible();
+    await expect(component.getByTestId("item-q")).toBeVisible();
+    await expect(component.getByTestId("item-r")).toBeVisible();
   });
 
   test.describe("onAction callback", () => {
