@@ -6,6 +6,7 @@ import {
   CustomRenderSortableTree,
   MenuActionsSortableTree,
   NonMovableSortableTree,
+  SandwichedMovableSortableTree,
   HandleVisibilitySortableTree,
   OnActionSortableTree,
   NoChildrenSortableTree,
@@ -130,6 +131,43 @@ test.describe("Tree (SortableTree)", () => {
 
     await expect(component.getByTestId("item-locked")).toBeVisible();
     await expect(component.getByTestId("item-free")).toBeVisible();
+  });
+
+  test("should allow moveUp on a moveable item sandwiched between locked items", async ({
+    mount,
+  }) => {
+    const component = await mount(<SandwichedMovableSortableTree />);
+
+    // Initial order: Locked Top, Free, Locked Bottom
+    const items = component.locator(".sortable-tree__item");
+    await expect(items).toHaveCount(3);
+    await expect(items.nth(0)).toContainText("Locked Top");
+    await expect(items.nth(1)).toContainText("Free");
+    await expect(items.nth(2)).toContainText("Locked Bottom");
+
+    // Move "Free" up — it should swap with "Locked Top"
+    await component.getByTestId("move-up-free").click();
+
+    await expect(items.nth(0)).toContainText("Free");
+    await expect(items.nth(1)).toContainText("Locked Top");
+    await expect(items.nth(2)).toContainText("Locked Bottom");
+  });
+
+  test("should allow moveDown on a moveable item sandwiched between locked items", async ({
+    mount,
+  }) => {
+    const component = await mount(<SandwichedMovableSortableTree />);
+
+    // Initial order: Locked Top, Free, Locked Bottom
+    const items = component.locator(".sortable-tree__item");
+    await expect(items).toHaveCount(3);
+
+    // Move "Free" down — it should swap with "Locked Bottom"
+    await component.getByTestId("move-down-free").click();
+
+    await expect(items.nth(0)).toContainText("Locked Top");
+    await expect(items.nth(1)).toContainText("Locked Bottom");
+    await expect(items.nth(2)).toContainText("Free");
   });
 
   test("should render items that have no children property", async ({
