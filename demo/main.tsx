@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "../common/ThemeProvider";
 
 import "./index.css";
+import "./iconFont/icon54-line.css";
+import "./iconFont/icon54-solid.css";
 import { App } from "./App";
 import { Router } from "../Router";
 
