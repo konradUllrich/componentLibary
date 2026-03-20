@@ -1,4 +1,5 @@
 export { IntrexxIcon, type IntrexxIconProps } from "./Icon/IntrexxIcon";
+export { IconPicker, type IconPickerProps } from "./IconPicker";
 export { TreeEditor, type TreeEditorProps } from "./TreeEditorOld";
 export {
   createTreeEditorStore,
