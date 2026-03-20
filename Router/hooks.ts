@@ -1,6 +1,7 @@
 export { useSearch, useLocation, useParams, useRoute } from "wouter";
 export type { SetSearchParams, URLSearchParamsInit } from "wouter";
 import { useLocation, useSearchParams as useSearchParamsw } from "wouter";
+export { createRoute } from "./createRoute";
 
 /**
  * Hook for accessing and modifying search parameters in the URL.
