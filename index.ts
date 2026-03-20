@@ -201,11 +201,11 @@ export type { SetSearchParams, URLSearchParamsInit } from "./Router/hooks";
 // Utilities
 // ========================================
 export {
-  buildSpacingStyle,
-  extractSpacingProps,
-  type SpacingProps,
-  type SpacingToken,
-  type SpacingValue,
+  u,
+  type Breakpoint,
+  type Responsive,
+  type ResponsiveSpacingValue,
+  type UtilityInput,
 } from "./utils";
 
 // ========================================

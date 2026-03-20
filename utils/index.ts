@@ -1,7 +1,7 @@
 export {
-  buildSpacingStyle,
-  extractSpacingProps,
-  type SpacingProps,
-  type SpacingToken,
-  type SpacingValue,
+  u,
+  type Breakpoint,
+  type Responsive,
+  type ResponsiveSpacingValue,
+  type UtilityInput,
 } from "./styleProps";

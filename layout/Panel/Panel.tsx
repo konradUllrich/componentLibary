@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
-import { buildSpacingStyle, type SpacingProps } from "../../utils";
+import { u, type UtilityInput } from "../../utils";
 import "./Panel.css";
+import "../../styles/spacing.css";
 
-export interface PanelProps
-  extends React.HTMLAttributes<HTMLDivElement>, SpacingProps {
+export interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Panel variant
    * @default "default"
@@ -13,11 +13,20 @@ export interface PanelProps
 
   /**
    * Predefined padding size applied via CSS class.
-   * For fine-grained control use the spacing props (`p`, `pt`, `pb`, `pl`,
-   * `pr`, `px`, `py`). Inline spacing props take precedence over this value.
+   * For fine-grained control use the `spacing` utility object.
    * @default "md"
    */
   padding?: "none" | "sm" | "md" | "lg" | "xl";
+
+  /**
+   * Optional spacing utility configuration for responsive padding/margin.
+   * Pass an object with pt, pb, pl, pr, mt, mb, ml, mr keys.
+   * Values can be static (0–6) or responsive across breakpoints.
+   *
+   * @example
+   * <Panel spacing={{ pt: 4, pb: { base: 2, md: 4 } }} />
+   */
+  spacing?: UtilityInput;
 
   /**
    * Additional CSS classes
@@ -34,12 +43,8 @@ export interface PanelProps
  * Panel Component
  *
  * A flexible container component for grouping content with consistent styling.
- * Supports multiple variants, padding sizes, and granular spacing props.
+ * Supports multiple variants, padding sizes, and responsive spacing utility.
  *
- * Spacing props (`p`, `pt`, `pb`, `pl`, `pr`, `px`, `py`, `m`, `mt`, `mb`,
- * `ml`, `mr`, `mx`, `my`) accept spacing tokens (0–24) that map to
- * `--spacing-{n}` CSS variables, or any raw CSS string (e.g. `"auto"`).
- * Inline spacing props take precedence over the class-based `padding` prop.
  *
  * @example
  * ```tsx
@@ -54,19 +59,14 @@ export interface PanelProps
  *   <p>Outlined content panel</p>
  * </Panel>
  *
- * // Granular padding control with spacing tokens
- * <Panel variant="elevated" px={6} py={4}>
- *   <div>Custom horizontal/vertical padding</div>
+ * // Responsive spacing via utility
+ * <Panel variant="elevated" spacing={{ pt: 4, pb: { base: 2, md: 4 } }}>
+ *   <div>Custom responsive spacing</div>
  * </Panel>
  *
- * // Margin and padding spacing props
- * <Panel p={4} mt={6} mx="auto">
- *   <div>Centered panel with margin</div>
- * </Panel>
- *
- * // Individual side overrides
- * <Panel p={4} pt={8} pb={2}>
- *   <small>Asymmetric padding</small>
+ * // Margin utility
+ * <Panel spacing={{ mt: 4, mx: { base: 0, md: 2 } }}>
+ *   <div>Centered with responsive margin</div>
  * </Panel>
  * ```
  */
@@ -75,44 +75,15 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
     {
       variant = "default",
       padding = "md",
+      spacing,
       className,
       children,
       style,
-      // Spacing props
-      p,
-      pt,
-      pb,
-      pl,
-      pr,
-      px,
-      py,
-      m,
-      mt,
-      mb,
-      ml,
-      mr,
-      mx,
-      my,
       ...props
     },
     ref,
   ) => {
-    const spacingStyle = buildSpacingStyle({
-      p,
-      pt,
-      pb,
-      pl,
-      pr,
-      px,
-      py,
-      m,
-      mt,
-      mb,
-      ml,
-      mr,
-      mx,
-      my,
-    });
+    const spacingClasses = spacing ? u(spacing) : "";
 
     return (
       <div
@@ -121,9 +92,10 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
           "panel",
           `panel--${variant}`,
           `panel--padding-${padding}`,
+          spacingClasses,
           className,
         )}
-        style={{ ...spacingStyle, ...style }}
+        style={style}
         {...props}
       >
         {children}

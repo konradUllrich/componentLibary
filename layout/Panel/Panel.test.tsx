@@ -68,9 +68,9 @@ test.describe("Panel Component", () => {
 
   // ── Spacing props ───────────────────────────────────────────────────────
 
-  test("should apply uniform padding via p prop", async ({ mount }) => {
+  test("should apply uniform padding via spacing prop", async ({ mount }) => {
     const component = await mount(
-      <Panel padding="none" p={4}>
+      <Panel padding="none" spacing={{ pt: 4, pb: 4, pl: 4, pr: 4 }}>
         Content
       </Panel>,
     );
@@ -82,9 +82,11 @@ test.describe("Panel Component", () => {
     expect(paddingTop).toBe("16px");
   });
 
-  test("should apply horizontal padding via px prop", async ({ mount }) => {
+  test("should apply horizontal padding via spacing prop", async ({
+    mount,
+  }) => {
     const component = await mount(
-      <Panel padding="none" px={6}>
+      <Panel padding="none" spacing={{ pl: 6, pr: 6 }}>
         Content
       </Panel>,
     );
@@ -100,9 +102,9 @@ test.describe("Panel Component", () => {
     expect(paddingRight).toBe("24px");
   });
 
-  test("should apply vertical padding via py prop", async ({ mount }) => {
+  test("should apply vertical padding via spacing prop", async ({ mount }) => {
     const component = await mount(
-      <Panel padding="none" py={4}>
+      <Panel padding="none" spacing={{ pt: 4, pb: 4 }}>
         Content
       </Panel>,
     );
@@ -120,7 +122,7 @@ test.describe("Panel Component", () => {
 
   test("should apply individual padding sides", async ({ mount }) => {
     const component = await mount(
-      <Panel padding="none" pt={8} pb={2} pl={4} pr={6}>
+      <Panel padding="none" spacing={{ pt: 5, pb: 2, pl: 4, pr: 6 }}>
         Content
       </Panel>,
     );
@@ -138,15 +140,17 @@ test.describe("Panel Component", () => {
       (el) => window.getComputedStyle(el).paddingRight,
     );
 
-    // --spacing-8=32px, --spacing-2=8px, --spacing-4=16px, --spacing-6=24px
-    expect(paddingTop).toBe("32px");
+    // Spacing tokens: 2=sm/8px, 4=lg/16px, 5=xl/20px, 6=2xl/24px
+    expect(paddingTop).toBe("20px");
     expect(paddingBottom).toBe("8px");
     expect(paddingLeft).toBe("16px");
     expect(paddingRight).toBe("24px");
   });
 
-  test("should apply uniform margin via m prop", async ({ mount }) => {
-    const component = await mount(<Panel m={4}>Content</Panel>);
+  test("should apply uniform margin via spacing prop", async ({ mount }) => {
+    const component = await mount(
+      <Panel spacing={{ mt: 4, mb: 4, ml: 4, mr: 4 }}>Content</Panel>,
+    );
 
     const margin = await component.evaluate(
       (el) => window.getComputedStyle(el).margin,
@@ -154,9 +158,9 @@ test.describe("Panel Component", () => {
     expect(margin).toBeTruthy();
   });
 
-  test("should apply horizontal margin via mx prop", async ({ mount }) => {
+  test("should apply horizontal margin via spacing prop", async ({ mount }) => {
     const component = await mount(
-      <Panel mx="auto">Content</Panel>,
+      <Panel spacing={{ ml: "auto", mr: "auto" }}>Content</Panel>,
     );
 
     const marginLeft = await component.evaluate(
@@ -169,8 +173,10 @@ test.describe("Panel Component", () => {
     expect(marginRight).toBe(marginLeft);
   });
 
-  test("should apply vertical margin via my prop", async ({ mount }) => {
-    const component = await mount(<Panel my={4}>Content</Panel>);
+  test("should apply vertical margin via spacing prop", async ({ mount }) => {
+    const component = await mount(
+      <Panel spacing={{ mt: 4, mb: 4 }}>Content</Panel>,
+    );
 
     const marginTop = await component.evaluate(
       (el) => window.getComputedStyle(el).marginTop,
@@ -184,7 +190,7 @@ test.describe("Panel Component", () => {
 
   test("should apply individual margin sides", async ({ mount }) => {
     const component = await mount(
-      <Panel mt={8} mb={2} ml={4} mr={6}>Content</Panel>,
+      <Panel spacing={{ mt: 5, mb: 2, ml: 4, mr: 6 }}>Content</Panel>,
     );
 
     const marginTop = await component.evaluate(
@@ -204,20 +210,23 @@ test.describe("Panel Component", () => {
     expect(marginLeft).not.toBe(marginRight);
   });
 
-  test("should allow raw CSS string spacing values", async ({ mount }) => {
+  test("should support numeric spacing values", async ({ mount }) => {
     const component = await mount(
-      <Panel p="1.5rem" mt="10px">Content</Panel>,
+      <Panel spacing={{ pt: 3, mt: 2 }}>Content</Panel>,
     );
 
-    const padding = await component.evaluate(
-      (el) => window.getComputedStyle(el).padding,
-    );
-    expect(padding).toBeTruthy();
+    const className = await component.evaluate((el) => el.className);
+    expect(className).toContain("pt-3");
+    expect(className).toContain("mt-2");
   });
 
-  test("should merge spacing styles with custom style prop", async ({ mount }) => {
+  test("should merge spacing classes with custom style prop", async ({
+    mount,
+  }) => {
     const component = await mount(
-      <Panel p={4} style={{ color: "red" }}>Content</Panel>,
+      <Panel spacing={{ pt: 4, pb: 4, pl: 4, pr: 4 }} style={{ color: "red" }}>
+        Content
+      </Panel>,
     );
 
     const color = await component.evaluate(
@@ -228,7 +237,7 @@ test.describe("Panel Component", () => {
 
   test("should pass accessibility checks", async ({ mount, page }) => {
     await mount(
-      <Panel variant="elevated" p={4}>
+      <Panel variant="elevated" spacing={{ pt: 4, pb: 4, pl: 4, pr: 4 }}>
         <p>Accessible panel content</p>
       </Panel>,
     );
@@ -242,10 +251,16 @@ test.describe("Panel Component", () => {
   }) => {
     await mount(
       <div>
-        <Panel variant="default" px={6} py={4} mb={4}>
+        <Panel
+          variant="default"
+          spacing={{ pl: 6, pr: 6, pt: 4, pb: 4, mb: 4 }}
+        >
           <p>Panel with spacing props</p>
         </Panel>
-        <Panel variant="outlined" p={4} mt={2}>
+        <Panel
+          variant="outlined"
+          spacing={{ pt: 4, pb: 4, pl: 4, pr: 4, mt: 2 }}
+        >
           <p>Another panel</p>
         </Panel>
       </div>,
