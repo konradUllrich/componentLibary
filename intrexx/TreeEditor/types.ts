@@ -18,6 +18,10 @@ export type Action<T extends Item = Item> =
       afterItemId?: string | null;
       beforeItemId?: string | null;
       order: number;
+      oldParentId?: string;
+      oldAfterItemId?: string | null;
+      oldBeforeItemId?: string | null;
+      oldOrder: number;
     }
   | {
       action: "add";

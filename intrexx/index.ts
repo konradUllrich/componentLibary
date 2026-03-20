@@ -14,6 +14,7 @@ export {
 export {
   Tree as SortableTree,
   type ItemMenuActions as SortableTreeItemMenuActions,
+  type TreeHandle as SortableTreeHandle,
 } from "./TreeEditor";
 export type {
   Item as SortableTreeItem,

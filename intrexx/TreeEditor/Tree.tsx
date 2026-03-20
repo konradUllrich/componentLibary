@@ -1,4 +1,13 @@
-import { type ReactNode, useRef, useState } from "react";
+import {
+  forwardRef,
+  type ReactNode,
+  type ReactElement,
+  type Ref,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { DragDropProvider, DragOverlay } from "@dnd-kit/react";
 import { isKeyboardEvent } from "@dnd-kit/dom/utilities";
 import { move } from "@dnd-kit/helpers";
@@ -24,11 +33,16 @@ function getSiblingContext<T extends Item>(
   const sibIdx = siblings.findIndex((i) => i.id === itemId);
   return {
     afterItemId: sibIdx > 0 ? siblings[sibIdx - 1].id : null,
-    beforeItemId:
-      sibIdx < siblings.length - 1 ? siblings[sibIdx + 1].id : null,
+    beforeItemId: sibIdx < siblings.length - 1 ? siblings[sibIdx + 1].id : null,
     order: sibIdx,
   };
 }
+
+type SiblingContext = {
+  afterItemId: string | null;
+  beforeItemId: string | null;
+  order: number;
+};
 
 export interface ItemMenuActions<T extends Item> {
   erase: () => void;
@@ -36,6 +50,15 @@ export interface ItemMenuActions<T extends Item> {
   addChild: (newItem: Omit<T, "children">) => void;
   moveDown: () => void;
   moveUp: () => void;
+}
+
+export interface TreeHandle<T extends Item> {
+  addItemAfter: (targetId: string, newItem: Omit<T, "children">) => boolean;
+  addChild: (targetId: string, newItem: Omit<T, "children">) => boolean;
+  moveUp: (itemId: string) => boolean;
+  moveDown: (itemId: string) => boolean;
+  erase: (itemId: string) => boolean;
+  getItems: () => T[];
 }
 
 interface Props<T extends Item> {
@@ -49,21 +72,219 @@ interface Props<T extends Item> {
   onAction?(action: Action<T>): void;
 }
 
-export function Tree<T extends Item>({
-  items,
-  indentation = 50,
-  renderItem,
-  itemMenu,
-  canMove,
-  canReceiveChildren,
-  onChange,
-  onAction,
-}: Props<T>) {
+function TreeInner<T extends Item>(
+  {
+    items,
+    indentation = 50,
+    renderItem,
+    itemMenu,
+    canMove,
+    canReceiveChildren,
+    onChange,
+    onAction,
+  }: Props<T>,
+  ref: Ref<TreeHandle<T>>,
+) {
   const [flattenedItems, setFlattenedItems] = useState<FlattenedItem<T>[]>(() =>
     flattenTree(items),
   );
   const initialDepth = useRef(0);
   const sourceChildren = useRef<FlattenedItem<T>[]>([]);
+  const dragStartMoveContext = useRef<{
+    parentId: string | null;
+    siblingContext: SiblingContext;
+  } | null>(null);
+
+  useEffect(() => {
+    setFlattenedItems(flattenTree(items));
+    sourceChildren.current = [];
+    dragStartMoveContext.current = null;
+  }, [items]);
+
+  const applyFlattenedChanges = (newFlattenedItems: FlattenedItem<T>[]) => {
+    const tree = buildTree(newFlattenedItems);
+    const newFlat = flattenTree(tree);
+    setFlattenedItems(newFlat);
+    onChange(tree);
+    return { tree, newFlat };
+  };
+
+  const eraseById = (itemId: string): boolean => {
+    const item = flattenedItems.find((i) => i.id === itemId);
+
+    if (!item) {
+      return false;
+    }
+
+    const descendants = getDescendants(flattenedItems, item.id);
+    const newItems = flattenedItems.filter(
+      (i) => i.id !== item.id && !descendants.has(i.id),
+    );
+
+    applyFlattenedChanges(newItems);
+    onAction?.({ action: "delete", menuItemId: item.id });
+
+    return true;
+  };
+
+  const addItemAfterId = (
+    targetId: string,
+    newItem: Omit<T, "children">,
+  ): boolean => {
+    const targetItem = flattenedItems.find((i) => i.id === targetId);
+
+    if (!targetItem) {
+      return false;
+    }
+
+    const newItemWithChildren = {
+      ...newItem,
+      children: [],
+    } as unknown as T;
+
+    const itemIndex = flattenedItems.findIndex((i) => i.id === targetId);
+    const newFlattenedItem: FlattenedItem<T> = {
+      ...newItemWithChildren,
+      parentId: targetItem.parentId,
+      depth: targetItem.depth,
+      index: targetItem.index + 1,
+    };
+
+    const newFlattenedItems = [
+      ...flattenedItems.slice(0, itemIndex + 1),
+      newFlattenedItem,
+      ...flattenedItems.slice(itemIndex + 1),
+    ];
+
+    const { newFlat } = applyFlattenedChanges(newFlattenedItems);
+
+    if (onAction) {
+      const ctx = getSiblingContext(
+        newFlat,
+        newItemWithChildren.id,
+        newFlattenedItem.parentId,
+      );
+
+      onAction({
+        action: "add",
+        item: newItemWithChildren,
+        parentId: newFlattenedItem.parentId ?? "",
+        ...ctx,
+      });
+    }
+
+    return true;
+  };
+
+  const addChildById = (
+    targetId: string,
+    newItem: Omit<T, "children">,
+  ): boolean => {
+    const targetItem = flattenedItems.find((i) => i.id === targetId);
+
+    if (!targetItem) {
+      return false;
+    }
+
+    const newItemWithChildren = {
+      ...newItem,
+      children: [],
+    } as unknown as T;
+
+    const itemIndex = flattenedItems.findIndex((i) => i.id === targetId);
+    const newFlattenedItem: FlattenedItem<T> = {
+      ...newItemWithChildren,
+      parentId: targetItem.id,
+      depth: targetItem.depth + 1,
+      index: 0,
+    };
+
+    const newFlattenedItems = [
+      ...flattenedItems.slice(0, itemIndex + 1),
+      newFlattenedItem,
+      ...flattenedItems.slice(itemIndex + 1),
+    ];
+
+    const { newFlat } = applyFlattenedChanges(newFlattenedItems);
+
+    if (onAction) {
+      const ctx = getSiblingContext(
+        newFlat,
+        newItemWithChildren.id,
+        targetItem.id,
+      );
+
+      onAction({
+        action: "add",
+        item: newItemWithChildren,
+        parentId: targetItem.id,
+        ...ctx,
+      });
+    }
+
+    return true;
+  };
+
+  const moveSibling = (itemId: string, direction: "up" | "down"): boolean => {
+    const itemIndex = flattenedItems.findIndex((i) => i.id === itemId);
+
+    if (itemIndex === -1) {
+      return false;
+    }
+
+    const targetIndex = direction === "down" ? itemIndex + 1 : itemIndex - 1;
+
+    if (targetIndex < 0 || targetIndex >= flattenedItems.length) {
+      return false;
+    }
+
+    const item = flattenedItems[itemIndex];
+    const sibling = flattenedItems[targetIndex];
+    const oldCtx = getSiblingContext(flattenedItems, item.id, item.parentId);
+
+    // Only swap siblings at the same level.
+    if (
+      !sibling ||
+      sibling.depth !== item.depth ||
+      sibling.parentId !== item.parentId
+    ) {
+      return false;
+    }
+
+    const newFlattenedItems = [...flattenedItems];
+    [newFlattenedItems[itemIndex], newFlattenedItems[targetIndex]] = [
+      newFlattenedItems[targetIndex],
+      newFlattenedItems[itemIndex],
+    ];
+
+    const { newFlat } = applyFlattenedChanges(newFlattenedItems);
+
+    if (onAction) {
+      const ctx = getSiblingContext(newFlat, item.id, item.parentId);
+
+      onAction({
+        action: "move",
+        menuItemId: item.id,
+        parentId: item.parentId ?? "",
+        oldParentId: item.parentId ?? "",
+        oldAfterItemId: oldCtx.afterItemId,
+        oldBeforeItemId: oldCtx.beforeItemId,
+        oldOrder: oldCtx.order,
+        ...ctx,
+      });
+    }
+
+    return true;
+  };
+
+  useImperativeHandle(ref, () => ({
+    addItemAfter: addItemAfterId,
+    addChild: addChildById,
+    moveUp: (itemId) => moveSibling(itemId, "up"),
+    moveDown: (itemId) => moveSibling(itemId, "down"),
+    erase: eraseById,
+    getItems: () => buildTree(flattenedItems),
+  }));
 
   return (
     <DragDropProvider
@@ -72,7 +293,20 @@ export function Tree<T extends Item>({
 
         if (!source) return;
 
-        const { depth } = flattenedItems.find(({ id }) => id === source.id)!;
+        const sourceItem = flattenedItems.find(({ id }) => id === source.id);
+
+        if (!sourceItem) return;
+
+        const { depth } = sourceItem;
+
+        dragStartMoveContext.current = {
+          parentId: sourceItem.parentId,
+          siblingContext: getSiblingContext(
+            flattenedItems,
+            sourceItem.id,
+            sourceItem.parentId,
+          ),
+        };
 
         // Store the source item's initial depth for later use
         initialDepth.current = depth;
@@ -182,6 +416,7 @@ export function Tree<T extends Item>({
       }}
       onDragEnd={(event) => {
         if (event.canceled) {
+          dragStartMoveContext.current = null;
           return setFlattenedItems(flattenTree(items));
         }
 
@@ -198,179 +433,45 @@ export function Tree<T extends Item>({
           const sourceId = String(event.operation.source!.id);
           const movedItem = newFlat.find((i) => i.id === sourceId);
           if (movedItem) {
-            const ctx = getSiblingContext(newFlat, sourceId, movedItem.parentId);
+            const oldCtx = dragStartMoveContext.current;
+            const ctx = getSiblingContext(
+              newFlat,
+              sourceId,
+              movedItem.parentId,
+            );
             onAction({
               action: "move",
               menuItemId: sourceId,
               parentId: movedItem.parentId ?? "",
+              oldParentId: oldCtx?.parentId ?? "",
+              oldAfterItemId: oldCtx?.siblingContext.afterItemId ?? null,
+              oldBeforeItemId: oldCtx?.siblingContext.beforeItemId ?? null,
+              oldOrder: oldCtx?.siblingContext.order ?? ctx.order,
               ...ctx,
             });
           }
         }
+
+        dragStartMoveContext.current = null;
       }}
     >
       <ul className="sortable-tree">
         {flattenedItems.map((item, index) => {
           const actions: ItemMenuActions<T> = {
             erase: () => {
-              const descendants = getDescendants(flattenedItems, item.id);
-              const newItems = flattenedItems.filter(
-                (i) => i.id !== item.id && !descendants.has(i.id),
-              );
-              const tree = buildTree(newItems);
-              setFlattenedItems(flattenTree(tree));
-              onChange(tree);
-              onAction?.({ action: "delete", menuItemId: item.id });
+              eraseById(item.id);
             },
             addItemAfter: (newItem) => {
-              const newItemWithChildren = {
-                ...newItem,
-                children: [],
-              } as unknown as T;
-              const itemIndex = flattenedItems.findIndex(
-                (i) => i.id === item.id,
-              );
-              const newFlattenedItem: FlattenedItem<T> = {
-                ...newItemWithChildren,
-                parentId: item.parentId,
-                depth: item.depth,
-                index: item.index + 1,
-              };
-              const newFlattenedItems = [
-                ...flattenedItems.slice(0, itemIndex + 1),
-                newFlattenedItem,
-                ...flattenedItems.slice(itemIndex + 1),
-              ];
-              const tree = buildTree(newFlattenedItems);
-              const newFlat = flattenTree(tree);
-              setFlattenedItems(newFlat);
-              onChange(tree);
-
-              if (onAction) {
-                const ctx = getSiblingContext(
-                  newFlat,
-                  newItemWithChildren.id,
-                  newFlattenedItem.parentId,
-                );
-                onAction({
-                  action: "add",
-                  item: newItemWithChildren,
-                  parentId: newFlattenedItem.parentId ?? "",
-                  ...ctx,
-                });
-              }
+              addItemAfterId(item.id, newItem);
             },
             addChild: (newItem) => {
-              const newItemWithChildren = {
-                ...newItem,
-                children: [],
-              } as unknown as T;
-              const itemIndex = flattenedItems.findIndex(
-                (i) => i.id === item.id,
-              );
-              const newFlattenedItem: FlattenedItem<T> = {
-                ...newItemWithChildren,
-                parentId: item.id,
-                depth: item.depth + 1,
-                index: 0,
-              };
-              const newFlattenedItems = [
-                ...flattenedItems.slice(0, itemIndex + 1),
-                newFlattenedItem,
-                ...flattenedItems.slice(itemIndex + 1),
-              ];
-              const tree = buildTree(newFlattenedItems);
-              const newFlat = flattenTree(tree);
-              setFlattenedItems(newFlat);
-              onChange(tree);
-
-              if (onAction) {
-                const ctx = getSiblingContext(
-                  newFlat,
-                  newItemWithChildren.id,
-                  item.id,
-                );
-                onAction({
-                  action: "add",
-                  item: newItemWithChildren,
-                  parentId: item.id,
-                  ...ctx,
-                });
-              }
+              addChildById(item.id, newItem);
             },
             moveDown: () => {
-              const itemIndex = flattenedItems.findIndex(
-                (i) => i.id === item.id,
-              );
-              if (itemIndex >= flattenedItems.length - 1) return;
-
-              const nextItem = flattenedItems[itemIndex + 1];
-              // Only swap if next item is at same level (same depth and parent)
-              if (
-                nextItem &&
-                nextItem.depth === item.depth &&
-                nextItem.parentId === item.parentId
-              ) {
-                const newFlattenedItems = [...flattenedItems];
-                [
-                  newFlattenedItems[itemIndex],
-                  newFlattenedItems[itemIndex + 1],
-                ] = [
-                  newFlattenedItems[itemIndex + 1],
-                  newFlattenedItems[itemIndex],
-                ];
-                const tree = buildTree(newFlattenedItems);
-                const newFlat = flattenTree(tree);
-                setFlattenedItems(newFlat);
-                onChange(tree);
-
-                if (onAction) {
-                  const ctx = getSiblingContext(newFlat, item.id, item.parentId);
-                  onAction({
-                    action: "move",
-                    menuItemId: item.id,
-                    parentId: item.parentId ?? "",
-                    ...ctx,
-                  });
-                }
-              }
+              moveSibling(item.id, "down");
             },
             moveUp: () => {
-              const itemIndex = flattenedItems.findIndex(
-                (i) => i.id === item.id,
-              );
-              if (itemIndex <= 0) return;
-
-              const prevItem = flattenedItems[itemIndex - 1];
-              // Only swap if previous item is at same level (same depth and parent)
-              if (
-                prevItem &&
-                prevItem.depth === item.depth &&
-                prevItem.parentId === item.parentId
-              ) {
-                const newFlattenedItems = [...flattenedItems];
-                [
-                  newFlattenedItems[itemIndex - 1],
-                  newFlattenedItems[itemIndex],
-                ] = [
-                  newFlattenedItems[itemIndex],
-                  newFlattenedItems[itemIndex - 1],
-                ];
-                const tree = buildTree(newFlattenedItems);
-                const newFlat = flattenTree(tree);
-                setFlattenedItems(newFlat);
-                onChange(tree);
-
-                if (onAction) {
-                  const ctx = getSiblingContext(newFlat, item.id, item.parentId);
-                  onAction({
-                    action: "move",
-                    menuItemId: item.id,
-                    parentId: item.parentId ?? "",
-                    ...ctx,
-                  });
-                }
-              }
+              moveSibling(item.id, "up");
             },
           };
 
@@ -398,3 +499,9 @@ export function Tree<T extends Item>({
     </DragDropProvider>
   );
 }
+
+type TreeComponent = <T extends Item>(
+  props: Props<T> & { ref?: Ref<TreeHandle<T>> },
+) => ReactElement;
+
+export const Tree = forwardRef(TreeInner) as TreeComponent;

@@ -59,15 +59,11 @@ test.describe("Tree (SortableTree)", () => {
     await expect(component.locator('[data-testid="menu-b"]')).toBeVisible();
 
     // Action buttons are present
-    await expect(
-      component.locator('[data-testid="erase-a"]'),
-    ).toBeVisible();
+    await expect(component.locator('[data-testid="erase-a"]')).toBeVisible();
     await expect(
       component.locator('[data-testid="add-after-a"]'),
     ).toBeVisible();
-    await expect(
-      component.locator('[data-testid="move-up-a"]'),
-    ).toBeVisible();
+    await expect(component.locator('[data-testid="move-up-a"]')).toBeVisible();
     await expect(
       component.locator('[data-testid="move-down-a"]'),
     ).toBeVisible();
@@ -244,6 +240,7 @@ test.describe("Tree (SortableTree)", () => {
       expect(action.action).toBe("move");
       expect(action.menuItemId).toBe("x");
       expect(action.order).toBe(1);
+      expect(action.oldOrder).toBe(0);
     });
 
     test("should fire move action when moveUp is triggered", async ({
@@ -260,6 +257,7 @@ test.describe("Tree (SortableTree)", () => {
       expect(action.action).toBe("move");
       expect(action.menuItemId).toBe("y");
       expect(action.order).toBe(0);
+      expect(action.oldOrder).toBe(1);
     });
   });
 });
