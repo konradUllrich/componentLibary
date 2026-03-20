@@ -92,6 +92,8 @@ export {
   type FormControlProps,
   Input,
   type InputProps,
+  Textarea,
+  type TextareaProps,
 } from "./controls";
 // export { useForm } from './controls';
 
@@ -147,6 +149,8 @@ export {
   type PageProps,
   Section,
   type SectionProps,
+  Panel,
+  type PanelProps,
   Grid,
   GridItem,
   type GridProps,
@@ -168,6 +172,7 @@ export {
 // ========================================
 
 export { IntrexxIcon, type IntrexxIconProps, SortableTree } from "./intrexx";
+export type { SortableTreeHandle } from "./intrexx";
 
 // ========================================
 // Shared Hooks
@@ -187,6 +192,7 @@ export {
   useSearchParams,
   useParamState,
   useNavigation,
+  createRoute,
 } from "./Router/hooks";
 
 export type { SetSearchParams, URLSearchParamsInit } from "./Router/hooks";
