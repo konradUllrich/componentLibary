@@ -30,7 +30,7 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Gap between items
    */
-  gap?: "xs" | "sm" | "md" | "lg" | "xl" | string;
+  gap?: "xs" | "sm" | "md" | "lg" | "xl" | ({} & string);
 
   /**
    * Whether to wrap items
