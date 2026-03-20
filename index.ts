@@ -198,6 +198,17 @@ export {
 export type { SetSearchParams, URLSearchParamsInit } from "./Router/hooks";
 
 // ========================================
+// Utilities
+// ========================================
+export {
+  buildSpacingStyle,
+  extractSpacingProps,
+  type SpacingProps,
+  type SpacingToken,
+  type SpacingValue,
+} from "./utils";
+
+// ========================================
 // Types
 // ========================================
 // export type { ComponentProps } from './types';
