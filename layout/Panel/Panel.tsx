@@ -1,11 +1,10 @@
 import React from "react";
 import clsx from "clsx";
-import { buildSpacingStyle, type SpacingProps } from "../../utils/styleProps";
+import { buildSpacingStyle, type SpacingProps } from "../../utils";
 import "./Panel.css";
 
 export interface PanelProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    SpacingProps {
+  extends React.HTMLAttributes<HTMLDivElement>, SpacingProps {
   /**
    * Panel variant
    * @default "default"
@@ -80,15 +79,39 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
       children,
       style,
       // Spacing props
-      p, pt, pb, pl, pr, px, py,
-      m, mt, mb, ml, mr, mx, my,
+      p,
+      pt,
+      pb,
+      pl,
+      pr,
+      px,
+      py,
+      m,
+      mt,
+      mb,
+      ml,
+      mr,
+      mx,
+      my,
       ...props
     },
     ref,
   ) => {
     const spacingStyle = buildSpacingStyle({
-      p, pt, pb, pl, pr, px, py,
-      m, mt, mb, ml, mr, mx, my,
+      p,
+      pt,
+      pb,
+      pl,
+      pr,
+      px,
+      py,
+      m,
+      mt,
+      mb,
+      ml,
+      mr,
+      mx,
+      my,
     });
 
     return (

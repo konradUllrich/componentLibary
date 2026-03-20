@@ -13,6 +13,7 @@ export default defineConfig({
         "controls",
         "data-display",
         "layout",
+        "utils",
         "intrexx",
         "Router",
       ],

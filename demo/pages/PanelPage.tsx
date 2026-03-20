@@ -1,19 +1,23 @@
-import React from 'react';
-import { Panel, Page, Section } from '../../layout';
-import { Text } from '../../common';
+import React from "react";
+import { Panel, Page, Section } from "../../layout";
+import { Text } from "../../common";
 
 export const PanelPage: React.FC = () => {
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Panel Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Panel Component
+        </Text>
         <Text color="secondary">
           Container component with different visual styles
         </Text>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Variants</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Variants
+        </Text>
         <Text color="secondary" size="sm">
           Different panel styles for different contexts
         </Text>
@@ -49,10 +53,12 @@ export const PanelPage: React.FC = () => {
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Spacing Props</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Spacing Props
+        </Text>
         <Text color="secondary" size="sm">
-          Fine-grained padding and margin control using spacing tokens (0–24)
-          or raw CSS values. Spacing props override the class-based{' '}
+          Fine-grained padding and margin control using spacing tokens (0–24) or
+          raw CSS values. Spacing props override the class-based{" "}
           <code>padding</code> prop.
         </Text>
 
@@ -66,7 +72,9 @@ export const PanelPage: React.FC = () => {
           </Panel>
 
           <Panel variant="outlined" px={8} py={2}>
-            <Text weight="medium">px={8} py={2} — horizontal / vertical padding</Text>
+            <Text weight="medium">
+              px={8} py={2} — horizontal / vertical padding
+            </Text>
           </Panel>
 
           <Panel variant="outlined" pt={8} pb={2} pl={4} pr={6}>
@@ -76,17 +84,21 @@ export const PanelPage: React.FC = () => {
           </Panel>
 
           <Panel variant="elevated" p={6} mt={4} mb={4}>
-            <Text weight="medium">p={6} mt={4} mb={4} — padding + vertical margin</Text>
+            <Text weight="medium">
+              p={6} mt={4} mb={4} — padding + vertical margin
+            </Text>
           </Panel>
 
-          <Panel variant="subtle" p={4} mx="auto" style={{ maxWidth: '320px' }}>
+          <Panel variant="subtle" p={4} mx="auto" style={{ maxWidth: "320px" }}>
             <Text weight="medium">mx="auto" — horizontally centered</Text>
           </Panel>
         </div>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { Panel } from '@konradullrich/mp-components';
 
