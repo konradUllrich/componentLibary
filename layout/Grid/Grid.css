@@ -148,6 +148,60 @@
 }
 
 /* -----------------------------------------------------------------------
+   Responsive column presets
+   Each breakpoint adds/overrides grid-template-columns for the given size.
+   Custom values are set via CSS custom properties on the element's style.
+----------------------------------------------------------------------- */
+
+/* sm – min-width: 480px */
+@media (min-width: 480px) {
+  .grid--sm-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .grid--sm-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--sm-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--sm-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--sm-cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid--sm-cols-6 { grid-template-columns: repeat(6, 1fr); }
+  .grid--sm-cols-12 { grid-template-columns: repeat(12, 1fr); }
+  .grid--sm-cols-custom { grid-template-columns: var(--grid-sm-cols); }
+}
+
+/* md – min-width: 768px */
+@media (min-width: 768px) {
+  .grid--md-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .grid--md-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--md-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--md-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--md-cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid--md-cols-6 { grid-template-columns: repeat(6, 1fr); }
+  .grid--md-cols-12 { grid-template-columns: repeat(12, 1fr); }
+  .grid--md-cols-custom { grid-template-columns: var(--grid-md-cols); }
+}
+
+/* lg – min-width: 1024px */
+@media (min-width: 1024px) {
+  .grid--lg-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .grid--lg-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--lg-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--lg-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--lg-cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid--lg-cols-6 { grid-template-columns: repeat(6, 1fr); }
+  .grid--lg-cols-12 { grid-template-columns: repeat(12, 1fr); }
+  .grid--lg-cols-custom { grid-template-columns: var(--grid-lg-cols); }
+}
+
+/* xl – min-width: 1280px */
+@media (min-width: 1280px) {
+  .grid--xl-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .grid--xl-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--xl-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--xl-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--xl-cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid--xl-cols-6 { grid-template-columns: repeat(6, 1fr); }
+  .grid--xl-cols-12 { grid-template-columns: repeat(12, 1fr); }
+  .grid--xl-cols-custom { grid-template-columns: var(--grid-xl-cols); }
+}
+
+/* -----------------------------------------------------------------------
    GridItem
 ----------------------------------------------------------------------- */
 
