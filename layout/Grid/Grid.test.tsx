@@ -96,6 +96,66 @@ test.describe("Grid", () => {
     const component = await mount(<Grid data-testid="the-grid">content</Grid>);
     await expect(component).toHaveAttribute("data-testid", "the-grid");
   });
+
+  test("should apply columnsSm preset class", async ({ mount }) => {
+    const component = await mount(
+      <Grid columns="1" columnsSm="2">
+        content
+      </Grid>,
+    );
+    await expect(component).toHaveClass(/grid--sm-cols-2/);
+  });
+
+  test("should apply columnsMd preset class", async ({ mount }) => {
+    const component = await mount(
+      <Grid columns="1" columnsMd="3">
+        content
+      </Grid>,
+    );
+    await expect(component).toHaveClass(/grid--md-cols-3/);
+  });
+
+  test("should apply columnsLg preset class", async ({ mount }) => {
+    const component = await mount(
+      <Grid columns="1" columnsLg="4">
+        content
+      </Grid>,
+    );
+    await expect(component).toHaveClass(/grid--lg-cols-4/);
+  });
+
+  test("should apply columnsXl preset class", async ({ mount }) => {
+    const component = await mount(
+      <Grid columns="1" columnsXl="6">
+        content
+      </Grid>,
+    );
+    await expect(component).toHaveClass(/grid--xl-cols-6/);
+  });
+
+  test("should apply custom columnsMd as CSS variable and custom class", async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <Grid columnsMd="repeat(auto-fill, minmax(200px, 1fr))">content</Grid>,
+    );
+    await expect(component).toHaveClass(/grid--md-cols-custom/);
+  });
+
+  test("should apply all responsive column classes together", async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <Grid columns="1" columnsSm="2" columnsMd="3" columnsLg="4" columnsXl="6">
+        content
+      </Grid>,
+    );
+    await expect(component).toHaveClass(/grid--cols-1/);
+    await expect(component).toHaveClass(/grid--sm-cols-2/);
+    await expect(component).toHaveClass(/grid--md-cols-3/);
+    await expect(component).toHaveClass(/grid--lg-cols-4/);
+    await expect(component).toHaveClass(/grid--xl-cols-6/);
+  });
 });
 
 test.describe("GridItem", () => {

@@ -7,6 +7,7 @@ const GAP_PRESETS = ["xs", "sm", "md", "lg", "xl"] as const;
 
 type ColumnPreset = (typeof COLUMN_PRESETS)[number];
 type GapPreset = (typeof GAP_PRESETS)[number];
+type ColumnValue = ColumnPreset | number | string;
 
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -14,7 +15,27 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * CSS `grid-template-columns` value (e.g. `"repeat(auto-fill, minmax(200px, 1fr))"`).
    * @default "1"
    */
-  columns?: ColumnPreset | number | string;
+  columns?: ColumnValue;
+
+  /**
+   * Number of columns at ≥ 480px (small breakpoint). Accepts the same values as `columns`.
+   */
+  columnsSm?: ColumnValue;
+
+  /**
+   * Number of columns at ≥ 768px (medium breakpoint). Accepts the same values as `columns`.
+   */
+  columnsMd?: ColumnValue;
+
+  /**
+   * Number of columns at ≥ 1024px (large breakpoint). Accepts the same values as `columns`.
+   */
+  columnsLg?: ColumnValue;
+
+  /**
+   * Number of columns at ≥ 1280px (extra-large breakpoint). Accepts the same values as `columns`.
+   */
+  columnsXl?: ColumnValue;
 
   /**
    * Number of rows. Accepts a number or any valid CSS `grid-template-rows` value.
@@ -72,14 +93,39 @@ function resolveGapStyle(value: string | undefined) {
   return (GAP_PRESETS as readonly string[]).includes(value) ? undefined : value;
 }
 
+function resolveResponsiveColClass(
+  breakpoint: string,
+  value: ColumnValue | undefined,
+): string | undefined {
+  if (value === undefined) return undefined;
+  const valStr = String(value);
+  if ((COLUMN_PRESETS as readonly string[]).includes(valStr)) {
+    return `grid--${breakpoint}-cols-${valStr}`;
+  }
+  return `grid--${breakpoint}-cols-custom`;
+}
+
+function resolveResponsiveColVar(
+  value: ColumnValue | undefined,
+): string | undefined {
+  if (value === undefined) return undefined;
+  const valStr = String(value);
+  if ((COLUMN_PRESETS as readonly string[]).includes(valStr)) {
+    return undefined; // handled by CSS class
+  }
+  return valStr;
+}
+
 /**
  * Grid – CSS Grid layout wrapper.
  *
  * Use `columns` for quick column configs and `GridItem` for per-cell span control.
+ * Use `columnsSm`, `columnsMd`, `columnsLg`, `columnsXl` for responsive breakpoints
+ * (≥ 480px, ≥ 768px, ≥ 1024px, ≥ 1280px respectively).
  *
  * @example
  * ```tsx
- * <Grid columns="3" gap="md">
+ * <Grid columns="1" columnsMd="2" columnsLg="4" gap="md">
  *   <GridItem colSpan={2}>Wide cell</GridItem>
  *   <div>Cell</div>
  * </Grid>
@@ -89,6 +135,10 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   (
     {
       columns = "1",
+      columnsSm,
+      columnsMd,
+      columnsLg,
+      columnsXl,
       rows,
       gap,
       columnGap,
@@ -106,6 +156,11 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     const colStr = String(columns);
     const colIsPreset = (COLUMN_PRESETS as readonly string[]).includes(colStr);
 
+    const smColVar = resolveResponsiveColVar(columnsSm);
+    const mdColVar = resolveResponsiveColVar(columnsMd);
+    const lgColVar = resolveResponsiveColVar(columnsLg);
+    const xlColVar = resolveResponsiveColVar(columnsXl);
+
     const inlineStyle: React.CSSProperties = {
       ...(!colIsPreset && { gridTemplateColumns: colStr }),
       ...(rows !== undefined && {
@@ -117,8 +172,12 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
         columnGap: resolveGapStyle(columnGap),
       }),
       ...(resolveGapStyle(rowGap) && { rowGap: resolveGapStyle(rowGap) }),
+      ...(smColVar && { "--grid-sm-cols": smColVar }),
+      ...(mdColVar && { "--grid-md-cols": mdColVar }),
+      ...(lgColVar && { "--grid-lg-cols": lgColVar }),
+      ...(xlColVar && { "--grid-xl-cols": xlColVar }),
       ...style,
-    };
+    } as React.CSSProperties;
 
     const flowClass =
       flow !== "row" ? `grid--flow-${flow.replace(" ", "-")}` : undefined;
@@ -129,6 +188,10 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
         className={clsx(
           "grid",
           colIsPreset && `grid--cols-${colStr}`,
+          resolveResponsiveColClass("sm", columnsSm),
+          resolveResponsiveColClass("md", columnsMd),
+          resolveResponsiveColClass("lg", columnsLg),
+          resolveResponsiveColClass("xl", columnsXl),
           `grid--align-${align}`,
           `grid--justify-${justify}`,
           flowClass,
