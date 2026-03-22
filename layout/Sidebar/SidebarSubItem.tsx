@@ -97,8 +97,8 @@ export const SidebarSubItem = React.forwardRef<
         onClick={handleClick}
         {...props}
       >
-        {icon && <span className="mp-mp-sidebar-subitem__icon">{icon}</span>}
-        <span className="mp-mp-sidebar-subitem__label">{displayLabel}</span>
+        {icon && <span className="mp-sidebar-subitem__icon">{icon}</span>}
+        <span className="mp-sidebar-subitem__label">{displayLabel}</span>
       </a>
     );
   },
