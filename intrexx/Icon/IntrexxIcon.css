@@ -1,0 +1,78 @@
+/* IntrexxIcon Styles */
+
+/* Block: IntrexxIcon */
+.intrexx-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  color: var(--color-foreground);
+}
+
+/* Size: 12px */
+.intrexx-icon--12 {
+  font-size: 0.75rem; /* 12px */
+}
+
+/* Size: 16px */
+.intrexx-icon--16 {
+  font-size: 1rem; /* 16px */
+}
+
+/* Size: 20px */
+.intrexx-icon--20 {
+  font-size: 1.25rem; /* 20px */
+}
+
+/* Size: 24px */
+.intrexx-icon--24 {
+  font-size: 1.5rem; /* 24px */
+}
+
+/* Size: 32px */
+.intrexx-icon--32 {
+  font-size: 2rem; /* 32px */
+}
+
+/* Size: 36px */
+.intrexx-icon--36 {
+  font-size: 2.25rem; /* 36px */
+}
+
+/* Size: 48px */
+.intrexx-icon--48 {
+  font-size: 3rem; /* 48px */
+}
+
+/* Color: Primary */
+.intrexx-icon--primary {
+  color: var(--color-primary);
+}
+
+/* Color: Secondary */
+.intrexx-icon--secondary {
+  color: var(--color-secondary);
+}
+
+/* Color: Success */
+.intrexx-icon--success {
+  color: var(--color-success);
+}
+
+/* Color: Warning */
+.intrexx-icon--warning {
+  color: var(--color-warning);
+}
+
+/* Color: Destructive */
+.intrexx-icon--destructive {
+  color: var(--color-destructive);
+}
+
+/* Color: Info */
+.intrexx-icon--info {
+  color: var(--color-info);
+}
+
+/* Color: Foreground */
+.intrexx-icon--foreground {
+  color: var(--color-foreground);
+}
