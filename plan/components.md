@@ -43,6 +43,24 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ---
 
+### `common.Date`
+
+#### TypeScript
+1. Add `displayName = "DateComponent"` to the exported component.
+2. Add JSDoc comment on the component explaining the supported `format` values and locale behaviour.
+3. Consider adding `forwardRef` if the component ever renders a wrapping DOM element (currently renders inline text only — low priority).
+
+#### Testing
+1. Add basic render test (renders a formatted date string).
+2. Add props/variant tests (all `format` values: `short`, `long`, `datetime`, `time`; custom `locale`).
+3. Add accessibility tests (`axe-core` scan; verify output is readable by screen readers).
+4. Add error/empty state tests (`null` input shows `fallback`, invalid date string shows `fallback`, empty string shows `fallback`).
+
+#### CSS
+1. No CSS file needed (renders inline text); confirm no styling is required.
+
+---
+
 ### `common.Dialog`
 
 #### FileSize
@@ -129,22 +147,28 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `common.ThemeProvider`
 
+The `ThemeProvider` package is split into two main parts:
+- **`ThemeContext`** — React context, `useTheme` hook, localStorage persistence logic (`ThemeContext.tsx`, `types.ts`, `useThemeEditor.ts`)
+- **`ThemePanel`** — UI panel that exposes theme editing controls (`ThemePanel.tsx`, `ThemePanel.css`)
+
+A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
+
 #### Testing
-1. Add basic render test (provider mounts, children are visible).
-2. Add props/variant tests (light theme applied, dark theme applied, default theme).
-3. Add keyboard navigation tests (focus management inside themed tree).
-4. Add accessibility tests (`axe-core` scan of themed content).
-5. Add error/empty state tests (missing theme value falls back to default).
+1. Unskip `ThemeContext.test.tsx.skip` (rename to `ThemeContext.test.tsx`) and fix any failing assertions.
+2. Add basic render test for `ThemePanel` (panel mounts, toggle button is visible).
+3. Add props/variant tests for `ThemeContext` (light theme applied, dark theme applied, default theme, custom color overrides).
+4. Add props/variant tests for `ThemePanel` (open/close behaviour, color picker updates propagate to context).
+5. Add keyboard navigation tests (Tab through ThemePanel controls, Escape closes panel).
+6. Add accessibility tests (`axe-core` scan of `ThemePanel`, verify color contrast of panel itself).
+7. Add error/empty state tests (corrupt localStorage value falls back to `defaultTheme`).
 
 #### TypeScript
-1. Add `forwardRef` if the provider exposes a DOM node.
-2. Add `displayName = "ThemeProvider"`.
-3. Export `ThemeProviderProps` interface.
-4. Add JSDoc comment on the component and all exported props.
+1. Export `ThemeConfig` and `ThemeContextValue` interfaces from `index.ts` so consumers can type their theme overrides.
+2. Add `displayName = "ThemePanel"` to `ThemePanel.tsx`.
+3. Add JSDoc comments on `useTheme` hook and `ThemePanel` component.
 
 #### FileSize
-1. Split `ThemeProvider.tsx` (currently ~204 lines) — extract context and hook into `ThemeContext.ts` and `useTheme.ts`.
-2. Split `ThemeProvider.css` (currently ~185 lines) — extract light and dark theme variables into separate CSS files.
+1. `ThemeContext.tsx` (currently ~150 lines) — consider extracting `loadThemeFromStorage` / `saveThemeToStorage` helpers into a `themeStorage.ts` utility.
 
 ---
 
@@ -290,6 +314,27 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ---
 
+### `controls.SmartSelect`
+
+File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactSelect` on desktop and `NativeSelect` on mobile (via the `useIsMobile` hook). Missing: CSS, test file, `forwardRef`, `displayName`.
+
+#### TypeScript
+1. Add `forwardRef` to forward the ref to the underlying `ReactSelect` or `NativeSelect` component.
+2. Add `displayName = "SmartSelect"`.
+3. Add JSDoc comment explaining the adaptive behaviour and when each implementation is rendered.
+
+#### CSS
+1. Add any wrapper-level BEM styles to the existing `Select.css` (or a dedicated `SmartSelect.css` if styles differ significantly).
+
+#### Testing
+1. Add basic render test (SmartSelect renders without errors).
+2. Add props/variant tests (passes `label`, `error`, `size`, and `variant` props through to the underlying component).
+3. Add keyboard navigation tests (Tab to focus, Arrow keys to navigate options, Enter to select).
+4. Add accessibility tests (`axe-core` scan; verify label is associated with the control).
+5. Add error/empty state tests (empty options list, error state, disabled state).
+
+---
+
 ### `controls.Textarea`
 
 ✅ **Production-ready** — no action required.
@@ -320,9 +365,12 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `data-display.Pagination`
 
+#### Cleanup
+1. Remove the duplicate `Pagionation.tsx` file (typo — missing the 'i' in Pagination). It is an exact copy of `Pagination.tsx` and should be deleted.
+
 #### FileSize
 1. Split `Pagination.tsx` (currently ~159 lines) — extract page-size selector and page-number buttons into sub-components.
-2. Split `Pagination.css` (currently ~202 lines) — extract button and ellipsis modifier rules into a partial.
+2. Split `pagination.css` (currently ~202 lines) — extract button and ellipsis modifier rules into a partial.
 
 #### Testing
 1. Add keyboard navigation tests (Arrow keys, Home/End to jump pages, Enter to activate page buttons).
@@ -331,9 +379,10 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `data-display.Table`
 
+The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `TableCell.tsx`, `TableHeader.tsx`, `TableRow.tsx`.
+
 #### FileSize
-1. Split `Table.tsx` (currently ~103 lines) — extract `TableHeader`, `TableBody`, and `TableFooter` into separate files.
-2. Split `Table.css` (currently ~122 lines) — extract row state and column alignment rules.
+1. Split `Table.css` (currently ~122 lines) — extract row state and column alignment rules.
 
 #### Testing
 1. Add props/variant tests (striped, bordered, compact variants).
@@ -433,27 +482,24 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ---
 
-### `intrexx.Icon`
+### `intrexx.IntrexxIcon`
 
-#### Implementation
-1. Expand the component beyond its current ~14 lines — define a proper icon set prop (`name: IconName`) with a type-safe union of supported icon names.
-2. Create `Icon.css` with BEM-named styles (`.icon`, `.icon--sm`, `.icon--md`, `.icon--lg`).
-3. Add `aria-hidden="true"` by default; accept an optional `aria-label` prop for standalone icons.
+File: `intrexx/Icon/IntrexxIcon.tsx`. The component renders an `<i>` element using a CSS icon class (Intrexx icon font). It already uses `clsx`, exports `IntrexxIconProps`, and sets `aria-hidden="true"` by default. Missing: `displayName`, a test file, and a CSS file.
 
 #### TypeScript
-1. Add `forwardRef` to expose the SVG DOM node.
-2. Add `displayName = "Icon"`.
-3. Export `IconProps` interface and `IconName` union type.
-4. Add JSDoc comments on the component and all props.
+1. Add `displayName = "IntrexxIcon"`.
+2. Add an optional `aria-label` prop — when provided, remove `aria-hidden` so the icon is accessible as a standalone element.
+3. Add JSDoc comment on the component and the `iconClass` prop.
+4. Consider adding a type-safe `IconName` union type (or `enum`) for the supported Intrexx icon classes.
+
+#### CSS
+1. Create `IntrexxIcon.css` if base sizing/display styles are needed (`.intrexx-icon`, `.intrexx-icon--sm/md/lg`).
 
 #### Testing
-1. Add basic render test (icon renders with correct class).
-2. Add props/variant tests (all icon names render without errors, size variants).
-3. Add accessibility tests (`axe-core` scan, `aria-hidden` present by default).
-4. Add error/empty state tests (unknown icon name falls back gracefully).
-
-#### Exports
-1. Add `index.ts` if missing, exporting `Icon`, `IconProps`, and `IconName`.
+1. Add basic render test (icon renders the correct `<i>` element).
+2. Add props/variant tests (custom `iconClass` and `className` are applied, size variants if added).
+3. Add accessibility tests (`axe-core` scan; `aria-hidden` present by default; `aria-label` overrides `aria-hidden`).
+4. Add error/empty state tests (no `iconClass` provided renders without error).
 
 ---
 
@@ -502,22 +548,20 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ---
 
-## Package: `router`
+## Package: `Router`
 
 ---
 
-### `router.Router`
+### `Router.Router`
 
-#### Audit
-1. Verify `Router` exports a typed `RouteConfig` interface and all public hooks (`useRoute`, `useLocation`, etc.) are exported from `index.ts`.
-2. Confirm all hooks are documented with JSDoc including parameter descriptions and return types.
+The `Router` package wraps [wouter](https://github.com/molefrog/wouter) to use a URL search-parameter (`appRoute`) instead of the path, allowing the library to work inside iframes and GitHub Pages. It already has: `displayName`, JSDoc, `Router.test.tsx`, and `RouterHooks.test.tsx`.
 
 #### Testing
-1. Add basic render test (router renders matched route component).
-2. Add props/variant tests (route matching, nested routes, redirect behaviour).
-3. Add keyboard navigation tests (link navigation via keyboard, focus management after route change).
-4. Add accessibility tests (`axe-core` scan, `aria-current="page"` on active link).
-5. Add error/empty state tests (no matching route renders fallback/404, invalid path).
+1. Add accessibility tests (`axe-core` scan; verify `aria-current="page"` is applied to the active `Link`).
+2. Add error/empty state tests (no matching `Route` renders nothing gracefully).
+
+#### TypeScript
+1. Verify that `createRoute`, `useSearchParams`, and all re-exported wouter hooks are individually documented with JSDoc `@param` / `@returns` descriptions in `hooks.ts` and `createRoute.ts`.
 
 ---
 
@@ -525,14 +569,14 @@ Components listed as ✅ **Production-ready** require no further action.
 
 | Package | Total | ✅ Production-ready | 🔴 Critical | 🟠 Needs Work |
 |---|---|---|---|---|
-| `common` | 16 | 1 (Image) | 1 (ThemeProvider – no tests) | 14 |
-| `controls` | 12 | 2 (Label, Textarea) | 1 (Select – missing CSS) | 9 |
+| `common` | 17 | 1 (Image) | 1 (ThemeProvider – skipped tests) | 15 |
+| `controls` | 13 | 2 (Label, Textarea) | 1 (Select – missing CSS) | 10 |
 | `data-display` | 4 | 0 | 1 (Datalist – missing BEM/clsx) | 3 |
 | `layout` | 9 | 2 (Page, Section) | 1 (Flex – no tests) | 6 |
-| `intrexx` | 4 | 0 | 2 (Icon, TreeEditorOld) | 2 |
-| `router` | 1 | 0 | 0 | 1 |
-| **Total** | **46** | **5** | **6** | **35** |
+| `intrexx` | 4 | 0 | 2 (IntrexxIcon, TreeEditorOld) | 2 |
+| `Router` | 1 | 0 | 0 | 1 |
+| **Total** | **48** | **5** | **6** | **37** |
 
 ---
 
-*Last updated: 2026-03-22*
+*Last updated: 2026-03-22 (reviewed for accuracy)*
