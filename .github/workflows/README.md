@@ -30,6 +30,25 @@ Publishes the library to npm when a new version tag is pushed.
 **Triggers:**
 - Push of tags matching `v*` (e.g., `v0.1.0`)
 
+### Copilot Agent Dispatcher (`copilot-agent.yml`)
+
+Reads `plan/components.md`, finds every line starting with `@copilot:`, and creates a GitHub Issue assigned to the **Copilot coding agent** for each task that does not already have an open or closed issue.
+
+**Triggers:**
+- Push to `main` when `plan/components.md` changes
+- Manual workflow dispatch
+
+**How to add a task:**
+Add a line anywhere in `plan/components.md` using the format:
+```
+@copilot: <describe the task here>
+```
+The next push to `main` will automatically open an issue and assign it to Copilot.
+
+**Permissions required:** `issues: write`
+
+---
+
 ## Setting Up Branch Protection
 
 To require the CI workflow to pass before merging pull requests:

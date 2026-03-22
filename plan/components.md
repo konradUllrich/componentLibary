@@ -695,3 +695,16 @@ The `Router` package wraps [wouter](https://github.com/molefrog/wouter) to use a
 ---
 
 *Last updated: 2026-03-22 (reviewed for accuracy)*
+
+---
+
+## Copilot Agent Tasks
+
+Lines prefixed with `@copilot:` are automatically picked up by the **Copilot Agent Dispatcher** workflow (`.github/workflows/copilot-agent.yml`).  
+Each line creates a GitHub Issue assigned to the Copilot coding agent.
+
+@copilot: Add mp- prefix to all Button CSS classes and update usages in Button.tsx
+@copilot: Split Accordion.tsx into AccordionItem and AccordionPanel sub-components
+@copilot: Add error and empty state tests for the Dialog component
+@copilot: Add mp- prefix to all Badge CSS classes and extract variant rules into Badge.variants.css
+@copilot: Add displayName and JSDoc comment to the Date component

@@ -1,0 +1,66 @@
+name: Copilot Agent Dispatcher
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "plan/components.md"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  dispatch-copilot-tasks:
+    name: Dispatch Copilot Agent Tasks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure copilot-task label exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "copilot-task" \
+            --description "Task automatically dispatched to GitHub Copilot coding agent" \
+            --color "6e40c9" \
+            || true
+
+      - name: Parse and dispatch @copilot tasks
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          file="plan/components.md"
+
+          # Extract everything after "@copilot: " on each matching line.
+          # Wrap in a subshell so || true applies only to grep, not the whole pipe.
+          { grep -oP '(?<=@copilot: ).+' "$file" || true; } | while IFS= read -r task; do
+            if [ -z "$task" ]; then
+              continue
+            fi
+
+            echo "Processing task: $task"
+
+            # Check whether an open or closed issue with this exact title already exists
+            count=$(gh issue list \
+              --search "\"$task\" in:title label:copilot-task" \
+              --state all \
+              --json number \
+              --jq 'length')
+
+            if [ "$count" -eq "0" ]; then
+              echo "Creating issue: $task"
+              gh issue create \
+                --title "$task" \
+                --body "$(printf 'This task was automatically extracted from \`plan/components.md\`.\n\n**Original instruction:**\n```\n@copilot: %s\n```\n\n> _Created by the [Copilot Agent Dispatcher](%s/actions/workflows/copilot-agent.yml) workflow._' \
+                  "$task" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY")" \
+                --label "copilot-task" \
+                --assignee "copilot"
+              echo "Issue created for: $task"
+            else
+              echo "Issue already exists for task (skipping): $task"
+            fi
+          done
