@@ -12,6 +12,9 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `common.Accordion`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.accordion` → `.mp-accordion`, `.accordion__item` → `.mp-accordion__item`, etc.) and update all usages in `Accordion.tsx`.
+
 #### Testing
 1. Add error/empty state tests (no items, disabled items).
 2. Add variant tests covering all `variant` prop values.
@@ -23,6 +26,9 @@ Components listed as ✅ **Production-ready** require no further action.
 ---
 
 ### `common.Badge`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.badge` → `.mp-badge`, `.badge--sm` → `.mp-badge--sm`, etc.) and update all usages in `Badge.tsx`.
 
 #### FileSize
 1. Split `Badge.css` (currently ~169 lines) — extract modifier/variant rules into a `Badge.variants.css` partial.
@@ -63,6 +69,9 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `common.Dialog`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.dialog__overlay` → `.mp-dialog__overlay`, `.dialog__content` → `.mp-dialog__content`, etc.) and update all usages in `Dialog.tsx`.
+
 #### FileSize
 1. Split `Dialog.tsx` (currently ~234 lines) — extract `DialogHeader`, `DialogFooter`, and `DialogBody` into separate files.
 2. Split `Dialog.css` (currently ~165 lines) — extract overlay, header, and footer rules into partials.
@@ -73,6 +82,9 @@ Components listed as ✅ **Production-ready** require no further action.
 ---
 
 ### `common.Disclosure`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.disclosure` → `.mp-disclosure`, `.disclosure-trigger` → `.mp-disclosure__trigger`, etc.) and update all usages in `Disclosure.tsx`.
 
 #### FileSize
 1. Split `Disclosure.tsx` (currently ~138 lines) — extract the trigger and panel into `DisclosureTrigger` and `DisclosurePanel` files.
@@ -85,6 +97,9 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `common.Dropdown`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.dropdown__content` → `.mp-dropdown__content`, `.dropdown__item` → `.mp-dropdown__item`, etc.) and update all usages in `Dropdown.tsx`.
+
 #### FileSize
 1. Split `Dropdown.tsx` (currently ~206 lines) — extract `DropdownTrigger`, `DropdownMenu`, and `DropdownItem` into separate files.
 2. Split `Dropdown.css` (currently ~104 lines) — extract menu and item rules into a partial.
@@ -95,6 +110,9 @@ Components listed as ✅ **Production-ready** require no further action.
 ---
 
 ### `common.EmptyState`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.empty-state` → `.mp-empty-state`, `.empty-state__icon` → `.mp-empty-state__icon`, etc.) and update all usages in `EmptyState.tsx`.
 
 #### FileSize
 1. Split `EmptyState.tsx` (currently ~112 lines) — extract icon slot and action slot into sub-components.
@@ -107,11 +125,15 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `common.Image`
 
-✅ **Production-ready** — no action required.
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.image` → `.mp-image`, `.image--cover` → `.mp-image--cover`, etc.) and update all usages in `Image.tsx`.
 
 ---
 
 ### `common.Skeleton`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.skeleton` → `.mp-skeleton`, `.skeleton--text` → `.mp-skeleton--text`, etc.) and update all usages in `Skeleton.tsx`.
 
 #### FileSize
 1. Split `Skeleton.tsx` (currently ~131 lines) — extract animation and variant logic into helpers.
@@ -125,6 +147,9 @@ Components listed as ✅ **Production-ready** require no further action.
 
 ### `common.Tabs`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.tabs` → `.mp-tabs`, `.tabs-list` → `.mp-tabs__list`, `.tabs-trigger` → `.mp-tabs__trigger`, etc.) and update all usages in `Tabs.tsx`.
+
 #### FileSize
 1. Split `Tabs.tsx` (currently ~144 lines) — extract `TabList`, `Tab`, and `TabPanel` into separate files.
 2. Split `Tabs.css` (currently ~138 lines) — extract panel and active-state rules into partials.
@@ -135,6 +160,9 @@ Components listed as ✅ **Production-ready** require no further action.
 ---
 
 ### `common.Text`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.text` → `.mp-text`, `.text--xs` → `.mp-text--xs`, etc.) and update all usages in `Text.tsx`.
 
 #### FileSize
 1. Split `Text.tsx` (currently ~125 lines) — extract variant mapping into a constants file.
@@ -152,6 +180,9 @@ The `ThemeProvider` package is split into two main parts:
 - **`ThemePanel`** — UI panel that exposes theme editing controls (`ThemePanel.tsx`, `ThemePanel.css`)
 
 A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes in `ThemePanel.css` (`.theme-panel` → `.mp-theme-panel`, `.theme-panel__toggle` → `.mp-theme-panel__toggle`, etc.) and update all usages in `ThemePanel.tsx`.
 
 #### Testing
 1. Unskip `ThemeContext.test.tsx.skip` (rename to `ThemeContext.test.tsx`) and fix any failing assertions.
@@ -174,6 +205,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `common.Toggle`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.toggle` → `.mp-toggle`, `.toggle--sm` → `.mp-toggle--sm`, etc.) and update all usages in `Toggle.tsx`.
+
 #### FileSize
 1. Split `Toggle.tsx` (currently ~121 lines) — extract Radix primitive wrapper logic.
 2. Split `Toggle.css` (currently ~107 lines) — extract state modifier rules.
@@ -184,6 +218,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ---
 
 ### `common.ToggleGroup`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.toggle-group` → `.mp-toggle-group`, `.toggle-group__item` → `.mp-toggle-group__item`, etc.) and update all usages in `ToggleGroup.tsx`.
 
 #### FileSize
 1. Split `ToggleGroup.tsx` (currently ~130 lines) — extract `ToggleGroupItem` into a separate file.
@@ -196,6 +233,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `common.Tooltip`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.tooltip__content` → `.mp-tooltip__content`, `.tooltip__arrow` → `.mp-tooltip__arrow`, etc.) and update all usages in `Tooltip.tsx`.
+
 #### FileSize
 1. Split `Tooltip.tsx` (currently ~188 lines) — extract trigger wrapper and content into `TooltipTrigger` and `TooltipContent` files.
 
@@ -205,6 +245,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ---
 
 ### `common.UserAvatars`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.user-avatar` → `.mp-user-avatar`, `.user-avatar--sm` → `.mp-user-avatar--sm`, etc.) and update all usages in `UserAvatars.tsx`.
 
 #### FileSize
 1. Split `UserAvatars.css` (currently ~151 lines) — extract overflow indicator and stacked layout rules.
@@ -220,6 +263,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `controls.Checkbox`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.checkbox-container` → `.mp-checkbox`, `.checkbox-input` → `.mp-checkbox__input`, `.checkbox-label` → `.mp-checkbox__label`, etc.) and update all usages in `Checkbox.tsx`.
+
 #### FileSize
 1. Split `Checkbox.tsx` (currently ~173 lines) — extract indicator and label layout into sub-components.
 2. Split `Checkbox.css` (currently ~212 lines) — extract checked, indeterminate, and disabled state rules into a partial.
@@ -228,12 +274,18 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `controls.CheckboxGroup`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.checkbox-group` → `.mp-checkbox-group`, `.checkbox-group--horizontal` → `.mp-checkbox-group--horizontal`, etc.) and update all usages in `CheckboxGroup.tsx`.
+
 #### FileSize
 1. Split `CheckboxGroup.tsx` (currently ~241 lines) — extract group legend, item list, and validation message into separate files.
 
 ---
 
 ### `controls.Combobox`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.combobox` → `.mp-combobox`, `.combobox__input` → `.mp-combobox__input`, etc.) and update all usages in `Combobox.tsx`.
 
 #### FileSize
 1. Split `Combobox.tsx` (currently ~369 lines) — extract `ComboboxInput`, `ComboboxList`, and `ComboboxItem` into separate files.
@@ -242,6 +294,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ---
 
 ### `controls.FormBuilder`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.form-builder` → `.mp-form-builder`, `.form-builder__field` → `.mp-form-builder__field`, etc.) and update all usages in `FormBuilder.tsx`.
 
 #### TypeScript
 1. Add `forwardRef` to expose the underlying form DOM node.
@@ -255,12 +310,18 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `controls.FormControl`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.form-control` → `.mp-form-control`, `.form-control__input` → `.mp-form-control__input`, `.form-control__message` → `.mp-form-control__message`, etc.) and update all usages in `FormControl.tsx`.
+
 #### TypeScript
 1. Add `forwardRef` to expose the wrapper DOM node to consumers.
 
 ---
 
 ### `controls.Input`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.input` → `.mp-input`, `.input--error` → `.mp-input--error`, etc.) and update all usages in `Input.tsx`.
 
 #### FileSize
 1. Split `Input.tsx` (currently ~110 lines) — extract prefix/suffix slot logic into `InputAddon` sub-component.
@@ -269,11 +330,15 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `controls.Label`
 
-✅ **Production-ready** — no action required.
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.label` → `.mp-label`, `.label__required` → `.mp-label__required`, etc.) and update all usages in `Label.tsx`.
 
 ---
 
 ### `controls.NativeSelect`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.native-select-container` → `.mp-native-select`, `.native-select` → `.mp-native-select__input`, etc.) and update all usages in `NativeSelect.tsx`.
 
 #### FileSize
 1. Split `NativeSelect.tsx` (currently ~118 lines) — extract option rendering into a helper.
@@ -283,6 +348,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 ### `controls.Radio`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.radio-container` → `.mp-radio`, `.radio-input` → `.mp-radio__input`, `.radio-label` → `.mp-radio__label`, etc.) and update all usages in `Radio.tsx`.
+
 #### FileSize
 1. Split `Radio.tsx` (currently ~165 lines) — extract `RadioGroup` wrapper into a separate file.
 2. Split `Radio.css` (currently ~140 lines) — extract checked and disabled state rules into a partial.
@@ -290,6 +358,9 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ---
 
 ### `controls.ReactSelect`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.select-trigger` → `.mp-select__trigger`, etc.) and update all usages in `ReactSelect.tsx`.
 
 #### TypeScript
 1. Add `forwardRef` so the internal `react-select` ref is forwarded to consumers.
@@ -303,7 +374,7 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ### `controls.Select`
 
 #### CSS
-1. Create `Select.css` — the file is currently missing entirely. Add BEM-named styles matching the component structure.
+1. Create `Select.css` — the file is currently missing entirely. Add BEM-named styles with the `mp-` prefix (e.g. `.mp-select`, `.mp-select__trigger`, `.mp-select__item`) matching the component structure.
 2. Add `clsx` for all conditional class composition.
 
 #### TypeScript
@@ -324,7 +395,7 @@ File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactS
 3. Add JSDoc comment explaining the adaptive behaviour and when each implementation is rendered.
 
 #### CSS
-1. Add any wrapper-level BEM styles to the existing `Select.css` (or a dedicated `SmartSelect.css` if styles differ significantly).
+1. Add any wrapper-level BEM styles with the `mp-` prefix to the existing `Select.css` (or a dedicated `SmartSelect.css` if styles differ significantly), e.g. `.mp-smart-select`.
 
 #### Testing
 1. Add basic render test (SmartSelect renders without errors).
@@ -337,7 +408,8 @@ File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactS
 
 ### `controls.Textarea`
 
-✅ **Production-ready** — no action required.
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.textarea` → `.mp-textarea`, `.textarea--error` → `.mp-textarea--error`, etc.) and update all usages in `Textarea.tsx`.
 
 ---
 
@@ -346,6 +418,9 @@ File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactS
 ---
 
 ### `data-display.CardList`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.card-list` → `.mp-card-list`, `.card-list__item` → `.mp-card-list__item`, etc.) and update all usages in `CardList.tsx`.
 
 #### FileSize
 1. Split `CardList.tsx` (currently ~147 lines) — extract `CardListItem` into its own file.
@@ -356,7 +431,8 @@ File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactS
 
 #### CSS
 1. Refactor `Datalist.css` to use BEM naming (`.datalist`, `.datalist__item`, `.datalist__label`, `.datalist__value`, etc.).
-2. Add `clsx` to `Datalist.tsx` for conditional class composition.
+2. Add `mp-` prefix to all CSS classes (`.datalist` → `.mp-datalist`, `.datalist__item` → `.mp-datalist__item`, etc.) and update all usages in `Datalist.tsx`.
+3. Add `clsx` to `Datalist.tsx` for conditional class composition.
 
 #### FileSize
 1. Split `Datalist.tsx` (currently ~204 lines) — extract `DatalistItem` and `DatalistGroup` into separate files.
@@ -364,6 +440,9 @@ File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactS
 ---
 
 ### `data-display.Pagination`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.pagination` → `.mp-pagination`, `.pagination__info` → `.mp-pagination__info`, etc.) and update all usages in `Pagination.tsx`.
 
 #### Cleanup
 1. Remove the duplicate `Pagionation.tsx` file (typo — missing the 'i' in Pagination). It is an exact copy of `Pagination.tsx` and should be deleted.
@@ -381,6 +460,9 @@ File: `controls/Select/SmartSelect.tsx`. An adaptive select that renders `ReactS
 
 The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `TableCell.tsx`, `TableHeader.tsx`, `TableRow.tsx`.
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.table-container` → `.mp-table-container`, `.table` → `.mp-table`, `.table__head` → `.mp-table__head`, etc.) and update all usages in `Table.tsx` and sub-components.
+
 #### FileSize
 1. Split `Table.css` (currently ~122 lines) — extract row state and column alignment rules.
 
@@ -396,6 +478,9 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.AppLayout`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.app-layout` → `.mp-app-layout`, `.app-layout__header` → `.mp-app-layout__header`, etc.) and update all usages in `AppLayout.tsx` and related files.
+
 #### TypeScript
 1. Add `forwardRef` to expose the root layout DOM node.
 2. Export `AppLayoutProps` interface.
@@ -403,6 +488,9 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 ---
 
 ### `layout.Card`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.card` → `.mp-card`, `.card--elevated` → `.mp-card--elevated`, etc.) and update all usages in `Card.tsx`.
 
 #### FileSize
 1. Split `Card.tsx` (currently ~146 lines) — extract `CardHeader`, `CardBody`, and `CardFooter` into separate files.
@@ -415,6 +503,9 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 ---
 
 ### `layout.Flex`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.flex` → `.mp-flex`, `.flex--direction-row` → `.mp-flex--direction-row`, etc.) and update all usages in `Flex.tsx`.
 
 #### TypeScript
 1. Add `displayName = "Flex"`.
@@ -430,6 +521,9 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.Grid`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.grid` → `.mp-grid`, `.grid--cols-1` → `.mp-grid--cols-1`, etc.) and update all usages in `Grid.tsx` and `GridItem.tsx`.
+
 #### FileSize
 1. Split `Grid.tsx` (currently ~149 lines) — extract `GridItem` into a separate file.
 2. Split `Grid.css` (currently ~230 lines) — extract column/row span helper classes and responsive breakpoints into partials.
@@ -442,6 +536,9 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.HorizontalNav`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.horizontal-nav` → `.mp-horizontal-nav`, `.horizontal-nav__select` → `.mp-horizontal-nav__select`, etc.) and update all usages in `HorizontalNav.tsx` and sub-components.
+
 #### FileSize
 1. Split `HorizontalNav.tsx` (currently ~157 lines) — extract `HorizontalNavItem` and `HorizontalNavDropdown` into separate files.
 
@@ -449,11 +546,15 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.Page`
 
-✅ **Production-ready** — no action required.
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.page` → `.mp-page`, `.page--sm` → `.mp-page--sm`, etc.) and update all usages in `Page.tsx`.
 
 ---
 
 ### `layout.Panel`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.panel` → `.mp-panel`, `.panel--default` → `.mp-panel--default`, etc.) and update all usages in `Panel.tsx`.
 
 #### FileSize
 1. Split `Panel.tsx` (currently ~107 lines) — extract `PanelHeader` and `PanelBody` into separate files.
@@ -466,11 +567,15 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.Section`
 
-✅ **Production-ready** — no action required.
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.section--default` → `.mp-section--default`, `.section--hero` → `.mp-section--hero`, etc.) and update all usages in `Section.tsx`.
 
 ---
 
 ### `layout.Sidebar`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes in `Sidebar.css` and related files (`.sidebar` → `.mp-sidebar`, `.sidebar__wrapper` → `.mp-sidebar__wrapper`, etc.) and update all usages in `Sidebar.tsx` and sub-components.
 
 #### TypeScript
 1. Add `forwardRef` to expose the sidebar DOM node.
@@ -493,7 +598,8 @@ File: `intrexx/Icon/IntrexxIcon.tsx`. The component renders an `<i>` element usi
 4. Consider adding a type-safe `IconName` union type (or `enum`) for the supported Intrexx icon classes.
 
 #### CSS
-1. Create `IntrexxIcon.css` if base sizing/display styles are needed (`.intrexx-icon`, `.intrexx-icon--sm/md/lg`).
+1. Create `IntrexxIcon.css` if base sizing/display styles are needed, using the `mp-` prefix (`.mp-intrexx-icon`, `.mp-intrexx-icon--sm/md/lg`).
+2. Add `mp-` prefix to all existing CSS classes in `IntrexxIcon.css` (`.intrexx-icon` → `.mp-intrexx-icon`, etc.) and update all usages in `IntrexxIcon.tsx`.
 
 #### Testing
 1. Add basic render test (icon renders the correct `<i>` element).
@@ -505,6 +611,9 @@ File: `intrexx/Icon/IntrexxIcon.tsx`. The component renders an `<i>` element usi
 
 ### `intrexx.IconPicker`
 
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.icon-picker` → `.mp-icon-picker`, `.icon-picker__header` → `.mp-icon-picker__header`, etc.) and update all usages in `IconPicker.tsx`.
+
 #### FileSize
 1. Split `IconPicker.tsx` (currently ~274 lines) — extract `IconPickerSearch`, `IconPickerGrid`, and `IconPickerItem` into separate files.
 2. Split `IconPicker.css` (currently ~390 lines) — extract grid layout, search bar, and item hover/selected state rules into partials.
@@ -515,6 +624,9 @@ File: `intrexx/Icon/IntrexxIcon.tsx`. The component renders an `<i>` element usi
 ---
 
 ### `intrexx.TreeEditor`
+
+#### CSS
+1. Add `mp-` prefix to all CSS classes (`.sortable-tree` → `.mp-sortable-tree`, `.sortable-tree__item` → `.mp-sortable-tree__item`, etc.) and update all usages in `TreeEditor.tsx` and related files.
 
 #### TypeScript
 1. Add `displayName = "TreeEditor"`.
@@ -533,6 +645,9 @@ File: `intrexx/Icon/IntrexxIcon.tsx`. The component renders an `<i>` element usi
 ---
 
 ### `intrexx.TreeEditorOld`
+
+#### CSS (if keeping until removal)
+1. Add `mp-` prefix to all CSS classes (`.tree-editor` → `.mp-tree-editor`, `.tree-editor__tree` → `.mp-tree-editor__tree`, etc.) and update all usages in `TreeEditorOld.tsx`.
 
 #### Deprecation
 1. Add a deprecation notice (JSDoc `@deprecated` tag and a console warning in development) directing consumers to `TreeEditor`.
@@ -569,13 +684,13 @@ The `Router` package wraps [wouter](https://github.com/molefrog/wouter) to use a
 
 | Package | Total | ✅ Production-ready | 🔴 Critical | 🟠 Needs Work |
 |---|---|---|---|---|
-| `common` | 17 | 1 (Image) | 1 (ThemeProvider – skipped tests) | 15 |
-| `controls` | 13 | 2 (Label, Textarea) | 1 (Select – missing CSS) | 10 |
+| `common` | 17 | 0 | 1 (ThemeProvider – skipped tests) | 16 |
+| `controls` | 13 | 0 | 1 (Select – missing CSS) | 12 |
 | `data-display` | 4 | 0 | 1 (Datalist – missing BEM/clsx) | 3 |
-| `layout` | 9 | 2 (Page, Section) | 1 (Flex – no tests) | 6 |
+| `layout` | 9 | 0 | 1 (Flex – no tests) | 8 |
 | `intrexx` | 4 | 0 | 2 (IntrexxIcon, TreeEditorOld) | 2 |
 | `Router` | 1 | 0 | 0 | 1 |
-| **Total** | **48** | **5** | **6** | **37** |
+| **Total** | **48** | **0** | **6** | **42** |
 
 ---
 
