@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/experimental-ct-react';
-import { Card, CardHeader, CardContent, CardFooter } from './Card';
+import { Card, CardHeader, CardContent, CardFooter } from './index';
 import { checkA11y } from '../../playwright/test-utils';
 import React from 'react';
 
@@ -24,10 +24,10 @@ test.describe('Card Component', () => {
       </div>
     );
     
-    const cards = component.locator('.card');
-    await expect(cards.nth(0)).toHaveClass(/card--elevated/);
-    await expect(cards.nth(1)).toHaveClass(/card--outlined/);
-    await expect(cards.nth(2)).toHaveClass(/card--flat/);
+    const cards = component.locator('.mp-card');
+    await expect(cards.nth(0)).toHaveClass(/mp-card--elevated/);
+    await expect(cards.nth(1)).toHaveClass(/mp-card--outlined/);
+    await expect(cards.nth(2)).toHaveClass(/mp-card--flat/);
   });
 
   test('should render different padding sizes', async ({ mount }) => {
@@ -40,11 +40,11 @@ test.describe('Card Component', () => {
       </div>
     );
     
-    const cards = component.locator('.card');
-    await expect(cards.nth(0)).toHaveClass(/card--padding-none/);
-    await expect(cards.nth(1)).toHaveClass(/card--padding-sm/);
-    await expect(cards.nth(2)).toHaveClass(/card--padding-md/);
-    await expect(cards.nth(3)).toHaveClass(/card--padding-lg/);
+    const cards = component.locator('.mp-card');
+    await expect(cards.nth(0)).toHaveClass(/mp-card--padding-none/);
+    await expect(cards.nth(1)).toHaveClass(/mp-card--padding-sm/);
+    await expect(cards.nth(2)).toHaveClass(/mp-card--padding-md/);
+    await expect(cards.nth(3)).toHaveClass(/mp-card--padding-lg/);
   });
 
   test('should support interactive mode', async ({ mount }) => {
@@ -54,7 +54,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    await expect(component).toHaveClass(/card--interactive/);
+    await expect(component).toHaveClass(/mp-card--interactive/);
   });
 
   test('should apply custom className', async ({ mount }) => {
@@ -86,7 +86,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    const header = component.locator('.card__header');
+    const header = component.locator('.mp-card__header');
     await expect(header).toBeVisible();
     await expect(header).toHaveText('Card Title');
   });
@@ -98,7 +98,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    const content = component.locator('.card__content');
+    const content = component.locator('.mp-card__content');
     await expect(content).toBeVisible();
     await expect(content).toHaveText('This is the card content');
   });
@@ -111,7 +111,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    const footer = component.locator('.card__footer');
+    const footer = component.locator('.mp-card__footer');
     await expect(footer).toBeVisible();
     await expect(footer).toHaveText('Footer actions');
   });
@@ -131,9 +131,9 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    await expect(component.locator('.card__header')).toBeVisible();
-    await expect(component.locator('.card__content')).toBeVisible();
-    await expect(component.locator('.card__footer')).toBeVisible();
+    await expect(component.locator('.mp-card__header')).toBeVisible();
+    await expect(component.locator('.mp-card__content')).toBeVisible();
+    await expect(component.locator('.mp-card__footer')).toBeVisible();
   });
 
   test('should support custom className on CardHeader', async ({ mount }) => {
@@ -144,7 +144,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    const header = component.locator('.card__header');
+    const header = component.locator('.mp-card__header');
     await expect(header).toHaveClass(/custom-header/);
   });
 
@@ -155,7 +155,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    const content = component.locator('.card__content');
+    const content = component.locator('.mp-card__content');
     await expect(content).toHaveClass(/custom-content/);
   });
 
@@ -167,7 +167,7 @@ test.describe('Card Component', () => {
       </Card>
     );
     
-    const footer = component.locator('.card__footer');
+    const footer = component.locator('.mp-card__footer');
     await expect(footer).toHaveClass(/custom-footer/);
   });
 
@@ -262,6 +262,128 @@ test.describe('Card Component', () => {
       
       await component.click();
       expect(clicked).toBe(true);
+    });
+  });
+
+  test.describe('Keyboard Navigation', () => {
+    test('should be focusable when tabIndex is set', async ({ mount, page }) => {
+      await mount(
+        <Card tabIndex={0} aria-label="Focusable card">
+          <CardContent>Focusable card content</CardContent>
+        </Card>
+      );
+
+      await page.keyboard.press('Tab');
+      const card = page.locator('.mp-card');
+      await expect(card).toBeFocused();
+    });
+
+    test('should support keyboard activation when interactive and focusable', async ({ mount }) => {
+      let activated = false;
+      const component = await mount(
+        <Card
+          interactive
+          tabIndex={0}
+          role="button"
+          aria-label="Activate card"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') activated = true;
+          }}
+        >
+          <CardContent>Keyboard card</CardContent>
+        </Card>
+      );
+
+      await component.focus();
+      await component.press('Enter');
+      expect(activated).toBe(true);
+    });
+
+    test('should allow tab navigation through focusable children', async ({ mount, page }) => {
+      await mount(
+        <Card>
+          <CardContent>
+            <a href="#">Link one</a>
+            <a href="#">Link two</a>
+          </CardContent>
+          <CardFooter>
+            <button>Action</button>
+          </CardFooter>
+        </Card>
+      );
+
+      await page.keyboard.press('Tab');
+      await expect(page.locator('a').first()).toBeFocused();
+
+      await page.keyboard.press('Tab');
+      await expect(page.locator('a').last()).toBeFocused();
+
+      await page.keyboard.press('Tab');
+      await expect(page.locator('button')).toBeFocused();
+    });
+  });
+
+  test.describe('Empty and Edge States', () => {
+    test('should render card with no header', async ({ mount }) => {
+      const component = await mount(
+        <Card>
+          <CardContent>No header here</CardContent>
+          <CardFooter>Footer</CardFooter>
+        </Card>
+      );
+
+      await expect(component.locator('.mp-card__header')).not.toBeAttached();
+      await expect(component.locator('.mp-card__content')).toBeVisible();
+      await expect(component.locator('.mp-card__footer')).toBeVisible();
+    });
+
+    test('should render card with no footer', async ({ mount }) => {
+      const component = await mount(
+        <Card>
+          <CardHeader>Header</CardHeader>
+          <CardContent>No footer here</CardContent>
+        </Card>
+      );
+
+      await expect(component.locator('.mp-card__header')).toBeVisible();
+      await expect(component.locator('.mp-card__content')).toBeVisible();
+      await expect(component.locator('.mp-card__footer')).not.toBeAttached();
+    });
+
+    test('should render card with only content (no header or footer)', async ({ mount }) => {
+      const component = await mount(
+        <Card>
+          <CardContent>Only content</CardContent>
+        </Card>
+      );
+
+      await expect(component.locator('.mp-card__header')).not.toBeAttached();
+      await expect(component.locator('.mp-card__content')).toBeVisible();
+      await expect(component.locator('.mp-card__footer')).not.toBeAttached();
+    });
+
+    test('should render card with empty content', async ({ mount }) => {
+      const component = await mount(
+        <Card>
+          <CardContent>{''}</CardContent>
+        </Card>
+      );
+
+      await expect(component).toBeVisible();
+      await expect(component.locator('.mp-card__content')).toBeAttached();
+    });
+
+    test('should render card as link wrapper', async ({ mount }) => {
+      const component = await mount(
+        <a href="/details" style={{ textDecoration: 'none', display: 'block' }}>
+          <Card interactive>
+            <CardContent>Card as link</CardContent>
+          </Card>
+        </a>
+      );
+
+      await expect(component).toHaveAttribute('href', '/details');
+      await expect(component.locator('.mp-card--interactive')).toBeVisible();
     });
   });
 });

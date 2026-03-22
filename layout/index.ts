@@ -27,7 +27,7 @@ export {
   type AppMainProps,
 } from "./AppLayout";
 
-export { Panel, type PanelProps } from "./Panel";
+export { Panel, PanelHeader, PanelBody, type PanelProps, type PanelHeaderProps, type PanelBodyProps } from "./Panel";
 
 export {
   Card,

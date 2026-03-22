@@ -57,10 +57,10 @@ export const SidebarToggle = React.forwardRef<
     };
 
     return (
-      <div className="sidebar__toggle-wrapper">
+      <div className="mp-sidebar__toggle-wrapper">
         <button
           ref={ref}
-          className={clsx("sidebar__toggle", className)}
+          className={clsx("mp-sidebar__toggle", className)}
           onClick={handleClick}
           aria-expanded={isOpen}
           aria-label={ariaLabel || "Toggle sidebar"}

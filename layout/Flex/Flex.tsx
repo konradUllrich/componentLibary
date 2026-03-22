@@ -92,7 +92,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
 
     const gapClass = gap
       ? ["xs", "sm", "md", "lg", "xl"].includes(gap as string)
-        ? `flex--gap-${gap}`
+        ? `mp-flex--gap-${gap}`
         : undefined
       : undefined;
 
@@ -100,12 +100,12 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
       <div
         ref={ref}
         className={clsx(
-          "flex",
-          `flex--direction-${direction}`,
-          `flex--justify-${justify}`,
-          `flex--align-${align}`,
+          "mp-flex",
+          `mp-flex--direction-${direction}`,
+          `mp-flex--justify-${justify}`,
+          `mp-flex--align-${align}`,
           {
-            "flex--wrap": wrap,
+            "mp-flex--wrap": wrap,
           },
           gapClass,
           className,

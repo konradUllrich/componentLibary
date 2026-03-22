@@ -89,9 +89,9 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
       <div
         ref={ref}
         className={clsx(
-          "panel",
-          `panel--${variant}`,
-          `panel--padding-${padding}`,
+          "mp-panel",
+          `mp-panel--${variant}`,
+          `mp-panel--padding-${padding}`,
           spacingClasses,
           className,
         )}

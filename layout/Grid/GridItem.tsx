@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import "./GridItem.css";
 
 const COL_SPAN_PRESETS = [
   "1",
@@ -112,9 +113,9 @@ export const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
       <div
         ref={ref}
         className={clsx(
-          "grid-item",
-          colSpanIsPreset && `grid-item--col-span-${colSpanStr}`,
-          rowSpanIsPreset && `grid-item--row-span-${rowSpanStr}`,
+          "mp-grid-item",
+          colSpanIsPreset && `mp-grid-item--col-span-${colSpanStr}`,
+          rowSpanIsPreset && `mp-grid-item--row-span-${rowSpanStr}`,
           className,
         )}
         style={inlineStyle}

@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import { Panel } from "./Panel";
+import { PanelHeader } from "./PanelHeader";
+import { PanelBody } from "./PanelBody";
 import { checkA11y } from "../../playwright/test-utils";
 import React from "react";
 
@@ -21,11 +23,11 @@ test.describe("Panel Component", () => {
       </div>,
     );
 
-    const panels = component.locator(".panel");
-    await expect(panels.nth(0)).toHaveClass(/panel--default/);
-    await expect(panels.nth(1)).toHaveClass(/panel--outlined/);
-    await expect(panels.nth(2)).toHaveClass(/panel--elevated/);
-    await expect(panels.nth(3)).toHaveClass(/panel--subtle/);
+    const panels = component.locator(".mp-panel");
+    await expect(panels.nth(0)).toHaveClass(/mp-panel--default/);
+    await expect(panels.nth(1)).toHaveClass(/mp-panel--outlined/);
+    await expect(panels.nth(2)).toHaveClass(/mp-panel--elevated/);
+    await expect(panels.nth(3)).toHaveClass(/mp-panel--subtle/);
   });
 
   test("should render different padding sizes", async ({ mount }) => {
@@ -39,12 +41,12 @@ test.describe("Panel Component", () => {
       </div>,
     );
 
-    const panels = component.locator(".panel");
-    await expect(panels.nth(0)).toHaveClass(/panel--padding-none/);
-    await expect(panels.nth(1)).toHaveClass(/panel--padding-sm/);
-    await expect(panels.nth(2)).toHaveClass(/panel--padding-md/);
-    await expect(panels.nth(3)).toHaveClass(/panel--padding-lg/);
-    await expect(panels.nth(4)).toHaveClass(/panel--padding-xl/);
+    const panels = component.locator(".mp-panel");
+    await expect(panels.nth(0)).toHaveClass(/mp-panel--padding-none/);
+    await expect(panels.nth(1)).toHaveClass(/mp-panel--padding-sm/);
+    await expect(panels.nth(2)).toHaveClass(/mp-panel--padding-md/);
+    await expect(panels.nth(3)).toHaveClass(/mp-panel--padding-lg/);
+    await expect(panels.nth(4)).toHaveClass(/mp-panel--padding-xl/);
   });
 
   test("should apply custom className", async ({ mount }) => {
@@ -267,5 +269,113 @@ test.describe("Panel Component", () => {
     );
 
     await checkA11y(page);
+  });
+
+  test.describe("PanelHeader and PanelBody sub-components", () => {
+    test("should render PanelHeader correctly", async ({ mount }) => {
+      const component = await mount(
+        <Panel>
+          <PanelHeader>Panel Title</PanelHeader>
+          <PanelBody>Panel content</PanelBody>
+        </Panel>,
+      );
+
+      const header = component.locator(".mp-panel__header");
+      await expect(header).toBeVisible();
+      await expect(header).toHaveText("Panel Title");
+    });
+
+    test("should render PanelBody correctly", async ({ mount }) => {
+      const component = await mount(
+        <Panel>
+          <PanelHeader>Title</PanelHeader>
+          <PanelBody>Main content area</PanelBody>
+        </Panel>,
+      );
+
+      const body = component.locator(".mp-panel__body");
+      await expect(body).toBeVisible();
+      await expect(body).toHaveText("Main content area");
+    });
+
+    test("should support custom className on PanelHeader", async ({
+      mount,
+    }) => {
+      const component = await mount(
+        <Panel>
+          <PanelHeader className="custom-header">Title</PanelHeader>
+        </Panel>,
+      );
+
+      await expect(component.locator(".mp-panel__header")).toHaveClass(
+        /custom-header/,
+      );
+    });
+
+    test("should support custom className on PanelBody", async ({ mount }) => {
+      const component = await mount(
+        <Panel>
+          <PanelBody className="custom-body">Content</PanelBody>
+        </Panel>,
+      );
+
+      await expect(component.locator(".mp-panel__body")).toHaveClass(
+        /custom-body/,
+      );
+    });
+  });
+
+  test.describe("Keyboard Navigation", () => {
+    test("should allow tab navigation through focusable children", async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        <Panel>
+          <PanelHeader>Title</PanelHeader>
+          <PanelBody>
+            <a href="#">Link 1</a>
+            <button>Button 1</button>
+          </PanelBody>
+        </Panel>,
+      );
+
+      await page.keyboard.press("Tab");
+      await expect(page.locator("a")).toBeFocused();
+
+      await page.keyboard.press("Tab");
+      await expect(page.locator("button")).toBeFocused();
+    });
+  });
+
+  test.describe("Empty and Edge States", () => {
+    test("should render panel with no title", async ({ mount }) => {
+      const component = await mount(
+        <Panel>
+          <PanelBody>Content without title</PanelBody>
+        </Panel>,
+      );
+
+      await expect(component.locator(".mp-panel__header")).not.toBeAttached();
+      await expect(component.locator(".mp-panel__body")).toBeVisible();
+    });
+
+    test("should render panel with empty content", async ({ mount }) => {
+      const component = await mount(<Panel>{""}</Panel>);
+
+      await expect(component).toBeVisible();
+      await expect(component).toHaveClass(/mp-panel/);
+    });
+
+    test("should render panel with only header", async ({ mount }) => {
+      const component = await mount(
+        <Panel>
+          <PanelHeader>Title Only</PanelHeader>
+        </Panel>,
+      );
+
+      await expect(component.locator(".mp-panel__header")).toBeVisible();
+      await expect(component.locator(".mp-panel__body")).not.toBeAttached();
+    });
   });
 });

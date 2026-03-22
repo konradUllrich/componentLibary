@@ -84,7 +84,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
 function resolveGapClass(prefix: string, value: string | undefined) {
   if (!value) return undefined;
   return (GAP_PRESETS as readonly string[]).includes(value)
-    ? `grid--${prefix}-${value}`
+    ? `mp-grid--${prefix}-${value}`
     : undefined;
 }
 
@@ -100,9 +100,9 @@ function resolveResponsiveColClass(
   if (value === undefined) return undefined;
   const valStr = String(value);
   if ((COLUMN_PRESETS as readonly string[]).includes(valStr)) {
-    return `grid--${breakpoint}-cols-${valStr}`;
+    return `mp-grid--${breakpoint}-cols-${valStr}`;
   }
-  return `grid--${breakpoint}-cols-custom`;
+  return `mp-grid--${breakpoint}-cols-custom`;
 }
 
 function resolveResponsiveColVar(
@@ -180,20 +180,20 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     } as React.CSSProperties;
 
     const flowClass =
-      flow !== "row" ? `grid--flow-${flow.replace(" ", "-")}` : undefined;
+      flow !== "row" ? `mp-grid--flow-${flow.replace(" ", "-")}` : undefined;
 
     return (
       <div
         ref={ref}
         className={clsx(
-          "grid",
-          colIsPreset && `grid--cols-${colStr}`,
+          "mp-grid",
+          colIsPreset && `mp-grid--cols-${colStr}`,
           resolveResponsiveColClass("sm", columnsSm),
           resolveResponsiveColClass("md", columnsMd),
           resolveResponsiveColClass("lg", columnsLg),
           resolveResponsiveColClass("xl", columnsXl),
-          `grid--align-${align}`,
-          `grid--justify-${justify}`,
+          `mp-grid--align-${align}`,
+          `mp-grid--justify-${justify}`,
           flowClass,
           resolveGapClass("gap", gap),
           resolveGapClass("col-gap", columnGap),

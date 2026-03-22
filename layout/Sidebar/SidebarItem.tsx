@@ -117,9 +117,9 @@ export const SidebarItem = React.forwardRef<
           ref={ref}
           href={href}
           className={clsx(
-            "sidebar-item",
-            isActive && "sidebar-item--active",
-            hasNestedItems && "sidebar-item--expandable",
+            "mp-sidebar-item",
+            isActive && "mp-sidebar-item--active",
+            hasNestedItems && "mp-sidebar-item--expandable",
             className
           )}
           onClick={handleClick}
@@ -129,18 +129,18 @@ export const SidebarItem = React.forwardRef<
           {hasNestedItems && (
             <span
               className={clsx(
-                "sidebar-item__chevron",
-                isExpanded && "sidebar-item__chevron--open"
+                "mp-sidebar-item__chevron",
+                isExpanded && "mp-sidebar-item__chevron--open"
               )}
             >
               ▼
             </span>
           )}
-          {icon && <span className="sidebar-item__icon">{icon}</span>}
-          <span className="sidebar-item__label">{displayLabel}</span>
+          {icon && <span className="mp-sidebar-item__icon">{icon}</span>}
+          <span className="mp-sidebar-item__label">{displayLabel}</span>
         </a>
         {hasNestedItems && isExpanded && (
-          <div className="sidebar-item--nested">
+          <div className="mp-sidebar-item--nested">
             {(items?.length ?? 0) > 0
               ? items.map((item, index) => (
                   <SidebarItem key={index} {...item} />

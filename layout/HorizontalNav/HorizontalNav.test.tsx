@@ -234,7 +234,7 @@ test.describe("HorizontalNav Component", () => {
 
       // Should render mobile version with select dropdown
       // Note: This may not work as expected in component tests due to timing
-      const select = component.locator(".horizontal-nav__select");
+      const select = component.locator(".mp-horizontal-nav__select");
 
       // Try to detect mobile view
       const isMobileVisible = await select.isVisible().catch(() => false);
@@ -258,7 +258,7 @@ test.describe("HorizontalNav Component", () => {
       );
 
       // Should render desktop version with nav element
-      const nav = component.locator("nav.horizontal-nav");
+      const nav = component.locator("nav.mp-horizontal-nav");
       const isDesktopNav = await nav.isVisible().catch(() => false);
 
       // In desktop view, should show nav links
@@ -288,7 +288,7 @@ test.describe("HorizontalNav Component", () => {
         <HorizontalNav items={mockNavItems} mobileBreakpoint={768} />,
       );
 
-      const select = page.locator("select.horizontal-nav__select");
+      const select = page.locator("select.mp-horizontal-nav__select");
       const selectExists = await select.isVisible().catch(() => false);
 
       if (selectExists) {
@@ -307,7 +307,7 @@ test.describe("HorizontalNav Component", () => {
         <HorizontalNav items={mockNavItems} mobileBreakpoint={768} />,
       );
 
-      const select = page.locator("select.horizontal-nav__select");
+      const select = page.locator("select.mp-horizontal-nav__select");
       const selectExists = await select.isVisible().catch(() => false);
 
       if (selectExists) {
@@ -447,7 +447,7 @@ test.describe("HorizontalNav Component", () => {
         <HorizontalNav items={complexItems} mobileBreakpoint={768} />,
       );
 
-      const select = page.locator("select.horizontal-nav__select");
+      const select = page.locator("select.mp-horizontal-nav__select");
       const selectExists = await select.isVisible().catch(() => false);
 
       if (selectExists) {
@@ -490,7 +490,7 @@ test.describe("HorizontalNav Component", () => {
         <HorizontalNav items={noActiveItems} mobileBreakpoint={768} />,
       );
 
-      const select = page.locator("select.horizontal-nav__select");
+      const select = page.locator("select.mp-horizontal-nav__select");
       const selectExists = await select.isVisible().catch(() => false);
 
       if (selectExists) {

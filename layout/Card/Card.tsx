@@ -31,25 +31,11 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   interactive?: boolean;
 }
 
-export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  className?: string;
-}
-
 /**
  * Card Component
  *
  * A flexible container component for displaying content in a card format.
+ * Use with CardHeader, CardContent, and CardFooter sub-components.
  *
  * @example
  * ```tsx
@@ -82,11 +68,11 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={clsx(
-          "card",
-          `card--${variant}`,
-          `card--padding-${padding}`,
+          "mp-card",
+          `mp-card--${variant}`,
+          `mp-card--padding-${padding}`,
           {
-            "card--interactive": interactive,
+            "mp-card--interactive": interactive,
           },
           className,
         )}
@@ -100,47 +86,3 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = "Card";
 
-/**
- * CardHeader Component
- */
-export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={clsx("card__header", className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
-
-CardHeader.displayName = "CardHeader";
-
-/**
- * CardContent Component
- */
-export const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={clsx("card__content", className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
-
-CardContent.displayName = "CardContent";
-
-/**
- * CardFooter Component
- */
-export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={clsx("card__footer", className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
-
-CardFooter.displayName = "CardFooter";

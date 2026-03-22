@@ -1,0 +1,41 @@
+/* CardContent Component Styles */
+
+.mp-card__content {
+  flex: 1;
+  overflow: auto;
+  margin-left: calc(var(--spacing-4) * -1);
+  margin-right: calc(var(--spacing-4) * -1);
+  padding: var(--spacing-4);
+}
+
+.mp-card--padding-none .mp-card__content {
+  margin: 0;
+  padding: 0;
+}
+
+.mp-card--padding-sm .mp-card__content {
+  margin-left: calc(var(--spacing-3) * -1);
+  margin-right: calc(var(--spacing-3) * -1);
+  padding: var(--spacing-3);
+}
+
+.mp-card--padding-lg .mp-card__content {
+  margin-left: calc(var(--spacing-6) * -1);
+  margin-right: calc(var(--spacing-6) * -1);
+  padding: var(--spacing-6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mp-card--padding-md .mp-card__content {
+    margin-left: calc(var(--spacing-3) * -1);
+    margin-right: calc(var(--spacing-3) * -1);
+    padding: var(--spacing-3);
+  }
+
+  .mp-card--padding-lg .mp-card__content {
+    margin-left: calc(var(--spacing-4) * -1);
+    margin-right: calc(var(--spacing-4) * -1);
+    padding: var(--spacing-4);
+  }
+}

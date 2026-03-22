@@ -2,14 +2,14 @@
 
 /* Element: Toggle Button */
 
-.sidebar__toggle-wrapper {
+.mp-sidebar__toggle-wrapper {
   display: flex;
   padding-left: var(--spacing-1);
   padding-right: var(--spacing-1);
   align-items: center;
   justify-content: flex-end;
 }
-.sidebar__toggle {
+.mp-sidebar__toggle {
   width: 32px;
   height: 32px;
 
@@ -24,25 +24,25 @@
   color: var(--color-foreground);
 }
 
-.sidebar__toggle:hover {
+.mp-sidebar__toggle:hover {
   background-color: var(--color-background-secondary);
   border-color: var(--color-primary);
   box-shadow: var(--shadow-sm);
   color: var(--color-primary);
 }
 
-.sidebar__toggle:active {
+.mp-sidebar__toggle:active {
   transform: scale(0.95);
 }
 
-.sidebar__toggle:focus-visible {
+.mp-sidebar__toggle:focus-visible {
   box-shadow: var(--focus-shadow);
   outline: none;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .sidebar__toggle {
+  .mp-sidebar__toggle {
     display: flex;
   }
 }

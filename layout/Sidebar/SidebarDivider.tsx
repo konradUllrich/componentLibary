@@ -23,18 +23,18 @@ export const SidebarDivider = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={clsx("sidebar-divider", className)}
+      className={clsx("mp-sidebar-divider", className)}
       role="separator"
       {...props}
     >
       {label ? (
         <>
-          <span className="sidebar-divider__line sidebar-divider__line--left" />
-          <span className="sidebar-divider__label">{label}</span>
-          <span className="sidebar-divider__line sidebar-divider__line--right" />
+          <span className="mp-sidebar-divider__line mp-sidebar-divider__line--left" />
+          <span className="mp-sidebar-divider__label">{label}</span>
+          <span className="mp-sidebar-divider__line mp-sidebar-divider__line--right" />
         </>
       ) : (
-        <span className="sidebar-divider__line" />
+        <span className="mp-sidebar-divider__line" />
       )}
     </div>
   );

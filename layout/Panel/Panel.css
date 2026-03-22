@@ -1,57 +1,57 @@
 /* Panel Styles */
 
 /* Block: Panel */
-.panel {
+.mp-panel {
   background-color: var(--color-background);
   border-radius: var(--radius-lg);
 }
 
 /* Variant: Default */
-.panel--default {
+.mp-panel--default {
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
 }
 
 /* Variant: Outlined */
-.panel--outlined {
+.mp-panel--outlined {
   background-color: transparent;
   border: 1px solid var(--color-border);
 }
 
 /* Variant: Elevated */
-.panel--elevated {
+.mp-panel--elevated {
   background-color: var(--color-background);
   border: none;
   box-shadow: var(--shadow-md);
 }
 
 /* Variant: Subtle */
-.panel--subtle {
+.mp-panel--subtle {
   background-color: var(--color-background-secondary);
   border: none;
 }
 
 /* Padding: None */
-.panel--padding-none {
+.mp-panel--padding-none {
   padding: 0;
 }
 
 /* Padding: Small */
-.panel--padding-sm {
+.mp-panel--padding-sm {
   padding: var(--spacing-2);
 }
 
 /* Padding: Medium */
-.panel--padding-md {
+.mp-panel--padding-md {
   padding: var(--spacing-4);
 }
 
 /* Padding: Large */
-.panel--padding-lg {
+.mp-panel--padding-lg {
   padding: var(--spacing-6);
 }
 
 /* Padding: Extra Large */
-.panel--padding-xl {
+.mp-panel--padding-xl {
   padding: var(--spacing-8);
 }

@@ -1,6 +1,6 @@
 /* Sidebar Divider Styles */
 
-.sidebar-divider {
+.mp-sidebar-divider {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
@@ -8,20 +8,20 @@
   width: 100%;
 }
 
-.sidebar-divider__line {
+.mp-sidebar-divider__line {
   flex: 1;
   height: 1px;
   background-color: var(--color-border);
 }
 
-.sidebar-divider__line--left,
-.sidebar-divider__line--right {
+.mp-sidebar-divider__line--left,
+.mp-sidebar-divider__line--right {
   flex: 1;
   height: 1px;
   background-color: var(--color-border);
 }
 
-.sidebar-divider__label {
+.mp-sidebar-divider__label {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   color: var(--color-foreground-secondary);
@@ -31,22 +31,22 @@
 }
 
 /* Collapsed sidebar - hide label, show only line */
-.sidebar__nav--collapsed .sidebar-divider__label {
+.mp-sidebar__nav--collapsed .mp-sidebar-divider__label {
   display: none;
 }
 
-.sidebar__nav--collapsed .sidebar-divider {
+.mp-sidebar__nav--collapsed .mp-sidebar-divider {
   padding: var(--spacing-2);
   justify-content: center;
 }
 
-.sidebar__nav--collapsed .sidebar-divider__line--left,
-.sidebar__nav--collapsed .sidebar-divider__line--right {
+.mp-sidebar__nav--collapsed .mp-sidebar-divider__line--left,
+.mp-sidebar__nav--collapsed .mp-sidebar-divider__line--right {
   display: none;
 }
 
 /* Show a single clear line when collapsed with a label */
-.sidebar__nav--collapsed .sidebar-divider__line--left {
+.mp-sidebar__nav--collapsed .mp-sidebar-divider__line--left {
   display: block;
   flex: none;
   width: 30px;

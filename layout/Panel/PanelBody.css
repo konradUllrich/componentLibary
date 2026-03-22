@@ -1,0 +1,6 @@
+/* PanelBody Component Styles */
+
+.mp-panel__body {
+  flex: 1;
+  overflow: auto;
+}

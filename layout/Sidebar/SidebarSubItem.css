@@ -1,7 +1,7 @@
 /* Sidebar Sub Item Styles */
 
 /* Block: Sub Item */
-.sidebar-subitem {
+.mp-sidebar-subitem {
   display: flex;
   align-items: center;
   gap: var(--spacing-3);
@@ -29,52 +29,52 @@
   letter-spacing: inherit;
 }
 
-.sidebar-subitem[href] {
+.mp-sidebar-subitem[href] {
   color: var(--color-foreground);
   text-decoration: none;
 }
 
-.sidebar-subitem:visited {
+.mp-sidebar-subitem:visited {
   color: var(--color-foreground);
 }
 
-.sidebar-subitem:link {
+.mp-sidebar-subitem:link {
   color: var(--color-foreground);
   text-decoration: none;
 }
 
-.sidebar-subitem:hover {
+.mp-sidebar-subitem:hover {
   background-color: var(--color-background);
 }
 
-.sidebar-subitem:focus-visible {
+.mp-sidebar-subitem:focus-visible {
   box-shadow: var(--focus-shadow);
   outline: none;
 }
 
 /* Modifier: Active state */
-.sidebar-subitem--active {
+.mp-sidebar-subitem--active {
   background-color: var(--color-primary);
   border-left-color: var(--color-primary-dark);
   color: var(--color-primary-foreground);
   font-weight: var(--font-weight-semibold);
 }
 
-.sidebar-subitem--active:visited {
+.mp-sidebar-subitem--active:visited {
   color: var(--color-primary-foreground);
 }
 
-.sidebar-subitem--active[href] {
+.mp-sidebar-subitem--active[href] {
   color: var(--color-primary-foreground);
 }
 
-.sidebar-subitem--active:hover {
+.mp-sidebar-subitem--active:hover {
   background-color: var(--color-primary);
   opacity: 0.9;
 }
 
 /* Element: Sub Item Icon */
-.sidebar-subitem__icon {
+.mp-sidebar-subitem__icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +85,7 @@
 }
 
 /* Element: Sub Item Label */
-.sidebar-subitem__label {
+.mp-sidebar-subitem__label {
   flex: 1;
   overflow: hidden;
   white-space: nowrap;

@@ -54,7 +54,7 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>(
     return (
       <div
         ref={ref}
-        className={clsx("page", `page--${maxWidth}`, className)}
+        className={clsx("mp-page", `mp-page--${maxWidth}`, className)}
         {...props}
       >
         <Flex justify="space-between" align="center">
