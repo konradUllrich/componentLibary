@@ -165,7 +165,7 @@ updates:
 **Why:** Some components may lack tests for edge cases, error states, and keyboard navigation.
 
 **Steps:**
-- [ ] Audit every component in `common/`, `controls/`, `data-display/`, `layout/`, `intrexx/`, and `Router/` to verify it has a corresponding `.test.tsx` file.
+- [ ] Audit every component in `common/`, `controls/`, `data-display/`, `layout/`, `Intrexx/`, and `Router/` to verify it has a corresponding `.test.tsx` file.
 - [ ] For components that do have tests, verify each test file covers:
   - [ ] Happy-path rendering
   - [ ] All named props/variants
