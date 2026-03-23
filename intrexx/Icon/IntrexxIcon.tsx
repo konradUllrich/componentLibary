@@ -15,7 +15,8 @@ export type IntrexxIconProps = React.HTMLAttributes<HTMLElement> & {
     | "warning"
     | "destructive"
     | "info"
-    | "foreground";
+    | "foreground"
+    | "currentColor";
 };
 
 /**
@@ -26,7 +27,7 @@ export type IntrexxIconProps = React.HTMLAttributes<HTMLElement> & {
  */
 export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
   (
-    { iconClass, size = 16, color = "foreground", className, ...props },
+    { iconClass, size = 16, color = "currentColor", className, ...props },
     ref,
   ) => {
     return (
