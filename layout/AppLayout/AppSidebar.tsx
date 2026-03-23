@@ -33,7 +33,7 @@ export interface AppSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const AppSidebar = React.forwardRef<HTMLDivElement, AppSidebarProps>(
   ({ className = "", children, ...props }: AppSidebarProps, ref) => (
-    <div ref={ref} className={clsx("app-sidebar", className)} {...props}>
+    <div ref={ref} className={clsx("mp-app-sidebar", className)} {...props}>
       {children}
     </div>
   ),

@@ -1,7 +1,7 @@
 /* App Layout Styles */
 
 /* Block: App Layout Container */
-.app-layout {
+.mp-app-layout {
   display: flex;
   flex-direction: column;
   /* min-height: 100vh; */
@@ -10,7 +10,7 @@
 }
 
 /* Element: Header Container */
-.app-layout__header {
+.mp-app-layout__header {
   background: var(--color-background);
   border-bottom: 1px solid var(--color-border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -20,20 +20,20 @@
 }
 
 /* Element: Content Container */
-.app-layout__container {
+.mp-app-layout__container {
   display: flex;
   flex: 1 1 auto;
   overflow: hidden;
 }
 
 /* Element: Sidebar Container */
-.app-layout__sidebar {
+.mp-app-layout__sidebar {
   position: relative;
   height: 100%;
 }
 
 /* Element: Main Content */
-.app-layout__main {
+.mp-app-layout__main {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -42,30 +42,30 @@
 }
 
 /* Scrollbar styling */
-.app-layout__main::-webkit-scrollbar {
+.mp-app-layout__main::-webkit-scrollbar {
   width: 8px;
 }
 
-.app-layout__main::-webkit-scrollbar-track {
+.mp-app-layout__main::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.app-layout__main::-webkit-scrollbar-thumb {
+.mp-app-layout__main::-webkit-scrollbar-thumb {
   background-color: var(--color-border);
   border-radius: var(--radius-md);
 }
 
-.app-layout__main::-webkit-scrollbar-thumb:hover {
+.mp-app-layout__main::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-foreground-secondary);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .app-layout__container {
+  .mp-app-layout__container {
     flex-direction: column;
   }
 
-  .app-layout__sidebar {
+  .mp-app-layout__sidebar {
     position: fixed;
     top: 60px;
     left: 0;
@@ -73,7 +73,7 @@
     z-index: var(--z-offcanvas);
   }
 
-  .app-layout__main {
+  .mp-app-layout__main {
     /* padding: var(--spacing-4); */
     width: 100%;
   }
@@ -81,7 +81,7 @@
 
 /* Mobile optimization */
 @media (max-width: 480px) {
-  .app-layout__main {
+  .mp-app-layout__main {
     /* padding: var(--spacing-3); */
   }
 }

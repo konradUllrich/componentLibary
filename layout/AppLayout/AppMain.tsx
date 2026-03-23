@@ -29,7 +29,7 @@ export interface AppMainProps extends React.HTMLAttributes<HTMLElement> {
  */
 export const AppMain = React.forwardRef<HTMLElement, AppMainProps>(
   ({ className = "", children, ...props }: AppMainProps, ref) => (
-    <main className={clsx("app-main", className)} {...props} ref={ref}>
+    <main className={clsx("mp-app-main", className)} {...props} ref={ref}>
       {children}
     </main>
   ),

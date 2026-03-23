@@ -10,23 +10,23 @@ test.describe("Section", () => {
 
   test("should render as section element by default", async ({ mount, page }) => {
     await mount(<Section>Content</Section>);
-    const el = page.locator("section.section");
+    const el = page.locator("section.mp-section");
     await expect(el).toBeVisible();
   });
 
   test("should apply default variant class", async ({ mount }) => {
     const component = await mount(<Section>Content</Section>);
-    await expect(component).toHaveClass(/section--default/);
+    await expect(component).toHaveClass(/mp-section--default/);
   });
 
   test("should apply hero variant class", async ({ mount }) => {
     const component = await mount(<Section variant="hero">Content</Section>);
-    await expect(component).toHaveClass(/section--hero/);
+    await expect(component).toHaveClass(/mp-section--hero/);
   });
 
   test("should render as div when as='div'", async ({ mount, page }) => {
     await mount(<Section as="div">Content</Section>);
-    const el = page.locator("div.section");
+    const el = page.locator("div.mp-section");
     await expect(el).toBeVisible();
   });
 
@@ -42,6 +42,6 @@ test.describe("Section", () => {
       <Section className="custom-class">Content</Section>,
     );
     await expect(component).toHaveClass(/custom-class/);
-    await expect(component).toHaveClass(/section/);
+    await expect(component).toHaveClass(/mp-section/);
   });
 });

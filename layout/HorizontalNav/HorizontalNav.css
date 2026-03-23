@@ -1,7 +1,7 @@
 /* Horizontal Navigation Styles */
 
 /* Block: Horizontal Navigation Container */
-.horizontal-nav {
+.mp-horizontal-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,13 +12,13 @@
 }
 
 /* Mobile variant with select */
-.horizontal-nav--mobile {
+.mp-horizontal-nav--mobile {
   display: block;
   padding: var(--spacing-2);
 }
 
 /* Mobile select element */
-.horizontal-nav__select {
+.mp-horizontal-nav__select {
   width: 100%;
   height: 40px;
   padding: var(--spacing-2) var(--spacing-3);
@@ -32,37 +32,37 @@
   transition: all var(--duration-200) var(--ease-in-out);
 }
 
-.horizontal-nav__select:hover {
+.mp-horizontal-nav__select:hover {
   border-color: var(--color-primary);
 }
 
-.horizontal-nav__select:focus {
+.mp-horizontal-nav__select:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: var(--focus-shadow);
 }
 
 /* Hide scrollbar but keep functionality */
-.horizontal-nav::-webkit-scrollbar {
+.mp-horizontal-nav::-webkit-scrollbar {
   height: 4px;
 }
 
-.horizontal-nav::-webkit-scrollbar-track {
+.mp-horizontal-nav::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.horizontal-nav::-webkit-scrollbar-thumb {
+.mp-horizontal-nav::-webkit-scrollbar-thumb {
   background: var(--color-border);
   border-radius: var(--radius-full);
 }
 
-.horizontal-nav::-webkit-scrollbar-thumb:hover {
+.mp-horizontal-nav::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .horizontal-nav:not(.horizontal-nav--mobile) {
+  .mp-horizontal-nav:not(.mp-horizontal-nav--mobile) {
     gap: var(--spacing-1);
     padding: var(--spacing-1) var(--spacing-2);
   }

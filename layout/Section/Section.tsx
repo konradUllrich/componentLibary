@@ -74,7 +74,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       Element as React.ElementType,
       {
         ref,
-        className: clsx("section", `section--${variant}`, className),
+        className: clsx("mp-section", `mp-section--${variant}`, className),
         ...restProps,
       },
       inner,

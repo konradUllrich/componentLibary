@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useSidebarStore } from "./sidebarStore";
 import "./Sidebar.css";
 
-export interface SidebarProps {
+export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultOpen?: boolean;
   children?: React.ReactNode;
   className?: string;
@@ -18,13 +18,18 @@ export interface SidebarProps {
  * - Mobile: drawer that opens/closes
  * - Desktop: collapsible sidebar
  */
-export function Sidebar({
-  defaultOpen = false,
-  children,
-  className = "",
-  width = "250px",
-  mobileBreakpoint = 768,
-}: SidebarProps) {
+export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
+  (
+    {
+      defaultOpen = false,
+      children,
+      className = "",
+      width = "250px",
+      mobileBreakpoint = 768,
+      ...props
+    }: SidebarProps,
+    ref,
+  ) => {
   const isMobile = useSidebarStore((state) => state.isMobile);
   const isCollapsed = useSidebarStore((state) => state.isCollapsed);
   const mobileOpen = useSidebarStore((state) => state.mobileOpen);
@@ -55,19 +60,22 @@ export function Sidebar({
     return () => window.removeEventListener("resize", handleResize);
   }, [mobileBreakpoint, setIsMobile]);
 
-  return (
-    <div
-      className={clsx(
-        "sidebar",
-        isOpen ? "sidebar--expanded" : "sidebar--collapsed",
-        isMobile ? "sidebar--mobile" : "sidebar--desktop",
-        className
-      )}
-      style={{ "--sidebar-width": width } as React.CSSProperties}
-    >
-      <div className="sidebar__wrapper">{children}</div>
-    </div>
-  );
-}
+    return (
+      <div
+        ref={ref}
+        className={clsx(
+          "mp-sidebar",
+          isOpen ? "mp-sidebar--expanded" : "mp-sidebar--collapsed",
+          isMobile ? "mp-sidebar--mobile" : "mp-sidebar--desktop",
+          className,
+        )}
+        style={{ "--sidebar-width": width } as React.CSSProperties}
+        {...props}
+      >
+        <div className="mp-sidebar__wrapper">{children}</div>
+      </div>
+    );
+  },
+);
 
 Sidebar.displayName = "Sidebar";

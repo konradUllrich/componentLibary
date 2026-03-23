@@ -46,21 +46,18 @@ export interface AppLayoutProps {
  * </AppLayout>
  * ```
  */
-export function AppLayout({
-  header,
-  sidebar,
-  children,
-  className = "",
-}: AppLayoutProps) {
-  return (
-    <div className={clsx("app-layout", className)}>
-      {header && <div className="app-layout__header">{header}</div>}
-      <div className="app-layout__container">
-        {sidebar && <div className="app-layout__sidebar">{sidebar}</div>}
-        <main className="app-layout__main">{children}</main>
+export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
+  ({ header, sidebar, children, className = "" }: AppLayoutProps, ref) => {
+    return (
+      <div ref={ref} className={clsx("mp-app-layout", className)}>
+        {header && <div className="mp-app-layout__header">{header}</div>}
+        <div className="mp-app-layout__container">
+          {sidebar && <div className="mp-app-layout__sidebar">{sidebar}</div>}
+          <main className="mp-app-layout__main">{children}</main>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+);
 
 AppLayout.displayName = "AppLayout";

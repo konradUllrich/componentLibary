@@ -42,8 +42,8 @@ export const SidebarNav = React.forwardRef<HTMLDivElement, SidebarNavProps>(
       <nav
         ref={ref}
         className={clsx(
-          "sidebar__nav",
-          !isMobile && isCollapsed && "sidebar__nav--collapsed",
+          "mp-sidebar__nav",
+          !isMobile && isCollapsed && "mp-sidebar__nav--collapsed",
           className
         )}
         {...props}

@@ -79,15 +79,15 @@ export const HorizontalNavItem = React.forwardRef<
         ref={ref}
         href={href}
         className={clsx(
-          "horizontal-nav-item",
-          isActive && "horizontal-nav-item--active",
+          "mp-horizontal-nav-item",
+          isActive && "mp-horizontal-nav-item--active",
           className
         )}
         onClick={handleClick}
         {...props}
       >
-        {icon && <span className="horizontal-nav-item__icon">{icon}</span>}
-        <span className="horizontal-nav-item__label">{children}</span>
+        {icon && <span className="mp-horizontal-nav-item__icon">{icon}</span>}
+        <span className="mp-horizontal-nav-item__label">{children}</span>
       </a>
     );
   },

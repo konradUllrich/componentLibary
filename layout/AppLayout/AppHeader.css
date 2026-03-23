@@ -1,7 +1,7 @@
 /* App Header Styles */
 
 /* Block: App Header */
-.app-header {
+.mp-app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,14 +13,14 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .app-header {
+  .mp-app-header {
     height: 56px;
     padding: 0 var(--spacing-3);
   }
 }
 
 @media (max-width: 480px) {
-  .app-header {
+  .mp-app-header {
     height: 52px;
     padding: 0 var(--spacing-2);
   }

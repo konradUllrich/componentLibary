@@ -1,0 +1,9 @@
+/* PanelHeader Component Styles */
+
+.mp-panel__header {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}

@@ -110,10 +110,10 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
     if (isMobile) {
       return (
         <div
-          className={clsx("horizontal-nav", "horizontal-nav--mobile", className)}
+          className={clsx("mp-horizontal-nav", "mp-horizontal-nav--mobile", className)}
         >
           <select
-            className="horizontal-nav__select"
+            className="mp-horizontal-nav__select"
             value={activeValue}
             onChange={handleMobileChange}
           >
@@ -135,7 +135,7 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
     return (
       <nav
         ref={ref}
-        className={clsx("horizontal-nav", className)}
+        className={clsx("mp-horizontal-nav", className)}
         {...props}
       >
         {items.map((item) => (

@@ -90,15 +90,15 @@ export const SidebarSubItem = React.forwardRef<
         ref={ref}
         href={href}
         className={`
-          sidebar-subitem
-          ${isActive ? "sidebar-subitem--active" : ""}
+          mp-sidebar-subitem
+          ${isActive ? "mp-sidebar-subitem--active" : ""}
           ${className}
         `.trim()}
         onClick={handleClick}
         {...props}
       >
-        {icon && <span className="sidebar-subitem__icon">{icon}</span>}
-        <span className="sidebar-subitem__label">{displayLabel}</span>
+        {icon && <span className="mp-sidebar-subitem__icon">{icon}</span>}
+        <span className="mp-sidebar-subitem__label">{displayLabel}</span>
       </a>
     );
   },

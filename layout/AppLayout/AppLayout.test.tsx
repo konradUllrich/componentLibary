@@ -16,7 +16,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    // The component itself is the .app-layout element
+    // The component itself is the .mp-app-layout element
     await expect(component).toBeVisible();
   });
 
@@ -27,7 +27,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const main = component.locator('.app-layout__main');
+    const main = component.locator('.mp-app-layout__main');
     await expect(main).toBeVisible();
     await expect(main).toContainText('Test Content');
   });
@@ -39,7 +39,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const header = component.locator('.app-layout__header');
+    const header = component.locator('.mp-app-layout__header');
     await expect(header).toBeVisible();
     await expect(header).toContainText('Header Content');
   });
@@ -51,7 +51,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const header = component.locator('.app-layout__header');
+    const header = component.locator('.mp-app-layout__header');
     await expect(header).not.toBeAttached();
   });
 
@@ -62,7 +62,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const sidebar = component.locator('.app-layout__sidebar');
+    const sidebar = component.locator('.mp-app-layout__sidebar');
     await expect(sidebar).toBeVisible();
     await expect(sidebar).toContainText('Sidebar Content');
   });
@@ -74,7 +74,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const sidebar = component.locator('.app-layout__sidebar');
+    const sidebar = component.locator('.mp-app-layout__sidebar');
     await expect(sidebar).not.toBeAttached();
   });
 
@@ -88,15 +88,15 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const header = component.locator('.app-layout__header');
+    const header = component.locator('.mp-app-layout__header');
     await expect(header).toBeVisible();
     await expect(header).toContainText('Header');
     
-    const sidebar = component.locator('.app-layout__sidebar');
+    const sidebar = component.locator('.mp-app-layout__sidebar');
     await expect(sidebar).toBeVisible();
     await expect(sidebar).toContainText('Sidebar');
     
-    const main = component.locator('.app-layout__main');
+    const main = component.locator('.mp-app-layout__main');
     await expect(main).toBeVisible();
     await expect(main).toContainText('Main');
   });
@@ -108,8 +108,8 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    // The component itself is the .app-layout element
-    await expect(component).toHaveClass(/app-layout/);
+    // The component itself is the .mp-app-layout element
+    await expect(component).toHaveClass(/mp-app-layout/);
     await expect(component).toHaveClass(/custom-layout/);
   });
 
@@ -126,7 +126,7 @@ test.describe('AppLayout Component', () => {
     // Main content should use <main> element
     const main = component.locator('main');
     await expect(main).toBeAttached();
-    await expect(main).toHaveClass(/app-layout__main/);
+    await expect(main).toHaveClass(/mp-app-layout__main/);
   });
 
   test('should render container div for sidebar and main', async ({ mount }) => {
@@ -138,11 +138,11 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const container = component.locator('.app-layout__container');
+    const container = component.locator('.mp-app-layout__container');
     await expect(container).toBeVisible();
     
-    const sidebar = container.locator('.app-layout__sidebar');
-    const main = container.locator('.app-layout__main');
+    const sidebar = container.locator('.mp-app-layout__sidebar');
+    const main = container.locator('.mp-app-layout__main');
     
     await expect(sidebar).toBeVisible();
     await expect(main).toBeVisible();
@@ -167,7 +167,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const header = component.locator('.app-layout__header');
+    const header = component.locator('.mp-app-layout__header');
     await expect(header.locator('header')).toBeVisible();
     await expect(header.locator('nav')).toBeVisible();
     await expect(header.locator('li').nth(0)).toContainText('Logo');
@@ -190,7 +190,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const sidebar = component.locator('.app-layout__sidebar');
+    const sidebar = component.locator('.mp-app-layout__sidebar');
     await expect(sidebar.locator('nav')).toBeVisible();
     await expect(sidebar.locator('a').nth(0)).toHaveAttribute('href', '/');
     await expect(sidebar.locator('a').nth(1)).toHaveAttribute('href', '/about');
@@ -207,7 +207,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const main = component.locator('.app-layout__main');
+    const main = component.locator('.mp-app-layout__main');
     await expect(main.locator('article')).toBeVisible();
     await expect(main.locator('h1')).toContainText('Page Title');
     await expect(main.locator('p')).toContainText('Page content goes here');
@@ -265,7 +265,7 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const main = component.locator('.app-layout__main');
+    const main = component.locator('.mp-app-layout__main');
     await expect(main).toContainText('First Section');
     await expect(main).toContainText('Second Section');
     await expect(main).toContainText('Third Section');
@@ -278,13 +278,13 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const header = component.locator('.app-layout__header');
+    const header = component.locator('.mp-app-layout__header');
     await expect(header).toBeVisible();
     
-    const sidebar = component.locator('.app-layout__sidebar');
+    const sidebar = component.locator('.mp-app-layout__sidebar');
     await expect(sidebar).not.toBeAttached();
     
-    const main = component.locator('.app-layout__main');
+    const main = component.locator('.mp-app-layout__main');
     await expect(main).toBeVisible();
   });
 
@@ -295,13 +295,13 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    const header = component.locator('.app-layout__header');
+    const header = component.locator('.mp-app-layout__header');
     await expect(header).not.toBeAttached();
     
-    const sidebar = component.locator('.app-layout__sidebar');
+    const sidebar = component.locator('.mp-app-layout__sidebar');
     await expect(sidebar).toBeVisible();
     
-    const main = component.locator('.app-layout__main');
+    const main = component.locator('.mp-app-layout__main');
     await expect(main).toBeVisible();
   });
 
@@ -312,10 +312,10 @@ test.describe('AppLayout Component', () => {
       </AppLayout>
     );
     
-    // The component itself is the .app-layout element
+    // The component itself is the .mp-app-layout element
     await expect(component).toBeVisible();
     
-    const container = component.locator('.app-layout__container');
+    const container = component.locator('.mp-app-layout__container');
     await expect(container).toBeVisible();
   });
 

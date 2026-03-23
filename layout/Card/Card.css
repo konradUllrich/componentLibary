@@ -1,6 +1,6 @@
 /* Card Component Styles */
 
-.card {
+.mp-card {
   display: flex;
   flex-direction: column;
   background-color: var(--color-background);
@@ -10,36 +10,36 @@
 }
 
 /* Variants */
-.card--elevated {
+.mp-card--elevated {
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.1),
     0 1px 2px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--color-border);
 }
 
-.card--outlined {
+.mp-card--outlined {
   border: 1px solid var(--color-border);
   box-shadow: none;
 }
 
-.card--flat {
+.mp-card--flat {
   border: none;
   box-shadow: none;
 }
 
 /* Interactive State */
-.card--interactive {
+.mp-card--interactive {
   cursor: pointer;
 }
 
-.card--interactive:hover {
+.mp-card--interactive:hover {
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.15),
     0 2px 4px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
-.card--interactive:active {
+.mp-card--interactive:active {
   transform: translateY(0);
   box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.1),
@@ -47,154 +47,29 @@
 }
 
 /* Padding Variants - Applied to card itself for composability */
-.card--padding-none {
+.mp-card--padding-none {
   padding: 0;
 }
 
-.card--padding-sm {
+.mp-card--padding-sm {
   padding: var(--spacing-3);
 }
 
-.card--padding-md {
+.mp-card--padding-md {
   padding: var(--spacing-4);
 }
 
-.card--padding-lg {
+.mp-card--padding-lg {
   padding: var(--spacing-6);
-}
-
-/* Header */
-.card__header {
-  margin-top: calc(var(--spacing-4) * -1);
-  margin-left: calc(var(--spacing-4) * -1);
-  margin-right: calc(var(--spacing-4) * -1);
-  padding: var(--spacing-4);
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-background);
-  font-weight: var(--font-weight-semibold);
-}
-
-.card--padding-none .card__header {
-  margin: 0;
-  padding: var(--spacing-4);
-}
-
-.card--padding-sm .card__header {
-  margin-top: calc(var(--spacing-3) * -1);
-  margin-left: calc(var(--spacing-3) * -1);
-  margin-right: calc(var(--spacing-3) * -1);
-  padding: var(--spacing-3);
-}
-
-.card--padding-lg .card__header {
-  margin-top: calc(var(--spacing-6) * -1);
-  margin-left: calc(var(--spacing-6) * -1);
-  margin-right: calc(var(--spacing-6) * -1);
-  padding: var(--spacing-5) var(--spacing-6);
-}
-
-/* Content */
-.card__content {
-  flex: 1;
-  overflow: auto;
-  margin-left: calc(var(--spacing-4) * -1);
-  margin-right: calc(var(--spacing-4) * -1);
-  padding: var(--spacing-4);
-}
-
-.card--padding-none .card__content {
-  margin: 0;
-  padding: 0;
-}
-
-.card--padding-sm .card__content {
-  margin-left: calc(var(--spacing-3) * -1);
-  margin-right: calc(var(--spacing-3) * -1);
-  padding: var(--spacing-3);
-}
-
-.card--padding-lg .card__content {
-  margin-left: calc(var(--spacing-6) * -1);
-  margin-right: calc(var(--spacing-6) * -1);
-  padding: var(--spacing-6);
-}
-
-/* Footer */
-.card__footer {
-  margin-bottom: calc(var(--spacing-4) * -1);
-  margin-left: calc(var(--spacing-4) * -1);
-  margin-right: calc(var(--spacing-4) * -1);
-  padding: var(--spacing-4);
-  border-top: 1px solid var(--color-border);
-  background-color: var(--color-background-secondary);
-}
-
-.card--padding-none .card__footer {
-  margin: 0;
-  padding: var(--spacing-4);
-}
-
-.card--padding-sm .card__footer {
-  margin-bottom: calc(var(--spacing-3) * -1);
-  margin-left: calc(var(--spacing-3) * -1);
-  margin-right: calc(var(--spacing-3) * -1);
-  padding: var(--spacing-3);
-}
-
-.card--padding-lg .card__footer {
-  margin-bottom: calc(var(--spacing-6) * -1);
-  margin-left: calc(var(--spacing-6) * -1);
-  margin-right: calc(var(--spacing-6) * -1);
-  padding: var(--spacing-5) var(--spacing-6);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .card--padding-md {
+  .mp-card--padding-md {
     padding: var(--spacing-3);
   }
 
-  .card--padding-lg {
-    padding: var(--spacing-4);
-  }
-
-  .card--padding-md .card__header {
-    margin-top: calc(var(--spacing-3) * -1);
-    margin-left: calc(var(--spacing-3) * -1);
-    margin-right: calc(var(--spacing-3) * -1);
-    padding: var(--spacing-3);
-  }
-
-  .card--padding-md .card__content {
-    margin-left: calc(var(--spacing-3) * -1);
-    margin-right: calc(var(--spacing-3) * -1);
-    padding: var(--spacing-3);
-  }
-
-  .card--padding-md .card__footer {
-    margin-bottom: calc(var(--spacing-3) * -1);
-    margin-left: calc(var(--spacing-3) * -1);
-    margin-right: calc(var(--spacing-3) * -1);
-    padding: var(--spacing-3);
-  }
-
-  .card--padding-lg .card__header {
-    margin-top: calc(var(--spacing-4) * -1);
-    margin-left: calc(var(--spacing-4) * -1);
-    margin-right: calc(var(--spacing-4) * -1);
-    padding: var(--spacing-4);
-  }
-
-  .card--padding-lg .card__content {
-    margin-left: calc(var(--spacing-4) * -1);
-    margin-right: calc(var(--spacing-4) * -1);
-    padding: var(--spacing-4);
-  }
-
-  .card--padding-lg .card__footer {
-    margin-bottom: calc(var(--spacing-4) * -1);
-    margin-left: calc(var(--spacing-4) * -1);
-    margin-right: calc(var(--spacing-4) * -1);
+  .mp-card--padding-lg {
     padding: var(--spacing-4);
   }
 }

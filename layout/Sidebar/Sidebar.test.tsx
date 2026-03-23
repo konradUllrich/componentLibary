@@ -32,7 +32,7 @@ test.describe('Sidebar Component', () => {
     
     // The Sidebar component itself is the .sidebar element
     await expect(component).toBeVisible();
-    await expect(component).toHaveClass(/sidebar/);
+    await expect(component).toHaveClass(/mp-sidebar/);
   });
 
   test('should render children', async ({ mount }) => {
@@ -56,7 +56,7 @@ test.describe('Sidebar Component', () => {
     );
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar--collapsed/);
+    await expect(component).toHaveClass(/mp-sidebar--collapsed/);
   });
 
   test('should apply expanded class when not collapsed', async ({ mount }) => {
@@ -72,7 +72,7 @@ test.describe('Sidebar Component', () => {
     await component.waitFor();
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar--expanded/);
+    await expect(component).toHaveClass(/mp-sidebar--expanded/);
   });
 
   test('should apply mobile class when in mobile mode', async ({ mount, page }) => {
@@ -88,7 +88,7 @@ test.describe('Sidebar Component', () => {
     );
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar--mobile/);
+    await expect(component).toHaveClass(/mp-sidebar--mobile/);
   });
 
   test('should apply desktop class when in desktop mode', async ({ mount, page }) => {
@@ -104,7 +104,7 @@ test.describe('Sidebar Component', () => {
     );
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar--desktop/);
+    await expect(component).toHaveClass(/mp-sidebar--desktop/);
   });
 
   test('should support custom className', async ({ mount }) => {
@@ -115,7 +115,7 @@ test.describe('Sidebar Component', () => {
     );
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar/);
+    await expect(component).toHaveClass(/mp-sidebar/);
     await expect(component).toHaveClass(/custom-sidebar/);
   });
 
@@ -139,7 +139,7 @@ test.describe('Sidebar Component', () => {
       </Sidebar>
     );
     
-    const wrapper = component.locator('.sidebar__wrapper');
+    const wrapper = component.locator('.mp-sidebar__wrapper');
     await expect(wrapper).toBeVisible();
   });
 
@@ -155,7 +155,7 @@ test.describe('Sidebar Component', () => {
     
     // The component itself is the .sidebar element
     // After initialization, should be expanded in desktop mode
-    await expect(component).toHaveClass(/sidebar--expanded/);
+    await expect(component).toHaveClass(/mp-sidebar--expanded/);
   });
 
   test('should render with complex content', async ({ mount }) => {
@@ -224,8 +224,8 @@ test.describe('Sidebar Component', () => {
     await page.waitForTimeout(500);
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar--expanded/);
-    await expect(component).toHaveClass(/sidebar--mobile/);
+    await expect(component).toHaveClass(/mp-sidebar--expanded/);
+    await expect(component).toHaveClass(/mp-sidebar--mobile/);
   });
 
   test('should render in mobile closed state', async ({ mount, page }) => {
@@ -241,8 +241,8 @@ test.describe('Sidebar Component', () => {
     );
     
     // The component itself is the .sidebar element
-    await expect(component).toHaveClass(/sidebar--collapsed/);
-    await expect(component).toHaveClass(/sidebar--mobile/);
+    await expect(component).toHaveClass(/mp-sidebar--collapsed/);
+    await expect(component).toHaveClass(/mp-sidebar--mobile/);
   });
 
   // Note: Testing window resize behavior and Zustand store interactions requires

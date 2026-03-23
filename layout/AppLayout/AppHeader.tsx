@@ -31,7 +31,7 @@ export interface AppHeaderProps extends React.HTMLAttributes<HTMLHeadElement> {
  */
 export const AppHeader = React.forwardRef<HTMLHeadElement, AppHeaderProps>(
   ({ className = "", children, ...props }: AppHeaderProps, ref) => (
-    <header ref={ref} className={clsx("app-header", className)} {...props}>
+    <header ref={ref} className={clsx("mp-app-header", className)} {...props}>
       {children}
     </header>
   ),

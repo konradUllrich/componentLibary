@@ -10,22 +10,22 @@ test.describe("Page", () => {
 
   test("should apply default lg max-width class", async ({ mount }) => {
     const component = await mount(<Page>Content</Page>);
-    await expect(component).toHaveClass(/page--lg/);
+    await expect(component).toHaveClass(/mp-page--lg/);
   });
 
   test("should apply sm max-width variant", async ({ mount }) => {
     const component = await mount(<Page maxWidth="sm">Content</Page>);
-    await expect(component).toHaveClass(/page--sm/);
+    await expect(component).toHaveClass(/mp-page--sm/);
   });
 
   test("should apply xl max-width variant", async ({ mount }) => {
     const component = await mount(<Page maxWidth="xl">Content</Page>);
-    await expect(component).toHaveClass(/page--xl/);
+    await expect(component).toHaveClass(/mp-page--xl/);
   });
 
   test("should apply full max-width variant", async ({ mount }) => {
     const component = await mount(<Page maxWidth="full">Content</Page>);
-    await expect(component).toHaveClass(/page--full/);
+    await expect(component).toHaveClass(/mp-page--full/);
   });
 
   test("should forward additional props", async ({ mount }) => {
@@ -40,6 +40,6 @@ test.describe("Page", () => {
       <Page className="custom-class">Content</Page>,
     );
     await expect(component).toHaveClass(/custom-class/);
-    await expect(component).toHaveClass(/page/);
+    await expect(component).toHaveClass(/mp-page/);
   });
 });

@@ -56,7 +56,7 @@ export const SidebarMobileToggle = React.forwardRef<
     return (
       <button
         ref={ref}
-        className={clsx("sidebar__mobile-toggle", className)}
+        className={clsx("mp-sidebar__mobile-toggle", className)}
         onClick={handleClick}
         aria-expanded={mobileOpen}
         aria-label={ariaLabel || "Toggle mobile menu"}

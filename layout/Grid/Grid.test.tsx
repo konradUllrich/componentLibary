@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import { Grid } from "./Grid";
 import { GridItem } from "./GridItem";
+import { checkA11y } from "../../playwright/test-utils";
 
 test.describe("Grid", () => {
   test("should render children", async ({ mount }) => {
@@ -16,27 +17,27 @@ test.describe("Grid", () => {
 
   test("should apply preset column class", async ({ mount }) => {
     const component = await mount(<Grid columns="3">content</Grid>);
-    await expect(component).toHaveClass(/grid--cols-3/);
+    await expect(component).toHaveClass(/mp-grid--cols-3/);
   });
 
-  test("should apply grid--cols-2 class", async ({ mount }) => {
+  test("should apply mp-grid--cols-2 class", async ({ mount }) => {
     const component = await mount(<Grid columns="2">content</Grid>);
-    await expect(component).toHaveClass(/grid--cols-2/);
+    await expect(component).toHaveClass(/mp-grid--cols-2/);
   });
 
-  test("should apply grid--cols-4 class", async ({ mount }) => {
+  test("should apply mp-grid--cols-4 class", async ({ mount }) => {
     const component = await mount(<Grid columns="4">content</Grid>);
-    await expect(component).toHaveClass(/grid--cols-4/);
+    await expect(component).toHaveClass(/mp-grid--cols-4/);
   });
 
-  test("should apply grid--cols-6 class", async ({ mount }) => {
+  test("should apply mp-grid--cols-6 class", async ({ mount }) => {
     const component = await mount(<Grid columns="6">content</Grid>);
-    await expect(component).toHaveClass(/grid--cols-6/);
+    await expect(component).toHaveClass(/mp-grid--cols-6/);
   });
 
-  test("should apply grid--cols-12 class", async ({ mount }) => {
+  test("should apply mp-grid--cols-12 class", async ({ mount }) => {
     const component = await mount(<Grid columns="12">content</Grid>);
-    await expect(component).toHaveClass(/grid--cols-12/);
+    await expect(component).toHaveClass(/mp-grid--cols-12/);
   });
 
   test("should apply custom columns as inline style without preset class", async ({
@@ -45,28 +46,28 @@ test.describe("Grid", () => {
     const component = await mount(
       <Grid columns="repeat(auto-fill, minmax(200px, 1fr))">content</Grid>,
     );
-    await expect(component).not.toHaveClass(/grid--cols/);
+    await expect(component).not.toHaveClass(/mp-grid--cols/);
     // computed value will be resolved pixel widths – just assert no preset class was added
   });
 
   test("should apply gap preset class", async ({ mount }) => {
     const component = await mount(<Grid gap="md">content</Grid>);
-    await expect(component).toHaveClass(/grid--gap-md/);
+    await expect(component).toHaveClass(/mp-grid--gap-md/);
   });
 
   test("should apply align-items class", async ({ mount }) => {
     const component = await mount(<Grid align="center">content</Grid>);
-    await expect(component).toHaveClass(/grid--align-center/);
+    await expect(component).toHaveClass(/mp-grid--align-center/);
   });
 
   test("should apply justify-items class", async ({ mount }) => {
     const component = await mount(<Grid justify="end">content</Grid>);
-    await expect(component).toHaveClass(/grid--justify-end/);
+    await expect(component).toHaveClass(/mp-grid--justify-end/);
   });
 
   test("should apply flow class for column flow", async ({ mount }) => {
     const component = await mount(<Grid flow="column">content</Grid>);
-    await expect(component).toHaveClass(/grid--flow-column/);
+    await expect(component).toHaveClass(/mp-grid--flow-column/);
   });
 
   test("should apply separate column and row gap classes", async ({
@@ -77,8 +78,8 @@ test.describe("Grid", () => {
         content
       </Grid>,
     );
-    await expect(component).toHaveClass(/grid--col-gap-sm/);
-    await expect(component).toHaveClass(/grid--row-gap-xl/);
+    await expect(component).toHaveClass(/mp-grid--col-gap-sm/);
+    await expect(component).toHaveClass(/mp-grid--row-gap-xl/);
   });
 
   test("should forward ref", async ({ mount }) => {
@@ -89,7 +90,7 @@ test.describe("Grid", () => {
   test("should merge custom className", async ({ mount }) => {
     const component = await mount(<Grid className="my-grid">content</Grid>);
     await expect(component).toHaveClass(/my-grid/);
-    await expect(component).toHaveClass(/grid/);
+    await expect(component).toHaveClass(/mp-grid/);
   });
 
   test("should spread additional HTML attributes", async ({ mount }) => {
@@ -103,7 +104,7 @@ test.describe("Grid", () => {
         content
       </Grid>,
     );
-    await expect(component).toHaveClass(/grid--sm-cols-2/);
+    await expect(component).toHaveClass(/mp-grid--sm-cols-2/);
   });
 
   test("should apply columnsMd preset class", async ({ mount }) => {
@@ -112,7 +113,7 @@ test.describe("Grid", () => {
         content
       </Grid>,
     );
-    await expect(component).toHaveClass(/grid--md-cols-3/);
+    await expect(component).toHaveClass(/mp-grid--md-cols-3/);
   });
 
   test("should apply columnsLg preset class", async ({ mount }) => {
@@ -121,7 +122,7 @@ test.describe("Grid", () => {
         content
       </Grid>,
     );
-    await expect(component).toHaveClass(/grid--lg-cols-4/);
+    await expect(component).toHaveClass(/mp-grid--lg-cols-4/);
   });
 
   test("should apply columnsXl preset class", async ({ mount }) => {
@@ -130,7 +131,7 @@ test.describe("Grid", () => {
         content
       </Grid>,
     );
-    await expect(component).toHaveClass(/grid--xl-cols-6/);
+    await expect(component).toHaveClass(/mp-grid--xl-cols-6/);
   });
 
   test("should apply custom columnsMd as CSS variable and custom class", async ({
@@ -139,7 +140,7 @@ test.describe("Grid", () => {
     const component = await mount(
       <Grid columnsMd="repeat(auto-fill, minmax(200px, 1fr))">content</Grid>,
     );
-    await expect(component).toHaveClass(/grid--md-cols-custom/);
+    await expect(component).toHaveClass(/mp-grid--md-cols-custom/);
   });
 
   test("should apply all responsive column classes together", async ({
@@ -150,11 +151,11 @@ test.describe("Grid", () => {
         content
       </Grid>,
     );
-    await expect(component).toHaveClass(/grid--cols-1/);
-    await expect(component).toHaveClass(/grid--sm-cols-2/);
-    await expect(component).toHaveClass(/grid--md-cols-3/);
-    await expect(component).toHaveClass(/grid--lg-cols-4/);
-    await expect(component).toHaveClass(/grid--xl-cols-6/);
+    await expect(component).toHaveClass(/mp-grid--cols-1/);
+    await expect(component).toHaveClass(/mp-grid--sm-cols-2/);
+    await expect(component).toHaveClass(/mp-grid--md-cols-3/);
+    await expect(component).toHaveClass(/mp-grid--lg-cols-4/);
+    await expect(component).toHaveClass(/mp-grid--xl-cols-6/);
   });
 });
 
@@ -166,19 +167,19 @@ test.describe("GridItem", () => {
 
   test("should apply preset col-span class", async ({ mount }) => {
     const component = await mount(<GridItem colSpan={3}>span 3</GridItem>);
-    await expect(component).toHaveClass(/grid-item--col-span-3/);
+    await expect(component).toHaveClass(/mp-grid-item--col-span-3/);
   });
 
   test("should apply full col-span class", async ({ mount }) => {
     const component = await mount(
       <GridItem colSpan="full">full width</GridItem>,
     );
-    await expect(component).toHaveClass(/grid-item--col-span-full/);
+    await expect(component).toHaveClass(/mp-grid-item--col-span-full/);
   });
 
   test("should apply preset row-span class", async ({ mount }) => {
     const component = await mount(<GridItem rowSpan={2}>span 2</GridItem>);
-    await expect(component).toHaveClass(/grid-item--row-span-2/);
+    await expect(component).toHaveClass(/mp-grid-item--row-span-2/);
   });
 
   test("should apply colStart as inline style", async ({ mount }) => {
@@ -198,7 +199,7 @@ test.describe("GridItem", () => {
       <GridItem className="custom-cell">content</GridItem>,
     );
     await expect(component).toHaveClass(/custom-cell/);
-    await expect(component).toHaveClass(/grid-item/);
+    await expect(component).toHaveClass(/mp-grid-item/);
   });
 
   test("should compose Grid and GridItem together", async ({ mount, page }) => {
@@ -214,9 +215,69 @@ test.describe("GridItem", () => {
     );
     await expect(page.getByTestId("main")).toBeVisible();
     await expect(page.getByTestId("sidebar")).toBeVisible();
-    await expect(page.getByTestId("main")).toHaveClass(/grid-item--col-span-8/);
+    await expect(page.getByTestId("main")).toHaveClass(/mp-grid-item--col-span-8/);
     await expect(page.getByTestId("sidebar")).toHaveClass(
-      /grid-item--col-span-4/,
+      /mp-grid-item--col-span-4/,
     );
+  });
+});
+
+test.describe("Grid Accessibility", () => {
+  test("should pass accessibility checks", async ({ mount, page }) => {
+    await mount(
+      <Grid columns="3" gap="md" aria-label="Image gallery">
+        <div>Cell 1</div>
+        <div>Cell 2</div>
+        <div>Cell 3</div>
+      </Grid>,
+    );
+
+    await checkA11y(page);
+  });
+
+  test("should pass accessibility checks with GridItem", async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      <Grid columns="12" gap="md">
+        <GridItem colSpan={8}>
+          <main>Main content</main>
+        </GridItem>
+        <GridItem colSpan={4}>
+          <aside>Sidebar</aside>
+        </GridItem>
+      </Grid>,
+    );
+
+    await checkA11y(page);
+  });
+});
+
+test.describe("Grid Empty and Edge States", () => {
+  test("should render empty grid without errors", async ({ mount }) => {
+    const component = await mount(<Grid columns="3" />);
+
+    await expect(component).toBeAttached();
+    await expect(component).toHaveClass(/mp-grid/);
+  });
+
+  test("should render grid with a single cell", async ({ mount }) => {
+    const component = await mount(
+      <Grid columns="3">
+        <div>Only cell</div>
+      </Grid>,
+    );
+
+    await expect(component.getByText("Only cell")).toBeVisible();
+  });
+
+  test("should render GridItem outside grid without errors", async ({
+    mount,
+  }) => {
+    const component = await mount(<GridItem colSpan={2}>Orphan cell</GridItem>);
+
+    await expect(component).toBeVisible();
+    await expect(component.getByText("Orphan cell")).toBeVisible();
   });
 });
