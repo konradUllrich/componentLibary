@@ -2,7 +2,9 @@ import type { FC, PropsWithChildren } from "react";
 import { Router as WRouter } from "wouter";
 import { useAppRouteLocation, useAppRouteSearch } from "./appRouteLocation";
 
-export { Route, Link } from "wouter";
+export { Route } from "wouter";
+export { Link } from "./Link";
+export type { LinkProps } from "./Link";
 
 /**
  * Router – param-based application router built on top of wouter.
