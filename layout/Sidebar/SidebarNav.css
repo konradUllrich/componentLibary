@@ -4,6 +4,7 @@
 .mp-sidebar__nav {
   display: flex;
   flex-direction: column;
+
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -19,6 +20,7 @@
 
 .mp-sidebar__nav--collapsed {
   width: var(--sidebar-width-collapsed);
+  align-items: center;
 }
 
 /* Responsive adjustments */

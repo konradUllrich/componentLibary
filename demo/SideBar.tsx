@@ -3,7 +3,6 @@ import {
   SidebarToggle,
   SidebarNav,
   SidebarItem,
-  SidebarSubItem,
   SidebarDivider,
 } from "../layout";
 import { Text } from "../common";
@@ -216,7 +215,7 @@ export const DemoSideBar = () => {
         <SidebarDivider label="Components" />
         <SidebarItem label="Common" icon={<Sparkles size={18} />}>
           {SIDEBAR_ELEMENTS.components.common.map((component) => (
-            <SidebarSubItem
+            <SidebarItem
               key={component.name}
               label={component.name}
               icon={component.icon}
@@ -230,7 +229,7 @@ export const DemoSideBar = () => {
         </SidebarItem>
         <SidebarItem label="Controls" icon={<Settings size={18} />}>
           {SIDEBAR_ELEMENTS.components.controls.map((component) => (
-            <SidebarSubItem
+            <SidebarItem
               key={component.name}
               label={component.name}
               icon={component.icon}
@@ -244,7 +243,7 @@ export const DemoSideBar = () => {
         </SidebarItem>
         <SidebarItem label="Data Display" icon={<Database size={18} />}>
           {SIDEBAR_ELEMENTS.components.dataDisplay.map((component) => (
-            <SidebarSubItem
+            <SidebarItem
               key={component.name}
               label={component.name}
               icon={component.icon}
@@ -258,7 +257,7 @@ export const DemoSideBar = () => {
         </SidebarItem>
         <SidebarItem label="Layout" icon={<Layout size={18} />}>
           {SIDEBAR_ELEMENTS.components.layout.map((component) => (
-            <SidebarSubItem
+            <SidebarItem
               key={component.name}
               label={component.name}
               icon={component.icon}
@@ -272,7 +271,7 @@ export const DemoSideBar = () => {
         </SidebarItem>
         <SidebarItem label="Intrexx" icon={<GitBranch size={18} />}>
           {SIDEBAR_ELEMENTS.components.intrexx.map((component) => (
-            <SidebarSubItem
+            <SidebarItem
               key={component.name}
               label={component.name}
               icon={component.icon}

@@ -49,5 +49,4 @@ import "../layout/Sidebar/SidebarDivider.css";
 import "../layout/Sidebar/SidebarItem.css";
 import "../layout/Sidebar/SidebarMobileToggle.css";
 import "../layout/Sidebar/SidebarNav.css";
-import "../layout/Sidebar/SidebarSubItem.css";
 import "../layout/Sidebar/SidebarToggle.css";

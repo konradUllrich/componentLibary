@@ -116,6 +116,7 @@
   justify-content: center;
   padding: var(--spacing-2);
   width: auto;
+  width: var(--sidebar-item-height);
   min-width: var(--sidebar-item-height);
 }
 

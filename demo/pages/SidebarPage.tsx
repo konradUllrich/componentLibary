@@ -4,7 +4,6 @@ import {
   SidebarToggle,
   SidebarNav,
   SidebarItem,
-  SidebarSubItem,
   Page,
   Section,
 } from "../../layout";
@@ -73,8 +72,8 @@ export const SidebarPage: React.FC = () => {
               <SidebarNav>
                 <SidebarItem label="Dashboard" icon="📊" isActive />
                 <SidebarItem label="Users" icon="👥">
-                  <SidebarSubItem label="All Users" href="#all" />
-                  <SidebarSubItem label="Add User" href="#add" />
+                  <SidebarItem label="All Users" href="#all" />
+                  <SidebarItem label="Add User" href="#add" />
                 </SidebarItem>
                 <SidebarItem label="Settings" icon="⚙️" />
                 <SidebarItem label="Help" icon="❓" />
@@ -93,8 +92,7 @@ export const SidebarPage: React.FC = () => {
   Sidebar, 
   SidebarToggle, 
   SidebarNav, 
-  SidebarItem, 
-  SidebarSubItem 
+  SidebarItem 
 } from '@konradullrich/mp-components';
 
 <Sidebar defaultOpen={true} width="250px">
@@ -106,8 +104,8 @@ export const SidebarPage: React.FC = () => {
       isActive 
     />
     <SidebarItem label="Users" icon="👥">
-      <SidebarSubItem label="All Users" href="/users" />
-      <SidebarSubItem label="Add User" href="/users/add" />
+      <SidebarItem label="All Users" href="/users" />
+      <SidebarItem label="Add User" href="/users/add" />
     </SidebarItem>
     <SidebarItem label="Settings" icon="⚙️" />
   </SidebarNav>

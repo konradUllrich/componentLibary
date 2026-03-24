@@ -15,7 +15,7 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   label?: string;
 
   /**
-   * Item content - can be text label or nested SidebarSubItem components
+   * Item content - can be text label or nested SidebarItem components
    */
   children?: React.ReactNode;
 
@@ -97,7 +97,7 @@ export const SidebarItem = React.forwardRef<
       return null;
     }
 
-    // Check if children contains React components (nested items like SidebarSubItem)
+    // Check if children contains React components (nested items)
     const hasChildrenItems =
       React.Children.count(children) > 0 &&
       React.Children.toArray(children).some(

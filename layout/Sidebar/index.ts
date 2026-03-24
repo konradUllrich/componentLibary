@@ -6,6 +6,5 @@ export {
 } from "./SidebarMobileToggle";
 export { SidebarNav, type SidebarNavProps } from "./SidebarNav";
 export { SidebarItem, type SidebarItemProps } from "./SidebarItem";
-export { SidebarSubItem, type SidebarSubItemProps } from "./SidebarSubItem";
 export { SidebarDivider, type SidebarDividerProps } from "./SidebarDivider";
 export { useSidebar } from "./useSidebar";

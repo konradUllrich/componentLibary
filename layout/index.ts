@@ -4,7 +4,6 @@ export {
   SidebarMobileToggle,
   SidebarNav,
   SidebarItem,
-  SidebarSubItem,
   SidebarDivider,
   useSidebar,
   type SidebarProps,
@@ -12,7 +11,6 @@ export {
   type SidebarMobileToggleProps,
   type SidebarNavProps,
   type SidebarItemProps,
-  type SidebarSubItemProps,
   type SidebarDividerProps,
 } from "./Sidebar";
 
@@ -27,7 +25,14 @@ export {
   type AppMainProps,
 } from "./AppLayout";
 
-export { Panel, PanelHeader, PanelBody, type PanelProps, type PanelHeaderProps, type PanelBodyProps } from "./Panel";
+export {
+  Panel,
+  PanelHeader,
+  PanelBody,
+  type PanelProps,
+  type PanelHeaderProps,
+  type PanelBodyProps,
+} from "./Panel";
 
 export {
   Card,
