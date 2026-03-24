@@ -4,7 +4,7 @@ export type PaginationStore = {
     page: number;
     pageSize: number;
     totalItems: number;
-    totalPages: number;
+    totalPages: number | null;
     hasNext: boolean;
     hasPrevious: boolean;
     setPage: (page: number) => void;
@@ -21,7 +21,7 @@ export function createPaginationStore(defaultPageSize = 10) {
             const { page, totalPages } = { ...get(), ...state };
             return {
                 ...state,
-                hasNext: page < totalPages,
+                hasNext: totalPages === null ? true : page < totalPages,
                 hasPrevious: page > 1,
             };
         };
@@ -30,23 +30,26 @@ export function createPaginationStore(defaultPageSize = 10) {
             page: 1,
             pageSize: defaultPageSize,
             totalItems: 0,
-            totalPages: 0,
-            hasNext: false,
+            totalPages: null,
+            hasNext: true,
             hasPrevious: false,
 
             setPage: (page) =>
                 set((state) => {
-                    const newPage = Math.max(1, Math.min(page, state.totalPages || 1));
+                    const newPage =
+                        state.totalPages === null
+                            ? Math.max(1, page) // no upper clamp when unknown
+                            : Math.max(1, Math.min(page, state.totalPages));
                     return recalc({ page: newPage });
                 }),
 
             nextPage: () =>
                 set((state) => {
-                    const newPage = Math.min(
-                        state.page + 1,
-                        state.totalPages || state.page
-                    );
-                    return recalc({ page: newPage });
+                    const newPage =
+                        state.totalPages === null
+                            ? state.page + 1
+                            : Math.min(state.page + 1, state.totalPages);
+                    return recalc({ page: Math.max(1, newPage) });
                 }),
 
             prevPage: () =>
@@ -57,7 +60,10 @@ export function createPaginationStore(defaultPageSize = 10) {
 
             setPageSize: (size) =>
                 set((state) => {
-                    const totalPages = Math.ceil(state.totalItems / size);
+                    const totalPages =
+                        state.totalPages !== null
+                            ? Math.ceil(state.totalItems / size)
+                            : null;
                     return recalc({
                         pageSize: size,
                         totalPages,
@@ -68,7 +74,7 @@ export function createPaginationStore(defaultPageSize = 10) {
             setTotalItems: (count) =>
                 set((state) => {
                     const totalPages = Math.ceil(count / state.pageSize);
-                    const newPage = Math.min(state.page, totalPages || 1);
+                    const newPage = Math.max(1, Math.min(state.page, totalPages || 1));
                     return recalc({
                         totalItems: count,
                         totalPages,
@@ -82,7 +88,7 @@ export function createPaginationStore(defaultPageSize = 10) {
                         page: 1,
                         pageSize: defaultPageSize,
                         totalItems: 0,
-                        totalPages: 0,
+                        totalPages: null,
                     })
                 ),
         };

@@ -36,40 +36,42 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       setPageSize,
     } = store();
 
+    const effectiveTotalPages = totalPages ?? 0;
+
     const startItem = (page - 1) * pageSize + 1;
     const endItem = Math.min(page * pageSize, totalItems);
 
     const getPageNumbers = (): (number | string)[] => {
-      // For small page counts, show all pages (count = totalPages, always fixed)
-      if (totalPages <= 7) {
-        return Array.from({ length: totalPages }, (_, i) => i + 1);
+      // For small page counts, show all pages (count = effectiveTotalPages, always fixed)
+      if (effectiveTotalPages <= 7) {
+        return Array.from({ length: effectiveTotalPages }, (_, i) => i + 1);
       }
 
       // For larger page counts, always return exactly 7 items to prevent
       // layout shifts and flickering while navigating between pages.
       if (page <= 4) {
         // Near start: [1, 2, 3, 4, 5, ..., N]
-        return [1, 2, 3, 4, 5, "...", totalPages];
+        return [1, 2, 3, 4, 5, "...", effectiveTotalPages];
       }
 
-      if (page >= totalPages - 3) {
+      if (page >= effectiveTotalPages - 3) {
         // Near end: [1, ..., N-4, N-3, N-2, N-1, N]
         return [
           1,
           "...",
-          totalPages - 4,
-          totalPages - 3,
-          totalPages - 2,
-          totalPages - 1,
-          totalPages,
+          effectiveTotalPages - 4,
+          effectiveTotalPages - 3,
+          effectiveTotalPages - 2,
+          effectiveTotalPages - 1,
+          effectiveTotalPages,
         ];
       }
 
       // Middle: [1, ..., p-1, p, p+1, ..., N]
-      return [1, "...", page - 1, page, page + 1, "...", totalPages];
+      return [1, "...", page - 1, page, page + 1, "...", effectiveTotalPages];
     };
 
-    if (totalPages <= 1 && !showSizeSelector) return null;
+    if (effectiveTotalPages <= 1 && !showSizeSelector) return null;
 
     return (
       <div ref={ref} className={clsx("pagination", className)}>
@@ -97,7 +99,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           )}
         </div>
 
-        {totalPages > 1 && (
+        {effectiveTotalPages > 1 && (
           <div className="pagination__controls">
             <button
               onClick={() => setPage(1)}
@@ -142,7 +144,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               ›
             </button>
             <button
-              onClick={() => setPage(totalPages)}
+              onClick={() => setPage(effectiveTotalPages)}
               disabled={!hasNext}
               className="pagination-button pagination-button--last"
               title="Last page"
