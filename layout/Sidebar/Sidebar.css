@@ -23,7 +23,8 @@
   background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
   border-right: 1px solid var(--color-border-light);
   transition: width var(--duration-300) var(--ease-in-out);
-  gap: var(--spacing-2);
+  /* gap: var(--spacing-1); */
+  padding-top: var(--spacing-2);
   overflow-y: auto;
   overflow-x: hidden;
   flex-shrink: 0;
