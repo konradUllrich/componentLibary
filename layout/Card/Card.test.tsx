@@ -386,4 +386,80 @@ test.describe('Card Component', () => {
       await expect(component.locator('.mp-card--interactive')).toBeVisible();
     });
   });
+
+  test.describe('Card as Link', () => {
+    test('should render as <a> when href is provided', async ({ mount }) => {
+      const component = await mount(
+        <Card href="/details">
+          <CardContent>Link card</CardContent>
+        </Card>
+      );
+
+      const tagName = await component.evaluate(el => el.tagName.toLowerCase());
+      expect(tagName).toBe('a');
+    });
+
+    test('should have href attribute set correctly', async ({ mount }) => {
+      const component = await mount(
+        <Card href="/profile">
+          <CardContent>Profile</CardContent>
+        </Card>
+      );
+
+      await expect(component).toHaveAttribute('href', '/profile');
+    });
+
+    test('should apply mp-card--link and mp-card--interactive classes', async ({ mount }) => {
+      const component = await mount(
+        <Card href="/details">
+          <CardContent>Link card</CardContent>
+        </Card>
+      );
+
+      await expect(component).toHaveClass(/mp-card--link/);
+      await expect(component).toHaveClass(/mp-card--interactive/);
+    });
+
+    test('should set rel="noopener noreferrer" automatically when target="_blank"', async ({ mount }) => {
+      const component = await mount(
+        <Card href="https://example.com" target="_blank">
+          <CardContent>External link</CardContent>
+        </Card>
+      );
+
+      await expect(component).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+
+    test('should respect explicitly provided rel prop', async ({ mount }) => {
+      const component = await mount(
+        <Card href="https://example.com" target="_blank" rel="noopener">
+          <CardContent>Custom rel</CardContent>
+        </Card>
+      );
+
+      await expect(component).toHaveAttribute('rel', 'noopener');
+    });
+
+    test('should be keyboard focusable via Tab navigation', async ({ mount, page }) => {
+      await mount(
+        <Card href="/details">
+          <CardContent>Focusable link card</CardContent>
+        </Card>
+      );
+
+      await page.keyboard.press('Tab');
+      const card = page.locator('.mp-card--link');
+      await expect(card).toBeFocused();
+    });
+
+    test('should pass accessibility checks', async ({ mount, page }) => {
+      await mount(
+        <Card href="/details" aria-label="View details">
+          <CardContent>Accessible link card</CardContent>
+        </Card>
+      );
+
+      await checkA11y(page);
+    });
+  });
 });
