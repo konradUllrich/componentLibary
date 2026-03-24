@@ -193,7 +193,7 @@ export type { SortableTreeHandle } from "./intrexx";
 // ========================================
 // Router
 // ========================================
-export { Router, Route, Link } from "./Router";
+export { Router, Route, Link, Switch } from "./Router";
 
 export {
   useSearch,
