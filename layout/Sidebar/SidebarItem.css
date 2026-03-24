@@ -14,6 +14,7 @@
   transition: all var(--duration-200) var(--ease-in-out);
   cursor: pointer;
   text-align: left;
+  margin: 0 var(--spacing-2);
   /* Reset anchor tag defaults */
   background: transparent;
   border: none;
@@ -23,6 +24,10 @@
   font-family: inherit;
   line-height: inherit;
   letter-spacing: inherit;
+}
+
+.mp-sidebar__nav--collapsed .mp-sidebar-item {
+  margin: 0 auto;
 }
 
 .mp-sidebar-item[href] {
@@ -135,12 +140,16 @@
 
 /* Modifier: Nested container */
 .mp-sidebar-item--nested {
-  border-left: 3px solid var(--color-primary);
-  /* margin-top: var(--spacing-1);
-  margin-bottom: var(--spacing-2); */
-  padding-left: 0;
-  transform: translateX(-4px);
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-1);
+  border-left: 4px solid var(--color-primary);
+
+  /* transform: translateX(-6px); */
   background-color: var(--color-gray-100);
+
+  width: 100%;
 }
 
 .mp-sidebar-item--nested .mp-sidebar-item {
