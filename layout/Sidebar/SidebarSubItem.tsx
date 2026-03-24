@@ -35,6 +35,12 @@ export interface SidebarSubItemProps extends React.AnchorHTMLAttributes<HTMLAnch
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 
   /**
+   * Whether to show the sub-item
+   * @default true
+   */
+  show?: boolean;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -71,6 +77,7 @@ export const SidebarSubItem = React.forwardRef<
       isActive = false,
       icon,
       onClick,
+      show = true,
       className = "",
       ...props
     }: SidebarSubItemProps,
@@ -78,13 +85,16 @@ export const SidebarSubItem = React.forwardRef<
   ) => {
     const displayLabel = label || children;
     const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
-    
+    if (!show) {
+      return null;
+    }
+
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       // Close mobile sidebar when navigating
       setMobileOpen(false);
       onClick?.(e);
     };
-    
+
     return (
       <a
         ref={ref}

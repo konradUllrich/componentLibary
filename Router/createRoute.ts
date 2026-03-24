@@ -1,4 +1,4 @@
-import { useParams as useWouterParams, useLocation } from "wouter";
+import { useSearchParams, useRoute } from "wouter";
 
 type SearchParams = Record<string, string | number | boolean | undefined>;
 
@@ -71,21 +71,38 @@ export function createRoute<
   }
 
   function useParams(): Params {
-    return useWouterParams() as Params;
+    const [, params] = useRoute(path);
+    return params as Params;
   }
 
   function useSearch(): Search {
-    const [location] = useLocation();
-    const search = location.split("?")[1] ?? "";
+    const [search] = useSearchParams();
 
     const parsed = Object.fromEntries(new URLSearchParams(search));
 
     return parsed as Search;
   }
+  function useSetSearch(): (search: Search) => void {
+    const [, setSearchParams] = useSearchParams();
+
+    const setSearch = (props: Search) => {
+      setSearchParams((prev) => {
+        Object.entries(props).forEach(([k, v]) => {
+          if (v === undefined) {
+            prev.delete(k);
+          } else {
+            prev.set(k, String(v));
+          }
+        });
+        return prev;
+      });
+    };
+    return setSearch;
+  }
 
   function useIsActive(params: Params) {
-    const [location] = useLocation();
-    return location.startsWith(injectParams(path, params));
+    const [match] = useRoute(injectParams(path, params));
+    return match;
   }
 
   return {
@@ -94,6 +111,7 @@ export function createRoute<
     useParams,
     useSearch,
     useIsActive,
+    useSetSearch,
     component,
   };
 }

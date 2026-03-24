@@ -33,6 +33,12 @@ export interface NavItem {
    * Click handler
    */
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+
+  /**
+   * Whether to show the item
+   * @default true
+   */
+  show?: boolean;
 }
 
 export interface HorizontalNavProps extends React.HTMLAttributes<HTMLElement> {
@@ -80,6 +86,7 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
     ref,
   ) => {
     const [isMobile, setIsMobile] = useState(false);
+    const visibleItems = items.filter((item) => item.show !== false);
 
     useEffect(() => {
       const checkMobile = () => {
@@ -91,12 +98,12 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
       return () => window.removeEventListener("resize", checkMobile);
     }, [mobileBreakpoint]);
 
-    const activeItem = items.find((item) => item.isActive);
-    const activeValue = activeItem?.id || items[0]?.id || "";
+    const activeItem = visibleItems.find((item) => item.isActive);
+    const activeValue = activeItem?.id || visibleItems[0]?.id || "";
 
     const handleMobileChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedId = e.target.value;
-      const selectedItem = items.find((item) => item.id === selectedId);
+      const selectedItem = visibleItems.find((item) => item.id === selectedId);
 
       if (selectedItem?.onClick) {
         const syntheticEvent = {
@@ -110,14 +117,18 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
     if (isMobile) {
       return (
         <div
-          className={clsx("mp-horizontal-nav", "mp-horizontal-nav--mobile", className)}
+          className={clsx(
+            "mp-horizontal-nav",
+            "mp-horizontal-nav--mobile",
+            className,
+          )}
         >
           <select
             className="mp-horizontal-nav__select"
             value={activeValue}
             onChange={handleMobileChange}
           >
-            {items.map((item) => {
+            {visibleItems.map((item) => {
               const label =
                 typeof item.label === "string" ? item.label : item.id;
 
@@ -138,7 +149,7 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
         className={clsx("mp-horizontal-nav", className)}
         {...props}
       >
-        {items.map((item) => (
+        {visibleItems.map((item) => (
           <HorizontalNavItem
             key={item.id}
             href={item.href}

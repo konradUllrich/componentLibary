@@ -30,6 +30,7 @@ export type { LinkProps } from "./Link";
  * </Router>
  * ```
  */
+
 export const Router: FC<PropsWithChildren> = ({ children }) => {
   return (
     <WRouter hook={useAppRouteLocation} searchHook={useAppRouteSearch}>

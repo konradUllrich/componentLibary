@@ -41,6 +41,12 @@ export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorE
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 
   /**
+   * Whether to show the item
+   * @default true
+   */
+  show?: boolean;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -78,6 +84,7 @@ export const SidebarItem = React.forwardRef<
       icon,
       items = [],
       onClick,
+      show = true,
       className = "",
       ...props
     }: SidebarItemProps,
@@ -85,18 +92,25 @@ export const SidebarItem = React.forwardRef<
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
-    
+
+    if (!show) {
+      return null;
+    }
+
     // Check if children contains React components (nested items like SidebarSubItem)
-    const hasChildrenItems = React.Children.count(children) > 0 && 
+    const hasChildrenItems =
+      React.Children.count(children) > 0 &&
       React.Children.toArray(children).some(
-        (child) => React.isValidElement(child) && typeof child.type !== 'string'
+        (child) =>
+          React.isValidElement(child) && typeof child.type !== "string",
       );
-    
+
     const hasNestedItems = (items?.length ?? 0) > 0 || hasChildrenItems;
-    
+
     // Determine what to display as label
-    const displayLabel = label || (typeof children === 'string' ? children : undefined);
-    
+    const displayLabel =
+      label || (typeof children === "string" ? children : undefined);
+
     // Separate nested items from label content
     const nestedContent = hasChildrenItems ? children : null;
 
@@ -120,7 +134,7 @@ export const SidebarItem = React.forwardRef<
             "mp-sidebar-item",
             isActive && "mp-sidebar-item--active",
             hasNestedItems && "mp-sidebar-item--expandable",
-            className
+            className,
           )}
           onClick={handleClick}
           aria-expanded={hasNestedItems ? isExpanded : undefined}
@@ -130,7 +144,7 @@ export const SidebarItem = React.forwardRef<
             <span
               className={clsx(
                 "mp-sidebar-item__chevron",
-                isExpanded && "mp-sidebar-item__chevron--open"
+                isExpanded && "mp-sidebar-item__chevron--open",
               )}
             >
               ▼
@@ -145,8 +159,7 @@ export const SidebarItem = React.forwardRef<
               ? items.map((item, index) => (
                   <SidebarItem key={index} {...item} />
                 ))
-              : nestedContent
-            }
+              : nestedContent}
           </div>
         )}
       </>

@@ -25,7 +25,6 @@ export {
   type ButtonProps,
   type ButtonVariant,
   type ButtonSize,
-  DateComponent,
   Dialog,
   DialogTrigger,
   DialogContent,
@@ -73,6 +72,8 @@ export {
   type ImageProps,
   Badge,
   type BadgeProps,
+  DateComponent,
+  type DateComponentProps,
 } from "./common";
 
 // ========================================
@@ -132,6 +133,10 @@ export {
   SidebarItem,
   SidebarSubItem,
   SidebarDivider,
+  SidebarMobileToggle,
+  type SidebarMobileToggleProps,
+  HorizontalNav,
+  type HorizontalNavProps,
   useSidebar,
   type SidebarNavProps,
   type SidebarItemProps,
