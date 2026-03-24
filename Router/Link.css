@@ -1,0 +1,102 @@
+/* ============================================================
+   mp-link — styled anchor component
+   BEM: .mp-link, .mp-link--{variant}, .mp-link--{size}
+   ============================================================ */
+
+.mp-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+  cursor: pointer;
+  outline: none;
+  border-radius: var(--radius-sm);
+}
+
+.mp-link:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.mp-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration-color: currentColor;
+}
+
+.mp-link:active {
+  color: var(--color-primary-dark);
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+/* default — primary-coloured link with underline on hover */
+.mp-link--default {
+  color: var(--color-primary);
+}
+
+/* subtle — secondary foreground; turns primary on hover */
+.mp-link--subtle {
+  color: var(--color-foreground-secondary);
+}
+
+.mp-link--subtle:hover {
+  color: var(--color-primary);
+  text-decoration-color: currentColor;
+}
+
+/* button — looks like the primary Button component */
+.mp-link--button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-radius: var(--button-border-radius);
+  text-decoration: none;
+  font-weight: var(--button-font-weight);
+}
+
+.mp-link--button:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-primary-foreground);
+  text-decoration: none;
+}
+
+.mp-link--button:active {
+  color: var(--color-primary-foreground);
+}
+
+.mp-link--button:focus-visible {
+  outline: none;
+  box-shadow: var(--button-focus-shadow);
+}
+
+/* ── Size modifiers (button variant only) ─────────────────── */
+
+.mp-link--sm {
+  padding: var(--button-padding-y-sm) var(--button-padding-x-sm);
+  font-size: var(--font-size-sm);
+}
+
+.mp-link--md {
+  padding: var(--button-padding-y-md) var(--button-padding-x-md);
+}
+
+.mp-link--lg {
+  padding: var(--button-padding-y-lg) var(--button-padding-x-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* ── Accessibility helpers ────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
