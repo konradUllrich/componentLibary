@@ -51,7 +51,7 @@
 /* Modifier: Active state */
 .mp-horizontal-nav-item--active {
   /* Use darker primary color for WCAG AA contrast compliance (4.5:1 minimum) */
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
   color: var(--color-primary-foreground);
 }
 
@@ -64,7 +64,7 @@
 }
 
 .mp-horizontal-nav-item--active:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary-light);
   opacity: 0.9;
 }
 
