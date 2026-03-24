@@ -5,6 +5,11 @@
   display: inline-block;
   flex-shrink: 0;
   color: currentColor;
+  /* border: black solid 1px; */
+}
+
+.intrexx-icon--fix-position {
+  padding-left: 2px;
 }
 
 /* Size: 12px */

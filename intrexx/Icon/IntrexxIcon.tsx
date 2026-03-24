@@ -3,7 +3,7 @@ import clsx from "clsx";
 import "./IntrexxIcon.css";
 
 export type IntrexxIconProps = React.HTMLAttributes<HTMLElement> & {
-  /** Icon font class name (e.g., "fa fa-icon") */
+  /** Icon font class name (e.g., "icon54-l_Animals-Bee") */
   iconClass?: string;
   /** Icon size in pixels (12, 16, 20, 24, 32, 36, 48) */
   size?: 12 | 16 | 20 | 24 | 32 | 36 | 48;
@@ -17,13 +17,19 @@ export type IntrexxIconProps = React.HTMLAttributes<HTMLElement> & {
     | "info"
     | "foreground"
     | "currentColor";
+
+  /**
+   * Some icons, like Home, are slightly offset and do not appear centered.
+   * This adds 2px on the left, which fixes the issue in most cases.
+   */
+  fixPosition?: boolean;
 };
 
 /**
  * IntrexxIcon – Renders an icon from an icon font.
  *
  * @example
- * <IntrexxIcon iconClass="fa fa-heart" size="md" />
+ * <IntrexxIcon iconClass="icon54-l_Animals-Bee" size={16} />
  */
 export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
   (
@@ -37,6 +43,7 @@ export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
           "intrexx-icon",
           `intrexx-icon--${size}`,
           `intrexx-icon--${color}`,
+          { "intrexx-icon--fix-position": props.fixPosition },
           iconClass,
           className,
         )}
