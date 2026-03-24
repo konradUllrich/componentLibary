@@ -8,6 +8,8 @@
   display: grid;
   grid-template-columns: repeat(var(--card-list-columns, 3), 1fr);
   gap: var(--card-list-gap, 1rem);
+  padding-top: var(--focus-ring-spread);
+  padding-bottom: var(--focus-ring-spread);
 }
 
 .card-list__item {

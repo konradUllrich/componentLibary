@@ -7,15 +7,20 @@
   color: var(--color-primary);
   text-decoration: underline;
   text-decoration-color: transparent;
-  transition: color 150ms ease, text-decoration-color 150ms ease;
+  transition:
+    color 150ms ease,
+    text-decoration-color 150ms ease;
   cursor: pointer;
   outline: none;
   border-radius: var(--radius-sm);
 }
 
 .mp-link:focus-visible {
-  outline: 2px solid var(--color-ring);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: var(--focus-shadow);
+  color: var(--color-primary);
+  padding: var(--focus-ring-spread); /* Compensate for focus shadow */
+  border: unset;
 }
 
 .mp-link:hover {

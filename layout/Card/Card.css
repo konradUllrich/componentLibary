@@ -70,8 +70,8 @@
 }
 
 .mp-card--link:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
+  box-shadow: var(--focus-shadow);
+  margin: 0 var(--focus-ring-spread); /* Compensate for focus shadow */
 }
 
 /* Responsive adjustments */

@@ -74,6 +74,10 @@ export {
   type BadgeProps,
   DateComponent,
   type DateComponentProps,
+  UserAvatar,
+  type UserAvatarProps,
+  UserAvatars,
+  type UserAvatarsProps,
 } from "./common";
 
 // ========================================
