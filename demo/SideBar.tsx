@@ -170,6 +170,11 @@ const SIDEBAR_ELEMENTS = {
     ],
     intrexx: [
       {
+        name: "Intrexx Icon",
+        icon: <Type size={16} />,
+        link: "/components/intrexx-icon",
+      },
+      {
         name: "Tree Editor",
         icon: <GitBranch size={16} />,
         link: "/components/tree-editor",

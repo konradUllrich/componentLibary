@@ -31,6 +31,7 @@ import {
   ToggleGroupPage,
   TreeEditorPage,
   IconPickerPage,
+  IntrexxIconPage,
 } from "./pages";
 
 import "./App.css";
@@ -138,6 +139,7 @@ export const App: React.FC = () => {
         <Route path="/components/toggle" component={TogglePage} />
         <Route path="/components/toggle-group" component={ToggleGroupPage} />
         <Route path="/components/tree-editor" component={TreeEditorPage} />
+        <Route path="/components/intrexx-icon" component={IntrexxIconPage} />
         <Route path="/components/icon-picker" component={IconPickerPage} />
       </AppLayout>
     </>
