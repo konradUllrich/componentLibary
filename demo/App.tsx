@@ -32,6 +32,7 @@ import {
   TreeEditorPage,
   IconPickerPage,
   IntrexxIconPage,
+  StoresPage,
 } from "./pages";
 
 import "./App.css";
@@ -141,6 +142,7 @@ export const App: React.FC = () => {
         <Route path="/components/tree-editor" component={TreeEditorPage} />
         <Route path="/components/intrexx-icon" component={IntrexxIconPage} />
         <Route path="/components/icon-picker" component={IconPickerPage} />
+        <Route path="/stores" component={StoresPage} />
       </AppLayout>
     </>
   );

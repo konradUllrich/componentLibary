@@ -288,6 +288,16 @@ export const DemoSideBar = () => {
             />
           ))}
         </SidebarItem>
+        <SidebarDivider label="Utilities" />
+        <SidebarItem
+          label="Stores"
+          icon={<Database size={18} />}
+          isActive={location === "/stores"}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/stores");
+          }}
+        />
       </SidebarNav>
     </Sidebar>
   );
