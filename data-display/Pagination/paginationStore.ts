@@ -36,7 +36,13 @@ export function createPaginationStore(defaultPageSize = 10) {
 
             setPage: (page) =>
                 set((state) => {
-                    const newPage = Math.max(1, Math.min(page, state.totalPages || 1));
+                    // When totalPages is 0 (data not yet loaded), allow any page >= 1
+                    // without clamping so the intended page is preserved until
+                    // setTotalItems is called with the actual count.
+                    // When totalPages > 0, clamp to the valid [1, totalPages] range.
+                    const newPage = state.totalPages > 0
+                        ? Math.max(1, Math.min(page, state.totalPages))
+                        : Math.max(1, page);
                     return recalc({ page: newPage });
                 }),
 

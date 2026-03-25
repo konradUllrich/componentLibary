@@ -3,6 +3,34 @@ import { Pagination } from "./Pagination";
 import { createPaginationStore } from "./paginationStore";
 
 /**
+ * Story wrapper that simulates the async fetch pattern:
+ * setPage is called first (e.g. from URL sync), then setTotalItems is called
+ * later when data arrives. Verifies the page is not reset to 1.
+ */
+export const AsyncTotalItemsWrapper: React.FC<{
+  initialPage?: number;
+  totalItems?: number;
+}> = ({ initialPage = 5, totalItems = 100 }) => {
+  const [store] = React.useState(() => {
+    const s = createPaginationStore(10);
+    // Set the desired page BEFORE totalItems is known (URL sync scenario)
+    s.getState().setPage(initialPage);
+    return s;
+  });
+
+  React.useEffect(() => {
+    // Simulate async data fetch completing after mount
+    const timeout = setTimeout(() => {
+      store.getState().setTotalItems(totalItems);
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, [store, totalItems]);
+
+  return <Pagination store={store} />;
+};
+AsyncTotalItemsWrapper.displayName = "AsyncTotalItemsWrapper";
+
+/**
  * Test story wrapper component to handle Zustand store initialization properly.
  * This is used in Pagination.test.tsx to test the component with proper store setup.
  */

@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import React from "react";
-import { PaginationTestWrapper } from "./Pagination.stories";
+import { PaginationTestWrapper, AsyncTotalItemsWrapper } from "./Pagination.stories";
 import { checkA11y } from "../../playwright/test-utils";
 
 test.describe("Pagination Component", () => {
@@ -392,6 +392,43 @@ test.describe("Pagination Component", () => {
       await page.setViewportSize({ width: 375, height: 667 });
       await mount(<PaginationTestWrapper totalItems={100} pageSize={10} />);
       await checkA11y(page);
+    });
+  });
+
+  test.describe("Async data loading (setPage before setTotalItems)", () => {
+    test("preserves page when setTotalItems is called after setPage", async ({
+      mount,
+      page,
+    }) => {
+      // Simulates the common pattern: page restored from URL (setPage) before
+      // the async data fetch completes (setTotalItems).
+      const component = await mount(
+        <AsyncTotalItemsWrapper initialPage={5} totalItems={100} />,
+      );
+
+      // Wait for the simulated async setTotalItems to fire
+      await page.waitForTimeout(100);
+
+      // Page 5 should be preserved (showing items 41–50 of 100)
+      const info = component.locator(".pagination__info");
+      await expect(info).toContainText("Showing 41 to 50 of 100 entries");
+    });
+
+    test("clamps to last page if desired page exceeds new total", async ({
+      mount,
+      page,
+    }) => {
+      // If the user was on page 8 but the new data only has 5 pages,
+      // setTotalItems should clamp to the last valid page.
+      const component = await mount(
+        <AsyncTotalItemsWrapper initialPage={8} totalItems={50} />,
+      );
+
+      await page.waitForTimeout(100);
+
+      // 50 items / 10 per page = 5 pages → clamped to page 5
+      const info = component.locator(".pagination__info");
+      await expect(info).toContainText("Showing 41 to 50 of 50 entries");
     });
   });
 });

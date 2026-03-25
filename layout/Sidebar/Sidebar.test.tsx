@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/experimental-ct-react';
+import React from 'react';
 import { Sidebar } from './Sidebar';
+import { SidebarItem } from './SidebarItem';
+import { SidebarNav } from './SidebarNav';
 import { useSidebarStore } from './sidebarStore';
 import { checkA11y } from '../../playwright/test-utils';
 
@@ -254,4 +257,103 @@ test.describe('Sidebar Component', () => {
   // In a real application, toggling the sidebar would be done through store actions
   // (toggleCollapsed, toggleMobileOpen) which are typically triggered by buttons
   // outside the Sidebar component itself (e.g., in a Header component).
+});
+
+test.describe('SidebarItem', () => {
+  test.beforeEach(() => {
+    useSidebarStore.setState({ isMobile: false, isCollapsed: false, mobileOpen: false });
+  });
+
+  test('renders as <a> when href is provided', async ({ mount }) => {
+    const component = await mount(
+      <Sidebar>
+        <SidebarNav>
+          <SidebarItem href="/dashboard">Dashboard</SidebarItem>
+        </SidebarNav>
+      </Sidebar>
+    );
+    const link = component.locator('.mp-sidebar-item');
+    await expect(link).toHaveAttribute('href', '/dashboard');
+    // Must be an anchor element, not a button
+    const tagName = await link.evaluate((el) => el.tagName.toLowerCase());
+    expect(tagName).toBe('a');
+  });
+
+  test('renders as <button> when expandable and no href provided', async ({ mount }) => {
+    const component = await mount(
+      <Sidebar>
+        <SidebarNav>
+          <SidebarItem
+            label="Settings"
+            items={[
+              { href: '/settings/profile', label: 'Profile' },
+              { href: '/settings/security', label: 'Security' },
+            ]}
+          />
+        </SidebarNav>
+      </Sidebar>
+    );
+    const trigger = component.locator('.mp-sidebar-item--expandable');
+    const tagName = await trigger.evaluate((el) => el.tagName.toLowerCase());
+    expect(tagName).toBe('button');
+    await expect(trigger).toHaveAttribute('type', 'button');
+  });
+
+  test('expandable button has correct aria-expanded attribute', async ({ mount }) => {
+    const component = await mount(
+      <Sidebar>
+        <SidebarNav>
+          <SidebarItem
+            label="Settings"
+            items={[{ href: '/settings/profile', label: 'Profile' }]}
+          />
+        </SidebarNav>
+      </Sidebar>
+    );
+    const trigger = component.locator('.mp-sidebar-item--expandable');
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    await trigger.click();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  test('expanding a button item shows nested items', async ({ mount }) => {
+    const component = await mount(
+      <Sidebar>
+        <SidebarNav>
+          <SidebarItem
+            label="Settings"
+            items={[
+              { href: '/settings/profile', label: 'Profile' },
+              { href: '/settings/security', label: 'Security' },
+            ]}
+          />
+        </SidebarNav>
+      </Sidebar>
+    );
+    // Nested items should not be visible before clicking
+    await expect(component.locator('.mp-sidebar-item--nested')).not.toBeVisible();
+
+    await component.locator('.mp-sidebar-item--expandable').click();
+
+    // Nested items should now be visible
+    const nested = component.locator('.mp-sidebar-item--nested');
+    await expect(nested).toBeVisible();
+    await expect(nested.locator('.mp-sidebar-item').first()).toContainText('Profile');
+  });
+
+  test('passes accessibility checks for link and expandable button items', async ({ mount, page }) => {
+    await mount(
+      <Sidebar defaultOpen={true}>
+        <SidebarNav>
+          <SidebarItem href="/dashboard">Dashboard</SidebarItem>
+          <SidebarItem
+            label="Settings"
+            items={[{ href: '/settings/profile', label: 'Profile' }]}
+          />
+        </SidebarNav>
+      </Sidebar>
+    );
+    await checkA11y(page);
+  });
 });
