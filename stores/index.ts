@@ -1,4 +1,13 @@
 // ============================================================
+// Pagination Store + Router Sync Hook
+// ============================================================
+export { createPaginationStore } from "../data-display/Pagination/paginationStore";
+export type { PaginationStore } from "../data-display/Pagination/paginationStore";
+
+export { usePaginationSync } from "../data-display/Pagination/usePaginationSync";
+export type { PaginationSyncOptions } from "../data-display/Pagination/usePaginationSync";
+
+// ============================================================
 // Persistors
 // ============================================================
 export {

@@ -122,7 +122,6 @@ export {
   type ColumnConfig,
   Pagination,
   type PaginationProps,
-  createPaginationStore,
 } from "./data-display";
 
 // ========================================
@@ -212,6 +211,10 @@ export type { SetSearchParams, URLSearchParamsInit } from "./Router/hooks";
 // Stores
 // ========================================
 export {
+  createPaginationStore,
+  type PaginationStore,
+  usePaginationSync,
+  type PaginationSyncOptions,
   createLocalStoragePersistor,
   createSessionStoragePersistor,
   type PersistorConfig,
