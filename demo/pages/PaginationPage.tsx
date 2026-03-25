@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Pagination,
   createPaginationStore,
@@ -11,7 +11,6 @@ const paginationStore = createPaginationStore(10);
 paginationStore.getState().setTotalItems(100);
 
 const urlSyncedStoreA = createPaginationStore(10);
-urlSyncedStoreA.getState().setTotalItems(100);
 
 const urlSyncedStoreB = createPaginationStore(5);
 urlSyncedStoreB.getState().setTotalItems(60);
@@ -29,6 +28,14 @@ const SyncedPaginationB: React.FC = () => {
 SyncedPaginationB.displayName = "SyncedPaginationB";
 
 export const PaginationPage: React.FC = () => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      urlSyncedStoreA.getState().setTotalItems(123);
+    }, 1000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
   return (
     <Page>
       <Section variant="hero">
