@@ -478,9 +478,6 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.AppLayout`
 
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.app-layout` → `.mp-app-layout`, `.app-layout__header` → `.mp-app-layout__header`, etc.) and update all usages in `AppLayout.tsx` and related files.
-
 #### TypeScript
 1. Add `forwardRef` to expose the root layout DOM node.
 2. Export `AppLayoutProps` interface.
@@ -488,9 +485,6 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 ---
 
 ### `layout.Card`
-
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.card` → `.mp-card`, `.card--elevated` → `.mp-card--elevated`, etc.) and update all usages in `Card.tsx`.
 
 #### FileSize
 1. Split `Card.tsx` (currently ~146 lines) — extract `CardHeader`, `CardBody`, and `CardFooter` into separate files.
@@ -503,9 +497,6 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 ---
 
 ### `layout.Flex`
-
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.flex` → `.mp-flex`, `.flex--direction-row` → `.mp-flex--direction-row`, etc.) and update all usages in `Flex.tsx`.
 
 #### TypeScript
 1. Add `displayName = "Flex"`.
@@ -521,9 +512,6 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.Grid`
 
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.grid` → `.mp-grid`, `.grid--cols-1` → `.mp-grid--cols-1`, etc.) and update all usages in `Grid.tsx` and `GridItem.tsx`.
-
 #### FileSize
 1. Split `Grid.tsx` (currently ~149 lines) — extract `GridItem` into a separate file.
 2. Split `Grid.css` (currently ~230 lines) — extract column/row span helper classes and responsive breakpoints into partials.
@@ -536,25 +524,12 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ### `layout.HorizontalNav`
 
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.horizontal-nav` → `.mp-horizontal-nav`, `.horizontal-nav__select` → `.mp-horizontal-nav__select`, etc.) and update all usages in `HorizontalNav.tsx` and sub-components.
-
 #### FileSize
 1. Split `HorizontalNav.tsx` (currently ~157 lines) — extract `HorizontalNavItem` and `HorizontalNavDropdown` into separate files.
 
 ---
 
-### `layout.Page`
-
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.page` → `.mp-page`, `.page--sm` → `.mp-page--sm`, etc.) and update all usages in `Page.tsx`.
-
----
-
 ### `layout.Panel`
-
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.panel` → `.mp-panel`, `.panel--default` → `.mp-panel--default`, etc.) and update all usages in `Panel.tsx`.
 
 #### FileSize
 1. Split `Panel.tsx` (currently ~107 lines) — extract `PanelHeader` and `PanelBody` into separate files.
@@ -565,17 +540,7 @@ The table is already split into sub-components: `Table.tsx`, `TableBody.tsx`, `T
 
 ---
 
-### `layout.Section`
-
-#### CSS
-1. Add `mp-` prefix to all CSS classes (`.section--default` → `.mp-section--default`, `.section--hero` → `.mp-section--hero`, etc.) and update all usages in `Section.tsx`.
-
----
-
 ### `layout.Sidebar`
-
-#### CSS
-1. Add `mp-` prefix to all CSS classes in `Sidebar.css` and related files (`.sidebar` → `.mp-sidebar`, `.sidebar__wrapper` → `.mp-sidebar__wrapper`, etc.) and update all usages in `Sidebar.tsx` and sub-components.
 
 #### TypeScript
 1. Add `forwardRef` to expose the sidebar DOM node.
