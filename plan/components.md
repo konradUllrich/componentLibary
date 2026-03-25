@@ -13,6 +13,7 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Accordion`
 
 #### CSS
+@copilot resolve the following task 
 1. Add `mp-` prefix to all CSS classes (`.accordion` → `.mp-accordion`, `.accordion__item` → `.mp-accordion__item`, etc.) and update all usages in `Accordion.tsx`.
 
 #### Testing
