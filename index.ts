@@ -227,6 +227,8 @@ export {
   createValueStore,
   type ValueStore,
   type ValueStoreOptions,
+  useRouterSync,
+  type RouterSyncOptions,
 } from "./stores";
 
 // ========================================

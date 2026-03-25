@@ -33,3 +33,9 @@ export type {
 // ============================================================
 export { createValueStore } from "./valueStore";
 export type { ValueStore, ValueStoreOptions } from "./valueStore";
+
+// ============================================================
+// Router Sync Hook
+// ============================================================
+export { useRouterSync } from "./useRouterSync";
+export type { RouterSyncOptions } from "./useRouterSync";
