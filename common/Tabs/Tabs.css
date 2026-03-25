@@ -1,7 +1,7 @@
 /* Tabs Styles - Radix UI */
 
 /* Block: Tabs Container */
-.tabs {
+.mp-tabs {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
@@ -9,14 +9,14 @@
 }
 
 /* Block: Tabs List */
-.tabs-list {
+.mp-tabs__list {
   display: flex;
   gap: var(--spacing-2);
   border-bottom: 1px solid var(--color-border);
 }
 
 /* Variant: Default */
-.tabs--default .tabs-trigger {
+.mp-tabs--default .mp-tabs__trigger {
   padding: var(--spacing-3) var(--spacing-4);
   background-color: transparent;
   border: none;
@@ -28,22 +28,22 @@
   outline: none;
 }
 
-.tabs--default .tabs-trigger:hover:not(:disabled) {
+.mp-tabs--default .mp-tabs__trigger:hover:not(:disabled) {
   color: var(--color-foreground);
   border-bottom-color: var(--color-border);
 }
 
-.tabs--default .tabs-trigger[data-state="active"] {
+.mp-tabs--default .mp-tabs__trigger[data-state="active"] {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
 
 /* Variant: Underline */
-.tabs--underline .tabs-list {
+.mp-tabs--underline .mp-tabs__list {
   border-bottom: 2px solid var(--color-border);
 }
 
-.tabs--underline .tabs-trigger {
+.mp-tabs--underline .mp-tabs__trigger {
   padding: var(--spacing-3) var(--spacing-4);
   background-color: transparent;
   border: none;
@@ -56,23 +56,23 @@
   outline: none;
 }
 
-.tabs--underline .tabs-trigger:hover:not(:disabled) {
+.mp-tabs--underline .mp-tabs__trigger:hover:not(:disabled) {
   color: var(--color-foreground);
 }
 
-.tabs--underline .tabs-trigger[data-state="active"] {
+.mp-tabs--underline .mp-tabs__trigger[data-state="active"] {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
 
 /* Variant: Pills */
-.tabs--pills .tabs-list {
+.mp-tabs--pills .mp-tabs__list {
   border-bottom: none;
   gap: var(--spacing-2);
   flex-wrap: wrap;
 }
 
-.tabs--pills .tabs-trigger {
+.mp-tabs--pills .mp-tabs__trigger {
   padding: var(--spacing-2) var(--spacing-3);
   background-color: var(--color-background-secondary);
   border: 1px solid var(--color-border);
@@ -84,46 +84,46 @@
   outline: none;
 }
 
-.tabs--pills .tabs-trigger:hover:not(:disabled) {
+.mp-tabs--pills .mp-tabs__trigger:hover:not(:disabled) {
   background-color: var(--color-background);
   border-color: var(--color-primary);
   color: var(--color-foreground);
 }
 
-.tabs--pills .tabs-trigger[data-state="active"] {
+.mp-tabs--pills .mp-tabs__trigger[data-state="active"] {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
   color: var(--color-primary-foreground);
 }
 
 /* Common Tab Styles */
-.tabs-trigger {
+.mp-tabs__trigger {
   font-size: var(--font-size-base);
 }
 
-.tabs-trigger:focus-visible {
+.mp-tabs__trigger:focus-visible {
   box-shadow: var(--focus-shadow);
 }
 
-.tabs-trigger:disabled,
-.tabs-trigger--disabled {
+.mp-tabs__trigger:disabled,
+.mp-tabs__trigger--disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
 }
 
-.tabs-trigger:disabled:hover,
-.tabs-trigger--disabled:hover {
+.mp-tabs__trigger:disabled:hover,
+.mp-tabs__trigger--disabled:hover {
   background-color: inherit;
   border: inherit;
 }
 
 /* Block: Tab Content */
-.tabs-content {
+.mp-tabs__content {
   animation: fade-in var(--duration-200) var(--ease-in-out);
   border: 0;
   padding: 0;
 }
-.tabs-content:focus {
+.mp-tabs__content:focus {
   outline: none;
   border: 0;
 }

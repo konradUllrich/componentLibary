@@ -1,69 +1,69 @@
 /* Image Styles */
 
 /* Block: Image */
-.image {
+.mp-image {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
 /* Object-fit modifiers */
-.image--cover {
+.mp-image--cover {
   object-fit: cover;
 }
 
-.image--contain {
+.mp-image--contain {
   object-fit: contain;
 }
 
-.image--fill {
+.mp-image--fill {
   object-fit: fill;
 }
 
-.image--none {
+.mp-image--none {
   object-fit: none;
 }
 
-.image--scale-down {
+.mp-image--scale-down {
   object-fit: scale-down;
 }
 
 /* Rounded modifiers */
-.image--rounded-none {
+.mp-image--rounded-none {
   border-radius: var(--radius-none);
 }
 
-.image--rounded-sm {
+.mp-image--rounded-sm {
   border-radius: var(--radius-sm);
 }
 
-.image--rounded-md {
+.mp-image--rounded-md {
   border-radius: var(--radius-md);
 }
 
-.image--rounded-lg {
+.mp-image--rounded-lg {
   border-radius: var(--radius-lg);
 }
 
-.image--rounded-full {
+.mp-image--rounded-full {
   border-radius: var(--radius-full);
 }
 
 /* Aspect ratio modifiers */
-.image--aspect-square {
+.mp-image--aspect-square {
   aspect-ratio: 1 / 1;
 }
 
-.image--aspect-video {
+.mp-image--aspect-video {
   aspect-ratio: 16 / 9;
 }
 
-.image--aspect-portrait {
+.mp-image--aspect-portrait {
   aspect-ratio: 3 / 4;
 }
 
 /* Error state */
-.image--error {
+.mp-image--error {
   background-color: var(--color-gray-100, #f3f4f6);
   min-width: 48px;
   min-height: 48px;

@@ -32,7 +32,7 @@ test.describe("Disclosure Component", () => {
     );
 
     await expect(component).toBeVisible();
-    const trigger = component.locator(".disclosure-trigger");
+    const trigger = component.locator(".mp-disclosure-trigger");
     await expect(trigger).toBeVisible();
     await expect(trigger).toContainText("Click to expand");
   });
@@ -71,7 +71,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const trigger = component.locator(".disclosure-trigger");
+    const trigger = component.locator(".mp-disclosure-trigger");
     const root = component;
 
     // Initially closed
@@ -121,7 +121,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const trigger = component.locator(".disclosure-trigger");
+    const trigger = component.locator(".mp-disclosure-trigger");
 
     await trigger.click();
     // Note: We can't directly check changeEvents array as it's in test context
@@ -141,7 +141,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const icon = component.locator(".disclosure-icon");
+    const icon = component.locator(".mp-disclosure-icon");
     await expect(icon).toBeVisible();
     await expect(icon).toContainText("🔍");
   });
@@ -155,7 +155,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const icon = component.locator(".disclosure-icon");
+    const icon = component.locator(".mp-disclosure-icon");
     await expect(icon).toHaveCount(0);
   });
 
@@ -166,7 +166,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const chevron = component.locator(".disclosure-chevron");
+    const chevron = component.locator(".mp-disclosure-chevron");
     await expect(chevron).toBeVisible();
     await expect(chevron).toHaveAttribute("aria-hidden", "true");
     await expect(chevron).toContainText("▼");
@@ -192,7 +192,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const trigger = component.locator(".disclosure-trigger");
+    const trigger = component.locator(".mp-disclosure-trigger");
     await expect(trigger).toHaveClass(/custom-trigger-class/);
   });
 
@@ -207,7 +207,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const content = component.locator(".disclosure-content");
+    const content = component.locator(".mp-disclosure-content");
     await expect(content).toHaveClass(/custom-content-class/);
   });
 
@@ -218,11 +218,11 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    await expect(component.locator(".disclosure-trigger")).toBeVisible();
-    await expect(component.locator(".disclosure-trigger")).toBeVisible();
-    await expect(component.locator(".disclosure-label")).toBeVisible();
-    await expect(component.locator(".disclosure-chevron")).toBeVisible();
-    await expect(component.locator(".disclosure-content")).toBeVisible();
+    await expect(component.locator(".mp-disclosure-trigger")).toBeVisible();
+    await expect(component.locator(".mp-disclosure-trigger")).toBeVisible();
+    await expect(component.locator(".mp-disclosure-label")).toBeVisible();
+    await expect(component.locator(".mp-disclosure-chevron")).toBeVisible();
+    await expect(component.locator(".mp-disclosure-content")).toBeVisible();
   });
 
   test("should support keyboard navigation (Space key)", async ({ mount }) => {
@@ -232,7 +232,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const trigger = component.locator(".disclosure-trigger");
+    const trigger = component.locator(".mp-disclosure-trigger");
     const root = component;
 
     // Focus the trigger
@@ -256,7 +256,7 @@ test.describe("Disclosure Component", () => {
       </Disclosure>,
     );
 
-    const trigger = component.locator(".disclosure-trigger");
+    const trigger = component.locator(".mp-disclosure-trigger");
     const root = component;
 
     await trigger.focus();
@@ -340,7 +340,7 @@ test.describe("Disclosure Component", () => {
         </Disclosure>,
       );
 
-      const trigger = component.locator(".disclosure-trigger");
+      const trigger = component.locator(".mp-disclosure-trigger");
       await expect(trigger).toContainText("Bold Label");
       await expect(trigger).toContainText("with extra text");
     });
@@ -360,7 +360,7 @@ test.describe("Disclosure Component", () => {
         </Disclosure>,
       );
 
-      const content = component.locator(".disclosure-content");
+      const content = component.locator(".mp-disclosure-content");
       await expect(content).toContainText("Heading");
       await expect(content).toContainText("Paragraph 1");
       await expect(content).toContainText("Item 1");

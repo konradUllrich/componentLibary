@@ -13,7 +13,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Accordion`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.accordion` → `.mp-accordion`, `.accordion__item` → `.mp-accordion__item`, etc.) and update all usages in `Accordion.tsx`.
 
 #### Testing
 1. Add error/empty state tests (no items, disabled items).
@@ -28,7 +27,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Badge`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.badge` → `.mp-badge`, `.badge--sm` → `.mp-badge--sm`, etc.) and update all usages in `Badge.tsx`.
 
 #### FileSize
 1. Split `Badge.css` (currently ~169 lines) — extract modifier/variant rules into a `Badge.variants.css` partial.
@@ -70,7 +68,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Dialog`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.dialog__overlay` → `.mp-dialog__overlay`, `.dialog__content` → `.mp-dialog__content`, etc.) and update all usages in `Dialog.tsx`.
 
 #### FileSize
 1. Split `Dialog.tsx` (currently ~234 lines) — extract `DialogHeader`, `DialogFooter`, and `DialogBody` into separate files.
@@ -84,7 +81,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Disclosure`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.disclosure` → `.mp-disclosure`, `.disclosure-trigger` → `.mp-disclosure__trigger`, etc.) and update all usages in `Disclosure.tsx`.
 
 #### FileSize
 1. Split `Disclosure.tsx` (currently ~138 lines) — extract the trigger and panel into `DisclosureTrigger` and `DisclosurePanel` files.
@@ -98,7 +94,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Dropdown`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.dropdown__content` → `.mp-dropdown__content`, `.dropdown__item` → `.mp-dropdown__item`, etc.) and update all usages in `Dropdown.tsx`.
 
 #### FileSize
 1. Split `Dropdown.tsx` (currently ~206 lines) — extract `DropdownTrigger`, `DropdownMenu`, and `DropdownItem` into separate files.
@@ -112,7 +107,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.EmptyState`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.empty-state` → `.mp-empty-state`, `.empty-state__icon` → `.mp-empty-state__icon`, etc.) and update all usages in `EmptyState.tsx`.
 
 #### FileSize
 1. Split `EmptyState.tsx` (currently ~112 lines) — extract icon slot and action slot into sub-components.
@@ -126,14 +120,12 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Image`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.image` → `.mp-image`, `.image--cover` → `.mp-image--cover`, etc.) and update all usages in `Image.tsx`.
 
 ---
 
 ### `common.Skeleton`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.skeleton` → `.mp-skeleton`, `.skeleton--text` → `.mp-skeleton--text`, etc.) and update all usages in `Skeleton.tsx`.
 
 #### FileSize
 1. Split `Skeleton.tsx` (currently ~131 lines) — extract animation and variant logic into helpers.
@@ -148,7 +140,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Tabs`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.tabs` → `.mp-tabs`, `.tabs-list` → `.mp-tabs__list`, `.tabs-trigger` → `.mp-tabs__trigger`, etc.) and update all usages in `Tabs.tsx`.
 
 #### FileSize
 1. Split `Tabs.tsx` (currently ~144 lines) — extract `TabList`, `Tab`, and `TabPanel` into separate files.
@@ -162,7 +153,6 @@ Components listed as ✅ **Production-ready** require no further action.
 ### `common.Text`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.text` → `.mp-text`, `.text--xs` → `.mp-text--xs`, etc.) and update all usages in `Text.tsx`.
 
 #### FileSize
 1. Split `Text.tsx` (currently ~125 lines) — extract variant mapping into a constants file.
@@ -182,7 +172,6 @@ The `ThemeProvider` package is split into two main parts:
 A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes in `ThemePanel.css` (`.theme-panel` → `.mp-theme-panel`, `.theme-panel__toggle` → `.mp-theme-panel__toggle`, etc.) and update all usages in `ThemePanel.tsx`.
 
 #### Testing
 1. Unskip `ThemeContext.test.tsx.skip` (rename to `ThemeContext.test.tsx`) and fix any failing assertions.
@@ -206,7 +195,6 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ### `common.Toggle`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.toggle` → `.mp-toggle`, `.toggle--sm` → `.mp-toggle--sm`, etc.) and update all usages in `Toggle.tsx`.
 
 #### FileSize
 1. Split `Toggle.tsx` (currently ~121 lines) — extract Radix primitive wrapper logic.
@@ -220,7 +208,6 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ### `common.ToggleGroup`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.toggle-group` → `.mp-toggle-group`, `.toggle-group__item` → `.mp-toggle-group__item`, etc.) and update all usages in `ToggleGroup.tsx`.
 
 #### FileSize
 1. Split `ToggleGroup.tsx` (currently ~130 lines) — extract `ToggleGroupItem` into a separate file.
@@ -234,7 +221,6 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ### `common.Tooltip`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.tooltip__content` → `.mp-tooltip__content`, `.tooltip__arrow` → `.mp-tooltip__arrow`, etc.) and update all usages in `Tooltip.tsx`.
 
 #### FileSize
 1. Split `Tooltip.tsx` (currently ~188 lines) — extract trigger wrapper and content into `TooltipTrigger` and `TooltipContent` files.
@@ -247,7 +233,6 @@ A test file `ThemeContext.test.tsx.skip` exists but is currently **skipped**.
 ### `common.UserAvatars`
 
 #### CSS
-1. Add `mp-` prefix to all CSS classes (`.user-avatar` → `.mp-user-avatar`, `.user-avatar--sm` → `.mp-user-avatar--sm`, etc.) and update all usages in `UserAvatars.tsx`.
 
 #### FileSize
 1. Split `UserAvatars.css` (currently ~151 lines) — extract overflow indicator and stacked layout rules.

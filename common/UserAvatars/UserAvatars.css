@@ -1,7 +1,7 @@
 /* UserAvatar Component Styles */
 
 /* Block: UserAvatar */
-.user-avatar {
+.mp-user-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,81 +17,81 @@
   user-select: none;
 }
 
-.user-avatar:hover {
+.mp-user-avatar:hover {
   transform: scale(1.1);
   z-index: 10 !important;
 }
 
-.user-avatar:focus-visible {
+.mp-user-avatar:focus-visible {
   box-shadow: var(--focus-shadow);
 }
 
 /* Modifier: Sizes */
-.user-avatar--sm {
+.mp-user-avatar--sm {
   width: 24px;
   height: 24px;
   font-size: 12px;
 }
 
-.user-avatar--md {
+.mp-user-avatar--md {
   width: 32px;
   height: 32px;
   font-size: 14px;
 }
 
-.user-avatar--lg {
+.mp-user-avatar--lg {
   width: 40px;
   height: 40px;
   font-size: 16px;
 }
 
 /* Block: UserAvatars Container */
-.user-avatars {
+.mp-user-avatars {
   display: flex;
   align-items: center;
 }
 
 /* Element: Avatar Group */
-.user-avatars__group {
+.mp-user-avatars__group {
   display: flex;
   margin-left: -4px;
   overflow: visible;
 }
 
 /* Element: Individual Item */
-.user-avatars__item {
+.mp-user-avatars__item {
   position: relative;
   flex-shrink: 0;
 }
 
-.user-avatars__item:not(:first-child) {
+.mp-user-avatars__item:not(:first-child) {
   margin-left: -8px;
 }
 
 /* Modifier: Remaining Count */
-.user-avatars__item--remaining {
+.mp-user-avatars__item--remaining {
   background-color: var(--color-foreground-tertiary);
 }
 
 /* Empty State */
-.user-avatars__empty {
+.mp-user-avatars__empty {
   color: var(--color-foreground-secondary);
   font-weight: var(--font-weight-medium);
 }
 
-.userAvatars-avatar.userAvatars-addUser:hover {
+.mp-user-avatars__avatar.mp-user-avatars__add-user:hover {
   background-color: #d1d5db;
   border-color: #6b7280;
   color: #374151;
 }
 
-.userAvatars-avatar.userAvatars-addUser span {
+.mp-user-avatars__avatar.mp-user-avatars__add-user span {
   font-size: 1.2em;
   font-weight: bold;
 }
 
 /* Status indicators */
-.userAvatars-avatar .userAvatars-status {
+.mp-user-avatars__avatar .mp-user-avatars__status {
   position: absolute;
   bottom: -2px;
   right: -2px;
@@ -101,7 +101,7 @@
   border: 2px solid white;
 }
 
-.userAvatars-avatarSm .userAvatars-status {
+.mp-user-avatars--sm .mp-user-avatars__status {
   width: 8px;
   height: 8px;
   bottom: -1px;
@@ -109,7 +109,7 @@
   border-width: 1px;
 }
 
-.userAvatars-avatarLg .userAvatars-status {
+.mp-user-avatars--lg .mp-user-avatars__status {
   width: 16px;
   height: 16px;
   bottom: -3px;
@@ -117,24 +117,24 @@
   border-width: 3px;
 }
 
-.userAvatars-status.userAvatars-online {
+.mp-user-avatars__status.mp-user-avatars--online {
   background-color: #22c55e;
 }
 
-.userAvatars-status.userAvatars-offline {
+.mp-user-avatars__status.mp-user-avatars--offline {
   background-color: #6b7280;
 }
 
-.userAvatars-status.userAvatars-busy {
+.mp-user-avatars__status.mp-user-avatars--busy {
   background-color: #ef4444;
 }
 
-.userAvatars-status.userAvatars-away {
+.mp-user-avatars__status.mp-user-avatars--away {
   background-color: #f59e0b;
 }
 
 /* Empty state */
-.userAvatars-emptyState {
+.mp-user-avatars__emptyState {
   color: #9ca3af;
   font-size: 14px;
 }

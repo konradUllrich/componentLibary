@@ -1,7 +1,7 @@
 /* Skeleton Styles */
 
 /* Block: Skeleton */
-.skeleton {
+.mp-skeleton {
   display: block;
   background-color: var(--color-gray-200);
   position: relative;
@@ -10,40 +10,40 @@
 }
 
 /* Variant: Text */
-.skeleton--text {
+.mp-skeleton--text {
   height: 1em;
   width: 100%;
   border-radius: var(--radius-sm);
   margin-bottom: var(--spacing-2);
 }
 
-.skeleton--text:last-child {
+.mp-skeleton--text:last-child {
   margin-bottom: 0;
 }
 
 /* Variant: Circle */
-.skeleton--circle {
+.mp-skeleton--circle {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
 }
 
 /* Variant: Rectangle */
-.skeleton--rectangle {
+.mp-skeleton--rectangle {
   width: 100%;
   height: 20px;
   border-radius: var(--radius-md);
 }
 
 /* Group: Multiple text lines */
-.skeleton__group {
+.mp-skeleton__group {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 /* Animation: Pulse */
-.skeleton--pulse {
+.mp-skeleton--pulse {
   animation: skeleton-pulse 1.5s var(--ease-in-out) infinite;
 }
 
@@ -58,7 +58,7 @@
 }
 
 /* Animation: Wave (shimmer) */
-.skeleton--wave::after {
+.mp-skeleton--wave::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -82,8 +82,8 @@
 
 /* Reduced motion: respect user preference */
 @media (prefers-reduced-motion: reduce) {
-  .skeleton--pulse,
-  .skeleton--wave::after {
+  .mp-skeleton--pulse,
+  .mp-skeleton--wave::after {
     animation: none;
   }
 }

@@ -19,7 +19,7 @@ test.describe('Accordion Component', () => {
     const component = await mount(<Accordion items={mockItems} />);
     
     for (const item of mockItems) {
-      const trigger = component.locator('.accordion-trigger', { hasText: item.title as string });
+      const trigger = component.locator('.mp-accordion-trigger', { hasText: item.title as string });
       await expect(trigger).toBeVisible();
     }
   });
@@ -28,22 +28,22 @@ test.describe('Accordion Component', () => {
     const component = await mount(<Accordion items={mockItems} />);
     
     // Click first item
-    const firstTrigger = component.locator('.accordion-trigger', { hasText: 'Section 1' });
+    const firstTrigger = component.locator('.mp-accordion-trigger', { hasText: 'Section 1' });
     await firstTrigger.click();
     
     // Wait for content to be visible
-    const content = component.locator('.accordion-content', { hasText: 'Content 1' });
+    const content = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
     await expect(content).toBeVisible();
   });
 
   test('should collapse item when clicked again (single mode)', async ({ mount }) => {
     const component = await mount(<Accordion items={mockItems} collapsible={true} />);
     
-    const firstTrigger = component.locator('.accordion-trigger', { hasText: 'Section 1' });
+    const firstTrigger = component.locator('.mp-accordion-trigger', { hasText: 'Section 1' });
     
     // Expand
     await firstTrigger.click();
-    const content = component.locator('.accordion-content', { hasText: 'Content 1' });
+    const content = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
     await expect(content).toBeVisible();
     
     // Collapse
@@ -55,13 +55,13 @@ test.describe('Accordion Component', () => {
     const component = await mount(<Accordion items={mockItems} multiple />);
     
     // Open first item
-    await component.locator('.accordion-trigger', { hasText: 'Section 1' }).click();
-    const content1 = component.locator('.accordion-content', { hasText: 'Content 1' });
+    await component.locator('.mp-accordion-trigger', { hasText: 'Section 1' }).click();
+    const content1 = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
     await expect(content1).toBeVisible();
     
     // Open second item
-    await component.locator('.accordion-trigger', { hasText: 'Section 2' }).click();
-    const content2 = component.locator('.accordion-content', { hasText: 'Content 2' });
+    await component.locator('.mp-accordion-trigger', { hasText: 'Section 2' }).click();
+    const content2 = component.locator('.mp-accordion-content', { hasText: 'Content 2' });
     await expect(content2).toBeVisible();
     
     // Both should still be visible
@@ -78,10 +78,10 @@ test.describe('Accordion Component', () => {
       </div>
     );
     
-    const accordions = component.locator('.accordion');
-    await expect(accordions.nth(0)).toHaveClass(/accordion--vertical/);
-    await expect(accordions.nth(1)).toHaveClass(/accordion--horizontal/);
-    await expect(accordions.nth(2)).toHaveClass(/accordion--tabs/);
+    const accordions = component.locator('.mp-accordion');
+    await expect(accordions.nth(0)).toHaveClass(/mp-accordion--vertical/);
+    await expect(accordions.nth(1)).toHaveClass(/mp-accordion--horizontal/);
+    await expect(accordions.nth(2)).toHaveClass(/mp-accordion--tabs/);
   });
 
   test('should handle disabled items', async ({ mount }) => {
@@ -93,7 +93,7 @@ test.describe('Accordion Component', () => {
     
     const component = await mount(<Accordion items={itemsWithDisabled} />);
     
-    const disabledTrigger = component.locator('.accordion-trigger', { hasText: 'Section 2' });
+    const disabledTrigger = component.locator('.mp-accordion-trigger', { hasText: 'Section 2' });
     await expect(disabledTrigger).toBeDisabled();
   });
 
@@ -111,13 +111,13 @@ test.describe('Accordion Component', () => {
     const component = await mount(<Accordion items={mockItems} />);
     
     // Focus first trigger
-    const firstTrigger = component.locator('.accordion-trigger').first();
+    const firstTrigger = component.locator('.mp-accordion-trigger').first();
     await firstTrigger.focus();
     await expect(firstTrigger).toBeFocused();
     
     // Press Space to toggle
     await page.keyboard.press('Space');
-    const content = component.locator('.accordion-content', { hasText: 'Content 1' });
+    const content = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
     await expect(content).toBeVisible();
     
     // Press Space again to collapse
@@ -128,12 +128,12 @@ test.describe('Accordion Component', () => {
   test('should support Enter key to toggle', async ({ mount, page }) => {
     const component = await mount(<Accordion items={mockItems} />);
     
-    const firstTrigger = component.locator('.accordion-trigger').first();
+    const firstTrigger = component.locator('.mp-accordion-trigger').first();
     await firstTrigger.focus();
     
     // Press Enter to toggle
     await page.keyboard.press('Enter');
-    const content = component.locator('.accordion-content', { hasText: 'Content 1' });
+    const content = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
     await expect(content).toBeVisible();
   });
 
@@ -141,13 +141,13 @@ test.describe('Accordion Component', () => {
     const component = await mount(<Accordion items={mockItems} />);
     
     // Focus first trigger
-    const firstTrigger = component.locator('.accordion-trigger').first();
+    const firstTrigger = component.locator('.mp-accordion-trigger').first();
     await firstTrigger.focus();
     await expect(firstTrigger).toBeFocused();
     
     // Arrow down to next trigger
     await page.keyboard.press('ArrowDown');
-    const secondTrigger = component.locator('.accordion-trigger').nth(1);
+    const secondTrigger = component.locator('.mp-accordion-trigger').nth(1);
     await expect(secondTrigger).toBeFocused();
     
     // Arrow up back to first
@@ -158,7 +158,7 @@ test.describe('Accordion Component', () => {
   test('should have chevron indicator', async ({ mount }) => {
     const component = await mount(<Accordion items={mockItems} />);
     
-    const chevron = component.locator('.accordion-chevron').first();
+    const chevron = component.locator('.mp-accordion-chevron').first();
     await expect(chevron).toBeVisible();
     await expect(chevron).toHaveAttribute('aria-hidden', 'true');
   });
@@ -199,7 +199,7 @@ test.describe('Accordion Component', () => {
         />
       );
       
-      const content = component.locator('.accordion-content', { hasText: 'Content 1' });
+      const content = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
       await expect(content).toBeVisible();
     });
 
@@ -214,8 +214,8 @@ test.describe('Accordion Component', () => {
         />
       );
       
-      const content1 = component.locator('.accordion-content', { hasText: 'Content 1' });
-      const content2 = component.locator('.accordion-content', { hasText: 'Content 2' });
+      const content1 = component.locator('.mp-accordion-content', { hasText: 'Content 1' });
+      const content2 = component.locator('.mp-accordion-content', { hasText: 'Content 2' });
       
       await expect(content1).toBeVisible();
       await expect(content2).toBeVisible();
@@ -226,17 +226,17 @@ test.describe('Accordion Component', () => {
     test('should render triggers in a row for tabs variant', async ({ mount }) => {
       const component = await mount(<Accordion items={mockItems} variant="tabs" />);
       
-      const triggersContainer = component.locator('.accordion-tabs-triggers');
+      const triggersContainer = component.locator('.mp-accordion-tabs-triggers');
       await expect(triggersContainer).toBeVisible();
       
-      const triggers = component.locator('.accordion-trigger');
+      const triggers = component.locator('.mp-accordion-trigger');
       await expect(triggers).toHaveCount(3);
     });
 
     test('should show active state for tabs variant', async ({ mount }) => {
       const component = await mount(<Accordion items={mockItems} variant="tabs" value="item1" />);
       
-      const activeTab = component.locator('.accordion-trigger--active');
+      const activeTab = component.locator('.mp-accordion-trigger--active');
       await expect(activeTab).toBeVisible();
       await expect(activeTab).toHaveAttribute('data-state', 'open');
     });
@@ -244,10 +244,10 @@ test.describe('Accordion Component', () => {
     test('should display content below triggers for tabs variant', async ({ mount }) => {
       const component = await mount(<Accordion items={mockItems} variant="tabs" value="item1" />);
       
-      const contentContainer = component.locator('.accordion-tabs-content');
+      const contentContainer = component.locator('.mp-accordion-tabs-content');
       await expect(contentContainer).toBeVisible();
       
-      const content = component.locator('.accordion-content-inner', { hasText: 'Content 1' });
+      const content = component.locator('.mp-accordion-content-inner', { hasText: 'Content 1' });
       await expect(content).toBeVisible();
     });
   });

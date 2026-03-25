@@ -1,7 +1,7 @@
 /* Dropdown Component Styles */
 
 /* Content Container */
-.dropdown__content {
+.mp-dropdown__content {
   min-width: 200px;
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
@@ -12,13 +12,13 @@
   animation: dropdown-slide-in var(--duration-200) ease-out;
 }
 
-.dropdown__content:focus-visible {
+.mp-dropdown__content:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 /* Item */
-.dropdown__item {
+.mp-dropdown__item {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
@@ -32,23 +32,23 @@
   transition: var(--transition-fast);
 }
 
-.dropdown__item:hover:not([data-disabled]) {
+.mp-dropdown__item:hover:not([data-disabled]) {
   background-color: var(--color-gray-100);
 }
 
-.dropdown__item:focus-visible {
+.mp-dropdown__item:focus-visible {
   background-color: var(--color-gray-100);
   outline: 2px solid var(--color-primary);
   outline-offset: -2px;
 }
 
-.dropdown__item[data-disabled] {
+.mp-dropdown__item[data-disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* Label */
-.dropdown__label {
+.mp-dropdown__label {
   padding: var(--spacing-2) var(--spacing-3);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -57,7 +57,7 @@
 }
 
 /* Separator */
-.dropdown__separator {
+.mp-dropdown__separator {
   height: 1px;
   background-color: var(--color-border);
   margin: var(--spacing-2) 0;
@@ -77,28 +77,28 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .dropdown__content {
+  .mp-dropdown__content {
     animation: none;
   }
 }
 
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
-  .dropdown__content {
+  .mp-dropdown__content {
     background-color: var(--color-background);
     border-color: var(--color-gray-700);
     box-shadow: var(--shadow-md), 0 0 0 1px var(--color-gray-800);
   }
 
-  .dropdown__item:hover:not([data-disabled]) {
+  .mp-dropdown__item:hover:not([data-disabled]) {
     background-color: var(--color-gray-800);
   }
 
-  .dropdown__item:focus-visible {
+  .mp-dropdown__item:focus-visible {
     background-color: var(--color-gray-800);
   }
 
-  .dropdown__separator {
+  .mp-dropdown__separator {
     background-color: var(--color-gray-700);
   }
 }

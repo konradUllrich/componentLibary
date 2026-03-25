@@ -35,7 +35,7 @@ test.describe('UserAvatars Component', () => {
     );
     
     await expect(component).toBeVisible();
-    const avatar = component.locator('.user-avatar');
+    const avatar = component.locator('.mp-user-avatar');
     await expect(avatar).toHaveCount(1);
     await expect(avatar).toContainText('JD');
   });
@@ -45,7 +45,7 @@ test.describe('UserAvatars Component', () => {
       <UserAvatars users={mockUsers} maxVisible={3} />
     );
     
-    const avatars = component.locator('.user-avatar');
+    const avatars = component.locator('.mp-user-avatar');
     // 3 visible users + 1 overflow indicator
     await expect(avatars).toHaveCount(4);
   });
@@ -55,7 +55,7 @@ test.describe('UserAvatars Component', () => {
       <UserAvatars users={mockUsers} maxVisible={2} />
     );
     
-    const overflow = component.locator('.user-avatars__item--remaining');
+    const overflow = component.locator('.mp-user-avatars__item--remaining');
     await expect(overflow).toBeVisible();
     await expect(overflow).toContainText('+3');
     await expect(overflow).toHaveAttribute('title', '+3 more');
@@ -67,7 +67,7 @@ test.describe('UserAvatars Component', () => {
     );
     
     // Note: Empty state returns a span element, not wrapped in root div
-    const emptyState = page.locator('.user-avatars__empty');
+    const emptyState = page.locator('.mp-user-avatars__empty');
     await expect(emptyState).toBeVisible();
     await expect(emptyState).toContainText('-');
   });
@@ -81,7 +81,7 @@ test.describe('UserAvatars Component', () => {
       </div>
     );
     
-    const avatars = component.locator('.user-avatar');
+    const avatars = component.locator('.mp-user-avatar');
     await expect(avatars.nth(0)).toHaveClass(/user-avatar--sm/);
     await expect(avatars.nth(1)).toHaveClass(/user-avatar--md/);
     await expect(avatars.nth(2)).toHaveClass(/user-avatar--lg/);
@@ -100,7 +100,7 @@ test.describe('UserAvatars Component', () => {
       <UserAvatars users={mockUsers.slice(0, 2)} />
     );
     
-    const avatars = component.locator('.user-avatar');
+    const avatars = component.locator('.mp-user-avatar');
     await expect(avatars.nth(0)).toContainText('JD');
     await expect(avatars.nth(1)).toContainText('JS');
   });
@@ -110,7 +110,7 @@ test.describe('UserAvatars Component', () => {
       <UserAvatars users={[mockUsers[0]]} />
     );
     
-    const avatar = component.locator('.user-avatar').first();
+    const avatar = component.locator('.mp-user-avatar').first();
     const bgColor = await avatar.evaluate((el) => 
       window.getComputedStyle(el).backgroundColor
     );
@@ -124,7 +124,7 @@ test.describe('UserAvatars Component', () => {
       <UserAvatars users={mockUsers.slice(0, 3)} />
     );
     
-    const avatars = component.locator('.user-avatar');
+    const avatars = component.locator('.mp-user-avatar');
     // Default maxVisible is 3, so we should see exactly 3 avatars
     await expect(avatars).toHaveCount(3);
   });
@@ -180,11 +180,11 @@ test.describe('UserAvatars Component', () => {
         <UserAvatars users={mockUsers.slice(0, 2)} maxVisible={5} />
       );
       
-      const avatars = component.locator('.user-avatar');
+      const avatars = component.locator('.mp-user-avatar');
       await expect(avatars).toHaveCount(2);
       
       // No overflow indicator should be present
-      const overflow = component.locator('.user-avatars__item--remaining');
+      const overflow = component.locator('.mp-user-avatars__item--remaining');
       await expect(overflow).toHaveCount(0);
     });
 
@@ -194,7 +194,7 @@ test.describe('UserAvatars Component', () => {
       );
       
       // Should show only overflow indicator
-      const overflow = component.locator('.user-avatars__item--remaining');
+      const overflow = component.locator('.mp-user-avatars__item--remaining');
       await expect(overflow).toBeVisible();
       await expect(overflow).toContainText(`+${mockUsers.length}`);
     });
@@ -208,7 +208,7 @@ test.describe('UserAvatars Component', () => {
         <UserAvatars users={usersWithoutColor} />
       );
       
-      const avatar = component.locator('.user-avatar');
+      const avatar = component.locator('.mp-user-avatar');
       await expect(avatar).toBeVisible();
       // Should fall back to generated color from initials
     });

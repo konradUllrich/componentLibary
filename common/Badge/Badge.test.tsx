@@ -21,13 +21,13 @@ test.describe('Badge Component', () => {
       </div>
     );
     
-    const badges = component.locator('.badge');
-    await expect(badges.nth(0)).toHaveClass(/badge--default/);
-    await expect(badges.nth(1)).toHaveClass(/badge--primary/);
-    await expect(badges.nth(2)).toHaveClass(/badge--success/);
-    await expect(badges.nth(3)).toHaveClass(/badge--warning/);
-    await expect(badges.nth(4)).toHaveClass(/badge--destructive/);
-    await expect(badges.nth(5)).toHaveClass(/badge--info/);
+    const badges = component.locator('.mp-badge');
+    await expect(badges.nth(0)).toHaveClass(/mp-badge--default/);
+    await expect(badges.nth(1)).toHaveClass(/mp-badge--primary/);
+    await expect(badges.nth(2)).toHaveClass(/mp-badge--success/);
+    await expect(badges.nth(3)).toHaveClass(/mp-badge--warning/);
+    await expect(badges.nth(4)).toHaveClass(/mp-badge--destructive/);
+    await expect(badges.nth(5)).toHaveClass(/mp-badge--info/);
   });
 
   test('should render different sizes', async ({ mount }) => {
@@ -39,10 +39,10 @@ test.describe('Badge Component', () => {
       </div>
     );
     
-    const badges = component.locator('.badge');
-    await expect(badges.nth(0)).toHaveClass(/badge--sm/);
-    await expect(badges.nth(1)).toHaveClass(/badge--md/);
-    await expect(badges.nth(2)).toHaveClass(/badge--lg/);
+    const badges = component.locator('.mp-badge');
+    await expect(badges.nth(0)).toHaveClass(/mp-badge--sm/);
+    await expect(badges.nth(1)).toHaveClass(/mp-badge--md/);
+    await expect(badges.nth(2)).toHaveClass(/mp-badge--lg/);
   });
 
   test('should render different appearances', async ({ mount }) => {
@@ -54,10 +54,10 @@ test.describe('Badge Component', () => {
       </div>
     );
     
-    const badges = component.locator('.badge');
-    await expect(badges.nth(0)).toHaveClass(/badge--solid/);
-    await expect(badges.nth(1)).toHaveClass(/badge--outline/);
-    await expect(badges.nth(2)).toHaveClass(/badge--subtle/);
+    const badges = component.locator('.mp-badge');
+    await expect(badges.nth(0)).toHaveClass(/mp-badge--solid/);
+    await expect(badges.nth(1)).toHaveClass(/mp-badge--outline/);
+    await expect(badges.nth(2)).toHaveClass(/mp-badge--subtle/);
   });
 
   test('should render with icon', async ({ mount }) => {
@@ -67,7 +67,7 @@ test.describe('Badge Component', () => {
       </Badge>
     );
     
-    const icon = component.locator('.badge__icon');
+    const icon = component.locator('.mp-badge__icon');
     await expect(icon).toBeVisible();
     await expect(icon).toContainText('✓');
   });
@@ -94,7 +94,7 @@ test.describe('Badge Component', () => {
   test('should have badge__text wrapper', async ({ mount }) => {
     const component = await mount(<Badge>Text Content</Badge>);
     
-    const text = component.locator('.badge__text');
+    const text = component.locator('.mp-badge__text');
     await expect(text).toBeVisible();
     await expect(text).toHaveText('Text Content');
   });
@@ -154,13 +154,13 @@ test.describe('Badge Component', () => {
         </div>
       );
       
-      const badges = component.locator('.badge');
-      await expect(badges.nth(0)).toHaveClass(/badge--primary/);
-      await expect(badges.nth(0)).toHaveClass(/badge--solid/);
-      await expect(badges.nth(1)).toHaveClass(/badge--success/);
-      await expect(badges.nth(1)).toHaveClass(/badge--outline/);
-      await expect(badges.nth(2)).toHaveClass(/badge--warning/);
-      await expect(badges.nth(2)).toHaveClass(/badge--subtle/);
+      const badges = component.locator('.mp-badge');
+      await expect(badges.nth(0)).toHaveClass(/mp-badge--primary/);
+      await expect(badges.nth(0)).toHaveClass(/mp-badge--solid/);
+      await expect(badges.nth(1)).toHaveClass(/mp-badge--success/);
+      await expect(badges.nth(1)).toHaveClass(/mp-badge--outline/);
+      await expect(badges.nth(2)).toHaveClass(/mp-badge--warning/);
+      await expect(badges.nth(2)).toHaveClass(/mp-badge--subtle/);
     });
 
     test('should render with proper inline-flex display', async ({ mount }) => {

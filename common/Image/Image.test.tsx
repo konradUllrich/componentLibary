@@ -22,9 +22,9 @@ test.describe("Image Component", () => {
     const component = await mount(
       <Image src={VALID_SRC} alt="Test image" />,
     );
-    await expect(component).toHaveClass(/image/);
-    await expect(component).toHaveClass(/image--cover/);
-    await expect(component).toHaveClass(/image--rounded-none/);
+    await expect(component).toHaveClass(/mp-image/);
+    await expect(component).toHaveClass(/mp-image--cover/);
+    await expect(component).toHaveClass(/mp-image--rounded-none/);
   });
 
   test("should apply object-fit modifiers", async ({ mount }) => {
@@ -36,10 +36,10 @@ test.describe("Image Component", () => {
         <Image src={VALID_SRC} alt="scale-down" objectFit="scale-down" />
       </div>,
     );
-    await expect(component.locator(".image--contain")).toBeVisible();
-    await expect(component.locator(".image--fill")).toBeVisible();
-    await expect(component.locator(".image--none")).toBeVisible();
-    await expect(component.locator(".image--scale-down")).toBeVisible();
+    await expect(component.locator(".mp-image--contain")).toBeVisible();
+    await expect(component.locator(".mp-image--fill")).toBeVisible();
+    await expect(component.locator(".mp-image--none")).toBeVisible();
+    await expect(component.locator(".mp-image--scale-down")).toBeVisible();
   });
 
   test("should apply rounded modifiers", async ({ mount }) => {
@@ -51,10 +51,10 @@ test.describe("Image Component", () => {
         <Image src={VALID_SRC} alt="full" rounded="full" />
       </div>,
     );
-    await expect(component.locator(".image--rounded-sm")).toBeVisible();
-    await expect(component.locator(".image--rounded-md")).toBeVisible();
-    await expect(component.locator(".image--rounded-lg")).toBeVisible();
-    await expect(component.locator(".image--rounded-full")).toBeVisible();
+    await expect(component.locator(".mp-image--rounded-sm")).toBeVisible();
+    await expect(component.locator(".mp-image--rounded-md")).toBeVisible();
+    await expect(component.locator(".mp-image--rounded-lg")).toBeVisible();
+    await expect(component.locator(".mp-image--rounded-full")).toBeVisible();
   });
 
   test("should apply aspect-ratio modifiers", async ({ mount }) => {
@@ -65,9 +65,9 @@ test.describe("Image Component", () => {
         <Image src={VALID_SRC} alt="portrait" aspectRatio="portrait" />
       </div>,
     );
-    await expect(component.locator(".image--aspect-square")).toBeVisible();
-    await expect(component.locator(".image--aspect-video")).toBeVisible();
-    await expect(component.locator(".image--aspect-portrait")).toBeVisible();
+    await expect(component.locator(".mp-image--aspect-square")).toBeVisible();
+    await expect(component.locator(".mp-image--aspect-video")).toBeVisible();
+    await expect(component.locator(".mp-image--aspect-portrait")).toBeVisible();
   });
 
   test("should not apply aspect class when aspectRatio is auto", async ({
@@ -77,7 +77,7 @@ test.describe("Image Component", () => {
       <Image src={VALID_SRC} alt="auto" aspectRatio="auto" />,
     );
     const classes = await component.getAttribute("class");
-    expect(classes).not.toMatch(/image--aspect-auto/);
+    expect(classes).not.toMatch(/mp-image--aspect-auto/);
   });
 
   test("should apply custom className", async ({ mount }) => {
@@ -125,7 +125,7 @@ test.describe("Image Component", () => {
       />,
     );
     await page.waitForTimeout(500);
-    await expect(component).toHaveClass(/image--error/);
+    await expect(component).toHaveClass(/mp-image--error/);
   });
 
   test("should reset to new src when src prop changes", async ({ mount }) => {

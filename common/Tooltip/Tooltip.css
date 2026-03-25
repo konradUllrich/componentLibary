@@ -1,7 +1,7 @@
 /* Tooltip Component Styles */
 
 /* Content */
-.tooltip__content {
+.mp-tooltip__content {
   /* Use explicit dark background for WCAG AA compliance (minimum 4.5:1 contrast with white) */
   background-color: #1e293b; /* gray-800 for better contrast */
   color: white;
@@ -17,7 +17,7 @@
 }
 
 /* Arrow */
-.tooltip__arrow {
+.mp-tooltip__arrow {
   fill: #1e293b; /* Match content background */
 }
 

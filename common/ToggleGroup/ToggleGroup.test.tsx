@@ -19,7 +19,7 @@ test.describe("ToggleGroup Component", () => {
     );
 
     await expect(component).toBeVisible();
-    await expect(component).toHaveClass(/toggle-group/);
+    await expect(component).toHaveClass(/mp-toggle-group/);
 
     const items = component.locator("button");
     await expect(items).toHaveCount(3);
@@ -62,8 +62,8 @@ test.describe("ToggleGroup Component", () => {
     );
 
     const groups = component.locator(".toggle-group");
-    await expect(groups.nth(0)).toHaveClass(/toggle-group--default/);
-    await expect(groups.nth(1)).toHaveClass(/toggle-group--outline/);
+    await expect(groups.nth(0)).toHaveClass(/mp-toggle-group--default/);
+    await expect(groups.nth(1)).toHaveClass(/mp-toggle-group--outline/);
   });
 
   test("should render different sizes", async ({ mount }) => {

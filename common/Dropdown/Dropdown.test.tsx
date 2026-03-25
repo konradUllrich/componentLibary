@@ -43,7 +43,7 @@ test.describe("Dropdown Component", () => {
     );
 
     const trigger = page.locator("button");
-    const content = page.locator(".dropdown__content");
+    const content = page.locator(".mp-dropdown__content");
 
     // Initially closed
     await expect(content).not.toBeVisible();
@@ -70,7 +70,7 @@ test.describe("Dropdown Component", () => {
     // Open dropdown
     await page.locator("button").click();
 
-    const items = page.locator(".dropdown__item");
+    const items = page.locator(".mp-dropdown__item");
     await expect(items).toHaveCount(3);
     await expect(items.nth(0)).toHaveText("Item 1");
     await expect(items.nth(1)).toHaveText("Item 2");
@@ -108,7 +108,7 @@ test.describe("Dropdown Component", () => {
     await page.locator("button").click();
 
     // Click item
-    await page.locator(".dropdown__item").first().click();
+    await page.locator(".mp-dropdown__item").first().click();
 
     expect(selectedItem).toBe("Item 1");
   });
@@ -129,14 +129,14 @@ test.describe("Dropdown Component", () => {
     );
 
     const trigger = page.locator("button");
-    const content = page.locator(".dropdown__content");
+    const content = page.locator(".mp-dropdown__content");
 
     // Open dropdown
     await trigger.click();
     await expect(content).toBeVisible();
 
     // Select item
-    await page.locator(".dropdown__item").click();
+    await page.locator(".mp-dropdown__item").click();
 
     // Should close
     await expect(content).not.toBeVisible();
@@ -161,8 +161,8 @@ test.describe("Dropdown Component", () => {
     // Open dropdown
     await page.locator("button").click();
 
-    const labels = page.locator(".dropdown__label");
-    const separators = page.locator(".dropdown__separator");
+    const labels = page.locator(".mp-dropdown__label");
+    const separators = page.locator(".mp-dropdown__separator");
 
     await expect(labels).toHaveCount(2);
     await expect(labels.nth(0)).toHaveText("Group 1");
@@ -201,7 +201,7 @@ test.describe("Dropdown Component", () => {
     // Open dropdown
     await page.locator("button").click();
 
-    const disabledItem = page.locator(".dropdown__item").first();
+    const disabledItem = page.locator(".mp-dropdown__item").first();
     await expect(disabledItem).toHaveAttribute("data-disabled");
 
     // Try to click disabled item
@@ -229,16 +229,16 @@ test.describe("Dropdown Component", () => {
     await trigger.focus();
     await page.keyboard.press("Enter");
 
-    const content = page.locator(".dropdown__content");
+    const content = page.locator(".mp-dropdown__content");
     await expect(content).toBeVisible();
 
     // After opening with Enter, first item should already be focused
-    const firstItem = page.locator(".dropdown__item").first();
+    const firstItem = page.locator(".mp-dropdown__item").first();
     await expect(firstItem).toBeFocused();
 
     // Navigate to second item with arrow key
     await page.keyboard.press("ArrowDown");
-    const secondItem = page.locator(".dropdown__item").nth(1);
+    const secondItem = page.locator(".mp-dropdown__item").nth(1);
     await expect(secondItem).toBeFocused();
   });
 
@@ -254,7 +254,7 @@ test.describe("Dropdown Component", () => {
       </Dropdown>,
     );
 
-    const content = page.locator(".dropdown__content");
+    const content = page.locator(".mp-dropdown__content");
 
     // Open dropdown
     await page.locator("button").click();
@@ -280,10 +280,10 @@ test.describe("Dropdown Component", () => {
     const trigger = page.locator("button");
     await trigger.click();
 
-    const content = page.locator(".dropdown__content");
+    const content = page.locator(".mp-dropdown__content");
     await expect(content).toHaveAttribute("role", "menu");
 
-    const items = page.locator(".dropdown__item");
+    const items = page.locator(".mp-dropdown__item");
     await expect(items.first()).toHaveAttribute("role", "menuitem");
   });
 
@@ -310,7 +310,7 @@ test.describe("Dropdown Component", () => {
     await page.locator("button").click();
     await page.waitForTimeout(100);
 
-    const dropdownContent = page.locator(".dropdown__content");
+    const dropdownContent = page.locator(".mp-dropdown__content");
     await expect(dropdownContent).toBeVisible();
   });
 
@@ -328,7 +328,7 @@ test.describe("Dropdown Component", () => {
 
     await page.locator("button").click();
 
-    const content = page.locator(".dropdown__content");
+    const content = page.locator(".mp-dropdown__content");
     await expect(content).toHaveClass(/custom-class/);
   });
 });

@@ -1,7 +1,7 @@
 /* ToggleGroup Styles - Radix UI */
 
 /* Block: ToggleGroup Container */
-.toggle-group {
+.mp-toggle-group {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--color-border);
@@ -13,7 +13,7 @@
    Variant: Default
    ============================== */
 
-.toggle-group--default {
+.mp-toggle-group--default {
   background-color: var(--color-background-secondary);
 }
 
@@ -21,7 +21,7 @@
    Variant: Outline
    ============================== */
 
-.toggle-group--outline {
+.mp-toggle-group--outline {
   background-color: transparent;
   border-color: var(--color-border-dark);
 }
@@ -30,19 +30,19 @@
    Size Modifiers
    ============================== */
 
-.toggle-group--sm .toggle-group__item {
+.mp-toggle-group--sm .mp-toggle-group__item {
   padding: var(--spacing-1) var(--spacing-2);
   font-size: var(--font-size-sm);
   min-height: 2rem;
 }
 
-.toggle-group--md .toggle-group__item {
+.mp-toggle-group--md .mp-toggle-group__item {
   padding: var(--spacing-2) var(--spacing-3);
   font-size: var(--font-size-base);
   min-height: 2.5rem;
 }
 
-.toggle-group--lg .toggle-group__item {
+.mp-toggle-group--lg .mp-toggle-group__item {
   padding: var(--spacing-3) var(--spacing-4);
   font-size: var(--font-size-lg);
   min-height: 3rem;
@@ -52,7 +52,7 @@
    Element: Toggle Group Item
    ============================== */
 
-.toggle-group__item {
+.mp-toggle-group__item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -73,12 +73,12 @@
   border-right: 1px solid var(--color-border);
 }
 
-.toggle-group__item:last-child {
+.mp-toggle-group__item:last-child {
   border-right: none;
 }
 
 /* Focus visible state */
-.toggle-group__item:focus-visible {
+.mp-toggle-group__item:focus-visible {
   outline: none;
   box-shadow: var(--focus-shadow);
   z-index: 1;
@@ -86,32 +86,32 @@
 }
 
 /* First and last items get the container's rounded corners */
-.toggle-group__item:first-child {
+.mp-toggle-group__item:first-child {
   border-radius: calc(var(--radius-lg) - 1px) 0 0 calc(var(--radius-lg) - 1px);
 }
 
-.toggle-group__item:last-child {
+.mp-toggle-group__item:last-child {
   border-radius: 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0;
 }
 
 /* Hover state (only when not disabled and not pressed) */
-.toggle-group__item:hover:not(:disabled):not([data-state="on"]) {
+.mp-toggle-group__item:hover:not(:disabled):not([data-state="on"]) {
   background-color: var(--color-background-tertiary);
   color: var(--color-foreground);
 }
 
 /* Pressed / active state */
-.toggle-group__item[data-state="on"] {
+.mp-toggle-group__item[data-state="on"] {
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
 }
 
-.toggle-group__item[data-state="on"]:hover:not(:disabled) {
+.mp-toggle-group__item[data-state="on"]:hover:not(:disabled) {
   background-color: var(--color-primary-dark);
 }
 
 /* Disabled state */
-.toggle-group__item:disabled {
+.mp-toggle-group__item:disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
   pointer-events: none;
@@ -121,10 +121,10 @@
    Outline Variant – Item Borders
    ============================== */
 
-.toggle-group--outline .toggle-group__item {
+.mp-toggle-group--outline .mp-toggle-group__item {
   border-right: 1px solid var(--color-border-dark);
 }
 
-.toggle-group--outline .toggle-group__item:last-child {
+.mp-toggle-group--outline .mp-toggle-group__item:last-child {
   border-right: none;
 }

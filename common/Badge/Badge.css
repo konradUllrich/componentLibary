@@ -1,7 +1,7 @@
 /* Badge Styles */
 
 /* Block: Badge */
-.badge {
+.mp-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-1);
@@ -14,25 +14,25 @@
 }
 
 /* Size: Small */
-.badge--sm {
+.mp-badge--sm {
   padding: var(--spacing-1) var(--spacing-2);
   font-size: var(--font-size-xs);
 }
 
 /* Size: Medium */
-.badge--md {
+.mp-badge--md {
   padding: var(--spacing-1) var(--spacing-3);
   font-size: var(--font-size-sm);
 }
 
 /* Size: Large */
-.badge--lg {
+.mp-badge--lg {
   padding: var(--spacing-2) var(--spacing-4);
   font-size: var(--font-size-base);
 }
 
 /* Element: Icon */
-.badge__icon {
+.mp-badge__icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,88 +42,88 @@
 }
 
 /* Element: Text */
-.badge__text {
+.mp-badge__text {
   display: inline;
 }
 
 /* Variant: Default - Solid */
-.badge--default.badge--solid {
+.mp-badge--default.mp-badge--solid {
   background-color: var(--color-gray-50);
   color: var(--color-gray-700);
 }
 
 /* Variant: Default - Outline */
-.badge--default.badge--outline {
+.mp-badge--default.mp-badge--outline {
   background-color: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-foreground);
 }
 
 /* Variant: Default - Subtle */
-.badge--default.badge--subtle {
+.mp-badge--default.mp-badge--subtle {
   background-color: var(--color-gray-50);
   color: var(--color-gray-700);
 }
 
 /* Variant: Primary - Solid */
-.badge--primary.badge--solid {
+.mp-badge--primary.mp-badge--solid {
   background-color: color-mix(in oklch, var(--color-primary-base), white 75%);
   color: var(--color-primary-dark);
 }
 
 /* Variant: Primary - Outline */
-.badge--primary.badge--outline {
+.mp-badge--primary.mp-badge--outline {
   background-color: transparent;
   border: 1px solid var(--color-primary);
   color: var(--color-primary-dark);
 }
 
 /* Variant: Primary - Subtle */
-.badge--primary.badge--subtle {
+.mp-badge--primary.mp-badge--subtle {
   background-color: color-mix(in oklch, var(--color-primary-base), white 75%);
   color: var(--color-primary-dark);
 }
 
 /* Variant: Success - Solid */
-.badge--success.badge--solid {
+.mp-badge--success.mp-badge--solid {
   background-color: color-mix(in oklch, var(--color-success-base), white 75%);
   color: var(--color-success-dark);
 }
 
 /* Variant: Success - Outline */
-.badge--success.badge--outline {
+.mp-badge--success.mp-badge--outline {
   background-color: transparent;
   border: 1px solid var(--color-success);
   color: var(--color-success-dark);
 }
 
 /* Variant: Success - Subtle */
-.badge--success.badge--subtle {
+.mp-badge--success.mp-badge--subtle {
   background-color: color-mix(in oklch, var(--color-success-base), white 75%);
   color: var(--color-success-dark);
 }
 
 /* Variant: Warning - Solid */
-.badge--warning.badge--solid {
+.mp-badge--warning.mp-badge--solid {
   background-color: color-mix(in oklch, var(--color-warning-base), white 75%);
   color: var(--color-warning-dark);
 }
 
 /* Variant: Warning - Outline */
-.badge--warning.badge--outline {
+.mp-badge--warning.mp-badge--outline {
   background-color: transparent;
   border: 1px solid var(--color-warning);
   color: var(--color-warning-dark);
 }
 
 /* Variant: Warning - Subtle */
-.badge--warning.badge--subtle {
+.mp-badge--warning.mp-badge--subtle {
   background-color: color-mix(in oklch, var(--color-warning-base), white 75%);
   color: var(--color-warning-dark);
 }
 
 /* Variant: Destructive - Solid */
-.badge--destructive.badge--solid {
+.mp-badge--destructive.mp-badge--solid {
   background-color: color-mix(
     in oklch,
     var(--color-destructive-base),
@@ -133,14 +133,14 @@
 }
 
 /* Variant: Destructive - Outline */
-.badge--destructive.badge--outline {
+.mp-badge--destructive.mp-badge--outline {
   background-color: transparent;
   border: 1px solid var(--color-destructive);
   color: var(--color-destructive-dark);
 }
 
 /* Variant: Destructive - Subtle */
-.badge--destructive.badge--subtle {
+.mp-badge--destructive.mp-badge--subtle {
   background-color: color-mix(
     in oklch,
     var(--color-destructive-base),
@@ -150,20 +150,20 @@
 }
 
 /* Variant: Info - Solid */
-.badge--info.badge--solid {
+.mp-badge--info.mp-badge--solid {
   background-color: color-mix(in oklch, var(--color-info-base), white 75%);
   color: var(--color-info-dark);
 }
 
 /* Variant: Info - Outline */
-.badge--info.badge--outline {
+.mp-badge--info.mp-badge--outline {
   background-color: transparent;
   border: 1px solid var(--color-info);
   color: var(--color-info-dark);
 }
 
 /* Variant: Info - Subtle */
-.badge--info.badge--subtle {
+.mp-badge--info.mp-badge--subtle {
   background-color: color-mix(in oklch, var(--color-info-base), white 75%);
   color: var(--color-info-dark);
 }

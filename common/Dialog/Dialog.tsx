@@ -139,11 +139,11 @@ export const DialogContent = React.forwardRef<
 >(({ children, className, title, description, size = "md", ...props }, ref) => {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="dialog__overlay" />
+      <DialogPrimitive.Overlay className="mp-dialog__overlay" />
       <DialogPrimitive.Content
         ref={ref}
         className={clsx(
-          "dialog__content",
+          "mp-dialog__content",
           `dialog__content--${size}`,
           className,
         )}
@@ -171,7 +171,7 @@ export const DialogTitle = React.forwardRef<
   return (
     <DialogPrimitive.Title
       ref={ref}
-      className={clsx("dialog__title", className)}
+      className={clsx("mp-dialog__title", className)}
       {...props}
     >
       {children}
@@ -193,7 +193,7 @@ export const DialogDescription = React.forwardRef<
   return (
     <DialogPrimitive.Description
       ref={ref}
-      className={clsx("dialog__description", className)}
+      className={clsx("mp-dialog__description", className)}
       {...props}
     >
       {children}
@@ -219,7 +219,7 @@ export const DialogClose = React.forwardRef<
     return (
       <DialogPrimitive.Close
         ref={ref}
-        className={clsx("dialog__close", className)}
+        className={clsx("mp-dialog__close", className)}
         aria-label={ariaLabel}
         {...props}
       >

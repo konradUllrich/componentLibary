@@ -19,7 +19,7 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} />);
     
     for (const item of mockItems) {
-      const trigger = component.locator('.tabs-trigger', { hasText: item.label as string });
+      const trigger = component.locator('.mp-tabs__trigger', { hasText: item.label as string });
       await expect(trigger).toBeVisible();
     }
   });
@@ -28,11 +28,11 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} activeId="tab2" />);
     
     // Tab 2 trigger should be active
-    const tab2Trigger = component.locator('.tabs-trigger', { hasText: 'Tab 2' });
+    const tab2Trigger = component.locator('.mp-tabs__trigger', { hasText: 'Tab 2' });
     await expect(tab2Trigger).toHaveAttribute('data-state', 'active');
     
     // Tab 2 content should be visible
-    const content = component.locator('.tabs-content', { hasText: 'Content 2' });
+    const content = component.locator('.mp-tabs__content', { hasText: 'Content 2' });
     await expect(content).toBeVisible();
   });
 
@@ -45,8 +45,8 @@ test.describe('Tabs Component', () => {
       </div>
     );
     
-    const tabs = defaultComponent.locator('.tabs');
-    await expect(tabs.nth(0)).toHaveClass(/tabs--default/);
+    const tabs = defaultComponent.locator('.mp-tabs');
+    await expect(tabs.nth(0)).toHaveClass(/mp-tabs--default/);
     await expect(tabs.nth(1)).toHaveClass(/tabs--underline/);
     await expect(tabs.nth(2)).toHaveClass(/tabs--pills/);
   });
@@ -60,7 +60,7 @@ test.describe('Tabs Component', () => {
     
     const component = await mount(<Tabs items={itemsWithDisabled} activeId="tab1" />);
     
-    const disabledTab = component.locator('.tabs-trigger', { hasText: 'Tab 2' });
+    const disabledTab = component.locator('.mp-tabs__trigger', { hasText: 'Tab 2' });
     await expect(disabledTab).toBeDisabled();
     await expect(disabledTab).toHaveClass(/tabs-trigger--disabled/);
   });
@@ -70,20 +70,20 @@ test.describe('Tabs Component', () => {
       <Tabs items={mockItems} className="custom-tabs" />
     );
     
-    await expect(component.locator('.tabs')).toHaveClass(/custom-tabs/);
+    await expect(component.locator('.mp-tabs')).toHaveClass(/custom-tabs/);
   });
 
   test('should support keyboard navigation', async ({ mount, page }) => {
     const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
     
     // Focus first tab
-    const firstTab = component.locator('.tabs-trigger').first();
+    const firstTab = component.locator('.mp-tabs__trigger').first();
     await firstTab.focus();
     await expect(firstTab).toBeFocused();
     
     // Press arrow right to move to next tab
     await page.keyboard.press('ArrowRight');
-    const secondTab = component.locator('.tabs-trigger').nth(1);
+    const secondTab = component.locator('.mp-tabs__trigger').nth(1);
     await expect(secondTab).toBeFocused();
     
     // Press arrow left to go back
@@ -95,12 +95,12 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
     
     // Focus first tab
-    const firstTab = component.locator('.tabs-trigger').first();
+    const firstTab = component.locator('.mp-tabs__trigger').first();
     await firstTab.focus();
     
     // Press End to go to last tab
     await page.keyboard.press('End');
-    const lastTab = component.locator('.tabs-trigger').last();
+    const lastTab = component.locator('.mp-tabs__trigger').last();
     await expect(lastTab).toBeFocused();
     
     // Press Home to go to first tab
@@ -116,7 +116,7 @@ test.describe('Tabs Component', () => {
     await expectAccessibleRole(tabList, 'tablist');
     
     // Check tab roles
-    const firstTab = component.locator('.tabs-trigger').first();
+    const firstTab = component.locator('.mp-tabs__trigger').first();
     await expectAccessibleRole(firstTab, 'tab');
     
     // Check active tab has aria-selected
@@ -177,7 +177,7 @@ test.describe('Tabs Component', () => {
       await expect(tabsList).toBeVisible();
       
       // Check that all tabs are rendered
-      const triggers = component.locator('.tabs-trigger');
+      const triggers = component.locator('.mp-tabs__trigger');
       await expect(triggers).toHaveCount(10);
     });
   });

@@ -74,14 +74,14 @@ test.describe("Text Component", () => {
       </div>,
     );
 
-    const texts = component.locator(".text");
-    await expect(texts.nth(0)).toHaveClass(/text--xs/);
-    await expect(texts.nth(1)).toHaveClass(/text--sm/);
-    await expect(texts.nth(2)).toHaveClass(/text--base/);
-    await expect(texts.nth(3)).toHaveClass(/text--lg/);
-    await expect(texts.nth(4)).toHaveClass(/text--xl/);
-    await expect(texts.nth(5)).toHaveClass(/text--2xl/);
-    await expect(texts.nth(6)).toHaveClass(/text--3xl/);
+    const texts = component.locator(".mp-text");
+    await expect(texts.nth(0)).toHaveClass(/mp-text--xs/);
+    await expect(texts.nth(1)).toHaveClass(/mp-text--sm/);
+    await expect(texts.nth(2)).toHaveClass(/mp-text--base/);
+    await expect(texts.nth(3)).toHaveClass(/mp-text--lg/);
+    await expect(texts.nth(4)).toHaveClass(/mp-text--xl/);
+    await expect(texts.nth(5)).toHaveClass(/mp-text--2xl/);
+    await expect(texts.nth(6)).toHaveClass(/mp-text--3xl/);
   });
 
   test("should render different weights", async ({ mount }) => {
@@ -94,11 +94,11 @@ test.describe("Text Component", () => {
       </div>,
     );
 
-    const texts = component.locator(".text");
-    await expect(texts.nth(0)).toHaveClass(/text--normal/);
-    await expect(texts.nth(1)).toHaveClass(/text--medium/);
-    await expect(texts.nth(2)).toHaveClass(/text--semibold/);
-    await expect(texts.nth(3)).toHaveClass(/text--bold/);
+    const texts = component.locator(".mp-text");
+    await expect(texts.nth(0)).toHaveClass(/mp-text--normal/);
+    await expect(texts.nth(1)).toHaveClass(/mp-text--medium/);
+    await expect(texts.nth(2)).toHaveClass(/mp-text--semibold/);
+    await expect(texts.nth(3)).toHaveClass(/mp-text--bold/);
   });
 
   test("should render different alignments", async ({ mount }) => {
@@ -110,10 +110,10 @@ test.describe("Text Component", () => {
       </div>,
     );
 
-    const texts = component.locator(".text");
-    await expect(texts.nth(0)).toHaveClass(/text--left/);
-    await expect(texts.nth(1)).toHaveClass(/text--center/);
-    await expect(texts.nth(2)).toHaveClass(/text--right/);
+    const texts = component.locator(".mp-text");
+    await expect(texts.nth(0)).toHaveClass(/mp-text--left/);
+    await expect(texts.nth(1)).toHaveClass(/mp-text--center/);
+    await expect(texts.nth(2)).toHaveClass(/mp-text--right/);
   });
 
   test("should render different colors", async ({ mount }) => {
@@ -129,14 +129,14 @@ test.describe("Text Component", () => {
       </div>,
     );
 
-    const texts = component.locator(".text");
-    await expect(texts.nth(0)).toHaveClass(/text--default/);
-    await expect(texts.nth(1)).toHaveClass(/text--secondary/);
-    await expect(texts.nth(2)).toHaveClass(/text--tertiary/);
-    await expect(texts.nth(3)).toHaveClass(/text--primary/);
-    await expect(texts.nth(4)).toHaveClass(/text--destructive/);
-    await expect(texts.nth(5)).toHaveClass(/text--success/);
-    await expect(texts.nth(6)).toHaveClass(/text--warning/);
+    const texts = component.locator(".mp-text");
+    await expect(texts.nth(0)).toHaveClass(/mp-text--default/);
+    await expect(texts.nth(1)).toHaveClass(/mp-text--secondary/);
+    await expect(texts.nth(2)).toHaveClass(/mp-text--tertiary/);
+    await expect(texts.nth(3)).toHaveClass(/mp-text--primary/);
+    await expect(texts.nth(4)).toHaveClass(/mp-text--destructive/);
+    await expect(texts.nth(5)).toHaveClass(/mp-text--success/);
+    await expect(texts.nth(6)).toHaveClass(/mp-text--warning/);
   });
 
   test("should support truncate prop", async ({ mount }) => {
@@ -154,8 +154,8 @@ test.describe("Text Component", () => {
     const truncated1 = component.locator('[data-testid="truncate-1"]');
     const truncated2 = component.locator('[data-testid="truncate-2"]');
 
-    await expect(truncated1).toHaveClass(/text--truncate/);
-    await expect(truncated2).toHaveClass(/text--truncate/);
+    await expect(truncated1).toHaveClass(/mp-text--truncate/);
+    await expect(truncated2).toHaveClass(/mp-text--truncate/);
   });
 
   test("should apply custom className", async ({ mount }) => {
@@ -226,10 +226,10 @@ test.describe("Text Component", () => {
         </Text>,
       );
 
-      await expect(component).toHaveClass(/text--lg/);
-      await expect(component).toHaveClass(/text--bold/);
-      await expect(component).toHaveClass(/text--center/);
-      await expect(component).toHaveClass(/text--primary/);
+      await expect(component).toHaveClass(/mp-text--lg/);
+      await expect(component).toHaveClass(/mp-text--bold/);
+      await expect(component).toHaveClass(/mp-text--center/);
+      await expect(component).toHaveClass(/mp-text--primary/);
     });
 
     test("should render semantic headings with appropriate sizes", async ({
@@ -253,9 +253,9 @@ test.describe("Text Component", () => {
       const h2 = component.locator("h2");
       const h3 = component.locator("h3");
 
-      await expect(h1).toHaveClass(/text--3xl/);
-      await expect(h2).toHaveClass(/text--2xl/);
-      await expect(h3).toHaveClass(/text--xl/);
+      await expect(h1).toHaveClass(/mp-text--3xl/);
+      await expect(h2).toHaveClass(/mp-text--2xl/);
+      await expect(h3).toHaveClass(/mp-text--xl/);
     });
 
     test("should maintain proper text flow", async ({ mount }) => {
@@ -267,7 +267,7 @@ test.describe("Text Component", () => {
         </div>,
       );
 
-      const text = component.locator(".text");
+      const text = component.locator(".mp-text");
       const height = await text.evaluate(
         (el) => (el as HTMLElement).offsetHeight,
       );

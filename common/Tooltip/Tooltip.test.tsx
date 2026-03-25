@@ -42,7 +42,7 @@ test.describe("Tooltip Component", () => {
     const trigger = page.locator("button");
 
     // Initially hidden
-    await expect(page.locator(".tooltip__content")).not.toBeVisible();
+    await expect(page.locator(".mp-tooltip__content")).not.toBeVisible();
 
     // Hover to show
     await trigger.hover();
@@ -100,7 +100,7 @@ test.describe("Tooltip Component", () => {
     );
 
     const trigger = page.locator("button");
-    const content = page.locator(".tooltip__content");
+    const content = page.locator(".mp-tooltip__content");
 
     // Focus to show
     await trigger.focus();
@@ -120,7 +120,7 @@ test.describe("Tooltip Component", () => {
     );
 
     const trigger = page.locator("button");
-    const content = page.locator(".tooltip__content");
+    const content = page.locator(".mp-tooltip__content");
 
     // Focus to show
     await trigger.focus();
@@ -192,7 +192,7 @@ test.describe("Tooltip Component", () => {
     );
 
     const trigger = page.locator("button");
-    const content = page.locator(".tooltip__content");
+    const content = page.locator(".mp-tooltip__content");
 
     // Hover
     await trigger.hover();
@@ -209,7 +209,7 @@ test.describe("Tooltip Component", () => {
     await mount(<ControlledTooltip />);
 
     const trigger = page.locator("button");
-    const content = page.locator(".tooltip__content");
+    const content = page.locator(".mp-tooltip__content");
 
     // Initially closed
     await expect(content).not.toBeVisible();
@@ -297,7 +297,7 @@ test.describe("Tooltip Component", () => {
 
     await page.locator("button").hover();
 
-    const content = page.locator(".tooltip__content");
+    const content = page.locator(".mp-tooltip__content");
     await expect(content).toHaveClass(/custom-class/);
   });
 });

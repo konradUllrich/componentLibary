@@ -18,21 +18,21 @@ export interface UserAvatarsProps {
 export const UserAvatars = React.forwardRef<HTMLDivElement, UserAvatarsProps>(
   ({ users, maxVisible = 3, size = "sm", className }, ref) => {
     if (users.length === 0) {
-      return <span className="user-avatars__empty">-</span>;
+      return <span className="mp-user-avatars__empty">-</span>;
     }
 
     const visibleUsers = users.slice(0, maxVisible);
     const remainingCount = users.length - maxVisible;
 
     return (
-      <div ref={ref} className={clsx("user-avatars", className)}>
-        <div className="user-avatars__group">
+      <div ref={ref} className={clsx("mp-user-avatars", className)}>
+        <div className="mp-user-avatars__group">
           {visibleUsers.map((user) => (
             <UserAvatar
               key={user.id}
               user={user}
               size={size}
-              className="user-avatars__item"
+              className="mp-user-avatars__item"
             />
           ))}
           {remainingCount > 0 && (
@@ -40,8 +40,8 @@ export const UserAvatars = React.forwardRef<HTMLDivElement, UserAvatarsProps>(
               className={clsx(
                 "user-avatar",
                 `user-avatar--${size}`,
-                "user-avatars__item",
-                "user-avatars__item--remaining",
+                "mp-user-avatars__item",
+                "mp-user-avatars__item--remaining",
               )}
               style={{ zIndex: 0 }}
               title={`+${remainingCount} more`}

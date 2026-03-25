@@ -27,7 +27,7 @@ export const UserAvatar = React.forwardRef<HTMLDivElement, UserAvatarProps>(
     return (
       <div
         ref={ref}
-        className={clsx("user-avatar", `user-avatar--${size}`, className)}
+        className={clsx("mp-user-avatar", `mp-user-avatar--${size}`, className)}
         style={{
           backgroundColor: user.avatarColor || getInitialsColor(user.initials),
         }}

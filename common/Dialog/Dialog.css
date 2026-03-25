@@ -1,7 +1,7 @@
 /* Dialog Component Styles */
 
 /* Overlay */
-.dialog__overlay {
+.mp-dialog__overlay {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +10,7 @@
 }
 
 /* Content Container */
-.dialog__content {
+.mp-dialog__content {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -30,33 +30,33 @@
   animation: dialog-content-slide-in var(--duration-200) ease-out;
 }
 
-.dialog__content--sm {
+.mp-dialog__content--sm {
   max-width: 400px;
 }
 
-.dialog__content--md {
+.mp-dialog__content--md {
   max-width: 500px;
 }
 
-.dialog__content--lg {
+.mp-dialog__content--lg {
   max-width: 700px;
 }
 
-.dialog__content--xl {
+.mp-dialog__content--xl {
   max-width: 900px;
 }
 
-.dialog__content--full {
+.mp-dialog__content--full {
   max-width: 95vw;
 }
 
-.dialog__content:focus-visible {
+.mp-dialog__content:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 /* Title */
-.dialog__title {
+.mp-dialog__title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--dialog-foreground, #0f172a);
@@ -64,7 +64,7 @@
 }
 
 /* Description */
-.dialog__description {
+.mp-dialog__description {
   font-size: var(--font-size-md);
   color: var(--dialog-foreground-muted, #475569);
   margin: 0 0 var(--spacing-4) 0;
@@ -72,7 +72,7 @@
 }
 
 /* Close Button */
-.dialog__close {
+.mp-dialog__close {
   position: absolute;
   top: var(--spacing-4);
   right: var(--spacing-4);
@@ -91,12 +91,12 @@
   transition: var(--transition-fast);
 }
 
-.dialog__close:hover {
+.mp-dialog__close:hover {
   background-color: var(--color-gray-100, #f1f5f9);
   color: var(--dialog-foreground, #0f172a);
 }
 
-.dialog__close:focus-visible {
+.mp-dialog__close:focus-visible {
   outline: 2px solid var(--color-primary, #6366f1);
   outline-offset: 2px;
 }
@@ -124,42 +124,42 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .dialog__overlay {
+  .mp-dialog__overlay {
     animation: none;
   }
 
-  .dialog__content {
+  .mp-dialog__content {
     animation: none;
   }
 }
 
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
-  .dialog__overlay {
+  .mp-dialog__overlay {
     background-color: rgba(0, 0, 0, 0.7);
   }
 
-  .dialog__content {
+  .mp-dialog__content {
     background-color: #ffffff;
     box-shadow:
       var(--shadow-lg),
       0 0 0 1px var(--color-gray-800, #1e293b);
   }
 
-  .dialog__close:hover {
+  .mp-dialog__close:hover {
     background-color: var(--color-gray-800, #1e293b);
   }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .dialog__content {
+  .mp-dialog__content {
     width: 95vw;
     max-width: none;
     padding: var(--spacing-4);
   }
 
-  .dialog__title {
+  .mp-dialog__title {
     font-size: var(--font-size-lg);
   }
 }

@@ -77,11 +77,11 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         src={currentSrc}
         alt={alt}
         className={clsx(
-          "image",
-          `image--${objectFit}`,
-          `image--rounded-${rounded}`,
-          aspectRatio !== "auto" && `image--aspect-${aspectRatio}`,
-          hasError && "image--error",
+          "mp-image",
+          `mp-image--${objectFit}`,
+          `mp-image--rounded-${rounded}`,
+          aspectRatio !== "auto" && `mp-image--aspect-${aspectRatio}`,
+          hasError && "mp-image--error",
           className,
         )}
         onError={handleError}
