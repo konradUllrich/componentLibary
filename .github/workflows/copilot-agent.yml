@@ -53,13 +53,14 @@ jobs:
 
             if [ "$count" -eq "0" ]; then
               echo "Creating issue: $task"
-              gh issue create \
+              issue_url=$(gh issue create \
                 --title "$task" \
                 --body "$(printf 'This task was automatically extracted from \`plan/components.md\`.\n\n**Original instruction:**\n```\n@copilot: %s\n```\n\n> _Created by the [Copilot Agent Dispatcher](%s/actions/workflows/copilot-agent.yml) workflow._' \
                   "$task" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY")" \
-                --label "copilot-task" \
-                --assignee "copilot"
-              echo "Issue created for: $task"
+                --label "copilot-task")
+              echo "Issue created for: $task ($issue_url)"
+              gh issue edit "$issue_url" --add-assignee "copilot" \
+                || echo "Warning: could not assign 'copilot' to issue – Copilot coding agent may not be enabled for this repository."
             else
               echo "Issue already exists for task (skipping): $task"
             fi
