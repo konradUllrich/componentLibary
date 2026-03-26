@@ -77,10 +77,13 @@ export {
 
 export {
   ThemeProvider,
+  ThemePresetProvider,
   useTheme,
   ThemePanel,
   type ThemeConfig,
   type ThemeColors,
+  type ThemePresetInput,
+  type ThemePresetProviderProps,
   defaultTheme,
 } from "./ThemeProvider";
 
