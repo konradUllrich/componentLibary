@@ -32,6 +32,7 @@ import {
   TreeEditorPage,
   IconPickerPage,
   IntrexxIconPage,
+  UsePaginationPage,
 } from "./pages";
 
 import "./App.css";
@@ -79,6 +80,15 @@ export const App: React.FC = () => {
                     },
                   },
                   {
+                    id: "use-pagination",
+                    label: "usePagination",
+                    icon: <BookOpen size={18} />,
+                    isActive: location === "/hooks/use-pagination",
+                    onClick: () => {
+                      navigate("/hooks/use-pagination");
+                    },
+                  },
+                  {
                     id: "github",
                     label: "GitHub",
                     icon: <Github size={18} />,
@@ -110,6 +120,7 @@ export const App: React.FC = () => {
           path="/hooks/use-persisted-state"
           component={UsePersistedStatePage}
         />
+        <Route path="/hooks/use-pagination" component={UsePaginationPage} />
         <Route path="/components/button" component={ButtonPage} />
         <Route path="/components/badge" component={BadgePage} />
         <Route path="/components/text" component={TextPage} />

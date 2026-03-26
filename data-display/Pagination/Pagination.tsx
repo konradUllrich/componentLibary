@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
-import { createPaginationStore } from "./paginationStore";
+import type { PaginationState } from "../../hooks/usePagination/usePagination";
 import "./pagination.css";
 
 export interface PaginationProps {
-  store: ReturnType<typeof createPaginationStore>;
+  pagination: PaginationState;
   showSizeSelector?: boolean;
   pageSizeOptions?: number[];
   className?: string;
@@ -14,11 +14,17 @@ export interface PaginationProps {
  * Pagination Component
  *
  * Displays pagination controls with page navigation and optional page size selector.
+ * Accepts the return value of the `usePagination` hook directly.
+ *
+ * @example
+ * const pagination = usePagination({ storageKey: "my-table" });
+ * pagination.setTotalItems(totalCount);
+ * <Pagination pagination={pagination} />
  */
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (
     {
-      store,
+      pagination,
       showSizeSelector = true,
       pageSizeOptions = [5, 10, 20, 50, 100],
       className,
@@ -34,7 +40,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       hasPrevious,
       setPage,
       setPageSize,
-    } = store();
+    } = pagination;
 
     const startItem = (page - 1) * pageSize + 1;
     const endItem = Math.min(page * pageSize, totalItems);

@@ -1,110 +1,85 @@
 import React from "react";
-import {
-  Pagination,
-  createPaginationStore,
-  usePaginationSync,
-} from "../../data-display/Pagination";
-import { Text } from "../../common";
+import { Pagination } from "../../data-display/Pagination";
+import { usePagination } from "../../hooks/usePagination/usePagination";
+import { Button, Text } from "../../common";
 import { Page, Section } from "../../layout";
+import { useLocation } from "../../Router/hooks";
 
-const paginationStore = createPaginationStore(10);
-paginationStore.getState().setTotalItems(100);
+const BasicPagination: React.FC = () => {
+  const pagination = usePagination({
+    storageKey: "pg-demo",
+    defaultPageSize: 10,
+  });
 
-const urlSyncedStoreA = createPaginationStore(10);
-urlSyncedStoreA.getState().setTotalItems(100);
+  React.useEffect(() => {
+    pagination.setTotalItems(100);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-const urlSyncedStoreB = createPaginationStore(5);
-urlSyncedStoreB.getState().setTotalItems(60);
-
-const SyncedPaginationA: React.FC = () => {
-  usePaginationSync(urlSyncedStoreA, { key: "tableA" });
-  return <Pagination store={urlSyncedStoreA} />;
+  return <Pagination pagination={pagination} />;
 };
-SyncedPaginationA.displayName = "SyncedPaginationA";
-
-const SyncedPaginationB: React.FC = () => {
-  usePaginationSync(urlSyncedStoreB, { key: "tableB" });
-  return <Pagination store={urlSyncedStoreB} />;
-};
-SyncedPaginationB.displayName = "SyncedPaginationB";
+BasicPagination.displayName = "BasicPagination";
 
 export const PaginationPage: React.FC = () => {
+  const [, navigate] = useLocation();
+
   return (
     <Page>
       <Section variant="hero">
         <Text as="h1" size="3xl" weight="bold">
-          Pagination Component
+          Pagination
         </Text>
-        <Text color="secondary">Navigate through pages of data</Text>
+        <Text color="secondary">
+          A controlled pagination component. Wire it up with the{" "}
+          <code>usePagination</code> hook — which handles URL persistence, Web
+          Storage, and all derived state for you.
+        </Text>
+        <Button
+          variant="primary"
+          onClick={() => navigate("/hooks/use-pagination")}
+        >
+          See all usePagination examples →
+        </Button>
       </Section>
 
       <Section>
         <Text as="h2" size="2xl" weight="semibold">
-          Basic Pagination
+          Live Demo
         </Text>
         <Text color="secondary" size="sm">
-          Standard pagination with page numbers and navigation
+          100 items, 10 per page. Page and page size are synced to the URL —
+          reload the tab and you'll land on the same page.
         </Text>
         <div className="component-page__demo-column">
-          <Pagination store={paginationStore} />
+          <BasicPagination />
         </div>
       </Section>
 
       <Section>
         <Text as="h2" size="2xl" weight="semibold">
-          URL-synced Pagination
-        </Text>
-        <Text color="secondary" size="sm">
-          Page and page size are reflected in and restored from the URL. Use a{" "}
-          <code>key</code> to namespace each instance — multiple synced
-          paginations on the same page will never collide.
-        </Text>
-        <div className="component-page__demo-column">
-          <Text size="sm" weight="semibold">
-            Table A (key=&quot;tableA&quot; → tableA_page, tableA_pageSize)
-          </Text>
-          <SyncedPaginationA />
-          <Text size="sm" weight="semibold">
-            Table B (key=&quot;tableB&quot; → tableB_page, tableB_pageSize)
-          </Text>
-          <SyncedPaginationB />
-        </div>
-      </Section>
-
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
+          Props
         </Text>
         <pre className="code-block">
-          <code>{`import {
-  Pagination,
-  createPaginationStore,
-  usePaginationSync,
-} from '@konradullrich/mp-components';
-
-// Store lives outside the component so it is shared / stable.
-const store = createPaginationStore(10);
-store.getState().setTotalItems(100);
-
-// Without URL sync – plain store.
-<Pagination store={store} />
-
-// With URL sync – use key to namespace params (safe for multiple tables).
-function UserTable() {
-  usePaginationSync(usersStore, { key: "users" });
-  // URL params: users_page, users_pageSize
-  return <Pagination store={usersStore} />;
-}
-
-function OrderTable() {
-  usePaginationSync(ordersStore, { key: "orders" });
-  // URL params: orders_page, orders_pageSize
-  return <Pagination store={ordersStore} />;
-}
-
-// Override individual param names if needed:
-// usePaginationSync(store, { pageParam: "p", pageSizeParam: "size" });`}</code>
+          <code>{`interface PaginationProps {
+  pagination: PaginationState;  // return value of usePagination()
+  showSizeSelector?: boolean;   // default: true
+  pageSizeOptions?: number[];   // default: [10, 20, 50, 100]
+  className?: string;
+}`}</code>
         </pre>
+        <Text as="p" size="sm" color="secondary">
+          <code>PaginationState</code> is the object returned by{" "}
+          <code>usePagination()</code>. For the full hook API and more examples,
+          see the{" "}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/hooks/use-pagination")}
+          >
+            usePagination docs
+          </Button>
+          .
+        </Text>
       </Section>
     </Page>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import { Pagination } from "./Pagination";
-import { createPaginationStore } from "./paginationStore";
+import { usePagination } from "../../hooks/usePagination/usePagination";
 
 /**
- * Test story wrapper component to handle Zustand store initialization properly.
- * This is used in Pagination.test.tsx to test the component with proper store setup.
+ * Test wrapper component for Pagination.
+ * Uses `usePagination` hook — the same API consumers use in production.
  */
 export const PaginationTestWrapper: React.FC<{
   totalItems: number;
@@ -23,31 +23,28 @@ export const PaginationTestWrapper: React.FC<{
     className,
   } = props;
 
-  // Create store with lazy initialization to capture initial prop values
-  const [useStore] = React.useState(() => {
-    const store = createPaginationStore(pageSize);
-    // Initialize store data synchronously before first render
-    store.getState().setTotalItems(totalItems);
-    if (currentPage > 1) {
-      store.getState().setPage(currentPage);
-    }
-    return store;
+  const pagination = usePagination({
+    storageKey: "test-pagination",
+    defaultPage: currentPage,
+    defaultPageSize: pageSize,
+    syncUrl: false,
   });
 
-  // Update store when props change (after initial mount)
+  // Sync totalItems whenever the prop changes
   React.useEffect(() => {
-    useStore.getState().setTotalItems(totalItems);
-    if (pageSize !== useStore.getState().pageSize) {
-      useStore.getState().setPageSize(pageSize);
-    }
-    if (currentPage !== useStore.getState().page) {
-      useStore.getState().setPage(currentPage);
-    }
-  }, [totalItems, currentPage, pageSize, useStore]);
+    pagination.setTotalItems(totalItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalItems]);
+
+  // Sync page when currentPage prop changes after mount
+  React.useEffect(() => {
+    pagination.setPage(currentPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
 
   return (
     <Pagination
-      store={useStore}
+      pagination={pagination}
       showSizeSelector={showSizeSelector}
       pageSizeOptions={pageSizeOptions}
       className={className}

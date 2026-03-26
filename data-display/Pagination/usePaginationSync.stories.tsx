@@ -43,7 +43,9 @@ export const PaginationSyncTestWrapper: React.FC<
 
   usePaginationSync(store, { key: syncKey, pageParam, pageSizeParam });
 
-  return <Pagination store={store} showSizeSelector={showSizeSelector} />;
+  return (
+    <Pagination pagination={store()} showSizeSelector={showSizeSelector} />
+  );
 };
 
 PaginationSyncTestWrapper.displayName = "PaginationSyncTestWrapper";
@@ -94,8 +96,8 @@ export const TwoSyncedPaginationsWrapper: React.FC<
 
   return (
     <>
-      <Pagination store={storeA} />
-      <Pagination store={storeB} />
+      <Pagination pagination={storeA()} />
+      <Pagination pagination={storeB()} />
     </>
   );
 };

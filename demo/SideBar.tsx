@@ -51,6 +51,12 @@ const SIDEBAR_ELEMENTS = {
       icon: <BookOpen size={16} />,
       link: "/hooks/use-persisted-state",
     },
+    {
+      id: "use-pagination",
+      name: "usePagination",
+      icon: <Hash size={16} />,
+      link: "/hooks/use-pagination",
+    },
   ],
   components: {
     common: [
