@@ -327,7 +327,7 @@ export const UsePaginationPage = () => {
           Quick Start
         </Text>
         <pre className="use-persisted-state-page__code-block">
-          <code>{`import { usePagination } from "@mp-ku/mp-components/hooks";
+          <code>{`import { usePagination } from "@mp-ku/mp-components";
 import { Pagination } from "@mp-ku/mp-components";
 
 const pagination = usePagination({ storageKey: "my-table" });

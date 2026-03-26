@@ -16,6 +16,7 @@ export default defineConfig({
         "utils",
         "intrexx",
         "Router",
+        "hooks",
       ],
       exclude: [
         "**/*.test.tsx",
