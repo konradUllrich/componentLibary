@@ -33,7 +33,14 @@ export type IntrexxIconProps = React.HTMLAttributes<HTMLElement> & {
  */
 export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
   (
-    { iconClass, size = 16, color = "currentColor", className, ...props },
+    {
+      iconClass,
+      size = 16,
+      color = "currentColor",
+      fixPosition,
+      className,
+      ...props
+    },
     ref,
   ) => {
     return (
@@ -43,7 +50,7 @@ export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
           "intrexx-icon",
           `intrexx-icon--${size}`,
           `intrexx-icon--${color}`,
-          { "intrexx-icon--fix-position": props.fixPosition },
+          { "intrexx-icon--fix-position": fixPosition },
           iconClass,
           className,
         )}
