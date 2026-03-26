@@ -287,7 +287,7 @@ test.describe("usePagination Hook", () => {
         localStorage.clear();
         localStorage.setItem(
           "test-restore-pagination",
-          JSON.stringify({ page: 7, pageSize: 10, totalItems: 0 }),
+          JSON.stringify({ page: 7, pageSize: 10 }),
         );
       });
 

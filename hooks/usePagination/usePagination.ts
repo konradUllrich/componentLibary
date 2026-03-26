@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   usePersistedState,
   type StorageType,
@@ -37,7 +37,6 @@ export type PaginationState = {
 type PersistedPagination = {
   page: number;
   pageSize: number;
-  totalItems: number;
 };
 
 export function usePagination({
@@ -52,7 +51,6 @@ export function usePagination({
     () => ({
       page: defaultPage,
       pageSize: defaultPageSize,
-      totalItems: totalItemsProp,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -66,8 +64,10 @@ export function usePagination({
     removeIfDefault: true,
   });
 
+  const [totalItems, setTotalItemsState] = useState(totalItemsProp);
+
   // Derive read-only computed values from persisted state
-  const { page, pageSize, totalItems } = persisted;
+  const { page, pageSize } = persisted;
   const totalPages = Math.ceil(totalItems / pageSize) || 0;
   const hasNext = page < totalPages;
   const hasPrevious = page > 1;
@@ -81,21 +81,18 @@ export function usePagination({
     (newPage: number) => {
       setPersisted((prev) => ({
         ...prev,
-        page: clampPage(
-          newPage,
-          Math.ceil(prev.totalItems / prev.pageSize) || 0,
-        ),
+        page: clampPage(newPage, Math.ceil(totalItems / prev.pageSize) || 0),
       }));
     },
-    [setPersisted, clampPage],
+    [setPersisted, clampPage, totalItems],
   );
 
   const nextPage = useCallback(() => {
     setPersisted((prev) => {
-      const tp = Math.ceil(prev.totalItems / prev.pageSize) || 0;
+      const tp = Math.ceil(totalItems / prev.pageSize) || 0;
       return { ...prev, page: Math.min(prev.page + 1, tp || prev.page) };
     });
-  }, [setPersisted]);
+  }, [setPersisted, totalItems]);
 
   const prevPage = useCallback(() => {
     setPersisted((prev) => ({ ...prev, page: Math.max(prev.page - 1, 1) }));
@@ -114,24 +111,18 @@ export function usePagination({
 
   const setTotalItems = useCallback(
     (count: number) => {
+      setTotalItemsState(count);
       setPersisted((prev) => {
         const tp = Math.ceil(count / prev.pageSize) || 0;
-        return {
-          ...prev,
-          totalItems: count,
-          page: clampPage(prev.page, tp),
-        };
+        return { ...prev, page: clampPage(prev.page, tp) };
       });
     },
     [setPersisted, clampPage],
   );
 
   const reset = useCallback(() => {
-    setPersisted({
-      page: defaultPage,
-      pageSize: defaultPageSize,
-      totalItems: totalItemsProp,
-    });
+    setPersisted({ page: defaultPage, pageSize: defaultPageSize });
+    setTotalItemsState(totalItemsProp);
   }, [setPersisted, defaultPage, defaultPageSize, totalItemsProp]);
 
   return {
