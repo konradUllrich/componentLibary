@@ -38,7 +38,7 @@ import "./App.css";
 import "./pages/ComponentPage.css";
 import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
-import { DocsPage } from "./pages/DocsPage";
+import { UsePersistedStatePage } from "./pages/UsePersistedStatePage";
 import { BookOpen, Github, Palette, Home } from "lucide-react";
 import { ThemePanel, useThemeEditor } from "../common/ThemeProvider";
 import { Route } from "../Router";
@@ -70,12 +70,12 @@ export const App: React.FC = () => {
                     },
                   },
                   {
-                    id: "docs",
-                    label: "Documentation",
+                    id: "use-persisted-state",
+                    label: "usePersistedState",
                     icon: <BookOpen size={18} />,
-                    isActive: location === "/docs",
+                    isActive: location === "/hooks/use-persisted-state",
                     onClick: () => {
-                      navigate("/docs");
+                      navigate("/hooks/use-persisted-state");
                     },
                   },
                   {
@@ -106,7 +106,10 @@ export const App: React.FC = () => {
         sidebar={<DemoSideBar />}
       >
         <Route path="/" component={HomePage} />
-        <Route path="/docs" component={DocsPage} />
+        <Route
+          path="/hooks/use-persisted-state"
+          component={UsePersistedStatePage}
+        />
         <Route path="/components/button" component={ButtonPage} />
         <Route path="/components/badge" component={BadgePage} />
         <Route path="/components/text" component={TextPage} />

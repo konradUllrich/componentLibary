@@ -29,3 +29,4 @@ export { ToggleGroupPage } from "./ToggleGroupPage";
 export { TreeEditorPage } from "./TreeEditorPage";
 export { IconPickerPage } from "./IconPickerPage";
 export { IntrexxIconPage } from "./IntrexxIconPage";
+export { UsePersistedStatePage } from "./UsePersistedStatePage";

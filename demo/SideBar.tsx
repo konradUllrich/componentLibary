@@ -27,6 +27,7 @@ import {
   Grid3x3,
   Hash,
   Table,
+  BookOpen,
   LayoutGrid,
   CreditCard,
   AlignHorizontalSpaceAround,
@@ -43,6 +44,14 @@ import {
 import { useLocation } from "../Router/hooks";
 
 const SIDEBAR_ELEMENTS = {
+  hooks: [
+    {
+      id: "use-persisted-state",
+      name: "usePersistedState",
+      icon: <BookOpen size={16} />,
+      link: "/hooks/use-persisted-state",
+    },
+  ],
   components: {
     common: [
       {
@@ -217,6 +226,28 @@ export const DemoSideBar = () => {
             navigate("/");
           }}
         />
+        <SidebarItem
+          label="Documentation"
+          icon={<BookOpen size={18} />}
+          isActive={location === "/hooks/use-persisted-state"}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/hooks/use-persisted-state");
+          }}
+        />
+        <SidebarDivider label="Hooks" />
+        {SIDEBAR_ELEMENTS.hooks.map((hook) => (
+          <SidebarItem
+            key={hook.id}
+            label={hook.name}
+            icon={hook.icon}
+            isActive={location === hook.link}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(hook.link);
+            }}
+          />
+        ))}
         <SidebarDivider label="Components" />
         <SidebarItem label="Common" icon={<Sparkles size={18} />}>
           {SIDEBAR_ELEMENTS.components.common.map((component) => (
