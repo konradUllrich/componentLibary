@@ -57,6 +57,12 @@ const SIDEBAR_ELEMENTS = {
       icon: <Hash size={16} />,
       link: "/hooks/use-pagination",
     },
+    {
+      id: "use-filter",
+      name: "useFilter",
+      icon: <BookOpen size={16} />,
+      link: "/hooks/use-filter",
+    },
   ],
   components: {
     common: [

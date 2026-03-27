@@ -31,3 +31,4 @@ export { IconPickerPage } from "./IconPickerPage";
 export { IntrexxIconPage } from "./IntrexxIconPage";
 export { UsePersistedStatePage } from "./UsePersistedStatePage";
 export { UsePaginationPage } from "./UsePaginationPage";
+export { UseFilterPage } from "./UseFilterPage";

@@ -33,6 +33,7 @@ import {
   IconPickerPage,
   IntrexxIconPage,
   UsePaginationPage,
+  UseFilterPage,
 } from "./pages";
 
 import "./App.css";
@@ -121,6 +122,7 @@ export const App: React.FC = () => {
           component={UsePersistedStatePage}
         />
         <Route path="/hooks/use-pagination" component={UsePaginationPage} />
+        <Route path="/hooks/use-filter" component={UseFilterPage} />
         <Route path="/components/button" component={ButtonPage} />
         <Route path="/components/badge" component={BadgePage} />
         <Route path="/components/text" component={TextPage} />
