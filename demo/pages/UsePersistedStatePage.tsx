@@ -302,7 +302,9 @@ const MixedObjectExample = () => {
       </div>
 
       <div className="use-persisted-state-page__actions">
-        <Text size="sm" weight="semibold">Roles (string[]):</Text>
+        <Text size="sm" weight="semibold">
+          Roles (string[]):
+        </Text>
         {AVAILABLE_TAGS.map((tag) => (
           <Button
             key={tag}
@@ -384,7 +386,14 @@ const ArrayExample = () => {
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
 
-  const TAGS = ["React", "TypeScript", "CSS", "Testing", "Accessibility", "Performance"];
+  const TAGS = [
+    "React",
+    "TypeScript",
+    "CSS",
+    "Testing",
+    "Accessibility",
+    "Performance",
+  ];
 
   return (
     <Panel
@@ -396,8 +405,8 @@ const ArrayExample = () => {
         6. Array State
       </Text>
       <Text color="secondary" size="sm">
-        Persist an array of selected tags. Uses the default JSON serialiser —
-        no custom serialize/deserialize needed. Reload to confirm.
+        Persist an array of selected tags. Uses the default JSON serialiser — no
+        custom serialize/deserialize needed. Reload to confirm.
       </Text>
       <div className="use-persisted-state-page__actions">
         {TAGS.map((tag) => (
@@ -419,9 +428,7 @@ const ArrayExample = () => {
           {selected.length > 0 ? selected.join(", ") : "none selected"}
         </Badge>
       </div>
-      <Badge variant="default">
-        localStorage: {readStorage("docs-array")}
-      </Badge>
+      <Badge variant="default">localStorage: {readStorage("docs-array")}</Badge>
       <pre className="use-persisted-state-page__code-block">
         <code>{`const [selected, setSelected] = usePersistedState<string[]>({
   key: "tags",

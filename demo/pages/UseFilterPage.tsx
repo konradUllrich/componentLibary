@@ -351,8 +351,8 @@ const MixedTypesExample = () => {
         5. Mixed datatypes
       </Text>
       <Text color="secondary" size="sm">
-        One filter object with string, number, boolean and string[] fields.
-        Each persists as its own flat URL param and is restored on reload.
+        One filter object with string, number, boolean and string[] fields. Each
+        persists as its own flat URL param and is restored on reload.
       </Text>
 
       {/* string */}
@@ -365,7 +365,9 @@ const MixedTypesExample = () => {
 
       {/* numbers — min / max rating */}
       <div className="use-persisted-state-page__actions">
-        <Text size="sm" weight="semibold">Min rating (number):</Text>
+        <Text size="sm" weight="semibold">
+          Min rating (number):
+        </Text>
         {[1, 2, 3, 4, 5].map((r) => (
           <Button
             key={r}
@@ -391,12 +393,16 @@ const MixedTypesExample = () => {
 
       {/* string[] */}
       <div className="use-persisted-state-page__actions">
-        <Text size="sm" weight="semibold">Tags (string[]):</Text>
+        <Text size="sm" weight="semibold">
+          Tags (string[]):
+        </Text>
         {AVAILABLE_TAGS.map((tag) => (
           <Button
             key={tag}
             size="sm"
-            variant={(filters.tags ?? []).includes(tag) ? "primary" : "secondary"}
+            variant={
+              (filters.tags ?? []).includes(tag) ? "primary" : "secondary"
+            }
             onClick={() => toggleTag(tag)}
           >
             {tag}
@@ -406,7 +412,9 @@ const MixedTypesExample = () => {
 
       {/* string enum via setFilters */}
       <div className="use-persisted-state-page__actions">
-        <Text size="sm" weight="semibold">Sort by (string):</Text>
+        <Text size="sm" weight="semibold">
+          Sort by (string):
+        </Text>
         {SORT_OPTIONS.map((s) => (
           <Button
             key={s}
@@ -431,8 +439,10 @@ const MixedTypesExample = () => {
               title={`Remove ${key}`}
             >
               {key}:{" "}
-              {Array.isArray(value) ? value.join(", ") || "—" : String(value ?? "—")}
-              {" "}✕
+              {Array.isArray(value)
+                ? value.join(", ") || "—"
+                : String(value ?? "—")}{" "}
+              ✕
             </Badge>
           ))}
         </div>
