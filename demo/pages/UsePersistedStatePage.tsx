@@ -216,6 +216,229 @@ const CustomSerializerExample = () => {
   );
 };
 
+type UserPrefs = {
+  username: string;
+  age: number;
+  darkMode: boolean;
+  score: number;
+  tags: string[];
+  lastSeen: string | null;
+};
+
+const MixedObjectExample = () => {
+  const [prefs, setPrefs] = usePersistedState<UserPrefs>({
+    key: "docs-mixed-obj",
+    defaultValue: {
+      username: "",
+      age: 0,
+      darkMode: false,
+      score: 0,
+      tags: [],
+      lastSeen: null,
+    },
+  });
+
+  const toggleTag = (tag: string) =>
+    setPrefs((prev) => ({
+      ...prev,
+      tags: prev.tags.includes(tag)
+        ? prev.tags.filter((t) => t !== tag)
+        : [...prev.tags, tag],
+    }));
+
+  const AVAILABLE_TAGS = ["admin", "editor", "viewer"];
+
+  return (
+    <Panel
+      variant="subtle"
+      padding="lg"
+      className="use-persisted-state-page__example"
+    >
+      <Text as="h3" size="xl" weight="semibold">
+        6. Mixed-type object
+      </Text>
+      <Text color="secondary" size="sm">
+        A single persisted object containing string, number, boolean, string[]
+        and null. All serialised as one JSON entry. Reload to confirm.
+      </Text>
+
+      <Input
+        label="Username (string)"
+        value={prefs.username}
+        onChange={(e) =>
+          setPrefs((prev) => ({ ...prev, username: e.target.value }))
+        }
+        placeholder="e.g. alice"
+      />
+
+      <Input
+        label="Age (number)"
+        type="number"
+        value={String(prefs.age)}
+        onChange={(e) =>
+          setPrefs((prev) => ({ ...prev, age: Number(e.target.value) }))
+        }
+      />
+
+      <div className="use-persisted-state-page__actions">
+        <Button
+          size="sm"
+          variant={prefs.darkMode ? "primary" : "secondary"}
+          onClick={() =>
+            setPrefs((prev) => ({ ...prev, darkMode: !prev.darkMode }))
+          }
+        >
+          Dark mode: {prefs.darkMode ? "ON" : "OFF"}
+        </Button>
+        <Button
+          size="sm"
+          variant="secondary"
+          onClick={() =>
+            setPrefs((prev) => ({ ...prev, score: prev.score + 10 }))
+          }
+        >
+          +10 score ({prefs.score})
+        </Button>
+      </div>
+
+      <div className="use-persisted-state-page__actions">
+        <Text size="sm" weight="semibold">Roles (string[]):</Text>
+        {AVAILABLE_TAGS.map((tag) => (
+          <Button
+            key={tag}
+            size="sm"
+            variant={prefs.tags.includes(tag) ? "primary" : "secondary"}
+            onClick={() => toggleTag(tag)}
+          >
+            {tag}
+          </Button>
+        ))}
+      </div>
+
+      <div className="use-persisted-state-page__actions">
+        <Button
+          size="sm"
+          variant="secondary"
+          onClick={() =>
+            setPrefs((prev) => ({
+              ...prev,
+              lastSeen: new Date().toLocaleTimeString(),
+            }))
+          }
+        >
+          Stamp lastSeen (string | null)
+        </Button>
+        {prefs.lastSeen && (
+          <Badge variant="info">lastSeen: {prefs.lastSeen}</Badge>
+        )}
+      </div>
+
+      <Button
+        size="sm"
+        variant="ghost"
+        onClick={() =>
+          setPrefs({
+            username: "",
+            age: 0,
+            darkMode: false,
+            score: 0,
+            tags: [],
+            lastSeen: null,
+          })
+        }
+      >
+        Reset all
+      </Button>
+
+      <pre className="use-persisted-state-page__code-block">
+        <code>{`type UserPrefs = {
+  username: string;
+  age: number;
+  darkMode: boolean;
+  score: number;
+  tags: string[];
+  lastSeen: string | null;
+};
+
+const [prefs, setPrefs] = usePersistedState<UserPrefs>({
+  key: "user-prefs",
+  defaultValue: { username: "", age: 0, darkMode: false,
+                  score: 0, tags: [], lastSeen: null },
+});
+
+// Partial update via updater function
+setPrefs((prev) => ({ ...prev, darkMode: !prev.darkMode }));`}</code>
+      </pre>
+    </Panel>
+  );
+};
+
+const ArrayExample = () => {
+  const [selected, setSelected] = usePersistedState<string[]>({
+    key: "docs-array",
+    defaultValue: [],
+  });
+
+  const toggle = (tag: string) =>
+    setSelected((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+
+  const TAGS = ["React", "TypeScript", "CSS", "Testing", "Accessibility", "Performance"];
+
+  return (
+    <Panel
+      variant="subtle"
+      padding="lg"
+      className="use-persisted-state-page__example"
+    >
+      <Text as="h3" size="xl" weight="semibold">
+        6. Array State
+      </Text>
+      <Text color="secondary" size="sm">
+        Persist an array of selected tags. Uses the default JSON serialiser —
+        no custom serialize/deserialize needed. Reload to confirm.
+      </Text>
+      <div className="use-persisted-state-page__actions">
+        {TAGS.map((tag) => (
+          <Button
+            key={tag}
+            size="sm"
+            variant={selected.includes(tag) ? "primary" : "secondary"}
+            onClick={() => toggle(tag)}
+          >
+            {tag}
+          </Button>
+        ))}
+      </div>
+      <div className="use-persisted-state-page__actions">
+        <Button size="sm" variant="ghost" onClick={() => setSelected([])}>
+          Clear all
+        </Button>
+        <Badge variant="info">
+          {selected.length > 0 ? selected.join(", ") : "none selected"}
+        </Badge>
+      </div>
+      <Badge variant="default">
+        localStorage: {readStorage("docs-array")}
+      </Badge>
+      <pre className="use-persisted-state-page__code-block">
+        <code>{`const [selected, setSelected] = usePersistedState<string[]>({
+  key: "tags",
+  defaultValue: [],
+});
+
+// toggle an item
+setSelected((prev) =>
+  prev.includes(tag)
+    ? prev.filter((t) => t !== tag)
+    : [...prev, tag],
+);`}</code>
+      </pre>
+    </Panel>
+  );
+};
+
 const MultipleKeysExample = () => {
   const [theme, setTheme] = usePersistedState({
     key: "docs-theme",
@@ -326,6 +549,8 @@ const [value, setValue] = usePersistedState({
           <ObjectExample />
           <CustomSerializerExample />
           <MultipleKeysExample />
+          <MixedObjectExample />
+          <ArrayExample />
         </div>
       </Section>
 

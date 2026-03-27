@@ -1,5 +1,6 @@
 import React from "react";
 import { Badge, Button, Text } from "../../common";
+import { Input } from "../../controls";
 import { Page, Panel, Section } from "../../layout";
 import { useFilter } from "../../hooks/useFilter/useFilter";
 import "./UsePersistedStatePage.css";
@@ -305,6 +306,161 @@ useFilter({ storageKey: "filters", syncUrl: false, storage: false });`}</code>
   );
 };
 
+// ===== 5. Mixed datatypes =====
+type AdvancedFilters = {
+  search: string;
+  minRating: number;
+  maxRating: number;
+  inStock: boolean;
+  tags: string[];
+  sortBy: string;
+};
+
+const MixedTypesExample = () => {
+  const { filters, setFilter, setFilters, removeFilter, clearFilters } =
+    useFilter<AdvancedFilters>({
+      storageKey: "docs-filter-mixed",
+      defaultFilters: {
+        search: "",
+        minRating: 1,
+        maxRating: 5,
+        inStock: false,
+        tags: [],
+        sortBy: "relevance",
+      },
+    });
+
+  const AVAILABLE_TAGS = ["sale", "new", "featured", "popular"];
+  const SORT_OPTIONS = ["relevance", "price", "rating", "newest"];
+
+  const toggleTag = (tag: string) =>
+    setFilter(
+      "tags",
+      (filters.tags ?? []).includes(tag)
+        ? (filters.tags ?? []).filter((t) => t !== tag)
+        : [...(filters.tags ?? []), tag],
+    );
+
+  return (
+    <Panel
+      variant="subtle"
+      padding="lg"
+      className="use-persisted-state-page__example"
+    >
+      <Text as="h3" size="xl" weight="semibold">
+        5. Mixed datatypes
+      </Text>
+      <Text color="secondary" size="sm">
+        One filter object with string, number, boolean and string[] fields.
+        Each persists as its own flat URL param and is restored on reload.
+      </Text>
+
+      {/* string */}
+      <Input
+        label="Search (string)"
+        value={filters.search ?? ""}
+        onChange={(e) => setFilter("search", e.target.value)}
+        placeholder="e.g. keyboard"
+      />
+
+      {/* numbers — min / max rating */}
+      <div className="use-persisted-state-page__actions">
+        <Text size="sm" weight="semibold">Min rating (number):</Text>
+        {[1, 2, 3, 4, 5].map((r) => (
+          <Button
+            key={r}
+            size="sm"
+            variant={(filters.minRating ?? 1) === r ? "primary" : "secondary"}
+            onClick={() => setFilter("minRating", r)}
+          >
+            {r}★
+          </Button>
+        ))}
+      </div>
+
+      {/* boolean */}
+      <div className="use-persisted-state-page__actions">
+        <Button
+          size="sm"
+          variant={filters.inStock ? "primary" : "secondary"}
+          onClick={() => setFilter("inStock", !filters.inStock)}
+        >
+          In stock only: {filters.inStock ? "ON" : "OFF"}
+        </Button>
+      </div>
+
+      {/* string[] */}
+      <div className="use-persisted-state-page__actions">
+        <Text size="sm" weight="semibold">Tags (string[]):</Text>
+        {AVAILABLE_TAGS.map((tag) => (
+          <Button
+            key={tag}
+            size="sm"
+            variant={(filters.tags ?? []).includes(tag) ? "primary" : "secondary"}
+            onClick={() => toggleTag(tag)}
+          >
+            {tag}
+          </Button>
+        ))}
+      </div>
+
+      {/* string enum via setFilters */}
+      <div className="use-persisted-state-page__actions">
+        <Text size="sm" weight="semibold">Sort by (string):</Text>
+        {SORT_OPTIONS.map((s) => (
+          <Button
+            key={s}
+            size="sm"
+            variant={filters.sortBy === s ? "primary" : "secondary"}
+            onClick={() => setFilters({ sortBy: s, minRating: 1 })}
+          >
+            {s}
+          </Button>
+        ))}
+      </div>
+
+      {/* active filter chips */}
+      {Object.keys(filters).length > 0 && (
+        <div className="use-persisted-state-page__actions">
+          {Object.entries(filters).map(([key, value]) => (
+            <Badge
+              key={key}
+              variant="info"
+              style={{ cursor: "pointer" }}
+              onClick={() => removeFilter(key as keyof AdvancedFilters)}
+              title={`Remove ${key}`}
+            >
+              {key}:{" "}
+              {Array.isArray(value) ? value.join(", ") || "—" : String(value ?? "—")}
+              {" "}✕
+            </Badge>
+          ))}
+        </div>
+      )}
+
+      <Button size="sm" variant="ghost" onClick={clearFilters}>
+        Clear all
+      </Button>
+
+      <pre className="use-persisted-state-page__code-block">
+        <code>{`type AdvancedFilters = {
+  search: string;      // ?search=keyboard
+  minRating: number;   // ?minRating=3
+  inStock: boolean;    // ?inStock=true
+  tags: string[];      // ?tags=["sale","new"]
+  sortBy: string;      // ?sortBy=price
+};
+
+const { filters, setFilter, setFilters } = useFilter<AdvancedFilters>({
+  storageKey: "shop-filters",
+  defaultFilters: { search: "", minRating: 1,
+                    inStock: false, tags: [], sortBy: "relevance" },
+});`}</code>
+      </pre>
+    </Panel>
+  );
+};
+
 // ===== Page =====
 export const UseFilterPage: React.FC = () => (
   <Page>
@@ -324,6 +480,7 @@ export const UseFilterPage: React.FC = () => (
       <BulkUpdateExample />
       <RemoveExample />
       <StorageOptionsExample />
+      <MixedTypesExample />
     </Section>
   </Page>
 );
