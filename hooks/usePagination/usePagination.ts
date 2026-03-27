@@ -1,8 +1,8 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
   usePersistedState,
   type StorageType,
-} from "../usePresistedState/usePersistedState";
+} from "../usePersistedState/usePersistedState";
 
 export type UsePaginationOptions = {
   /** Unique storage/URL key prefix. Defaults to "pagination". */
@@ -13,7 +13,7 @@ export type UsePaginationOptions = {
   defaultPageSize?: number;
   /** Total number of items — can also be updated via setTotalItems. */
   totalItems?: number;
-  /** Web Storage backend. Defaults to "localStorage". */
+  /** Web Storage backend. Defaults to "sessionStorage". Set to false to disable storage entirely. */
   storage?: StorageType;
   /** Set to false to disable URL search-param synchronisation. Defaults to true. */
   syncUrl?: boolean;
@@ -44,7 +44,7 @@ export function usePagination({
   defaultPage = 1,
   defaultPageSize = 10,
   totalItems: totalItemsProp = 0,
-  storage = "localStorage",
+  storage = "sessionStorage" as const,
   syncUrl = true,
 }: UsePaginationOptions = {}): PaginationState {
   const defaultValue = useMemo<PersistedPagination>(
@@ -62,9 +62,12 @@ export function usePagination({
     storage,
     syncUrl,
     removeIfDefault: true,
+    flatUrlParams: true,
   });
 
   const [totalItems, setTotalItemsState] = useState(totalItemsProp);
+  const totalItemsRef = useRef(totalItems);
+  totalItemsRef.current = totalItems;
 
   // Derive read-only computed values from persisted state
   const { page, pageSize } = persisted;
@@ -81,18 +84,21 @@ export function usePagination({
     (newPage: number) => {
       setPersisted((prev) => ({
         ...prev,
-        page: clampPage(newPage, Math.ceil(totalItems / prev.pageSize) || 0),
+        page: clampPage(
+          newPage,
+          Math.ceil(totalItemsRef.current / prev.pageSize) || 0,
+        ),
       }));
     },
-    [setPersisted, clampPage, totalItems],
+    [setPersisted, clampPage],
   );
 
   const nextPage = useCallback(() => {
     setPersisted((prev) => {
-      const tp = Math.ceil(totalItems / prev.pageSize) || 0;
+      const tp = Math.ceil(totalItemsRef.current / prev.pageSize) || 0;
       return { ...prev, page: Math.min(prev.page + 1, tp || prev.page) };
     });
-  }, [setPersisted, totalItems]);
+  }, [setPersisted]);
 
   const prevPage = useCallback(() => {
     setPersisted((prev) => ({ ...prev, page: Math.max(prev.page - 1, 1) }));
@@ -111,6 +117,7 @@ export function usePagination({
 
   const setTotalItems = useCallback(
     (count: number) => {
+      totalItemsRef.current = count; // update immediately for same-flush reads (e.g. setPage called right after)
       setTotalItemsState(count);
       setPersisted((prev) => {
         const tp = Math.ceil(count / prev.pageSize) || 0;

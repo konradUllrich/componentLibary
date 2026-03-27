@@ -3,7 +3,7 @@ import { Badge, Button, Text } from "../../common";
 import { Input } from "../../controls";
 import { Page, Panel, Section } from "../../layout";
 import { useSearch } from "../../Router/hooks";
-import { usePersistedState } from "../../hooks/usePresistedState/usePersistedState";
+import { usePersistedState } from "../../hooks/usePersistedState/usePersistedState";
 import "./UsePersistedStatePage.css";
 
 const readStorage = (key: string) => {

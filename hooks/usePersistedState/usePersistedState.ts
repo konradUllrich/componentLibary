@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSearchParams } from "wouter";
 
-export type StorageType = "localStorage" | "sessionStorage";
+export type StorageType = "localStorage" | "sessionStorage" | false;
 
 type Options<T> = {
   key: string;
@@ -12,11 +12,15 @@ type Options<T> = {
   storage?: StorageType;
   /** Set to false to disable URL search-param synchronisation. Defaults to true. */
   syncUrl?: boolean;
+  /** When true and T is a plain object, each property is written as its own URL
+   * search param instead of one JSON blob. Storage (localStorage/sessionStorage)
+   * always uses the full serialised object regardless of this flag. */
+  flatUrlParams?: boolean;
 };
 
 // SSR-safe helper — returns the requested Web Storage or null when unavailable.
 function getStorage(type: StorageType): Storage | null {
-  if (typeof window === "undefined") return null;
+  if (type === false || typeof window === "undefined") return null;
   return type === "sessionStorage"
     ? window.sessionStorage
     : window.localStorage;
@@ -30,6 +34,7 @@ export function usePersistedState<T>({
   removeIfDefault = true,
   storage = "localStorage",
   syncUrl = true,
+  flatUrlParams = false,
 }: Options<T>) {
   const [params, setSearchParams] = useSearchParams();
 
@@ -37,12 +42,37 @@ export function usePersistedState<T>({
   const [state, setState] = useState<T>(() => {
     // 1. URL param (highest priority, only when syncUrl is enabled)
     if (syncUrl) {
-      const paramValue = params.get(key);
-      if (paramValue != null) {
-        try {
-          return deserialize(paramValue);
-        } catch (e) {
-          console.warn(`Failed to deserialize URL param "${key}":`, e);
+      if (
+        flatUrlParams &&
+        defaultValue !== null &&
+        typeof defaultValue === "object"
+      ) {
+        const defaults = defaultValue as Record<string, unknown>;
+        const keys = Object.keys(defaults);
+        const urlValues: Record<string, unknown> = {};
+        let anyFound = false;
+        for (const k of keys) {
+          const raw = params.get(k);
+          if (raw != null) {
+            anyFound = true;
+            try {
+              urlValues[k] = JSON.parse(raw);
+            } catch {
+              urlValues[k] = raw;
+            }
+          }
+        }
+        if (anyFound) {
+          return { ...defaults, ...urlValues } as T;
+        }
+      } else {
+        const paramValue = params.get(key);
+        if (paramValue != null) {
+          try {
+            return deserialize(paramValue);
+          } catch (e) {
+            console.warn(`Failed to deserialize URL param "${key}":`, e);
+          }
         }
       }
     }
@@ -78,12 +108,15 @@ export function usePersistedState<T>({
   const removeIfDefaultRef = useRef(removeIfDefault);
   const storageRef = useRef(storage);
   const syncUrlRef = useRef(syncUrl);
+  const flatUrlParamsRef = useRef(flatUrlParams);
+  const prevFlatUrlKeysRef = useRef(new Set<string>());
   serializeRef.current = serialize;
   deserializeRef.current = deserialize;
   defaultValueRef.current = defaultValue;
   removeIfDefaultRef.current = removeIfDefault;
   storageRef.current = storage;
   syncUrlRef.current = syncUrl;
+  flatUrlParamsRef.current = flatUrlParams;
 
   // --- persist local state to URL and Web Storage ---
   useEffect(() => {
@@ -120,30 +153,70 @@ export function usePersistedState<T>({
     }
 
     if (syncUrlRef.current) {
-      try {
-        setSearchParams(
-          (prev) => {
-            const current = prev.get(key);
+      if (
+        flatUrlParamsRef.current &&
+        state !== null &&
+        typeof state === "object"
+      ) {
+        try {
+          const currentObj = state as Record<string, unknown>;
+          const defaultObj = _defaultValue as Record<string, unknown>;
+          const keysToProcess = new Set([
+            ...prevFlatUrlKeysRef.current,
+            ...Object.keys(currentObj),
+          ]);
 
-            if (_removeIfDefault && serializedState === serializedDefault) {
-              if (current == null) {
+          setSearchParams(
+            (prev) => {
+              for (const k of keysToProcess) {
+                const v = currentObj[k];
+                const isDefault =
+                  _removeIfDefault &&
+                  JSON.stringify(v) === JSON.stringify(defaultObj[k]);
+                if (v === undefined || v === null || isDefault) {
+                  prev.delete(k);
+                } else {
+                  prev.set(k, String(v));
+                }
+              }
+              return prev;
+            },
+            { replace: true },
+          );
+
+          prevFlatUrlKeysRef.current = new Set(Object.keys(currentObj));
+        } catch (error) {
+          console.warn(
+            `Failed to persist flat URL params for key "${key}":`,
+            error,
+          );
+        }
+      } else {
+        try {
+          setSearchParams(
+            (prev) => {
+              const current = prev.get(key);
+
+              if (_removeIfDefault && serializedState === serializedDefault) {
+                if (current == null) {
+                  return prev;
+                }
+                prev.delete(key);
                 return prev;
               }
-              prev.delete(key);
-              return prev;
-            }
 
-            if (current === serializedState) {
-              return prev;
-            }
+              if (current === serializedState) {
+                return prev;
+              }
 
-            prev.set(key, serializedState);
-            return prev;
-          },
-          { replace: true },
-        );
-      } catch (error) {
-        console.warn(`Failed to persist URL param for key "${key}":`, error);
+              prev.set(key, serializedState);
+              return prev;
+            },
+            { replace: true },
+          );
+        } catch (error) {
+          console.warn(`Failed to persist URL param for key "${key}":`, error);
+        }
       }
     }
   }, [key, state, setSearchParams]);

@@ -27,6 +27,7 @@ export const PaginationTestWrapper: React.FC<{
     storageKey: "test-pagination",
     defaultPage: currentPage,
     defaultPageSize: pageSize,
+    storage: false,
     syncUrl: false,
   });
 

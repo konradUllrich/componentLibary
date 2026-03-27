@@ -257,10 +257,10 @@ test.describe("usePagination Hook", () => {
     });
   });
 
-  // ===== localStorage Persistence =====
+  // ===== Storage Persistence =====
   test.describe("Storage Persistence", () => {
-    test("should persist page to localStorage", async ({ mount, page }) => {
-      await page.evaluate(() => localStorage.clear());
+    test("should persist page to sessionStorage", async ({ mount, page }) => {
+      await page.evaluate(() => sessionStorage.clear());
 
       const component = await mount(
         <PaginationDisplay storageKey="test-persist" defaultPageSize={10} />,
@@ -272,20 +272,20 @@ test.describe("usePagination Hook", () => {
       await page.waitForTimeout(100);
 
       const stored = await page.evaluate(() =>
-        localStorage.getItem("test-persist"),
+        sessionStorage.getItem("test-persist"),
       );
       expect(stored).not.toBeNull();
       const parsed = JSON.parse(stored!);
       expect(parsed.page).toBe(3);
     });
 
-    test("should restore page from localStorage on mount", async ({
+    test("should restore page from sessionStorage on mount", async ({
       mount,
       page,
     }) => {
       await page.evaluate(() => {
-        localStorage.clear();
-        localStorage.setItem(
+        sessionStorage.clear();
+        sessionStorage.setItem(
           "test-restore-pagination",
           JSON.stringify({ page: 7, pageSize: 10 }),
         );
@@ -324,7 +324,7 @@ test.describe("usePagination Hook", () => {
       await page.waitForTimeout(100);
 
       const url = decodeURIComponent(page.url());
-      expect(url).toContain("test-url-write");
+      expect(url).toContain("page=5");
     });
 
     test("should not write to URL when syncUrl=false", async ({
@@ -347,7 +347,7 @@ test.describe("usePagination Hook", () => {
       await page.waitForTimeout(100);
 
       const url = page.url();
-      expect(url).not.toContain("test-url-disabled");
+      expect(url).not.toContain("page=5");
     });
   });
 
