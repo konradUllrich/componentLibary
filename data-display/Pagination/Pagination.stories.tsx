@@ -1,10 +1,10 @@
 import React from "react";
 import { Pagination } from "./Pagination";
-import { usePagination } from "../../hooks/usePagination/usePagination";
+import { createPagination } from "../../hooks/usePagination/usePagination";
 
 /**
  * Test wrapper component for Pagination.
- * Uses `usePagination` hook — the same API consumers use in production.
+ * Uses `createPagination` hook factory — the same API consumers use in production.
  */
 export const PaginationTestWrapper: React.FC<{
   totalItems: number;
@@ -23,13 +23,17 @@ export const PaginationTestWrapper: React.FC<{
     className,
   } = props;
 
-  const pagination = usePagination({
-    storageKey: "test-pagination",
-    defaultPage: currentPage,
-    defaultPageSize: pageSize,
-    storage: false,
-    syncUrl: false,
-  });
+  const usePagination = React.useRef(
+    createPagination({
+      storageKey: "test-pagination",
+      defaultPage: currentPage,
+      defaultPageSize: pageSize,
+      storage: false,
+      syncUrl: false,
+    }),
+  ).current;
+
+  const pagination = usePagination();
 
   // Sync totalItems whenever the prop changes
   React.useEffect(() => {

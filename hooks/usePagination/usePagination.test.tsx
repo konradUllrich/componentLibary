@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/experimental-ct-react";
 import {
   PaginationDisplay,
   RouterPaginationDisplay,
+  CrossInstancePaginationSyncComponent,
 } from "./usePagination.test-components";
 
 test.describe("usePagination Hook", () => {
@@ -348,6 +349,29 @@ test.describe("usePagination Hook", () => {
 
       const url = page.url();
       expect(url).not.toContain("page=5");
+    });
+  });
+
+  // ===== Cross-instance sync =====
+  test.describe("Cross-instance sync", () => {
+    test("instance B reflects setPage called by instance A", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => sessionStorage.clear());
+
+      const component = await mount(
+        <CrossInstancePaginationSyncComponent storageKey="ci-pagination-set" />,
+      );
+
+      await expect(component.getByTestId("instance-a-page")).toHaveText("1");
+      await expect(component.getByTestId("instance-b-page")).toHaveText("1");
+
+      await component.getByTestId("instance-a-set-total").click();
+      await component.getByTestId("instance-a-goto-5").click();
+
+      await expect(component.getByTestId("instance-a-page")).toHaveText("5");
+      await expect(component.getByTestId("instance-b-page")).toHaveText("5");
     });
   });
 

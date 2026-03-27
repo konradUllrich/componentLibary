@@ -2,15 +2,48 @@ import React from "react";
 import { Button, Text } from "../../common";
 import { Grid, Page, Panel, Section } from "../../layout";
 import { Pagination } from "../../data-display/Pagination";
-import { usePagination } from "../../hooks/usePagination/usePagination";
+import { createPagination } from "../../hooks/usePagination/usePagination";
 import "./UsePersistedStatePage.css";
+
+// ===== Factory instances (created once at module level) =====
+const useBasicPagination = createPagination({
+  storageKey: "docs-pg-basic",
+  defaultPageSize: 10,
+});
+const useSizePagination = createPagination({
+  storageKey: "docs-pg-size",
+  defaultPageSize: 5,
+});
+const useNoSizePagination = createPagination({
+  storageKey: "docs-pg-nosize",
+  defaultPageSize: 10,
+  syncUrl: false,
+});
+const useDynamicPagination = createPagination({
+  storageKey: "docs-pg-dynamic",
+  defaultPageSize: 10,
+  syncUrl: false,
+});
+const useUsersPagination = createPagination({
+  storageKey: "docs-pg-users",
+  defaultPageSize: 10,
+  syncUrl: true,
+});
+const useOrdersPagination = createPagination({
+  storageKey: "docs-pg-orders",
+  defaultPageSize: 5,
+  syncUrl: true,
+});
+const useSessionPagination = createPagination({
+  storageKey: "docs-pg-session",
+  defaultPageSize: 10,
+  storage: "sessionStorage",
+  syncUrl: false,
+});
 
 // ===== 1. Drop-in: hook + component, minimal config =====
 const BasicExample = () => {
-  const pagination = usePagination({
-    storageKey: "docs-pg-basic",
-    defaultPageSize: 10,
-  });
+  const pagination = useBasicPagination();
 
   React.useEffect(() => {
     pagination.setTotalItems(97);
@@ -46,10 +79,7 @@ pagination.setTotalItems(totalCount);
 
 // ===== 2. Custom page size options =====
 const PageSizeExample = () => {
-  const pagination = usePagination({
-    storageKey: "docs-pg-size",
-    defaultPageSize: 5,
-  });
+  const pagination = useSizePagination();
 
   React.useEffect(() => {
     pagination.setTotalItems(100);
@@ -82,11 +112,7 @@ const PageSizeExample = () => {
 
 // ===== 3. No size selector =====
 const NoSizeSelectorExample = () => {
-  const pagination = usePagination({
-    storageKey: "docs-pg-nosize",
-    defaultPageSize: 10,
-    syncUrl: false,
-  });
+  const pagination = useNoSizePagination();
 
   React.useEffect(() => {
     pagination.setTotalItems(80);
@@ -119,11 +145,7 @@ const NoSizeSelectorExample = () => {
 
 // ===== 4. Dynamic total (simulate API response) =====
 const DynamicTotalExample = () => {
-  const pagination = usePagination({
-    storageKey: "docs-pg-dynamic",
-    defaultPageSize: 10,
-    syncUrl: false,
-  });
+  const pagination = useDynamicPagination();
 
   const totals = [20, 50, 100, 200];
 
@@ -166,16 +188,8 @@ const DynamicTotalExample = () => {
 
 // ===== 5. Two independent tables on one page =====
 const TwoTablesExample = () => {
-  const users = usePagination({
-    storageKey: "docs-pg-users",
-    defaultPageSize: 10,
-    syncUrl: true,
-  });
-  const orders = usePagination({
-    storageKey: "docs-pg-orders",
-    defaultPageSize: 5,
-    syncUrl: true,
-  });
+  const users = useUsersPagination();
+  const orders = useOrdersPagination();
 
   React.useEffect(() => {
     users.setTotalItems(85);
@@ -217,12 +231,7 @@ const orders = usePagination({ storageKey: "orders" });
 
 // ===== 6. sessionStorage, no URL =====
 const SessionStorageExample = () => {
-  const pagination = usePagination({
-    storageKey: "docs-pg-session",
-    defaultPageSize: 10,
-    storage: "sessionStorage",
-    syncUrl: false,
-  });
+  const pagination = useSessionPagination();
 
   React.useEffect(() => {
     pagination.setTotalItems(60);

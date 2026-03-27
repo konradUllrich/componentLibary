@@ -1,15 +1,17 @@
 import React from "react";
 import { Pagination } from "../../data-display/Pagination";
-import { usePagination } from "../../hooks/usePagination/usePagination";
+import { createPagination } from "../../hooks/usePagination/usePagination";
 import { Button, Text } from "../../common";
 import { Page, Section } from "../../layout";
 import { useLocation } from "../../Router/hooks";
 
+const usePaginationDemo = createPagination({
+  storageKey: "pg-demo",
+  defaultPageSize: 10,
+});
+
 const BasicPagination: React.FC = () => {
-  const pagination = usePagination({
-    storageKey: "pg-demo",
-    defaultPageSize: 10,
-  });
+  const pagination = usePaginationDemo();
 
   React.useEffect(() => {
     pagination.setTotalItems(100);

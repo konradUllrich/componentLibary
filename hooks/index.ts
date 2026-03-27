@@ -1,5 +1,5 @@
 export {
-  usePagination,
+  createPagination,
   type PaginationState,
   type UsePaginationOptions,
 } from "./usePagination";

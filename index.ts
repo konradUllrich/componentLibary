@@ -191,7 +191,7 @@ export type { SortableTreeHandle } from "./intrexx";
 // export { useMediaQuery, useClickOutside, useFocus, useDebounce } from './hooks';
 
 export {
-  usePagination,
+  createPagination,
   type PaginationState,
   type UsePaginationOptions,
   usePersistedState,

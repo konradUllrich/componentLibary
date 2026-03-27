@@ -3,21 +3,23 @@
  * Playwright CT requires mounted components to be defined outside the test file.
  */
 import React from "react";
-import { usePagination, type UsePaginationOptions } from "./usePagination";
+import { createPagination, type UsePaginationOptions } from "./usePagination";
 import { Router } from "../../Router";
 
 // ===== Basic Pagination Display =====
 export const PaginationDisplay = (
   props: UsePaginationOptions & { totalItems?: number },
 ) => {
-  const pagination = usePagination(props);
+  const { totalItems, ...factoryOpts } = props;
+  const usePagination = React.useRef(createPagination(factoryOpts)).current;
+  const pagination = usePagination({ totalItems });
 
   React.useEffect(() => {
-    if (props.totalItems !== undefined) {
-      pagination.setTotalItems(props.totalItems);
+    if (totalItems !== undefined) {
+      pagination.setTotalItems(totalItems);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.totalItems]);
+  }, [totalItems]);
 
   return (
     <div>
@@ -64,8 +66,10 @@ PaginationDisplay.displayName = "PaginationDisplay";
 
 // ===== In Router context (for URL param testing) =====
 export const RouterPaginationDisplay = (props: UsePaginationOptions) => {
+  const usePagination = React.useRef(createPagination(props)).current;
+
   const Inner = () => {
-    const pagination = usePagination(props);
+    const pagination = usePagination();
 
     return (
       <div>
@@ -103,3 +107,51 @@ export const RouterPaginationDisplay = (props: UsePaginationOptions) => {
   );
 };
 RouterPaginationDisplay.displayName = "RouterPaginationDisplay";
+
+// ===== Cross-instance sync (shared storageKey) =====
+export const CrossInstancePaginationSyncComponent = ({
+  storageKey,
+}: {
+  storageKey: string;
+}) => {
+  const usePagination = React.useRef(createPagination({ storageKey })).current;
+
+  const InstanceA = () => {
+    const { page, setPage, setTotalItems } = usePagination();
+    return (
+      <div>
+        <span data-testid="instance-a-page">{page}</span>
+        <button
+          type="button"
+          onClick={() => setTotalItems(100)}
+          data-testid="instance-a-set-total"
+        >
+          set total 100
+        </button>
+        <button
+          type="button"
+          onClick={() => setPage(5)}
+          data-testid="instance-a-goto-5"
+        >
+          go to page 5
+        </button>
+      </div>
+    );
+  };
+  InstanceA.displayName = "InstanceA";
+
+  const InstanceB = () => {
+    const { page } = usePagination();
+    return <span data-testid="instance-b-page">{page}</span>;
+  };
+  InstanceB.displayName = "InstanceB";
+
+  return (
+    <Router>
+      <InstanceA />
+      <InstanceB />
+    </Router>
+  );
+};
+CrossInstancePaginationSyncComponent.displayName =
+  "CrossInstancePaginationSyncComponent";
