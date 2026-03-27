@@ -9,6 +9,7 @@ import {
   RouterPersistedState,
   StorageTypeComponent,
   SyncUrlComponent,
+  CrossInstanceSyncComponent,
 } from "./usePersistedState.test-components";
 
 test.describe("usePersistedState Hook", () => {
@@ -746,6 +747,66 @@ test.describe("usePersistedState Hook", () => {
 
       const url = page.url();
       expect(url).toContain("test-with-url");
+    });
+  });
+
+  // ===== Cross-instance URL sync =====
+  test.describe("Cross-instance URL sync", () => {
+    test("instance B state converges when instance A sets a value", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => localStorage.clear());
+
+      const component = await mount(
+        <CrossInstanceSyncComponent
+          storageKey="ci-sync-set"
+          defaultValue="default"
+        />,
+      );
+
+      await expect(component.getByTestId("instance-a-value")).toHaveText(
+        "default",
+      );
+      await expect(component.getByTestId("instance-b-value")).toHaveText(
+        "default",
+      );
+
+      await component.getByTestId("instance-a-set").click();
+      await page.waitForTimeout(50);
+
+      await expect(component.getByTestId("instance-a-value")).toHaveText(
+        "from-a",
+      );
+      await expect(component.getByTestId("instance-b-value")).toHaveText(
+        "from-a",
+      );
+    });
+
+    test("instance B reverts to default when instance A resets", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => localStorage.clear());
+
+      const component = await mount(
+        <CrossInstanceSyncComponent
+          storageKey="ci-sync-reset"
+          defaultValue="default"
+        />,
+      );
+
+      await component.getByTestId("instance-a-set").click();
+      await page.waitForTimeout(50);
+      await expect(component.getByTestId("instance-b-value")).toHaveText(
+        "from-a",
+      );
+
+      await component.getByTestId("instance-a-reset").click();
+      await page.waitForTimeout(50);
+      await expect(component.getByTestId("instance-b-value")).toHaveText(
+        "default",
+      );
     });
   });
 

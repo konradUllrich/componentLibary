@@ -229,5 +229,61 @@ export function usePersistedState<T>({
     }
   }, [key, state, setSearchParams]);
 
+  // --- sync URL → local state (reactive: runs whenever `params` changes) ---
+  useEffect(() => {
+    if (!syncUrlRef.current) return;
+
+    const _defaultValue = defaultValueRef.current;
+    const _deserialize = deserializeRef.current;
+
+    let urlValue: T | undefined;
+
+    if (
+      flatUrlParamsRef.current &&
+      _defaultValue !== null &&
+      typeof _defaultValue === "object"
+    ) {
+      const defaults = _defaultValue as Record<string, unknown>;
+      const urlObj: Record<string, unknown> = {};
+      let anyFound = false;
+      for (const k of Object.keys(defaults)) {
+        const raw = params.get(k);
+        if (raw != null) {
+          anyFound = true;
+          try {
+            urlObj[k] = JSON.parse(raw);
+          } catch {
+            urlObj[k] = raw;
+          }
+        }
+      }
+      // all keys absent → URL cleared → revert to defaults
+      urlValue = anyFound
+        ? ({ ...defaults, ...urlObj } as T)
+        : ({ ...defaults } as T);
+    } else {
+      const raw = params.get(key);
+      if (raw != null) {
+        try {
+          urlValue = _deserialize(raw);
+        } catch {
+          /* ignore — keep current state */
+        }
+      } else {
+        urlValue = _defaultValue;
+      }
+    }
+
+    if (urlValue !== undefined) {
+      setState((prev) => {
+        if (JSON.stringify(prev) === JSON.stringify(urlValue)) return prev;
+        return urlValue!;
+      });
+    }
+    // `params` is wouter's reactive URLSearchParams — changes whenever the URL changes.
+    // All other options read via refs to avoid stale-closure / infinite-loop issues.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params, key]);
+
   return [state, setPersistedState] as const;
 }

@@ -318,3 +318,53 @@ export const SyncUrlComponent = ({
 };
 
 SyncUrlComponent.displayName = "SyncUrlComponent";
+
+// ===== Cross-instance URL sync =====
+export const CrossInstanceSyncComponent = ({
+  storageKey,
+  defaultValue = "default",
+}: {
+  storageKey: string;
+  defaultValue?: string;
+}) => {
+  const InstanceA = () => {
+    const [state, setState] = usePersistedState({
+      key: storageKey,
+      defaultValue,
+    });
+    return (
+      <div>
+        <span data-testid="instance-a-value">{state}</span>
+        <button
+          type="button"
+          onClick={() => setState("from-a")}
+          data-testid="instance-a-set"
+        >
+          set
+        </button>
+        <button
+          type="button"
+          onClick={() => setState(defaultValue)}
+          data-testid="instance-a-reset"
+        >
+          reset
+        </button>
+      </div>
+    );
+  };
+  InstanceA.displayName = "InstanceA";
+
+  const InstanceB = () => {
+    const [state] = usePersistedState({ key: storageKey, defaultValue });
+    return <span data-testid="instance-b-value">{state}</span>;
+  };
+  InstanceB.displayName = "InstanceB";
+
+  return (
+    <Router>
+      <InstanceA />
+      <InstanceB />
+    </Router>
+  );
+};
+CrossInstanceSyncComponent.displayName = "CrossInstanceSyncComponent";
