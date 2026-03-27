@@ -3,6 +3,8 @@ import React from "react";
 import {
   FilterDisplay,
   RouterFilterDisplay,
+  ArrayFilterDisplay,
+  RouterArrayFilterDisplay,
 } from "./useFilter.test-components";
 
 test.describe("useFilter Hook", () => {
@@ -235,6 +237,65 @@ test.describe("useFilter Hook", () => {
 
       const url = page.url();
       expect(url).not.toContain("status=");
+    });
+  });
+
+  // ===== Array values =====
+  test.describe("Array values", () => {
+    test("array filter survives localStorage roundtrip as array (not string)", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => localStorage.clear());
+
+      const component = await mount(
+        <ArrayFilterDisplay storageKey="test-array-storage" />,
+      );
+
+      await component.getByTestId("set-tags").click();
+      await page.waitForTimeout(100);
+
+      // Verify in-memory state is an array
+      await expect(component.getByTestId("tags-type")).toHaveText("array");
+      await expect(component.getByTestId("filters")).toContainText(
+        '"tags":["react","typescript"]',
+      );
+    });
+
+    test("array filter survives URL roundtrip as array (not comma-separated string)", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => localStorage.clear());
+
+      // Mount and write an array filter — the hook serialises it to the URL
+      const component = await mount(
+        <RouterArrayFilterDisplay
+          storageKey="test-array-url"
+          syncUrl={true}
+          defaultFilters={{ tags: [], status: "" }}
+        />,
+      );
+
+      await component.getByTestId("set-tags").click();
+      await page.waitForTimeout(100);
+
+      // Params are embedded inside the `appRoute` value (e.g. "?appRoute=/path?tags=...")
+      const rawParam = await page.evaluate(() => {
+        const outer = new URLSearchParams(window.location.search);
+        const appRoute = outer.get("appRoute") ?? "";
+        const innerSearch = appRoute.includes("?")
+          ? appRoute.split("?")[1]
+          : "";
+        const inner = new URLSearchParams(innerSearch);
+        return inner.get("tags");
+      });
+
+      expect(rawParam).not.toBeNull();
+      // Must be parseable back to an array — not "react,typescript"
+      const parsed = JSON.parse(rawParam!);
+      expect(Array.isArray(parsed)).toBe(true);
+      expect(parsed).toEqual(["react", "typescript"]);
     });
   });
 

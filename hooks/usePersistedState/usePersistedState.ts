@@ -176,7 +176,15 @@ export function usePersistedState<T>({
                 if (v === undefined || v === null || isDefault) {
                   prev.delete(k);
                 } else {
-                  prev.set(k, String(v));
+                  // Arrays and plain objects must be JSON-stringified so they
+                  // survive the URL roundtrip intact. Primitives (string,
+                  // number, boolean) are written as-is so the URL stays human-
+                  // readable (?status=active, ?page=3, ?inStock=true).
+                  const serialized =
+                    Array.isArray(v) || (typeof v === "object" && v !== null)
+                      ? JSON.stringify(v)
+                      : String(v);
+                  prev.set(k, serialized);
                 }
               }
               return prev;

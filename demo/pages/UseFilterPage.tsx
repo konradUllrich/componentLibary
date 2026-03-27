@@ -330,6 +330,8 @@ const MixedTypesExample = () => {
       },
     });
 
+  console.log({ filters });
+
   const AVAILABLE_TAGS = ["sale", "new", "featured", "popular"];
   const SORT_OPTIONS = ["relevance", "price", "rating", "newest"];
 

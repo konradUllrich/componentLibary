@@ -92,3 +92,61 @@ export const RouterFilterDisplay = <TFilter extends FilterRecord>(
   );
 };
 RouterFilterDisplay.displayName = "RouterFilterDisplay";
+
+// ===== Array filter display (for array roundtrip tests) =====
+type ArrayTestFilters = { tags: string[]; status: string };
+
+export const ArrayFilterDisplay = (
+  props: UseFilterOptions<ArrayTestFilters>,
+) => {
+  const { filters, setFilter } = useFilter<ArrayTestFilters>(props);
+
+  return (
+    <div>
+      <span data-testid="filters">{JSON.stringify(filters)}</span>
+      <span data-testid="tags-type">
+        {Array.isArray(filters.tags) ? "array" : typeof filters.tags}
+      </span>
+      <button
+        type="button"
+        onClick={() => setFilter("tags", ["react", "typescript"])}
+        data-testid="set-tags"
+      >
+        set tags
+      </button>
+    </div>
+  );
+};
+ArrayFilterDisplay.displayName = "ArrayFilterDisplay";
+
+export const RouterArrayFilterDisplay = (
+  props: UseFilterOptions<ArrayTestFilters>,
+) => {
+  const Inner = () => {
+    const { filters, setFilter } = useFilter<ArrayTestFilters>(props);
+
+    return (
+      <div>
+        <span data-testid="filters">{JSON.stringify(filters)}</span>
+        <span data-testid="tags-type">
+          {Array.isArray(filters.tags) ? "array" : typeof filters.tags}
+        </span>
+        <button
+          type="button"
+          onClick={() => setFilter("tags", ["react", "typescript"])}
+          data-testid="set-tags"
+        >
+          set tags
+        </button>
+      </div>
+    );
+  };
+  Inner.displayName = "RouterArrayFilterDisplayInner";
+
+  return (
+    <Router>
+      <Inner />
+    </Router>
+  );
+};
+RouterArrayFilterDisplay.displayName = "RouterArrayFilterDisplay";
