@@ -3,9 +3,9 @@ import React from "react";
 import {
   FilterDisplay,
   RouterFilterDisplay,
-} from "./useListFilter.test-components";
+} from "./useFilter.test-components";
 
-test.describe("useListFilter Hook", () => {
+test.describe("useFilter Hook", () => {
   // ===== Defaults =====
   test.describe("Default Values", () => {
     test("should initialise with empty filters when no defaults provided", async ({
@@ -212,7 +212,7 @@ test.describe("useListFilter Hook", () => {
       await page.waitForTimeout(100);
 
       const url = decodeURIComponent(page.url());
-      expect(url).toContain("test-url-write");
+      expect(url).toContain("status=inactive");
     });
 
     test("should not write to URL when syncUrl=false", async ({
@@ -234,7 +234,7 @@ test.describe("useListFilter Hook", () => {
       await page.waitForTimeout(100);
 
       const url = page.url();
-      expect(url).not.toContain("test-url-disabled");
+      expect(url).not.toContain("status=");
     });
   });
 

@@ -196,9 +196,9 @@ export {
   type UsePaginationOptions,
   usePersistedState,
   type StorageType,
-  useListFilter,
-  type ListFilterState,
-  type UseListFilterOptions,
+  useFilter,
+  type FilterState,
+  type UseFilterOptions,
 } from "./hooks";
 
 // ========================================

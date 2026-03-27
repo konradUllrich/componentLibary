@@ -1,23 +1,21 @@
 /**
- * Helper components used exclusively by useListFilter tests.
+ * Helper components used exclusively by useFilter tests.
  * Playwright CT requires mounted components to be defined outside the test file.
  */
 import React from "react";
 import {
-  useListFilter,
-  type UseListFilterOptions,
+  useFilter,
+  type UseFilterOptions,
   type FilterRecord,
-} from "./useListFilter";
+} from "./useFilter";
 import { Router } from "../../Router";
 
 type TestFilters = { status: string; category: string; page: number };
 
 // ===== Basic Filter Display =====
-export const FilterDisplay = (
-  props: UseListFilterOptions<TestFilters>,
-) => {
+export const FilterDisplay = (props: UseFilterOptions<TestFilters>) => {
   const { filters, setFilter, setFilters, removeFilter, clearFilters, reset } =
-    useListFilter<TestFilters>(props);
+    useFilter<TestFilters>(props);
 
   return (
     <div>
@@ -56,13 +54,13 @@ FilterDisplay.displayName = "FilterDisplay";
 
 // ===== In Router context (for URL param testing) =====
 export const RouterFilterDisplay = <TFilter extends FilterRecord>(
-  props: UseListFilterOptions<TFilter> & {
+  props: UseFilterOptions<TFilter> & {
     extraFilters?: Partial<TFilter>;
   },
 ) => {
   const Inner = () => {
     const { filters, setFilters, clearFilters, reset } =
-      useListFilter<TFilter>(props);
+      useFilter<TFilter>(props);
 
     return (
       <div>

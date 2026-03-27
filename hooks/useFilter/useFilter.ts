@@ -2,12 +2,12 @@ import { useCallback, useMemo } from "react";
 import {
   usePersistedState,
   type StorageType,
-} from "../usePresistedState/usePersistedState";
+} from "../usePersistedState/usePersistedState";
 
 /** A record of filter key → value pairs. */
 export type FilterRecord = Record<string, unknown>;
 
-export type UseListFilterOptions<TFilter extends FilterRecord> = {
+export type UseFilterOptions<TFilter extends FilterRecord> = {
   /** Unique storage/URL key prefix. Defaults to "filters". */
   storageKey?: string;
   /** Initial filter values applied on creation and restored when reset() is called. */
@@ -18,7 +18,7 @@ export type UseListFilterOptions<TFilter extends FilterRecord> = {
   syncUrl?: boolean;
 };
 
-export type ListFilterState<TFilter extends FilterRecord> = {
+export type FilterState<TFilter extends FilterRecord> = {
   /** Current filter values. Only keys that have been explicitly set are present. */
   filters: Partial<TFilter>;
   /** Set (or update) a single filter value. */
@@ -34,7 +34,7 @@ export type ListFilterState<TFilter extends FilterRecord> = {
 };
 
 /**
- * useListFilter – a React hook for managing persisted filter state.
+ * useFilter – a React hook for managing persisted filter state.
  *
  * Built on top of `usePersistedState`, it automatically saves the active
  * filters to Web Storage (localStorage by default) and optionally syncs them
@@ -45,7 +45,7 @@ export type ListFilterState<TFilter extends FilterRecord> = {
  * type MyFilters = { status: string; category: string };
  *
  * function UserList() {
- *   const { filters, setFilter, clearFilters } = useListFilter<MyFilters>({
+ *   const { filters, setFilter, clearFilters } = useFilter<MyFilters>({
  *     storageKey: 'user-filters',
  *     defaultFilters: { status: 'active' },
  *   });
@@ -62,12 +62,12 @@ export type ListFilterState<TFilter extends FilterRecord> = {
  * }
  * ```
  */
-export function useListFilter<TFilter extends FilterRecord>({
+export function useFilter<TFilter extends FilterRecord>({
   storageKey = "filters",
   defaultFilters = {} as Partial<TFilter>,
   storage = "localStorage",
   syncUrl = true,
-}: UseListFilterOptions<TFilter> = {}): ListFilterState<TFilter> {
+}: UseFilterOptions<TFilter> = {}): FilterState<TFilter> {
   const defaultValue = useMemo<Partial<TFilter>>(
     () => ({ ...defaultFilters }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,6 +80,7 @@ export function useListFilter<TFilter extends FilterRecord>({
     storage,
     syncUrl,
     removeIfDefault: true,
+    flatUrlParams: true,
   });
 
   const setFilter = useCallback(
