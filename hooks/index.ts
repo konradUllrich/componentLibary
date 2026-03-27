@@ -7,11 +7,11 @@ export {
 export {
   usePersistedState,
   type StorageType,
-} from "./usePresistedState/usePersistedState";
+} from "./usePersistedState/usePersistedState";
 
 export {
-  useListFilter,
+  useFilter,
   type FilterRecord,
-  type ListFilterState,
-  type UseListFilterOptions,
-} from "./useListFilter";
+  type FilterState,
+  type UseFilterOptions,
+} from "./useFilter";
