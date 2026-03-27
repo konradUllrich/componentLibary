@@ -5,6 +5,7 @@ import {
   RouterFilterDisplay,
   ArrayFilterDisplay,
   RouterArrayFilterDisplay,
+  CrossInstanceFilterSyncComponent,
 } from "./useFilter.test-components";
 
 test.describe("useFilter Hook", () => {
@@ -296,6 +297,57 @@ test.describe("useFilter Hook", () => {
       const parsed = JSON.parse(rawParam!);
       expect(Array.isArray(parsed)).toBe(true);
       expect(parsed).toEqual(["react", "typescript"]);
+    });
+  });
+
+  // ===== Cross-instance sync =====
+  test.describe("Cross-instance sync", () => {
+    test("instance B reflects setFilter called by instance A", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => localStorage.clear());
+
+      const component = await mount(
+        <CrossInstanceFilterSyncComponent storageKey="ci-filter-set" />,
+      );
+
+      await expect(component.getByTestId("instance-a-filters")).toHaveText(
+        "{}",
+      );
+      await expect(component.getByTestId("instance-b-filters")).toHaveText(
+        "{}",
+      );
+
+      await component.getByTestId("instance-a-set").click();
+
+      await expect(component.getByTestId("instance-a-filters")).toContainText(
+        '"status":"inactive"',
+      );
+      await expect(component.getByTestId("instance-b-filters")).toContainText(
+        '"status":"inactive"',
+      );
+    });
+
+    test("instance B reflects clearFilters called by instance A", async ({
+      mount,
+      page,
+    }) => {
+      await page.evaluate(() => localStorage.clear());
+
+      const component = await mount(
+        <CrossInstanceFilterSyncComponent storageKey="ci-filter-clear" />,
+      );
+
+      await component.getByTestId("instance-a-set").click();
+      await expect(component.getByTestId("instance-b-filters")).toContainText(
+        '"status":"inactive"',
+      );
+
+      await component.getByTestId("instance-a-clear").click();
+      await expect(component.getByTestId("instance-b-filters")).toHaveText(
+        "{}",
+      );
     });
   });
 

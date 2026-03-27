@@ -1,8 +1,7 @@
-import { useCallback, useMemo } from "react";
-import {
-  usePersistedState,
-  type StorageType,
-} from "../usePersistedState/usePersistedState";
+import { useRef } from "react";
+import { createStore, useStore, type StoreApi } from "zustand";
+import type { StorageType } from "../usePersistedState/usePersistedState";
+import { useStoreUrlSync } from "../useStoreUrlSync";
 
 /** A record of filter key → value pairs. */
 export type FilterRecord = Record<string, unknown>;
@@ -33,12 +32,98 @@ export type FilterState<TFilter extends FilterRecord> = {
   reset: () => void;
 };
 
+// Internal store shape
+type FilterStoreState<TFilter extends FilterRecord> = {
+  filters: Partial<TFilter>;
+  _defaultFilters: Partial<TFilter>;
+  setFilter: <K extends keyof TFilter>(key: K, value: TFilter[K]) => void;
+  setFilters: (updates: Partial<TFilter>) => void;
+  removeFilter: <K extends keyof TFilter>(key: K) => void;
+  clearFilters: () => void;
+  reset: () => void;
+};
+
+// Module-level registry: one Zustand store per storageKey
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const registry = new Map<string, StoreApi<FilterStoreState<any>>>();
+
+// SSR-safe storage accessor
+function getWebStorage(type: StorageType): Storage | null {
+  if (type === false || typeof window === "undefined") return null;
+  return type === "sessionStorage"
+    ? window.sessionStorage
+    : window.localStorage;
+}
+
+function getOrCreateStore<TFilter extends FilterRecord>(
+  storageKey: string,
+  defaultFilters: Partial<TFilter>,
+  storage: StorageType,
+): StoreApi<FilterStoreState<TFilter>> {
+  if (registry.has(storageKey)) {
+    return registry.get(storageKey) as StoreApi<FilterStoreState<TFilter>>;
+  }
+
+  // Hydrate from Web Storage on first creation (plain JSON — same format as
+  // the former usePersistedState backend, preserving existing stored data).
+  let initial: Partial<TFilter> = { ...defaultFilters };
+  const webStorage = getWebStorage(storage);
+  if (webStorage) {
+    try {
+      const raw = webStorage.getItem(storageKey);
+      if (raw !== null) initial = JSON.parse(raw) as Partial<TFilter>;
+    } catch {
+      /* ignore — fall back to defaults */
+    }
+  }
+
+  const store = createStore<FilterStoreState<TFilter>>()((set) => ({
+    filters: initial,
+    _defaultFilters: { ...defaultFilters },
+
+    setFilter: (key, value) =>
+      set((s) => ({ filters: { ...s.filters, [key]: value } })),
+
+    setFilters: (updates) =>
+      set((s) => ({ filters: { ...s.filters, ...updates } })),
+
+    removeFilter: (key) =>
+      set((s) => {
+        const next = { ...s.filters };
+        delete next[key];
+        return { filters: next };
+      }),
+
+    clearFilters: () => set(() => ({ filters: {} as Partial<TFilter> })),
+
+    reset: () => set((s) => ({ filters: { ...s._defaultFilters } })),
+  }));
+
+  // Persist to Web Storage on every state change — plain JSON, with
+  // removeIfDefault semantics (key is removed when filters equal the defaults).
+  if (webStorage !== null) {
+    store.subscribe((state) => {
+      const serialized = JSON.stringify(state.filters);
+      const defaultSerialized = JSON.stringify(state._defaultFilters);
+      if (serialized === defaultSerialized) {
+        webStorage.removeItem(storageKey);
+      } else {
+        webStorage.setItem(storageKey, serialized);
+      }
+    });
+  }
+
+  registry.set(storageKey, store);
+  return store;
+}
+
 /**
  * useFilter – a React hook for managing persisted filter state.
  *
- * Built on top of `usePersistedState`, it automatically saves the active
- * filters to Web Storage (localStorage by default) and optionally syncs them
- * to the URL search params — exactly like `usePagination` does for page state.
+ * Uses a module-level Zustand store registry so all instances sharing the same
+ * `storageKey` stay in sync synchronously — no URL-roundtrip latency. This
+ * makes it safe to call from multiple components (e.g. filters panel + table
+ * header) and ensures React Query always sees a single stable filter reference.
  *
  * @example
  * ```tsx
@@ -68,60 +153,64 @@ export function useFilter<TFilter extends FilterRecord>({
   storage = "localStorage",
   syncUrl = true,
 }: UseFilterOptions<TFilter> = {}): FilterState<TFilter> {
-  const defaultValue = useMemo<Partial<TFilter>>(
-    () => ({ ...defaultFilters }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+  // Stable ref: factory args only used on first store creation.
+  const defaultFiltersRef = useRef(defaultFilters);
+
+  const store = getOrCreateStore<TFilter>(
+    storageKey,
+    defaultFiltersRef.current,
+    storage,
   );
 
-  const [filters, setFiltersState] = usePersistedState<Partial<TFilter>>({
-    key: storageKey,
-    defaultValue,
-    storage,
-    syncUrl,
-    removeIfDefault: true,
-    flatUrlParams: true,
+  const filters = useStore(store, (s) => s.filters);
+
+  // Actions are stable Zustand references — no re-render on extraction.
+  const { setFilter, setFilters, removeFilter, clearFilters, reset } =
+    store.getState();
+
+  // URL sync — flat params (one URL key per filter key).
+  // Primitives as strings, arrays/objects as JSON. Empty string = remove param.
+  useStoreUrlSync(syncUrl ? store : null, {
+    serialize: (s) => {
+      const out: Record<string, string> = {};
+      const defaults = s._defaultFilters as Record<string, unknown>;
+      for (const [k, v] of Object.entries(s.filters)) {
+        if (v === undefined || v === null) continue;
+        if (JSON.stringify(v) === JSON.stringify(defaults[k])) continue;
+        out[k] =
+          Array.isArray(v) || (typeof v === "object" && v !== null)
+            ? JSON.stringify(v)
+            : String(v);
+      }
+      // Explicitly clear any default-valued keys from the URL
+      for (const k of Object.keys(defaults)) {
+        if (!(k in out)) out[k] = "";
+      }
+      return out;
+    },
+    deserialize: (params) => {
+      const defaults = store.getState()._defaultFilters as Record<
+        string,
+        unknown
+      >;
+      const keys = Object.keys(defaults);
+      if (keys.every((k) => params.get(k) === null)) return null;
+      const parsed: Record<string, unknown> = {};
+      for (const k of keys) {
+        const raw = params.get(k);
+        if (raw === null) {
+          parsed[k] = defaults[k];
+        } else {
+          try {
+            parsed[k] = JSON.parse(raw);
+          } catch {
+            parsed[k] = raw;
+          }
+        }
+      }
+      return { filters: parsed as Partial<TFilter> };
+    },
   });
 
-  const setFilter = useCallback(
-    <K extends keyof TFilter>(key: K, value: TFilter[K]) => {
-      setFiltersState((prev) => ({ ...prev, [key]: value }));
-    },
-    [setFiltersState],
-  );
-
-  const setFilters = useCallback(
-    (updates: Partial<TFilter>) => {
-      setFiltersState((prev) => ({ ...prev, ...updates }));
-    },
-    [setFiltersState],
-  );
-
-  const removeFilter = useCallback(
-    <K extends keyof TFilter>(key: K) => {
-      setFiltersState((prev) => {
-        const next = { ...prev };
-        delete next[key];
-        return next;
-      });
-    },
-    [setFiltersState],
-  );
-
-  const clearFilters = useCallback(() => {
-    setFiltersState({} as Partial<TFilter>);
-  }, [setFiltersState]);
-
-  const reset = useCallback(() => {
-    setFiltersState({ ...defaultFilters });
-  }, [setFiltersState, defaultFilters]);
-
-  return {
-    filters,
-    setFilter,
-    setFilters,
-    removeFilter,
-    clearFilters,
-    reset,
-  };
+  return { filters, setFilter, setFilters, removeFilter, clearFilters, reset };
 }

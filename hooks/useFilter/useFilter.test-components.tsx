@@ -150,3 +150,59 @@ export const RouterArrayFilterDisplay = (
   );
 };
 RouterArrayFilterDisplay.displayName = "RouterArrayFilterDisplay";
+
+// ===== Cross-instance sync (shared storageKey) =====
+type SyncTestFilters = { status: string };
+
+export const CrossInstanceFilterSyncComponent = ({
+  storageKey,
+}: {
+  storageKey: string;
+}) => {
+  const InstanceA = () => {
+    const { filters, setFilter, clearFilters } = useFilter<SyncTestFilters>({
+      storageKey,
+      defaultFilters: {},
+    });
+    return (
+      <div>
+        <span data-testid="instance-a-filters">{JSON.stringify(filters)}</span>
+        <button
+          type="button"
+          onClick={() => setFilter("status", "inactive")}
+          data-testid="instance-a-set"
+        >
+          set inactive
+        </button>
+        <button
+          type="button"
+          onClick={clearFilters}
+          data-testid="instance-a-clear"
+        >
+          clear
+        </button>
+      </div>
+    );
+  };
+  InstanceA.displayName = "InstanceA";
+
+  const InstanceB = () => {
+    const { filters } = useFilter<SyncTestFilters>({
+      storageKey,
+      defaultFilters: {},
+    });
+    return (
+      <span data-testid="instance-b-filters">{JSON.stringify(filters)}</span>
+    );
+  };
+  InstanceB.displayName = "InstanceB";
+
+  return (
+    <Router>
+      <InstanceA />
+      <InstanceB />
+    </Router>
+  );
+};
+CrossInstanceFilterSyncComponent.displayName =
+  "CrossInstanceFilterSyncComponent";
