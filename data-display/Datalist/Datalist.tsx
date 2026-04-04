@@ -58,9 +58,19 @@ export interface DatalistProps<T> {
   isLoading?: boolean;
 
   /**
+   * Custom loading state component. Replaces the default loading indicator.
+   */
+  loadingState?: React.ReactNode;
+
+  /**
    * Empty state message
    */
   emptyMessage?: string;
+
+  /**
+   * Custom empty state component. Replaces the default empty message.
+   */
+  emptyState?: React.ReactNode;
 
   /**
    * Sorting state and handler
@@ -112,7 +122,9 @@ const DatalistComponent = <T,>(
     cardGap = "1rem",
     className,
     isLoading = false,
+    loadingState,
     emptyMessage = "No data",
+    emptyState,
     sorting,
     onSortingChange,
   }: DatalistProps<T>,
@@ -140,6 +152,9 @@ const DatalistComponent = <T,>(
   });
 
   if (isLoading) {
+    if (loadingState) {
+      return <>{loadingState}</>;
+    }
     return (
       <div className="table__loading">
         <span>Loading...</span>
@@ -148,6 +163,9 @@ const DatalistComponent = <T,>(
   }
 
   if (!data || data.length === 0) {
+    if (emptyState) {
+      return <>{emptyState}</>;
+    }
     return (
       <div className="table__empty">
         <span>{emptyMessage}</span>
