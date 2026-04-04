@@ -1,10 +1,9 @@
 import React, { forwardRef } from "react";
 import clsx from "clsx";
-import { useLocation } from "wouter";
+import { useLocation } from "./hooks";
 import "./Link.css";
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Destination path (alias for href) */
   to?: string;
   /** Visual style variant
@@ -86,9 +85,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         {...props}
       >
         {children}
-        {isExternal && (
-          <span className="sr-only"> (opens in new tab)</span>
-        )}
+        {isExternal && <span className="sr-only"> (opens in new tab)</span>}
       </a>
     );
   },

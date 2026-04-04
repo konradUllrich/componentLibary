@@ -3,6 +3,7 @@ import {
   PaginationDisplay,
   RouterPaginationDisplay,
   CrossInstancePaginationSyncComponent,
+  PaginationNavigationRestoreComponent,
 } from "./usePagination.test-components";
 
 test.describe("usePagination Hook", () => {
@@ -258,48 +259,37 @@ test.describe("usePagination Hook", () => {
     });
   });
 
-  // ===== Storage Persistence =====
-  test.describe("Storage Persistence", () => {
-    test("should persist page to sessionStorage", async ({ mount, page }) => {
-      await page.evaluate(() => sessionStorage.clear());
-
-      const component = await mount(
-        <PaginationDisplay storageKey="test-persist" defaultPageSize={10} />,
-      );
-
-      await component.getByTestId("set-total-100").click();
-      await page.waitForTimeout(50);
-      await component.getByTestId("goto-3").click();
-      await page.waitForTimeout(100);
-
-      const stored = await page.evaluate(() =>
-        sessionStorage.getItem("test-persist"),
-      );
-      expect(stored).not.toBeNull();
-      const parsed = JSON.parse(stored!);
-      expect(parsed.page).toBe(3);
-    });
-
-    test("should restore page from sessionStorage on mount", async ({
+  // ===== Restore on navigation =====
+  test.describe("Restore on navigation", () => {
+    test("should restore page when navigating back to a route", async ({
       mount,
       page,
     }) => {
-      await page.evaluate(() => {
-        sessionStorage.clear();
-        sessionStorage.setItem(
-          "test-restore-pagination",
-          JSON.stringify({ page: 7, pageSize: 10 }),
-        );
-      });
+      await page.evaluate(() => sessionStorage.clear());
 
       const component = await mount(
-        <PaginationDisplay
-          storageKey="test-restore-pagination"
+        <PaginationNavigationRestoreComponent
+          storageKey="test-nav-restore"
           defaultPageSize={10}
         />,
       );
 
-      await expect(component.getByTestId("page")).toHaveText("7");
+      // Initialise total and jump to page 5
+      await component.getByTestId("set-total").click();
+      await page.waitForTimeout(50);
+      await component.getByTestId("goto-5").click();
+      await page.waitForTimeout(50);
+      await expect(component.getByTestId("page")).toHaveText("5");
+
+      // Navigate away
+      await component.getByTestId("go-other").click();
+      await expect(component.getByTestId("other-page")).toBeVisible();
+
+      // Navigate back — router injects stored params into the URL
+      await component.getByTestId("go-back").click();
+      await page.waitForTimeout(50);
+
+      await expect(component.getByTestId("page")).toHaveText("5");
     });
   });
 

@@ -1,6 +1,14 @@
 export {
-  useFilter,
+  createFilter,
   type FilterRecord,
   type FilterState,
-  type UseFilterOptions,
+  type CreateFilterOptions,
 } from "./useFilter";
+
+export { useUrlFilters, type UseUrlFiltersOptions } from "./useUrlFilters";
+
+export {
+  type FilterRefactorState,
+  type UseFilterRefactorOptions,
+  useFilterRefactor,
+} from "./useFilterRefactor";

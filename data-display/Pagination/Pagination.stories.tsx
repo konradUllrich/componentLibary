@@ -1,6 +1,6 @@
 import React from "react";
 import { Pagination } from "./Pagination";
-import { createPagination } from "../../hooks/usePagination/usePagination";
+import { createPagination } from "../../hooks/usePagination/createPagination";
 
 /**
  * Test wrapper component for Pagination.
@@ -28,7 +28,6 @@ export const PaginationTestWrapper: React.FC<{
       storageKey: "test-pagination",
       defaultPage: currentPage,
       defaultPageSize: pageSize,
-      storage: false,
       syncUrl: false,
     }),
   ).current;

@@ -2,17 +2,18 @@ import React from "react";
 import { Badge, Button, Text } from "../../common";
 import { Input } from "../../controls";
 import { Page, Panel, Section } from "../../layout";
-import { useFilter } from "../../hooks/useFilter/useFilter";
+import { createFilter } from "../../hooks/useFilter/useFilter";
 import "./UsePersistedStatePage.css";
 
 // ===== 1. Basic usage =====
 type ProductFilters = { status: string; category: string };
 
+const useProductFilters = createFilter<ProductFilters>({
+  defaultFilters: { status: "all", category: "all" },
+});
+
 const BasicExample = () => {
-  const { filters, setFilter, clearFilters } = useFilter<ProductFilters>({
-    storageKey: "docs-filter-basic",
-    defaultFilters: { status: "all", category: "all" },
-  });
+  const { filters, setFilter, clearFilters } = useProductFilters();
 
   return (
     <Panel
@@ -68,10 +69,12 @@ const BasicExample = () => {
       <pre className="use-persisted-state-page__code-block">
         <code>{`type ProductFilters = { status: string; category: string };
 
-const { filters, setFilter, clearFilters } = useFilter<ProductFilters>({
-  storageKey: "products",
+const useProductFilters = createFilter<ProductFilters>({
   defaultFilters: { status: "all", category: "all" },
 });
+
+// inside a component:
+const { filters, setFilter, clearFilters } = useProductFilters();
 
 setFilter("status", "active");`}</code>
       </pre>
@@ -87,11 +90,12 @@ type SearchFilters = {
   inStock: boolean;
 };
 
+const useSearchFilters = createFilter<SearchFilters>({
+  defaultFilters: { query: "", minPrice: 0, maxPrice: 1000, inStock: false },
+});
+
 const BulkUpdateExample = () => {
-  const { filters, setFilters, clearFilters } = useFilter<SearchFilters>({
-    storageKey: "docs-filter-bulk",
-    defaultFilters: { query: "", minPrice: 0, maxPrice: 1000, inStock: false },
-  });
+  const { filters, setFilters, clearFilters } = useSearchFilters();
 
   return (
     <Panel
@@ -155,11 +159,10 @@ const BulkUpdateExample = () => {
 // ===== 3. removeFilter — erase single key =====
 type TagFilters = { tag: string; author: string; language: string };
 
+const useTagFilters = createFilter<TagFilters>({ defaultFilters: {} });
+
 const RemoveExample = () => {
-  const { filters, setFilter, removeFilter } = useFilter<TagFilters>({
-    storageKey: "docs-filter-remove",
-    defaultFilters: {},
-  });
+  const { filters, setFilter, removeFilter } = useTagFilters();
 
   const activeFilters = Object.entries(filters).filter(
     ([, v]) => v !== undefined,
@@ -226,19 +229,19 @@ const RemoveExample = () => {
 // ===== 4. Storage and URL options =====
 type UrlFilters = { sort: string; order: string };
 
-const StorageOptionsExample = () => {
-  const withUrl = useFilter<UrlFilters>({
-    storageKey: "docs-filter-url",
-    defaultFilters: { sort: "name", order: "asc" },
-    syncUrl: true,
-  });
+const useUrlFiltersWithSync = createFilter<UrlFilters>({
+  defaultFilters: { sort: "name", order: "asc" },
+  syncUrl: true,
+});
 
-  const noUrl = useFilter<UrlFilters>({
-    storageKey: "docs-filter-no-url",
-    defaultFilters: { sort: "name", order: "asc" },
-    syncUrl: false,
-    storage: false,
-  });
+const useUrlFiltersNoSync = createFilter<UrlFilters>({
+  defaultFilters: { sort: "name", order: "asc" },
+  syncUrl: false,
+});
+
+const StorageOptionsExample = () => {
+  const withUrl = useUrlFiltersWithSync();
+  const noUrl = useUrlFiltersNoSync();
 
   return (
     <Panel
@@ -297,10 +300,10 @@ const StorageOptionsExample = () => {
       </div>
       <pre className="use-persisted-state-page__code-block">
         <code>{`// URL sync: ?sort=date&order=desc
-useFilter({ storageKey: "filters", syncUrl: true });
+createFilter({ defaultFilters: { sort: "name", order: "asc" }, syncUrl: true });
 
-// Memory only — no URL, no storage
-useFilter({ storageKey: "filters", syncUrl: false, storage: false });`}</code>
+// Memory only — no URL sync
+createFilter({ defaultFilters: { sort: "name", order: "asc" }, syncUrl: false });`}</code>
       </pre>
     </Panel>
   );
@@ -316,19 +319,20 @@ type AdvancedFilters = {
   sortBy: string;
 };
 
+const useAdvancedFilters = createFilter<AdvancedFilters>({
+  defaultFilters: {
+    search: "",
+    minRating: 1,
+    maxRating: 5,
+    inStock: false,
+    tags: [],
+    sortBy: "relevance",
+  },
+});
+
 const MixedTypesExample = () => {
   const { filters, setFilter, setFilters, removeFilter, clearFilters } =
-    useFilter<AdvancedFilters>({
-      storageKey: "docs-filter-mixed",
-      defaultFilters: {
-        search: "",
-        minRating: 1,
-        maxRating: 5,
-        inStock: false,
-        tags: [],
-        sortBy: "relevance",
-      },
-    });
+    useAdvancedFilters();
 
   console.log({ filters });
 
@@ -463,11 +467,12 @@ const MixedTypesExample = () => {
   sortBy: string;      // ?sortBy=price
 };
 
-const { filters, setFilter, setFilters } = useFilter<AdvancedFilters>({
-  storageKey: "shop-filters",
-  defaultFilters: { search: "", minRating: 1,
-                    inStock: false, tags: [], sortBy: "relevance" },
-});`}</code>
+const { filters, setFilter, setFilters } = useAdvancedFilters();
+// or at module level:
+// const useMyFilters = createFilter<AdvancedFilters>({
+//   defaultFilters: { search: "", minRating: 1,
+//                     inStock: false, tags: [], sortBy: "relevance" },
+// });`}</code>
       </pre>
     </Panel>
   );

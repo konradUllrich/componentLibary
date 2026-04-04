@@ -4,18 +4,19 @@
  */
 import React from "react";
 import {
-  useFilter,
-  type UseFilterOptions,
+  createFilter,
+  type CreateFilterOptions,
   type FilterRecord,
 } from "./useFilter";
-import { Router } from "../../Router";
+import { Router, Route, Link } from "../../Router";
 
 type TestFilters = { status: string; category: string; page: number };
 
 // ===== Basic Filter Display =====
-export const FilterDisplay = (props: UseFilterOptions<TestFilters>) => {
+export const FilterDisplay = (props: CreateFilterOptions<TestFilters>) => {
+  const useFilter = React.useRef(createFilter<TestFilters>(props)).current;
   const { filters, setFilter, setFilters, removeFilter, clearFilters, reset } =
-    useFilter<TestFilters>(props);
+    useFilter();
 
   return (
     <div>
@@ -54,21 +55,23 @@ FilterDisplay.displayName = "FilterDisplay";
 
 // ===== In Router context (for URL param testing) =====
 export const RouterFilterDisplay = <TFilter extends FilterRecord>(
-  props: UseFilterOptions<TFilter> & {
+  props: CreateFilterOptions<TFilter> & {
     extraFilters?: Partial<TFilter>;
   },
 ) => {
+  const { extraFilters, ...factoryOpts } = props;
+  const useFilter = React.useRef(createFilter<TFilter>(factoryOpts)).current;
+
   const Inner = () => {
-    const { filters, setFilters, clearFilters, reset } =
-      useFilter<TFilter>(props);
+    const { filters, setFilters, clearFilters, reset } = useFilter();
 
     return (
       <div>
         <span data-testid="filters">{JSON.stringify(filters)}</span>
-        {props.extraFilters && (
+        {extraFilters && (
           <button
             type="button"
-            onClick={() => setFilters(props.extraFilters!)}
+            onClick={() => setFilters(extraFilters!)}
             data-testid="set-extra"
           >
             set extra
@@ -97,9 +100,10 @@ RouterFilterDisplay.displayName = "RouterFilterDisplay";
 type ArrayTestFilters = { tags: string[]; status: string };
 
 export const ArrayFilterDisplay = (
-  props: UseFilterOptions<ArrayTestFilters>,
+  props: CreateFilterOptions<ArrayTestFilters>,
 ) => {
-  const { filters, setFilter } = useFilter<ArrayTestFilters>(props);
+  const useFilter = React.useRef(createFilter<ArrayTestFilters>(props)).current;
+  const { filters, setFilter } = useFilter();
 
   return (
     <div>
@@ -120,10 +124,11 @@ export const ArrayFilterDisplay = (
 ArrayFilterDisplay.displayName = "ArrayFilterDisplay";
 
 export const RouterArrayFilterDisplay = (
-  props: UseFilterOptions<ArrayTestFilters>,
+  props: CreateFilterOptions<ArrayTestFilters>,
 ) => {
+  const useFilter = React.useRef(createFilter<ArrayTestFilters>(props)).current;
   const Inner = () => {
-    const { filters, setFilter } = useFilter<ArrayTestFilters>(props);
+    const { filters, setFilter } = useFilter();
 
     return (
       <div>
@@ -151,19 +156,16 @@ export const RouterArrayFilterDisplay = (
 };
 RouterArrayFilterDisplay.displayName = "RouterArrayFilterDisplay";
 
-// ===== Cross-instance sync (shared storageKey) =====
+// ===== Cross-instance sync (shared store via factory) =====
 type SyncTestFilters = { status: string };
 
-export const CrossInstanceFilterSyncComponent = ({
-  storageKey,
-}: {
-  storageKey: string;
-}) => {
+export const CrossInstanceFilterSyncComponent = () => {
+  const useFilter = React.useRef(
+    createFilter<SyncTestFilters>({ defaultFilters: {} }),
+  ).current;
+
   const InstanceA = () => {
-    const { filters, setFilter, clearFilters } = useFilter<SyncTestFilters>({
-      storageKey,
-      defaultFilters: {},
-    });
+    const { filters, setFilter, clearFilters } = useFilter();
     return (
       <div>
         <span data-testid="instance-a-filters">{JSON.stringify(filters)}</span>
@@ -187,10 +189,7 @@ export const CrossInstanceFilterSyncComponent = ({
   InstanceA.displayName = "InstanceA";
 
   const InstanceB = () => {
-    const { filters } = useFilter<SyncTestFilters>({
-      storageKey,
-      defaultFilters: {},
-    });
+    const { filters } = useFilter();
     return (
       <span data-testid="instance-b-filters">{JSON.stringify(filters)}</span>
     );
@@ -206,3 +205,50 @@ export const CrossInstanceFilterSyncComponent = ({
 };
 CrossInstanceFilterSyncComponent.displayName =
   "CrossInstanceFilterSyncComponent";
+
+// ===== Navigation restore (two-route scenario) =====
+type NavRestoreFilters = { status: string };
+
+export const FilterNavigationRestoreComponent = () => {
+  const useFilter = React.useRef(
+    createFilter<NavRestoreFilters>({ defaultFilters: { status: "active" } }),
+  ).current;
+
+  const Inner = () => {
+    const { filters, setFilter } = useFilter();
+    return (
+      <div>
+        <span data-testid="filters">{JSON.stringify(filters)}</span>
+        <button
+          type="button"
+          onClick={() => setFilter("status", "archived")}
+          data-testid="set-archived"
+        >
+          set archived
+        </button>
+        <Link href="/other" data-testid="go-other">
+          Other
+        </Link>
+      </div>
+    );
+  };
+  Inner.displayName = "FilterNavRestoreInner";
+
+  return (
+    <Router>
+      <Route path="/">
+        <Inner />
+      </Route>
+      <Route path="/other">
+        <div>
+          <span data-testid="other-page">Other</span>
+          <Link href="/" data-testid="go-back">
+            Back
+          </Link>
+        </div>
+      </Route>
+    </Router>
+  );
+};
+FilterNavigationRestoreComponent.displayName =
+  "FilterNavigationRestoreComponent";

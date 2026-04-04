@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import "./EmptyState.css";
+import { Text } from "../Text";
 
 export type EmptyStateVariant =
   | "default"
@@ -99,10 +100,10 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
             {icon}
           </div>
         )}
-        <p className="empty-state__title">{title}</p>
-        {description && (
-          <p className="empty-state__description">{description}</p>
-        )}
+        <Text weight="bold" size="xl">
+          {title}
+        </Text>
+        {description && <Text>{description}</Text>}
         {action && <div className="empty-state__action">{action}</div>}
       </div>
     );

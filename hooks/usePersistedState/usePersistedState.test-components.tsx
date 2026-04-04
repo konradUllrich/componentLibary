@@ -1,12 +1,22 @@
 /**
  * Helper components used exclusively by usePersistedState tests.
  * Playwright CT requires mounted components to be defined outside the test file.
+ *
+ * Storage model (current hook behaviour):
+ * - No direct `key → value` writes to localStorage / sessionStorage.
+ * - On setState (syncUrl=true): writes URL search param AND the route-scoped key
+ *   `${routeStatePrefix}:${currentPath}` as a URLSearchParams string.
+ * - `storage` option picks the backend for the route key:
+ *     "localStorage" (default) → localStorage["mp-route:/"]
+ *     "sessionStorage" | false → sessionStorage["mp-route:/"]
+ * - Init reads URL params first, then falls back to defaultValue.
  */
 import React from "react";
 import { usePersistedState, type StorageType } from "./usePersistedState";
 import { Router } from "../../Router";
 
-// ===== Basic State Display =====
+// ─── Basic string state (default storage = localStorage) ─────────────────────
+
 export const PersistedStateDisplay = ({
   storageKey,
   defaultValue,
@@ -41,7 +51,8 @@ export const PersistedStateDisplay = ({
 };
 PersistedStateDisplay.displayName = "PersistedStateDisplay";
 
-// ===== Object State =====
+// ─── Object state ─────────────────────────────────────────────────────────────
+
 export const PersistedObjectState = ({
   storageKey,
 }: {
@@ -76,7 +87,9 @@ export const PersistedObjectState = ({
 };
 PersistedObjectState.displayName = "PersistedObjectState";
 
-// ===== Custom Serialization =====
+// ─── Custom serialisation ─────────────────────────────────────────────────────
+// serialize: n  → "num:N" ; deserialize: "num:N" → N
+
 export const CustomSerializationComponent = ({
   storageKey,
 }: {
@@ -109,7 +122,8 @@ export const CustomSerializationComponent = ({
 };
 CustomSerializationComponent.displayName = "CustomSerializationComponent";
 
-// ===== Remove If Default Component =====
+// ─── removeIfDefault ──────────────────────────────────────────────────────────
+
 export const RemoveIfDefaultComponent = ({
   storageKey,
   defaultValue = "default",
@@ -130,103 +144,95 @@ export const RemoveIfDefaultComponent = ({
       <span data-testid="remove-if-default-value">{state}</span>
       <button
         type="button"
-        onClick={() => setState("default")}
-        data-testid="reset-button"
-      >
-        Reset to Default
-      </button>
-      <button
-        type="button"
         onClick={() => setState("custom")}
         data-testid="set-custom-button"
       >
         Set Custom
+      </button>
+      <button
+        type="button"
+        onClick={() => setState("default")}
+        data-testid="reset-button"
+      >
+        Reset to Default
       </button>
     </div>
   );
 };
 RemoveIfDefaultComponent.displayName = "RemoveIfDefaultComponent";
 
-// ===== Multiple Keys Component =====
+// ─── Multiple independent keys (same route, same storage backend) ─────────────
+// Both use default storage=localStorage → both write into localStorage["mp-route:/"].
+
 export const MultipleKeysComponent = () => {
-  const [email, setEmail] = usePersistedState({
-    key: "email",
-    defaultValue: "default@example.com",
+  const [name, setName] = usePersistedState({
+    key: "mk-name",
+    defaultValue: "alice",
   });
-  const [theme, setTheme] = usePersistedState({
-    key: "theme",
-    defaultValue: "light",
+  const [page, setPage] = usePersistedState({
+    key: "mk-page",
+    defaultValue: 1,
+    serialize: String,
+    deserialize: (s) => parseInt(s, 10) || 1,
   });
 
   return (
     <div>
-      <span data-testid="email-value">{email}</span>
-      <span data-testid="theme-value">{theme}</span>
+      <span data-testid="name-value">{name}</span>
+      <span data-testid="page-value">{page}</span>
       <button
         type="button"
-        onClick={() => setEmail("new@example.com")}
-        data-testid="change-email"
+        onClick={() => setName("bob")}
+        data-testid="change-name"
       >
-        Change Email
+        Change Name
       </button>
       <button
         type="button"
-        onClick={() => setTheme("dark")}
-        data-testid="change-theme"
+        onClick={() => setPage(3)}
+        data-testid="change-page"
       >
-        Change Theme
+        Change Page
       </button>
     </div>
   );
 };
 MultipleKeysComponent.displayName = "MultipleKeysComponent";
 
-// ===== Deserialization Error Component =====
+// ─── Deserialization error ────────────────────────────────────────────────────
+
 export const DeserializationErrorComponent = ({
   storageKey,
 }: {
   storageKey: string;
 }) => {
-  const [state, setState] = usePersistedState({
+  const [state] = usePersistedState({
     key: storageKey,
     defaultValue: "fallback",
     deserialize: (value: string) => {
-      if (value === "broken") {
-        throw new Error("Deserialization failed");
-      }
+      if (value === "broken") throw new Error("Deserialization failed");
       return value;
     },
   });
 
-  return (
-    <div>
-      <span data-testid="error-fallback-value">{state}</span>
-      <button
-        type="button"
-        onClick={() => setState("working")}
-        data-testid="set-working"
-      >
-        Set Working
-      </button>
-    </div>
-  );
+  return <span data-testid="error-fallback-value">{state}</span>;
 };
 DeserializationErrorComponent.displayName = "DeserializationErrorComponent";
 
-// ===== In Router Context (for URL param testing) =====
+// ─── Router context (URL param tests using appRoute encoding) ─────────────────
+
 export const RouterPersistedState = ({
-  storageKey = "test",
+  storageKey = "rps-key",
   defaultValue = "default",
 }: {
   storageKey?: string;
   defaultValue?: string;
 }) => {
-  const RouterPersistedStateInner = () => {
+  const Inner = () => {
     const [state, setState] = usePersistedState({
       key: storageKey,
       defaultValue,
     });
-
     return (
       <div>
         <span data-testid="router-state-value">{state}</span>
@@ -240,35 +246,37 @@ export const RouterPersistedState = ({
       </div>
     );
   };
-
-  RouterPersistedStateInner.displayName = "RouterPersistedStateInner";
-
+  Inner.displayName = "Inner";
   return (
     <Router>
-      <RouterPersistedStateInner />
+      <Inner />
     </Router>
   );
 };
-
 RouterPersistedState.displayName = "RouterPersistedState";
 
-// ===== Storage Type Component (localStorage vs sessionStorage) =====
-export const StorageTypeComponent = ({
+// ─── Route-scoped storage type testing ───────────────────────────────────────
+// Exposes `storageType` so tests can verify which backend receives the route key.
+// Route key: `mp-route:/`  Value: URLSearchParams string e.g. `storageKey=%22persisted%22`
+
+export const RouteStorageComponent = ({
   storageKey,
-  storageType,
+  storageType = "sessionStorage",
+  defaultValue = "initial",
 }: {
   storageKey: string;
-  storageType: StorageType;
+  storageType?: StorageType;
+  defaultValue?: string;
 }) => {
   const [state, setState] = usePersistedState({
     key: storageKey,
-    defaultValue: "initial",
+    defaultValue,
     storage: storageType,
   });
 
   return (
     <div>
-      <span data-testid="storage-value">{state}</span>
+      <span data-testid="state-value">{state}</span>
       <button
         type="button"
         onClick={() => setState("persisted")}
@@ -278,7 +286,7 @@ export const StorageTypeComponent = ({
       </button>
       <button
         type="button"
-        onClick={() => setState("initial")}
+        onClick={() => setState(defaultValue)}
         data-testid="reset-button"
       >
         Reset
@@ -286,10 +294,10 @@ export const StorageTypeComponent = ({
     </div>
   );
 };
+RouteStorageComponent.displayName = "RouteStorageComponent";
 
-StorageTypeComponent.displayName = "StorageTypeComponent";
+// ─── syncUrl option ───────────────────────────────────────────────────────────
 
-// ===== Sync URL Component =====
 export const SyncUrlComponent = ({
   storageKey,
   syncUrl,
@@ -316,10 +324,60 @@ export const SyncUrlComponent = ({
     </div>
   );
 };
-
 SyncUrlComponent.displayName = "SyncUrlComponent";
 
-// ===== Cross-instance URL sync =====
+// ─── flatUrlParams (filter-style: each property → own URL param) ──────────────
+// Primitives serialised with String(), not JSON.stringify:
+//   { status: "active", page: 3 } → ?status=active&page=3
+// Route storage backend: localStorage (default)
+
+export const FlatFiltersComponent = ({
+  storageKey = "flat-filters",
+}: {
+  storageKey?: string;
+}) => {
+  const defaultFilters = { status: "all", page: 1 };
+  const [filters, setFilters] = usePersistedState({
+    key: storageKey,
+    defaultValue: defaultFilters,
+    flatUrlParams: true,
+    syncUrl: true,
+  });
+
+  return (
+    <div>
+      <span data-testid="status">{String(filters.status)}</span>
+      <span data-testid="page">{String(filters.page)}</span>
+      <button
+        type="button"
+        onClick={() => setFilters((prev) => ({ ...prev, status: "active" }))}
+        data-testid="set-status"
+      >
+        Set Status
+      </button>
+      <button
+        type="button"
+        onClick={() => setFilters((prev) => ({ ...prev, page: 3 }))}
+        data-testid="set-page"
+      >
+        Set Page
+      </button>
+      <button
+        type="button"
+        onClick={() => setFilters(defaultFilters)}
+        data-testid="reset"
+      >
+        Reset
+      </button>
+    </div>
+  );
+};
+FlatFiltersComponent.displayName = "FlatFiltersComponent";
+
+// ─── Cross-instance URL sync (within Router) ──────────────────────────────────
+// Both instances share the same key. Instance A writes; Instance B reads via
+// the reactive URL-sync effect.
+
 export const CrossInstanceSyncComponent = ({
   storageKey,
   defaultValue = "default",
@@ -340,14 +398,14 @@ export const CrossInstanceSyncComponent = ({
           onClick={() => setState("from-a")}
           data-testid="instance-a-set"
         >
-          set
+          Set
         </button>
         <button
           type="button"
           onClick={() => setState(defaultValue)}
           data-testid="instance-a-reset"
         >
-          reset
+          Reset
         </button>
       </div>
     );

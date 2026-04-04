@@ -1,7 +1,10 @@
 export {
+  usePagination,
   createPagination,
   type PaginationState,
   type UsePaginationOptions,
+  useUrlPagination,
+  type UseUrlPaginationOptions,
 } from "./usePagination";
 
 export {
@@ -10,8 +13,21 @@ export {
 } from "./usePersistedState/usePersistedState";
 
 export {
-  useFilter,
+  createFilter,
   type FilterRecord,
   type FilterState,
-  type UseFilterOptions,
+  type CreateFilterOptions,
+  type FilterRefactorState,
+  type UseFilterRefactorOptions,
+  useFilterRefactor,
+  useUrlFilters,
+  type UseUrlFiltersOptions,
 } from "./useFilter";
+
+export {
+  useUrlSort,
+  type UseUrlSortOptions,
+  type SortState,
+  type SortEntry,
+  type SortDirection,
+} from "./useUrlSort";

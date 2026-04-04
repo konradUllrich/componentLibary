@@ -6,6 +6,7 @@ import {
   ArrayFilterDisplay,
   RouterArrayFilterDisplay,
   CrossInstanceFilterSyncComponent,
+  FilterNavigationRestoreComponent,
 } from "./useFilter.test-components";
 
 test.describe("useFilter Hook", () => {
@@ -17,9 +18,7 @@ test.describe("useFilter Hook", () => {
     }) => {
       await page.evaluate(() => localStorage.clear());
 
-      const component = await mount(
-        <FilterDisplay storageKey="test-defaults" />,
-      );
+      const component = await mount(<FilterDisplay />);
 
       await expect(component.getByTestId("filters")).toHaveText("{}");
     });
@@ -31,10 +30,7 @@ test.describe("useFilter Hook", () => {
       await page.evaluate(() => localStorage.clear());
 
       const component = await mount(
-        <FilterDisplay
-          storageKey="test-default-filters"
-          defaultFilters={{ status: "active" }}
-        />,
+        <FilterDisplay defaultFilters={{ status: "active" }} />,
       );
 
       await expect(component.getByTestId("filters")).toContainText(
@@ -49,10 +45,7 @@ test.describe("useFilter Hook", () => {
       await page.evaluate(() => localStorage.clear());
 
       const component = await mount(
-        <FilterDisplay
-          storageKey="test-set-filter"
-          defaultFilters={{ status: "active" }}
-        />,
+        <FilterDisplay defaultFilters={{ status: "active" }} />,
       );
 
       await component.getByTestId("set-status-inactive").click();
@@ -65,10 +58,7 @@ test.describe("useFilter Hook", () => {
       await page.evaluate(() => localStorage.clear());
 
       const component = await mount(
-        <FilterDisplay
-          storageKey="test-set-filters"
-          defaultFilters={{ status: "active" }}
-        />,
+        <FilterDisplay defaultFilters={{ status: "active" }} />,
       );
 
       await component.getByTestId("set-multiple").click();
@@ -82,10 +72,7 @@ test.describe("useFilter Hook", () => {
       await page.evaluate(() => localStorage.clear());
 
       const component = await mount(
-        <FilterDisplay
-          storageKey="test-remove-filter"
-          defaultFilters={{ status: "active" }}
-        />,
+        <FilterDisplay defaultFilters={{ status: "active" }} />,
       );
 
       await component.getByTestId("remove-status").click();
@@ -98,10 +85,7 @@ test.describe("useFilter Hook", () => {
       await page.evaluate(() => localStorage.clear());
 
       const component = await mount(
-        <FilterDisplay
-          storageKey="test-clear-filters"
-          defaultFilters={{ status: "active" }}
-        />,
+        <FilterDisplay defaultFilters={{ status: "active" }} />,
       );
 
       await component.getByTestId("set-multiple").click();
@@ -113,10 +97,7 @@ test.describe("useFilter Hook", () => {
       await page.evaluate(() => localStorage.clear());
 
       const component = await mount(
-        <FilterDisplay
-          storageKey="test-reset"
-          defaultFilters={{ status: "active" }}
-        />,
+        <FilterDisplay defaultFilters={{ status: "active" }} />,
       );
 
       await component.getByTestId("set-multiple").click();
@@ -127,70 +108,34 @@ test.describe("useFilter Hook", () => {
     });
   });
 
-  // ===== localStorage Persistence =====
-  test.describe("Storage Persistence", () => {
-    test("should persist filters to localStorage", async ({ mount, page }) => {
-      await page.evaluate(() => localStorage.clear());
-
-      const component = await mount(
-        <FilterDisplay storageKey="test-persist" />,
-      );
-
-      await component.getByTestId("set-status-inactive").click();
-      await page.waitForTimeout(100);
-
-      const stored = await page.evaluate(() =>
-        localStorage.getItem("test-persist"),
-      );
-      expect(stored).not.toBeNull();
-      const parsed = JSON.parse(stored!);
-      expect(parsed.status).toBe("inactive");
-    });
-
-    test("should restore filters from localStorage on mount", async ({
+  // ===== Restore on navigation =====
+  test.describe("Restore on navigation", () => {
+    test("should restore filter state when navigating back to a route", async ({
       mount,
       page,
     }) => {
-      await page.evaluate(() => {
-        localStorage.clear();
-        localStorage.setItem(
-          "test-restore-filters",
-          JSON.stringify({ status: "archived", category: "news" }),
-        );
-      });
+      await page.evaluate(() => sessionStorage.clear());
 
-      const component = await mount(
-        <FilterDisplay storageKey="test-restore-filters" />,
+      const component = await mount(<FilterNavigationRestoreComponent />);
+
+      // Set a non-default filter value
+      await component.getByTestId("set-archived").click();
+      await page.waitForTimeout(50);
+      await expect(component.getByTestId("filters")).toContainText(
+        '"status":"archived"',
       );
 
-      const text = await component.getByTestId("filters").textContent();
-      expect(text).toContain('"status":"archived"');
-      expect(text).toContain('"category":"news"');
-    });
+      // Navigate away
+      await component.getByTestId("go-other").click();
+      await expect(component.getByTestId("other-page")).toBeVisible();
 
-    test("should remove from localStorage when filters match default (empty)", async ({
-      mount,
-      page,
-    }) => {
-      await page.evaluate(() => {
-        localStorage.clear();
-        localStorage.setItem(
-          "test-remove-default",
-          JSON.stringify({ status: "active" }),
-        );
-      });
+      // Navigate back — router injects stored params into the URL
+      await component.getByTestId("go-back").click();
+      await page.waitForTimeout(50);
 
-      const component = await mount(
-        <FilterDisplay storageKey="test-remove-default" />,
+      await expect(component.getByTestId("filters")).toContainText(
+        '"status":"archived"',
       );
-
-      await component.getByTestId("clear").click();
-      await page.waitForTimeout(100);
-
-      const stored = await page.evaluate(() =>
-        localStorage.getItem("test-remove-default"),
-      );
-      expect(stored).toBeNull();
     });
   });
 
@@ -205,7 +150,6 @@ test.describe("useFilter Hook", () => {
       type TestFilters = { status: string };
       const component = await mount(
         <RouterFilterDisplay<TestFilters>
-          storageKey="test-url-write"
           syncUrl={true}
           extraFilters={{ status: "inactive" } as Partial<TestFilters>}
         />,
@@ -227,7 +171,6 @@ test.describe("useFilter Hook", () => {
       type TestFilters = { status: string };
       const component = await mount(
         <RouterFilterDisplay<TestFilters>
-          storageKey="test-url-disabled"
           syncUrl={false}
           extraFilters={{ status: "inactive" } as Partial<TestFilters>}
         />,
@@ -249,9 +192,7 @@ test.describe("useFilter Hook", () => {
     }) => {
       await page.evaluate(() => localStorage.clear());
 
-      const component = await mount(
-        <ArrayFilterDisplay storageKey="test-array-storage" />,
-      );
+      const component = await mount(<ArrayFilterDisplay />);
 
       await component.getByTestId("set-tags").click();
       await page.waitForTimeout(100);
@@ -272,7 +213,6 @@ test.describe("useFilter Hook", () => {
       // Mount and write an array filter — the hook serialises it to the URL
       const component = await mount(
         <RouterArrayFilterDisplay
-          storageKey="test-array-url"
           syncUrl={true}
           defaultFilters={{ tags: [], status: "" }}
         />,
@@ -308,9 +248,7 @@ test.describe("useFilter Hook", () => {
     }) => {
       await page.evaluate(() => localStorage.clear());
 
-      const component = await mount(
-        <CrossInstanceFilterSyncComponent storageKey="ci-filter-set" />,
-      );
+      const component = await mount(<CrossInstanceFilterSyncComponent />);
 
       await expect(component.getByTestId("instance-a-filters")).toHaveText(
         "{}",
@@ -335,9 +273,7 @@ test.describe("useFilter Hook", () => {
     }) => {
       await page.evaluate(() => localStorage.clear());
 
-      const component = await mount(
-        <CrossInstanceFilterSyncComponent storageKey="ci-filter-clear" />,
-      );
+      const component = await mount(<CrossInstanceFilterSyncComponent />);
 
       await component.getByTestId("instance-a-set").click();
       await expect(component.getByTestId("instance-b-filters")).toContainText(

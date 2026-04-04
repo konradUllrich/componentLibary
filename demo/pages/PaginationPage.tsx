@@ -1,6 +1,6 @@
 import React from "react";
 import { Pagination } from "../../data-display/Pagination";
-import { createPagination } from "../../hooks/usePagination/usePagination";
+import { createPagination } from "../../hooks/usePagination/createPagination";
 import { Button, Text } from "../../common";
 import { Page, Section } from "../../layout";
 import { useLocation } from "../../Router/hooks";

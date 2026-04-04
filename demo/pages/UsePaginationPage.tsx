@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Text } from "../../common";
 import { Grid, Page, Panel, Section } from "../../layout";
 import { Pagination } from "../../data-display/Pagination";
-import { createPagination } from "../../hooks/usePagination/usePagination";
+import { createPagination } from "../../hooks/usePagination/createPagination";
 import "./UsePersistedStatePage.css";
 
 // ===== Factory instances (created once at module level) =====
@@ -37,7 +37,6 @@ const useOrdersPagination = createPagination({
 const useSessionPagination = createPagination({
   storageKey: "docs-pg-session",
   defaultPageSize: 10,
-  storage: "sessionStorage",
   syncUrl: false,
 });
 

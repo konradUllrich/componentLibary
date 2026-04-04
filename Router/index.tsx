@@ -1,10 +1,22 @@
-import type { FC, PropsWithChildren } from "react";
+import type { FC } from "react";
 import { Router as WRouter } from "wouter";
 import { useAppRouteLocation, useAppRouteSearch } from "./appRouteLocation";
+import { RouterConfigContext } from "./RouterConfigContext";
 
 export { Route, Switch } from "wouter";
 export { Link } from "./Link";
 export type { LinkProps } from "./Link";
+
+export interface RouterProps {
+  children?: React.ReactNode;
+  /**
+   * Namespace prefix for route-scoped sessionStorage keys.
+   * Use a unique value per Router instance when multiple routers exist on the
+   * same page to prevent state collisions.
+   * @default "mp-route"
+   */
+  routeStatePrefix?: string;
+}
 
 /**
  * Router – param-based application router built on top of wouter.
@@ -31,11 +43,16 @@ export type { LinkProps } from "./Link";
  * ```
  */
 
-export const Router: FC<PropsWithChildren> = ({ children }) => {
+export const Router: FC<RouterProps> = ({
+  children,
+  routeStatePrefix = "mp-route",
+}) => {
   return (
-    <WRouter hook={useAppRouteLocation} searchHook={useAppRouteSearch}>
-      {children}
-    </WRouter>
+    <RouterConfigContext.Provider value={{ routeStatePrefix }}>
+      <WRouter hook={useAppRouteLocation} searchHook={useAppRouteSearch}>
+        {children}
+      </WRouter>
+    </RouterConfigContext.Provider>
   );
 };
 

@@ -1,7 +1,13 @@
-export { useSearch, useLocation, useParams, useRoute } from "wouter";
+export { useSearch, useParams, useRoute } from "wouter";
 export type { SetSearchParams, URLSearchParamsInit } from "wouter";
-import { useLocation, useSearchParams as useSearchParamsw } from "wouter";
+import { useCallback } from "react";
+import {
+  useLocation as useWouterLocation,
+  useSearchParams as useWouterSearchParams,
+} from "wouter";
 export { createRoute } from "./createRoute";
+import { useRouterConfig } from "./RouterConfigContext";
+import { buildDestinationWithState } from "./routeStateStorage";
 
 /**
  * Hook for accessing and modifying search parameters in the URL.
@@ -56,7 +62,26 @@ setSearchParams(
   },
 );
  */
-export const useSearchParams = useSearchParamsw;
+export const useSearchParams = useWouterSearchParams;
+
+/**
+ * Hook for reading the current route path and navigating programmatically.
+ * Wraps wouter's useLocation to restore persisted route state (search params)
+ * from sessionStorage before navigating — keyed by the Router's routeStatePrefix.
+ */
+export const useLocation = () => {
+  const [path, wNavigate] = useWouterLocation();
+  const { routeStatePrefix } = useRouterConfig();
+
+  const navigate = useCallback(
+    (to: string, opts?: { replace?: boolean }) => {
+      wNavigate(buildDestinationWithState(to, routeStatePrefix), opts);
+    },
+    [wNavigate, routeStatePrefix],
+  );
+
+  return [path, navigate] as const;
+};
 
 export const useParamState = <T>(
   paramName: string,
@@ -91,7 +116,7 @@ export const useParamState = <T>(
  * back();
  */
 export const useNavigation = () => {
-  const [, navigate] = useLocation();
+  const [, navigate] = useLocation(); // uses the wrapped useLocation above
   const back = () => window.history.back();
   return { navigate, back };
 };

@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSearchParams } from "wouter";
+import { useRouterConfig } from "../../Router/RouterConfigContext";
+import { getCurrentPath } from "../../Router/routeStateStorage";
 
 export type StorageType = "localStorage" | "sessionStorage" | false;
 
@@ -9,22 +11,18 @@ type Options<T> = {
   serialize?: (value: T) => string;
   deserialize?: (value: string) => T;
   removeIfDefault?: boolean;
+  /**
+   * Which Web Storage backend to use for the route-scoped param recovery key.
+   * - `"sessionStorage"` or `false` → route-scoped key written to sessionStorage (default)
+   * - `"localStorage"` → route-scoped key written to localStorage (survives tab close)
+   */
   storage?: StorageType;
   /** Set to false to disable URL search-param synchronisation. Defaults to true. */
   syncUrl?: boolean;
   /** When true and T is a plain object, each property is written as its own URL
-   * search param instead of one JSON blob. Storage (localStorage/sessionStorage)
-   * always uses the full serialised object regardless of this flag. */
+   * search param instead of one JSON blob. */
   flatUrlParams?: boolean;
 };
-
-// SSR-safe helper — returns the requested Web Storage or null when unavailable.
-function getStorage(type: StorageType): Storage | null {
-  if (type === false || typeof window === "undefined") return null;
-  return type === "sessionStorage"
-    ? window.sessionStorage
-    : window.localStorage;
-}
 
 export function usePersistedState<T>({
   key,
@@ -37,8 +35,9 @@ export function usePersistedState<T>({
   flatUrlParams = false,
 }: Options<T>) {
   const [params, setSearchParams] = useSearchParams();
+  const { routeStatePrefix } = useRouterConfig();
 
-  // --- initialize state from URL → storage → default (runs once) ---
+  // --- initialize state from URL → route-scoped storage → storage → default (runs once) ---
   const [state, setState] = useState<T>(() => {
     // 1. URL param (highest priority, only when syncUrl is enabled)
     if (syncUrl) {
@@ -67,6 +66,7 @@ export function usePersistedState<T>({
         }
       } else {
         const paramValue = params.get(key);
+
         if (paramValue != null) {
           try {
             return deserialize(paramValue);
@@ -77,31 +77,14 @@ export function usePersistedState<T>({
       }
     }
 
-    // 2. Web Storage (localStorage or sessionStorage)
-    const store = getStorage(storage);
-    if (store != null) {
-      const stored = store.getItem(key);
-      if (stored != null) {
-        try {
-          return deserialize(stored);
-        } catch (e) {
-          console.warn(`Failed to deserialize ${storage} item "${key}":`, e);
-        }
-      }
-    }
-
     // 3. default value
     return defaultValue;
   });
 
-  // --- pure state setter: only updates local state ---
-  const setPersistedState = useCallback((value: T | ((prev: T) => T)) => {
-    setState(value);
-  }, []);
-
-  // Keep latest option values in refs so the persist effect only re-runs when
-  // `key` or `state` change — not when consumers pass new function/object
-  // references on every render (e.g. inline defaultValue objects).
+  // Keep latest values in refs so the setter never closes over stale options.
+  const stateRef = useRef(state);
+  const keyRef = useRef(key);
+  const setSearchParamsRef = useRef(setSearchParams);
   const serializeRef = useRef(serialize);
   const deserializeRef = useRef(deserialize);
   const defaultValueRef = useRef(defaultValue);
@@ -110,6 +93,11 @@ export function usePersistedState<T>({
   const syncUrlRef = useRef(syncUrl);
   const flatUrlParamsRef = useRef(flatUrlParams);
   const prevFlatUrlKeysRef = useRef(new Set<string>());
+  const routeStatePrefixRef = useRef(routeStatePrefix);
+  stateRef.current = state;
+  keyRef.current = key;
+  setSearchParamsRef.current = setSearchParams;
+  routeStatePrefixRef.current = routeStatePrefix;
   serializeRef.current = serialize;
   deserializeRef.current = deserialize;
   defaultValueRef.current = defaultValue;
@@ -118,55 +106,45 @@ export function usePersistedState<T>({
   syncUrlRef.current = syncUrl;
   flatUrlParamsRef.current = flatUrlParams;
 
-  // --- persist local state to URL and Web Storage ---
-  useEffect(() => {
+  // --- state setter: updates local state and immediately persists to URL / Web Storage ---
+  const setPersistedState = useCallback((value: T | ((prev: T) => T)) => {
+    const nextValue =
+      typeof value === "function"
+        ? (value as (prev: T) => T)(stateRef.current)
+        : value;
+    setState(nextValue);
+
+    const _key = keyRef.current;
     const _serialize = serializeRef.current;
     const _defaultValue = defaultValueRef.current;
     const _removeIfDefault = removeIfDefaultRef.current;
-    const store = getStorage(storageRef.current);
 
     let serializedState: string;
     let serializedDefault: string;
 
     try {
-      serializedState = _serialize(state);
+      serializedState = _serialize(nextValue);
       serializedDefault = _serialize(_defaultValue);
     } catch (error) {
-      console.warn(`Failed to serialize value for key "${key}":`, error);
+      console.warn(`Failed to serialize value for key "${_key}":`, error);
       return;
-    }
-
-    // Persist to Web Storage first so URL sync issues never block persistence.
-    if (store != null) {
-      try {
-        if (_removeIfDefault && serializedState === serializedDefault) {
-          store.removeItem(key);
-        } else {
-          store.setItem(key, serializedState);
-        }
-      } catch (error) {
-        console.warn(
-          `Failed to persist to ${storageRef.current} for key "${key}":`,
-          error,
-        );
-      }
     }
 
     if (syncUrlRef.current) {
       if (
         flatUrlParamsRef.current &&
-        state !== null &&
-        typeof state === "object"
+        nextValue !== null &&
+        typeof nextValue === "object"
       ) {
         try {
-          const currentObj = state as Record<string, unknown>;
+          const currentObj = nextValue as Record<string, unknown>;
           const defaultObj = _defaultValue as Record<string, unknown>;
           const keysToProcess = new Set([
             ...prevFlatUrlKeysRef.current,
             ...Object.keys(currentObj),
           ]);
 
-          setSearchParams(
+          setSearchParamsRef.current(
             (prev) => {
               for (const k of keysToProcess) {
                 const v = currentObj[k];
@@ -193,23 +171,59 @@ export function usePersistedState<T>({
           );
 
           prevFlatUrlKeysRef.current = new Set(Object.keys(currentObj));
+
+          // Write to route-scoped storage for param recovery on navigation.
+          // Respects the configured storage type; falls back to sessionStorage
+          // when storage is false (URL-only mode).
+          if (typeof window !== "undefined") {
+            const path = getCurrentPath();
+            const routeKey = `${routeStatePrefixRef.current}:${path}`;
+            const routeStore =
+              storageRef.current === "localStorage"
+                ? localStorage
+                : sessionStorage;
+            const existing = new URLSearchParams(
+              routeStore.getItem(routeKey) ?? "",
+            );
+            for (const k of keysToProcess) {
+              const v = currentObj[k];
+              const isDefault =
+                _removeIfDefault &&
+                JSON.stringify(v) === JSON.stringify(defaultObj[k]);
+              if (v === undefined || v === null || isDefault) {
+                existing.delete(k);
+              } else {
+                const serialized =
+                  Array.isArray(v) || (typeof v === "object" && v !== null)
+                    ? JSON.stringify(v)
+                    : String(v);
+                existing.set(k, serialized);
+              }
+            }
+            const str = existing.toString();
+            if (str) {
+              routeStore.setItem(routeKey, str);
+            } else {
+              routeStore.removeItem(routeKey);
+            }
+          }
         } catch (error) {
           console.warn(
-            `Failed to persist flat URL params for key "${key}":`,
+            `Failed to persist flat URL params for key "${_key}":`,
             error,
           );
         }
       } else {
         try {
-          setSearchParams(
+          setSearchParamsRef.current(
             (prev) => {
-              const current = prev.get(key);
+              const current = prev.get(_key);
 
               if (_removeIfDefault && serializedState === serializedDefault) {
                 if (current == null) {
                   return prev;
                 }
-                prev.delete(key);
+                prev.delete(_key);
                 return prev;
               }
 
@@ -217,17 +231,43 @@ export function usePersistedState<T>({
                 return prev;
               }
 
-              prev.set(key, serializedState);
+              prev.set(_key, serializedState);
               return prev;
             },
             { replace: true },
           );
+
+          // Write to route-scoped storage for param recovery on navigation.
+          // Respects the configured storage type; falls back to sessionStorage
+          // when storage is false (URL-only mode).
+          if (typeof window !== "undefined") {
+            const path = getCurrentPath();
+            const routeKey = `${routeStatePrefixRef.current}:${path}`;
+            const routeStore =
+              storageRef.current === "localStorage"
+                ? localStorage
+                : sessionStorage;
+            const existing = new URLSearchParams(
+              routeStore.getItem(routeKey) ?? "",
+            );
+            if (_removeIfDefault && serializedState === serializedDefault) {
+              existing.delete(_key);
+            } else {
+              existing.set(_key, serializedState);
+            }
+            const str = existing.toString();
+            if (str) {
+              routeStore.setItem(routeKey, str);
+            } else {
+              routeStore.removeItem(routeKey);
+            }
+          }
         } catch (error) {
-          console.warn(`Failed to persist URL param for key "${key}":`, error);
+          console.warn(`Failed to persist URL param for key "${_key}":`, error);
         }
       }
     }
-  }, [key, state, setSearchParams]);
+  }, []); // all deps accessed via refs — stable for the lifetime of the component
 
   // --- sync URL → local state (reactive: runs whenever `params` changes) ---
   useEffect(() => {

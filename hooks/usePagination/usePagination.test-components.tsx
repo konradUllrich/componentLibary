@@ -3,8 +3,11 @@
  * Playwright CT requires mounted components to be defined outside the test file.
  */
 import React from "react";
-import { createPagination, type UsePaginationOptions } from "./usePagination";
-import { Router } from "../../Router";
+import {
+  createPagination,
+  type UsePaginationOptions,
+} from "./createPagination";
+import { Router, Route, Link } from "../../Router";
 
 // ===== Basic Pagination Display =====
 export const PaginationDisplay = (
@@ -155,3 +158,61 @@ export const CrossInstancePaginationSyncComponent = ({
 };
 CrossInstancePaginationSyncComponent.displayName =
   "CrossInstancePaginationSyncComponent";
+
+// ===== Navigation restore (two-route scenario) =====
+export const PaginationNavigationRestoreComponent = ({
+  storageKey,
+  defaultPageSize = 10,
+}: {
+  storageKey: string;
+  defaultPageSize?: number;
+}) => {
+  const usePaginationHook = React.useRef(
+    createPagination({ storageKey, defaultPageSize }),
+  ).current;
+
+  const ListPage = () => {
+    const pagination = usePaginationHook();
+    return (
+      <div>
+        <span data-testid="page">{pagination.page}</span>
+        <button
+          type="button"
+          onClick={() => pagination.setTotalItems(100)}
+          data-testid="set-total"
+        >
+          Set total
+        </button>
+        <button
+          type="button"
+          onClick={() => pagination.setPage(5)}
+          data-testid="goto-5"
+        >
+          Go 5
+        </button>
+        <Link href="/other" data-testid="go-other">
+          Other
+        </Link>
+      </div>
+    );
+  };
+  ListPage.displayName = "ListPage";
+
+  return (
+    <Router>
+      <Route path="/">
+        <ListPage />
+      </Route>
+      <Route path="/other">
+        <div>
+          <span data-testid="other-page">Other</span>
+          <Link href="/" data-testid="go-back">
+            Back
+          </Link>
+        </div>
+      </Route>
+    </Router>
+  );
+};
+PaginationNavigationRestoreComponent.displayName =
+  "PaginationNavigationRestoreComponent";

@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import type { PaginationState } from "../../hooks/usePagination/usePagination";
+import type { PaginationState } from "../../hooks/usePagination/createPagination";
 import "./pagination.css";
 
 export interface PaginationProps {

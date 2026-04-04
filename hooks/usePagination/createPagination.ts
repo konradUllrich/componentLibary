@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 import { createStore, useStore, type StoreApi } from "zustand";
-import type { StorageType } from "../usePersistedState/usePersistedState";
 import { useStoreUrlSync } from "../useStoreUrlSync";
 
 export type UsePaginationOptions = {
-  /** Unique storage/URL key prefix. Defaults to "pagination". */
+  /** Unique key used as a URL param namespace. Defaults to "pagination". */
   storageKey?: string;
   /** Initial page (1-based). Defaults to 1. */
   defaultPage?: number;
   /** Initial page size. Defaults to 10. */
   defaultPageSize?: number;
-  /** Web Storage backend. Defaults to "sessionStorage". Set to false to disable storage entirely. */
-  storage?: StorageType;
   /** Set to false to disable URL search-param synchronisation. Defaults to true. */
   syncUrl?: boolean;
 };
@@ -49,12 +46,6 @@ type PaginationStoreState = {
   reset: () => void;
 };
 
-// SSR-safe storage accessor
-function getWebStorage(type: StorageType): Storage | null {
-  if (type === false || typeof window === "undefined") return null;
-  return type === "localStorage" ? window.localStorage : window.sessionStorage;
-}
-
 function recalcDerived(
   page: number,
   pageSize: number,
@@ -65,33 +56,12 @@ function recalcDerived(
 }
 
 function buildStore(
-  storageKey: string,
   defaultPage: number,
   defaultPageSize: number,
-  storage: StorageType,
 ): StoreApi<PaginationStoreState> {
-  // Hydrate from Web Storage on first creation (plain JSON — same format as
-  // the former usePersistedState backend: { page, pageSize }).
-  let initialPage = defaultPage;
-  let initialPageSize = defaultPageSize;
-  const webStorage = getWebStorage(storage);
-  if (webStorage) {
-    try {
-      const raw = webStorage.getItem(storageKey);
-      if (raw !== null) {
-        const parsed = JSON.parse(raw) as { page?: number; pageSize?: number };
-        if (typeof parsed.page === "number") initialPage = parsed.page;
-        if (typeof parsed.pageSize === "number")
-          initialPageSize = parsed.pageSize;
-      }
-    } catch {
-      /* ignore — fall back to defaults */
-    }
-  }
-
   const store = createStore<PaginationStoreState>()((set, get) => ({
-    page: initialPage,
-    pageSize: initialPageSize,
+    page: defaultPage,
+    pageSize: defaultPageSize,
     totalItems: 0,
     totalPages: 0,
     hasNext: false,
@@ -151,23 +121,7 @@ function buildStore(
     },
   }));
 
-  // Persist { page, pageSize } to Web Storage on every state change.
-  // Plain JSON format; key is removed when both values equal the defaults.
-  if (webStorage !== null) {
-    store.subscribe((state) => {
-      if (
-        state.page === state._defaultPage &&
-        state.pageSize === state._defaultPageSize
-      ) {
-        webStorage.removeItem(storageKey);
-      } else {
-        webStorage.setItem(
-          storageKey,
-          JSON.stringify({ page: state.page, pageSize: state.pageSize }),
-        );
-      }
-    });
-  }
+  console.log(store);
 
   return store;
 }
@@ -194,13 +148,11 @@ function buildStore(
  * ```
  */
 export function createPagination({
-  storageKey = "pagination",
   defaultPage = 1,
   defaultPageSize = 10,
-  storage = "sessionStorage" as const,
   syncUrl = true,
 }: UsePaginationOptions = {}) {
-  const store = buildStore(storageKey, defaultPage, defaultPageSize, storage);
+  const store = buildStore(defaultPage, defaultPageSize);
 
   return function usePagination({
     totalItems: totalItemsProp = 0,
