@@ -7,6 +7,11 @@ export interface PaginationProps {
   pagination: PaginationState;
   showSizeSelector?: boolean;
   pageSizeOptions?: number[];
+  /**
+   * Hide the component when there are no items
+   * @default true
+   */
+  hideOnEmpty?: boolean;
   className?: string;
 }
 
@@ -27,6 +32,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       pagination,
       showSizeSelector = true,
       pageSizeOptions = [5, 10, 20, 50, 100],
+      hideOnEmpty = true,
       className,
     },
     ref,
@@ -75,6 +81,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       return [1, "...", page - 1, page, page + 1, "...", totalPages];
     };
 
+    if (hideOnEmpty && totalItems === 0) return null;
     if (totalPages <= 1 && !showSizeSelector) return null;
 
     return (

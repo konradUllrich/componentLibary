@@ -21,6 +21,9 @@
 // Common/Primitive Components
 // ========================================
 export {
+  Accordion,
+  type AccordionProps,
+  type AccordionItem,
   Button,
   type ButtonProps,
   type ButtonVariant,
