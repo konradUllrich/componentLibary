@@ -149,17 +149,19 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
         className={clsx("mp-horizontal-nav", className)}
         {...props}
       >
-        {visibleItems.map((item) => (
-          <HorizontalNavItem
-            key={item.id}
-            href={item.href}
-            isActive={item.isActive}
-            icon={item.icon}
-            onClick={item.onClick}
-          >
-            {item.label}
-          </HorizontalNavItem>
-        ))}
+        {visibleItems.map((item) => {
+          return (
+            <HorizontalNavItem
+              key={item.id}
+              href={item.href}
+              isActive={item.isActive}
+              icon={item.icon}
+              onClick={item.onClick}
+            >
+              {item.label}
+            </HorizontalNavItem>
+          );
+        })}
       </nav>
     );
   },

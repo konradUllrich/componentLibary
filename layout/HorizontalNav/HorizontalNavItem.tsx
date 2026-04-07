@@ -78,10 +78,11 @@ export const HorizontalNavItem = React.forwardRef<
       <a
         ref={ref}
         href={href}
+        aria-current={isActive ? "page" : undefined}
         className={clsx(
           "mp-horizontal-nav-item",
           isActive && "mp-horizontal-nav-item--active",
-          className
+          className,
         )}
         onClick={handleClick}
         {...props}
