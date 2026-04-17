@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
@@ -103,6 +103,8 @@ export const ReactSelect = ({
   children,
   className,
 }: ReactSelectProps) => {
+  const id = useId();
+
   return (
     <FormControl
       label={label}
@@ -110,6 +112,7 @@ export const ReactSelect = ({
       errorMessage={errorMessage}
       helperText={helperText}
       className={className}
+      htmlFor={id}
     >
       <SelectPrimitive.Root
         value={value}
@@ -118,6 +121,7 @@ export const ReactSelect = ({
         disabled={disabled}
       >
         <SelectPrimitive.Trigger
+          id={id}
           className={clsx(
             "select-trigger",
             `select-trigger--${variant}`,

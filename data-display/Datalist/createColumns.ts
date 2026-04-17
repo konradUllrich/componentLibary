@@ -62,8 +62,19 @@ export interface ColumnConfig<T> {
   /** Enable sorting for this column */
   enableSorting?: boolean;
 
-  /** Column width in pixels */
-  size?: number;
+  /**
+   * Column width.
+   * - Pass a **number** for a pixel-based width handled by TanStack Table (e.g. `200`).
+   * - Pass a **string** for a CSS value applied directly to the `<th>`/`<td>` style
+   *   (e.g. `"20%"`, `"10rem"`). Percentage values are especially useful here.
+   */
+  size?: number | string;
+
+  /**
+   * Minimum column width in pixels.
+   * Prevents the column from shrinking below this value during resizing.
+   */
+  minSize?: number;
 }
 
 /**
@@ -122,16 +133,22 @@ export interface ColumnConfig<T> {
 export function createColumns<T>(
   configs: ColumnConfig<T>[],
 ): ColumnDef<T, unknown>[] {
-  return configs.map(({ key, id, accessorFn, header, cell, enableSorting, size }) => ({
-    header,
-    ...(id !== undefined && { id }),
-    ...(key !== undefined && { accessorKey: key }),
-    ...(accessorFn !== undefined && { accessorFn }),
-    ...(cell !== undefined && {
-      cell: (info: { getValue: () => unknown; row: { original: T } }) =>
-        cell(info.getValue(), info.row.original),
+  return configs.map(
+    ({ key, id, accessorFn, header, cell, enableSorting, size, minSize }) => ({
+      header,
+      ...(id !== undefined && { id }),
+      ...(key !== undefined && { accessorKey: key }),
+      ...(accessorFn !== undefined && { accessorFn }),
+      ...(cell !== undefined && {
+        cell: (info: { getValue: () => unknown; row: { original: T } }) =>
+          cell(info.getValue(), info.row.original),
+      }),
+      ...(enableSorting !== undefined && { enableSorting }),
+      ...(typeof size === "number" && { size }),
+      meta: {
+        ...(typeof size === "string" && { width: size }),
+        ...(minSize !== undefined && { minWidth: minSize }),
+      },
     }),
-    ...(enableSorting !== undefined && { enableSorting }),
-    ...(size !== undefined && { size }),
-  }));
+  );
 }

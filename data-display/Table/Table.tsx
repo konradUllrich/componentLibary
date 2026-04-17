@@ -55,7 +55,11 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                   className={clsx("table__cell table__cell--header", {
                     "table__cell--sortable": header.column.getCanSort(),
                   })}
-                  style={{ width: header.getSize() }}
+                  style={{
+                    width:
+                      header.column.columnDef.meta?.width ?? header.getSize(),
+                    minWidth: header.column.columnDef.meta?.minWidth,
+                  }}
                   onClick={header.column.getToggleSortingHandler()}
                 >
                   <div className="table__header-content">
@@ -84,7 +88,12 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                 <td
                   key={cell.id}
                   className="table__cell"
-                  style={{ width: cell.column.getSize() }}
+                  style={{
+                    width:
+                      cell.column.columnDef.meta?.width ??
+                      cell.column.getSize(),
+                    minWidth: cell.column.columnDef.meta?.minWidth,
+                  }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>

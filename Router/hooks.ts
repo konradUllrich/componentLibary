@@ -60,7 +60,7 @@ setSearchParams(
   {
     state: 'hello',
   },
-);
+);å
  */
 export const useSearchParams = useWouterSearchParams;
 
