@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   font-family: var(--font-family-base);
@@ -21,7 +21,8 @@
 
 /* Focus visible state */
 .toggle:focus-visible {
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Disabled state */
@@ -59,24 +60,24 @@
 
 .toggle--default {
   background-color: transparent;
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   border-color: transparent;
 }
 
 .toggle--default:hover:not(:disabled):not([data-state="on"]) {
-  background-color: var(--color-background-tertiary);
-  color: var(--color-foreground);
+  background-color: var(--mp-color-background-tertiary);
+  color: var(--mp-color-foreground);
 }
 
 .toggle--default[data-state="on"] {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
+  border-color: var(--mp-color-primary);
 }
 
 .toggle--default[data-state="on"]:hover:not(:disabled) {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  background-color: var(--mp-color-primary-strong);
+  border-color: var(--mp-color-primary-strong);
 }
 
 /* ==============================
@@ -85,23 +86,23 @@
 
 .toggle--outline {
   background-color: transparent;
-  color: var(--color-foreground-secondary);
-  border-color: var(--color-border);
+  color: var(--mp-color-foreground-light);
+  border-color: var(--mp-color-border);
 }
 
 .toggle--outline:hover:not(:disabled):not([data-state="on"]) {
-  background-color: var(--color-background-tertiary);
-  color: var(--color-foreground);
-  border-color: var(--color-border-dark);
+  background-color: var(--mp-color-background-tertiary);
+  color: var(--mp-color-foreground);
+  border-color: var(--mp-color-border-dark);
 }
 
 .toggle--outline[data-state="on"] {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
+  border-color: var(--mp-color-primary);
 }
 
 .toggle--outline[data-state="on"]:hover:not(:disabled) {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  background-color: var(--mp-color-primary-strong);
+  border-color: var(--mp-color-primary-strong);
 }

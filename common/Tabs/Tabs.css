@@ -12,7 +12,7 @@
 .tabs-list {
   display: flex;
   gap: var(--spacing-2);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--mp-color-border);
 }
 
 /* Variant: Default */
@@ -21,7 +21,7 @@
   background-color: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-200) var(--ease-in-out);
@@ -29,18 +29,18 @@
 }
 
 .tabs--default .tabs-trigger:hover:not(:disabled) {
-  color: var(--color-foreground);
-  border-bottom-color: var(--color-border);
+  color: var(--mp-color-foreground);
+  border-bottom-color: var(--mp-color-border);
 }
 
 .tabs--default .tabs-trigger[data-state="active"] {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: var(--mp-color-primary);
+  border-bottom-color: var(--mp-color-primary);
 }
 
 /* Variant: Underline */
 .tabs--underline .tabs-list {
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--mp-color-border);
 }
 
 .tabs--underline .tabs-trigger {
@@ -48,7 +48,7 @@
   background-color: transparent;
   border: none;
   border-bottom: 3px solid transparent;
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-200) var(--ease-in-out);
@@ -57,12 +57,12 @@
 }
 
 .tabs--underline .tabs-trigger:hover:not(:disabled) {
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
 }
 
 .tabs--underline .tabs-trigger[data-state="active"] {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: var(--mp-color-primary);
+  border-bottom-color: var(--mp-color-primary);
 }
 
 /* Variant: Pills */
@@ -74,10 +74,10 @@
 
 .tabs--pills .tabs-trigger {
   padding: var(--spacing-2) var(--spacing-3);
-  background-color: var(--color-background-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  color: var(--color-foreground-secondary);
+  background-color: var(--mp-color-background-secondary);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-lg);
+  color: var(--mp-color-foreground-light);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-200) var(--ease-in-out);
@@ -85,15 +85,15 @@
 }
 
 .tabs--pills .tabs-trigger:hover:not(:disabled) {
-  background-color: var(--color-background);
-  border-color: var(--color-primary);
-  color: var(--color-foreground);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-primary);
+  color: var(--mp-color-foreground);
 }
 
 .tabs--pills .tabs-trigger[data-state="active"] {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background-color: var(--mp-color-primary);
+  border-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
 }
 
 /* Common Tab Styles */
@@ -102,7 +102,8 @@
 }
 
 .tabs-trigger:focus-visible {
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 .tabs-trigger:disabled,

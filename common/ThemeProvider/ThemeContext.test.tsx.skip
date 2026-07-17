@@ -167,7 +167,7 @@ test.describe.skip('ThemeProvider Component', () => {
     
     // Check that CSS variables are applied to document root
     const primaryVar = await page.evaluate(() => {
-      return getComputedStyle(document.documentElement).getPropertyValue('--color-primary-base');
+      return getComputedStyle(document.documentElement).getPropertyValue('--mp-color-primary-base');
     });
     
     expect(primaryVar).toBeTruthy();
@@ -388,11 +388,11 @@ test.describe.skip('ThemeProvider Component', () => {
       );
       
       const radiusSm = await page.evaluate(() => {
-        return getComputedStyle(document.documentElement).getPropertyValue('--radius-sm');
+        return getComputedStyle(document.documentElement).getPropertyValue('--mp-radius-sm');
       });
       
       const radiusMd = await page.evaluate(() => {
-        return getComputedStyle(document.documentElement).getPropertyValue('--radius-md');
+        return getComputedStyle(document.documentElement).getPropertyValue('--mp-radius-md');
       });
       
       expect(radiusSm).toBeTruthy();

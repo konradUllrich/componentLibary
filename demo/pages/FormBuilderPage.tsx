@@ -74,13 +74,12 @@ export const FormBuilderPage: React.FC = () => {
           Form Builder
         </Text>
         <Text color="secondary">
-          Declarative, type-safe form generation powered by TanStack Form.
-          Field names are constrained by value type — text/select/textarea
-          accept only <code>string</code> keys, number fields only{" "}
-          <code>number</code> keys, and checkbox fields only{" "}
-          <code>boolean</code> keys. Use <code>fieldType: "custom"</code> to
-          render any control, and the <code>columns</code> prop for a
-          responsive grid layout.
+          Declarative, type-safe form generation powered by TanStack Form. Field
+          names are constrained by value type — text/select/textarea accept only{" "}
+          <code>string</code> keys, number fields only <code>number</code> keys,
+          and checkbox fields only <code>boolean</code> keys. Use{" "}
+          <code>fieldType: "custom"</code> to render any control, and the{" "}
+          <code>columns</code> prop for a responsive grid layout.
         </Text>
       </Section>
 
@@ -107,7 +106,9 @@ export const FormBuilderPage: React.FC = () => {
                 required: true,
                 validate: {
                   onChange: (v) =>
-                    v.trim().length === 0 ? "First name is required" : undefined,
+                    v.trim().length === 0
+                      ? "First name is required"
+                      : undefined,
                 },
               },
               {
@@ -186,9 +187,9 @@ export const FormBuilderPage: React.FC = () => {
           {contactResult && (
             <pre
               style={{
-                background: "var(--color-muted)",
+                background: "var(--mp-color-muted)",
                 padding: "var(--spacing-4)",
-                borderRadius: "var(--radius-md)",
+                borderRadius: "var(--mp-radius-md)",
                 fontSize: "var(--font-size-sm)",
                 overflowX: "auto",
               }}
@@ -265,9 +266,9 @@ export const FormBuilderPage: React.FC = () => {
           {signUpResult && (
             <pre
               style={{
-                background: "var(--color-muted)",
+                background: "var(--mp-color-muted)",
                 padding: "var(--spacing-4)",
-                borderRadius: "var(--radius-md)",
+                borderRadius: "var(--mp-radius-md)",
                 fontSize: "var(--font-size-sm)",
                 overflowX: "auto",
               }}
@@ -325,7 +326,13 @@ export const FormBuilderPage: React.FC = () => {
                 fieldType: "custom",
                 label: "Rating",
                 colSpan: 1,
-                render: ({ label, value, onChange, hasError, errorMessage }) => (
+                render: ({
+                  label,
+                  value,
+                  onChange,
+                  hasError,
+                  errorMessage,
+                }) => (
                   <FormControl
                     label={label}
                     error={hasError}
@@ -351,8 +358,8 @@ export const FormBuilderPage: React.FC = () => {
                             padding: "0",
                             color:
                               (value as number) >= star
-                                ? "var(--color-warning, #f59e0b)"
-                                : "var(--color-border)",
+                                ? "var(--mp-color-warning, #f59e0b)"
+                                : "var(--mp-color-border)",
                           }}
                         >
                           ★
@@ -384,9 +391,9 @@ export const FormBuilderPage: React.FC = () => {
           {profileResult && (
             <pre
               style={{
-                background: "var(--color-muted)",
+                background: "var(--mp-color-muted)",
                 padding: "var(--spacing-4)",
-                borderRadius: "var(--radius-md)",
+                borderRadius: "var(--mp-radius-md)",
                 fontSize: "var(--font-size-sm)",
                 overflowX: "auto",
               }}

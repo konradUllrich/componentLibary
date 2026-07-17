@@ -23,7 +23,8 @@
 }
 
 .user-avatar:focus-visible {
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Modifier: Sizes */
@@ -70,12 +71,12 @@
 
 /* Modifier: Remaining Count */
 .user-avatars__item--remaining {
-  background-color: var(--color-foreground-tertiary);
+  background-color: var(--mp-color-foreground-tertiary);
 }
 
 /* Empty State */
 .user-avatars__empty {
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   font-weight: var(--font-weight-medium);
 }
 

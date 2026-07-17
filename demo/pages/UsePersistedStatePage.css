@@ -24,10 +24,10 @@
 }
 
 .use-persisted-state-page__code-block {
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  color: var(--color-foreground);
+  background: var(--mp-color-background-secondary);
+  border: 1px solid var(--mp-color-border-light);
+  border-radius: var(--mp-radius-md);
+  color: var(--mp-color-foreground);
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   font-size: 0.85rem;
   line-height: 1.5;

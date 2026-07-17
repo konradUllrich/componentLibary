@@ -111,8 +111,8 @@ export const IntrexxIconPage: React.FC = () => {
                 justifyContent: "center",
                 gap: "var(--spacing-4)",
                 padding: "var(--spacing-8)",
-                borderRadius: "var(--radius-lg)",
-                background: "var(--color-background)",
+                borderRadius: "var(--mp-radius-lg)",
+                background: "var(--mp-color-background)",
               }}
             >
               <IntrexxIcon iconClass={iconClass} size={48} color="primary" />
@@ -131,8 +131,8 @@ export const IntrexxIconPage: React.FC = () => {
                 justifyContent: "center",
                 gap: "var(--spacing-3)",
                 padding: "var(--spacing-6)",
-                borderRadius: "var(--radius-lg)",
-                background: "var(--color-background)",
+                borderRadius: "var(--mp-radius-lg)",
+                background: "var(--mp-color-background)",
               }}
             >
               <Text weight="semibold">Why use the wrapper?</Text>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ToggleGroup, ToggleGroupItem, Text } from "../../common";
-import { Page, Section, Panel } from "../../layout";
+import { Page, Section, Flex } from "../../layout";
 import {
   AlignLeft,
   AlignCenter,
@@ -10,6 +10,7 @@ import {
   Italic,
   Underline,
 } from "lucide-react";
+import { u } from "../../utils";
 
 export const ToggleGroupPage: React.FC = () => {
   const [alignment, setAlignment] = useState<string>("left");
@@ -36,50 +37,61 @@ export const ToggleGroupPage: React.FC = () => {
           Use <code>type="single"</code> for exclusive selection — only one item
           can be active at a time.
         </Text>
-        <Panel variant="subtle">
-          <div className="component-page__demo">
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Uncontrolled
-              </Text>
-              <ToggleGroup type="single" defaultValue="center" aria-label="Text alignment">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="justify" aria-label="Justify">
-                  <AlignJustify size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Controlled — selected: <strong>{alignment || "none"}</strong>
-              </Text>
-              <ToggleGroup
-                type="single"
-                value={alignment}
-                onValueChange={(v) => setAlignment(v)}
-                aria-label="Text alignment controlled"
-              >
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Uncontrolled
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="center"
+              aria-label="Text alignment"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="justify" aria-label="Justify">
+                <AlignJustify size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
-        </Panel>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Controlled — selected: <strong>{alignment || "none"}</strong>
+            </Text>
+            <ToggleGroup
+              type="single"
+              value={alignment}
+              onValueChange={(v) => setAlignment(v)}
+              aria-label="Text alignment controlled"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -90,52 +102,60 @@ export const ToggleGroupPage: React.FC = () => {
           Use <code>type="multiple"</code> to allow any number of items to be
           active simultaneously.
         </Text>
-        <Panel variant="subtle">
-          <div className="component-page__demo">
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Uncontrolled
-              </Text>
-              <ToggleGroup
-                type="multiple"
-                defaultValue={["bold", "italic"]}
-                aria-label="Text formatting"
-              >
-                <ToggleGroupItem value="bold" aria-label="Bold">
-                  <Bold size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="italic" aria-label="Italic">
-                  <Italic size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="underline" aria-label="Underline">
-                  <Underline size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Controlled — active:{" "}
-                <strong>{formatting.length ? formatting.join(", ") : "none"}</strong>
-              </Text>
-              <ToggleGroup
-                type="multiple"
-                value={formatting}
-                onValueChange={setFormatting}
-                aria-label="Text formatting controlled"
-              >
-                <ToggleGroupItem value="bold" aria-label="Bold">
-                  <Bold size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="italic" aria-label="Italic">
-                  <Italic size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="underline" aria-label="Underline">
-                  <Underline size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Uncontrolled
+            </Text>
+            <ToggleGroup
+              type="multiple"
+              defaultValue={["bold", "italic"]}
+              aria-label="Text formatting"
+            >
+              <ToggleGroupItem value="bold" aria-label="Bold">
+                <Bold size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="italic" aria-label="Italic">
+                <Italic size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="underline" aria-label="Underline">
+                <Underline size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
-        </Panel>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Controlled — active:{" "}
+              <strong>
+                {formatting.length ? formatting.join(", ") : "none"}
+              </strong>
+            </Text>
+            <ToggleGroup
+              type="multiple"
+              value={formatting}
+              onValueChange={setFormatting}
+              aria-label="Text formatting controlled"
+            >
+              <ToggleGroupItem value="bold" aria-label="Bold">
+                <Bold size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="italic" aria-label="Italic">
+                <Italic size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="underline" aria-label="Underline">
+                <Underline size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -145,42 +165,58 @@ export const ToggleGroupPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Two visual styles: default (ghost) and outline.
         </Text>
-        <Panel variant="subtle">
-          <div className="component-page__demo">
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Default
-              </Text>
-              <ToggleGroup type="single" defaultValue="center" variant="default" aria-label="Alignment default">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Outline
-              </Text>
-              <ToggleGroup type="single" defaultValue="center" variant="outline" aria-label="Alignment outline">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Default
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="center"
+              variant="default"
+              aria-label="Alignment default"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
-        </Panel>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Outline
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="center"
+              variant="outline"
+              aria-label="Alignment outline"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -190,58 +226,83 @@ export const ToggleGroupPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Three sizes to fit different layout contexts.
         </Text>
-        <Panel variant="subtle">
-          <div className="component-page__demo">
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Small
-              </Text>
-              <ToggleGroup type="single" defaultValue="left" size="sm" aria-label="Alignment small">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={12} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={12} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={12} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Medium (default)
-              </Text>
-              <ToggleGroup type="single" defaultValue="left" size="md" aria-label="Alignment medium">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Large
-              </Text>
-              <ToggleGroup type="single" defaultValue="left" size="lg" aria-label="Alignment large">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={20} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={20} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={20} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Small
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="left"
+              size="sm"
+              aria-label="Alignment small"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={12} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={12} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={12} />
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
-        </Panel>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Medium (default)
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="left"
+              size="md"
+              aria-label="Alignment medium"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Large
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="left"
+              size="lg"
+              aria-label="Alignment large"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={20} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={20} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={20} />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -251,47 +312,61 @@ export const ToggleGroupPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Disable the entire group or individual items.
         </Text>
-        <Panel variant="subtle">
-          <div className="component-page__demo">
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Entire group disabled
-              </Text>
-              <ToggleGroup
-                type="single"
-                defaultValue="center"
-                disabled
-                aria-label="Alignment disabled group"
-              >
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center">
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
-            <div>
-              <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
-                Individual item disabled
-              </Text>
-              <ToggleGroup type="single" defaultValue="left" aria-label="Alignment item disabled">
-                <ToggleGroupItem value="left" aria-label="Align left">
-                  <AlignLeft size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="center" aria-label="Align center" disabled>
-                  <AlignCenter size={16} />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="right" aria-label="Align right">
-                  <AlignRight size={16} />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Entire group disabled
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="center"
+              disabled
+              aria-label="Alignment disabled group"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
-        </Panel>
+          <div>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
+              Individual item disabled
+            </Text>
+            <ToggleGroup
+              type="single"
+              defaultValue="left"
+              aria-label="Alignment item disabled"
+            >
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="center"
+                aria-label="Align center"
+                disabled
+              >
+                <AlignCenter size={16} />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight size={16} />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </Flex>
       </Section>
 
       <Section>

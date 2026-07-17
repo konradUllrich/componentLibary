@@ -7,8 +7,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-radius: var(--radius-lg);
-  background-color: var(--color-gray-50);
+  border-radius: var(--mp-radius-lg);
+
   width: 100%;
   box-sizing: border-box;
 }
@@ -45,31 +45,29 @@
 
 /* Variant: Default */
 .empty-state--default {
-  background-color: var(--color-gray-50);
 }
 
 /* Variant: Search */
 .empty-state--search {
-  background-color: color-mix(in oklch, var(--color-primary-base), white 92%);
 }
 
 /* Variant: Error */
 .empty-state--error {
-  background-color: color-mix(
+  /* background-color: color-mix(
     in oklch,
-    var(--color-destructive-base),
+    var(--mp-color-destructive-base),
     white 92%
-  );
+  ); */
 }
 
 /* Variant: No-data */
 .empty-state--no-data {
-  background-color: color-mix(in oklch, var(--color-primary-base), white 92%);
+  /* background-color: color-mix(in oklch, var(--mp-color-primary-base), white 92%); */
 }
 
 /* Variant: No-access */
 .empty-state--no-access {
-  background-color: color-mix(in oklch, var(--color-warning-base), white 92%);
+  /* background-color: color-mix(in oklch, var(--mp-color-warning-base), white 92%); */
 }
 
 /* Element: Icon */
@@ -77,25 +75,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gray-400);
+  color: var(--mp-color-gray-400);
   line-height: 1;
 }
 
 /* Variant icon color overrides */
 .empty-state--search .empty-state__icon {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 
 .empty-state--error .empty-state__icon {
-  color: var(--color-destructive);
+  color: var(--mp-color-destructive);
 }
 
 .empty-state--no-data .empty-state__icon {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 
 .empty-state--no-access .empty-state__icon {
-  color: var(--color-warning);
+  color: var(--mp-color-warning);
 }
 
 /* Element: Title */
@@ -103,7 +101,7 @@
   margin: 0;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   line-height: var(--line-height-tight);
 }
 
@@ -119,7 +117,7 @@
 .empty-state__description {
   margin: 0;
   font-size: var(--font-size-sm);
-  color: var(--color-gray-500);
+  color: var(--mp-color-gray-500);
   line-height: var(--line-height-relaxed);
   max-width: 40ch;
 }

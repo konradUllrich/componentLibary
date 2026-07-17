@@ -9,7 +9,8 @@ import {
   Combobox,
 } from "../../controls";
 import { Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 export const FormControlsPage: React.FC = () => {
   const [checkboxChecked, setCheckboxChecked] = useState(false);
@@ -35,7 +36,7 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Text input with label and helper text
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <FormControl label="Input" helperText="This is a helper text">
             <Input placeholder="Enter text..." />
           </FormControl>
@@ -46,7 +47,7 @@ export const FormControlsPage: React.FC = () => {
           >
             <Input placeholder="Enter text..." />
           </FormControl>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -56,7 +57,7 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Single checkbox with label
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <FormControl label="Checkbox">
             <Checkbox
               checked={checkboxChecked}
@@ -67,7 +68,7 @@ export const FormControlsPage: React.FC = () => {
               Accept terms and conditions
             </Checkbox>
           </FormControl>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -77,23 +78,15 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Checkbox styled as a toggle switch
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Checkbox
             variant="toggle"
             label="Notifications"
             inlineLabel="Enable email updates"
           />
-          <Checkbox
-            variant="toggle"
-            inlineLabel="Dark mode"
-            defaultChecked
-          />
-          <Checkbox
-            variant="toggle"
-            inlineLabel="Disabled toggle"
-            disabled
-          />
-        </div>
+          <Checkbox variant="toggle" inlineLabel="Dark mode" defaultChecked />
+          <Checkbox variant="toggle" inlineLabel="Disabled toggle" disabled />
+        </Flex>
       </Section>
 
       <Section>
@@ -103,9 +96,9 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Multiple radio options
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <FormControl label="Radio Group">
-            <div className="component-page__demo-column">
+            <Flex gap="md" wrap className={u({ pt: 4 })}>
               <Radio
                 name="radio-group"
                 value="option1"
@@ -126,9 +119,9 @@ export const FormControlsPage: React.FC = () => {
               >
                 Option 2
               </Radio>
-            </div>
+            </Flex>
           </FormControl>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -138,7 +131,7 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Multiple checkbox options
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <FormControl label="Checkbox Group">
             <CheckboxGroup
               options={[
@@ -150,7 +143,7 @@ export const FormControlsPage: React.FC = () => {
               onChange={setCheckboxGroup}
             />
           </FormControl>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -160,7 +153,7 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Dropdown selection
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <FormControl label="Select">
             <Select
               placeholder="Select an option..."
@@ -171,7 +164,7 @@ export const FormControlsPage: React.FC = () => {
               ]}
             />
           </FormControl>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -181,7 +174,7 @@ export const FormControlsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Searchable autocomplete dropdown with keyboard navigation
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Combobox
             label="Country"
             placeholder="Search countries..."
@@ -244,7 +237,7 @@ export const FormControlsPage: React.FC = () => {
               { value: "3", label: "Available Option 2" },
             ]}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>

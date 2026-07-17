@@ -7,10 +7,10 @@
   padding: var(--spacing-2) var(--spacing-3);
   font-family: inherit;
   font-size: var(--font-size-base);
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-background);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
   resize: vertical;
   transition: all var(--duration-200) var(--ease-in-out);
   box-sizing: border-box;
@@ -18,25 +18,25 @@
 }
 
 .textarea::placeholder {
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 .textarea:hover:not(:disabled) {
-  border-color: var(--color-primary);
+  border-color: var(--mp-color-primary);
 }
 
 .textarea:focus {
-  border-color: var(--color-primary);
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Modifier: Error */
 .textarea--error {
-  border-color: var(--color-error);
+  border-color: var(--mp-color-error);
 }
 
 .textarea--error:focus {
-  border-color: var(--color-destructive);
+  border-color: var(--mp-color-destructive);
   box-shadow: var(--focus-shadow-error);
 }
 
@@ -45,5 +45,5 @@
   opacity: 0.6;
   cursor: not-allowed;
   resize: none;
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }

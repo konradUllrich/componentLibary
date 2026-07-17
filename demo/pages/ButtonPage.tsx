@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "../../common";
 import { Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 export const ButtonPage: React.FC = () => {
   return (
@@ -22,12 +23,12 @@ export const ButtonPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Different button styles for various contexts
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="destructive">Destructive</Button>
           <Button variant="ghost">Ghost</Button>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -37,11 +38,11 @@ export const ButtonPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Different button sizes for different contexts
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Button size="sm">Small</Button>
           <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -51,7 +52,7 @@ export const ButtonPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Button states including disabled and loading
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Button disabled>Disabled</Button>
           <Button isLoading>Loading</Button>
           <Button variant="secondary" disabled>
@@ -72,7 +73,7 @@ export const ButtonPage: React.FC = () => {
           <Button variant="ghost" isLoading>
             Loading
           </Button>
-        </div>
+        </Flex>
       </Section>
 
       <Section>

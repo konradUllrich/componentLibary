@@ -19,7 +19,7 @@
   color: var(--dialog-foreground, #0f172a);
   --dialog-foreground: #0f172a;
   --dialog-foreground-muted: #475569;
-  border-radius: var(--radius-lg);
+  border-radius: var(--mp-radius-lg);
   box-shadow: var(--shadow-lg);
   padding: var(--spacing-6);
   max-width: 500px;
@@ -51,8 +51,8 @@
 }
 
 .dialog__content:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Title */
@@ -84,7 +84,7 @@
   border: none;
   background-color: transparent;
   color: var(--dialog-foreground-muted, #475569);
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
   cursor: pointer;
   font-size: var(--font-size-xl);
   line-height: 1;
@@ -92,12 +92,12 @@
 }
 
 .dialog__close:hover {
-  background-color: var(--color-gray-100, #f1f5f9);
+  background-color: var(--mp-color-gray-100, #f1f5f9);
   color: var(--dialog-foreground, #0f172a);
 }
 
 .dialog__close:focus-visible {
-  outline: 2px solid var(--color-primary, #6366f1);
+  outline: 2px solid var(--mp-color-primary, #6366f1);
   outline-offset: 2px;
 }
 
@@ -143,11 +143,11 @@
     background-color: #ffffff;
     box-shadow:
       var(--shadow-lg),
-      0 0 0 1px var(--color-gray-800, #1e293b);
+      0 0 0 1px var(--mp-color-gray-800, #1e293b);
   }
 
   .dialog__close:hover {
-    background-color: var(--color-gray-800, #1e293b);
+    background-color: var(--mp-color-gray-800, #1e293b);
   }
 }
 

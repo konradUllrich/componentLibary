@@ -1,5 +1,13 @@
 import React from "react";
-import { AppLayout, AppHeader, AppSidebar, AppMain, Page, Section } from '../../layout';
+import {
+  AppLayout,
+  AppHeader,
+  AppSidebar,
+  AppMain,
+  Page,
+  Section,
+  Panel,
+} from "../../layout";
 import { Text } from "../../common";
 
 export const AppLayoutPage: React.FC = () => {
@@ -45,7 +53,8 @@ export const AppLayoutPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Complete application layout structure
         </Text>
-        <div className="component-page__demo">
+
+        <Panel variant="subtle">
           <div
             style={{
               height: "500px",
@@ -83,7 +92,7 @@ export const AppLayoutPage: React.FC = () => {
               </AppMain>
             </AppLayout>
           </div>
-        </div>
+        </Panel>
       </Section>
 
       <Section>

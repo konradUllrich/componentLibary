@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
 import { useParamState } from "../../Router/hooks";
+import { u } from "../../utils";
 
 export const TabsPage: React.FC = () => {
   // const [activeTab, setActiveTab] = useState("tab1");
@@ -26,7 +27,7 @@ export const TabsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Standard tab interface with default styling
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Tabs
             items={[
               {
@@ -66,7 +67,7 @@ export const TabsPage: React.FC = () => {
             activeId={activeTab}
             onActiveChange={setActiveTab}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -76,7 +77,7 @@ export const TabsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Tabs with underline indicator for active tab
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Tabs
             variant="underline"
             items={[
@@ -109,7 +110,7 @@ export const TabsPage: React.FC = () => {
               },
             ]}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -119,7 +120,7 @@ export const TabsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Tabs styled as pills for a more compact look
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Tabs
             variant="pills"
             items={[
@@ -154,7 +155,7 @@ export const TabsPage: React.FC = () => {
             activeId={pillsTab}
             onActiveChange={setPillsTab}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>

@@ -1,6 +1,6 @@
 import React from "react";
 import { EmptyState } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
 import { Text } from "../../common";
 import {
   SearchX,
@@ -12,6 +12,7 @@ import {
   RefreshCw,
   Mail,
 } from "lucide-react";
+import { u } from "../../utils";
 
 export const EmptyStatePage: React.FC = () => {
   return (
@@ -34,17 +35,17 @@ export const EmptyStatePage: React.FC = () => {
           Semantic variants apply a subtle tinted background to reinforce
           context.
         </Text>
-        <div
-          className="component-page__demo"
-          style={{ flexDirection: "column", alignItems: "stretch", gap: "1rem" }}
-        >
+        <Flex gap="md" wrap align="center" className={u({ pt: 4 })}>
           <EmptyState
             variant="default"
             title="Nothing here yet"
             description="Create your first item to get started."
             icon={<FolderOpen size={48} />}
             action={
-              <button type="button" className="button button--primary button--md">
+              <button
+                type="button"
+                className="button button--primary button--md"
+              >
                 <Plus size={16} style={{ marginRight: "0.5rem" }} />
                 New item
               </button>
@@ -57,7 +58,10 @@ export const EmptyStatePage: React.FC = () => {
             description="Try adjusting your search terms or clearing filters."
             icon={<SearchX size={48} />}
             action={
-              <button type="button" className="button button--secondary button--md">
+              <button
+                type="button"
+                className="button button--secondary button--md"
+              >
                 Clear search
               </button>
             }
@@ -69,7 +73,10 @@ export const EmptyStatePage: React.FC = () => {
             description="We could not load your data. Please try again."
             icon={<AlertTriangle size={48} />}
             action={
-              <button type="button" className="button button--secondary button--md">
+              <button
+                type="button"
+                className="button button--secondary button--md"
+              >
                 <RefreshCw size={16} style={{ marginRight: "0.5rem" }} />
                 Retry
               </button>
@@ -89,7 +96,7 @@ export const EmptyStatePage: React.FC = () => {
             description="You do not have permission to view this content. Contact your administrator."
             icon={<Lock size={48} />}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -99,12 +106,13 @@ export const EmptyStatePage: React.FC = () => {
         <Text color="secondary" size="sm">
           Three sizes for different layout contexts.
         </Text>
-        <div
-          className="component-page__demo"
-          style={{ flexDirection: "column", alignItems: "stretch", gap: "1rem" }}
-        >
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <div>
-            <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
               Small
             </Text>
             <EmptyState
@@ -115,7 +123,11 @@ export const EmptyStatePage: React.FC = () => {
             />
           </div>
           <div>
-            <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
               Medium (default)
             </Text>
             <EmptyState
@@ -126,7 +138,11 @@ export const EmptyStatePage: React.FC = () => {
             />
           </div>
           <div>
-            <Text size="sm" color="secondary" style={{ marginBottom: "0.5rem" }}>
+            <Text
+              size="sm"
+              color="secondary"
+              style={{ marginBottom: "0.5rem" }}
+            >
               Large
             </Text>
             <EmptyState
@@ -136,7 +152,7 @@ export const EmptyStatePage: React.FC = () => {
               icon={<Mail size={56} />}
             />
           </div>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -146,12 +162,12 @@ export const EmptyStatePage: React.FC = () => {
         <Text color="secondary" size="sm">
           Icon is optional – use a minimal style when space is limited.
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <EmptyState
             title="No items"
             description="Add an item to see it here."
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>

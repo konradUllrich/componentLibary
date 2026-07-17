@@ -6,8 +6,8 @@
 
 .card-list__grid {
   display: grid;
-  grid-template-columns: repeat(var(--card-list-columns, 3), 1fr);
-  gap: var(--card-list-gap, 1rem);
+  grid-template-columns: repeat(var(--mp-card-list-columns, 3), 1fr);
+  gap: var(--mp-card-list-gap, 1rem);
   padding-top: var(--focus-ring-spread);
   padding-bottom: var(--focus-ring-spread);
 }
@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-8);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   font-size: var(--font-size-base);
 }
 
@@ -32,14 +32,14 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-8);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   font-size: var(--font-size-base);
 }
 
 /* Responsive Grid */
 @media (max-width: 1024px) {
   .card-list__grid {
-    grid-template-columns: repeat(min(var(--card-list-columns, 3), 2), 1fr);
+    grid-template-columns: repeat(min(var(--mp-card-list-columns, 3), 2), 1fr);
   }
 }
 

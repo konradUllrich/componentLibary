@@ -51,7 +51,7 @@ export const IconPickerPage: React.FC = () => {
             >
               <i
                 className={selectedIcon}
-                style={{ fontSize: "2rem", color: "var(--color-primary)" }}
+                style={{ fontSize: "2rem", color: "var(--mp-color-primary)" }}
                 aria-hidden="true"
               />
               <div>

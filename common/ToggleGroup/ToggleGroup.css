@@ -4,8 +4,8 @@
 .toggle-group {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-lg);
   gap: 0;
 }
 
@@ -14,7 +14,7 @@
    ============================== */
 
 .toggle-group--default {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }
 
 /* ==============================
@@ -23,7 +23,7 @@
 
 .toggle-group--outline {
   background-color: transparent;
-  border-color: var(--color-border-dark);
+  border-color: var(--mp-color-border-dark);
 }
 
 /* ==============================
@@ -58,7 +58,7 @@
   justify-content: center;
   gap: var(--spacing-1);
   background-color: transparent;
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   border: none;
   border-radius: 0;
   font-weight: var(--font-weight-medium);
@@ -70,7 +70,7 @@
   white-space: nowrap;
   user-select: none;
   /* Shared border between items */
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--mp-color-border);
 }
 
 .toggle-group__item:last-child {
@@ -79,35 +79,37 @@
 
 /* Focus visible state */
 .toggle-group__item:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
   z-index: 1;
   position: relative;
 }
 
 /* First and last items get the container's rounded corners */
 .toggle-group__item:first-child {
-  border-radius: calc(var(--radius-lg) - 1px) 0 0 calc(var(--radius-lg) - 1px);
+  border-radius: calc(var(--mp-radius-lg) - 1px) 0 0
+    calc(var(--mp-radius-lg) - 1px);
 }
 
 .toggle-group__item:last-child {
-  border-radius: 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0;
+  border-radius: 0 calc(var(--mp-radius-lg) - 1px)
+    calc(var(--mp-radius-lg) - 1px) 0;
 }
 
 /* Hover state (only when not disabled and not pressed) */
 .toggle-group__item:hover:not(:disabled):not([data-state="on"]) {
-  background-color: var(--color-background-tertiary);
-  color: var(--color-foreground);
+  background-color: var(--mp-color-background-tertiary);
+  color: var(--mp-color-foreground);
 }
 
 /* Pressed / active state */
 .toggle-group__item[data-state="on"] {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
 }
 
 .toggle-group__item[data-state="on"]:hover:not(:disabled) {
-  background-color: var(--color-primary-dark);
+  background-color: var(--mp-color-primary-strong);
 }
 
 /* Disabled state */
@@ -122,7 +124,7 @@
    ============================== */
 
 .toggle-group--outline .toggle-group__item {
-  border-right: 1px solid var(--color-border-dark);
+  border-right: 1px solid var(--mp-color-border-dark);
 }
 
 .toggle-group--outline .toggle-group__item:last-child {

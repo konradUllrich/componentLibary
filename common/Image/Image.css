@@ -30,23 +30,23 @@
 
 /* Rounded modifiers */
 .image--rounded-none {
-  border-radius: var(--radius-none);
+  border-radius: var(--mp-radius-none);
 }
 
 .image--rounded-sm {
-  border-radius: var(--radius-sm);
+  border-radius: var(--mp-radius-sm);
 }
 
 .image--rounded-md {
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
 }
 
 .image--rounded-lg {
-  border-radius: var(--radius-lg);
+  border-radius: var(--mp-radius-lg);
 }
 
 .image--rounded-full {
-  border-radius: var(--radius-full);
+  border-radius: var(--mp-radius-full);
 }
 
 /* Aspect ratio modifiers */
@@ -64,7 +64,7 @@
 
 /* Error state */
 .image--error {
-  background-color: var(--color-gray-100, #f3f4f6);
+  background-color: var(--mp-color-gray-100, #f3f4f6);
   min-width: 48px;
   min-height: 48px;
 }

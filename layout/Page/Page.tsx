@@ -20,6 +20,7 @@ export interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   header?: React.ReactNode;
   subHeader?: React.ReactNode;
   actions?: React.ReactNode;
+  headerType?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
 /**
@@ -47,6 +48,7 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>(
       header,
       subHeader,
       actions,
+      headerType = "h1",
       ...props
     },
     ref,
@@ -59,7 +61,7 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>(
       >
         <Flex justify="space-between" align="center">
           <div>
-            <Text as="h1" size="3xl" weight="bold">
+            <Text as={headerType} size="3xl" weight="bold">
               {header || title}
             </Text>
             <Text color="secondary">{subHeader}</Text>

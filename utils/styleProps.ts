@@ -20,6 +20,8 @@ export type Breakpoint = "base" | "sm" | "md" | "lg" | "xl";
 export type Responsive<T> = T | Partial<Record<Breakpoint, T>>;
 
 export interface UtilityInput {
+  p?: Responsive<ResponsiveSpacingValue>;
+  m?: Responsive<ResponsiveSpacingValue>;
   pt?: Responsive<ResponsiveSpacingValue>;
   pb?: Responsive<ResponsiveSpacingValue>;
   pl?: Responsive<ResponsiveSpacingValue>;
@@ -42,10 +44,12 @@ const SPACING_MAP: Record<ResponsiveSpacingValue, string> = {
 };
 
 const ALLOWED_KEYS = new Set([
+  "p",
   "pt",
   "pb",
   "pl",
   "pr",
+  "m",
   "mt",
   "mb",
   "ml",

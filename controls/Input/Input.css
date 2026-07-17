@@ -5,46 +5,41 @@
   width: 100%;
   font-family: inherit;
   font-size: var(--font-size-base);
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-background);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
   transition: all var(--duration-200) var(--ease-in-out);
   outline: none;
 }
 
 .input::placeholder {
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 .input:hover:not(:disabled) {
-  border-color: var(--color-primary);
+  border-color: var(--mp-color-primary);
 }
 
 .input:focus {
-  border-color: var(--color-primary);
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Variant: Default */
 .input--default {
-  background-color: var(--color-background);
+  background-color: var(--mp-color-background);
 }
 
 /* Variant: Filled */
 .input--filled {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
   border-color: transparent;
 }
 
 .input--filled:hover:not(:disabled) {
-  background-color: var(--color-background);
-  border-color: var(--color-border);
-}
-
-.input--filled:focus {
-  background-color: var(--color-background);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-border);
 }
 
 /* Variant: Outline */
@@ -72,17 +67,17 @@
 
 /* Modifier: Error */
 .input--error {
-  border-color: var(--color-error);
+  border-color: var(--mp-color-error);
 }
 
 .input--error:focus {
-  border-color: var(--color-destructive);
-  box-shadow: var(--focus-shadow-error);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Modifier: Disabled */
 .input--disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }

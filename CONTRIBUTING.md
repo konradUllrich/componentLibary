@@ -34,27 +34,32 @@ pnpm lint
 ## ⚡ Core Principles
 
 ### 1. **TypeScript Strictness**
+
 - ✅ All code must pass `tsc --noEmit` with zero errors
 - ❌ No `any`, `unknown`, or type assertions (`as`) unless absolutely necessary
 - ❌ No unaddressed type errors
 
 ### 2. **Plain CSS with BEM**
+
 - ✅ Use plain `.css` files (not CSS modules or CSS-in-JS)
 - ✅ Follow BEM naming: `.block`, `.block__element`, `.block--modifier`
 - ✅ Use `clsx` for conditional class names
 
 ### 3. **Accessibility First**
+
 - ✅ Meet WCAG 2.1 AA standards (minimum 4.5:1 color contrast)
 - ✅ Full keyboard navigation support
 - ✅ Proper ARIA attributes and semantic HTML
 - ✅ Test with screen readers
 
 ### 4. **Keep Files Small**
+
 - ✅ Target ~100 lines per file (component or CSS)
 - ✅ Split large components into smaller, focused pieces
 - ✅ Extract logic into custom hooks
 
 ### 5. **Use Radix UI Primitives**
+
 - ✅ Prefer Radix UI for complex interactive components
 - ✅ Examples: Dialog, Dropdown, Select, Accordion, Tabs
 
@@ -73,7 +78,7 @@ ComponentName/
 
 ### Example Component Template
 
-```tsx
+````tsx
 import React from "react";
 import clsx from "clsx";
 import "./ComponentName.css";
@@ -99,26 +104,27 @@ export interface ComponentNameProps extends React.HTMLAttributes<HTMLDivElement>
  * </ComponentName>
  * ```
  */
-export const ComponentName = React.forwardRef<HTMLDivElement, ComponentNameProps>(
-  ({ variant = "primary", className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          "component-name",
-          `component-name--${variant}`,
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+export const ComponentName = React.forwardRef<
+  HTMLDivElement,
+  ComponentNameProps
+>(({ variant = "primary", className, children, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={clsx(
+        "component-name",
+        `component-name--${variant}`,
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
 
 ComponentName.displayName = "ComponentName";
-```
+````
 
 ### Example CSS Template
 
@@ -130,24 +136,24 @@ ComponentName.displayName = "ComponentName";
   display: flex;
   align-items: center;
   padding: var(--spacing-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
 }
 
 /* Modifier: Primary variant */
 .component-name--primary {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
 }
 
 /* Modifier: Secondary variant */
 .component-name--secondary {
-  background-color: var(--color-secondary);
-  color: var(--color-secondary-foreground);
+  background-color: var(--mp-color-secondary);
+  color: var(--mp-color-secondary-foreground);
 }
 
 /* Focus state for accessibility */
 .component-name:focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid var(--mp-color-focus);
   outline-offset: 2px;
 }
 
@@ -189,6 +195,7 @@ test.describe("ComponentName", () => {
 ```
 
 Run tests:
+
 ```bash
 pnpm test:ct        # Component tests
 pnpm test           # Unit tests
@@ -202,7 +209,7 @@ Before submitting a PR:
 - [ ] **Linting**: `pnpm lint` passes with no warnings
 - [ ] **File Size**: Component and CSS files ≤ ~100 lines each
 - [ ] **BEM Naming**: All CSS classes follow BEM convention
-- [ ] **Accessibility**: 
+- [ ] **Accessibility**:
   - [ ] 4.5:1 color contrast for text
   - [ ] Keyboard navigation works
   - [ ] ARIA attributes are correct

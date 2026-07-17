@@ -49,37 +49,37 @@
 
 /* Color: Primary */
 .intrexx-icon--primary {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 
 /* Color: Secondary */
 .intrexx-icon--secondary {
-  color: var(--color-secondary);
+  color: var(--mp-color-secondary);
 }
 
 /* Color: Success */
 .intrexx-icon--success {
-  color: var(--color-success);
+  color: var(--mp-color-success);
 }
 
 /* Color: Warning */
 .intrexx-icon--warning {
-  color: var(--color-warning);
+  color: var(--mp-color-warning);
 }
 
 /* Color: Destructive */
 .intrexx-icon--destructive {
-  color: var(--color-destructive);
+  color: var(--mp-color-destructive);
 }
 
 /* Color: Info */
 .intrexx-icon--info {
-  color: var(--color-info);
+  color: var(--mp-color-info);
 }
 
 /* Color: Foreground */
 .intrexx-icon--foreground {
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
 }
 
 /* Color: Foreground */

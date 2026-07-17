@@ -192,8 +192,8 @@ const columns = createColumns<Employee>([
               style={{
                 marginBottom: "0.75rem",
                 padding: "0.5rem 0.75rem",
-                background: "var(--color-surface-alt, #f5f5f5)",
-                borderRadius: "var(--radius-md)",
+                background: "var(--mp-color-surface-alt, #f5f5f5)",
+                borderRadius: "var(--mp-radius-md)",
                 fontSize: "0.875rem",
               }}
             >

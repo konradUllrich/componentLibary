@@ -5,9 +5,11 @@ import {
   CardHeader,
   CardContent,
   CardFooter,
+  Flex,
   Page,
   Section,
 } from "../../layout";
+import { u } from "../../utils/styleProps";
 import { Text, Button, Badge } from "../../common";
 
 interface Product {
@@ -137,7 +139,7 @@ export const CardListPage: React.FC = () => {
         <Text
           weight="semibold"
           size="xl"
-          style={{ color: "var(--color-primary)" }}
+          style={{ color: "var(--mp-color-primary)" }}
         >
           ${product.price}
         </Text>
@@ -201,14 +203,14 @@ export const CardListPage: React.FC = () => {
         <Text color="secondary" size="sm">
           A grid of product cards with interactive elements
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <CardList
             items={products}
             renderCard={renderProductCard}
             getKey={(product) => product.id}
             columns={3}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -218,14 +220,14 @@ export const CardListPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Blog post cards with tags and metadata
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <CardList
             items={blogPosts}
             renderCard={renderBlogCard}
             getKey={(post) => post.id}
             columns={2}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -235,7 +237,7 @@ export const CardListPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Display loading indicator
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div style={{ marginBottom: "1rem" }}>
             <Button
               onClick={() => setIsLoading(!isLoading)}
@@ -252,7 +254,7 @@ export const CardListPage: React.FC = () => {
             isLoading={isLoading}
             columns={3}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -262,7 +264,7 @@ export const CardListPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Display message when no items are available
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <CardList
             items={[]}
             renderCard={renderProductCard}
@@ -270,7 +272,7 @@ export const CardListPage: React.FC = () => {
             emptyMessage="No products found"
             columns={3}
           />
-        </div>
+        </Flex>
       </Section>
 
       <Section>

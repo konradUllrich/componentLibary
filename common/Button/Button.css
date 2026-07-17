@@ -7,13 +7,13 @@
   justify-content: center;
   gap: var(--spacing-2);
   font-family: var(--font-family-base);
-  font-size: var(--button-font-size);
-  font-weight: var(--button-font-weight);
-  border: var(--button-border-width) solid transparent;
-  border-radius: var(--button-border-radius);
+  font-size: var(--mp-button-font-size);
+  font-weight: var(--mp-button-font-weight);
+  border: var(--mp-button-border-width) solid transparent;
+  border-radius: var(--mp-radius-md);
   cursor: pointer;
   user-select: none;
-  transition: var(--button-transition);
+  transition: var(--mp-button-transition);
   white-space: nowrap;
   position: relative;
   overflow: hidden;
@@ -21,113 +21,105 @@
 }
 
 .mp-button:focus-visible {
-  box-shadow: var(--button-focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 .mp-button:hover:not(:disabled):not(.mp-button--ghost) {
-  opacity: var(--button-hover-opacity);
+  opacity: var(--mp-button-hover-opacity);
 }
 
 .mp-button:active:not(:disabled) {
-  opacity: var(--button-active-opacity);
+  opacity: var(--mp-button-active-opacity);
 }
 
 .mp-button:disabled {
-  opacity: var(--button-disabled-opacity);
+  opacity: var(--mp-button-disabled-opacity);
   cursor: not-allowed;
 }
 
 /* Modifier: Sizes */
 .mp-button--sm {
-  padding: var(--button-padding-y-sm) var(--button-padding-x-sm);
+  padding: var(--mp-button-padding-y-sm) var(--mp-button-padding-x-sm);
   font-size: var(--font-size-sm);
 }
 
 .mp-button--md {
-  padding: var(--button-padding-y-md) var(--button-padding-x-md);
+  padding: var(--mp-button-padding-y-md) var(--mp-button-padding-x-md);
 }
 
 .mp-button--lg {
-  padding: var(--button-padding-y-lg) var(--button-padding-x-lg);
+  padding: var(--mp-button-padding-y-lg) var(--mp-button-padding-x-lg);
   font-size: var(--font-size-lg);
 }
 
 /* Modifier: Primary Variant */
 .mp-button--primary {
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
+  border-color: var(--mp-color-primary);
 }
 
 .mp-button--primary:hover:not(:disabled) {
-  background-color: var(--color-primary-light);
-  border-color: var(--color-primary-light);
+  background-color: var(--mp-color-primary-strong);
+  border-color: var(--mp-color-primary-light);
 }
 
 .mp-button--primary:active:not(:disabled) {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  background-color: var(--mp-color-primary-strong);
+  border-color: var(--mp-color-primary-strong);
 }
 
 /* Modifier: Secondary Variant */
 .mp-button--secondary {
-  background-color: var(--color-secondary);
-  color: var(--color-secondary-foreground);
-  border-color: var(--color-secondary);
+  background-color: var(--mp-color-secondary);
+  color: var(--mp-color-secondary-foreground);
+  border-color: var(--mp-color-secondary);
 }
 
 .mp-button--secondary:hover:not(:disabled) {
-  background-color: var(--color-secondary-light);
-  border-color: var(--color-secondary-light);
+  background-color: var(--mp-color-secondary-light);
+  border-color: var(--mp-color-secondary-light);
 }
 
 .mp-button--secondary:active:not(:disabled) {
-  background-color: var(--color-secondary-dark);
-  border-color: var(--color-secondary-dark);
+  background-color: var(--mp-color-secondary-dark);
+  border-color: var(--mp-color-secondary-dark);
 }
 
 /* Modifier: Destructive Variant */
 .mp-button--destructive {
-  background-color: var(--color-destructive);
-  color: var(--color-destructive-foreground);
-  border-color: var(--color-destructive);
+  background-color: var(--mp-color-destructive);
+  color: var(--mp-color-destructive-foreground);
+  border-color: var(--mp-color-destructive);
 }
 
 .mp-button--destructive:hover:not(:disabled) {
-  background-color: var(--color-destructive-light);
-  border-color: var(--color-destructive-light);
+  background-color: var(--mp-color-destructive-light);
+  border-color: var(--mp-color-destructive-light);
 }
 
 .mp-button--destructive:active:not(:disabled) {
-  background-color: var(--color-destructive-dark);
-  border-color: var(--color-destructive-dark);
-}
-
-.mp-button--destructive:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-destructive);
+  background-color: var(--mp-color-destructive-dark);
+  border-color: var(--mp-color-destructive-dark);
 }
 
 /* Modifier: Ghost Variant */
 .mp-button--ghost {
   background-color: transparent;
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   border-color: transparent;
 }
 .mp-button--ghost:hover:not(:disabled) {
-  background-color: var(--color-gray-200);
-  color: var(--color-foreground);
-  border-color: var(--color-gray-300);
+  background-color: var(--mp-color-gray-200);
+  color: var(--mp-color-foreground);
+  border-color: var(--mp-color-gray-300);
 }
 
 .mp-button--ghost:active:not(:disabled) {
-  background-color: var(--color-gray-200);
-  color: var(--color-foreground);
-  border-color: var(--color-gray-400);
-}
-
-.mp-button--ghost:focus-visible {
-  box-shadow: var(--button-focus-shadow);
-  background-color: var(--color-gray-50);
+  background-color: var(--mp-color-gray-200);
+  color: var(--mp-color-foreground);
+  border-color: var(--mp-color-gray-400);
 }
 
 /* Modifier: Loading State */

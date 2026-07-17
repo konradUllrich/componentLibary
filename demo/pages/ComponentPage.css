@@ -9,19 +9,18 @@
 /* .component-page__header {
   margin-bottom: var(--spacing-10);
   padding-bottom: var(--spacing-8);
-  border-bottom: 2px solid var(--color-border-light);
+  border-bottom: 2px solid var(--mp-color-border-light);
   background: linear-gradient(
     135deg,
     rgba(99, 102, 241, 0.03) 0%,
     rgba(139, 92, 246, 0.03) 100%
   );
   padding: var(--spacing-8);
-  border-radius: var(--radius-xl);
+  border-radius: var(--mp-radius-xl);
 } */
 
 .component-page__header h1 {
   margin-bottom: var(--spacing-3);
-  background: var(--color-primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -29,23 +28,23 @@
 
 .component-page__section {
   margin-bottom: var(--spacing-12);
-  background: var(--color-background);
+  background: var(--mp-color-background);
   padding: var(--spacing-8);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border-light);
+  border-radius: var(--mp-radius-xl);
+  border: 1px solid var(--mp-color-border-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .component-page__section > h2 {
   margin-bottom: var(--spacing-4);
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
 }
 
 .component-page__section > p {
   margin-bottom: var(--spacing-6);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 .component-page__demo {
@@ -56,12 +55,12 @@
   padding: var(--spacing-8);
   background: linear-gradient(
     135deg,
-    var(--color-background-secondary) 0%,
-    var(--color-background-tertiary) 100%
+    var(--mp-color-background-secondary) 0%,
+    var(--mp-color-background-tertiary) 100%
   );
-  border-radius: var(--radius-lg);
+  border-radius: var(--mp-radius-lg);
   margin-top: var(--spacing-4);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--mp-color-border-light);
 }
 
 .component-page__demo-column {
@@ -71,12 +70,12 @@
   padding: var(--spacing-8);
   background: linear-gradient(
     135deg,
-    var(--color-background-secondary) 0%,
-    var(--color-background-tertiary) 100%
+    var(--mp-color-background-secondary) 0%,
+    var(--mp-color-background-tertiary) 100%
   );
-  border-radius: var(--radius-lg);
+  border-radius: var(--mp-radius-lg);
   margin-top: var(--spacing-4);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--mp-color-border-light);
 }
 
 .component-page__actions {
@@ -98,7 +97,7 @@
 
 .component-page__list li {
   margin-bottom: var(--spacing-2);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 /* Responsive adjustments */
@@ -122,7 +121,6 @@
     padding: var(--spacing-6);
   }
 }
-
 
 /* Tree Editor Page */
 .tree-editor-page__item-icon {

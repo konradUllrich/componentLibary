@@ -1,6 +1,7 @@
 import React from "react";
 import { DateComponent, Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 export const DatePage: React.FC = () => {
   const sampleDate = new Date("2024-03-15T14:30:00");
@@ -23,7 +24,7 @@ export const DatePage: React.FC = () => {
         <Text color="secondary" size="sm">
           Different date formatting options
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
               Short format (default):
@@ -56,7 +57,7 @@ export const DatePage: React.FC = () => {
               <DateComponent date={sampleDate} format="time" />
             </Text>
           </div>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -66,7 +67,7 @@ export const DatePage: React.FC = () => {
         <Text color="secondary" size="sm">
           Support for different locale formats (default: de-DE)
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
               German (de-DE):
@@ -91,7 +92,7 @@ export const DatePage: React.FC = () => {
               <DateComponent date={sampleDate} format="long" locale="en-GB" />
             </Text>
           </div>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -101,7 +102,7 @@ export const DatePage: React.FC = () => {
         <Text color="secondary" size="sm">
           Graceful handling of missing dates with fallback
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
               Null date (default fallback):
@@ -118,7 +119,7 @@ export const DatePage: React.FC = () => {
               <DateComponent date={null} fallback="No date available" />
             </Text>
           </div>
-        </div>
+        </Flex>
       </Section>
 
       <Section>

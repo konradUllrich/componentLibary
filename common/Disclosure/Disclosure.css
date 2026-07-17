@@ -3,8 +3,8 @@
 /* Block: Disclosure Container */
 .disclosure {
   width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-lg);
   overflow: hidden;
 }
 
@@ -15,9 +15,9 @@
   gap: var(--spacing-3);
   width: 100%;
   padding: var(--spacing-3) var(--spacing-4);
-  background-color: var(--color-background);
+  background-color: var(--mp-color-background);
   border: none;
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -27,11 +27,12 @@
 }
 
 .disclosure-trigger:hover {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }
 
 .disclosure-trigger:focus-visible {
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Element: Disclosure Icon */
@@ -57,7 +58,7 @@
   flex-shrink: 0;
   font-size: 0.75em;
   transition: transform var(--duration-200) var(--ease-in-out);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 .disclosure[data-state="open"] .disclosure-chevron {
@@ -76,7 +77,7 @@
 
 .disclosure-content > * {
   padding: var(--spacing-3) var(--spacing-4);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--mp-color-border);
 }
 
 .disclosure-content > *:first-child {

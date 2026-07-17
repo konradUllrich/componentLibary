@@ -215,15 +215,15 @@ ComponentName.displayName = "ComponentName";
 
 ### Rules
 
-| Rule | Requirement |
-|------|-------------|
-| `forwardRef` | Use on **every** component so consumers can access the DOM node |
-| `displayName` | Always set – required for React DevTools and error messages |
-| Prop interface | Always export so consumers can extend or reference it |
-| File length | ≤ ~100 lines per `.tsx` file – split aggressively |
-| Spread `...props` | Always spread on the root element to support native HTML attributes |
-| `className` override | Accept and merge via `clsx` so consumers can extend styles |
-| JSDoc | Required on all exported components and non-obvious props |
+| Rule                 | Requirement                                                         |
+| -------------------- | ------------------------------------------------------------------- |
+| `forwardRef`         | Use on **every** component so consumers can access the DOM node     |
+| `displayName`        | Always set – required for React DevTools and error messages         |
+| Prop interface       | Always export so consumers can extend or reference it               |
+| File length          | ≤ ~100 lines per `.tsx` file – split aggressively                   |
+| Spread `...props`    | Always spread on the root element to support native HTML attributes |
+| `className` override | Accept and merge via `clsx` so consumers can extend styles          |
+| JSDoc                | Required on all exported components and non-obvious props           |
 
 ---
 
@@ -240,18 +240,28 @@ ComponentName.displayName = "ComponentName";
 
 ```css
 /* ✅ Correct */
-.button { }
-.button--primary { }
-.button--destructive { }
-.button--sm { }
-.button__icon { }
-.button__label { }
+.button {
+}
+.button--primary {
+}
+.button--destructive {
+}
+.button--sm {
+}
+.button__icon {
+}
+.button__label {
+}
 
 /* ❌ Wrong */
-.Button { }           /* No PascalCase */
-.button-primary { }   /* Use -- for modifiers */
-.buttonIcon { }       /* Use __ for elements */
-.btn { }              /* No abbreviations */
+.Button {
+} /* No PascalCase */
+.button-primary {
+} /* Use -- for modifiers */
+.buttonIcon {
+} /* Use __ for elements */
+.btn {
+} /* No abbreviations */
 ```
 
 ### CSS Template
@@ -263,7 +273,7 @@ ComponentName.displayName = "ComponentName";
   display: flex;
   align-items: center;
   padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   transition: var(--transition-fast);
@@ -271,22 +281,22 @@ ComponentName.displayName = "ComponentName";
 
 /* ✅ MANDATORY: visible focus indicator for keyboard users */
 .component-name:focus-visible {
-  outline: 2px solid var(--color-ring);
+  outline: 2px solid var(--mp-color-ring);
   outline-offset: 2px;
 }
 
 .component-name:hover:not(:disabled) {
-  background: var(--color-primary-dark);
+  background: var(--mp-color-primary-strong);
 }
 
 .component-name--primary {
-  background: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
 }
 
 .component-name--secondary {
-  background: var(--color-secondary);
-  color: var(--color-secondary-foreground);
+  background: var(--mp-color-secondary);
+  color: var(--mp-color-secondary-foreground);
 }
 
 /* Reduced-motion support */
@@ -310,15 +320,15 @@ ComponentName.displayName = "ComponentName";
 
 Every component must meet **WCAG 2.1 Level AA** minimum:
 
-| Requirement | Details |
-|-------------|---------|
-| Keyboard navigation | Tab, Enter, Space, Arrow keys, Escape where applicable |
-| Focus indicators | Visible `:focus-visible` styles – never `outline: none` |
-| Color contrast | 4.5:1 for normal text, 3:1 for large text and UI components |
-| Semantic HTML | `<button>`, `<input>`, `<nav>`, `<main>`, `<section>`, etc. |
-| ARIA attributes | `aria-label`, `aria-expanded`, `aria-haspopup`, `role`, etc. |
-| Screen reader support | Test with VoiceOver (macOS) or NVDA (Windows) |
-| Reduced motion | Respect `prefers-reduced-motion` for animations |
+| Requirement           | Details                                                      |
+| --------------------- | ------------------------------------------------------------ |
+| Keyboard navigation   | Tab, Enter, Space, Arrow keys, Escape where applicable       |
+| Focus indicators      | Visible `:focus-visible` styles – never `outline: none`      |
+| Color contrast        | 4.5:1 for normal text, 3:1 for large text and UI components  |
+| Semantic HTML         | `<button>`, `<input>`, `<nav>`, `<main>`, `<section>`, etc.  |
+| ARIA attributes       | `aria-label`, `aria-expanded`, `aria-haspopup`, `role`, etc. |
+| Screen reader support | Test with VoiceOver (macOS) or NVDA (Windows)                |
+| Reduced motion        | Respect `prefers-reduced-motion` for animations              |
 
 ```tsx
 // ✅ Accessible icon button
@@ -378,13 +388,13 @@ test.describe("ComponentName", () => {
 
 ### Coverage Expectations
 
-| Area | Minimum Coverage |
-|------|-----------------|
-| Rendering | Default props, all variants, all sizes |
-| Interaction | Click, keyboard navigation, focus management |
+| Area          | Minimum Coverage                                 |
+| ------------- | ------------------------------------------------ |
+| Rendering     | Default props, all variants, all sizes           |
+| Interaction   | Click, keyboard navigation, focus management     |
 | Accessibility | axe-core scan, ARIA attributes, focus indicators |
-| Edge cases | Disabled state, empty content, long strings |
-| Class names | BEM classes applied correctly per variant/state |
+| Edge cases    | Disabled state, empty content, long strings      |
+| Class names   | BEM classes applied correctly per variant/state  |
 
 ### Mounting Multiple Variants
 
@@ -394,7 +404,7 @@ const component = await mount(
   <div>
     <Button variant="primary">Primary</Button>
     <Button variant="secondary">Secondary</Button>
-  </div>
+  </div>,
 );
 
 // ❌ Never loop with multiple mount() calls – causes React root conflicts
@@ -418,15 +428,15 @@ From `playwright/test-utils.ts`:
 
 Use Radix primitives for complex interactive components — never reimplement these patterns from scratch:
 
-| Component | Radix Primitive |
-|-----------|----------------|
-| Dialog / Modal | `@radix-ui/react-dialog` |
-| Dropdown Menu | `@radix-ui/react-dropdown-menu` |
-| Select | `@radix-ui/react-select` |
-| Tooltip | `@radix-ui/react-tooltip` |
-| Tabs | `@radix-ui/react-tabs` |
-| Accordion | `@radix-ui/react-accordion` |
-| Popover | `@radix-ui/react-popover` |
+| Component      | Radix Primitive                 |
+| -------------- | ------------------------------- |
+| Dialog / Modal | `@radix-ui/react-dialog`        |
+| Dropdown Menu  | `@radix-ui/react-dropdown-menu` |
+| Select         | `@radix-ui/react-select`        |
+| Tooltip        | `@radix-ui/react-tooltip`       |
+| Tabs           | `@radix-ui/react-tabs`          |
+| Accordion      | `@radix-ui/react-accordion`     |
+| Popover        | `@radix-ui/react-popover`       |
 
 Radix handles focus trapping, portal rendering, keyboard navigation, and ARIA roles automatically.
 
@@ -440,16 +450,16 @@ All tokens are defined in `styles/variables.css`. Always use tokens rather than 
 
 ```css
 /* Colors */
-var(--color-primary)               /* Brand primary */
-var(--color-primary-dark)          /* Hover state */
-var(--color-primary-foreground)    /* Text on primary background */
-var(--color-secondary)
-var(--color-destructive)
-var(--color-foreground)            /* Default text */
-var(--color-foreground-secondary)
-var(--color-background)
-var(--color-border)
-var(--color-ring)                  /* Focus ring */
+var(--mp-color-primary)               /* Brand primary */
+var(--mp-color-primary-strong)          /* Hover state */
+var(--mp-color-primary-foreground)    /* Text on primary background */
+var(--mp-color-secondary)
+var(--mp-color-destructive)
+var(--mp-color-foreground)            /* Default text */
+var(--mp-color-foreground-light)
+var(--mp-color-background)
+var(--mp-color-border)
+var(--mp-color-ring)                  /* Focus ring */
 
 /* Spacing (4px base) */
 var(--spacing-1)   /* 4px  */
@@ -468,11 +478,11 @@ var(--font-weight-medium)    /* 500 */
 var(--font-weight-semibold)  /* 600 */
 
 /* Border radius */
-var(--radius-sm)   /* 4px  */
-var(--radius-md)   /* 6px  */
-var(--radius-lg)   /* 8px  */
-var(--radius-xl)   /* 12px */
-var(--radius-full) /* 9999px */
+var(--mp-radius-sm)   /* 4px  */
+var(--mp-radius-md)   /* 6px  */
+var(--mp-radius-lg)   /* 8px  */
+var(--mp-radius-xl)   /* 12px */
+var(--mp-radius-full) /* 9999px */
 
 /* Shadows */
 var(--shadow-sm)
@@ -548,22 +558,22 @@ Button.displayName = "Button";
 
 ```tsx
 // ✅ Consistent boolean naming
-isLoading
-isDisabled
-isOpen
-hasError
-isReadOnly
+isLoading;
+isDisabled;
+isOpen;
+hasError;
+isReadOnly;
 ```
 
 ### Event Handler Naming
 
 ```tsx
 // ✅ Consistent event naming
-onClick
-onChange
-onSubmit
-onKeyDown
-onOpenChange
+onClick;
+onChange;
+onSubmit;
+onKeyDown;
+onOpenChange;
 ```
 
 ### Splitting Large Components
@@ -584,20 +594,20 @@ Dialog/
 
 ## Do's and Don'ts
 
-| ✅ DO | ❌ DON'T |
-|-------|---------|
-| Use `clsx()` for conditional classes | Concatenate class strings manually |
-| Use `forwardRef` for all components | Omit ref forwarding |
-| Set `displayName` on every component | Leave components unnamed |
-| Use semantic HTML elements | Use `<div>` for clickable elements |
-| Add `:focus-visible` styles | Remove outlines or set `outline: none` |
-| Use design tokens for all values | Hard-code colors, spacing, or radii |
-| Use Radix UI for dialogs/dropdowns | Re-implement focus traps from scratch |
-| Test keyboard navigation | Assume mouse-only usage |
-| Export prop interfaces | Keep prop types internal |
-| Split files over ~100 lines | Create large monolithic files |
-| Spread `...props` on root element | Block native HTML attribute pass-through |
-| Test with axe-core | Skip accessibility checks |
+| ✅ DO                                | ❌ DON'T                                 |
+| ------------------------------------ | ---------------------------------------- |
+| Use `clsx()` for conditional classes | Concatenate class strings manually       |
+| Use `forwardRef` for all components  | Omit ref forwarding                      |
+| Set `displayName` on every component | Leave components unnamed                 |
+| Use semantic HTML elements           | Use `<div>` for clickable elements       |
+| Add `:focus-visible` styles          | Remove outlines or set `outline: none`   |
+| Use design tokens for all values     | Hard-code colors, spacing, or radii      |
+| Use Radix UI for dialogs/dropdowns   | Re-implement focus traps from scratch    |
+| Test keyboard navigation             | Assume mouse-only usage                  |
+| Export prop interfaces               | Keep prop types internal                 |
+| Split files over ~100 lines          | Create large monolithic files            |
+| Spread `...props` on root element    | Block native HTML attribute pass-through |
+| Test with axe-core                   | Skip accessibility checks                |
 
 ---
 

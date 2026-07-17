@@ -6,7 +6,7 @@
   background-color: #1e293b; /* gray-800 for better contrast */
   color: white;
   padding: var(--spacing-2) var(--spacing-3);
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
   max-width: 300px;
@@ -45,7 +45,7 @@
   .tooltip__content {
     /* Keep same dark background in dark mode */
     background-color: #1e293b;
-    border: 1px solid var(--color-gray-700);
+    border: 1px solid var(--mp-color-gray-700);
   }
 
   .tooltip__arrow {

@@ -29,6 +29,13 @@ export interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
   spacing?: UtilityInput;
 
   /**
+   * If true, the panel will use flex layout for its children.
+   * @default false
+   */
+
+  flex?: boolean;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -79,6 +86,7 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
       className,
       children,
       style,
+      flex = false,
       ...props
     },
     ref,
@@ -92,6 +100,7 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
           "mp-panel",
           `mp-panel--${variant}`,
           `mp-panel--padding-${padding}`,
+          flex && "mp-panel--flex",
           spacingClasses,
           className,
         )}

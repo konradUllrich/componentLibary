@@ -77,6 +77,11 @@ export interface DatalistProps<T> {
    */
   sorting?: SortingState;
   onSortingChange?: (sorting: SortingState) => void;
+
+  /**
+   * Accessible name for the table, rendered as a visible caption
+   */
+  caption?: string;
 }
 
 /**
@@ -127,6 +132,7 @@ const DatalistComponent = <T,>(
     emptyState,
     sorting,
     onSortingChange,
+    caption,
   }: DatalistProps<T>,
   ref: React.ForwardedRef<HTMLTableElement>,
 ) => {
@@ -206,6 +212,7 @@ const DatalistComponent = <T,>(
       ref={ref}
       table={table as TanstackTable<unknown>}
       className={className}
+      caption={caption}
     />
   );
 };

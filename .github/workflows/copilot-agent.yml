@@ -26,7 +26,7 @@ jobs:
         run: |
           gh label create "copilot-task" \
             --description "Task automatically dispatched to GitHub Copilot coding agent" \
-            --color "6e40c9" \
+            --mp-color "6e40c9" \
             || true
 
       - name: Parse and dispatch @copilot tasks

@@ -19,6 +19,11 @@ export interface TableProps<
    * Additional CSS classes
    */
   className?: string;
+
+  /**
+   * Accessible name for the table, rendered as a visible caption
+   */
+  caption?: string;
 }
 
 /**
@@ -43,41 +48,57 @@ export interface TableProps<
  * ```
  */
 export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
-  ({ className, table, ...props }, ref) => (
+  ({ className, table, caption, ...props }, ref) => (
     <div className="table-container">
       <table ref={ref} className={clsx("table", className)} {...props}>
+        {caption && <caption className="table__caption">{caption}</caption>}
         <thead className="table__head">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="table__row table__row--header">
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className={clsx("table__cell table__cell--header", {
-                    "table__cell--sortable": header.column.getCanSort(),
-                  })}
-                  style={{
-                    width:
-                      header.column.columnDef.meta?.width ?? header.getSize(),
-                    minWidth: header.column.columnDef.meta?.minWidth,
-                  }}
-                  onClick={header.column.getToggleSortingHandler()}
-                >
-                  <div className="table__header-content">
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                    <span className="table__sort-indicator">
-                      {{
-                        asc: " ↑",
-                        desc: " ↓",
-                      }[header.column.getIsSorted() as string] ?? null}
-                    </span>
-                  </div>
-                </th>
-              ))}
+              {headerGroup.headers.map((header) => {
+                const sorted = header.column.getIsSorted();
+                const ariaSort =
+                  sorted === "asc"
+                    ? "ascending"
+                    : sorted === "desc"
+                      ? "descending"
+                      : header.column.getCanSort()
+                        ? "none"
+                        : undefined;
+                return (
+                  <th
+                    key={header.id}
+                    scope="col"
+                    aria-sort={ariaSort}
+                    className={clsx("table__cell table__cell--header", {
+                      "table__cell--sortable": header.column.getCanSort(),
+                    })}
+                    style={{
+                      width:
+                        header.column.columnDef.meta?.width ?? header.getSize(),
+                      minWidth: header.column.columnDef.meta?.minWidth,
+                    }}
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
+                    <div className="table__header-content">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                      {sorted && (
+                        <span
+                          className="table__sort-indicator"
+                          aria-hidden="true"
+                        >
+                          {sorted === "asc" ? " ↑" : " ↓"}
+                        </span>
+                      )}
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>

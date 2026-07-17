@@ -8,6 +8,8 @@
   padding-right: var(--spacing-2);
   align-items: center;
   justify-content: flex-end;
+  /* background-color: var(--mp-color-background); */
+  color: var(--mp-color-primary);
 }
 .mp-sidebar--collapsed .mp-sidebar__toggle-wrapper {
   justify-content: center;
@@ -19,20 +21,19 @@
 
   background-color: transparent;
   cursor: pointer;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--mp-color-primary);
+  border-radius: var(--mp-radius-md);
   transition: all var(--duration-200) var(--ease-in-out);
   flex-shrink: 0;
   align-self: flex-start;
-
-  color: var(--color-foreground);
+  color: var(--mp-color-primary);
 }
 
 .mp-sidebar__toggle:hover {
-  background-color: var(--color-background-secondary);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-primary-light);
+  border-color: var(--mp-color-primary-light);
   box-shadow: var(--shadow-sm);
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 
 .mp-sidebar__toggle:active {
@@ -40,8 +41,8 @@
 }
 
 .mp-sidebar__toggle:focus-visible {
-  box-shadow: var(--focus-shadow);
-  outline: none;
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Responsive adjustments */

@@ -128,8 +128,8 @@ function CardListInner<T>(
       data-state={isLoading ? "loading" : hasItems ? "ready" : "empty"}
       style={
         {
-          "--card-list-columns": String(columns),
-          "--card-list-gap": gap,
+          "--mp-card-list-columns": String(columns),
+          "--mp-card-list-gap": gap,
         } as React.CSSProperties
       }
     >

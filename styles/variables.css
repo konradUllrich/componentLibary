@@ -20,141 +20,145 @@
      ======================================== */
 
   /* Base Colors (Hex - Easy to customize) */
-  /* Primary color adjusted for WCAG AA contrast (4.5:1 minimum with white text) */
-  --color-primary-base: #6366f1;
-  --color-primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  --color-secondary-base: #64748b;
-  --color-success-base: #10b981;
-  --color-warning-base: #f59e0b;
-  /* Destructive color adjusted for WCAG AA contrast (4.78:1 on white, meets 4.5:1 minimum) */
-  --color-destructive-base: #dc2626;
-  --color-info-base: #3b82f6;
+  /* Primary color */
+  --mp-color-primary: #6366f1;
+  --mp-color-primary-light: #a7a8f6;
+  --mp-color-primary-strong: #3639ee;
+  --mp-color-primary-foreground: white;
 
-  /* Primary Colors (Auto-generated variants with color-mix) */
-  --color-primary: var(--color-primary-base);
-  --color-primary-light: color-mix(
+  /* Secondary color */
+  --mp-color-secondary-base: #64748b;
+  --mp-color-secondary: var(--mp-color-secondary-base);
+  --mp-color-secondary-light: color-mix(
     in oklch,
-    var(--color-primary-base),
-    white 25%
+    var(--mp-color-secondary-base),
+    white 20%
   );
-  --color-primary-dark: color-mix(
+  --mp-color-secondary-dark: color-mix(
     in oklch,
-    var(--color-primary-base),
+    var(--mp-color-secondary-base),
     black 15%
   );
-  --color-primary-foreground: white;
+  --mp-color-secondary-foreground: white;
+
+  --mp-color-success-base: #10b981;
+  --mp-color-warning-base: #f59e0b;
+  /* Destructive color adjusted for WCAG AA contrast (4.78:1 on white, meets 4.5:1 minimum) */
+  --mp-color-destructive-base: #dc2626;
+  --mp-color-info-base: #3b82f6;
 
   /* Secondary Colors */
-  --color-secondary: var(--color-secondary-base);
-  --color-secondary-light: color-mix(
-    in oklch,
-    var(--color-secondary-base),
-    white 20%
-  );
-  --color-secondary-dark: color-mix(
-    in oklch,
-    var(--color-secondary-base),
-    black 15%
-  );
-  --color-secondary-foreground: white;
 
   /* Success Colors */
-  --color-success: var(--color-success-base);
-  --color-success-light: color-mix(
+  --mp-color-success: var(--mp-color-success-base);
+  --mp-color-success-light: color-mix(
     in oklch,
-    var(--color-success-base),
+    var(--mp-color-success-base),
     white 30%
   );
-  --color-success-dark: color-mix(
+  --mp-color-success-dark: color-mix(
     in oklch,
-    var(--color-success-base),
+    var(--mp-color-success-base),
     black 20%
   );
-  --color-success-foreground: white;
+  --mp-color-success-foreground: white;
 
   /* Warning Colors */
-  --color-warning: var(--color-warning-base);
-  --color-warning-light: color-mix(
+  --mp-color-warning: var(--mp-color-warning-base);
+  --mp-color-warning-light: color-mix(
     in oklch,
-    var(--color-warning-base),
+    var(--mp-color-warning-base),
     white 15%
   );
-  --color-warning-dark: color-mix(
+  --mp-color-warning-dark: color-mix(
     in oklch,
-    var(--color-warning-base),
+    var(--mp-color-warning-base),
     black 20%
   );
-  --color-warning-foreground: black;
+  --mp-color-warning-foreground: black;
 
   /* Destructive/Error Colors */
-  --color-destructive: var(--color-destructive-base);
-  --color-destructive-light: color-mix(
+  --mp-color-destructive: var(--mp-color-destructive-base);
+  --mp-color-destructive-light: color-mix(
     in oklch,
-    var(--color-destructive-base),
+    var(--mp-color-destructive-base),
     white 20%
   );
-  --color-destructive-dark: color-mix(
+  --mp-color-destructive-dark: color-mix(
     in oklch,
-    var(--color-destructive-base),
+    var(--mp-color-destructive-base),
     black 15%
   );
-  --color-destructive-foreground: white;
+  --mp-color-destructive-foreground: white;
 
   /* Info Colors */
-  --color-info: var(--color-info-base);
-  --color-info-light: color-mix(in oklch, var(--color-info-base), white 30%);
-  --color-info-dark: color-mix(in oklch, var(--color-info-base), black 20%);
-  --color-info-foreground: white;
+  --mp-color-info: var(--mp-color-info-base);
+  --mp-color-info-light: color-mix(
+    in oklch,
+    var(--mp-color-info-base),
+    white 30%
+  );
+  --mp-color-info-dark: color-mix(
+    in oklch,
+    var(--mp-color-info-base),
+    black 20%
+  );
+  --mp-color-info-foreground: white;
 
   /* Neutral/Gray Scale (Hex) */
-  --color-gray-50: #f8fafc;
-  --color-gray-100: #f1f5f9;
-  --color-gray-200: #e2e8f0;
-  --color-gray-300: #cbd5e0;
-  --color-gray-400: #94a3b8;
-  --color-gray-500: #64748b;
-  --color-gray-600: #475569;
-  --color-gray-700: #334155;
-  --color-gray-800: #1e293b;
-  --color-gray-900: #0f172a;
+  --mp-color-gray-50: #f8fafc;
+  --mp-color-gray-100: #f1f5f9;
+  --mp-color-gray-200: #e2e8f0;
+  --mp-color-gray-300: #cbd5e0;
+  --mp-color-gray-400: #94a3b8;
+  --mp-color-gray-500: #64748b;
+  --mp-color-gray-600: #475569;
+  --mp-color-gray-700: #334155;
+  --mp-color-gray-800: #1e293b;
+  --mp-color-gray-900: #0f172a;
 
   /* Background Colors (Hex) */
-  --color-background: #ffffff;
-  --color-background-secondary: #f8fafc;
-  --color-background-tertiary: #f1f5f9;
-  --color-background-gradient: linear-gradient(
+  --mp-color-background: #ffffff;
+  --mp-color-background-secondary: #f8fafc;
+  --mp-color-background-tertiary: #f1f5f9;
+  --mp-color-background-gradient: linear-gradient(
     180deg,
     #ffffff 0%,
     #f8fafc 100%
   );
 
   /* Foreground/Text Colors (Hex - WCAG AA compliant) */
-  --color-foreground: #0f172a; /* 21:1 on white (WCAG AAA) */
-  --color-foreground-secondary: #334155; /* 7.5:1 on white (WCAG AAA) */
-  --color-foreground-tertiary: #475569; /* 4.5:1 on white (WCAG AA) */
-  --color-foreground-muted: #64748b; /* 3:1 on white (WCAG AA for large text) */
+  --mp-color-foreground: #0f172a; /* 21:1 on white (WCAG AAA) */
+  --mp-color-foreground-light: #334155; /* 7.5:1 on white (WCAG AAA) */
+  --mp-color-foreground-tertiary: #475569; /* 4.5:1 on white (WCAG AA) */
+  --mp-color-foreground-muted: #64748b; /* 3:1 on white (WCAG AA for large text) */
 
   /* Border Colors (Hex) */
-  --color-border: #e2e8f0;
-  --color-border-light: #f1f5f9;
-  --color-border-dark: #cbd5e0;
+  --mp-color-border: #e2e8f0;
+  --mp-color-border-light: #f1f5f9;
+  --mp-color-border-dark: #cbd5e0;
 
   /* Input Colors (Hex) */
-  --color-input: #ffffff;
-  --color-input-background: #ffffff;
-  --color-input-border: #cbd5e0;
-  --color-input-placeholder: #64748b; /* 3:1 on white (WCAG AA for UI) */
+  --mp-color-input: #ffffff;
+  --mp-color-input-background: #ffffff;
+  --mp-color-input-border: #cbd5e0;
+  --mp-color-input-placeholder: #64748b; /* 3:1 on white (WCAG AA for UI) */
 
   /* Focus Ring Color */
-  --color-ring: var(--color-primary-light);
-  --color-ring-offset: #ffffff;
+  --mp-color-ring: var(--mp-color-primary-light);
+  --mp-color-ring-offset: #ffffff;
 
   /* Focus Ring Styling (Box Shadow) */
   --focus-ring-width: 1px;
   --focus-ring-blur: 0px;
   --focus-ring-spread: 4px;
-  --focus-shadow: 0 0 0 var(--focus-ring-spread) var(--color-ring);
-  --focus-shadow-error: 0 0 0 var(--focus-ring-spread) var(--color-destructive);
+  --focus-shadow: 0 0 0 var(--focus-ring-spread) var(--mp-color-ring);
+  --focus-shadow-error: 0 0 0 var(--focus-ring-spread)
+    var(--mp-color-destructive);
+
+  --mp-focus-size: 3px;
+  --mp-focus-color: var(--mp-color-primary);
+  --mp-focus-offset: 2px;
 
   /* ========================================
      SPACING SCALE
@@ -218,14 +222,14 @@
   /* ========================================
      BORDER RADIUS
      ======================================== */
-
-  --radius-none: 0;
-  --radius-sm: 0.25rem; /* 4px */
-  --radius-md: 0.375rem; /* 6px */
-  --radius-lg: 0.5rem; /* 8px */
-  --radius-xl: 0.75rem; /* 12px */
-  --radius-2xl: 1rem; /* 16px */
-  --radius-full: 9999px;
+  --mp-radius-base: 4px;
+  --mp-radius-none: 0;
+  --mp-radius-sm: 0.25rem; /* 4px */
+  --mp-radius-md: var(--mp-radius-base);
+  --mp-radius-lg: 0.5rem; /* 8px */
+  --mp-radius-xl: 0.75rem; /* 12px */
+  --mp-radius-2xl: 1rem; /* 16px */
+  --mp-radius-full: 9999px;
 
   /* ========================================
      SHADOWS
@@ -292,95 +296,95 @@
      ======================================== */
 
   /* Button */
-  --button-padding-y-sm: 0.375rem;
-  --button-padding-x-sm: 0.75rem;
-  --button-padding-y-md: 0.5rem;
-  --button-padding-x-md: 1rem;
-  --button-padding-y-lg: 0.75rem;
-  --button-padding-x-lg: 1.5rem;
-  --button-font-size: var(--font-size-base);
-  --button-font-weight: var(--font-weight-medium);
-  --button-border-radius: var(--radius-md);
-  --button-transition: all var(--duration-200) var(--ease-in-out);
-  --button-border-width: 1px;
+  --mp-button-padding-y-sm: 0.375rem;
+  --mp-button-padding-x-sm: 0.75rem;
+  --mp-button-padding-y-md: 0.5rem;
+  --mp-button-padding-x-md: 1rem;
+  --mp-button-padding-y-lg: 0.75rem;
+  --mp-button-padding-x-lg: 1.5rem;
+  --mp-button-font-size: var(--font-size-base);
+  --mp-button-font-weight: var(--font-weight-medium);
+  --mp-button-border-radius: var(--mp-radius-md);
+  --mp-button-transition: all var(--duration-200) var(--ease-in-out);
+  --mp-button-border-width: 1px;
 
   /* Button States */
-  --button-hover-opacity: 0.85;
-  --button-active-opacity: 0.75;
-  --button-disabled-opacity: var(--opacity-disabled);
-  --button-focus-shadow: var(--focus-shadow);
+  --mp-button-hover-opacity: 0.85;
+  --mp-button-active-opacity: 0.75;
+  --mp-button-disabled-opacity: var(--opacity-disabled);
+  --mp-button-focus-shadow: var(--focus-shadow);
 
   /* Input */
-  --input-padding-y: 0.5rem;
-  --input-padding-x: 0.75rem;
-  --input-font-size: var(--font-size-base);
-  --input-border-radius: var(--radius-md);
-  --input-border-width: 1px;
-  --input-border-color: var(--color-input-border);
-  --input-focus-border-color: var(--color-ring);
-  --input-focus-ring-color: rgba(13, 110, 253, 0.25);
-  --input-transition:
+  --mp-input-padding-y: 0.5rem;
+  --mp-input-padding-x: 0.75rem;
+  --mp-input-font-size: var(--font-size-base);
+  --mp-input-border-radius: var(--mp-radius-md);
+  --mp-input-border-width: 1px;
+  --mp-input-border-color: var(--mp-color-input-border);
+  --mp-input-focus-border-color: var(--mp-color-ring);
+  --mp-input-focus-ring-color: rgba(13, 110, 253, 0.25);
+  --mp-input-transition:
     border-color var(--duration-200) var(--ease-in-out),
     box-shadow var(--duration-200) var(--ease-in-out);
 
   /* Input States */
-  --input-focus-box-shadow: 0 0 0 3px
-    color-mix(in oklch, var(--color-primary), transparent 85%);
-  --input-error-border-color: var(--color-destructive);
-  --input-error-focus-box-shadow: 0 0 0 3px
-    color-mix(in oklch, var(--color-destructive), transparent 85%);
-  --input-disabled-opacity: var(--opacity-disabled);
-  --input-disabled-background: var(--color-gray-50);
+  --mp-input-focus-box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--mp-color-primary), transparent 85%);
+  --mp-input-error-border-color: var(--mp-color-destructive);
+  --mp-input-error-focus-box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--mp-color-destructive), transparent 85%);
+  --mp-input-disabled-opacity: var(--opacity-disabled);
+  --mp-input-disabled-background: var(--mp-color-gray-50);
 
   /* Card */
-  --card-padding: var(--spacing-6);
-  --card-background: var(--color-background);
-  --card-border-color: var(--color-border);
-  --card-border-radius: var(--radius-lg);
-  --card-box-shadow: var(--shadow-sm);
-  --card-hover-shadow: var(--shadow-lg);
-  --card-hover-transform: translateY(-2px);
+  --mp-card-padding: var(--spacing-6);
+  --mp-card-background: var(--mp-color-background);
+  --mp-card-border-color: var(--mp-color-border);
+  --mp-card-border-radius: var(--mp-radius-lg);
+  --mp-card-box-shadow: var(--shadow-sm);
+  --mp-card-hover-shadow: var(--shadow-lg);
+  --mp-card-hover-transform: translateY(-2px);
 
   /* Badge */
-  --badge-padding-y: 0.375rem;
-  --badge-padding-x: 0.75rem;
-  --badge-font-size: var(--font-size-xs);
-  --badge-font-weight: var(--font-weight-semibold);
-  --badge-border-radius: var(--radius-md);
+  --mp-badge-padding-y: 0.375rem;
+  --mp-badge-padding-x: 0.75rem;
+  --mp-badge-font-size: var(--font-size-xs);
+  --mp-badge-font-weight: var(--font-weight-semibold);
+  --mp-badge-border-radius: var(--mp-radius-md);
 
   /* Modal/Dialog */
-  --modal-backdrop: rgba(0, 0, 0, 0.5);
-  --modal-border-radius: var(--radius-xl);
-  --modal-box-shadow: var(--shadow-2xl);
+  --mp-modal-backdrop: rgba(0, 0, 0, 0.5);
+  --mp-modal-border-radius: var(--mp-radius-xl);
+  --mp-modal-box-shadow: var(--shadow-2xl);
 
   /* Dropdown/Menu */
-  --dropdown-border-radius: var(--radius-md);
-  --dropdown-box-shadow: var(--shadow-lg);
-  --dropdown-background: var(--color-background);
-  --dropdown-border-color: var(--color-border);
+  --mp-dropdown-border-radius: var(--mp-radius-md);
+  --mp-dropdown-box-shadow: var(--shadow-lg);
+  --mp-dropdown-background: var(--mp-color-background);
+  --mp-dropdown-border-color: var(--mp-color-border);
 
   /* Table */
-  --table-border-color: var(--color-border);
-  --table-header-background: var(--color-gray-50);
-  --table-header-font-weight: var(--font-weight-semibold);
-  --table-row-hover-background: var(--color-gray-50);
-  --table-cell-padding: var(--spacing-4);
+  --mp-table-border-color: var(--mp-color-border);
+  --mp-table-header-background: var(--mp-color-gray-50);
+  --mp-table-header-font-weight: var(--font-weight-semibold);
+  --mp-table-row-hover-background: var(--mp-color-gray-50);
+  --mp-table-cell-padding: var(--spacing-4);
 
   /* Pagination */
-  --pagination-active-background: var(--color-primary);
-  --pagination-active-color: var(--color-primary-foreground);
-  --pagination-border-color: var(--color-border);
+  --mp-pagination-active-background: var(--mp-color-primary);
+  --mp-pagination-active-color: var(--mp-color-primary-foreground);
+  --mp-pagination-border-color: var(--mp-color-border);
 
   /* Toast */
   --toast-padding: var(--spacing-4);
-  --toast-border-radius: var(--radius-lg);
+  --toast-border-radius: var(--mp-radius-lg);
   --toast-box-shadow: var(--shadow-lg);
 
   /* Tooltip */
-  --tooltip-background: var(--color-gray-900);
-  --tooltip-color: var(--color-gray-50);
+  --tooltip-background: var(--mp-color-gray-900);
+  --tooltip-color: var(--mp-color-gray-50);
   --tooltip-padding: var(--spacing-2) var(--spacing-3);
-  --tooltip-border-radius: var(--radius-md);
+  --tooltip-border-radius: var(--mp-radius-md);
   --tooltip-font-size: var(--font-size-sm);
   /* Note: Tooltip has 13:1 contrast (white on dark) - WCAG AAA */
 
@@ -388,10 +392,10 @@
   --form-label-font-weight: var(--font-weight-medium);
   --form-label-margin-bottom: var(--spacing-2);
   --form-group-margin-bottom: var(--spacing-4);
-  --form-error-color: var(--color-destructive);
+  --form-error-color: var(--mp-color-destructive);
   --form-error-font-size: var(--font-size-sm);
   --form-help-color: var(
-    --color-foreground-secondary
+    --mp-color-foreground-light
   ); /* Darker for WCAG AA contrast */
   --form-help-font-size: var(--font-size-sm);
 
@@ -400,7 +404,7 @@
      ======================================== */
 
   /* Opacity */
-  --opacity-disabled: 0.5;
+  --opacity-disabled: 0.35;
   --opacity-hover: 0.8;
 
   /* Transitions */
@@ -410,8 +414,8 @@
 }
 
 body {
-  color: var(--color-foreground, #0f172a) !important;
-  background-color: var(--color-background, #ffffff) !important;
+  color: var(--mp-color-foreground, #0f172a) !important;
+  background-color: var(--mp-color-background, #ffffff) !important;
 }
 
 .mp-mt-1 {

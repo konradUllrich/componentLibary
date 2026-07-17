@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 export const TextPage: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ export const TextPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Various text sizes from extra small to 3xl
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text size="xs">Extra Small Text (xs)</Text>
           <Text size="sm">Small Text (sm)</Text>
           <Text size="base">Base Text (default)</Text>
@@ -29,7 +30,7 @@ export const TextPage: React.FC = () => {
           <Text size="xl">Extra Large Text (xl)</Text>
           <Text size="2xl">2XL Text</Text>
           <Text size="3xl">3XL Text</Text>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -39,12 +40,12 @@ export const TextPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Different font weights
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text weight="normal">Normal Weight</Text>
           <Text weight="medium">Medium Weight</Text>
           <Text weight="semibold">Semibold Weight</Text>
           <Text weight="bold">Bold Weight</Text>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -54,13 +55,13 @@ export const TextPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Semantic color options
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text>Default Color</Text>
           <Text color="secondary">Secondary Color</Text>
           <Text color="tertiary">Tertiary Color</Text>
           <Text color="primary">Primary Color</Text>
           <Text color="destructive">Destructive Color</Text>
-        </div>
+        </Flex>
       </Section>
 
       <Section>

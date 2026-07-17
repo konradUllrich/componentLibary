@@ -60,28 +60,27 @@ export const AccordionPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Horizontal tabs layout
         </Text>
-        <div className="component-page__demo-column">
-          <Accordion
-            variant="tabs"
-            items={[
-              {
-                id: "tab1",
-                title: "Tab 1",
-                content: <Text>Content for tab 1</Text>,
-              },
-              {
-                id: "tab2",
-                title: "Tab 2",
-                content: <Text>Content for tab 2</Text>,
-              },
-              {
-                id: "tab3",
-                title: "Tab 3",
-                content: <Text>Content for tab 3</Text>,
-              },
-            ]}
-          />
-        </div>
+
+        <Accordion
+          variant="tabs"
+          items={[
+            {
+              id: "tab1",
+              title: "Tab 1",
+              content: <Text>Content for tab 1</Text>,
+            },
+            {
+              id: "tab2",
+              title: "Tab 2",
+              content: <Text>Content for tab 2</Text>,
+            },
+            {
+              id: "tab3",
+              title: "Tab 3",
+              content: <Text>Content for tab 3</Text>,
+            },
+          ]}
+        />
       </Section>
 
       <Section>

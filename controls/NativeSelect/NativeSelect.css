@@ -12,10 +12,10 @@
   width: 100%;
   font-family: inherit;
   font-size: var(--font-size-base);
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-background);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
   transition: all var(--duration-200) var(--ease-in-out);
   outline: none;
   cursor: pointer;
@@ -24,33 +24,33 @@
 }
 
 .native-select:hover:not(:disabled) {
-  border-color: var(--color-primary);
+  border-color: var(--mp-color-primary);
 }
 
 .native-select:focus {
-  border-color: var(--color-primary);
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Variant: Default */
 .native-select--default {
-  background-color: var(--color-background);
+  background-color: var(--mp-color-background);
 }
 
 /* Variant: Filled */
 .native-select--filled {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
   border-color: transparent;
 }
 
 .native-select--filled:hover:not(:disabled) {
-  background-color: var(--color-background);
-  border-color: var(--color-border);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-border);
 }
 
 .native-select--filled:focus {
-  background-color: var(--color-background);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-primary);
 }
 
 /* Variant: Outline */
@@ -78,19 +78,19 @@
 
 /* Modifier: Error */
 .native-select--error {
-  border-color: var(--color-error);
+  border-color: var(--mp-color-error);
 }
 
 .native-select--error:focus {
-  border-color: var(--color-error);
-  box-shadow: 0 0 0 3px var(--color-error-light);
+  border-color: var(--mp-color-error);
+  box-shadow: 0 0 0 3px var(--mp-color-error-light);
 }
 
 /* Modifier: Disabled */
 .native-select--disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }
 
 /* Element: Select Icon */
@@ -100,6 +100,6 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.8em;
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   pointer-events: none;
 }

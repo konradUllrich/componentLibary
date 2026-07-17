@@ -1,6 +1,7 @@
 import React from "react";
 import { UserAvatar, UserAvatars, Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 const sampleUsers = [
   { id: 1, fullName: "John Doe", initials: "JD" },
@@ -29,11 +30,11 @@ export const UserAvatarsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Display a single user avatar
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <UserAvatar user={sampleUsers[0]} size="sm" />
           <UserAvatar user={sampleUsers[0]} size="md" />
           <UserAvatar user={sampleUsers[0]} size="lg" />
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -43,7 +44,7 @@ export const UserAvatarsPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Display multiple user avatars with overflow indicator
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap justify="space-between" className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
               Small (max 3 visible)
@@ -62,7 +63,7 @@ export const UserAvatarsPage: React.FC = () => {
             </Text>
             <UserAvatars users={sampleUsers} maxVisible={2} size="lg" />
           </div>
-        </div>
+        </Flex>
       </Section>
 
       <Section>

@@ -218,22 +218,22 @@ ComponentName.displayName = "ComponentName";
 ```css
 /* Use design tokens from styles/variables.css */
 .component-name {
-  background: var(--color-primary);
+  background: var(--mp-color-primary);
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
+  border-radius: var(--mp-radius-md);
   font-size: var(--font-size-md);
   transition: var(--transition-fast);
 }
 
 /* Focus states are MANDATORY for accessibility */
 .component-name:focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid var(--mp-color-focus);
   outline-offset: 2px;
 }
 
 /* Hover and active states */
 .component-name:hover:not(:disabled) {
-  background: var(--color-primary-dark);
+  background: var(--mp-color-primary-strong);
 }
 ```
 
@@ -456,7 +456,7 @@ Use Radix primitives for complex interactions — never re-implement:
 | Spread props        | `<element {...props}>` (always last)                  |
 | Event handlers      | `onEventName` (camelCase)                             |
 | Boolean props       | `isLoading`, `isDisabled`, `hasError`                 |
-| Design tokens       | `var(--color-primary)`, `var(--spacing-md)`           |
+| Design tokens       | `var(--mp-color-primary)`, `var(--spacing-md)`        |
 
 ---
 

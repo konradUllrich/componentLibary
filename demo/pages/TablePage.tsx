@@ -11,7 +11,7 @@ import {
   type GroupingState,
 } from "../../data-display/Table";
 import { Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Page, Panel, Section } from "../../layout";
 
 interface User {
   id: number;
@@ -231,10 +231,10 @@ export const TablePage: React.FC = () => {
           Simple table with header and body using TanStack Table. Scrollable on
           mobile devices.
         </Text>
-        <div className="component-page__demo">
+        <Panel variant="subtle" flex>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Table table={table as any} />
-        </div>
+        </Panel>
       </Section>
 
       <Section>
@@ -245,10 +245,10 @@ export const TablePage: React.FC = () => {
           Click on column headers to sort the data. Click again to reverse the
           sort order.
         </Text>
-        <div className="component-page__demo">
+        <Panel variant="subtle" flex>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Table table={sortableTable as any} />
-        </div>
+        </Panel>
       </Section>
 
       <Section>
@@ -259,10 +259,10 @@ export const TablePage: React.FC = () => {
           Table grouped by department. Click the expand/collapse buttons to show
           or hide department members.
         </Text>
-        <div className="component-page__demo">
+        <Panel variant="subtle" flex>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Table table={groupingTable as any} />
-        </div>
+        </Panel>
       </Section>
 
       <Section>

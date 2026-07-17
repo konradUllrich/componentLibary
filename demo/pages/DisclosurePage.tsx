@@ -1,6 +1,7 @@
 import React from "react";
 import { Disclosure, Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 export const DisclosurePage: React.FC = () => {
   return (
@@ -19,7 +20,7 @@ export const DisclosurePage: React.FC = () => {
         <Text color="secondary" size="sm">
           Click to expand and collapse content
         </Text>
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Disclosure label="Click to expand">
             <Text>
               This is collapsible content that can be shown or hidden. Lorem
@@ -30,7 +31,7 @@ export const DisclosurePage: React.FC = () => {
           <Disclosure label="Another disclosure">
             <Text>Each disclosure operates independently.</Text>
           </Disclosure>
-        </div>
+        </Flex>
       </Section>
 
       <Section>

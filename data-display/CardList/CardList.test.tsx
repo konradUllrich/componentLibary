@@ -105,7 +105,7 @@ test.describe("CardList Component", () => {
 
     const columns = await component.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return style.getPropertyValue("--card-list-columns");
+      return style.getPropertyValue("--mp-card-list-columns");
     });
 
     expect(columns).toBe("3");
@@ -118,7 +118,7 @@ test.describe("CardList Component", () => {
 
     const columns = await component.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return style.getPropertyValue("--card-list-columns");
+      return style.getPropertyValue("--mp-card-list-columns");
     });
 
     expect(columns).toBe("4");
@@ -131,7 +131,7 @@ test.describe("CardList Component", () => {
 
     const gap = await component.evaluate((el) => {
       const style = window.getComputedStyle(el);
-      return style.getPropertyValue("--card-list-gap");
+      return style.getPropertyValue("--mp-card-list-gap");
     });
 
     expect(gap).toBe("2rem");
@@ -259,7 +259,7 @@ test.describe("CardList Component", () => {
 
       const columns = await component.evaluate((el) => {
         const style = window.getComputedStyle(el);
-        return style.getPropertyValue("--card-list-columns");
+        return style.getPropertyValue("--mp-card-list-columns");
       });
 
       expect(columns).toBe("1");

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Text } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
 import { Router, Route, Link } from "../../Router";
+import { u } from "../../utils";
 
 export const RouterPage: React.FC = () => {
   const [showDemo, setShowDemo] = useState(false);
@@ -35,7 +36,7 @@ export const RouterPage: React.FC = () => {
           Wrap your application with <code>Router</code> and use{" "}
           <code>Route</code> and <code>Link</code> to define navigation.
         </Text>
-        <div className="component-page__demo" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <button
             type="button"
             onClick={() => setShowDemo((v) => !v)}
@@ -46,14 +47,20 @@ export const RouterPage: React.FC = () => {
           {showDemo && (
             <div
               style={{
-                border: "1px solid var(--color-border)",
-                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--mp-color-border)",
+                borderRadius: "var(--mp-radius-md)",
                 padding: "var(--spacing-4)",
                 width: "100%",
               }}
             >
               <Router>
-                <nav style={{ display: "flex", gap: "var(--spacing-3)", marginBottom: "var(--spacing-4)" }}>
+                <nav
+                  style={{
+                    display: "flex",
+                    gap: "var(--spacing-3)",
+                    marginBottom: "var(--spacing-4)",
+                  }}
+                >
                   <Link href="/">Home</Link>
                   <Link href="/about">About</Link>
                   <Link href="/contact">Contact</Link>
@@ -79,7 +86,7 @@ export const RouterPage: React.FC = () => {
               </Router>
             </div>
           )}
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -92,14 +99,20 @@ export const RouterPage: React.FC = () => {
           application run on any static host without requiring server-side route
           configuration.
         </Text>
-        <div className="component-page__demo" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text size="sm">
             Navigating to <code>/about</code> produces a URL like:
           </Text>
-          <code style={{ background: "var(--color-muted)", padding: "var(--spacing-2) var(--spacing-3)", borderRadius: "var(--radius-sm)" }}>
+          <code
+            style={{
+              background: "var(--mp-color-muted)",
+              padding: "var(--spacing-2) var(--spacing-3)",
+              borderRadius: "var(--mp-radius-sm)",
+            }}
+          >
             https://example.com/?appRoute=%2Fabout
           </code>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -109,15 +122,25 @@ export const RouterPage: React.FC = () => {
         <Text color="secondary" size="sm">
           The following hooks are exported alongside the router components.
         </Text>
-        <div className="component-page__demo" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+        <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <ul style={{ margin: 0, paddingLeft: "var(--spacing-5)" }}>
-            <li><code>useLocation</code> – current pathname and navigate function</li>
-            <li><code>useSearch</code> – current search string</li>
-            <li><code>useParams</code> – URL parameters from the matched route</li>
-            <li><code>useRoute</code> – checks whether a given path matches</li>
-            <li><code>useSearchParams</code> – access and update search params</li>
+            <li>
+              <code>useLocation</code> – current pathname and navigate function
+            </li>
+            <li>
+              <code>useSearch</code> – current search string
+            </li>
+            <li>
+              <code>useParams</code> – URL parameters from the matched route
+            </li>
+            <li>
+              <code>useRoute</code> – checks whether a given path matches
+            </li>
+            <li>
+              <code>useSearchParams</code> – access and update search params
+            </li>
           </ul>
-        </div>
+        </Flex>
       </Section>
 
       <Section>

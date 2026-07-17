@@ -11,20 +11,20 @@
 .mp-sidebar-divider__line {
   flex: 1;
   height: 1px;
-  background-color: var(--color-border);
+  background-color: var(--mp-color-border);
 }
 
 .mp-sidebar-divider__line--left,
 .mp-sidebar-divider__line--right {
   flex: 1;
   height: 1px;
-  background-color: var(--color-border);
+  background-color: var(--mp-color-border);
 }
 
 .mp-sidebar-divider__label {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;

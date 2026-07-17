@@ -1,10 +1,10 @@
 /* Label Styles */
 
 /* Block: Label */
-.label {
+.mp-label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   margin-bottom: var(--spacing-1);
   display: inline-flex;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 /* Element: Required Indicator */
-.label__required {
-  color: var(--color-error);
+.mp-label__required {
+  color: var(--mp-color-error);
   font-weight: var(--font-weight-semibold);
 }

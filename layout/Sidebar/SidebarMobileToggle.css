@@ -6,18 +6,18 @@
   width: 44px;
   height: 44px;
   padding: var(--spacing-2, 0.5rem);
-  background-color: var(--color-primary, #0070f3);
+  background-color: var(--mp-color-primary, #0070f3);
   border: none;
-  border-radius: var(--radius-md, 8px);
+  border-radius: var(--mp-radius-md, 8px);
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  color: var(--color-white, #ffffff);
+  color: var(--mp-color-white, #ffffff);
   transition: all var(--duration-200, 0.2s) var(--ease-in-out, ease);
 }
 
 .mp-sidebar__mobile-toggle:hover {
-  background-color: var(--color-primary-hover, #0060df);
+  background-color: var(--mp-color-primary-hover, #0060df);
   transform: scale(1.05);
 }
 
@@ -26,8 +26,8 @@
 }
 
 .mp-sidebar__mobile-toggle:focus-visible {
-  box-shadow: var(--focus-shadow);
-  outline: none;
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Show only on mobile */

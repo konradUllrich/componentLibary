@@ -8,47 +8,47 @@
   width: 100%;
   font-family: inherit;
   font-size: var(--font-size-base);
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-background);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
   transition: all var(--duration-200) var(--ease-in-out);
   outline: none;
   cursor: pointer;
 }
 
 .select-trigger:hover:not(:disabled) {
-  border-color: var(--color-primary);
+  border-color: var(--mp-color-primary);
 }
 
 .select-trigger:focus {
-  border-color: var(--color-primary);
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 .select-trigger[data-placeholder] {
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 /* Variant: Default */
 .select-trigger--default {
-  background-color: var(--color-background);
+  background-color: var(--mp-color-background);
 }
 
 /* Variant: Filled */
 .select-trigger--filled {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
   border-color: transparent;
 }
 
 .select-trigger--filled:hover:not(:disabled) {
-  background-color: var(--color-background);
-  border-color: var(--color-border);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-border);
 }
 
 .select-trigger--filled:focus {
-  background-color: var(--color-background);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-primary);
 }
 
 /* Variant: Outline */
@@ -76,19 +76,19 @@
 
 /* Modifier: Error */
 .select-trigger--error {
-  border-color: var(--color-error);
+  border-color: var(--mp-color-error);
 }
 
 .select-trigger--error:focus {
-  border-color: var(--color-error);
-  box-shadow: 0 0 0 3px var(--color-error-light);
+  border-color: var(--mp-color-error);
+  box-shadow: 0 0 0 3px var(--mp-color-error-light);
 }
 
 /* Modifier: Disabled */
 .select-trigger--disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }
 
 /* Element: Select Icon */
@@ -103,9 +103,9 @@
 
 /* Block: Select Content */
 .select-content {
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  background-color: var(--mp-color-background);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   z-index: var(--z-dropdown);
@@ -124,24 +124,24 @@
   padding: var(--spacing-2) var(--spacing-3);
   padding-right: var(--spacing-8);
   font-size: var(--font-size-base);
-  color: var(--color-foreground);
-  border-radius: var(--radius-sm);
+  color: var(--mp-color-foreground);
+  border-radius: var(--mp-radius-sm);
   cursor: pointer;
   outline: none;
   user-select: none;
 }
 
 .select-item:hover {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }
 
 .select-item:focus {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
 }
 
 .select-item[data-state="checked"] {
-  background-color: var(--color-primary-light);
-  color: var(--color-foreground);
+  background-color: var(--mp-color-primary-light);
+  color: var(--mp-color-foreground);
   font-weight: var(--font-weight-medium);
 }
 
@@ -159,5 +159,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }

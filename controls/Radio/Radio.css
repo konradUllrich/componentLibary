@@ -24,12 +24,12 @@
   cursor: pointer;
   user-select: none;
   font-size: var(--font-size-base);
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   transition: color var(--duration-200) var(--ease-in-out);
 }
 
 .radio-label:hover:not(:has(input:disabled)) {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 
 /* Element: Radio Text */
@@ -46,9 +46,9 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  border: 1px solid var(--color-input-border);
+  border: 1px solid var(--mp-color-input-border);
   border-radius: 50%;
-  background-color: var(--color-input-background);
+  background-color: var(--mp-color-input-background);
   transition: all var(--duration-200) var(--ease-in-out);
 }
 
@@ -58,26 +58,26 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--color-background);
+  background-color: var(--mp-color-background);
   opacity: 0;
   transition: opacity var(--duration-200) var(--ease-in-out);
 }
 
 /* Variant: Default */
 .radio-custom--default {
-  background-color: var(--color-input-background);
-  border: 1px solid var(--color-input-border);
+  background-color: var(--mp-color-input-background);
+  border: 1px solid var(--mp-color-input-border);
 }
 
 /* Variant: Filled */
 .radio-custom--filled {
-  background-color: var(--color-background-secondary);
+  background-color: var(--mp-color-background-secondary);
   border: 1px solid transparent;
 }
 
 .radio-custom--filled:hover:not(:has(input:disabled)) {
-  background-color: var(--color-background);
-  border-color: var(--color-input-border);
+  background-color: var(--mp-color-background);
+  border-color: var(--mp-color-input-border);
 }
 
 /* Variant: Outline */
@@ -88,12 +88,12 @@
 
 /* Modifier: Checked State */
 .radio-input:checked + .radio-label .radio-custom {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  background-color: var(--mp-color-primary);
+  border-color: var(--mp-color-primary);
 }
 
 .radio-input:checked + .radio-label .radio-custom--outline {
-  background-color: var(--color-primary);
+  background-color: var(--mp-color-primary);
 }
 
 .radio-input:checked + .radio-label .radio-custom::after {
@@ -102,27 +102,28 @@
 
 /* Modifier: Hover State */
 .radio-input:not(:disabled) + .radio-label:hover .radio-custom {
-  border-color: var(--color-primary);
+  border-color: var(--mp-color-primary);
 }
 
 /* Modifier: Focus State */
 .radio-input:focus-visible + .radio-label {
-  box-shadow: var(--focus-shadow);
-  border-radius: var(--radius-md);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 .radio-input:focus-visible + .radio-label .radio-custom {
-  box-shadow: var(--focus-shadow);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 /* Modifier: Error State */
 .radio-input--error + .radio-label .radio-custom {
-  border-color: var(--color-destructive);
+  border-color: var(--mp-color-destructive);
 }
 
 .radio-input--error:checked + .radio-label .radio-custom {
-  background-color: var(--color-destructive);
-  border-color: var(--color-destructive);
+  background-color: var(--mp-color-destructive);
+  border-color: var(--mp-color-destructive);
 }
 
 /* Modifier: Disabled State */
@@ -132,7 +133,7 @@
 }
 
 .radio-input:disabled + .radio-label:hover {
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
 }
 
 .radio-input--disabled {

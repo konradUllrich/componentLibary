@@ -13,6 +13,8 @@
   padding: var(--spacing-1);
   position: relative;
   padding-top: var(--spacing-2);
+  background-color: var(--mp-color-background);
+  color: var(--mp-color-foreground);
 }
 
 .mp-sidebar__nav--expanded {

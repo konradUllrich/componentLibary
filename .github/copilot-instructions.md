@@ -121,7 +121,7 @@ ComponentName.displayName = "ComponentName";
 .button__icon {
 }
 .button:focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid var(--mp-color-focus);
 }
 
 /* ❌ Wrong */
@@ -136,9 +136,9 @@ ComponentName.displayName = "ComponentName";
 **Use design tokens from `styles/variables.css`:**
 
 ```css
-background: var(--color-primary);
+background: var(--mp-color-primary);
 padding: var(--spacing-md);
-border-radius: var(--radius-md);
+border-radius: var(--mp-radius-md);
 ```
 
 ---

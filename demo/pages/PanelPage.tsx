@@ -21,7 +21,7 @@ export const PanelPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Different panel styles for different contexts
         </Text>
-        <div className="component-page__demo-column">
+        <Panel variant="subtle" flex>
           <Panel variant="default" padding="md">
             <Text weight="medium">Default Panel</Text>
             <Text size="sm" color="secondary">
@@ -49,7 +49,7 @@ export const PanelPage: React.FC = () => {
               This is a subtle panel variant
             </Text>
           </Panel>
-        </div>
+        </Panel>
       </Section>
 
       <Section>
@@ -62,7 +62,7 @@ export const PanelPage: React.FC = () => {
           sm, md, lg, xl).
         </Text>
 
-        <div className="component-page__demo-column">
+        <Panel variant="subtle" flex>
           <Panel variant="outlined" spacing={{ pt: 1 }}>
             <Text weight="medium">pt: 1 - padding-top (4px)</Text>
           </Panel>
@@ -94,7 +94,7 @@ export const PanelPage: React.FC = () => {
           >
             <Text weight="medium">Responsive: ml: 0 on base, ml: 4 on md+</Text>
           </Panel>
-        </div>
+        </Panel>
       </Section>
 
       <Section>

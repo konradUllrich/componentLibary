@@ -18,10 +18,10 @@
 /* Element: Helper/Error Message */
 .form-control__message {
   font-size: var(--font-size-xs);
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 .form-control__message--error {
-  color: var(--color-destructive);
+  color: var(--mp-color-destructive);
   font-weight: var(--font-weight-medium);
 }

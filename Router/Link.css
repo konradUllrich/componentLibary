@@ -4,7 +4,7 @@
    ============================================================ */
 
 .mp-link {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
   text-decoration: underline;
   text-decoration-color: transparent;
   transition:
@@ -12,83 +12,83 @@
     text-decoration-color 150ms ease;
   cursor: pointer;
   outline: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--mp-radius-sm);
 }
 
 .mp-link:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-shadow);
-  color: var(--color-primary);
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
+  color: var(--mp-color-primary);
   padding: var(--focus-ring-spread); /* Compensate for focus shadow */
   border: unset;
 }
 
 .mp-link:hover {
-  color: var(--color-primary-dark);
+  color: var(--mp-color-primary);
   text-decoration-color: currentColor;
 }
 
 .mp-link:active {
-  color: var(--color-primary-dark);
+  color: var(--mp-color-primary);
 }
 
 /* ── Variants ─────────────────────────────────────────────── */
 
 /* default — primary-coloured link with underline on hover */
 .mp-link--default {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 
 /* subtle — secondary foreground; turns primary on hover */
 .mp-link--subtle {
-  color: var(--color-foreground-secondary);
+  color: var(--mp-color-foreground-light);
 }
 
 .mp-link--subtle:hover {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
   text-decoration-color: currentColor;
 }
 
 /* button — looks like the primary Button component */
-.mp-link--button {
+.mp-link--mp-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
-  border-radius: var(--button-border-radius);
+  background-color: var(--mp-color-primary);
+  color: var(--mp-color-primary-foreground);
+  border-radius: var(--mp-button-border-radius);
   text-decoration: none;
-  font-weight: var(--button-font-weight);
+  font-weight: var(--mp-button-font-weight);
 }
 
-.mp-link--button:hover {
-  background-color: var(--color-primary-dark);
-  color: var(--color-primary-foreground);
+.mp-link--mp-button:hover {
+  background-color: var(--mp-color-primary-strong);
+  color: var(--mp-color-primary-foreground);
   text-decoration: none;
 }
 
-.mp-link--button:active {
-  color: var(--color-primary-foreground);
+.mp-link--mp-button:active {
+  color: var(--mp-color-primary-foreground);
 }
 
-.mp-link--button:focus-visible {
+.mp-link--mp-button:focus-visible {
   outline: none;
-  box-shadow: var(--button-focus-shadow);
+  box-shadow: var(--mp-button-focus-shadow);
 }
 
 /* ── Size modifiers (button variant only) ─────────────────── */
 
 .mp-link--sm {
-  padding: var(--button-padding-y-sm) var(--button-padding-x-sm);
+  padding: var(--mp-button-padding-y-sm) var(--mp-button-padding-x-sm);
   font-size: var(--font-size-sm);
 }
 
 .mp-link--md {
-  padding: var(--button-padding-y-md) var(--button-padding-x-md);
+  padding: var(--mp-button-padding-y-md) var(--mp-button-padding-x-md);
 }
 
 .mp-link--lg {
-  padding: var(--button-padding-y-lg) var(--button-padding-x-lg);
+  padding: var(--mp-button-padding-y-lg) var(--mp-button-padding-x-lg);
   font-size: var(--font-size-lg);
 }
 

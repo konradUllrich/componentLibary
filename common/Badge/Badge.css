@@ -5,7 +5,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-1);
-  border-radius: var(--radius-full);
+  border-radius: var(--mp-radius-full);
   font-weight: var(--font-weight-medium);
   white-space: nowrap;
   transition: all var(--duration-200) var(--ease-in-out);
@@ -48,122 +48,146 @@
 
 /* Variant: Default - Solid */
 .badge--default.badge--solid {
-  background-color: var(--color-gray-50);
-  color: var(--color-gray-700);
+  background-color: var(--mp-color-gray-50);
+  color: var(--mp-color-gray-700);
 }
 
 /* Variant: Default - Outline */
 .badge--default.badge--outline {
   background-color: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-foreground);
+  border: 1px solid var(--mp-color-border);
+  color: var(--mp-color-foreground);
 }
 
 /* Variant: Default - Subtle */
 .badge--default.badge--subtle {
-  background-color: var(--color-gray-50);
-  color: var(--color-gray-700);
+  background-color: var(--mp-color-gray-50);
+  color: var(--mp-color-gray-700);
 }
 
 /* Variant: Primary - Solid */
 .badge--primary.badge--solid {
-  background-color: color-mix(in oklch, var(--color-primary-base), white 75%);
-  color: var(--color-primary-dark);
+  background-color: color-mix(
+    in oklch,
+    var(--mp-color-primary-base),
+    white 75%
+  );
+  color: var(--mp-color-primary);
 }
 
 /* Variant: Primary - Outline */
 .badge--primary.badge--outline {
   background-color: transparent;
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary-dark);
+  border: 1px solid var(--mp-color-primary);
+  color: var(--mp-color-primary);
 }
 
 /* Variant: Primary - Subtle */
 .badge--primary.badge--subtle {
-  background-color: color-mix(in oklch, var(--color-primary-base), white 75%);
-  color: var(--color-primary-dark);
+  background-color: color-mix(
+    in oklch,
+    var(--mp-color-primary-base),
+    white 75%
+  );
+  color: var(--mp-color-primary);
 }
 
 /* Variant: Success - Solid */
 .badge--success.badge--solid {
-  background-color: color-mix(in oklch, var(--color-success-base), white 75%);
-  color: var(--color-success-dark);
+  background-color: color-mix(
+    in oklch,
+    var(--mp-color-success-base),
+    white 75%
+  );
+  color: var(--mp-color-success-dark);
 }
 
 /* Variant: Success - Outline */
 .badge--success.badge--outline {
   background-color: transparent;
-  border: 1px solid var(--color-success);
-  color: var(--color-success-dark);
+  border: 1px solid var(--mp-color-success);
+  color: var(--mp-color-success-dark);
 }
 
 /* Variant: Success - Subtle */
 .badge--success.badge--subtle {
-  background-color: color-mix(in oklch, var(--color-success-base), white 75%);
-  color: var(--color-success-dark);
+  background-color: color-mix(
+    in oklch,
+    var(--mp-color-success-base),
+    white 75%
+  );
+  color: var(--mp-color-success-dark);
 }
 
 /* Variant: Warning - Solid */
 .badge--warning.badge--solid {
-  background-color: color-mix(in oklch, var(--color-warning-base), white 75%);
-  color: var(--color-warning-dark);
+  background-color: color-mix(
+    in oklch,
+    var(--mp-color-warning-base),
+    white 75%
+  );
+  color: var(--mp-color-warning-dark);
 }
 
 /* Variant: Warning - Outline */
 .badge--warning.badge--outline {
   background-color: transparent;
-  border: 1px solid var(--color-warning);
-  color: var(--color-warning-dark);
+  border: 1px solid var(--mp-color-warning);
+  color: var(--mp-color-warning-dark);
 }
 
 /* Variant: Warning - Subtle */
 .badge--warning.badge--subtle {
-  background-color: color-mix(in oklch, var(--color-warning-base), white 75%);
-  color: var(--color-warning-dark);
+  background-color: color-mix(
+    in oklch,
+    var(--mp-color-warning-base),
+    white 75%
+  );
+  color: var(--mp-color-warning-dark);
 }
 
 /* Variant: Destructive - Solid */
 .badge--destructive.badge--solid {
   background-color: color-mix(
     in oklch,
-    var(--color-destructive-base),
+    var(--mp-color-destructive-base),
     white 75%
   );
-  color: var(--color-destructive-dark);
+  color: var(--mp-color-destructive-dark);
 }
 
 /* Variant: Destructive - Outline */
 .badge--destructive.badge--outline {
   background-color: transparent;
-  border: 1px solid var(--color-destructive);
-  color: var(--color-destructive-dark);
+  border: 1px solid var(--mp-color-destructive);
+  color: var(--mp-color-destructive-dark);
 }
 
 /* Variant: Destructive - Subtle */
 .badge--destructive.badge--subtle {
   background-color: color-mix(
     in oklch,
-    var(--color-destructive-base),
+    var(--mp-color-destructive-base),
     white 75%
   );
-  color: var(--color-destructive-dark);
+  color: var(--mp-color-destructive-dark);
 }
 
 /* Variant: Info - Solid */
 .badge--info.badge--solid {
-  background-color: color-mix(in oklch, var(--color-info-base), white 75%);
-  color: var(--color-info-dark);
+  background-color: color-mix(in oklch, var(--mp-color-info-base), white 75%);
+  color: var(--mp-color-info-dark);
 }
 
 /* Variant: Info - Outline */
 .badge--info.badge--outline {
   background-color: transparent;
-  border: 1px solid var(--color-info);
-  color: var(--color-info-dark);
+  border: 1px solid var(--mp-color-info);
+  color: var(--mp-color-info-dark);
 }
 
 /* Variant: Info - Subtle */
 .badge--info.badge--subtle {
-  background-color: color-mix(in oklch, var(--color-info-base), white 75%);
-  color: var(--color-info-dark);
+  background-color: color-mix(in oklch, var(--mp-color-info-base), white 75%);
+  color: var(--mp-color-info-dark);
 }

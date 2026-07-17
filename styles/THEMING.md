@@ -28,62 +28,62 @@ import "./mpComponents/styles/variables.css";
 
 #### Primary Colors
 
-- `--color-primary` - Main brand color
-- `--color-primary-light` - Lighter variant
-- `--color-primary-dark` - Darker variant
-- `--color-primary-foreground` - Text color on primary background
+- `--mp-color-primary` - Main brand color
+- `--mp-color-primary-light` - Lighter variant
+- `--mp-color-primary-strong` - Darker variant
+- `--mp-color-primary-foreground` - Text color on primary background
 
 ```css
---color-primary: #007bff;
---color-primary-light: #0d6efd;
---color-primary-dark: #0056b3;
---color-primary-foreground: #ffffff;
+--mp-color-primary: #007bff;
+--mp-color-primary-light: #0d6efd;
+--mp-color-primary-strong: #0056b3;
+--mp-color-primary-foreground: #ffffff;
 ```
 
 #### Secondary Colors
 
-- `--color-secondary` - Secondary brand color
-- `--color-secondary-light` - Lighter variant
-- `--color-secondary-dark` - Darker variant
-- `--color-secondary-foreground` - Text color on secondary background
+- `--mp-color-secondary` - Secondary brand color
+- `--mp-color-secondary-light` - Lighter variant
+- `--mp-color-secondary-dark` - Darker variant
+- `--mp-color-secondary-foreground` - Text color on secondary background
 
 #### Semantic Colors
 
-- **Success**: `--color-success`, `--color-success-light`, `--color-success-dark`
-- **Warning**: `--color-warning`, `--color-warning-light`, `--color-warning-dark`
-- **Destructive/Error**: `--color-destructive`, `--color-destructive-light`, `--color-destructive-dark`
-- **Info**: `--color-info`, `--color-info-light`, `--color-info-dark`
+- **Success**: `--mp-color-success`, `--mp-color-success-light`, `--mp-color-success-dark`
+- **Warning**: `--mp-color-warning`, `--mp-color-warning-light`, `--mp-color-warning-dark`
+- **Destructive/Error**: `--mp-color-destructive`, `--mp-color-destructive-light`, `--mp-color-destructive-dark`
+- **Info**: `--mp-color-info`, `--mp-color-info-light`, `--mp-color-info-dark`
 
 #### Neutral/Gray Scale
 
 ```css
---color-gray-50: #f9fafb; /* Lightest */
---color-gray-100: #f3f4f6;
---color-gray-200: #e5e7eb;
---color-gray-300: #d1d5db;
---color-gray-400: #9ca3af;
---color-gray-500: #6b7280;
---color-gray-600: #4b5563;
---color-gray-700: #374151;
---color-gray-800: #1f2937;
---color-gray-900: #111827; /* Darkest */
+--mp-color-gray-50: #f9fafb; /* Lightest */
+--mp-color-gray-100: #f3f4f6;
+--mp-color-gray-200: #e5e7eb;
+--mp-color-gray-300: #d1d5db;
+--mp-color-gray-400: #9ca3af;
+--mp-color-gray-500: #6b7280;
+--mp-color-gray-600: #4b5563;
+--mp-color-gray-700: #374151;
+--mp-color-gray-800: #1f2937;
+--mp-color-gray-900: #111827; /* Darkest */
 ```
 
 #### Background & Text Colors
 
-- `--color-background` - Primary background
-- `--color-background-secondary` - Secondary background
-- `--color-background-tertiary` - Tertiary background
-- `--color-foreground` - Primary text
-- `--color-foreground-secondary` - Secondary text
-- `--color-foreground-tertiary` - Tertiary text
-- `--color-foreground-muted` - Muted/disabled text
+- `--mp-color-background` - Primary background
+- `--mp-color-background-secondary` - Secondary background
+- `--mp-color-background-tertiary` - Tertiary background
+- `--mp-color-foreground` - Primary text
+- `--mp-color-foreground-light` - Secondary text
+- `--mp-color-foreground-tertiary` - Tertiary text
+- `--mp-color-foreground-muted` - Muted/disabled text
 
 #### Functional Colors
 
-- `--color-border` - Standard border color
-- `--color-input` - Input field background
-- `--color-ring` - Focus ring color
+- `--mp-color-border` - Standard border color
+- `--mp-color-input` - Input field background
+- `--mp-color-ring` - Focus ring color
 
 ### Spacing Scale
 
@@ -152,13 +152,13 @@ Consistent spacing system (multiples of 4px):
 ### Border Radius
 
 ```css
---radius-none: 0;
---radius-sm: 0.25rem; /* 4px */
---radius-md: 0.375rem; /* 6px */
---radius-lg: 0.5rem; /* 8px */
---radius-xl: 0.75rem; /* 12px */
---radius-2xl: 1rem; /* 16px */
---radius-full: 9999px;
+--mp-radius-none: 0;
+--mp-radius-sm: 0.25rem; /* 4px */
+--mp-radius-md: 0.375rem; /* 6px */
+--mp-radius-lg: 0.5rem; /* 8px */
+--mp-radius-xl: 0.75rem; /* 12px */
+--mp-radius-2xl: 1rem; /* 16px */
+--mp-radius-full: 9999px;
 ```
 
 ### Shadows
@@ -232,29 +232,29 @@ Pre-configured variables for common components:
 #### Button
 
 ```css
---button-padding-y-sm: 0.375rem;
---button-padding-x-sm: 0.75rem;
---button-padding-y-md: 0.5rem;
---button-padding-x-md: 1rem;
---button-padding-y-lg: 0.75rem;
---button-padding-x-lg: 1.5rem;
---button-font-size: var(--font-size-base);
---button-font-weight: var(--font-weight-medium);
---button-border-radius: var(--radius-md);
---button-transition: all var(--duration-200) var(--ease-in-out);
+--mp-button-padding-y-sm: 0.375rem;
+--mp-button-padding-x-sm: 0.75rem;
+--mp-button-padding-y-md: 0.5rem;
+--mp-button-padding-x-md: 1rem;
+--mp-button-padding-y-lg: 0.75rem;
+--mp-button-padding-x-lg: 1.5rem;
+--mp-button-font-size: var(--font-size-base);
+--mp-button-font-weight: var(--font-weight-medium);
+--mp-button-border-radius: var(--mp-radius-md);
+--mp-button-transition: all var(--duration-200) var(--ease-in-out);
 ```
 
 #### Input
 
 ```css
---input-padding-y: 0.5rem;
---input-padding-x: 0.75rem;
---input-font-size: var(--font-size-base);
---input-border-radius: var(--radius-md);
---input-border-width: 1px;
---input-border-color: var(--color-input-border);
---input-focus-border-color: var(--color-ring);
---input-transition: border-color var(--duration-200) var(--ease-in-out);
+--mp-input-padding-y: 0.5rem;
+--mp-input-padding-x: 0.75rem;
+--mp-input-font-size: var(--font-size-base);
+--mp-input-border-radius: var(--mp-radius-md);
+--mp-input-border-width: 1px;
+--mp-input-border-color: var(--mp-color-input-border);
+--mp-input-focus-border-color: var(--mp-color-ring);
+--mp-input-transition: border-color var(--duration-200) var(--ease-in-out);
 ```
 
 #### Card, Badge, Modal, Table, Form
@@ -271,9 +271,9 @@ Create your own CSS file and override variables before importing components:
 /* theme.css */
 :root {
   /* Override primary color */
-  --color-primary: #6366f1;
-  --color-primary-light: #818cf8;
-  --color-primary-dark: #4f46e5;
+  --mp-color-primary: #6366f1;
+  --mp-color-primary-light: #818cf8;
+  --mp-color-primary-strong: #4f46e5;
 
   /* Override spacing */
   --spacing-4: 1.25rem; /* Increase base spacing */
@@ -298,15 +298,15 @@ import "./mpComponents/styles/variables.css"; // Will not override your custom v
 ```css
 :root {
   /* Company brand colors */
-  --color-primary: #ff6b35;
-  --color-primary-light: #ff8c42;
-  --color-primary-dark: #e55100;
-  --color-primary-foreground: #ffffff;
+  --mp-color-primary: #ff6b35;
+  --mp-color-primary-light: #ff8c42;
+  --mp-color-primary-strong: #e55100;
+  --mp-color-primary-foreground: #ffffff;
 
   /* Company secondary color */
-  --color-secondary: #004e89;
-  --color-secondary-light: #006ba6;
-  --color-secondary-dark: #003d66;
+  --mp-color-secondary: #004e89;
+  --mp-color-secondary-light: #006ba6;
+  --mp-color-secondary-dark: #003d66;
 
   /* Override font for brand consistency */
   --font-family-base: "Poppins", sans-serif;
@@ -338,7 +338,7 @@ document.documentElement.classList.add('dark');
 @media (prefers-color-scheme: dark),
 .dark {
   :root {
-    --color-background: #1f2937;
+    --mp-color-background: #1f2937;
     /* ... rest of dark theme */
   }
 }
@@ -351,9 +351,9 @@ document.documentElement.classList.add('dark');
 ```css
 /* ✅ Good */
 .button {
-  color: var(--color-primary-foreground);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-md);
+  color: var(--mp-color-primary-foreground);
+  background-color: var(--mp-color-primary);
+  border-radius: var(--mp-radius-md);
   padding: var(--spacing-2) var(--spacing-4);
 }
 
@@ -371,16 +371,16 @@ document.documentElement.classList.add('dark');
 ```css
 /* ✅ Use semantic colors for intent */
 .error-message {
-  color: var(--color-destructive);
+  color: var(--mp-color-destructive);
 }
 
 .success-message {
-  color: var(--color-success);
+  color: var(--mp-color-success);
 }
 
 /* ❌ Don't map random colors */
 .error-message {
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
 }
 ```
 
@@ -400,10 +400,10 @@ document.documentElement.classList.add('dark');
 ```css
 /* ✅ Use component tokens */
 .button {
-  padding: var(--button-padding-y-md) var(--button-padding-x-md);
-  font-weight: var(--button-font-weight);
-  border-radius: var(--button-border-radius);
-  transition: var(--button-transition);
+  padding: var(--mp-button-padding-y-md) var(--mp-button-padding-x-md);
+  font-weight: var(--mp-button-font-weight);
+  border-radius: var(--mp-button-border-radius);
+  transition: var(--mp-button-transition);
 }
 ```
 
@@ -419,10 +419,10 @@ export function Button() {
     <button
       className={styles.button}
       style={{
-        backgroundColor: "var(--color-primary)",
-        color: "var(--color-primary-foreground)",
-        padding: "var(--button-padding-y-md) var(--button-padding-x-md)",
-        borderRadius: "var(--button-border-radius)",
+        backgroundColor: "var(--mp-color-primary)",
+        color: "var(--mp-color-primary-foreground)",
+        padding: "var(--mp-button-padding-y-md) var(--mp-button-padding-x-md)",
+        borderRadius: "var(--mp-button-border-radius)",
       }}
     >
       Click me

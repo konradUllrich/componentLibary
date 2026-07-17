@@ -2,8 +2,8 @@
    Tree Editor
    ======================== */
 .tree-editor {
-  background: var(--color-background);
-  border-radius: var(--radius-lg);
+  background: var(--mp-color-background);
+  border-radius: var(--mp-radius-lg);
   padding: var(--spacing-4);
 }
 
@@ -25,26 +25,26 @@
    Tree Node
    ======================== */
 .tree-node {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-background);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
+  background: var(--mp-color-background);
   transition: var(--transition-fast);
   cursor: pointer;
 }
 
 .tree-node:hover {
-  border-color: var(--color-primary-light);
+  border-color: var(--mp-color-primary-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .tree-node:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
 }
 
 .tree-node--selected {
-  border-color: var(--color-primary);
-  background: color-mix(in oklch, var(--color-primary), transparent 92%);
+  border-color: var(--mp-color-primary);
+  background: color-mix(in oklch, var(--mp-color-primary), transparent 92%);
 }
 
 .tree-node--dragging {
@@ -52,8 +52,8 @@
 }
 
 .tree-node--drop-target {
-  background: color-mix(in oklch, var(--color-success), transparent 90%);
-  border-color: var(--color-success);
+  background: color-mix(in oklch, var(--mp-color-success), transparent 90%);
+  border-color: var(--mp-color-success);
   border-style: dashed;
 }
 
@@ -76,20 +76,20 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  border-radius: var(--radius-sm);
-  color: var(--color-foreground-secondary);
+  border-radius: var(--mp-radius-sm);
+  color: var(--mp-color-foreground-light);
   font-size: var(--font-size-xs);
   flex-shrink: 0;
   transition: var(--transition-fast);
 }
 
 .tree-node__toggle:hover {
-  background: var(--color-background-tertiary);
-  color: var(--color-foreground);
+  background: var(--mp-color-background-tertiary);
+  color: var(--mp-color-foreground);
 }
 
 .tree-node__toggle:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--mp-color-primary);
   outline-offset: 1px;
 }
 
@@ -101,16 +101,19 @@
 .tree-node__label {
   flex: 1;
   font-size: var(--font-size-sm);
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   font-weight: 500;
 }
 
 .tree-node__count {
   font-size: var(--font-size-xs);
-  color: var(--color-foreground-tertiary);
-  background: var(--color-background-tertiary);
+  color: var(--mp-color-foreground-tertiary);
+  background: var(--mp-color-background-tertiary);
   padding: 2px 6px;
-  border-radius: var(--radius-full, 9999px); /* pill shape — fallback for environments without --radius-full token */
+  border-radius: var(
+    --mp-radius-full,
+    9999px
+  ); /* pill shape — fallback for environments without --mp-radius-full token */
 }
 
 /* Children */
@@ -121,9 +124,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
-  border-top: 1px solid var(--color-border-light);
-  background: var(--color-background-secondary);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-top: 1px solid var(--mp-color-border-light);
+  background: var(--mp-color-background-secondary);
+  border-radius: 0 0 var(--mp-radius-md) var(--mp-radius-md);
 }
 
 .tree-node__child-item {
@@ -154,9 +157,9 @@
   padding: var(--spacing-2) var(--spacing-3);
   min-height: 36px;
   gap: var(--spacing-2);
-  border: 2px dashed var(--color-primary);
-  border-radius: var(--radius-md);
-  background: color-mix(in oklch, var(--color-primary), transparent 90%);
+  border: 2px dashed var(--mp-color-primary);
+  border-radius: var(--mp-radius-md);
+  background: color-mix(in oklch, var(--mp-color-primary), transparent 90%);
   opacity: 0.8;
 }
 
@@ -168,7 +171,7 @@
 .drop-indicator__label {
   flex: 1;
   font-size: var(--font-size-sm);
-  color: var(--color-primary);
+  color: var(--mp-color-primary);
   font-weight: 500;
 }
 
@@ -186,12 +189,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: var(--color-background);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-md);
+  background: var(--mp-color-background);
+  border: 1px solid var(--mp-color-primary);
+  border-radius: var(--mp-radius-md);
   padding: var(--spacing-2) var(--spacing-3);
   font-size: var(--font-size-sm);
-  color: var(--color-foreground);
+  color: var(--mp-color-foreground);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
   pointer-events: none;

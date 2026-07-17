@@ -1,140 +1,152 @@
-import React from 'react';
-import { Page, Section } from "../../layout";
-import { 
-  Dropdown, 
-  DropdownTrigger, 
-  DropdownContent, 
-  DropdownItem, 
-  DropdownLabel, 
+import React from "react";
+import { Flex, Page, Section } from "../../layout";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
   DropdownSeparator,
   Button,
-  Text 
-} from '../../common';
+  Text,
+} from "../../common";
+import { u } from "../../utils";
 
 export const DropdownPage: React.FC = () => {
-  const [lastAction, setLastAction] = React.useState<string>('');
+  const [lastAction, setLastAction] = React.useState<string>("");
 
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Dropdown Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Dropdown Component
+        </Text>
         <Text color="secondary">
-          Accessible dropdown menu with keyboard navigation, item grouping, and positioning
+          Accessible dropdown menu with keyboard navigation, item grouping, and
+          positioning
         </Text>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Basic Dropdown</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Basic Dropdown
+        </Text>
         <Text color="secondary" size="sm">
           Simple dropdown menu with basic items
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
               <Button>Open Menu</Button>
             </DropdownTrigger>
             <DropdownContent>
-              <DropdownItem onSelect={() => setLastAction('New File')}>
+              <DropdownItem onSelect={() => setLastAction("New File")}>
                 New File
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('New Folder')}>
+              <DropdownItem onSelect={() => setLastAction("New Folder")}>
                 New Folder
               </DropdownItem>
               <DropdownSeparator />
-              <DropdownItem onSelect={() => setLastAction('Settings')}>
+              <DropdownItem onSelect={() => setLastAction("Settings")}>
                 Settings
               </DropdownItem>
             </DropdownContent>
           </Dropdown>
           {lastAction && (
-            <Text size="sm" color="secondary" style={{ marginTop: '0.5rem' }}>
+            <Text size="sm" color="secondary" style={{ marginTop: "0.5rem" }}>
               Last action: {lastAction}
             </Text>
           )}
-        </div>
+        </Flex>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Grouped Items</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Grouped Items
+        </Text>
         <Text color="secondary" size="sm">
           Dropdown with labels and separators to organize items
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
               <Button variant="secondary">Actions</Button>
             </DropdownTrigger>
             <DropdownContent>
               <DropdownLabel>File Actions</DropdownLabel>
-              <DropdownItem onSelect={() => setLastAction('Open')}>
+              <DropdownItem onSelect={() => setLastAction("Open")}>
                 Open
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Save')}>
+              <DropdownItem onSelect={() => setLastAction("Save")}>
                 Save
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Export')}>
+              <DropdownItem onSelect={() => setLastAction("Export")}>
                 Export
               </DropdownItem>
               <DropdownSeparator />
               <DropdownLabel>Edit Actions</DropdownLabel>
-              <DropdownItem onSelect={() => setLastAction('Cut')}>
+              <DropdownItem onSelect={() => setLastAction("Cut")}>
                 Cut
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Copy')}>
+              <DropdownItem onSelect={() => setLastAction("Copy")}>
                 Copy
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Paste')}>
+              <DropdownItem onSelect={() => setLastAction("Paste")}>
                 Paste
               </DropdownItem>
             </DropdownContent>
           </Dropdown>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Disabled Items</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Disabled Items
+        </Text>
         <Text color="secondary" size="sm">
           Some menu items can be disabled
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
               <Button>Edit Menu</Button>
             </DropdownTrigger>
             <DropdownContent>
-              <DropdownItem onSelect={() => setLastAction('Edit')}>
+              <DropdownItem onSelect={() => setLastAction("Edit")}>
                 Edit
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Duplicate')}>
+              <DropdownItem onSelect={() => setLastAction("Duplicate")}>
                 Duplicate
               </DropdownItem>
               <DropdownSeparator />
-              <DropdownItem disabled onSelect={() => setLastAction('Archive')}>
+              <DropdownItem disabled onSelect={() => setLastAction("Archive")}>
                 Archive (disabled)
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Delete')}>
+              <DropdownItem onSelect={() => setLastAction("Delete")}>
                 Delete
               </DropdownItem>
             </DropdownContent>
           </Dropdown>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Positioning</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Positioning
+        </Text>
         <Text color="secondary" size="sm">
           Dropdown can be positioned on different sides of the trigger
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
               <Button variant="ghost">Bottom (default)</Button>
             </DropdownTrigger>
             <DropdownContent side="bottom">
-              <DropdownItem onSelect={() => setLastAction('Bottom 1')}>
+              <DropdownItem onSelect={() => setLastAction("Bottom 1")}>
                 Item 1
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Bottom 2')}>
+              <DropdownItem onSelect={() => setLastAction("Bottom 2")}>
                 Item 2
               </DropdownItem>
             </DropdownContent>
@@ -145,10 +157,10 @@ export const DropdownPage: React.FC = () => {
               <Button variant="ghost">Top</Button>
             </DropdownTrigger>
             <DropdownContent side="top">
-              <DropdownItem onSelect={() => setLastAction('Top 1')}>
+              <DropdownItem onSelect={() => setLastAction("Top 1")}>
                 Item 1
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Top 2')}>
+              <DropdownItem onSelect={() => setLastAction("Top 2")}>
                 Item 2
               </DropdownItem>
             </DropdownContent>
@@ -159,10 +171,10 @@ export const DropdownPage: React.FC = () => {
               <Button variant="ghost">Right</Button>
             </DropdownTrigger>
             <DropdownContent side="right">
-              <DropdownItem onSelect={() => setLastAction('Right 1')}>
+              <DropdownItem onSelect={() => setLastAction("Right 1")}>
                 Item 1
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Right 2')}>
+              <DropdownItem onSelect={() => setLastAction("Right 2")}>
                 Item 2
               </DropdownItem>
             </DropdownContent>
@@ -173,33 +185,58 @@ export const DropdownPage: React.FC = () => {
               <Button variant="ghost">Left</Button>
             </DropdownTrigger>
             <DropdownContent side="left">
-              <DropdownItem onSelect={() => setLastAction('Left 1')}>
+              <DropdownItem onSelect={() => setLastAction("Left 1")}>
                 Item 1
               </DropdownItem>
-              <DropdownItem onSelect={() => setLastAction('Left 2')}>
+              <DropdownItem onSelect={() => setLastAction("Left 2")}>
                 Item 2
               </DropdownItem>
             </DropdownContent>
           </Dropdown>
-        </div>
+        </Flex>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Keyboard Navigation</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Keyboard Navigation
+        </Text>
         <Text color="secondary" size="sm">
           Dropdown supports keyboard interactions for accessibility
         </Text>
-        <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
-          <li><Text size="sm"><strong>Enter / Space</strong> - Opens the menu when trigger is focused</Text></li>
-          <li><Text size="sm"><strong>Arrow Down</strong> - Moves focus to next menu item</Text></li>
-          <li><Text size="sm"><strong>Arrow Up</strong> - Moves focus to previous menu item</Text></li>
-          <li><Text size="sm"><strong>Escape</strong> - Closes the menu</Text></li>
-          <li><Text size="sm"><strong>Enter</strong> - Selects the focused menu item</Text></li>
+        <ul style={{ marginTop: "0.5rem", paddingLeft: "1.5rem" }}>
+          <li>
+            <Text size="sm">
+              <strong>Enter / Space</strong> - Opens the menu when trigger is
+              focused
+            </Text>
+          </li>
+          <li>
+            <Text size="sm">
+              <strong>Arrow Down</strong> - Moves focus to next menu item
+            </Text>
+          </li>
+          <li>
+            <Text size="sm">
+              <strong>Arrow Up</strong> - Moves focus to previous menu item
+            </Text>
+          </li>
+          <li>
+            <Text size="sm">
+              <strong>Escape</strong> - Closes the menu
+            </Text>
+          </li>
+          <li>
+            <Text size="sm">
+              <strong>Enter</strong> - Selects the focused menu item
+            </Text>
+          </li>
         </ul>
       </Section>
 
       <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+        <Text as="h2" size="2xl" weight="semibold">
+          Usage
+        </Text>
         <pre className="code-block">
           <code>{`import { 
   Dropdown, 
