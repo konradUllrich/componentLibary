@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Datalist, createColumns } from "../../data-display/Datalist";
 import { Button } from "../../common";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
 import { Text } from "../../common";
 
 // ── Data models ──────────────────────────────────────────────────────────────
@@ -116,16 +116,13 @@ export const DatalistPage: React.FC = () => {
       </Section>
 
       {/* ── Basic usage ───────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Usage
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>key</code> to map a column to a top-level property.
-        </Text>
-        <div className="component-page__demo">
+      <Section
+        title="Basic Usage"
+        subtitle="Use key to map a column to a top-level property."
+      >
+        <Flex gap="md" wrap>
           <Datalist data={employees} columns={basicColumns} />
-        </div>
+        </Flex>
         <pre className="code-block">
           <code>{`import { Datalist, createColumns } from '@konradullrich/mp-components';
 
@@ -147,18 +144,13 @@ const columns = createColumns<Employee>([
       </Section>
 
       {/* ── Nested / deep access ──────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Nested Object Access
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>accessorFn</code> together with a unique <code>id</code> to
-          read values from nested objects. There is no restriction on nesting
-          depth.
-        </Text>
-        <div className="component-page__demo">
+      <Section
+        title="Nested Object Access"
+        subtitle="Use accessorFn together with a unique id to read values from nested objects."
+      >
+        <Flex gap="md" wrap>
           <Datalist data={employees} columns={nestedColumns} />
-        </div>
+        </Flex>
         <pre className="code-block">
           <code>{`interface Employee {
   id: number;
@@ -177,16 +169,11 @@ const columns = createColumns<Employee>([
       </Section>
 
       {/* ── Action columns ────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Action Columns
-        </Text>
-        <Text color="secondary" size="sm">
-          Omit <code>key</code> and <code>accessorFn</code>, provide an{" "}
-          <code>id</code>, and supply a <code>cell</code> renderer to add
-          interactive controls per row.
-        </Text>
-        <div className="component-page__demo">
+      <Section
+        title="Action Columns"
+        subtitle="Omit key and accessorFn, provide an id, and supply a cell renderer to add interactive controls per row."
+      >
+        <Flex gap="md" wrap>
           {lastAction && (
             <div
               style={{
@@ -201,7 +188,7 @@ const columns = createColumns<Employee>([
             </div>
           )}
           <Datalist data={employees} columns={actionColumns} />
-        </div>
+        </Flex>
         <pre className="code-block">
           <code>{`const columns = createColumns<Employee>([
   { key: 'name',  header: 'Name' },
@@ -222,10 +209,7 @@ const columns = createColumns<Employee>([
       </Section>
 
       {/* ── API reference ─────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          ColumnConfig API
-        </Text>
+      <Section title="ColumnConfig API">
         <pre className="code-block">
           <code>{`interface ColumnConfig<T> {
   /**

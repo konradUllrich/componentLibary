@@ -11,7 +11,7 @@
 .native-select {
   width: 100%;
   font-family: inherit;
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
   color: var(--mp-color-foreground);
   background-color: var(--mp-color-background);
   border: 1px solid var(--mp-color-border);
@@ -20,7 +20,7 @@
   outline: none;
   cursor: pointer;
   appearance: none;
-  padding-right: var(--spacing-8);
+  padding-right: var(--mp-spacing-8);
 }
 
 .native-select:hover:not(:disabled) {
@@ -60,20 +60,20 @@
 
 /* Size: Small */
 .native-select--sm {
-  padding: var(--spacing-1) var(--spacing-2);
-  font-size: var(--font-size-sm);
+  padding: var(--mp-spacing-1) var(--mp-spacing-2);
+  font-size: var(--mp-font-size-sm);
 }
 
 /* Size: Medium */
 .native-select--md {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-base);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-base);
 }
 
 /* Size: Large */
 .native-select--lg {
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-lg);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
+  font-size: var(--mp-font-size-lg);
 }
 
 /* Modifier: Error */
@@ -96,7 +96,7 @@
 /* Element: Select Icon */
 .native-select-icon {
   position: absolute;
-  right: var(--spacing-3);
+  right: var(--mp-spacing-3);
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.8em;

@@ -2,17 +2,17 @@
 
 /* Block: Label */
 .mp-label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--mp-font-size-sm);
+  font-weight: var(--mp-font-weight-medium);
   color: var(--mp-color-foreground);
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--mp-spacing-1);
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-1);
+  gap: var(--mp-spacing-1);
 }
 
 /* Element: Required Indicator */
 .mp-label__required {
   color: var(--mp-color-error);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--mp-font-weight-semibold);
 }

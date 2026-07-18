@@ -31,13 +31,13 @@ import "./mpComponents/styles/variables.css";
 - `--mp-color-primary` - Main brand color
 - `--mp-color-primary-light` - Lighter variant
 - `--mp-color-primary-strong` - Darker variant
-- `--mp-color-primary-foreground` - Text color on primary background
+- `--mp-color-onPrimary` - Text color on primary background
 
 ```css
 --mp-color-primary: #007bff;
 --mp-color-primary-light: #0d6efd;
 --mp-color-primary-strong: #0056b3;
---mp-color-primary-foreground: #ffffff;
+--mp-color-onPrimary: #ffffff;
 ```
 
 #### Secondary Colors
@@ -73,10 +73,10 @@ import "./mpComponents/styles/variables.css";
 
 - `--mp-color-background` - Primary background
 - `--mp-color-background-secondary` - Secondary background
-- `--mp-color-background-tertiary` - Tertiary background
+- `--mp-color-background-light` - Tertiary background
 - `--mp-color-foreground` - Primary text
 - `--mp-color-foreground-light` - Secondary text
-- `--mp-color-foreground-tertiary` - Tertiary text
+- `--mp-color-foreground-light` - Tertiary text
 - `--mp-color-foreground-muted` - Muted/disabled text
 
 #### Functional Colors
@@ -90,13 +90,13 @@ import "./mpComponents/styles/variables.css";
 Consistent spacing system (multiples of 4px):
 
 ```css
---spacing-0: 0;
---spacing-1: 0.25rem; /* 4px */
---spacing-2: 0.5rem; /* 8px */
---spacing-3: 0.75rem; /* 12px */
---spacing-4: 1rem; /* 16px */
---spacing-6: 1.5rem; /* 24px */
---spacing-8: 2rem; /* 32px */
+--mp-spacing-0: 0;
+--mp-spacing-1: 0.25rem; /* 4px */
+--mp-spacing-2: 0.5rem; /* 8px */
+--mp-spacing-3: 0.75rem; /* 12px */
+--mp-spacing-4: 1rem; /* 16px */
+--mp-spacing-6: 1.5rem; /* 24px */
+--mp-spacing-8: 2rem; /* 32px */
 /* ... up to 24rem */
 ```
 
@@ -104,8 +104,8 @@ Consistent spacing system (multiples of 4px):
 
 ```css
 .button {
-  padding: var(--spacing-2) var(--spacing-4);
-  margin-bottom: var(--spacing-4);
+  padding: var(--mp-spacing-2) var(--mp-spacing-4);
+  margin-bottom: var(--mp-spacing-4);
 }
 ```
 
@@ -120,24 +120,24 @@ Consistent spacing system (multiples of 4px):
 #### Font Sizes
 
 ```css
---font-size-xs: 0.75rem; /* 12px */
---font-size-sm: 0.875rem; /* 14px */
---font-size-base: 1rem; /* 16px */
---font-size-lg: 1.125rem; /* 18px */
---font-size-xl: 1.25rem; /* 20px */
---font-size-2xl: 1.5rem; /* 24px */
+--mp-font-size-xs: 0.75rem; /* 12px */
+--mp-font-size-sm: 0.875rem; /* 14px */
+--mp-font-size-base: 1rem; /* 16px */
+--mp-font-size-lg: 1.125rem; /* 18px */
+--mp-font-size-xl: 1.25rem; /* 20px */
+--mp-font-size-2xl: 1.5rem; /* 24px */
 /* ... up to 5xl */
 ```
 
 #### Font Weights
 
 ```css
---font-weight-light: 300;
---font-weight-normal: 400;
---font-weight-medium: 500;
---font-weight-semibold: 600;
---font-weight-bold: 700;
---font-weight-extrabold: 800;
+--mp-font-weight-light: 300;
+--mp-font-weight-normal: 400;
+--mp-font-weight-medium: 500;
+--mp-font-weight-semibold: 600;
+--mp-font-weight-bold: 700;
+--mp-font-weight-extrabold: 800;
 ```
 
 #### Line Heights
@@ -238,8 +238,8 @@ Pre-configured variables for common components:
 --mp-button-padding-x-md: 1rem;
 --mp-button-padding-y-lg: 0.75rem;
 --mp-button-padding-x-lg: 1.5rem;
---mp-button-font-size: var(--font-size-base);
---mp-button-font-weight: var(--font-weight-medium);
+--mp-button-font-size: var(--mp-font-size-base);
+--mp-button-font-weight: var(--mp-font-weight-medium);
 --mp-button-border-radius: var(--mp-radius-md);
 --mp-button-transition: all var(--duration-200) var(--ease-in-out);
 ```
@@ -249,7 +249,7 @@ Pre-configured variables for common components:
 ```css
 --mp-input-padding-y: 0.5rem;
 --mp-input-padding-x: 0.75rem;
---mp-input-font-size: var(--font-size-base);
+--mp-input-font-size: var(--mp-font-size-base);
 --mp-input-border-radius: var(--mp-radius-md);
 --mp-input-border-width: 1px;
 --mp-input-border-color: var(--mp-color-input-border);
@@ -276,11 +276,11 @@ Create your own CSS file and override variables before importing components:
   --mp-color-primary-strong: #4f46e5;
 
   /* Override spacing */
-  --spacing-4: 1.25rem; /* Increase base spacing */
+  --mp-spacing-4: 1.25rem; /* Increase base spacing */
 
   /* Override typography */
   --font-family-base: "Inter", sans-serif;
-  --font-size-base: 15px;
+  --mp-font-size-base: 15px;
 }
 ```
 
@@ -301,7 +301,7 @@ import "./mpComponents/styles/variables.css"; // Will not override your custom v
   --mp-color-primary: #ff6b35;
   --mp-color-primary-light: #ff8c42;
   --mp-color-primary-strong: #e55100;
-  --mp-color-primary-foreground: #ffffff;
+  --mp-color-onPrimary: #ffffff;
 
   /* Company secondary color */
   --mp-color-secondary: #004e89;
@@ -310,7 +310,7 @@ import "./mpComponents/styles/variables.css"; // Will not override your custom v
 
   /* Override font for brand consistency */
   --font-family-base: "Poppins", sans-serif;
-  --font-weight-medium: 600; /* Poppins medium = 600 */
+  --mp-font-weight-medium: 600; /* Poppins medium = 600 */
 }
 ```
 
@@ -351,10 +351,10 @@ document.documentElement.classList.add('dark');
 ```css
 /* ✅ Good */
 .button {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   background-color: var(--mp-color-primary);
   border-radius: var(--mp-radius-md);
-  padding: var(--spacing-2) var(--spacing-4);
+  padding: var(--mp-spacing-2) var(--mp-spacing-4);
 }
 
 /* ❌ Avoid hardcoding colors */
@@ -389,9 +389,9 @@ document.documentElement.classList.add('dark');
 ```css
 /* ✅ Use spacing scale */
 .card {
-  padding: var(--spacing-6);
-  margin-bottom: var(--spacing-4);
-  gap: var(--spacing-3);
+  padding: var(--mp-spacing-6);
+  margin-bottom: var(--mp-spacing-4);
+  gap: var(--mp-spacing-3);
 }
 ```
 
@@ -420,7 +420,7 @@ export function Button() {
       className={styles.button}
       style={{
         backgroundColor: "var(--mp-color-primary)",
-        color: "var(--mp-color-primary-foreground)",
+        color: "var(--mp-color-onPrimary)",
         padding: "var(--mp-button-padding-y-md) var(--mp-button-padding-x-md)",
         borderRadius: "var(--mp-button-border-radius)",
       }}
@@ -435,12 +435,12 @@ export function Button() {
 
 ```css
 .container {
-  padding: var(--spacing-4);
+  padding: var(--mp-spacing-4);
 }
 
 @media (min-width: 768px) {
   .container {
-    padding: var(--spacing-8);
+    padding: var(--mp-spacing-8);
   }
 }
 ```

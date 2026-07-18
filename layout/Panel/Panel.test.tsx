@@ -80,7 +80,7 @@ test.describe("Panel Component", () => {
     const paddingTop = await component.evaluate(
       (el) => window.getComputedStyle(el).paddingTop,
     );
-    // --spacing-4 = 1rem = 16px at default font size
+    // --mp-spacing-4 = 1rem = 16px at default font size
     expect(paddingTop).toBe("16px");
   });
 
@@ -99,7 +99,7 @@ test.describe("Panel Component", () => {
     const paddingRight = await component.evaluate(
       (el) => window.getComputedStyle(el).paddingRight,
     );
-    // --spacing-6 = 1.5rem = 24px at default font size
+    // --mp-spacing-6 = 1.5rem = 24px at default font size
     expect(paddingLeft).toBe("24px");
     expect(paddingRight).toBe("24px");
   });
@@ -117,7 +117,7 @@ test.describe("Panel Component", () => {
     const paddingBottom = await component.evaluate(
       (el) => window.getComputedStyle(el).paddingBottom,
     );
-    // --spacing-4 = 1rem = 16px at default font size
+    // --mp-spacing-4 = 1rem = 16px at default font size
     expect(paddingTop).toBe("16px");
     expect(paddingBottom).toBe("16px");
   });

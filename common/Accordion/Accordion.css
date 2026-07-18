@@ -43,10 +43,10 @@
   flex: 1 1 auto;
   min-width: 100px;
   background-color: transparent;
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   border: none;
   border-bottom: 3px solid transparent;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
   color: var(--mp-color-foreground-light);
   cursor: pointer;
   display: flex;
@@ -83,7 +83,7 @@
 }
 
 .accordion--tabs .accordion-content-inner {
-  padding: var(--spacing-4);
+  padding: var(--mp-spacing-4);
   color: var(--mp-color-foreground);
   width: 100%;
   box-sizing: border-box;
@@ -108,14 +108,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-3);
+  gap: var(--mp-spacing-3);
   width: 100%;
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   background-color: var(--mp-color-background);
   border: none;
   color: var(--mp-color-foreground);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--mp-font-size-base);
+  font-weight: var(--mp-font-weight-medium);
   cursor: pointer;
   text-align: left;
   transition: all var(--duration-200) var(--ease-in-out);
@@ -164,10 +164,10 @@
 
 /* Element: Accordion Content Inner */
 .accordion-content-inner {
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   border-top: 1px solid var(--mp-color-border);
   color: var(--mp-color-foreground-light);
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
   line-height: var(--line-height-relaxed);
 }
 

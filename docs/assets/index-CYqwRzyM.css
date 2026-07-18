@@ -23,7 +23,7 @@
   top: -40px;
   transform: translate(-50%);
   background: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border: none;
   border-radius: var(--mp-radius-md) var(--mp-radius-md) 0 0;
   padding: var(--spacing-2) var(--spacing-4);
@@ -182,7 +182,7 @@
     var(--mp-color-primary-base),
     black 15%
   );
-  --mp-color-primary-foreground: white;
+  --mp-color-onPrimary: white;
   --mp-color-secondary: var(--mp-color-secondary-base);
   --mp-color-secondary-light: color-mix(
     in oklch,
@@ -420,7 +420,7 @@
   --mp-table-row-hover-background: var(--mp-color-gray-50);
   --mp-table-cell-padding: var(--spacing-4);
   --mp-pagination-active-background: var(--mp-color-primary);
-  --mp-pagination-active-color: var(--mp-color-primary-foreground);
+  --mp-pagination-active-color: var(--mp-color-onPrimary);
   --mp-pagination-border-color: var(--mp-color-border);
   --toast-padding: var(--spacing-4);
   --toast-border-radius: var(--mp-radius-lg);
@@ -31138,11 +31138,11 @@ code {
 }
 .sidebar-item--active {
   background: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .sidebar-item--active:visited,
 .sidebar-item--active[href] {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .sidebar-item--active:hover {
   background: var(--mp-color-primary-light);
@@ -31256,12 +31256,12 @@ code {
 .sidebar-subitem--active {
   background-color: var(--mp-color-primary);
   border-left-color: var(--mp-color-primary-strong);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   font-weight: var(--font-weight-semibold);
 }
 .sidebar-subitem--active:visited,
 .sidebar-subitem--active[href] {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .sidebar-subitem--active:hover {
   background-color: var(--mp-color-primary);
@@ -31931,11 +31931,11 @@ code {
 }
 .horizontal-nav-item--active {
   background-color: var(--mp-color-primary-strong);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .horizontal-nav-item--active:visited,
 .horizontal-nav-item--active[href] {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .horizontal-nav-item--active:hover {
   background-color: var(--mp-color-primary-strong);
@@ -32036,7 +32036,7 @@ code {
 }
 .mp-button--primary {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 .mp-button--primary:hover:not(:disabled) {
@@ -32348,7 +32348,7 @@ code {
 .tabs--pills .tabs-trigger[data-state="active"] {
   background-color: var(--mp-color-primary);
   border-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .tabs-trigger {
   font-size: var(--font-size-base);
@@ -33331,7 +33331,7 @@ code {
 }
 .toggle--default[data-state="on"] {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 .toggle--default[data-state="on"]:hover:not(:disabled) {
@@ -33350,7 +33350,7 @@ code {
 }
 .toggle--outline[data-state="on"] {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 .toggle--outline[data-state="on"]:hover:not(:disabled) {
@@ -33429,7 +33429,7 @@ code {
 }
 .toggle-group__item[data-state="on"] {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 .toggle-group__item[data-state="on"]:hover:not(:disabled) {
   background-color: var(--mp-color-primary-strong);
@@ -34803,7 +34803,7 @@ code {
 }
 .icon-picker__style-btn--active {
   background: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   font-weight: var(--font-weight-semibold);
 }
 .icon-picker__category-toggle {
@@ -34851,7 +34851,7 @@ code {
 .icon-picker__category-action-btn {
   padding: var(--spacing-1) var(--spacing-3);
   background: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border: none;
   border-radius: var(--mp-radius-sm);
   font-size: var(--font-size-xs);

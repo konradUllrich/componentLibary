@@ -12,14 +12,14 @@
 .disclosure-trigger {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: var(--mp-spacing-3);
   width: 100%;
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   background-color: var(--mp-color-background);
   border: none;
   color: var(--mp-color-foreground);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--mp-font-size-base);
+  font-weight: var(--mp-font-weight-medium);
   cursor: pointer;
   text-align: left;
   transition: all var(--duration-200) var(--ease-in-out);
@@ -76,16 +76,16 @@
 }
 
 .disclosure-content > * {
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   border-top: 1px solid var(--mp-color-border);
 }
 
 .disclosure-content > *:first-child {
-  padding-top: var(--spacing-3);
+  padding-top: var(--mp-spacing-3);
 }
 
 .disclosure-content > *:last-child {
-  padding-bottom: var(--spacing-3);
+  padding-bottom: var(--mp-spacing-3);
 }
 
 @keyframes slide-down {

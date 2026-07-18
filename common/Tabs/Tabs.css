@@ -4,25 +4,25 @@
 .tabs {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--mp-spacing-4);
   width: 100%;
 }
 
 /* Block: Tabs List */
 .tabs-list {
   display: flex;
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
   border-bottom: 1px solid var(--mp-color-border);
 }
 
 /* Variant: Default */
 .tabs--default .tabs-trigger {
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   background-color: transparent;
   border: none;
   border-bottom: 2px solid transparent;
   color: var(--mp-color-foreground-light);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-200) var(--ease-in-out);
   outline: none;
@@ -44,12 +44,12 @@
 }
 
 .tabs--underline .tabs-trigger {
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   background-color: transparent;
   border: none;
   border-bottom: 3px solid transparent;
   color: var(--mp-color-foreground-light);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-200) var(--ease-in-out);
   margin-bottom: -2px;
@@ -68,17 +68,17 @@
 /* Variant: Pills */
 .tabs--pills .tabs-list {
   border-bottom: none;
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
   flex-wrap: wrap;
 }
 
 .tabs--pills .tabs-trigger {
-  padding: var(--spacing-2) var(--spacing-3);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
   background-color: var(--mp-color-background-secondary);
   border: 1px solid var(--mp-color-border);
   border-radius: var(--mp-radius-lg);
   color: var(--mp-color-foreground-light);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-200) var(--ease-in-out);
   outline: none;
@@ -93,12 +93,12 @@
 .tabs--pills .tabs-trigger[data-state="active"] {
   background-color: var(--mp-color-primary);
   border-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 /* Common Tab Styles */
 .tabs-trigger {
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
 }
 
 .tabs-trigger:focus-visible {

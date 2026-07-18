@@ -272,10 +272,10 @@ ComponentName.displayName = "ComponentName";
 .component-name {
   display: flex;
   align-items: center;
-  padding: var(--spacing-2) var(--spacing-4);
+  padding: var(--mp-spacing-2) var(--mp-spacing-4);
   border-radius: var(--mp-radius-md);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--mp-font-size-base);
+  font-weight: var(--mp-font-weight-medium);
   transition: var(--transition-fast);
 }
 
@@ -291,7 +291,7 @@ ComponentName.displayName = "ComponentName";
 
 .component-name--primary {
   background: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .component-name--secondary {
@@ -452,7 +452,7 @@ All tokens are defined in `styles/variables.css`. Always use tokens rather than 
 /* Colors */
 var(--mp-color-primary)               /* Brand primary */
 var(--mp-color-primary-strong)          /* Hover state */
-var(--mp-color-primary-foreground)    /* Text on primary background */
+var(--mp-color-onPrimary)    /* Text on primary background */
 var(--mp-color-secondary)
 var(--mp-color-destructive)
 var(--mp-color-foreground)            /* Default text */
@@ -462,20 +462,20 @@ var(--mp-color-border)
 var(--mp-color-ring)                  /* Focus ring */
 
 /* Spacing (4px base) */
-var(--spacing-1)   /* 4px  */
-var(--spacing-2)   /* 8px  */
-var(--spacing-3)   /* 12px */
-var(--spacing-4)   /* 16px */
-var(--spacing-6)   /* 24px */
-var(--spacing-8)   /* 32px */
+var(--mp-spacing-1)   /* 4px  */
+var(--mp-spacing-2)   /* 8px  */
+var(--mp-spacing-3)   /* 12px */
+var(--mp-spacing-4)   /* 16px */
+var(--mp-spacing-6)   /* 24px */
+var(--mp-spacing-8)   /* 32px */
 
 /* Typography */
-var(--font-size-xs)    /* 12px */
-var(--font-size-sm)    /* 14px */
-var(--font-size-base)  /* 16px */
-var(--font-size-lg)    /* 18px */
-var(--font-weight-medium)    /* 500 */
-var(--font-weight-semibold)  /* 600 */
+var(--mp-font-size-xs)    /* 12px */
+var(--mp-font-size-sm)    /* 14px */
+var(--mp-font-size-base)  /* 16px */
+var(--mp-font-size-lg)    /* 18px */
+var(--mp-font-weight-medium)    /* 500 */
+var(--mp-font-weight-semibold)  /* 600 */
 
 /* Border radius */
 var(--mp-radius-sm)   /* 4px  */

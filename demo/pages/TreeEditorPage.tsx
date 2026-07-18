@@ -181,7 +181,7 @@ export const TreeEditorPage: React.FC = () => {
               </span>
             )}
             itemMenu={(item, actions) => (
-              <div style={{ display: "flex", gap: "var(--spacing-1)" }}>
+              <div style={{ display: "flex", gap: "var(--mp-spacing-1)" }}>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -299,7 +299,7 @@ export const TreeEditorPage: React.FC = () => {
         <Panel variant="subtle">
           <pre
             style={{
-              fontSize: "var(--font-size-xs)",
+              fontSize: "var(--mp-font-size-xs)",
               overflowX: "auto",
               margin: 0,
             }}

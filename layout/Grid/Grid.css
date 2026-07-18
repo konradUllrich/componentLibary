@@ -86,65 +86,65 @@
 
 /* Gap presets */
 .mp-grid--gap-xs {
-  gap: var(--spacing-1);
+  gap: var(--mp-spacing-1);
 }
 
 .mp-grid--gap-sm {
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
 }
 
 .mp-grid--gap-md {
-  gap: var(--spacing-3);
+  gap: var(--mp-spacing-3);
 }
 
 .mp-grid--gap-lg {
-  gap: var(--spacing-4);
+  gap: var(--mp-spacing-4);
 }
 
 .mp-grid--gap-xl {
-  gap: var(--spacing-6);
+  gap: var(--mp-spacing-6);
 }
 
 /* Column gap presets */
 .mp-grid--col-gap-xs {
-  column-gap: var(--spacing-1);
+  column-gap: var(--mp-spacing-1);
 }
 
 .mp-grid--col-gap-sm {
-  column-gap: var(--spacing-2);
+  column-gap: var(--mp-spacing-2);
 }
 
 .mp-grid--col-gap-md {
-  column-gap: var(--spacing-3);
+  column-gap: var(--mp-spacing-3);
 }
 
 .mp-grid--col-gap-lg {
-  column-gap: var(--spacing-4);
+  column-gap: var(--mp-spacing-4);
 }
 
 .mp-grid--col-gap-xl {
-  column-gap: var(--spacing-6);
+  column-gap: var(--mp-spacing-6);
 }
 
 /* Row gap presets */
 .mp-grid--row-gap-xs {
-  row-gap: var(--spacing-1);
+  row-gap: var(--mp-spacing-1);
 }
 
 .mp-grid--row-gap-sm {
-  row-gap: var(--spacing-2);
+  row-gap: var(--mp-spacing-2);
 }
 
 .mp-grid--row-gap-md {
-  row-gap: var(--spacing-3);
+  row-gap: var(--mp-spacing-3);
 }
 
 .mp-grid--row-gap-lg {
-  row-gap: var(--spacing-4);
+  row-gap: var(--mp-spacing-4);
 }
 
 .mp-grid--row-gap-xl {
-  row-gap: var(--spacing-6);
+  row-gap: var(--mp-spacing-6);
 }
 
 /* -----------------------------------------------------------------------
@@ -155,48 +155,112 @@
 
 /* sm – min-width: 480px */
 @media (min-width: 480px) {
-  .mp-grid--sm-cols-1 { grid-template-columns: repeat(1, 1fr); }
-  .mp-grid--sm-cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .mp-grid--sm-cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .mp-grid--sm-cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .mp-grid--sm-cols-5 { grid-template-columns: repeat(5, 1fr); }
-  .mp-grid--sm-cols-6 { grid-template-columns: repeat(6, 1fr); }
-  .mp-grid--sm-cols-12 { grid-template-columns: repeat(12, 1fr); }
-  .mp-grid--sm-cols-custom { grid-template-columns: var(--grid-sm-cols); }
+  .mp-grid--sm-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .mp-grid--sm-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mp-grid--sm-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .mp-grid--sm-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .mp-grid--sm-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .mp-grid--sm-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .mp-grid--sm-cols-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .mp-grid--sm-cols-custom {
+    grid-template-columns: var(--grid-sm-cols);
+  }
 }
 
 /* md – min-width: 768px */
 @media (min-width: 768px) {
-  .mp-grid--md-cols-1 { grid-template-columns: repeat(1, 1fr); }
-  .mp-grid--md-cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .mp-grid--md-cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .mp-grid--md-cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .mp-grid--md-cols-5 { grid-template-columns: repeat(5, 1fr); }
-  .mp-grid--md-cols-6 { grid-template-columns: repeat(6, 1fr); }
-  .mp-grid--md-cols-12 { grid-template-columns: repeat(12, 1fr); }
-  .mp-grid--md-cols-custom { grid-template-columns: var(--grid-md-cols); }
+  .mp-grid--md-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .mp-grid--md-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mp-grid--md-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .mp-grid--md-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .mp-grid--md-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .mp-grid--md-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .mp-grid--md-cols-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .mp-grid--md-cols-custom {
+    grid-template-columns: var(--grid-md-cols);
+  }
 }
 
 /* lg – min-width: 1024px */
 @media (min-width: 1024px) {
-  .mp-grid--lg-cols-1 { grid-template-columns: repeat(1, 1fr); }
-  .mp-grid--lg-cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .mp-grid--lg-cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .mp-grid--lg-cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .mp-grid--lg-cols-5 { grid-template-columns: repeat(5, 1fr); }
-  .mp-grid--lg-cols-6 { grid-template-columns: repeat(6, 1fr); }
-  .mp-grid--lg-cols-12 { grid-template-columns: repeat(12, 1fr); }
-  .mp-grid--lg-cols-custom { grid-template-columns: var(--grid-lg-cols); }
+  .mp-grid--lg-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .mp-grid--lg-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mp-grid--lg-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .mp-grid--lg-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .mp-grid--lg-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .mp-grid--lg-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .mp-grid--lg-cols-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .mp-grid--lg-cols-custom {
+    grid-template-columns: var(--grid-lg-cols);
+  }
 }
 
 /* xl – min-width: 1280px */
 @media (min-width: 1280px) {
-  .mp-grid--xl-cols-1 { grid-template-columns: repeat(1, 1fr); }
-  .mp-grid--xl-cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .mp-grid--xl-cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .mp-grid--xl-cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .mp-grid--xl-cols-5 { grid-template-columns: repeat(5, 1fr); }
-  .mp-grid--xl-cols-6 { grid-template-columns: repeat(6, 1fr); }
-  .mp-grid--xl-cols-12 { grid-template-columns: repeat(12, 1fr); }
-  .mp-grid--xl-cols-custom { grid-template-columns: var(--grid-xl-cols); }
+  .mp-grid--xl-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .mp-grid--xl-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mp-grid--xl-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .mp-grid--xl-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .mp-grid--xl-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .mp-grid--xl-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .mp-grid--xl-cols-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .mp-grid--xl-cols-custom {
+    grid-template-columns: var(--grid-xl-cols);
+  }
 }

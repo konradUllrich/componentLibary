@@ -5,7 +5,7 @@
   z-index: calc(var(--z-fixed, 1000) + 1);
   width: 44px;
   height: 44px;
-  padding: var(--spacing-2, 0.5rem);
+  padding: var(--mp-spacing-2, 0.5rem);
   background-color: var(--mp-color-primary, #0070f3);
   border: none;
   border-radius: var(--mp-radius-md, 8px);

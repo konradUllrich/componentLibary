@@ -7,7 +7,7 @@
   justify-content: space-between;
   width: 100%;
   font-family: inherit;
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
   color: var(--mp-color-foreground);
   background-color: var(--mp-color-background);
   border: 1px solid var(--mp-color-border);
@@ -58,20 +58,20 @@
 
 /* Size: Small */
 .select-trigger--sm {
-  padding: var(--spacing-1) var(--spacing-2);
-  font-size: var(--font-size-sm);
+  padding: var(--mp-spacing-1) var(--mp-spacing-2);
+  font-size: var(--mp-font-size-sm);
 }
 
 /* Size: Medium */
 .select-trigger--md {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-base);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-base);
 }
 
 /* Size: Large */
 .select-trigger--lg {
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-lg);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
+  font-size: var(--mp-font-size-lg);
 }
 
 /* Modifier: Error */
@@ -113,7 +113,7 @@
 
 /* Element: Select Viewport */
 .select-viewport {
-  padding: var(--spacing-1);
+  padding: var(--mp-spacing-1);
 }
 
 /* Block: Select Item */
@@ -121,9 +121,9 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: var(--spacing-2) var(--spacing-3);
-  padding-right: var(--spacing-8);
-  font-size: var(--font-size-base);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  padding-right: var(--mp-spacing-8);
+  font-size: var(--mp-font-size-base);
   color: var(--mp-color-foreground);
   border-radius: var(--mp-radius-sm);
   cursor: pointer;
@@ -142,7 +142,7 @@
 .select-item[data-state="checked"] {
   background-color: var(--mp-color-primary-light);
   color: var(--mp-color-foreground);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
 }
 
 /* Modifier: Disabled Item */
@@ -155,7 +155,7 @@
 /* Element: Item Indicator */
 .select-item-indicator {
   position: absolute;
-  right: var(--spacing-2);
+  right: var(--mp-spacing-2);
   display: flex;
   align-items: center;
   justify-content: center;

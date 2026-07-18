@@ -3,7 +3,7 @@
 .form-builder {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--mp-spacing-4);
   width: 100%;
 }
 
@@ -28,6 +28,6 @@
 .form-builder__actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
-  padding-top: var(--spacing-2);
+  gap: var(--mp-spacing-3);
+  padding-top: var(--mp-spacing-2);
 }

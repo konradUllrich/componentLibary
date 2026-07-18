@@ -49,7 +49,7 @@ export const RouterPage: React.FC = () => {
               style={{
                 border: "1px solid var(--mp-color-border)",
                 borderRadius: "var(--mp-radius-md)",
-                padding: "var(--spacing-4)",
+                padding: "var(--mp-spacing-4)",
                 width: "100%",
               }}
             >
@@ -57,8 +57,8 @@ export const RouterPage: React.FC = () => {
                 <nav
                   style={{
                     display: "flex",
-                    gap: "var(--spacing-3)",
-                    marginBottom: "var(--spacing-4)",
+                    gap: "var(--mp-spacing-3)",
+                    marginBottom: "var(--mp-spacing-4)",
                   }}
                 >
                   <Link href="/">Home</Link>
@@ -106,7 +106,7 @@ export const RouterPage: React.FC = () => {
           <code
             style={{
               background: "var(--mp-color-muted)",
-              padding: "var(--spacing-2) var(--spacing-3)",
+              padding: "var(--mp-spacing-2) var(--mp-spacing-3)",
               borderRadius: "var(--mp-radius-sm)",
             }}
           >
@@ -123,7 +123,7 @@ export const RouterPage: React.FC = () => {
           The following hooks are exported alongside the router components.
         </Text>
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
-          <ul style={{ margin: 0, paddingLeft: "var(--spacing-5)" }}>
+          <ul style={{ margin: 0, paddingLeft: "var(--mp-spacing-5)" }}>
             <li>
               <code>useLocation</code> – current pathname and navigate function
             </li>

@@ -37,18 +37,14 @@ import {
 } from "./pages";
 
 import "./App.css";
-import "./pages/ComponentPage.css";
 import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
 import { UsePersistedStatePage } from "./pages/UsePersistedStatePage";
-import { BookOpen, Github, Palette, Home } from "lucide-react";
-import {
-  ThemePanel,
-  ThemePresetProvider,
-  useThemeEditor,
-} from "../common/ThemeProvider";
+import { Github, Palette, Home } from "lucide-react";
+import { ThemePanel, useThemeEditor } from "../common/ThemeProvider";
 import { Route } from "../Router";
 import { useLocation } from "../Router/hooks";
+import { ThemeProvider } from "./theme/ThemeProvider";
 
 export const App: React.FC = () => {
   const [location, navigate] = useLocation(); // Ensure the router's location hook is initialized at the top level of the app
@@ -58,17 +54,7 @@ export const App: React.FC = () => {
 
   return (
     <>
-      <ThemePresetProvider
-        theme={{
-          colors: {
-            background: "#2a2a27",
-            onBackground: "#fafafa",
-            onBackgroundLight: "#dedcdc",
-            border: "#dedcdc",
-            borderLight: "#3e3e3b",
-          },
-        }}
-      >
+      <ThemeProvider>
         <ThemePanel />
         <AppLayout
           header={
@@ -86,24 +72,7 @@ export const App: React.FC = () => {
                         navigate("/");
                       },
                     },
-                    {
-                      id: "use-persisted-state",
-                      label: "usePersistedState",
-                      icon: <BookOpen size={18} />,
-                      isActive: location === "/hooks/use-persisted-state",
-                      onClick: () => {
-                        navigate("/hooks/use-persisted-state");
-                      },
-                    },
-                    {
-                      id: "use-pagination",
-                      label: "usePagination",
-                      icon: <BookOpen size={18} />,
-                      isActive: location === "/hooks/use-pagination",
-                      onClick: () => {
-                        navigate("/hooks/use-pagination");
-                      },
-                    },
+
                     {
                       id: "github",
                       label: "GitHub",
@@ -176,7 +145,7 @@ export const App: React.FC = () => {
           <Route path="/components/intrexx-icon" component={IntrexxIconPage} />
           <Route path="/components/icon-picker" component={IconPickerPage} />
         </AppLayout>
-      </ThemePresetProvider>
+      </ThemeProvider>
     </>
   );
 };

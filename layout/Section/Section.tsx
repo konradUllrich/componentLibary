@@ -3,6 +3,7 @@ import clsx from "clsx";
 import "./Section.css";
 import { Flex } from "../Flex";
 import { Text } from "../../common";
+import { u } from "../../utils";
 
 type SectionElement = "section" | "div" | "article" | "aside";
 
@@ -57,15 +58,17 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
 
     const inner = (
       <>
-        <Flex justify="space-between" align="center">
-          <div>
-            <Text as="h2" size="lg" weight="bold">
-              {title}
-            </Text>
-            <Text color="secondary">{subtitle}</Text>
-          </div>
-          {actions}
-        </Flex>
+        {(subtitle || title) && (
+          <Flex justify="space-between" align="center" className={u({ mb: 6 })}>
+            <div>
+              <Text as="h2" size="lg" weight="bold">
+                {title}
+              </Text>
+              <Text color="secondary">{subtitle}</Text>
+            </div>
+            {actions}
+          </Flex>
+        )}
         {children}
       </>
     );

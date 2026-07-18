@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border-radius: var(--mp-button-border-radius);
   text-decoration: none;
   font-weight: var(--mp-button-font-weight);
@@ -63,12 +63,12 @@
 
 .mp-link--mp-button:hover {
   background-color: var(--mp-color-primary-strong);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   text-decoration: none;
 }
 
 .mp-link--mp-button:active {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .mp-link--mp-button:focus-visible {
@@ -80,7 +80,7 @@
 
 .mp-link--sm {
   padding: var(--mp-button-padding-y-sm) var(--mp-button-padding-x-sm);
-  font-size: var(--font-size-sm);
+  font-size: var(--mp-font-size-sm);
 }
 
 .mp-link--md {
@@ -89,7 +89,7 @@
 
 .mp-link--lg {
   padding: var(--mp-button-padding-y-lg) var(--mp-button-padding-x-lg);
-  font-size: var(--font-size-lg);
+  font-size: var(--mp-font-size-lg);
 }
 
 /* ── Accessibility helpers ────────────────────────────────── */

@@ -71,13 +71,13 @@
 
 /* Modifier: Remaining Count */
 .user-avatars__item--remaining {
-  background-color: var(--mp-color-foreground-tertiary);
+  background-color: var(--mp-color-foreground-light);
 }
 
 /* Empty State */
 .user-avatars__empty {
   color: var(--mp-color-foreground-light);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
 }
 
 .userAvatars-avatar.userAvatars-addUser:hover {

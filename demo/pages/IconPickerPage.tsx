@@ -45,7 +45,7 @@ export const IconPickerPage: React.FC = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "var(--spacing-4)",
+                gap: "var(--mp-spacing-4)",
                 flexWrap: "wrap",
               }}
             >

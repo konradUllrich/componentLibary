@@ -221,7 +221,7 @@ ComponentName.displayName = "ComponentName";
   background: var(--mp-color-primary);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--mp-radius-md);
-  font-size: var(--font-size-md);
+  font-size: var(--mp-font-size-md);
   transition: var(--transition-fast);
 }
 

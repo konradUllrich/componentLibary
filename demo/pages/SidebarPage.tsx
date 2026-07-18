@@ -57,29 +57,28 @@ export const SidebarPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Sidebar with navigation items
         </Text>
-        <div className="component-page__demo">
-          <div
-            style={{
-              height: "400px",
-              position: "relative",
-              border: "1px solid #e0e0e0",
-              borderRadius: "4px",
-              overflow: "hidden",
-            }}
-          >
-            <Sidebar defaultOpen={true}>
-              <SidebarToggle />
-              <SidebarNav>
-                <SidebarItem label="Dashboard" icon="📊" isActive />
-                <SidebarItem label="Users" icon="👥">
-                  <SidebarItem label="All Users" href="#all" />
-                  <SidebarItem label="Add User" href="#add" />
-                </SidebarItem>
-                <SidebarItem label="Settings" icon="⚙️" />
-                <SidebarItem label="Help" icon="❓" />
-              </SidebarNav>
-            </Sidebar>
-          </div>
+
+        <div
+          style={{
+            height: "400px",
+            position: "relative",
+            border: "1px solid #e0e0e0",
+            borderRadius: "4px",
+            overflow: "hidden",
+          }}
+        >
+          <Sidebar defaultOpen={true}>
+            <SidebarToggle />
+            <SidebarNav>
+              <SidebarItem label="Dashboard" icon="📊" isActive />
+              <SidebarItem label="Users" icon="👥">
+                <SidebarItem label="All Users" href="#all" />
+                <SidebarItem label="Add User" href="#add" />
+              </SidebarItem>
+              <SidebarItem label="Settings" icon="⚙️" />
+              <SidebarItem label="Help" icon="❓" />
+            </SidebarNav>
+          </Sidebar>
         </div>
       </Section>
 

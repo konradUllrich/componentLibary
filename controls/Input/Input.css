@@ -4,7 +4,7 @@
 .input {
   width: 100%;
   font-family: inherit;
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
   color: var(--mp-color-foreground);
   background-color: var(--mp-color-background);
   border: 1px solid var(--mp-color-border);
@@ -49,20 +49,20 @@
 
 /* Size: Small */
 .input--sm {
-  padding: var(--spacing-1) var(--spacing-2);
-  font-size: var(--font-size-sm);
+  padding: var(--mp-spacing-1) var(--mp-spacing-2);
+  font-size: var(--mp-font-size-sm);
 }
 
 /* Size: Medium */
 .input--md {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-base);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-base);
 }
 
 /* Size: Large */
 .input--lg {
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-lg);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
+  font-size: var(--mp-font-size-lg);
 }
 
 /* Modifier: Error */

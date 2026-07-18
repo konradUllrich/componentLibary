@@ -2,13 +2,13 @@
  * Responsive spacing utility for generating semantic class names.
  *
  * Token scale (0-6) maps directly to spacing CSS vars:
- * - 0 = var(--spacing-0)
- * - 1 = var(--spacing-1) = 4px
- * - 2 = var(--spacing-2) = 8px
- * - 3 = var(--spacing-3) = 12px
- * - 4 = var(--spacing-4) = 16px
- * - 5 = var(--spacing-5) = 20px
- * - 6 = var(--spacing-6) = 24px
+ * - 0 = var(--mp-spacing-0)
+ * - 1 = var(--mp-spacing-1) = 4px
+ * - 2 = var(--mp-spacing-2) = 8px
+ * - 3 = var(--mp-spacing-3) = 12px
+ * - 4 = var(--mp-spacing-4) = 16px
+ * - 5 = var(--mp-spacing-5) = 20px
+ * - 6 = var(--mp-spacing-6) = 24px
  *
  * Breakpoints (base, sm, md, lg, xl) allow responsive spacing values.
  */

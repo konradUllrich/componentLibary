@@ -59,15 +59,20 @@ export const Page = React.forwardRef<HTMLDivElement, PageProps>(
         className={clsx("mp-page", `mp-page--${maxWidth}`, className)}
         {...props}
       >
-        <Flex justify="space-between" align="center">
-          <div>
-            <Text as={headerType} size="3xl" weight="bold">
-              {header || title}
-            </Text>
-            <Text color="secondary">{subHeader}</Text>
-          </div>
-          {actions}
-        </Flex>
+        {header ||
+          title ||
+          (subHeader && (
+            <Flex justify="space-between" align="center">
+              (
+              <div>
+                <Text as={headerType} size="3xl" weight="bold">
+                  {header || title}
+                </Text>
+                <Text color="secondary">{subHeader}</Text>
+              </div>
+              ){actions}
+            </Flex>
+          ))}
         {children}
       </div>
     );

@@ -1,23 +1,32 @@
-import React from 'react';
-import { Card, CardHeader, CardContent, CardFooter, Page, Section } from '../../layout';
-import { Text, Button } from '../../common';
+import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  Page,
+  Section,
+  Flex,
+} from "../../layout";
+import { Text, Button } from "../../common";
 
 export const CardPage: React.FC = () => {
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Card Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Card Component
+        </Text>
         <Text color="secondary">
           Flexible container component for displaying content in card format
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Variants</Text>
-        <Text color="secondary" size="sm">
-          Different card styles for various contexts
-        </Text>
-        <div className="component-page__demo">
+      <Section
+        title="Card Variants"
+        subtitle="Different card styles for various contexts"
+      >
+        <Flex gap="md" wrap>
           <Card variant="elevated" padding="md">
             <CardHeader>
               <Text weight="semibold">Elevated Card</Text>
@@ -50,38 +59,38 @@ export const CardPage: React.FC = () => {
               </Text>
             </CardContent>
           </Card>
-        </div>
+        </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">With Footer</Text>
-        <Text color="secondary" size="sm">
-          Cards can include header, content, and footer sections
-        </Text>
-        <div className="component-page__demo">
+      <Section
+        title=" With Footer"
+        subtitle="Cards can include header, content, and footer sections"
+      >
+        <Flex gap="md" wrap>
           <Card variant="elevated" padding="md">
             <CardHeader>
               <Text weight="semibold">Complete Card</Text>
             </CardHeader>
             <CardContent>
               <Text color="secondary" size="sm">
-                This card demonstrates all three sections: header, content, and footer.
+                This card demonstrates all three sections: header, content, and
+                footer.
               </Text>
             </CardContent>
             <CardFooter>
-              <Button size="sm" variant="primary">Action</Button>
-              <Button size="sm" variant="secondary">Cancel</Button>
+              <Button size="sm" variant="primary">
+                Action
+              </Button>
+              <Button size="sm" variant="secondary">
+                Cancel
+              </Button>
             </CardFooter>
           </Card>
-        </div>
+        </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Padding Options</Text>
-        <Text color="secondary" size="sm">
-          Control card padding size
-        </Text>
-        <div className="component-page__demo">
+      <Section title="Padding Options" subtitle="Control card padding size">
+        <Flex gap="md" wrap>
           <Card variant="outlined" padding="sm">
             <Text size="sm">Small Padding</Text>
           </Card>
@@ -91,15 +100,14 @@ export const CardPage: React.FC = () => {
           <Card variant="outlined" padding="lg">
             <Text size="sm">Large Padding</Text>
           </Card>
-        </div>
+        </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Interactive Card</Text>
-        <Text color="secondary" size="sm">
-          Cards can be interactive with hover effects
-        </Text>
-        <div className="component-page__demo">
+      <Section
+        title="Interactive Card"
+        subtitle="Cards can be interactive with hover effects"
+      >
+        <Flex gap="md" wrap>
           <Card variant="elevated" padding="md" interactive>
             <CardHeader>
               <Text weight="semibold">Interactive Card</Text>
@@ -110,11 +118,10 @@ export const CardPage: React.FC = () => {
               </Text>
             </CardContent>
           </Card>
-        </div>
+        </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { 
   Card, 

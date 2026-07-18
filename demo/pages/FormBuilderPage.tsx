@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text } from "../../common";
 import { FormBuilder } from "../../controls";
 import { FormControl } from "../../controls";
-import { Page, Section } from "../../layout";
+import { Flex, Page, Section } from "../../layout";
 
 // ─── Demo: Contact form ───────────────────────────────────────────────────────
 
@@ -94,7 +94,7 @@ export const FormBuilderPage: React.FC = () => {
           <code>ContactForm</code>.
         </Text>
 
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap>
           <FormBuilder<ContactForm>
             defaultValues={contactDefaults}
             fields={[
@@ -188,16 +188,16 @@ export const FormBuilderPage: React.FC = () => {
             <pre
               style={{
                 background: "var(--mp-color-muted)",
-                padding: "var(--spacing-4)",
+                padding: "var(--mp-spacing-4)",
                 borderRadius: "var(--mp-radius-md)",
-                fontSize: "var(--font-size-sm)",
+                fontSize: "var(--mp-font-size-sm)",
                 overflowX: "auto",
               }}
             >
               {JSON.stringify(contactResult, null, 2)}
             </pre>
           )}
-        </div>
+        </Flex>
       </Section>
 
       {/* ── Sign-up form ───────────────────────────────────────── */}
@@ -211,7 +211,7 @@ export const FormBuilderPage: React.FC = () => {
           checkbox fields.
         </Text>
 
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap>
           <FormBuilder<SignUpForm>
             defaultValues={signUpDefaults}
             fields={[
@@ -267,16 +267,16 @@ export const FormBuilderPage: React.FC = () => {
             <pre
               style={{
                 background: "var(--mp-color-muted)",
-                padding: "var(--spacing-4)",
+                padding: "var(--mp-spacing-4)",
                 borderRadius: "var(--mp-radius-md)",
-                fontSize: "var(--font-size-sm)",
+                fontSize: "var(--mp-font-size-sm)",
                 overflowX: "auto",
               }}
             >
               {JSON.stringify(signUpResult, null, 2)}
             </pre>
           )}
-        </div>
+        </Flex>
       </Section>
 
       {/* ── Grid layout + custom field ─────────────────────────── */}
@@ -291,7 +291,7 @@ export const FormBuilderPage: React.FC = () => {
           control — here a star-rating picker built with plain buttons.
         </Text>
 
-        <div className="component-page__demo-column">
+        <Flex gap="md" wrap>
           <FormBuilder<ProfileForm>
             defaultValues={profileDefaults}
             columns={2}
@@ -341,7 +341,7 @@ export const FormBuilderPage: React.FC = () => {
                     <div
                       role="group"
                       aria-label="Star rating"
-                      style={{ display: "flex", gap: "var(--spacing-1)" }}
+                      style={{ display: "flex", gap: "var(--mp-spacing-1)" }}
                     >
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
@@ -392,16 +392,16 @@ export const FormBuilderPage: React.FC = () => {
             <pre
               style={{
                 background: "var(--mp-color-muted)",
-                padding: "var(--spacing-4)",
+                padding: "var(--mp-spacing-4)",
                 borderRadius: "var(--mp-radius-md)",
-                fontSize: "var(--font-size-sm)",
+                fontSize: "var(--mp-font-size-sm)",
                 overflowX: "auto",
               }}
             >
               {JSON.stringify(profileResult, null, 2)}
             </pre>
           )}
-        </div>
+        </Flex>
       </Section>
     </Page>
   );

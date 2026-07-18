@@ -14,7 +14,7 @@
   height: 1em;
   width: 100%;
   border-radius: var(--mp-radius-sm);
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--mp-spacing-2);
 }
 
 .skeleton--text:last-child {

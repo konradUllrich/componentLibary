@@ -52,15 +52,15 @@
 }
 
 .mp-card--padding-sm {
-  padding: var(--spacing-3);
+  padding: var(--mp-spacing-3);
 }
 
 .mp-card--padding-md {
-  padding: var(--spacing-4);
+  padding: var(--mp-spacing-4);
 }
 
 .mp-card--padding-lg {
-  padding: var(--spacing-6);
+  padding: var(--mp-spacing-6);
 }
 
 /* Link Card */
@@ -78,10 +78,10 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .mp-card--padding-md {
-    padding: var(--spacing-3);
+    padding: var(--mp-spacing-3);
   }
 
   .mp-card--padding-lg {
-    padding: var(--spacing-4);
+    padding: var(--mp-spacing-4);
   }
 }

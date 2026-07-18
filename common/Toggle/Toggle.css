@@ -5,10 +5,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
   border-radius: var(--mp-radius-md);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--mp-font-size-base);
+  font-weight: var(--mp-font-weight-medium);
   font-family: var(--font-family-base);
   line-height: 1;
   cursor: pointer;
@@ -37,20 +37,20 @@
    ============================== */
 
 .toggle--sm {
-  padding: var(--spacing-1) var(--spacing-2);
-  font-size: var(--font-size-sm);
+  padding: var(--mp-spacing-1) var(--mp-spacing-2);
+  font-size: var(--mp-font-size-sm);
   min-height: 2rem;
 }
 
 .toggle--md {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-base);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-base);
   min-height: 2.5rem;
 }
 
 .toggle--lg {
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-lg);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
+  font-size: var(--mp-font-size-lg);
   min-height: 3rem;
 }
 
@@ -60,18 +60,18 @@
 
 .toggle--default {
   background-color: transparent;
-  color: var(--mp-color-foreground-light);
+  color: var(--mp-color-onPrimary);
   border-color: transparent;
 }
 
 .toggle--default:hover:not(:disabled):not([data-state="on"]) {
-  background-color: var(--mp-color-background-tertiary);
-  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-primary-light);
+  color: var(--mp-color-primary);
 }
 
 .toggle--default[data-state="on"] {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 
@@ -91,14 +91,13 @@
 }
 
 .toggle--outline:hover:not(:disabled):not([data-state="on"]) {
-  background-color: var(--mp-color-background-tertiary);
-  color: var(--mp-color-foreground);
-  border-color: var(--mp-color-border-dark);
+  background-color: var(--mp-color-primary-light);
+  color: var(--mp-color-primary);
 }
 
 .toggle--outline[data-state="on"] {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 

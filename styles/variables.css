@@ -19,12 +19,21 @@
      COLOR PALETTE
      ======================================== */
 
+  /* Background Colors (Hex) */
+  --mp-color-background: #ffffff;
+  --mp-color-background-light: #f8fafc;
+  --mp-color-background-strong: #f1f5f9;
+
+  /* Foreground/Text Colors (Hex - WCAG AA compliant) */
+  --mp-color-foreground: #0f172a; /* 21:1 on white (WCAG AAA) */
+  --mp-color-foreground-light: #334155; /* 7.5:1 on white (WCAG AAA) */
+
   /* Base Colors (Hex - Easy to customize) */
   /* Primary color */
   --mp-color-primary: #6366f1;
   --mp-color-primary-light: #a7a8f6;
   --mp-color-primary-strong: #3639ee;
-  --mp-color-primary-foreground: white;
+  --mp-color-onPrimary: white; /* 21:1 on primary (WCAG AAA) */
 
   /* Secondary color */
   --mp-color-secondary-base: #64748b;
@@ -117,22 +126,6 @@
   --mp-color-gray-800: #1e293b;
   --mp-color-gray-900: #0f172a;
 
-  /* Background Colors (Hex) */
-  --mp-color-background: #ffffff;
-  --mp-color-background-secondary: #f8fafc;
-  --mp-color-background-tertiary: #f1f5f9;
-  --mp-color-background-gradient: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #f8fafc 100%
-  );
-
-  /* Foreground/Text Colors (Hex - WCAG AA compliant) */
-  --mp-color-foreground: #0f172a; /* 21:1 on white (WCAG AAA) */
-  --mp-color-foreground-light: #334155; /* 7.5:1 on white (WCAG AAA) */
-  --mp-color-foreground-tertiary: #475569; /* 4.5:1 on white (WCAG AA) */
-  --mp-color-foreground-muted: #64748b; /* 3:1 on white (WCAG AA for large text) */
-
   /* Border Colors (Hex) */
   --mp-color-border: #e2e8f0;
   --mp-color-border-light: #f1f5f9;
@@ -164,19 +157,19 @@
      SPACING SCALE
      ======================================== */
 
-  --spacing-0: 0;
-  --spacing-1: 0.25rem; /* 4px */
-  --spacing-2: 0.5rem; /* 8px */
-  --spacing-3: 0.75rem; /* 12px */
-  --spacing-4: 1rem; /* 16px */
-  --spacing-5: 1.25rem; /* 20px */
-  --spacing-6: 1.5rem; /* 24px */
-  --spacing-8: 2rem; /* 32px */
-  --spacing-10: 2.5rem; /* 40px */
-  --spacing-12: 3rem; /* 48px */
-  --spacing-16: 4rem; /* 64px */
-  --spacing-20: 5rem; /* 80px */
-  --spacing-24: 6rem; /* 96px */
+  --mp-spacing-0: 0;
+  --mp-spacing-1: 0.25rem; /* 4px */
+  --mp-spacing-2: 0.5rem; /* 8px */
+  --mp-spacing-3: 0.75rem; /* 12px */
+  --mp-spacing-4: 1rem; /* 16px */
+  --mp-spacing-5: 1.25rem; /* 20px */
+  --mp-spacing-6: 1.5rem; /* 24px */
+  --mp-spacing-8: 2rem; /* 32px */
+  --mp-spacing-10: 2.5rem; /* 40px */
+  --mp-spacing-12: 3rem; /* 48px */
+  --mp-spacing-16: 4rem; /* 64px */
+  --mp-spacing-20: 5rem; /* 80px */
+  --mp-spacing-24: 6rem; /* 96px */
 
   /* ========================================
      TYPOGRAPHY
@@ -190,23 +183,23 @@
   --font-family-serif: "Georgia", "Times New Roman", serif;
 
   /* Font Sizes */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
-  --font-size-5xl: 3rem; /* 48px */
+  --mp-font-size-xs: 0.75rem; /* 12px */
+  --mp-font-size-sm: 0.875rem; /* 14px */
+  --mp-font-size-base: 1rem; /* 16px */
+  --mp-font-size-lg: 1.125rem; /* 18px */
+  --mp-font-size-xl: 1.25rem; /* 20px */
+  --mp-font-size-2xl: 1.5rem; /* 24px */
+  --mp-font-size-3xl: 1.875rem; /* 30px */
+  --mp-font-size-4xl: 2.25rem; /* 36px */
+  --mp-font-size-5xl: 3rem; /* 48px */
 
   /* Font Weights */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  --mp-font-weight-light: 300;
+  --mp-font-weight-normal: 400;
+  --mp-font-weight-medium: 500;
+  --mp-font-weight-semibold: 600;
+  --mp-font-weight-bold: 700;
+  --mp-font-weight-extrabold: 800;
 
   /* Line Heights */
   --line-height-tight: 1.2;
@@ -222,13 +215,10 @@
   /* ========================================
      BORDER RADIUS
      ======================================== */
-  --mp-radius-base: 4px;
   --mp-radius-none: 0;
   --mp-radius-sm: 0.25rem; /* 4px */
-  --mp-radius-md: var(--mp-radius-base);
+  --mp-radius-md: var(--mp-radius-base, 4px); /* 4px */
   --mp-radius-lg: 0.5rem; /* 8px */
-  --mp-radius-xl: 0.75rem; /* 12px */
-  --mp-radius-2xl: 1rem; /* 16px */
   --mp-radius-full: 9999px;
 
   /* ========================================
@@ -302,8 +292,8 @@
   --mp-button-padding-x-md: 1rem;
   --mp-button-padding-y-lg: 0.75rem;
   --mp-button-padding-x-lg: 1.5rem;
-  --mp-button-font-size: var(--font-size-base);
-  --mp-button-font-weight: var(--font-weight-medium);
+  --mp-button-font-size: var(--mp-font-size-base);
+  --mp-button-font-weight: var(--mp-font-weight-medium);
   --mp-button-border-radius: var(--mp-radius-md);
   --mp-button-transition: all var(--duration-200) var(--ease-in-out);
   --mp-button-border-width: 1px;
@@ -317,7 +307,7 @@
   /* Input */
   --mp-input-padding-y: 0.5rem;
   --mp-input-padding-x: 0.75rem;
-  --mp-input-font-size: var(--font-size-base);
+  --mp-input-font-size: var(--mp-font-size-base);
   --mp-input-border-radius: var(--mp-radius-md);
   --mp-input-border-width: 1px;
   --mp-input-border-color: var(--mp-color-input-border);
@@ -337,7 +327,7 @@
   --mp-input-disabled-background: var(--mp-color-gray-50);
 
   /* Card */
-  --mp-card-padding: var(--spacing-6);
+  --mp-card-padding: var(--mp-spacing-6);
   --mp-card-background: var(--mp-color-background);
   --mp-card-border-color: var(--mp-color-border);
   --mp-card-border-radius: var(--mp-radius-lg);
@@ -348,8 +338,8 @@
   /* Badge */
   --mp-badge-padding-y: 0.375rem;
   --mp-badge-padding-x: 0.75rem;
-  --mp-badge-font-size: var(--font-size-xs);
-  --mp-badge-font-weight: var(--font-weight-semibold);
+  --mp-badge-font-size: var(--mp-font-size-xs);
+  --mp-badge-font-weight: var(--mp-font-weight-semibold);
   --mp-badge-border-radius: var(--mp-radius-md);
 
   /* Modal/Dialog */
@@ -366,38 +356,38 @@
   /* Table */
   --mp-table-border-color: var(--mp-color-border);
   --mp-table-header-background: var(--mp-color-gray-50);
-  --mp-table-header-font-weight: var(--font-weight-semibold);
+  --mp-table-header-font-weight: var(--mp-font-weight-semibold);
   --mp-table-row-hover-background: var(--mp-color-gray-50);
-  --mp-table-cell-padding: var(--spacing-4);
+  --mp-table-cell-padding: var(--mp-spacing-4);
 
   /* Pagination */
   --mp-pagination-active-background: var(--mp-color-primary);
-  --mp-pagination-active-color: var(--mp-color-primary-foreground);
+  --mp-pagination-active-color: var(--mp-color-onPrimary);
   --mp-pagination-border-color: var(--mp-color-border);
 
   /* Toast */
-  --toast-padding: var(--spacing-4);
+  --toast-padding: var(--mp-spacing-4);
   --toast-border-radius: var(--mp-radius-lg);
   --toast-box-shadow: var(--shadow-lg);
 
   /* Tooltip */
   --tooltip-background: var(--mp-color-gray-900);
   --tooltip-color: var(--mp-color-gray-50);
-  --tooltip-padding: var(--spacing-2) var(--spacing-3);
+  --tooltip-padding: var(--mp-spacing-2) var(--mp-spacing-3);
   --tooltip-border-radius: var(--mp-radius-md);
-  --tooltip-font-size: var(--font-size-sm);
+  --tooltip-font-size: var(--mp-font-size-sm);
   /* Note: Tooltip has 13:1 contrast (white on dark) - WCAG AAA */
 
   /* Form */
-  --form-label-font-weight: var(--font-weight-medium);
-  --form-label-margin-bottom: var(--spacing-2);
-  --form-group-margin-bottom: var(--spacing-4);
+  --form-label-font-weight: var(--mp-font-weight-medium);
+  --form-label-margin-bottom: var(--mp-spacing-2);
+  --form-group-margin-bottom: var(--mp-spacing-4);
   --form-error-color: var(--mp-color-destructive);
-  --form-error-font-size: var(--font-size-sm);
+  --form-error-font-size: var(--mp-font-size-sm);
   --form-help-color: var(
     --mp-color-foreground-light
   ); /* Darker for WCAG AA contrast */
-  --form-help-font-size: var(--font-size-sm);
+  --form-help-font-size: var(--mp-font-size-sm);
 
   /* ========================================
      UTILITIES
@@ -419,38 +409,38 @@ body {
 }
 
 .mp-mt-1 {
-  margin-top: var(--spacing-1);
+  margin-top: var(--mp-spacing-1);
 }
 .mp-mt-2 {
-  margin-top: var(--spacing-2);
+  margin-top: var(--mp-spacing-2);
 }
 .mp-mt-3 {
-  margin-top: var(--spacing-3);
+  margin-top: var(--mp-spacing-3);
 }
 .mp-mt-4 {
-  margin-top: var(--spacing-4);
+  margin-top: var(--mp-spacing-4);
 }
 .mp-mt-5 {
-  margin-top: var(--spacing-5);
+  margin-top: var(--mp-spacing-5);
 }
 .mp-mt-6 {
-  margin-top: var(--spacing-6);
+  margin-top: var(--mp-spacing-6);
 }
 .mp-mt-8 {
-  margin-top: var(--spacing-8);
+  margin-top: var(--mp-spacing-8);
 }
 .mp-mt-10 {
-  margin-top: var(--spacing-10);
+  margin-top: var(--mp-spacing-10);
 }
 .mp-mt-12 {
-  margin-top: var(--spacing-12);
+  margin-top: var(--mp-spacing-12);
 }
 .mp-mt-16 {
-  margin-top: var(--spacing-16);
+  margin-top: var(--mp-spacing-16);
 }
 .mp-mt-20 {
-  margin-top: var(--spacing-20);
+  margin-top: var(--mp-spacing-20);
 }
 .mp-mt-24 {
-  margin-top: var(--spacing-24);
+  margin-top: var(--mp-spacing-24);
 }

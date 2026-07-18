@@ -1,42 +1,31 @@
 /* Section - Content section block */
 
 .mp-section--default {
-  margin-top: var(--spacing-4);
+  margin-top: var(--mp-spacing-4);
   background: var(--mp-color-background);
-  padding: var(--spacing-8);
-  border-radius: var(--mp-radius-xl);
+  padding: var(--mp-spacing-8);
+  border-radius: var(--mp-radius-lg);
   border: 1px solid var(--mp-color-border-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* Hero variant – for page-level headers/introductions */
 .mp-section--hero {
-  margin-top: var(--spacing-10);
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.03) 0%,
-    rgba(139, 92, 246, 0.03) 100%
-  );
-  padding: var(--spacing-8);
-  border-radius: var(--mp-radius-xl);
-  border-bottom: 2px solid var(--mp-color-border-light);
-}
-
-.mp-section--hero h1 {
-  margin-top: var(--spacing-3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-top: var(--mp-spacing-10);
+  padding-bottom: var(--mp-spacing-6);
+  background: var(--mp-color-background);
+  border-radius: var(--mp-radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .mp-section--default {
-    padding: var(--spacing-6);
-    margin-top: var(--spacing-8);
+    padding: var(--mp-spacing-6);
+    margin-top: var(--mp-spacing-8);
   }
 
   .mp-section--hero {
-    padding: var(--spacing-6);
+    padding: var(--mp-spacing-6);
   }
 }

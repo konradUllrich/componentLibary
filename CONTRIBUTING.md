@@ -135,14 +135,14 @@ ComponentName.displayName = "ComponentName";
 .component-name {
   display: flex;
   align-items: center;
-  padding: var(--spacing-2);
+  padding: var(--mp-spacing-2);
   border-radius: var(--mp-radius-md);
 }
 
 /* Modifier: Primary variant */
 .component-name--primary {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 /* Modifier: Secondary variant */
@@ -160,7 +160,7 @@ ComponentName.displayName = "ComponentName";
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .component-name {
-    padding: var(--spacing-1);
+    padding: var(--mp-spacing-1);
   }
 }
 ```

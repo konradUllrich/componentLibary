@@ -42,7 +42,7 @@
   overflow-x: hidden;
   background-color: var(--mp-color-background);
   color: var(--mp-color-foreground);
-  /* padding: var(--spacing-6); */
+  /* padding: var(--mp-spacing-6); */
 }
 
 /* Scrollbar styling */
@@ -78,7 +78,7 @@
   }
 
   .mp-app-layout__main {
-    /* padding: var(--spacing-4); */
+    /* padding: var(--mp-spacing-4); */
     width: 100%;
   }
 }
@@ -86,6 +86,6 @@
 /* Mobile optimization */
 @media (max-width: 480px) {
   .mp-app-layout__main {
-    /* padding: var(--spacing-3); */
+    /* padding: var(--mp-spacing-3); */
   }
 }

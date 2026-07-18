@@ -5,7 +5,6 @@ import {
   SidebarItem,
   SidebarDivider,
 } from "../layout";
-import { Text } from "../common";
 import {
   Home,
   Sparkles,
@@ -42,6 +41,7 @@ import {
   GitBranch,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
+import { Logo } from "./components/Logo";
 
 const SIDEBAR_ELEMENTS = {
   hooks: [
@@ -222,11 +222,7 @@ export const DemoSideBar = () => {
 
   return (
     <Sidebar defaultOpen={true} width="280px">
-      <div className="sidebar-header">
-        <Text as="h2" size="lg" weight="bold">
-          mpComponents
-        </Text>
-      </div>
+      <Logo />
       <SidebarToggle />
       <SidebarNav>
         <SidebarItem
@@ -238,7 +234,7 @@ export const DemoSideBar = () => {
             navigate("/");
           }}
         />
-        <SidebarItem
+        {/* <SidebarItem
           label="Documentation"
           icon={<BookOpen size={18} />}
           isActive={location === "/hooks/use-persisted-state"}
@@ -246,20 +242,8 @@ export const DemoSideBar = () => {
             e.preventDefault();
             navigate("/hooks/use-persisted-state");
           }}
-        />
-        <SidebarDivider label="Hooks" />
-        {SIDEBAR_ELEMENTS.hooks.map((hook) => (
-          <SidebarItem
-            key={hook.id}
-            label={hook.name}
-            icon={hook.icon}
-            isActive={location === hook.link}
-            onClick={(e) => {
-              e.preventDefault();
-              navigate(hook.link);
-            }}
-          />
-        ))}
+        /> */}
+
         <SidebarDivider label="Components" />
         <SidebarItem label="Common" icon={<Sparkles size={18} />}>
           {SIDEBAR_ELEMENTS.components.common.map((component) => (
@@ -275,6 +259,7 @@ export const DemoSideBar = () => {
             />
           ))}
         </SidebarItem>
+
         <SidebarItem label="Controls" icon={<Settings size={18} />}>
           {SIDEBAR_ELEMENTS.components.controls.map((component) => (
             <SidebarItem
@@ -317,6 +302,20 @@ export const DemoSideBar = () => {
             />
           ))}
         </SidebarItem>
+        <SidebarDivider label="Hooks" />
+        {SIDEBAR_ELEMENTS.hooks.map((hook) => (
+          <SidebarItem
+            key={hook.id}
+            label={hook.name}
+            icon={hook.icon}
+            isActive={location === hook.link}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(hook.link);
+            }}
+          />
+        ))}
+        <SidebarDivider label="Intrexx" />
         <SidebarItem label="Intrexx" icon={<GitBranch size={18} />}>
           {SIDEBAR_ELEMENTS.components.intrexx.map((component) => (
             <SidebarItem

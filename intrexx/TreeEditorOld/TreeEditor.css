@@ -4,7 +4,7 @@
 .tree-editor {
   background: var(--mp-color-background);
   border-radius: var(--mp-radius-lg);
-  padding: var(--spacing-4);
+  padding: var(--mp-spacing-4);
 }
 
 .tree-editor__tree {
@@ -14,7 +14,7 @@
   min-height: 200px;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--mp-spacing-1);
 }
 
 .tree-editor__root-item {
@@ -61,9 +61,9 @@
 .tree-node__content {
   display: flex;
   align-items: center;
-  padding: var(--spacing-2) var(--spacing-3);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
   min-height: 36px;
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
   user-select: none;
 }
 
@@ -78,13 +78,13 @@
   height: 20px;
   border-radius: var(--mp-radius-sm);
   color: var(--mp-color-foreground-light);
-  font-size: var(--font-size-xs);
+  font-size: var(--mp-font-size-xs);
   flex-shrink: 0;
   transition: var(--transition-fast);
 }
 
 .tree-node__toggle:hover {
-  background: var(--mp-color-background-tertiary);
+  background: var(--mp-color-background-light);
   color: var(--mp-color-foreground);
 }
 
@@ -100,15 +100,15 @@
 
 .tree-node__label {
   flex: 1;
-  font-size: var(--font-size-sm);
+  font-size: var(--mp-font-size-sm);
   color: var(--mp-color-foreground);
   font-weight: 500;
 }
 
 .tree-node__count {
-  font-size: var(--font-size-xs);
-  color: var(--mp-color-foreground-tertiary);
-  background: var(--mp-color-background-tertiary);
+  font-size: var(--mp-font-size-xs);
+  color: var(--mp-color-foreground-light);
+  background: var(--mp-color-background-light);
   padding: 2px 6px;
   border-radius: var(
     --mp-radius-full,
@@ -119,11 +119,12 @@
 /* Children */
 .tree-node__children {
   list-style: none;
-  padding: var(--spacing-1) var(--spacing-2) var(--spacing-2) var(--spacing-4);
+  padding: var(--mp-spacing-1) var(--mp-spacing-2) var(--mp-spacing-2)
+    var(--mp-spacing-4);
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--mp-spacing-1);
   border-top: 1px solid var(--mp-color-border-light);
   background: var(--mp-color-background-secondary);
   border-radius: 0 0 var(--mp-radius-md) var(--mp-radius-md);
@@ -154,9 +155,9 @@
 .drop-indicator__preview {
   display: flex;
   align-items: center;
-  padding: var(--spacing-2) var(--spacing-3);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
   min-height: 36px;
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
   border: 2px dashed var(--mp-color-primary);
   border-radius: var(--mp-radius-md);
   background: color-mix(in oklch, var(--mp-color-primary), transparent 90%);
@@ -170,7 +171,7 @@
 
 .drop-indicator__label {
   flex: 1;
-  font-size: var(--font-size-sm);
+  font-size: var(--mp-font-size-sm);
   color: var(--mp-color-primary);
   font-weight: 500;
 }
@@ -192,8 +193,8 @@
   background: var(--mp-color-background);
   border: 1px solid var(--mp-color-primary);
   border-radius: var(--mp-radius-md);
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-sm);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-sm);
   color: var(--mp-color-foreground);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   white-space: nowrap;

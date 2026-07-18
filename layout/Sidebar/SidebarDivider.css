@@ -3,8 +3,8 @@
 .mp-sidebar-divider {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-3) var(--spacing-4);
+  gap: var(--mp-spacing-2);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   width: 100%;
 }
 
@@ -22,8 +22,8 @@
 }
 
 .mp-sidebar-divider__label {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--mp-font-size-xs);
+  font-weight: var(--mp-font-weight-semibold);
   color: var(--mp-color-foreground-light);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -36,7 +36,7 @@
 }
 
 .mp-sidebar__nav--collapsed .mp-sidebar-divider {
-  padding: var(--spacing-2);
+  padding: var(--mp-spacing-2);
   justify-content: center;
 }
 

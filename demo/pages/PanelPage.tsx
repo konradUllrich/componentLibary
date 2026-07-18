@@ -109,7 +109,7 @@ export const PanelPage: React.FC = () => {
   <h2>Card Title</h2>
 </Panel>
 
-// Granular spacing with tokens (0-6 map to --spacing-0..--spacing-6)
+// Granular spacing with tokens (0-6 map to --mp-spacing-0..--mp-spacing-6)
 <Panel variant="outlined" spacing={{ pl: 6, pr: 6, pt: 4, pb: 4 }}>
   <p>Custom horizontal / vertical padding</p>
 </Panel>

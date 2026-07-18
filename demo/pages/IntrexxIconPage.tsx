@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Text } from "../../common";
-import { Panel, Page, Section } from "../../layout";
+import { Panel, Page, Section, Flex } from "../../layout";
 import { IntrexxIcon, type IntrexxIconProps } from "../../intrexx";
 
 const iconOptions = [
@@ -55,9 +55,9 @@ export const IntrexxIconPage: React.FC = () => {
           <div
             style={{
               display: "flex",
-              gap: "var(--spacing-2)",
+              gap: "var(--mp-spacing-2)",
               flexWrap: "wrap",
-              marginBottom: "var(--spacing-4)",
+              marginBottom: "var(--mp-spacing-4)",
             }}
           >
             <Button
@@ -77,9 +77,9 @@ export const IntrexxIconPage: React.FC = () => {
           <div
             style={{
               display: "flex",
-              gap: "var(--spacing-2)",
+              gap: "var(--mp-spacing-2)",
               flexWrap: "wrap",
-              marginBottom: "var(--spacing-6)",
+              marginBottom: "var(--mp-spacing-6)",
             }}
           >
             {iconOptions.map((option) => (
@@ -99,7 +99,7 @@ export const IntrexxIconPage: React.FC = () => {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "var(--spacing-4)",
+              gap: "var(--mp-spacing-4)",
               alignItems: "stretch",
             }}
           >
@@ -109,8 +109,8 @@ export const IntrexxIconPage: React.FC = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "var(--spacing-4)",
-                padding: "var(--spacing-8)",
+                gap: "var(--mp-spacing-4)",
+                padding: "var(--mp-spacing-8)",
                 borderRadius: "var(--mp-radius-lg)",
                 background: "var(--mp-color-background)",
               }}
@@ -129,8 +129,8 @@ export const IntrexxIconPage: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                gap: "var(--spacing-3)",
-                padding: "var(--spacing-6)",
+                gap: "var(--mp-spacing-3)",
+                padding: "var(--mp-spacing-6)",
                 borderRadius: "var(--mp-radius-lg)",
                 background: "var(--mp-color-background)",
               }}
@@ -157,7 +157,7 @@ export const IntrexxIconPage: React.FC = () => {
           The component exposes a fixed scale that maps cleanly to the design
           system.
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap>
           {sizes.map((size) => (
             <div
               key={size}
@@ -166,7 +166,7 @@ export const IntrexxIconPage: React.FC = () => {
                 minWidth: "88px",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "var(--spacing-3)",
+                gap: "var(--mp-spacing-3)",
               }}
             >
               <IntrexxIcon
@@ -179,7 +179,7 @@ export const IntrexxIconPage: React.FC = () => {
               </Text>
             </div>
           ))}
-        </div>
+        </Flex>
       </Section>
 
       <Section>
@@ -189,7 +189,7 @@ export const IntrexxIconPage: React.FC = () => {
         <Text color="secondary" size="sm">
           Use semantic color names instead of one-off inline styling.
         </Text>
-        <div className="component-page__demo">
+        <Flex gap="md" wrap>
           {colors.map((color) => (
             <div
               key={color}
@@ -198,7 +198,7 @@ export const IntrexxIconPage: React.FC = () => {
                 minWidth: "120px",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "var(--spacing-3)",
+                gap: "var(--mp-spacing-3)",
               }}
             >
               <IntrexxIcon iconClass={iconClass} size={32} color={color} />
@@ -207,7 +207,7 @@ export const IntrexxIconPage: React.FC = () => {
               </Text>
             </div>
           ))}
-        </div>
+        </Flex>
       </Section>
 
       <Section>

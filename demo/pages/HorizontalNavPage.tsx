@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
-import { HorizontalNav, Page, Section } from '../../layout';
-import { Text } from '../../common';
+import React, { useState } from "react";
+import { HorizontalNav, Page, Section } from "../../layout";
+import { Text } from "../../common";
 
 export const HorizontalNavPage: React.FC = () => {
-  const [activeId, setActiveId] = useState('home');
+  const [activeId, setActiveId] = useState("home");
 
   const navItems = [
     {
-      id: 'home',
-      label: 'Home',
-      href: '#home',
-      isActive: activeId === 'home',
+      id: "home",
+      label: "Home",
+      href: "#home",
+      isActive: activeId === "home",
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        setActiveId('home');
+        setActiveId("home");
       },
     },
     {
-      id: 'about',
-      label: 'About',
-      href: '#about',
-      isActive: activeId === 'about',
+      id: "about",
+      label: "About",
+      href: "#about",
+      isActive: activeId === "about",
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        setActiveId('about');
+        setActiveId("about");
       },
     },
     {
-      id: 'services',
-      label: 'Services',
-      href: '#services',
-      isActive: activeId === 'services',
+      id: "services",
+      label: "Services",
+      href: "#services",
+      isActive: activeId === "services",
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        setActiveId('services');
+        setActiveId("services");
       },
     },
     {
-      id: 'contact',
-      label: 'Contact',
-      href: '#contact',
-      isActive: activeId === 'contact',
+      id: "contact",
+      label: "Contact",
+      href: "#contact",
+      isActive: activeId === "contact",
       onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        setActiveId('contact');
+        setActiveId("contact");
       },
     },
   ];
@@ -51,36 +51,31 @@ export const HorizontalNavPage: React.FC = () => {
   return (
     <Page>
       <Section variant="hero">
-        <Text as="h1" size="3xl" weight="bold">Horizontal Nav Component</Text>
+        <Text as="h1" size="3xl" weight="bold">
+          Horizontal Nav Component
+        </Text>
         <Text color="secondary">
           Horizontal navigation that adapts to mobile with select dropdown
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Basic Navigation</Text>
-        <Text color="secondary" size="sm">
-          Horizontal navigation bar with active state
-        </Text>
-        <div className="component-page__demo">
-          <HorizontalNav items={navItems} />
-        </div>
+      <Section
+        title="Basic Navigation"
+        subtitle="Horizontal navigation bar with active state"
+      >
+        <HorizontalNav items={navItems} />
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Responsive Behavior</Text>
-        <Text color="secondary" size="sm">
-          On mobile (width &lt; 768px), the navigation automatically converts to a dropdown select
+      <Section
+        title="Responsive Behavior"
+        subtitle="On mobile (width &lt; 768px), the navigation automatically converts to a dropdown select"
+      >
+        <Text size="sm" color="secondary">
+          Try resizing your browser window to see the mobile dropdown version
         </Text>
-        <div className="component-page__demo">
-          <Text size="sm" color="secondary">
-            Try resizing your browser window to see the mobile dropdown version
-          </Text>
-        </div>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">Usage</Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { HorizontalNav } from '@konradullrich/mp-components';
 

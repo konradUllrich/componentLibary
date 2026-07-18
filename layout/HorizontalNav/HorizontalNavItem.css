@@ -5,11 +5,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: var(--mp-spacing-3);
   height: 35px;
-  padding: 0 var(--spacing-3);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-normal);
+  padding: 0 var(--mp-spacing-3);
+  font-size: var(--mp-font-size-sm);
+  font-weight: var(--mp-font-weight-normal);
   border-radius: var(--mp-radius-md);
   transition: all var(--duration-200) var(--ease-in-out);
   cursor: pointer;
@@ -49,15 +49,15 @@
 /* Modifier: Active state */
 .mp-horizontal-nav-item--active {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .mp-horizontal-nav-item--active:visited {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .mp-horizontal-nav-item--active[href] {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .mp-horizontal-nav-item--active:hover {
@@ -84,8 +84,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .mp-horizontal-nav-item {
-    padding: 0 var(--spacing-2);
-    gap: var(--spacing-2);
+    padding: 0 var(--mp-spacing-2);
+    gap: var(--mp-spacing-2);
   }
 
   .mp-horizontal-nav-item__icon {

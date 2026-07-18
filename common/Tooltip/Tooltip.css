@@ -5,9 +5,9 @@
   /* Use explicit dark background for WCAG AA compliance (minimum 4.5:1 contrast with white) */
   background-color: #1e293b; /* gray-800 for better contrast */
   color: white;
-  padding: var(--spacing-2) var(--spacing-3);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
   border-radius: var(--mp-radius-md);
-  font-size: var(--font-size-sm);
+  font-size: var(--mp-font-size-sm);
   line-height: var(--line-height-normal);
   max-width: 300px;
   word-wrap: break-word;
@@ -57,6 +57,6 @@
 @media (max-width: 768px) {
   .tooltip__content {
     max-width: 250px;
-    font-size: var(--font-size-xs);
+    font-size: var(--mp-font-size-xs);
   }
 }

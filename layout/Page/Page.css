@@ -2,7 +2,7 @@
 
 .mp-page {
   margin: 0 auto;
-  padding: var(--spacing-6);
+  padding: var(--mp-spacing-6);
   background-color: var(--mp-color-background);
   color: var(--mp-color-foreground);
   width: 100%;
@@ -32,6 +32,6 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .mp-page {
-    padding: var(--spacing-6) var(--spacing-4);
+    padding: var(--mp-spacing-6) var(--mp-spacing-4);
   }
 }

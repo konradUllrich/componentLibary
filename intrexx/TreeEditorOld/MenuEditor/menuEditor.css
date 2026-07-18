@@ -104,11 +104,11 @@
 .menu-editor-item__name {
   font-weight: 500;
   color: var(--text-color);
-  font-size: var(--font-size-md);
+  font-size: var(--mp-font-size-md);
 }
 
 .menu-editor-item__count {
-  font-size: var(--font-size-xs);
+  font-size: var(--mp-font-size-xs);
   color: var(--text-color-secondary);
   background: var(--bg-secondary);
   padding: 2px 8px;
@@ -174,7 +174,7 @@
 }
 
 .menu-editor-item__child .menu-editor-item__name {
-  font-size: var(--font-size-sm);
+  font-size: var(--mp-font-size-sm);
 }
 
 /* Drop Zones */
@@ -259,6 +259,6 @@
   }
 
   .menu-editor-item__name {
-    font-size: var(--font-size-sm);
+    font-size: var(--mp-font-size-sm);
   }
 }

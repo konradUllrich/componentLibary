@@ -21,9 +21,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-8);
+  padding: var(--mp-spacing-8);
   color: var(--mp-color-foreground-light);
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
 }
 
 /* Empty State */
@@ -31,9 +31,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-8);
+  padding: var(--mp-spacing-8);
   color: var(--mp-color-foreground-light);
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
 }
 
 /* Responsive Grid */

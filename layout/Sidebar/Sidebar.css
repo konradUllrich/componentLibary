@@ -24,8 +24,8 @@
   height: 100vh;
   border-right: 1px solid var(--mp-color-border-light);
   transition: width var(--duration-300) var(--ease-in-out);
-  /* gap: var(--spacing-1); */
-  padding-top: var(--spacing-2);
+  /* gap: var(--mp-spacing-1); */
+  padding-top: var(--mp-spacing-2);
   overflow-y: auto;
   overflow-x: hidden;
   flex-shrink: 0;

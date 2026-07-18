@@ -4,7 +4,6 @@
 .toggle-group {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--mp-color-border);
   border-radius: var(--mp-radius-lg);
   gap: 0;
 }
@@ -14,7 +13,7 @@
    ============================== */
 
 .toggle-group--default {
-  background-color: var(--mp-color-background-secondary);
+  background-color: var(--mp-color-background);
 }
 
 /* ==============================
@@ -24,6 +23,7 @@
 .toggle-group--outline {
   background-color: transparent;
   border-color: var(--mp-color-border-dark);
+  border: 1px solid var(--mp-color-border);
 }
 
 /* ==============================
@@ -31,20 +31,20 @@
    ============================== */
 
 .toggle-group--sm .toggle-group__item {
-  padding: var(--spacing-1) var(--spacing-2);
-  font-size: var(--font-size-sm);
+  padding: var(--mp-spacing-1) var(--mp-spacing-2);
+  font-size: var(--mp-font-size-sm);
   min-height: 2rem;
 }
 
 .toggle-group--md .toggle-group__item {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-base);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-base);
   min-height: 2.5rem;
 }
 
 .toggle-group--lg .toggle-group__item {
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-lg);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
+  font-size: var(--mp-font-size-lg);
   min-height: 3rem;
 }
 
@@ -56,12 +56,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-1);
+  gap: var(--mp-spacing-1);
   background-color: transparent;
   color: var(--mp-color-foreground-light);
   border: none;
   border-radius: 0;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--mp-font-weight-medium);
   font-family: var(--font-family-base);
   line-height: 1;
   cursor: pointer;
@@ -98,14 +98,14 @@
 
 /* Hover state (only when not disabled and not pressed) */
 .toggle-group__item:hover:not(:disabled):not([data-state="on"]) {
-  background-color: var(--mp-color-background-tertiary);
-  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-primary-light);
+  color: var(--mp-color-primary);
 }
 
 /* Pressed / active state */
 .toggle-group__item[data-state="on"] {
   background-color: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .toggle-group__item[data-state="on"]:hover:not(:disabled) {

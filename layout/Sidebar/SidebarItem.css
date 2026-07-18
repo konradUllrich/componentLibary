@@ -5,16 +5,16 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: var(--mp-spacing-3);
   min-height: var(--sidebar-item-height);
-  padding: 0 var(--spacing-2);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-normal);
+  padding: 0 var(--mp-spacing-2);
+  font-size: var(--mp-font-size-sm);
+  font-weight: var(--mp-font-weight-normal);
   border-radius: var(--mp-radius-md);
   transition: all var(--duration-200) var(--ease-in-out);
   cursor: pointer;
   text-align: left;
-  margin: 0 var(--spacing-2);
+  margin: 0 var(--mp-spacing-2);
   /* Reset anchor tag defaults */
   background: transparent;
   border: none;
@@ -55,16 +55,16 @@
 /* Modifier: Active state */
 .mp-sidebar-item--active {
   background: var(--mp-color-primary);
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
   /* box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25); */
 }
 
 .mp-sidebar-item--active:visited {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 .mp-sidebar-item--active[href] {
-  color: var(--mp-color-primary-foreground);
+  color: var(--mp-color-onPrimary);
 }
 
 /* .mp-sidebar-item--active:hover {
@@ -118,7 +118,7 @@
 /* Collapsed state styles */
 .mp-sidebar__nav--collapsed .mp-sidebar-item {
   justify-content: center;
-  /* padding: var(--spacing-2); */
+  /* padding: var(--mp-spacing-2); */
   width: auto;
   width: var(--sidebar-item-height);
   min-width: var(--sidebar-item-height);
@@ -141,12 +141,12 @@
 .mp-sidebar-item--nested {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--mp-spacing-1);
   border-left: 4px solid var(--mp-color-primary);
   width: 100%;
 }
 
 .mp-sidebar-item--nested .mp-sidebar-item {
-  padding-left: var(--spacing-3);
-  font-size: var(--font-size-sm);
+  padding-left: var(--mp-spacing-3);
+  font-size: var(--mp-font-size-sm);
 }

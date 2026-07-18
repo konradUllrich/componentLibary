@@ -52,9 +52,8 @@ export const PaginationPage: React.FC = () => {
           100 items, 10 per page. Page and page size are synced to the URL —
           reload the tab and you'll land on the same page.
         </Text>
-        <div className="component-page__demo-column">
-          <BasicPagination />
-        </div>
+
+        <BasicPagination />
       </Section>
 
       <Section>

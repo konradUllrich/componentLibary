@@ -21,7 +21,7 @@
   --dialog-foreground-muted: #475569;
   border-radius: var(--mp-radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: var(--spacing-6);
+  padding: var(--mp-spacing-6);
   max-width: 500px;
   width: 90vw;
   max-height: 85vh;
@@ -57,25 +57,25 @@
 
 /* Title */
 .dialog__title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--mp-font-size-xl);
+  font-weight: var(--mp-font-weight-semibold);
   color: var(--dialog-foreground, #0f172a);
-  margin: 0 0 var(--spacing-2) 0;
+  margin: 0 0 var(--mp-spacing-2) 0;
 }
 
 /* Description */
 .dialog__description {
-  font-size: var(--font-size-md);
+  font-size: var(--mp-font-size-md);
   color: var(--dialog-foreground-muted, #475569);
-  margin: 0 0 var(--spacing-4) 0;
+  margin: 0 0 var(--mp-spacing-4) 0;
   line-height: var(--line-height-relaxed);
 }
 
 /* Close Button */
 .dialog__close {
   position: absolute;
-  top: var(--spacing-4);
-  right: var(--spacing-4);
+  top: var(--mp-spacing-4);
+  right: var(--mp-spacing-4);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +86,7 @@
   color: var(--dialog-foreground-muted, #475569);
   border-radius: var(--mp-radius-md);
   cursor: pointer;
-  font-size: var(--font-size-xl);
+  font-size: var(--mp-font-size-xl);
   line-height: 1;
   transition: var(--transition-fast);
 }
@@ -156,10 +156,10 @@
   .dialog__content {
     width: 95vw;
     max-width: none;
-    padding: var(--spacing-4);
+    padding: var(--mp-spacing-4);
   }
 
   .dialog__title {
-    font-size: var(--font-size-lg);
+    font-size: var(--mp-font-size-lg);
   }
 }

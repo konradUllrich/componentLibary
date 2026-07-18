@@ -1,14 +1,7 @@
 /* Demo App Global Styles */
 
 .sidebar-header {
-  padding: var(--spacing-6) var(--spacing-4);
+  padding: var(--mp-spacing-6) var(--mp-spacing-4);
   border-bottom: 1px solid var(--mp-color-border-light);
-  margin-bottom: var(--spacing-4);
-}
-
-.sidebar-header h2 {
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: var(--font-size-xl);
+  margin-bottom: var(--mp-spacing-4);
 }

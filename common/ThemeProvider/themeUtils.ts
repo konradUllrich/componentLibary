@@ -57,7 +57,7 @@ export const getThemeCssVariables = (
     "--mp-color-primary": "var(--mp-color-primary-base)",
     "--mp-color-primary-light": colors.primaryLight,
     "--mp-color-primary-strong": colors.primaryStrong,
-    "--mp-color-primary-foreground": colors.onPrimary,
+    "--mp-color-onPrimary": colors.onPrimary,
 
     "--mp-color-background": colors.background,
     "--mp-color-foreground": colors.onBackground,
@@ -111,7 +111,7 @@ export const getThemeCssVariables = (
     // "--mp-color-primary-gradient": `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`,
     // "--mp-color-ring": "var(--mp-color-primary-light)",
     // "--spacing-base": `${theme.spacing.base}`,
-    // "--font-size-base": `${theme.typography.baseFontSize}px`,
+    // "--mp-font-size-base": `${theme.typography.baseFontSize}px`,
     // "--line-height-normal": theme.typography.baseLineHeight.toString(),
     // "--mp-radius-sm": `${0.25 * radiusBase}rem`,
     // "--mp-radius-md": `${0.375 * radiusBase}rem`,

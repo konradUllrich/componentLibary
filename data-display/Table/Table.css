@@ -12,7 +12,7 @@
   border-collapse: collapse;
   border-spacing: 0;
   font-family: var(--font-family-base);
-  font-size: var(--font-size-base);
+  font-size: var(--mp-font-size-base);
   background-color: var(--mp-color-background);
 }
 
@@ -21,8 +21,8 @@
   caption-side: top;
   text-align: left;
   padding: var(--spacing-sm) 0;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--mp-font-size-sm);
+  font-weight: var(--mp-font-weight-medium);
   color: var(--mp-color-text-secondary);
 }
 
@@ -64,7 +64,7 @@
 
 /* Table Cell (td/th) */
 .table__cell {
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--mp-spacing-3) var(--mp-spacing-4);
   text-align: left;
   vertical-align: middle;
   color: var(--mp-color-foreground);
@@ -72,7 +72,7 @@
 
 /* Header Cell */
 .table__cell--header {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--mp-font-weight-semibold);
   user-select: none;
 }
 
@@ -90,7 +90,7 @@
 .table__header-content {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--mp-spacing-2);
 }
 
 .table__sort-indicator {
@@ -120,14 +120,14 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .table {
-    font-size: var(--font-size-sm);
+    font-size: var(--mp-font-size-sm);
   }
 
   .table__cell {
-    padding: var(--spacing-2) var(--spacing-3);
+    padding: var(--mp-spacing-2) var(--mp-spacing-3);
   }
 
   .table__cell--header {
-    padding: var(--spacing-2) var(--spacing-3);
+    padding: var(--mp-spacing-2) var(--mp-spacing-3);
   }
 }

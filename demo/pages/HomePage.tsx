@@ -166,7 +166,9 @@ export const HomePage = () => {
               onClick={() => handleComponentClick(link)}
               className="component-card"
             >
-              <Flex justify="center">{icon}</Flex>
+              <Flex justify="center">
+                <Text color="primary">{icon}</Text>
+              </Flex>
               <Text as="h3" size="lg" weight="semibold">
                 {name}
               </Text>

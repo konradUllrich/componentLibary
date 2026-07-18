@@ -359,7 +359,7 @@ test.describe.skip('ThemeProvider Component', () => {
       );
       
       const fontSize = await page.evaluate(() => {
-        return getComputedStyle(document.documentElement).getPropertyValue('--font-size-base');
+        return getComputedStyle(document.documentElement).getPropertyValue('--mp-font-size-base');
       });
       
       expect(fontSize).toBeTruthy();

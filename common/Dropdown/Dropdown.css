@@ -6,7 +6,7 @@
   background-color: var(--mp-color-background);
   border: 1px solid var(--mp-color-border);
   border-radius: var(--mp-radius-md);
-  padding: var(--spacing-2);
+  padding: var(--mp-spacing-2);
   box-shadow: var(--shadow-md);
   z-index: var(--z-index-dropdown, 1000);
   animation: dropdown-slide-in var(--duration-200) ease-out;
@@ -21,9 +21,9 @@
 .dropdown__item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-md);
+  gap: var(--mp-spacing-2);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-md);
   color: var(--mp-color-foreground);
   border-radius: var(--mp-radius-sm);
   cursor: pointer;
@@ -49,9 +49,9 @@
 
 /* Label */
 .dropdown__label {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+  font-size: var(--mp-font-size-sm);
+  font-weight: var(--mp-font-weight-semibold);
   color: var(--mp-color-foreground-muted);
   user-select: none;
 }
@@ -60,7 +60,7 @@
 .dropdown__separator {
   height: 1px;
   background-color: var(--mp-color-border);
-  margin: var(--spacing-2) 0;
+  margin: var(--mp-spacing-2) 0;
 }
 
 /* Animations */
