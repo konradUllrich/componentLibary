@@ -322,7 +322,6 @@ export function usePersistedState<T>({
     }
     // `params` is wouter's reactive URLSearchParams — changes whenever the URL changes.
     // All other options read via refs to avoid stale-closure / infinite-loop issues.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params, key]);
 
   return [state, setPersistedState] as const;
