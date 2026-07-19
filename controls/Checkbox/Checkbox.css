@@ -7,7 +7,7 @@
 }
 
 /* Block: Checkbox Input (Hidden) */
-.checkbox-input {
+input.checkbox-input {
   position: absolute;
   opacity: 0;
   width: 0;

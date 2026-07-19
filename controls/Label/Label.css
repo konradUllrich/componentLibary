@@ -12,7 +12,7 @@
 }
 
 /* Element: Required Indicator */
-.mp-label__required {
+.mp-mp-label__required {
   color: var(--mp-color-error);
   font-weight: var(--mp-font-weight-semibold);
 }

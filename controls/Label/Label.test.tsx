@@ -33,7 +33,7 @@ test.describe("Label Component", () => {
     mount,
   }) => {
     const component = await mount(<Label>Username</Label>);
-    const requiredIndicator = component.locator(".mp-label__required");
+    const requiredIndicator = component.locator(".mp-mp-label__required");
     await expect(requiredIndicator).not.toBeAttached();
   });
 

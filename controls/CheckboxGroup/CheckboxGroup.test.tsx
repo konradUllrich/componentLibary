@@ -162,7 +162,7 @@ test.describe("CheckboxGroup Component", () => {
       <CheckboxGroup label="Preferences" options={testOptions} required />,
     );
 
-    const requiredIndicator = component.locator(".label__required");
+    const requiredIndicator = component.locator(".mp-label__required");
     await expect(requiredIndicator).toBeVisible();
     await expect(requiredIndicator).toHaveText("*");
   });
