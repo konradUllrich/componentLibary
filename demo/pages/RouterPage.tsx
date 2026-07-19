@@ -28,14 +28,7 @@ export const RouterPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Usage
-        </Text>
-        <Text color="secondary" size="sm">
-          Wrap your application with <code>Router</code> and use{" "}
-          <code>Route</code> and <code>Link</code> to define navigation.
-        </Text>
+      <Section title="Basic Usage" subtitle="Wrap your application with Router and use Route and Link to define navigation.">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <button
             type="button"
@@ -89,16 +82,7 @@ export const RouterPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          How It Works
-        </Text>
-        <Text color="secondary" size="sm">
-          Instead of changing the URL path, the router stores the current route
-          in a <code>?appRoute=</code> search parameter. This lets the
-          application run on any static host without requiring server-side route
-          configuration.
-        </Text>
+      <Section title="How It Works" subtitle="Instead of changing the URL path, the router stores the current route in a ?appRoute= search parameter. This lets the application run on any static host without requiring server-side route configuration.">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text size="sm">
             Navigating to <code>/about</code> produces a URL like:
@@ -115,13 +99,7 @@ export const RouterPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Available Hooks
-        </Text>
-        <Text color="secondary" size="sm">
-          The following hooks are exported alongside the router components.
-        </Text>
+      <Section title="Available Hooks" subtitle="The following hooks are exported alongside the router components.">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <ul style={{ margin: 0, paddingLeft: "var(--mp-spacing-5)" }}>
             <li>
@@ -143,10 +121,7 @@ export const RouterPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Router, Route, Link, useLocation } from '@konradullrich/mp-components';
 

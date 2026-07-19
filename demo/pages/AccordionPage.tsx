@@ -16,14 +16,7 @@ export const AccordionPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Vertical (Default)
-        </Text>
-        <Text color="secondary" size="sm">
-          Traditional accordion with collapsible sections
-        </Text>
-
+      <Section title="Vertical (Default)" subtitle="Traditional accordion with collapsible sections">
         <Panel variant="subtle">
           <Accordion
             items={[
@@ -53,14 +46,7 @@ export const AccordionPage: React.FC = () => {
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Tabs Variant
-        </Text>
-        <Text color="secondary" size="sm">
-          Horizontal tabs layout
-        </Text>
-
+      <Section title="Tabs Variant" subtitle="Horizontal tabs layout">
         <Accordion
           variant="tabs"
           items={[
@@ -83,10 +69,7 @@ export const AccordionPage: React.FC = () => {
         />
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Accordion } from '@konradullrich/mp-components';
 

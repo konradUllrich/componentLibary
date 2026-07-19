@@ -330,10 +330,7 @@ export const UsePaginationPage = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Quick Start
-        </Text>
+      <Section title="Quick Start">
         <pre className="use-persisted-state-page__code-block">
           <code>{`import { usePagination } from "@mp-ku/mp-components";
 import { Pagination } from "@mp-ku/mp-components";
@@ -345,10 +342,7 @@ pagination.setTotalItems(totalCount);
         </pre>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Examples
-        </Text>
+      <Section title="Examples">
         <Grid gap="md">
           <BasicExample />
           <PageSizeExample />
@@ -360,10 +354,7 @@ pagination.setTotalItems(totalCount);
         </Grid>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          API
-        </Text>
+      <Section title="API">
         <pre className="use-persisted-state-page__code-block">
           <code>{`// Options
 usePagination({

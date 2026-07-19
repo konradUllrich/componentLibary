@@ -1,4 +1,4 @@
-import { ThemePresetProvider, type ThemePresetInput } from "../../common";
+import { ThemeContextProvider, type ThemePresetInput } from "../../common";
 
 const darkTheme: ThemePresetInput = {
   colors: {
@@ -10,23 +10,21 @@ const darkTheme: ThemePresetInput = {
   },
 };
 
-// const lightTheme: ThemePresetInput = {
-//   colors: {
-//     primary: "#139C13",
-//     primaryLight: "#B5F9B5",
-//     primaryStrong: "#0E630E",
-//     onPrimary: "#ffffff",
-//     background: "#fafafa",
-//     onBackground: "#2a2a27",
-//     // onBackgroundLight: "#dedcdc",
-//     // border: "#dedcdc",
-//     // borderLight: "#3e3e3b",
-//   },
-// };
+const lightTheme: ThemePresetInput = {
+  colors: {
+    primary: "#139C13",
+    primaryLight: "#B5F9B5",
+    primaryStrong: "#0E630E",
+    onPrimary: "#ffffff",
+    background: "#fafafa",
+    onBackground: "#2a2a27",
+    // onBackgroundLight: "#dedcdc",
+    // border: "#dedcdc",
+    // borderLight: "#3e3e3b",
+  },
+};
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ThemePresetProvider theme={darkTheme}>{children}</ThemePresetProvider>
+    <ThemeContextProvider theme={darkTheme}>{children}</ThemeContextProvider>
   );
 };
-
-export default ThemeProvider;

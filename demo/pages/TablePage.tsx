@@ -223,52 +223,28 @@ export const TablePage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Table
-        </Text>
-        <Text color="secondary" size="sm">
-          Simple table with header and body using TanStack Table. Scrollable on
-          mobile devices.
-        </Text>
+      <Section title="Basic Table" subtitle="Simple table with header and body using TanStack Table. Scrollable on mobile devices.">
         <Panel variant="subtle" flex>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Table table={table as any} />
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sortable Table
-        </Text>
-        <Text color="secondary" size="sm">
-          Click on column headers to sort the data. Click again to reverse the
-          sort order.
-        </Text>
+      <Section title="Sortable Table" subtitle="Click on column headers to sort the data. Click again to reverse the sort order.">
         <Panel variant="subtle" flex>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Table table={sortableTable as any} />
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Grouped Table
-        </Text>
-        <Text color="secondary" size="sm">
-          Table grouped by department. Click the expand/collapse buttons to show
-          or hide department members.
-        </Text>
+      <Section title="Grouped Table" subtitle="Table grouped by department. Click the expand/collapse buttons to show or hide department members.">
         <Panel variant="subtle" flex>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Table table={groupingTable as any} />
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Usage
-        </Text>
+      <Section title="Basic Usage">
         <pre className="code-block">
           <code>{`import { 
   Table, 
@@ -301,10 +277,7 @@ const table = useReactTable({
         </pre>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sorting Example
-        </Text>
+      <Section title="Sorting Example">
         <pre className="code-block">
           <code>{`import { 
   Table, 
@@ -337,10 +310,7 @@ const table = useReactTable({
         </pre>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Grouping Example
-        </Text>
+      <Section title="Grouping Example">
         <pre className="code-block">
           <code>{`import { 
   Table, 

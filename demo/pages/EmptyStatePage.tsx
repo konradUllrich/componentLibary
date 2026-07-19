@@ -27,14 +27,7 @@ export const EmptyStatePage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Semantic variants apply a subtle tinted background to reinforce
-          context.
-        </Text>
+      <Section title="Variants" subtitle="Semantic variants apply a subtle tinted background to reinforce context.">
         <Flex gap="md" wrap align="center" className={u({ pt: 4 })}>
           <EmptyState
             variant="default"
@@ -99,13 +92,7 @@ export const EmptyStatePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sizes
-        </Text>
-        <Text color="secondary" size="sm">
-          Three sizes for different layout contexts.
-        </Text>
+      <Section title="Sizes" subtitle="Three sizes for different layout contexts.">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <div>
             <Text
@@ -155,13 +142,7 @@ export const EmptyStatePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Without Icon
-        </Text>
-        <Text color="secondary" size="sm">
-          Icon is optional – use a minimal style when space is limited.
-        </Text>
+      <Section title="Without Icon" subtitle="Icon is optional – use a minimal style when space is limited.">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <EmptyState
             title="No items"
@@ -170,10 +151,7 @@ export const EmptyStatePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { EmptyState } from '@konradullrich/mp-components';
 

@@ -22,13 +22,7 @@ export const SidebarPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Features
-        </Text>
-        <Text color="secondary" size="sm">
-          The Sidebar component provides:
-        </Text>
+      <Section title="Features" subtitle="The Sidebar component provides:">
         <ul style={{ marginTop: "1rem", marginLeft: "1.5rem" }}>
           <li>
             <Text>
@@ -50,13 +44,7 @@ export const SidebarPage: React.FC = () => {
         </ul>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Example
-        </Text>
-        <Text color="secondary" size="sm">
-          Sidebar with navigation items
-        </Text>
+      <Section title="Basic Example" subtitle="Sidebar with navigation items">
 
         <div
           style={{
@@ -82,10 +70,7 @@ export const SidebarPage: React.FC = () => {
         </div>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { 
   Sidebar, 

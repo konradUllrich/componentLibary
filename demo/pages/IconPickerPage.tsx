@@ -30,14 +30,7 @@ export const IconPickerPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Interactive Demo
-        </Text>
-        <Text color="secondary" size="sm">
-          Search for an icon by name or category, toggle between line and solid
-          styles, and filter by category. Click any icon to select it.
-        </Text>
+      <Section title="Interactive Demo" subtitle="Search for an icon by name or category, toggle between line and solid styles, and filter by category. Click any icon to select it.">
 
         {selectedIcon && (
           <Panel variant="subtle">
@@ -78,20 +71,11 @@ export const IconPickerPage: React.FC = () => {
         />
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Solid Style
-        </Text>
-        <Text color="secondary" size="sm">
-          Use the <code>defaultStyle</code> prop to start with solid icons.
-        </Text>
+      <Section title="Solid Style" subtitle="Use the defaultStyle prop to start with solid icons.">
         <IconPicker defaultStyle="solid" maxHeight="300px" />
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { IconPicker } from '@mp-ku/mp-components/intrexx';
 

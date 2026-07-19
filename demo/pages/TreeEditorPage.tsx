@@ -137,15 +137,7 @@ export const TreeEditorPage: React.FC = () => {
       </Section>
 
       {/* ── Basic usage ─────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Usage
-        </Text>
-        <Text color="secondary" size="sm">
-          Provide <code>items</code>, <code>onChange</code>, and a{" "}
-          <code>renderItem</code> callback. Drag to reorder or nest.
-        </Text>
-
+      <Section title="Basic Usage" subtitle="Provide items, onChange, and a renderItem callback. Drag to reorder or nest.">
         <Panel variant="subtle">
           <Tree
             items={basicState}
@@ -160,17 +152,7 @@ export const TreeEditorPage: React.FC = () => {
       </Section>
 
       {/* ── Full-featured ────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Full-Featured — with Item Menu
-        </Text>
-        <Text color="secondary" size="sm">
-          Pass an <code>itemMenu</code> callback to render action buttons for
-          each item. Available actions: <code>moveUp</code>,{" "}
-          <code>moveDown</code>, <code>addItemAfter</code>,{" "}
-          <code>addChild</code>, and <code>erase</code>.
-        </Text>
-
+      <Section title="Full-Featured — with Item Menu" subtitle="Pass an itemMenu callback to render action buttons for each item. Available actions: moveUp, moveDown, addItemAfter, addChild, and erase.">
         <Panel variant="subtle">
           <Tree
             items={fullState}
@@ -241,15 +223,7 @@ export const TreeEditorPage: React.FC = () => {
       </Section>
 
       {/* ── Read-only / non-movable ───────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Read-Only / Non-Movable Items
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>canMove</code> to prevent specific items from being dragged.
-          Locked items are shown at reduced opacity.
-        </Text>
-
+      <Section title="Read-Only / Non-Movable Items" subtitle="Use canMove to prevent specific items from being dragged. Locked items are shown at reduced opacity.">
         <Panel variant="subtle">
           <Tree
             items={readOnlyState}
@@ -263,16 +237,7 @@ export const TreeEditorPage: React.FC = () => {
       </Section>
 
       {/* ── Restricted nesting ───────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Restricted Nesting
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>canReceiveChildren</code> to prevent certain items from
-          becoming parent nodes. Leaf nodes below will not accept children when
-          dragged over.
-        </Text>
-
+      <Section title="Restricted Nesting" subtitle="Use canReceiveChildren to prevent certain items from becoming parent nodes. Leaf nodes below will not accept children when dragged over.">
         <Panel variant="subtle">
           <Tree
             items={restrictedState}
@@ -288,14 +253,7 @@ export const TreeEditorPage: React.FC = () => {
       </Section>
 
       {/* ── Live state ───────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Live State (Full-Featured Tree)
-        </Text>
-        <Text color="secondary" size="sm">
-          The JSON below updates in real-time as you modify the tree above.
-        </Text>
-
+      <Section title="Live State (Full-Featured Tree)" subtitle="The JSON below updates in real-time as you modify the tree above.">
         <Panel variant="subtle">
           <pre
             style={{
@@ -310,11 +268,7 @@ export const TreeEditorPage: React.FC = () => {
       </Section>
 
       {/* ── API reference ────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
-
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { SortableTree } from '@mp-ku/mp-components/intrexx';
 import type { SortableTreeItem, SortableTreeFlattenedItem } from '@mp-ku/mp-components/intrexx';

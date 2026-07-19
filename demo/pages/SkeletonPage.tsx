@@ -16,13 +16,7 @@ export const SkeletonPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Text
-        </Text>
-        <Text color="secondary" size="sm">
-          Single and multi-line text placeholders
-        </Text>
+      <Section title="Text" subtitle="Single and multi-line text placeholders">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <div>
             <Text
@@ -57,13 +51,7 @@ export const SkeletonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Circle
-        </Text>
-        <Text color="secondary" size="sm">
-          Circular placeholder for avatars and icons
-        </Text>
+      <Section title="Circle" subtitle="Circular placeholder for avatars and icons">
         <Flex gap="md" wrap align="center" className={u({ pt: 4 })}>
           <Skeleton variant="circle" width={32} height={32} />
           <Skeleton variant="circle" width={40} height={40} />
@@ -72,13 +60,7 @@ export const SkeletonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Rectangle
-        </Text>
-        <Text color="secondary" size="sm">
-          Block placeholder for images, cards, and other rectangular content
-        </Text>
+      <Section title="Rectangle" subtitle="Block placeholder for images, cards, and other rectangular content">
         <Flex gap="md" wrap align="center" className={u({ pt: 4 })}>
           <Skeleton variant="rectangle" height={40} />
           <Skeleton variant="rectangle" height={120} />
@@ -86,13 +68,7 @@ export const SkeletonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Animations
-        </Text>
-        <Text color="secondary" size="sm">
-          Pulse (default) and wave (shimmer) animations, or none
-        </Text>
+      <Section title="Animations" subtitle="Pulse (default) and wave (shimmer) animations, or none">
         <Flex gap="md" wrap align="center" className={u({ pt: 4 })}>
           <div>
             <Text
@@ -127,13 +103,7 @@ export const SkeletonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Scenarios
-        </Text>
-        <Text color="secondary" size="sm">
-          Compose skeletons to match real content layouts
-        </Text>
+      <Section title="Scenarios" subtitle="Compose skeletons to match real content layouts">
 
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           {/* Profile card skeleton */}
@@ -208,10 +178,7 @@ export const SkeletonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Skeleton } from '@konradullrich/mp-components';
 

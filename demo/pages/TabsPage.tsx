@@ -20,13 +20,7 @@ export const TabsPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Default Variant
-        </Text>
-        <Text color="secondary" size="sm">
-          Standard tab interface with default styling
-        </Text>
+      <Section title="Default Variant" subtitle="Standard tab interface with default styling">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Tabs
             items={[
@@ -70,13 +64,7 @@ export const TabsPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Underline Variant
-        </Text>
-        <Text color="secondary" size="sm">
-          Tabs with underline indicator for active tab
-        </Text>
+      <Section title="Underline Variant" subtitle="Tabs with underline indicator for active tab">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Tabs
             variant="underline"
@@ -113,13 +101,7 @@ export const TabsPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Pills Variant
-        </Text>
-        <Text color="secondary" size="sm">
-          Tabs styled as pills for a more compact look
-        </Text>
+      <Section title="Pills Variant" subtitle="Tabs styled as pills for a more compact look">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Tabs
             variant="pills"
@@ -158,10 +140,7 @@ export const TabsPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Tabs } from '@konradullrich/mp-components';
 

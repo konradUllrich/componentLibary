@@ -23,13 +23,7 @@ export const TooltipPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Tooltip
-        </Text>
-        <Text color="secondary" size="sm">
-          Simple tooltip that appears on hover or focus
-        </Text>
+      <Section title="Basic Tooltip" subtitle="Simple tooltip that appears on hover or focus">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <TooltipProvider>
             <Tooltip>
@@ -42,13 +36,7 @@ export const TooltipPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Tooltip Positioning
-        </Text>
-        <Text color="secondary" size="sm">
-          Tooltips can be positioned on different sides of the trigger
-        </Text>
+      <Section title="Tooltip Positioning" subtitle="Tooltips can be positioned on different sides of the trigger">
         <Flex gap="md" wrap justify="center" className={u({ pt: 4 })}>
           <TooltipProvider>
             <Tooltip>
@@ -82,13 +70,7 @@ export const TooltipPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          With Different Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Tooltips work with all button variants and other components
-        </Text>
+      <Section title="With Different Variants" subtitle="Tooltips work with all button variants and other components">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <TooltipProvider>
             <Tooltip>
@@ -124,13 +106,7 @@ export const TooltipPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Custom Delay
-        </Text>
-        <Text color="secondary" size="sm">
-          Customize the delay before tooltips appear
-        </Text>
+      <Section title="Custom Delay" subtitle="Customize the delay before tooltips appear">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <TooltipProvider delayDuration={0}>
             <Tooltip>
@@ -161,13 +137,7 @@ export const TooltipPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Long Content
-        </Text>
-        <Text color="secondary" size="sm">
-          Tooltips automatically wrap long content
-        </Text>
+      <Section title="Long Content" subtitle="Tooltips automatically wrap long content">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <TooltipProvider>
             <Tooltip>
@@ -184,13 +154,7 @@ export const TooltipPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Accessibility Features
-        </Text>
-        <Text color="secondary" size="sm">
-          Tooltip behavior and keyboard support
-        </Text>
+      <Section title="Accessibility Features" subtitle="Tooltip behavior and keyboard support">
         <ul style={{ marginTop: "0.5rem", paddingLeft: "1.5rem" }}>
           <li>
             <Text size="sm">
@@ -223,10 +187,7 @@ export const TooltipPage: React.FC = () => {
         </ul>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { 
   TooltipProvider, 

@@ -29,13 +29,7 @@ export const DialogPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Dialog
-        </Text>
-        <Text color="secondary" size="sm">
-          Simple dialog with title and description
-        </Text>
+      <Section title="Basic Dialog" subtitle="Simple dialog with title and description">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dialog open={basicOpen} onOpenChange={setBasicOpen}>
             <DialogTrigger asChild>
@@ -59,13 +53,7 @@ export const DialogPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Custom Content
-        </Text>
-        <Text color="secondary" size="sm">
-          Dialog with custom title, description, and content structure
-        </Text>
+      <Section title="Custom Content" subtitle="Dialog with custom title, description, and content structure">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dialog open={controlledOpen} onOpenChange={setControlledOpen}>
             <DialogTrigger asChild>
@@ -103,13 +91,7 @@ export const DialogPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Confirmation Dialog
-        </Text>
-        <Text color="secondary" size="sm">
-          Dialog for confirming destructive actions
-        </Text>
+      <Section title="Confirmation Dialog" subtitle="Dialog for confirming destructive actions">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
             <DialogTrigger asChild>
@@ -140,13 +122,7 @@ export const DialogPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Keyboard Navigation
-        </Text>
-        <Text color="secondary" size="sm">
-          Dialog supports keyboard interactions for accessibility
-        </Text>
+      <Section title="Keyboard Navigation" subtitle="Dialog supports keyboard interactions for accessibility">
         <ul style={{ marginTop: "0.5rem", paddingLeft: "1.5rem" }}>
           <li>
             <Text size="sm">
@@ -167,10 +143,7 @@ export const DialogPage: React.FC = () => {
         </ul>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { 
   Dialog, 

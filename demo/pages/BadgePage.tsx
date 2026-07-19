@@ -15,13 +15,7 @@ export const BadgePage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Different badge colors for different purposes
-        </Text>
+      <Section title="Variants" subtitle="Different badge colors for different purposes">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Badge variant="default">Default</Badge>
           <Badge variant="primary">Primary</Badge>
@@ -32,13 +26,7 @@ export const BadgePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Appearances
-        </Text>
-        <Text color="secondary" size="sm">
-          Different visual styles
-        </Text>
+      <Section title="Appearances" subtitle="Different visual styles">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Badge appearance="solid">Solid</Badge>
           <Badge appearance="outline">Outline</Badge>
@@ -46,10 +34,7 @@ export const BadgePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Badge } from '@konradullrich/mp-components';
 

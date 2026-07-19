@@ -13,13 +13,7 @@ export const DisclosurePage: React.FC = () => {
         <Text color="secondary">Simple collapsible content section</Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Usage
-        </Text>
-        <Text color="secondary" size="sm">
-          Click to expand and collapse content
-        </Text>
+      <Section title="Basic Usage" subtitle="Click to expand and collapse content">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Disclosure label="Click to expand">
             <Text>
@@ -34,10 +28,7 @@ export const DisclosurePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Disclosure } from '@konradullrich/mp-components';
 

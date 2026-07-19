@@ -17,13 +17,7 @@ export const DatePage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Format Options
-        </Text>
-        <Text color="secondary" size="sm">
-          Different date formatting options
-        </Text>
+      <Section title="Format Options" subtitle="Different date formatting options">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
@@ -60,13 +54,7 @@ export const DatePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Locales
-        </Text>
-        <Text color="secondary" size="sm">
-          Support for different locale formats (default: de-DE)
-        </Text>
+      <Section title="Locales" subtitle="Support for different locale formats (default: de-DE)">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
@@ -95,13 +83,7 @@ export const DatePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Null/Undefined Handling
-        </Text>
-        <Text color="secondary" size="sm">
-          Graceful handling of missing dates with fallback
-        </Text>
+      <Section title="Null/Undefined Handling" subtitle="Graceful handling of missing dates with fallback">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
@@ -122,10 +104,7 @@ export const DatePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { DateComponent } from '@konradullrich/mp-components';
 

@@ -42,14 +42,7 @@ export const IntrexxIconPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Interactive Preview
-        </Text>
-        <Text color="secondary" size="sm">
-          Switch between line and solid styles, then pick one of the bundled
-          icon font classes to preview the component API in context.
-        </Text>
+      <Section title="Interactive Preview" subtitle="Switch between line and solid styles, then pick one of the bundled icon font classes to preview the component API in context.">
 
         <Panel variant="subtle">
           <div
@@ -149,14 +142,7 @@ export const IntrexxIconPage: React.FC = () => {
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sizes
-        </Text>
-        <Text color="secondary" size="sm">
-          The component exposes a fixed scale that maps cleanly to the design
-          system.
-        </Text>
+      <Section title="Sizes" subtitle="The component exposes a fixed scale that maps cleanly to the design system.">
         <Flex gap="md" wrap>
           {sizes.map((size) => (
             <div
@@ -182,13 +168,7 @@ export const IntrexxIconPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Color Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Use semantic color names instead of one-off inline styling.
-        </Text>
+      <Section title="Color Variants" subtitle="Use semantic color names instead of one-off inline styling.">
         <Flex gap="md" wrap>
           {colors.map((color) => (
             <div
@@ -210,10 +190,7 @@ export const IntrexxIconPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { IntrexxIcon } from '@mp-ku/mp-components/intrexx';
 

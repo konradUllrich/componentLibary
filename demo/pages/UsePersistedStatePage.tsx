@@ -528,10 +528,7 @@ export const UsePersistedStatePage = () => {
         </Badge>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Quick Start
-        </Text>
+      <Section title="Quick Start">
         <pre className="use-persisted-state-page__code-block">
           <code>{`import { usePersistedState } from "../../hooks/usePersistedState";
 
@@ -542,14 +539,7 @@ const [value, setValue] = usePersistedState({
         </pre>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Live Examples
-        </Text>
-        <Text color="secondary" size="sm">
-          All examples below update URL search params and localStorage in
-          real-time.
-        </Text>
+      <Section title="Live Examples" subtitle="All examples below update URL search params and localStorage in real-time.">
         <div className="use-persisted-state-page__grid">
           <QueryExample />
           <CounterExample />
@@ -561,10 +551,7 @@ const [value, setValue] = usePersistedState({
         </div>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          API
-        </Text>
+      <Section title="API">
         <pre className="use-persisted-state-page__code-block">
           <code>{`usePersistedState<T>({
   key: string,

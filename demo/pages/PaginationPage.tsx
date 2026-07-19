@@ -44,22 +44,12 @@ export const PaginationPage: React.FC = () => {
         </Button>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Live Demo
-        </Text>
-        <Text color="secondary" size="sm">
-          100 items, 10 per page. Page and page size are synced to the URL —
-          reload the tab and you'll land on the same page.
-        </Text>
+      <Section title="Live Demo" subtitle="100 items, 10 per page. Page and page size are synced to the URL — reload the tab and you'll land on the same page.">
 
         <BasicPagination />
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Props
-        </Text>
+      <Section title="Props">
         <pre className="code-block">
           <code>{`interface PaginationProps {
   pagination: PaginationState;  // return value of usePagination()

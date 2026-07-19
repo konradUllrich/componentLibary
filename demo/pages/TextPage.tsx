@@ -15,13 +15,7 @@ export const TextPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sizes
-        </Text>
-        <Text color="secondary" size="sm">
-          Various text sizes from extra small to 3xl
-        </Text>
+      <Section title="Sizes" subtitle="Various text sizes from extra small to 3xl">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text size="xs">Extra Small Text (xs)</Text>
           <Text size="sm">Small Text (sm)</Text>
@@ -33,13 +27,7 @@ export const TextPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Weights
-        </Text>
-        <Text color="secondary" size="sm">
-          Different font weights
-        </Text>
+      <Section title="Weights" subtitle="Different font weights">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text weight="normal">Normal Weight</Text>
           <Text weight="medium">Medium Weight</Text>
@@ -48,13 +36,7 @@ export const TextPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Colors
-        </Text>
-        <Text color="secondary" size="sm">
-          Semantic color options
-        </Text>
+      <Section title="Colors" subtitle="Semantic color options">
         <Flex gap="md" direction="column" className={u({ pt: 4 })}>
           <Text>Default Color</Text>
           <Text color="secondary">Secondary Color</Text>
@@ -64,10 +46,7 @@ export const TextPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Text } from '@konradullrich/mp-components';
 

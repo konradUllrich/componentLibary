@@ -29,15 +29,7 @@ export const ToggleGroupPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Single Selection
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>type="single"</code> for exclusive selection — only one item
-          can be active at a time.
-        </Text>
-
+      <Section title="Single Selection" subtitle='Use type="single" for exclusive selection — only one item can be active at a time.'>
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text
@@ -94,14 +86,7 @@ export const ToggleGroupPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Multiple Selection
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>type="multiple"</code> to allow any number of items to be
-          active simultaneously.
-        </Text>
+      <Section title="Multiple Selection" subtitle='Use type="multiple" to allow any number of items to be active simultaneously.'>
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text
@@ -158,13 +143,7 @@ export const ToggleGroupPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Two visual styles: default (ghost) and outline.
-        </Text>
+      <Section title="Variants" subtitle="Two visual styles: default (ghost) and outline.">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text
@@ -219,13 +198,7 @@ export const ToggleGroupPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sizes
-        </Text>
-        <Text color="secondary" size="sm">
-          Three sizes to fit different layout contexts.
-        </Text>
+      <Section title="Sizes" subtitle="Three sizes to fit different layout contexts.">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text
@@ -305,13 +278,7 @@ export const ToggleGroupPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Disabled State
-        </Text>
-        <Text color="secondary" size="sm">
-          Disable the entire group or individual items.
-        </Text>
+      <Section title="Disabled State" subtitle="Disable the entire group or individual items.">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
             <Text
@@ -369,10 +336,7 @@ export const ToggleGroupPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { ToggleGroup, ToggleGroupItem } from '@konradullrich/mp-components';
 

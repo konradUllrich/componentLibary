@@ -27,13 +27,7 @@ export const DropdownPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Dropdown
-        </Text>
-        <Text color="secondary" size="sm">
-          Simple dropdown menu with basic items
-        </Text>
+      <Section title="Basic Dropdown" subtitle="Simple dropdown menu with basic items">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
@@ -60,13 +54,7 @@ export const DropdownPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Grouped Items
-        </Text>
-        <Text color="secondary" size="sm">
-          Dropdown with labels and separators to organize items
-        </Text>
+      <Section title="Grouped Items" subtitle="Dropdown with labels and separators to organize items">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
@@ -99,13 +87,7 @@ export const DropdownPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Disabled Items
-        </Text>
-        <Text color="secondary" size="sm">
-          Some menu items can be disabled
-        </Text>
+      <Section title="Disabled Items" subtitle="Some menu items can be disabled">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
@@ -130,13 +112,7 @@ export const DropdownPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Positioning
-        </Text>
-        <Text color="secondary" size="sm">
-          Dropdown can be positioned on different sides of the trigger
-        </Text>
+      <Section title="Positioning" subtitle="Dropdown can be positioned on different sides of the trigger">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Dropdown>
             <DropdownTrigger asChild>
@@ -196,13 +172,7 @@ export const DropdownPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Keyboard Navigation
-        </Text>
-        <Text color="secondary" size="sm">
-          Dropdown supports keyboard interactions for accessibility
-        </Text>
+      <Section title="Keyboard Navigation" subtitle="Dropdown supports keyboard interactions for accessibility">
         <ul style={{ marginTop: "0.5rem", paddingLeft: "1.5rem" }}>
           <li>
             <Text size="sm">
@@ -233,10 +203,7 @@ export const DropdownPage: React.FC = () => {
         </ul>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { 
   Dropdown, 

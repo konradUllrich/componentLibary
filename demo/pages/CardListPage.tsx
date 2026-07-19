@@ -196,13 +196,7 @@ export const CardListPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Product Cards (3 columns)
-        </Text>
-        <Text color="secondary" size="sm">
-          A grid of product cards with interactive elements
-        </Text>
+      <Section title="Product Cards (3 columns)" subtitle="A grid of product cards with interactive elements">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <CardList
             items={products}
@@ -213,13 +207,7 @@ export const CardListPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Blog Posts (2 columns)
-        </Text>
-        <Text color="secondary" size="sm">
-          Blog post cards with tags and metadata
-        </Text>
+      <Section title="Blog Posts (2 columns)" subtitle="Blog post cards with tags and metadata">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <CardList
             items={blogPosts}
@@ -230,13 +218,7 @@ export const CardListPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Loading State
-        </Text>
-        <Text color="secondary" size="sm">
-          Display loading indicator
-        </Text>
+      <Section title="Loading State" subtitle="Display loading indicator">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div style={{ marginBottom: "1rem" }}>
             <Button
@@ -257,13 +239,7 @@ export const CardListPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Empty State
-        </Text>
-        <Text color="secondary" size="sm">
-          Display message when no items are available
-        </Text>
+      <Section title="Empty State" subtitle="Display message when no items are available">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <CardList
             items={[]}
@@ -275,10 +251,7 @@ export const CardListPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { CardList } from '@konradullrich/mp-components';
 import { Card, CardHeader, CardContent } from '@konradullrich/mp-components';

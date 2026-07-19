@@ -23,13 +23,7 @@ export const UserAvatarsPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Single Avatar
-        </Text>
-        <Text color="secondary" size="sm">
-          Display a single user avatar
-        </Text>
+      <Section title="Single Avatar" subtitle="Display a single user avatar">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <UserAvatar user={sampleUsers[0]} size="sm" />
           <UserAvatar user={sampleUsers[0]} size="md" />
@@ -37,13 +31,7 @@ export const UserAvatarsPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Avatar Group
-        </Text>
-        <Text color="secondary" size="sm">
-          Display multiple user avatars with overflow indicator
-        </Text>
+      <Section title="Avatar Group" subtitle="Display multiple user avatars with overflow indicator">
         <Flex gap="md" wrap justify="space-between" className={u({ pt: 4 })}>
           <div>
             <Text weight="medium" size="sm">
@@ -66,10 +54,7 @@ export const UserAvatarsPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { UserAvatar, UserAvatars } from '@konradullrich/mp-components';
 

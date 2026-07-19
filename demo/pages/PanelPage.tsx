@@ -14,13 +14,7 @@ export const PanelPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Different panel styles for different contexts
-        </Text>
+      <Section title="Variants" subtitle="Different panel styles for different contexts">
         <Panel variant="subtle" flex>
           <Panel variant="default" padding="md">
             <Text weight="medium">Default Panel</Text>
@@ -52,15 +46,7 @@ export const PanelPage: React.FC = () => {
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Spacing Utility
-        </Text>
-        <Text color="secondary" size="sm">
-          Fine-grained padding and margin control using the <code>spacing</code>{" "}
-          prop with spacing tokens (0-6). Supports responsive breakpoints (base,
-          sm, md, lg, xl).
-        </Text>
+      <Section title="Spacing Utility" subtitle="Fine-grained padding and margin control using the spacing prop with spacing tokens (0-6). Supports responsive breakpoints (base, sm, md, lg, xl).">
 
         <Panel variant="subtle" flex>
           <Panel variant="outlined" spacing={{ pt: 1 }}>
@@ -97,10 +83,7 @@ export const PanelPage: React.FC = () => {
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Panel } from '@mp-ku/mp-components';
 

@@ -23,13 +23,7 @@ export const AppLayoutPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Features
-        </Text>
-        <Text color="secondary" size="sm">
-          AppLayout provides a complete application structure:
-        </Text>
+      <Section title="Features" subtitle="AppLayout provides a complete application structure:">
         <ul style={{ marginTop: "1rem", marginLeft: "1.5rem" }}>
           <li>
             <Text>AppHeader: Fixed header for branding and actions</Text>
@@ -46,14 +40,7 @@ export const AppLayoutPage: React.FC = () => {
         </ul>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Basic Example
-        </Text>
-        <Text color="secondary" size="sm">
-          Complete application layout structure
-        </Text>
-
+      <Section title="Basic Example" subtitle="Complete application layout structure">
         <Panel variant="subtle">
           <div
             style={{
@@ -95,10 +82,7 @@ export const AppLayoutPage: React.FC = () => {
         </Panel>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { 
   AppLayout,

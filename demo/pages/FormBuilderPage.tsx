@@ -84,16 +84,7 @@ export const FormBuilderPage: React.FC = () => {
       </Section>
 
       {/* ── Contact form ───────────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Contact Form
-        </Text>
-        <Text color="secondary" size="sm">
-          All five field types in one form — text, email, number, textarea,
-          select, and checkbox — each bound to a correctly typed field in{" "}
-          <code>ContactForm</code>.
-        </Text>
-
+      <Section title="Contact Form" subtitle="All five field types in one form — text, email, number, textarea, select, and checkbox — each bound to a correctly typed field in ContactForm.">
         <Flex gap="md" wrap>
           <FormBuilder<ContactForm>
             defaultValues={contactDefaults}
@@ -201,16 +192,7 @@ export const FormBuilderPage: React.FC = () => {
       </Section>
 
       {/* ── Sign-up form ───────────────────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sign-up Form
-        </Text>
-        <Text color="secondary" size="sm">
-          Cross-field validation via the <code>onBlur</code> validator — confirm
-          password must match password. Boolean keys are only accepted by
-          checkbox fields.
-        </Text>
-
+      <Section title="Sign-up Form" subtitle="Cross-field validation via the onBlur validator — confirm password must match password. Boolean keys are only accepted by checkbox fields.">
         <Flex gap="md" wrap>
           <FormBuilder<SignUpForm>
             defaultValues={signUpDefaults}
@@ -280,17 +262,7 @@ export const FormBuilderPage: React.FC = () => {
       </Section>
 
       {/* ── Grid layout + custom field ─────────────────────────── */}
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Grid Layout &amp; Custom Field
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>columns</code> to arrange fields in a multi-column grid.
-          Each field can declare <code>colSpan</code> to occupy more columns.
-          The <code>fieldType: "custom"</code> variant lets you embed any
-          control — here a star-rating picker built with plain buttons.
-        </Text>
-
+      <Section title="Grid Layout &amp; Custom Field" subtitle="Use columns to arrange fields in a multi-column grid. Each field can declare colSpan to occupy more columns. The fieldType: custom variant lets you embed any control — here a star-rating picker built with plain buttons.">
         <Flex gap="md" wrap>
           <FormBuilder<ProfileForm>
             defaultValues={profileDefaults}

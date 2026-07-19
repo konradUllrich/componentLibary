@@ -20,13 +20,7 @@ export const TogglePage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Two visual styles: default (ghost) and outline.
-        </Text>
+      <Section title="Variants" subtitle="Two visual styles: default (ghost) and outline.">
 
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
@@ -72,13 +66,7 @@ export const TogglePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sizes
-        </Text>
-        <Text color="secondary" size="sm">
-          Three sizes to fit different layout contexts.
-        </Text>
+      <Section title="Sizes" subtitle="Three sizes to fit different layout contexts.">
 
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <div>
@@ -120,14 +108,7 @@ export const TogglePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Controlled
-        </Text>
-        <Text color="secondary" size="sm">
-          Use <code>pressed</code> and <code>onPressedChange</code> for
-          controlled state management.
-        </Text>
+      <Section title="Controlled" subtitle="Use pressed and onPressedChange for controlled state management.">
 
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Toggle
@@ -153,13 +134,7 @@ export const TogglePage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Disabled State
-        </Text>
-        <Text color="secondary" size="sm">
-          Disabled toggles are not interactive and appear visually muted.
-        </Text>
+      <Section title="Disabled State" subtitle="Disabled toggles are not interactive and appear visually muted.">
 
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Toggle aria-label="Bold" disabled>
@@ -173,10 +148,7 @@ export const TogglePage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Toggle } from '@konradullrich/mp-components';
 

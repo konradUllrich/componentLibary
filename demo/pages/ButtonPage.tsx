@@ -16,13 +16,7 @@ export const ButtonPage: React.FC = () => {
         </Text>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Variants
-        </Text>
-        <Text color="secondary" size="sm">
-          Different button styles for various contexts
-        </Text>
+      <Section title="Variants" subtitle="Different button styles for various contexts">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
@@ -31,13 +25,7 @@ export const ButtonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Sizes
-        </Text>
-        <Text color="secondary" size="sm">
-          Different button sizes for different contexts
-        </Text>
+      <Section title="Sizes" subtitle="Different button sizes for different contexts">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Button size="sm">Small</Button>
           <Button size="md">Medium</Button>
@@ -45,13 +33,7 @@ export const ButtonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          States
-        </Text>
-        <Text color="secondary" size="sm">
-          Button states including disabled and loading
-        </Text>
+      <Section title="States" subtitle="Button states including disabled and loading">
         <Flex gap="md" wrap className={u({ pt: 4 })}>
           <Button disabled>Disabled</Button>
           <Button isLoading>Loading</Button>
@@ -76,10 +58,7 @@ export const ButtonPage: React.FC = () => {
         </Flex>
       </Section>
 
-      <Section>
-        <Text as="h2" size="2xl" weight="semibold">
-          Usage
-        </Text>
+      <Section title="Usage">
         <pre className="code-block">
           <code>{`import { Button } from '@konradullrich/mp-components';
 
