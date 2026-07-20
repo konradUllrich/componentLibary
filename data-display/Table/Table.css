@@ -33,6 +33,13 @@
   border-bottom: 2px solid var(--mp-color-border);
 }
 
+.table__head .table__cell--first {
+  border-top-left-radius: var(--mp-radius-md);
+}
+.table__head .table__cell--last {
+  border-top-right-radius: var(--mp-radius-md);
+}
+
 /* Table Body */
 .table__body {
   background-color: var(--mp-color-background);

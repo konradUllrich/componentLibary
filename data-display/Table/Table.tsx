@@ -72,6 +72,9 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                     aria-sort={ariaSort}
                     className={clsx("table__cell table__cell--header", {
                       "table__cell--sortable": header.column.getCanSort(),
+                      "table__cell--first": header.index === 0,
+                      "table__cell--last":
+                        header.index === headerGroup.headers.length - 1,
                     })}
                     style={{
                       width:
