@@ -32,12 +32,6 @@ All Done
 
 Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Card, Grid, Panel, Sidebar, HorizontalNav).
 
-### 🟡 Medium — Landmark and keyboard gaps in the layout shell
-
-Done. `AppLayout` header/sidebar now render as `<header>`/`<aside>` with a skip link to `<main>`; `HorizontalNav`'s mobile fallback now wraps the `<select>` in a `<nav>` landmark instead of a bare `<div>`. All changes are class-based only (no tag-selector CSS existed for either component), so consumers styling via `.mp-app-layout__*` / `.mp-horizontal-nav*` classes are unaffected — verified against `kanban`, whose only DOM-shape coupling was the `nav.mp-horizontal-nav` test selector, which still matches.
-
-`layout/AppLayout/AppLayout.tsx:53,55` · `layout/HorizontalNav/HorizontalNav.tsx:117-144`
-
 ### 🟡 Medium — No shared spacing vocabulary across layout primitives
 
 `Flex` gap uses `xs|sm|md|lg|xl`; `Card` padding stops at `lg` (no `xl`); `Panel` has its own separate `spacing`/`u()` utility system that Flex/Card/Grid don't share. Three components, three spacing scales.
