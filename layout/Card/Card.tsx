@@ -1,6 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+import { u, type UtilityInput } from "../../utils";
 import "./Card.css";
+import "../../styles/spacing.css";
 
 export interface CardProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -19,6 +21,17 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
    * @default "md"
    */
   padding?: "none" | "sm" | "md" | "lg";
+
+  /**
+   * Optional spacing utility configuration for responsive padding/margin.
+   * Pass an object with p, pt, pb, pl, pr, m, mt, mb, ml, mr keys.
+   * Values can be static (0–6) or responsive across breakpoints.
+   * Shares the same scale as `Flex`/`Panel`'s `spacing` prop.
+   *
+   * @example
+   * <Card spacing={{ pt: 4, pb: { base: 2, md: 4 } }} />
+   */
+  spacing?: UtilityInput;
 
   /**
    * Additional CSS classes
@@ -76,6 +89,7 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(
       children,
       variant = "elevated",
       padding = "md",
+      spacing,
       className,
       interactive = false,
       href,
@@ -97,6 +111,7 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(
         "mp-card--interactive": interactive || isLink,
         "mp-card--link": isLink,
       },
+      spacing && u(spacing),
       className,
     );
 
