@@ -3,7 +3,7 @@
 /* Content */
 .mp-tooltip__content {
   /* Use explicit dark background for WCAG AA compliance (minimum 4.5:1 contrast with white) */
-  background-color: #1e293b; /* gray-800 for better contrast */
+  background-color: var(--mp-color-gray-800, #1e293b);
   color: white;
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
   border-radius: var(--mp-radius-md);
@@ -18,7 +18,7 @@
 
 /* Arrow */
 .mp-tooltip__arrow {
-  fill: #1e293b; /* Match content background */
+  fill: var(--mp-color-gray-800, #1e293b);
 }
 
 /* Animations */
@@ -44,12 +44,12 @@
 @media (prefers-color-scheme: dark) {
   .mp-tooltip__content {
     /* Keep same dark background in dark mode */
-    background-color: #1e293b;
+    background-color: var(--mp-color-gray-800, #1e293b);
     border: 1px solid var(--mp-color-gray-700);
   }
 
   .mp-tooltip__arrow {
-    fill: #1e293b;
+    fill: var(--mp-color-gray-800, #1e293b);
   }
 }
 

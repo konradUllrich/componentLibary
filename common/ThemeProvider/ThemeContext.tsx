@@ -10,10 +10,15 @@ import {
 } from "./themeUtils";
 import { ThemeContext } from "./ThemeProviderContext";
 
-export const ThemeContextProvider: React.FC<{
+export interface ThemeContextProviderProps {
   children: React.ReactNode;
   theme: ThemePresetInput;
-}> = ({ children, theme: themeInput }) => {
+}
+
+export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
+  children,
+  theme: themeInput,
+}) => {
   const [theme, setTheme] = useState<ThemeConfig>(() => {
     return loadThemeFromStorage() ?? mergeThemeWithDefaults(themeInput);
   });
@@ -43,7 +48,7 @@ export const ThemeContextProvider: React.FC<{
   }, []);
 
   const resetTheme = useCallback(() => {
-    setTheme(defaultTheme);
+    setTheme(mergeThemeWithDefaults(defaultTheme));
     try {
       removeThemeFromStorage();
     } catch (error) {
