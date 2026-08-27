@@ -30,7 +30,7 @@ export interface RouterProps {
  *
  * @example
  * ```tsx
- * import { Router, Route, Link } from '@konradullrich/mp-components';
+ * import { Router, Route, Link } from '@mp-ku/mp-components';
  *
  * <Router>
  *   <nav>
