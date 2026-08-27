@@ -79,10 +79,12 @@
     var(--mp-color-warning-base),
     white 15%
   );
+  /* 30% black mix (vs. the 20% used by other -dark tokens) needed for warning-dark to clear
+     4.5:1 contrast on white — the warning base color is too light at 20%. */
   --mp-color-warning-dark: color-mix(
     in oklch,
     var(--mp-color-warning-base),
-    black 20%
+    black 30%
   );
   --mp-color-warning-foreground: black;
 

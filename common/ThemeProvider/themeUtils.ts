@@ -85,7 +85,9 @@ export const getThemeCssVariables = (
     "--mp-color-warning-base": colors.warning,
     "--mp-color-warning": "var(--mp-color-warning-base)",
     "--mp-color-warning-light": colorMix(colors.warning, "white", 15),
-    "--mp-color-warning-dark": colorMix(colors.warning, "black", 20),
+    // 30% black mix (vs. the 20% used by other -dark tokens) needed for warning-dark to clear
+    // 4.5:1 contrast on white — the warning base color is too light at 20%.
+    "--mp-color-warning-dark": colorMix(colors.warning, "black", 30),
     "--mp-color-warning-foreground": colors.onWarning,
 
     "--mp-color-destructive-base": colors.destructive,
