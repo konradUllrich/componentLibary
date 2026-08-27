@@ -32,29 +32,9 @@ All Done
 
 Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Card, Grid, Panel, Sidebar, HorizontalNav).
 
-### 🟡 Medium — No shared spacing vocabulary across layout primitives
-
-`Flex` gap uses `xs|sm|md|lg|xl`; `Card` padding stops at `lg` (no `xl`); `Panel` has its own separate `spacing`/`u()` utility system that Flex/Card/Grid don't share. Three components, three spacing scales.
-
-`layout/Flex/Flex.tsx` · `layout/Card/Card.tsx` · `layout/Panel/Panel.tsx`
-
-### 🟢 Low — Missing tests and stray `any`
-
-No co-located tests for TableHeader/Body/Row/Cell, several Sidebar and Card/Panel subcomponents, or `GridItem`. An `as any` with an eslint-disable sits in `TableBody.tsx:54-55`, contradicting the no-`any` rule.
-
-`data-display/Table/TableBody.tsx:54-55`
-
----
-
 ## 5. Router, hooks, stores, intrexx
 
 The shared foundation most other components build on — bugs here have the widest blast radius of anything in the audit.
-
-### 🟠 High — Storage-restore merge doesn't match its own documentation
-
-The header comment and CLAUDE.md both describe "sessionStorage first, else localStorage." The actual code merges the two per-key — localStorage as a baseline with sessionStorage values overriding matching keys — which can produce a param combination (e.g. `page` from session, `sort` from local) that never existed in either store alone. Either the code or the documentation is wrong; right now it's unclear which was intended.
-
-`Router/routeStateStorage.ts:8-10,64-76`
 
 ### 🟠 High — `useUrlSort` has zero test coverage
 

@@ -56,7 +56,8 @@ The `Router` wraps `wouter` but does **not** control the browser path. It stores
 - `appRouteLocation.ts` implements custom wouter location hooks (`useAppRouteLocation`, `useAppRouteSearch`) that read/write via the `appRoute` param and subscribe to `popstate`.
 - Route search-param state (filters, pagination, sort) is auto-saved/restored across navigation via a two-layer storage scheme, keyed as `${routeStatePrefix}:${routePath}` (prefix defaults to `"mp-route"`, overridable per `<Router>` for multiple routers on one page):
   - **sessionStorage** — written on every store change within a session (`useStoreUrlSync`), and read back by `navigate()`/`<Link>` when the destination has no explicit search params.
-  - **localStorage** — same key format, for persistence across browser sessions/tab closes; checked as a fallback after sessionStorage.
+  - **localStorage** — same key format, for persistence across browser sessions/tab closes.
+  - On read, both stores are **merged per search-param** (not a whole-blob fallback) — different hooks on the same route can each pick their own `storage` backend (e.g. a `viewMode` toggle in localStorage alongside filters in sessionStorage), so both may hold different params under the same route key at once; sessionStorage wins on a same-key collision. See `Router/routeStateStorage.ts` header comment.
 - `createRoute()` gives typed helpers (`.build()`, `.useSearch()`, `.useSetSearch()`, `.useParams()`) for a specific path.
 
 ### URL-synced state: `hooks/usePersistedState`, `hooks/useUrlState`, `hooks/usePagination`, `hooks/useUrlSort`, `hooks/useFilter`

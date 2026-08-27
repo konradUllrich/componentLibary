@@ -5,9 +5,15 @@
  * search params when navigating to a route, and by useStoreUrlSync to
  * persist the current route's params on state changes.
  *
- * When reading, sessionStorage is checked first, then localStorage as a
- * fallback — allowing params to survive across sessions when the consumer
- * writes the key to localStorage using the same `${prefix}:${path}` format.
+ * When reading, localStorage and sessionStorage entries for the same
+ * `${prefix}:${path}` key are merged per search-param, not treated as a
+ * whole-blob fallback. This is intentional: different `usePersistedState` /
+ * `useUrlState` / `useFilter` / `useUrlSort` call sites on the same route
+ * can each choose their own `storage` backend (e.g. a `viewMode` toggle
+ * persisted to localStorage alongside filters persisted to sessionStorage),
+ * so both stores may hold different params for the same route key at once.
+ * sessionStorage wins on a per-param key collision, since it reflects the
+ * current session's most recent write.
  *
  * NOT exported from the Router public index.
  */
@@ -61,8 +67,9 @@ export function buildDestinationWithState(
   if (typeof window === "undefined") return destination;
 
   const key = `${prefix}:${destination}`;
-  // Merge both storages — localStorage provides the baseline, sessionStorage
-  // params override it (same-key sessionStorage wins).
+  // Merge both storages per param — different hooks on the same route may
+  // persist to different backends (see file header) — sessionStorage wins
+  // on a same-key collision.
   const localStored = localStorage.getItem(key) ?? "";
   const sessionStored = sessionStorage.getItem(key) ?? "";
 
