@@ -104,6 +104,8 @@ export {
   type InputProps,
   Textarea,
   type TextareaProps,
+  Slider,
+  type SliderProps,
 } from "./controls";
 // export { useForm } from './controls';
 

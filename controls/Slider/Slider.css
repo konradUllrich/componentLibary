@@ -1,0 +1,97 @@
+/* Block: Slider */
+.mp-slider {
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.mp-slider:focus {
+  outline: none;
+}
+
+.mp-slider:focus-visible::-webkit-slider-thumb {
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
+}
+
+.mp-slider:focus-visible::-moz-range-thumb {
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
+}
+
+/* Track */
+.mp-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--mp-color-border);
+  border-radius: var(--mp-radius-sm);
+}
+
+.mp-slider::-moz-range-track {
+  height: 4px;
+  background: var(--mp-color-border);
+  border-radius: var(--mp-radius-sm);
+}
+
+/* Thumb */
+.mp-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--mp-color-primary);
+  border: 2px solid var(--mp-color-background);
+  box-shadow: 0 0 0 1px var(--mp-color-primary);
+  transition: transform var(--duration-200) var(--ease-in-out);
+}
+
+.mp-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--mp-color-primary);
+  border: 2px solid var(--mp-color-background);
+  box-shadow: 0 0 0 1px var(--mp-color-primary);
+  transition: transform var(--duration-200) var(--ease-in-out);
+}
+
+.mp-slider:hover:not(:disabled)::-webkit-slider-thumb,
+.mp-slider:active:not(:disabled)::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.mp-slider:hover:not(:disabled)::-moz-range-thumb,
+.mp-slider:active:not(:disabled)::-moz-range-thumb {
+  transform: scale(1.15);
+}
+
+/* Modifier: Error */
+.mp-slider--error::-webkit-slider-thumb {
+  background: var(--mp-color-destructive);
+  box-shadow: 0 0 0 1px var(--mp-color-destructive);
+}
+
+.mp-slider--error::-moz-range-thumb {
+  background: var(--mp-color-destructive);
+  box-shadow: 0 0 0 1px var(--mp-color-destructive);
+}
+
+/* Modifier: Disabled */
+.mp-slider--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mp-slider--disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+
+.mp-slider--disabled::-moz-range-thumb {
+  cursor: not-allowed;
+}
