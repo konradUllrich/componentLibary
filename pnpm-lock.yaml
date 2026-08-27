@@ -8,6 +8,22 @@ importers:
 
   .:
     dependencies:
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      lucide-react:
+        specifier: ^0.563.0
+        version: 0.563.0(react@19.2.4)
+      react-dnd:
+        specifier: ^16.0.1
+        version: 16.0.1(@types/node@25.3.5)(@types/react@19.2.14)(react@19.2.4)
+      react-dnd-html5-backend:
+        specifier: ^16.0.1
+        version: 16.0.1
+    devDependencies:
+      '@axe-core/playwright':
+        specifier: ^4.11.1
+        version: 4.11.1(playwright-core@1.58.2)
       '@dnd-kit/abstract':
         specifier: ^0.3.2
         version: 0.3.2
@@ -20,6 +36,15 @@ importers:
       '@dnd-kit/react':
         specifier: ^0.3.2
         version: 0.3.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@eslint/js':
+        specifier: ^9.21.0
+        version: 9.39.4
+      '@playwright/experimental-ct-react':
+        specifier: ^1.58.2
+        version: 1.58.2(@types/node@25.3.5)(vite@5.4.21(@types/node@25.3.5))
+      '@playwright/test':
+        specifier: ^1.58.2
+        version: 1.58.2
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -59,43 +84,12 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.90.2
         version: 5.90.21(react@19.2.4)
-      '@tanstack/react-table':
-        specifier: ^8.21.3
-        version: 8.21.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      lucide-react:
-        specifier: ^0.563.0
-        version: 0.563.0(react@19.2.4)
-      react-dnd:
-        specifier: ^16.0.1
-        version: 16.0.1(@types/node@25.3.5)(@types/react@19.2.14)(react@19.2.4)
-      react-dnd-html5-backend:
-        specifier: ^16.0.1
-        version: 16.0.1
-      utilities:
-        specifier: link:@dnd-kit/dom/utilities
-        version: link:@dnd-kit/dom/utilities
-      wouter:
-        specifier: ^3.9.0
-        version: 3.9.0(react@19.2.4)
-    devDependencies:
-      '@axe-core/playwright':
-        specifier: ^4.11.1
-        version: 4.11.1(playwright-core@1.58.2)
-      '@eslint/js':
-        specifier: ^9.21.0
-        version: 9.39.4
-      '@playwright/experimental-ct-react':
-        specifier: ^1.58.2
-        version: 1.58.2(@types/node@25.3.5)(vite@5.4.21(@types/node@25.3.5))
-      '@playwright/test':
-        specifier: ^1.58.2
-        version: 1.58.2
       '@tanstack/react-router':
         specifier: ^1.158.4
         version: 1.166.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@tanstack/react-table':
+        specifier: ^8.21.3
+        version: 8.21.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/node':
         specifier: ^25.2.3
         version: 25.3.5
@@ -150,6 +144,9 @@ importers:
       vitest:
         specifier: ^3.1.4
         version: 3.2.4(@types/node@25.3.5)
+      wouter:
+        specifier: ^3.9.0
+        version: 3.9.0(react@19.2.4)
       zod:
         specifier: 4.3.6
         version: 4.3.6
@@ -1355,24 +1352,28 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.15.18':
     resolution: {integrity: sha512-0a+Lix+FSSHBSBOA0XznCcHo5/1nA6oLLjcnocvzXeqtdjnPb+SvchItHI+lfeiuj1sClYPDvPMLSLyXFaiIKw==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-linux-x64-gnu@1.15.18':
     resolution: {integrity: sha512-wG9J8vReUlpaHz4KOD/5UE1AUgirimU4UFT9oZmupUDEofxJKYb1mTA/DrMj0s78bkBiNI+7Fo2EgPuvOJfuAA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.15.18':
     resolution: {integrity: sha512-4nwbVvCphKzicwNWRmvD5iBaZj8JYsRGa4xOxJmOyHlMDpsvvJ2OR2cODlvWyGFH6BYL1MfIAK3qph3hp0Az6g==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.15.18':
     resolution: {integrity: sha512-zk0RYO+LjiBCat2RTMHzAWaMky0cra9loH4oRrLKLLNuL+jarxKLFDA8xTZWEkCPLjUTwlRN7d28eDLLMgtUcQ==}
@@ -1957,6 +1958,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'

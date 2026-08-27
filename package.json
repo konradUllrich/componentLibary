@@ -50,10 +50,6 @@
     "prepare": "husky || true"
   },
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "dependencies": {
     "@dnd-kit/abstract": "^0.3.2",
     "@dnd-kit/dom": "^0.3.2",
     "@dnd-kit/helpers": "^0.3.2",
@@ -72,19 +68,41 @@
     "@tanstack/react-form": "^0.37.0",
     "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-table": "^8.21.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "wouter": "^3.9.0",
+    "zustand": "^5.0.11"
+  },
+  "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^0.563.0",
     "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
-    "utilities": "link:@dnd-kit/dom/utilities",
-    "wouter": "^3.9.0"
+    "react-dnd-html5-backend": "^16.0.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
+    "@dnd-kit/abstract": "^0.3.2",
+    "@dnd-kit/dom": "^0.3.2",
+    "@dnd-kit/helpers": "^0.3.2",
+    "@dnd-kit/react": "^0.3.2",
     "@eslint/js": "^9.21.0",
     "@playwright/experimental-ct-react": "^1.58.2",
     "@playwright/test": "^1.58.2",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-navigation-menu": "^1.2.5",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-toggle": "^1.1.10",
+    "@radix-ui/react-toggle-group": "^1.1.11",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@tanstack/react-form": "^0.37.0",
+    "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-router": "^1.158.4",
+    "@tanstack/react-table": "^8.21.3",
     "@types/node": "^25.2.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -103,6 +121,7 @@
     "vite": "^5.4.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.1.4",
+    "wouter": "^3.9.0",
     "zod": "4.3.6",
     "zustand": "^5.0.11"
   },
