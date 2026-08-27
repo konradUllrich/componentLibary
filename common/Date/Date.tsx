@@ -1,6 +1,9 @@
-import { FC } from "react";
+import React from "react";
+import clsx from "clsx";
+import "./Date.css";
 
-export interface DateComponentProps {
+export interface DateComponentProps
+  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "children"> {
   /** The date value to display. Accepts a `Date` object, an ISO string, or `null`/`undefined`. */
   date: Date | string | null | undefined;
   /**
@@ -29,6 +32,22 @@ export interface DateComponentProps {
   fallback?: string;
 }
 
+const FORMAT_OPTIONS: Record<
+  NonNullable<DateComponentProps["format"]>,
+  Intl.DateTimeFormatOptions
+> = {
+  short: { year: "numeric", month: "2-digit", day: "2-digit" },
+  long: { year: "numeric", month: "long", day: "numeric" },
+  datetime: {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  },
+  time: { hour: "2-digit", minute: "2-digit" },
+};
+
 /**
  * DateComponent – Renders a locale-aware formatted date or time string.
  *
@@ -48,66 +67,34 @@ export interface DateComponentProps {
  * // Time only with a custom fallback
  * <DateComponent date={null} format="time" fallback="N/A" />
  */
-export const DateComponent: FC<DateComponentProps> = ({
-  date,
-  format = "short",
-  locale = "de-DE",
-  fallback = "---",
-}) => {
-  if (!date) {
-    return <>{fallback}</>;
-  }
+export const DateComponent = React.forwardRef<
+  HTMLSpanElement,
+  DateComponentProps
+>(
+  (
+    { date, format = "short", locale = "de-DE", fallback = "---", className, ...props },
+    ref,
+  ) => {
+    const dateObj = date instanceof Date ? date : date ? new Date(date) : null;
+    const isValid = dateObj !== null && !isNaN(dateObj.getTime());
 
-  try {
-    const dateObj = date instanceof Date ? date : new Date(date);
-
-    if (isNaN(dateObj.getTime())) {
-      return <>{fallback}</>;
+    let text = fallback;
+    if (isValid) {
+      try {
+        text = new Intl.DateTimeFormat(locale, FORMAT_OPTIONS[format]).format(
+          dateObj,
+        );
+      } catch {
+        text = fallback;
+      }
     }
 
-    let formatOptions: Intl.DateTimeFormatOptions;
-
-    switch (format) {
-      case "long":
-        formatOptions = {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        break;
-      case "datetime":
-        formatOptions = {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        };
-        break;
-      case "time":
-        formatOptions = {
-          hour: "2-digit",
-          minute: "2-digit",
-        };
-        break;
-      case "short":
-      default:
-        formatOptions = {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        };
-        break;
-    }
-
-    const formatted = new Intl.DateTimeFormat(locale, formatOptions).format(
-      dateObj,
+    return (
+      <span ref={ref} className={clsx("mp-date", className)} {...props}>
+        {text}
+      </span>
     );
-    return <>{formatted}</>;
-  } catch {
-    // Date formatting failed, show fallback
-    return <>{fallback}</>;
-  }
-};
+  },
+);
 
 DateComponent.displayName = "DateComponent";
