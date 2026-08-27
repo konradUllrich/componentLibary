@@ -64,6 +64,8 @@ export interface RadioProps extends Omit<
  *
  * @example
  * ```tsx
+ * import { Radio } from '@mp-ku/mp-components';
+ *
  * // With top label
  * <Radio
  *   name="option"

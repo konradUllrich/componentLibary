@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ColorPicker } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/ColorPicker/ColorPicker.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -64,26 +65,11 @@ export const ColorPickerPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { ColorPicker } from '@konradullrich/mp-components';
-
-// Controlled color picker
-const [color, setColor] = useState("#7c3aed");
-
-<ColorPicker
-  label="Primary Color"
-  value={color}
-  onValueChange={setColor}
-/>
-
-// With error
-<ColorPicker
-  label="Brand Color"
-  value={color}
-  onValueChange={setColor}
-  error
-  errorMessage="This color does not meet contrast requirements"
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

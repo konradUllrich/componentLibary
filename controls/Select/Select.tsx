@@ -99,7 +99,17 @@ export interface SelectProps {
  *   ]}
  *   onValueChange={(value) => console.log(value)}
  * />
+ *
+ * <Select
+ *   label="Required"
+ *   error
+ *   errorMessage="Please select an option"
+ *   options={[...]}
+ * />
  * ```
+ *
+ * See {@link ./Select.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Select = ({
   variant = "default",

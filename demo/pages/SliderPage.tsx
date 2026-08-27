@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { Slider } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/Slider/Slider.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -72,28 +73,11 @@ export const SliderPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Slider } from '@konradullrich/mp-components';
-
-// Controlled slider
-const [fontSize, setFontSize] = useState(16);
-
-<Slider
-  label={\`Font Size: \${fontSize}px\`}
-  value={fontSize}
-  min={12}
-  max={20}
-  onChange={(e) => setFontSize(Number(e.target.value))}
-/>
-
-// With error
-<Slider
-  label="Volume"
-  value={volume}
-  onChange={(e) => setVolume(Number(e.target.value))}
-  error
-  errorMessage="Value must be at least 30"
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

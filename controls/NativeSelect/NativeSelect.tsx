@@ -54,13 +54,18 @@ export interface NativeSelectProps extends Omit<
  *
  * @example
  * ```tsx
- * <NativeSelect label="Country" placeholder="Select a country">
- *   <option value="">Choose...</option>
+ * import { NativeSelect } from '@mp-ku/mp-components';
+ *
+ * <NativeSelect label="Country">
+ *   <option value="">Select a country...</option>
  *   <option value="us">United States</option>
  *   <option value="uk">United Kingdom</option>
  *   <option value="ca">Canada</option>
  * </NativeSelect>
  * ```
+ *
+ * See {@link ./NativeSelect.example.tsx} for the live, greppable version of
+ * this snippet.
  */
 export const NativeSelect = React.forwardRef<
   HTMLSelectElement,

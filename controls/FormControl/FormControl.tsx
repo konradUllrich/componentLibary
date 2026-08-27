@@ -72,6 +72,9 @@ export interface FormControlProps {
  *   <input id="email-input" type="email" />
  * </FormControl>
  * ```
+ *
+ * See {@link ./FormControl.example.tsx} for the live, greppable version of
+ * this snippet — it also drives the demo site's "Usage" section.
  */
 export const FormControl = ({
   label,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Combobox } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/Combobox/Combobox.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -120,37 +121,11 @@ export const ComboboxPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Combobox } from '@konradullrich/mp-components';
-
-<Combobox
-  label="Country"
-  placeholder="Search countries..."
-  options={[
-    { value: "us", label: "United States" },
-    { value: "uk", label: "United Kingdom" },
-    { value: "ca", label: "Canada" },
-  ]}
-  value={selected}
-  onValueChange={(value) => console.log(value)}
-/>
-
-// With error
-<Combobox
-  label="Required"
-  error
-  errorMessage="Please select a valid option"
-  options={[...]}
-/>
-
-// With disabled options
-<Combobox
-  label="Options"
-  options={[
-    { value: "1", label: "Available" },
-    { value: "2", label: "Unavailable", disabled: true },
-  ]}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

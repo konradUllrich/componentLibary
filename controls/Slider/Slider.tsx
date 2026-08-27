@@ -42,7 +42,18 @@ export interface SliderProps
  *   max={20}
  *   onChange={(e) => setFontSize(Number(e.target.value))}
  * />
+ *
+ * <Slider
+ *   label="Volume"
+ *   value={volume}
+ *   onChange={(e) => setVolume(Number(e.target.value))}
+ *   error
+ *   errorMessage="Value must be at least 30"
+ * />
  * ```
+ *
+ * See {@link ./Slider.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
   (

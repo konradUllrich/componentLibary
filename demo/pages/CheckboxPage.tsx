@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { Checkbox } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/Checkbox/Checkbox.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -157,37 +158,11 @@ export const CheckBoxPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Checkbox } from '@konradullrich/mp-components';
-
-// Basic checkbox
-<Checkbox
-  label="Notifications"
-  inlineLabel="Email me updates"
-  onChange={(e) => console.log(e.target.checked)}
-/>
-
-// Error state
-<Checkbox
-  label="Terms"
-  inlineLabel="I accept the terms"
-  error
-  errorMessage="You must accept the terms"
-/>
-
-// Toggle switch
-<Checkbox
-  variant="toggle"
-  label="Dark mode"
-  inlineLabel="Enable dark mode"
-  defaultChecked
-/>
-
-// Controlled
-<Checkbox
-  checked={isChecked}
-  onChange={(e) => setIsChecked(e.target.checked)}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

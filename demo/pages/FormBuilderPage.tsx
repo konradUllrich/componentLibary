@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Text } from "../../common";
 import { FormBuilder } from "../../controls";
 import { FormControl } from "../../controls";
+import { UsageExample, usageSource } from "../../controls/FormBuilder/FormBuilder.example";
 import { Flex, Page, Section } from "../../layout";
+import { u } from "../../utils";
 
 // ─── Demo: Contact form ───────────────────────────────────────────────────────
 
@@ -374,6 +376,15 @@ export const FormBuilderPage: React.FC = () => {
             </pre>
           )}
         </Flex>
+      </Section>
+
+      <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
+        <pre className="code-block">
+          <code>{usageSource}</code>
+        </pre>
       </Section>
     </Page>
   );

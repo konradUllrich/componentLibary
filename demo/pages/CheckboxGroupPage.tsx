@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CheckboxGroup } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/CheckboxGroup/CheckboxGroup.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -99,34 +100,11 @@ export const CheckboxGroupPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { CheckboxGroup } from '@konradullrich/mp-components';
-
-const [selected, setSelected] = useState<string[]>([]);
-
-// Vertical (default)
-<CheckboxGroup
-  label="Select options"
-  options={[
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-  ]}
-  value={selected}
-  onValueChange={setSelected}
-/>
-
-// Horizontal with variant
-<CheckboxGroup
-  label="Filters"
-  direction="horizontal"
-  variant="filled"
-  options={[
-    { value: "a", label: "Option A" },
-    { value: "b", label: "Option B" },
-  ]}
-  value={selected}
-  onValueChange={setSelected}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

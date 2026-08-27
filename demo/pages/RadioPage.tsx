@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { Radio } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/Radio/Radio.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -112,34 +113,11 @@ export const RadioPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Radio } from '@konradullrich/mp-components';
-
-// Controlled radio group
-const [value, setValue] = useState("option1");
-
-<Radio
-  name="group"
-  value="option1"
-  checked={value === "option1"}
-  onChange={(e) => setValue(e.target.value)}
-  inlineLabel="Option 1"
-/>
-<Radio
-  name="group"
-  value="option2"
-  checked={value === "option2"}
-  onChange={(e) => setValue(e.target.value)}
-  inlineLabel="Option 2"
-/>
-
-// With error
-<Radio
-  label="Required choice"
-  inlineLabel="Select this"
-  error
-  errorMessage="You must make a selection"
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

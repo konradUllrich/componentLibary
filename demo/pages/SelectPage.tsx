@@ -1,6 +1,7 @@
 import React from "react";
 import { Select } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/Select/Select.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -139,27 +140,11 @@ export const SelectPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Select } from '@konradullrich/mp-components';
-
-<Select
-  label="Country"
-  placeholder="Select a country"
-  options={[
-    { value: "us", label: "United States" },
-    { value: "uk", label: "United Kingdom" },
-    { value: "ca", label: "Canada" },
-  ]}
-  onValueChange={(value) => console.log(value)}
-/>
-
-// With error
-<Select
-  label="Required"
-  error
-  errorMessage="Please select an option"
-  options={[...]}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

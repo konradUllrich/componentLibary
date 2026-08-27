@@ -62,6 +62,9 @@ export interface InputProps extends Omit<
  *   errorMessage="Username is required"
  * />
  * ```
+ *
+ * See {@link ./Input.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (

@@ -35,6 +35,9 @@ export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> 
  * <Label htmlFor="email">Email</Label>
  * <Label htmlFor="username" required>Username</Label>
  * ```
+ *
+ * See {@link ./Label.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   ({ children, className, required, ...props }, ref) => {

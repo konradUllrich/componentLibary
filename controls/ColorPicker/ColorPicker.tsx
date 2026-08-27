@@ -36,8 +36,21 @@ export interface ColorPickerProps {
  *
  * @example
  * ```tsx
+ * const [color, setColor] = useState("#7c3aed");
+ *
  * <ColorPicker label="Primary Color" value={color} onValueChange={setColor} />
+ *
+ * <ColorPicker
+ *   label="Brand Color"
+ *   value={color}
+ *   onValueChange={setColor}
+ *   error
+ *   errorMessage="This color does not meet contrast requirements"
+ * />
  * ```
+ *
+ * See {@link ./ColorPicker.example.tsx} for the live, greppable version of
+ * this snippet — it also drives the demo site's "Usage" section.
  */
 export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
   (

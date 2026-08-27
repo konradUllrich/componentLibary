@@ -71,6 +71,9 @@ function buildValidators<TData extends object>(field: FieldDef<TData>) {
  *   onSubmit={(values) => console.log(values)}
  * />
  * ```
+ *
+ * See {@link ./FormBuilder.example.tsx} for the live, greppable version of
+ * this snippet — it also drives the demo site's "Usage" section.
  */
 export function FormBuilder<TData extends object>({
   defaultValues,

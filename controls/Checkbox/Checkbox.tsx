@@ -64,42 +64,29 @@ export interface CheckboxProps extends Omit<
  *
  * @example
  * ```tsx
- * // With top label
  * <Checkbox
  *   label="Notifications"
  *   inlineLabel="Email me updates"
  *   onChange={(e) => console.log(e.target.checked)}
  * />
  *
- * // With inline label only
  * <Checkbox
- *   inlineLabel="I agree to the terms"
- * />
- *
- * // With error state
- * <Checkbox
- *   label="Preferences"
- *   inlineLabel="Accept terms"
+ *   label="Terms"
+ *   inlineLabel="I accept the terms"
  *   error
  *   errorMessage="You must accept the terms"
  * />
  *
- * // Toggle variant
  * <Checkbox
  *   variant="toggle"
- *   label="Notifications"
- *   inlineLabel="Enable email updates"
+ *   label="Dark mode"
+ *   inlineLabel="Enable dark mode"
+ *   defaultChecked
  * />
- *
- * // With custom trigger (e.g., Badge)
- * <Checkbox
- *   name="filters"
- *   value="active"
- *   label="Status Filters"
- * >
- *   <Badge variant="primary">Active</Badge>
- * </Checkbox>
  * ```
+ *
+ * See {@link ./Checkbox.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (

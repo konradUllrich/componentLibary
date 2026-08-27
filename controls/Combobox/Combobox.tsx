@@ -108,9 +108,20 @@ export interface ComboboxProps {
  *     { value: "uk", label: "United Kingdom" },
  *     { value: "ca", label: "Canada" },
  *   ]}
+ *   value={selected}
  *   onValueChange={(value) => console.log(value)}
  * />
+ *
+ * <Combobox
+ *   label="Required"
+ *   error
+ *   errorMessage="Please select a valid option"
+ *   options={[...]}
+ * />
  * ```
+ *
+ * See {@link ./Combobox.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   (

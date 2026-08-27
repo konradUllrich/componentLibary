@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "../../controls";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../controls/Input/Input.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -64,27 +65,11 @@ export const InputPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Input } from '@konradullrich/mp-components';
-
-<Input
-  label="Email"
-  type="email"
-  placeholder="Enter your email"
-  helperText="We'll never share your email"
-/>
-
-<Input
-  label="Username"
-  error
-  errorMessage="Username is required"
-/>
-
-<Input
-  variant="filled"
-  size="lg"
-  placeholder="Large filled input"
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

@@ -98,11 +98,10 @@ export interface CheckboxGroupProps extends Omit<
  *
  * @example
  * ```tsx
- * // Basic usage
  * const [selected, setSelected] = useState<string[]>([]);
  *
  * <CheckboxGroup
- *   label="Select Options"
+ *   label="Select options"
  *   options={[
  *     { value: "option1", label: "Option 1" },
  *     { value: "option2", label: "Option 2" },
@@ -111,60 +110,21 @@ export interface CheckboxGroupProps extends Omit<
  *   onValueChange={setSelected}
  * />
  *
- * // Horizontal layout
  * <CheckboxGroup
- *   label="Status Filters"
+ *   label="Filters"
  *   direction="horizontal"
+ *   variant="filled"
  *   options={[
- *     { value: "active", label: "Active" },
- *     { value: "inactive", label: "Inactive" },
- *   ]}
- *   value={selected}
- *   onValueChange={setSelected}
- * />
- *
- * // With error state
- * <CheckboxGroup
- *   label="Preferences"
- *   options={[...]}
- *   value={selected}
- *   onValueChange={setSelected}
- *   error
- *   errorMessage="You must select at least one option"
- * />
- *
- * // With custom triggers (e.g., Badges)
- * <CheckboxGroup
- *   label="Tags"
- *   options={[
- *     {
- *       value: "tag1",
- *       label: "Tag 1",
- *       children: <Badge variant="primary">Tag 1</Badge>,
- *     },
- *   ]}
- *   value={selected}
- *   onValueChange={setSelected}
- * />
- *
- * // With custom triggers as function (showing state)
- * <CheckboxGroup
- *   label="Status Options"
- *   options={[
- *     {
- *       value: "active",
- *       label: "Active",
- *       children: (checked) => (
- *         <Badge variant={checked ? "success" : "default"}>
- *           {checked ? "✓ Active" : "Active"}
- *         </Badge>
- *       ),
- *     },
+ *     { value: "a", label: "Option A" },
+ *     { value: "b", label: "Option B" },
  *   ]}
  *   value={selected}
  *   onValueChange={setSelected}
  * />
  * ```
+ *
+ * See {@link ./CheckboxGroup.example.tsx} for the live, greppable version of
+ * this snippet — it also drives the demo site's "Usage" section.
  */
 export const CheckboxGroup = React.forwardRef<
   HTMLDivElement,

@@ -46,6 +46,9 @@ export interface TextareaProps
  *   errorMessage="Notes are required"
  * />
  * ```
+ *
+ * See {@link ./Textarea.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 export const Textarea = React.forwardRef<
   HTMLTextAreaElement,

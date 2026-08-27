@@ -81,11 +81,20 @@ export interface ReactSelectProps {
  *
  * @example
  * ```tsx
- * <Select label="Country" placeholder="Select a country">
- *   <SelectItem value="us">United States</SelectItem>
- *   <SelectItem value="uk">United Kingdom</SelectItem>
- *   <SelectItem value="ca">Canada</SelectItem>
- * </Select>
+ * import { ReactSelect, ReactSelectItem } from '@mp-ku/mp-components';
+ *
+ * const [value, setValue] = useState("");
+ *
+ * <ReactSelect
+ *   label="Country"
+ *   placeholder="Select a country"
+ *   value={value}
+ *   onValueChange={setValue}
+ * >
+ *   <ReactSelectItem value="us">United States</ReactSelectItem>
+ *   <ReactSelectItem value="uk">United Kingdom</ReactSelectItem>
+ *   <ReactSelectItem value="ca">Canada</ReactSelectItem>
+ * </ReactSelect>
  * ```
  */
 export const ReactSelect = ({
