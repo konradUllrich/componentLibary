@@ -206,6 +206,7 @@ export const CheckboxGroup = React.forwardRef<
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        labelId={groupId}
         messageId={messageId}
       >
         <div
@@ -214,7 +215,7 @@ export const CheckboxGroup = React.forwardRef<
             "mp-checkbox-group--error": error,
           })}
           role="group"
-          aria-labelledby={groupId}
+          aria-labelledby={label ? groupId : undefined}
           aria-invalid={error || undefined}
           aria-describedby={hasMessage ? messageId : undefined}
           {...props}

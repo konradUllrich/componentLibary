@@ -45,6 +45,14 @@ export interface FormControlProps {
   htmlFor?: string;
 
   /**
+   * HTML id for the label element itself.
+   * Pass this same id as `aria-labelledby` on the wrapped control (e.g. a
+   * `role="group"` container that has no single focusable element to
+   * `htmlFor`) so assistive tech associates the label with the group.
+   */
+  labelId?: string;
+
+  /**
    * HTML id for the helper/error message element.
    * Pass this same id as `aria-describedby` on the wrapped control so
    * assistive tech associates the message with the field (WCAG 3.3.1).
@@ -74,12 +82,13 @@ export const FormControl = ({
   children,
   className,
   htmlFor,
+  labelId,
   messageId,
 }: FormControlProps) => {
   return (
     <div className={clsx("mp-form-control", className)}>
       {label && (
-        <Label htmlFor={htmlFor} required={required}>
+        <Label id={labelId} htmlFor={htmlFor} required={required}>
           {label}
         </Label>
       )}
