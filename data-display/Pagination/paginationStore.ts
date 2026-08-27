@@ -1,5 +1,17 @@
 import { create } from "zustand";
 
+/**
+ * Scope — a plain, shareable pagination store. Unlike `useUrlPagination`
+ * (`hooks/usePagination/useUrlPagination.tsx`), the store returned by
+ * `createPaginationStore` has no implicit URL sync — pass it via
+ * props/module scope/context to whatever components need it, and opt into
+ * URL sync explicitly with `usePaginationSync` (`./usePaginationSync.ts`)
+ * if needed. Prefer `useUrlPagination` unless you specifically need a
+ * store reference you can share and read from outside a component (e.g.
+ * from a TanStack Query key builder). For automatic cross-instance sync
+ * without manually threading the store, see `createPagination`
+ * (`hooks/usePagination/createPagination.ts`).
+ */
 export type PaginationStore = {
     page: number;
     pageSize: number;

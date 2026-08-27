@@ -109,8 +109,6 @@ function buildStore(
     },
   }));
 
-  console.log(store);
-
   return store;
 }
 
@@ -120,6 +118,19 @@ function buildStore(
  *
  * All instances that share the same hook (returned value) share the same
  * underlying Zustand store and stay in sync automatically.
+ *
+ * **Scope — when to use this vs. the other two pagination implementations:**
+ * Use `createPagination` when you need several mounted instances of the
+ * *same* pagination to stay in sync automatically (cross-instance sync via
+ * a shared factory-created store), and/or `localStorage` recovery of page
+ * state across browser sessions via {@link useStoreUrlSync}. For plain
+ * "sync page/pageSize to the URL" needs without cross-instance sync,
+ * prefer `useUrlPagination` (`hooks/usePagination/useUrlPagination.tsx`) —
+ * it's the hook used across consumer apps and is generally the simpler
+ * default. For a pagination store meant to be shared explicitly via props/
+ * context (no implicit URL sync unless you opt in with
+ * `usePaginationSync`), see `createPaginationStore`
+ * (`data-display/Pagination/paginationStore.ts`).
  *
  * @example
  * ```tsx

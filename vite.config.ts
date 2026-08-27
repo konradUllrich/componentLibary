@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     dts({
       include: [
+        "vite-env.d.ts",
         "index.ts",
         "common",
         "controls",

@@ -30,6 +30,14 @@ export type UseUrlPaginationOptions = {
  * instances each navigate from the same stale URL, causing the second update
  * to overwrite the first.
  *
+ * **Scope — the default choice.** This is the pagination hook used across
+ * consumer apps; reach for it first. It does not support cross-instance
+ * sync (two independent calls with the same params don't share state) — for
+ * that, use `createPagination` (`hooks/usePagination/createPagination.ts`).
+ * For a pagination store meant to be shared explicitly via props/context
+ * instead of hook-local state, see `createPaginationStore`
+ * (`data-display/Pagination/paginationStore.ts`).
+ *
  * @example
  * function UserList({ totalCount }: { totalCount: number }) {
  *   const pagination = useUrlPagination({ defaultPageSize: 20 });
