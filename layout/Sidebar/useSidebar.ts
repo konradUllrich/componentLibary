@@ -1,9 +1,10 @@
-import { useSidebarStore } from "./sidebarStore";
+import { useSidebarStoreContext } from "./SidebarContext";
 
 /**
  * useSidebar Hook
  *
- * Access sidebar state and control from anywhere in the app.
+ * Access sidebar state and control from anywhere inside a `<Sidebar>` or
+ * `<SidebarProvider>` subtree.
  *
  * @example
  * ```tsx
@@ -11,19 +12,21 @@ import { useSidebarStore } from "./sidebarStore";
  * ```
  */
 export function useSidebar() {
-  const isMobile = useSidebarStore((state) => state.isMobile);
-  const isCollapsed = useSidebarStore((state) => state.isCollapsed);
-  const mobileOpen = useSidebarStore((state) => state.mobileOpen);
-  const toggleCollapsed = useSidebarStore((state) => state.toggleCollapsed);
-  const toggleMobileOpen = useSidebarStore((state) => state.toggleMobileOpen);
-  const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
-  const setCollapsed = useSidebarStore((state) => state.setCollapsed);
+  const store = useSidebarStoreContext();
+
+  const isMobile = store((state) => state.isMobile);
+  const isCollapsed = store((state) => state.isCollapsed);
+  const mobileOpen = store((state) => state.mobileOpen);
+  const toggleCollapsed = store((state) => state.toggleCollapsed);
+  const toggleMobileOpen = store((state) => state.toggleMobileOpen);
+  const setMobileOpen = store((state) => state.setMobileOpen);
+  const setCollapsed = store((state) => state.setCollapsed);
 
   const isOpen = isMobile ? mobileOpen : !isCollapsed;
 
   // Single toggle function that checks mobile state when called
   const toggleSidebar = () => {
-    const state = useSidebarStore.getState();
+    const state = store.getState();
     if (state.isMobile) {
       state.toggleMobileOpen();
     } else {
@@ -52,7 +55,7 @@ export function useSidebar() {
     // Backward compatibility aliases
     isMobileMenuOpen: mobileOpen,
     openSidebar: () => {
-      const state = useSidebarStore.getState();
+      const state = store.getState();
       if (state.isMobile) {
         state.setMobileOpen(true);
       } else {
@@ -60,7 +63,7 @@ export function useSidebar() {
       }
     },
     closeSidebar: () => {
-      const state = useSidebarStore.getState();
+      const state = store.getState();
       if (state.isMobile) {
         state.setMobileOpen(false);
       } else {

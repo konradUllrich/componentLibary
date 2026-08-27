@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { useSidebarStore } from "./sidebarStore";
+import { useSidebarStoreContext } from "./SidebarContext";
 
 import "./SidebarNav.css";
 
@@ -35,8 +35,9 @@ export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const SidebarNav = React.forwardRef<HTMLDivElement, SidebarNavProps>(
   ({ className = "", children, ...props }: SidebarNavProps, ref) => {
-    const isCollapsed = useSidebarStore((state) => state.isCollapsed);
-    const isMobile = useSidebarStore((state) => state.isMobile);
+    const store = useSidebarStoreContext();
+    const isCollapsed = store((state) => state.isCollapsed);
+    const isMobile = store((state) => state.isMobile);
 
     return (
       <nav

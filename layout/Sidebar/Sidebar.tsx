@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
-import { useSidebarStore } from "./sidebarStore";
+import { createSidebarStore } from "./sidebarStore";
+import { SidebarStoreContext, useOptionalSidebarStoreContext } from "./SidebarContext";
 import "./Sidebar.css";
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -30,12 +31,16 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     }: SidebarProps,
     ref,
   ) => {
-  const isMobile = useSidebarStore((state) => state.isMobile);
-  const isCollapsed = useSidebarStore((state) => state.isCollapsed);
-  const mobileOpen = useSidebarStore((state) => state.mobileOpen);
-  const setIsMobile = useSidebarStore((state) => state.setIsMobile);
-  const setCollapsed = useSidebarStore((state) => state.setCollapsed);
-  const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
+  const inheritedStore = useOptionalSidebarStoreContext();
+  const [ownStore] = useState(() => createSidebarStore());
+  const store = inheritedStore ?? ownStore;
+
+  const isMobile = store((state) => state.isMobile);
+  const isCollapsed = store((state) => state.isCollapsed);
+  const mobileOpen = store((state) => state.mobileOpen);
+  const setIsMobile = store((state) => state.setIsMobile);
+  const setCollapsed = store((state) => state.setCollapsed);
+  const setMobileOpen = store((state) => state.setMobileOpen);
 
   // Determine what state to show based on mobile/desktop
   const isOpen = isMobile ? mobileOpen : !isCollapsed;
@@ -61,19 +66,21 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
   }, [mobileBreakpoint, setIsMobile]);
 
     return (
-      <div
-        ref={ref}
-        className={clsx(
-          "mp-sidebar",
-          isOpen ? "mp-sidebar--expanded" : "mp-sidebar--collapsed",
-          isMobile ? "mp-sidebar--mobile" : "mp-sidebar--desktop",
-          className,
-        )}
-        style={{ "--sidebar-width": width } as React.CSSProperties}
-        {...props}
-      >
-        <div className="mp-sidebar__wrapper">{children}</div>
-      </div>
+      <SidebarStoreContext.Provider value={store}>
+        <div
+          ref={ref}
+          className={clsx(
+            "mp-sidebar",
+            isOpen ? "mp-sidebar--expanded" : "mp-sidebar--collapsed",
+            isMobile ? "mp-sidebar--mobile" : "mp-sidebar--desktop",
+            className,
+          )}
+          style={{ "--sidebar-width": width } as React.CSSProperties}
+          {...props}
+        >
+          <div className="mp-sidebar__wrapper">{children}</div>
+        </div>
+      </SidebarStoreContext.Provider>
     );
   },
 );

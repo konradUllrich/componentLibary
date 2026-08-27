@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { SidebarProvider } from "../Sidebar/SidebarProvider";
 import "./AppLayout.css";
 
 export interface AppLayoutProps {
@@ -49,13 +50,15 @@ export interface AppLayoutProps {
 export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
   ({ header, sidebar, children, className = "" }: AppLayoutProps, ref) => {
     return (
-      <div ref={ref} className={clsx("mp-app-layout", className)}>
-        {header && <div className="mp-app-layout__header">{header}</div>}
-        <div className="mp-app-layout__container">
-          {sidebar && <div className="mp-app-layout__sidebar">{sidebar}</div>}
-          <main className="mp-app-layout__main">{children}</main>
+      <SidebarProvider>
+        <div ref={ref} className={clsx("mp-app-layout", className)}>
+          {header && <div className="mp-app-layout__header">{header}</div>}
+          <div className="mp-app-layout__container">
+            {sidebar && <div className="mp-app-layout__sidebar">{sidebar}</div>}
+            <main className="mp-app-layout__main">{children}</main>
+          </div>
         </div>
-      </div>
+      </SidebarProvider>
     );
   },
 );

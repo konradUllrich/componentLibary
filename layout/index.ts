@@ -6,12 +6,14 @@ export {
   SidebarItem,
   SidebarDivider,
   useSidebar,
+  SidebarProvider,
   type SidebarProps,
   type SidebarToggleProps,
   type SidebarMobileToggleProps,
   type SidebarNavProps,
   type SidebarItemProps,
   type SidebarDividerProps,
+  type SidebarProviderProps,
 } from "./Sidebar";
 
 export {

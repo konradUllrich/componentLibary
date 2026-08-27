@@ -4,6 +4,7 @@ import {
   SidebarToggle,
   SidebarNav,
   SidebarItem,
+  SidebarProvider,
   Page,
   Section,
 } from "../../layout";
@@ -55,18 +56,25 @@ export const SidebarPage: React.FC = () => {
             overflow: "hidden",
           }}
         >
-          <Sidebar defaultOpen={true}>
-            <SidebarToggle />
-            <SidebarNav>
-              <SidebarItem label="Dashboard" icon="📊" isActive />
-              <SidebarItem label="Users" icon="👥">
-                <SidebarItem label="All Users" href="#all" />
-                <SidebarItem label="Add User" href="#add" />
-              </SidebarItem>
-              <SidebarItem label="Settings" icon="⚙️" />
-              <SidebarItem label="Help" icon="❓" />
-            </SidebarNav>
-          </Sidebar>
+          {/* This page itself renders inside the docs site's AppLayout,
+              which already wraps everything in a SidebarProvider for its
+              own sidebar. Without an explicit SidebarProvider here, this
+              example Sidebar would inherit that ambient store and its
+              toggle would open/collapse the real docs sidebar too. */}
+          <SidebarProvider>
+            <Sidebar defaultOpen={true}>
+              <SidebarToggle />
+              <SidebarNav>
+                <SidebarItem label="Dashboard" icon="📊" isActive />
+                <SidebarItem label="Users" icon="👥">
+                  <SidebarItem label="All Users" href="#all" />
+                  <SidebarItem label="Add User" href="#add" />
+                </SidebarItem>
+                <SidebarItem label="Settings" icon="⚙️" />
+                <SidebarItem label="Help" icon="❓" />
+              </SidebarNav>
+            </Sidebar>
+          </SidebarProvider>
         </div>
       </Section>
 
@@ -98,7 +106,19 @@ export const SidebarPage: React.FC = () => {
 // Use the useSidebar hook to control sidebar state
 import { useSidebar } from '@konradullrich/mp-components';
 
-const { isCollapsed, toggleCollapsed } = useSidebar();`}</code>
+const { isCollapsed, toggleCollapsed } = useSidebar();
+
+// Each Sidebar owns its own open/collapsed state by default, so multiple
+// Sidebars on one page never interfere with each other. To share state
+// between a Sidebar and a toggle rendered outside its subtree (e.g. a
+// mobile menu button in the header), wrap both in a SidebarProvider —
+// AppLayout does this automatically for its header/sidebar/main slots.
+import { SidebarProvider, SidebarMobileToggle } from '@konradullrich/mp-components';
+
+<SidebarProvider>
+  <SidebarMobileToggle />
+  <Sidebar>...</Sidebar>
+</SidebarProvider>`}</code>
         </pre>
       </Section>
     </Page>

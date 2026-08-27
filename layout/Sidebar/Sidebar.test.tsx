@@ -1,28 +1,15 @@
 import { test, expect } from "../../playwright/coverage-fixtures";
 import { Sidebar } from './Sidebar';
-import { useSidebarStore } from './sidebarStore';
 import { checkA11y } from '../../playwright/test-utils';
 
 /**
  * Sidebar Component Tests
- * 
+ *
  * Tests the responsive sidebar component with mobile drawer and desktop collapse modes.
- * Validates state management via Zustand store and responsive behavior.
- * 
- * Note: Some tests involving window resize and Zustand state management may require
- * specific setup or mocking. Tests focus on rendering and basic interactions.
+ * Each `<Sidebar>` owns its own store instance (see `sidebarStore.ts`), so tests mount
+ * with the props that drive the state under test rather than pre-seeding a shared store.
  */
 test.describe('Sidebar Component', () => {
-  // Reset store state before each test
-  test.beforeEach(() => {
-    // Clear any existing state
-    useSidebarStore.setState({
-      isMobile: false,
-      isCollapsed: false,
-      mobileOpen: false,
-    });
-  });
-
   test('should render with default props', async ({ mount }) => {
     const component = await mount(
       <Sidebar>
@@ -46,22 +33,18 @@ test.describe('Sidebar Component', () => {
   });
 
   test('should apply collapsed class when collapsed', async ({ mount }) => {
-    // Set collapsed state before render
-    useSidebarStore.setState({ isCollapsed: true, isMobile: false });
-    
+    // defaultOpen defaults to false, so the sidebar mounts collapsed
     const component = await mount(
       <Sidebar>
         <div>Content</div>
       </Sidebar>
     );
-    
+
     // The component itself is the .sidebar element
     await expect(component).toHaveClass(/mp-sidebar--collapsed/);
   });
 
   test('should apply expanded class when not collapsed', async ({ mount }) => {
-    useSidebarStore.setState({ isCollapsed: false, isMobile: false });
-    
     const component = await mount(
       <Sidebar defaultOpen={true}>
         <div>Content</div>
@@ -78,15 +61,13 @@ test.describe('Sidebar Component', () => {
   test('should apply mobile class when in mobile mode', async ({ mount, page }) => {
     // Set viewport to mobile size
     await page.setViewportSize({ width: 400, height: 800 });
-    
-    useSidebarStore.setState({ isMobile: true, mobileOpen: false });
-    
+
     const component = await mount(
       <Sidebar mobileBreakpoint={768}>
         <div>Content</div>
       </Sidebar>
     );
-    
+
     // The component itself is the .sidebar element
     await expect(component).toHaveClass(/mp-sidebar--mobile/);
   });
@@ -94,9 +75,7 @@ test.describe('Sidebar Component', () => {
   test('should apply desktop class when in desktop mode', async ({ mount, page }) => {
     // Set viewport to desktop size
     await page.setViewportSize({ width: 1024, height: 768 });
-    
-    useSidebarStore.setState({ isMobile: false, isCollapsed: false });
-    
+
     const component = await mount(
       <Sidebar mobileBreakpoint={768}>
         <div>Content</div>
@@ -216,10 +195,11 @@ test.describe('Sidebar Component', () => {
     
     // Wait for component to mount and effects to run
     await component.waitFor();
-    
+
     // Set mobile open state after mount (the component reacts to store changes via Zustand)
-    useSidebarStore.getState().setMobileOpen(true);
-    
+    // Note: each Sidebar owns its own store instance now, so this would need a ref/handle
+    // into that instance rather than a module-level store — left as-is since the test is skipped.
+
     // Wait for the component to react to the store change
     await page.waitForTimeout(500);
     
@@ -231,15 +211,13 @@ test.describe('Sidebar Component', () => {
   test('should render in mobile closed state', async ({ mount, page }) => {
     // Set viewport to mobile size
     await page.setViewportSize({ width: 400, height: 800 });
-    
-    useSidebarStore.setState({ isMobile: true, mobileOpen: false });
-    
+
     const component = await mount(
       <Sidebar>
         <div>Mobile Content</div>
       </Sidebar>
     );
-    
+
     // The component itself is the .sidebar element
     await expect(component).toHaveClass(/mp-sidebar--collapsed/);
     await expect(component).toHaveClass(/mp-sidebar--mobile/);

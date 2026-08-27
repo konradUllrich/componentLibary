@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import { useSidebarStore } from "./sidebarStore";
+import { useSidebarStoreContext } from "./SidebarContext";
 import "./SidebarItem.css";
 
 export interface SidebarItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -91,7 +91,8 @@ export const SidebarItem = React.forwardRef<
     ref,
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const setMobileOpen = useSidebarStore((state) => state.setMobileOpen);
+    const store = useSidebarStoreContext();
+    const setMobileOpen = store((state) => state.setMobileOpen);
 
     if (!show) {
       return null;

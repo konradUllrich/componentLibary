@@ -8,3 +8,4 @@ export { SidebarNav, type SidebarNavProps } from "./SidebarNav";
 export { SidebarItem, type SidebarItemProps } from "./SidebarItem";
 export { SidebarDivider, type SidebarDividerProps } from "./SidebarDivider";
 export { useSidebar } from "./useSidebar";
+export { SidebarProvider, type SidebarProviderProps } from "./SidebarProvider";

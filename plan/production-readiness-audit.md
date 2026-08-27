@@ -32,22 +32,6 @@ All Done
 
 Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Card, Grid, Panel, Sidebar, HorizontalNav).
 
-### ✅ Resolved — Three separate, unreconciled pagination implementations
-
-`createPagination.ts` (Zustand + `useStoreUrlSync`), `useUrlPagination.tsx` (`useUrlState`-based), and `Pagination/paginationStore.ts` (its own Zustand store, synced directly through Router hooks) all do the same job differently.
-
-Consolidating to one was rejected: `useUrlPagination` is the hook actively used by both downstream consumers (`gitlab/kanban`, `local/Intrexx-cms/editor-react`) and doesn't support cross-instance sync; `createPagination` is unused by either consumer but is the only one offering automatic cross-instance sync + `localStorage` recovery; `createPaginationStore` is imported by `editor-react` and serves the "explicitly shared store, opt-in URL sync via `usePaginationSync`" case. Removing any of the three risked a larger rewrite (demo pages, Storybook stories, a dedicated E2E suite) for a use case another one doesn't cover.
-
-**Resolution:** kept all three, added JSDoc "Scope" sections to each cross-referencing the other two and stating when to reach for it — `useUrlPagination` as the default, `createPagination` for cross-instance sync, `createPaginationStore` for an explicitly shared store.
-
-`hooks/usePagination/createPagination.ts` · `hooks/usePagination/useUrlPagination.tsx` · `data-display/Pagination/paginationStore.ts`
-
-### 🟠 High — Sidebar's open/collapsed state is a page-wide singleton
-
-`create<SidebarState>(...)` sits at module scope rather than being instantiated per Sidebar, unlike Pagination's own `createPaginationStore` pattern one file over. Two Sidebars on one page — or two tests in the same file — silently share state.
-
-`layout/Sidebar/sidebarStore.ts:16`
-
 ### 🟠 High — Table.tsx and its exported subcomponents have drifted
 
 `Table.tsx` duplicates rendering already implemented in `TableHeader`/`TableBody`/`TableRow`/`TableCell` — all separately exported — and the two paths have diverged: `Table.tsx` sets `aria-sort` and `scope="col"`, `TableHeader.tsx` sets neither. A consumer who reaches for the subcomponents gets a measurably less accessible table with no indication why.
