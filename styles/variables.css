@@ -128,6 +128,25 @@
   --mp-color-gray-800: #1e293b;
   --mp-color-gray-900: #0f172a;
 
+  /* Avatar Palette (Hex) — deterministic initials-based background colors */
+  --mp-color-avatar-1: #ef4444; /* red */
+  --mp-color-avatar-2: #f97316; /* orange */
+  --mp-color-avatar-3: #f59e0b; /* amber */
+  --mp-color-avatar-4: #eab308; /* yellow */
+  --mp-color-avatar-5: #84cc16; /* lime */
+  --mp-color-avatar-6: #22c55e; /* green */
+  --mp-color-avatar-7: #10b981; /* emerald */
+  --mp-color-avatar-8: #14b8a6; /* teal */
+  --mp-color-avatar-9: #06b6d4; /* cyan */
+  --mp-color-avatar-10: #0ea5e9; /* sky */
+  --mp-color-avatar-11: #3b82f6; /* blue */
+  --mp-color-avatar-12: #6366f1; /* indigo */
+  --mp-color-avatar-13: #8b5cf6; /* violet */
+  --mp-color-avatar-14: #a855f7; /* purple */
+  --mp-color-avatar-15: #d946ef; /* fuchsia */
+  --mp-color-avatar-16: #ec4899; /* pink */
+  --mp-color-avatar-17: #f43f5e; /* rose */
+
   /* Border Colors (Hex) */
   --mp-color-border: #e2e8f0;
   --mp-color-border-light: #f1f5f9;
