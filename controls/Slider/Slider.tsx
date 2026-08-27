@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./Slider.css";
 
 export interface SliderProps
@@ -48,7 +49,7 @@ export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     { value, label, helperText, error = false, errorMessage, className, disabled, id, ...props },
     ref,
   ) => {
-    const sliderId = id || `slider-${Math.random().toString(36).substr(2, 9)}`;
+    const sliderId = useFieldId(id);
     const messageId = `${sliderId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

@@ -27,3 +27,5 @@ export {
   type SortEntry,
   type SortDirection,
 } from "./useUrlSort";
+
+export { useFieldId } from "./useFieldId";

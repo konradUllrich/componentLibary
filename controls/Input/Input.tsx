@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./Input.css";
 
 export interface InputProps extends Omit<
@@ -78,7 +79,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+    const inputId = useFieldId(id);
     const messageId = `${inputId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

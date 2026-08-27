@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
 import { Checkbox } from "../Checkbox";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./CheckboxGroup.css";
 
 export interface CheckboxOption {
@@ -186,7 +187,7 @@ export const CheckboxGroup = React.forwardRef<
     },
     ref,
   ) => {
-    const groupId = `checkbox-group-${Math.random().toString(36).substr(2, 9)}`;
+    const groupId = useFieldId();
     const messageId = `${groupId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

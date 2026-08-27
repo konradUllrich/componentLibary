@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./Radio.css";
 
 export interface RadioProps extends Omit<
@@ -117,7 +118,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     },
     ref,
   ) => {
-    const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`;
+    const radioId = useFieldId(id);
     const messageId = `${radioId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

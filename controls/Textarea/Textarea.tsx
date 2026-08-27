@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./Textarea.css";
 
 export interface TextareaProps
@@ -64,8 +65,7 @@ export const Textarea = React.forwardRef<
     },
     ref,
   ) => {
-    const textareaId =
-      id || `textarea-${Math.random().toString(36).substring(2, 11)}`;
+    const textareaId = useFieldId(id);
     const messageId = `${textareaId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

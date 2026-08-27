@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./ColorPicker.css";
 
 export interface ColorPickerProps {
@@ -54,8 +55,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
     },
     ref,
   ) => {
-    const swatchId =
-      id || `color-picker-${Math.random().toString(36).substr(2, 9)}`;
+    const swatchId = useFieldId(id);
     const messageId = `${swatchId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

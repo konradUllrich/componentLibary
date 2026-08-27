@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./Checkbox.css";
 
 export interface CheckboxProps extends Omit<
@@ -118,8 +119,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref,
   ) => {
-    const checkboxId =
-      id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+    const checkboxId = useFieldId(id);
     const messageId = `${checkboxId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 

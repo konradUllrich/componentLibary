@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./NativeSelect.css";
 
 export interface NativeSelectProps extends Omit<
@@ -81,7 +82,7 @@ export const NativeSelect = React.forwardRef<
     },
     ref,
   ) => {
-    const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`;
+    const selectId = useFieldId(id);
     const messageId = `${selectId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 
