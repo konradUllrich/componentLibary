@@ -9,7 +9,7 @@ export const DropZone = forwardRef<HTMLDivElement, DropzoneProps>(
     return (
       <div
         ref={ref}
-        className={`drop-zone ${isOver ? "drop-zone--active" : ""}`}
+        className={`mp-drop-zone ${isOver ? "mp-drop-zone--active" : ""}`}
         style={{
           height: isOver ? "66px" : "8px",
           margin: isOver ? "4px 0" : "2px 0",

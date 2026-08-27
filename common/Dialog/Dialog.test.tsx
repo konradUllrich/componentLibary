@@ -19,7 +19,7 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toBeVisible();
   });
 
@@ -32,7 +32,7 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).not.toBeVisible();
   });
 
@@ -45,8 +45,8 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    await expect(page.locator(".dialog__title")).toHaveText("Test Title");
-    await expect(page.locator(".dialog__description")).toHaveText(
+    await expect(page.locator(".mp-dialog__title")).toHaveText("Test Title");
+    await expect(page.locator(".mp-dialog__description")).toHaveText(
       "Test Description",
     );
   });
@@ -62,8 +62,8 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    await expect(page.locator(".dialog__title")).toHaveText("Custom Title");
-    await expect(page.locator(".dialog__description")).toHaveText(
+    await expect(page.locator(".mp-dialog__title")).toHaveText("Custom Title");
+    await expect(page.locator(".mp-dialog__description")).toHaveText(
       "Custom Description",
     );
     await expect(page.getByText("Custom content")).toBeVisible();
@@ -78,7 +78,7 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    const closeButton = page.locator(".dialog__close");
+    const closeButton = page.locator(".mp-dialog__close");
     await expect(closeButton).toBeVisible();
     await expect(closeButton).toHaveText("Close");
   });
@@ -86,10 +86,10 @@ test.describe("Dialog Component", () => {
   test("should close when close button is clicked", async ({ mount, page }) => {
     await mount(<DialogWithState />);
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toBeVisible();
 
-    const closeButton = page.locator(".dialog__close");
+    const closeButton = page.locator(".mp-dialog__close");
     await closeButton.click();
 
     await expect(content).not.toBeVisible();
@@ -98,11 +98,11 @@ test.describe("Dialog Component", () => {
   test("should handle overlay click to close", async ({ mount, page }) => {
     await mount(<DialogWithContent />);
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toBeVisible();
 
     // Click overlay (outside content)
-    const overlay = page.locator(".dialog__overlay");
+    const overlay = page.locator(".mp-dialog__overlay");
     await overlay.click({ position: { x: 10, y: 10 } });
 
     await expect(content).not.toBeVisible();
@@ -111,7 +111,7 @@ test.describe("Dialog Component", () => {
   test("should handle escape key to close", async ({ mount, page }) => {
     await mount(<DialogWithContent />);
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toBeVisible();
 
     // Press Escape key
@@ -132,7 +132,7 @@ test.describe("Dialog Component", () => {
     );
 
     // Wait for dialog to be visible
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toBeVisible();
 
     // Focus should be trapped within dialog
@@ -169,13 +169,13 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toHaveAttribute("role", "dialog");
 
     // Title and description should be linked via ARIA
-    const titleId = await page.locator(".dialog__title").getAttribute("id");
+    const titleId = await page.locator(".mp-dialog__title").getAttribute("id");
     const descriptionId = await page
-      .locator(".dialog__description")
+      .locator(".mp-dialog__description")
       .getAttribute("id");
 
     expect(titleId).toBeTruthy();
@@ -196,7 +196,7 @@ test.describe("Dialog Component", () => {
     );
 
     await page.waitForFunction(() => {
-      const el = document.querySelector(".dialog__content");
+      const el = document.querySelector(".mp-dialog__content");
       if (!el) {
         return false;
       }
@@ -215,7 +215,7 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    const content = page.locator(".dialog__content");
+    const content = page.locator(".mp-dialog__content");
     await expect(content).toHaveClass(/custom-class/);
   });
 
@@ -228,7 +228,7 @@ test.describe("Dialog Component", () => {
       </Dialog>,
     );
 
-    const content = page.locator(".dialog__content");
-    await expect(content).toHaveClass(/dialog__content--lg/);
+    const content = page.locator(".mp-dialog__content");
+    await expect(content).toHaveClass(/mp-dialog__content--lg/);
   });
 });

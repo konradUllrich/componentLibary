@@ -225,12 +225,12 @@ export const MenuEditorItem = <T extends BaseMenuItem>(
       <div
         ref={canDrag(menuitem) ? ref : null}
         data-id={id}
-        className={`menu-editor-item ${
-          isDragging ? "menu-editor-item--dragging" : ""
-        } ${isSelected ? "menu-editor-item--selected" : ""} ${
-          canDrop && isOver ? "menu-editor-item--drop-target" : ""
-        } ${dropPosition === "before" ? "menu-editor-item--drop-before" : ""} ${
-          dropPosition === "after" ? "menu-editor-item--drop-after" : ""
+        className={`mp-menu-editor-item ${
+          isDragging ? "mp-menu-editor-item--dragging" : ""
+        } ${isSelected ? "mp-menu-editor-item--selected" : ""} ${
+          canDrop && isOver ? "mp-menu-editor-item--drop-target" : ""
+        } ${dropPosition === "before" ? "mp-menu-editor-item--drop-before" : ""} ${
+          dropPosition === "after" ? "mp-menu-editor-item--drop-after" : ""
         }`}
         onClick={handleClick}
         style={{
@@ -247,9 +247,9 @@ export const MenuEditorItem = <T extends BaseMenuItem>(
         />
 
         {hasChildren && isExpanded && (
-          <ul className="menu-editor-item__children">
+          <ul className="mp-menu-editor-item__children">
             {children!.map((child, childIndex) => (
-              <li key={child.id} className="menu-editor-item__child">
+              <li key={child.id} className="mp-menu-editor-item__child">
                 <MenuEditorItem
                   isLast={childIndex === children.length - 1}
                   {...(child as T)}

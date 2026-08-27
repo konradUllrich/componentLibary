@@ -112,24 +112,24 @@ export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
     return (
       <div
         ref={ref}
-        className={clsx("icon-picker", className)}
+        className={clsx("mp-icon-picker", className)}
         {...props}
       >
         {/* Search and Filter Header */}
-        <div className="icon-picker__header">
-          <div className="icon-picker__search">
+        <div className="mp-icon-picker__header">
+          <div className="mp-icon-picker__search">
             <input
               type="text"
               placeholder="Search icons..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="icon-picker__search-input"
+              className="mp-icon-picker__search-input"
               aria-label="Search icons"
             />
             {searchTerm && (
               <button
                 type="button"
-                className="icon-picker__clear-search"
+                className="mp-icon-picker__clear-search"
                 onClick={() => setSearchTerm("")}
                 aria-label="Clear search"
               >
@@ -140,15 +140,15 @@ export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
 
           {/* Icon Style Toggle */}
           <div
-            className="icon-picker__style-toggle"
+            className="mp-icon-picker__style-toggle"
             role="group"
             aria-label="Icon style"
           >
             <button
               type="button"
               className={clsx(
-                "icon-picker__style-btn",
-                iconStyle === "line" && "icon-picker__style-btn--active",
+                "mp-icon-picker__style-btn",
+                iconStyle === "line" && "mp-icon-picker__style-btn--active",
               )}
               onClick={() => setIconStyle("line")}
               aria-pressed={iconStyle === "line"}
@@ -159,8 +159,8 @@ export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
             <button
               type="button"
               className={clsx(
-                "icon-picker__style-btn",
-                iconStyle === "solid" && "icon-picker__style-btn--active",
+                "mp-icon-picker__style-btn",
+                iconStyle === "solid" && "mp-icon-picker__style-btn--active",
               )}
               onClick={() => setIconStyle("solid")}
               aria-pressed={iconStyle === "solid"}
@@ -172,15 +172,15 @@ export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
 
           <button
             type="button"
-            className="icon-picker__category-toggle"
+            className="mp-icon-picker__category-toggle"
             onClick={() => setShowCategoryFilter(!showCategoryFilter)}
             aria-expanded={showCategoryFilter}
           >
             Categories ({activeCategoryCount}/{categories.length})
             <span
               className={clsx(
-                "icon-picker__arrow",
-                showCategoryFilter && "icon-picker__arrow--up",
+                "mp-icon-picker__arrow",
+                showCategoryFilter && "mp-icon-picker__arrow--up",
               )}
               aria-hidden="true"
             >
@@ -191,25 +191,25 @@ export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
 
         {/* Category Filter Panel */}
         {showCategoryFilter && (
-          <div className="icon-picker__category-filter">
-            <div className="icon-picker__category-actions">
+          <div className="mp-icon-picker__category-filter">
+            <div className="mp-icon-picker__category-actions">
               <button
                 type="button"
-                className="icon-picker__category-action-btn"
+                className="mp-icon-picker__category-action-btn"
                 onClick={toggleAllCategories}
               >
                 {activeCategories.size === categories.length
                   ? "Deselect All"
                   : "Select All"}
               </button>
-              <span className="icon-picker__category-count">
+              <span className="mp-icon-picker__category-count">
                 {activeCategoryCount} of {categories.length} selected
               </span>
             </div>
 
-            <div className="icon-picker__category-list">
+            <div className="mp-icon-picker__category-list">
               {categories.map((category, index) => (
-                <label key={index} className="icon-picker__category-item">
+                <label key={index} className="mp-icon-picker__category-item">
                   <input
                     type="checkbox"
                     checked={activeCategories.has(index)}
@@ -223,42 +223,42 @@ export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
         )}
 
         {/* Results Info */}
-        <div className="icon-picker__results-info" aria-live="polite">
+        <div className="mp-icon-picker__results-info" aria-live="polite">
           {filteredIcons.length} icon{filteredIcons.length !== 1 ? "s" : ""}{" "}
           found
         </div>
 
         {/* Icon Grid */}
         <div
-          className="icon-picker__content"
+          className="mp-icon-picker__content"
           style={{ maxHeight }}
         >
           {Object.keys(groupedIcons).length === 0 ? (
-            <div className="icon-picker__no-results">
+            <div className="mp-icon-picker__no-results">
               No icons found. Try adjusting your search or category filters.
             </div>
           ) : (
             Object.entries(groupedIcons).map(([category, categoryIcons]) => (
-              <div key={category} className="icon-picker__category-group">
-                <h3 className="icon-picker__category-title">
+              <div key={category} className="mp-icon-picker__category-group">
+                <h3 className="mp-icon-picker__category-title">
                   {category} ({categoryIcons.length})
                 </h3>
-                <div className="icon-picker__icon-grid">
+                <div className="mp-icon-picker__icon-grid">
                   {categoryIcons.map((icon) => (
                     <button
                       type="button"
                       key={icon.index}
                       className={clsx(
-                        "icon-picker__icon-button",
+                        "mp-icon-picker__icon-button",
                         selectedIcon === icon.className &&
-                          "icon-picker__icon-button--selected",
+                          "mp-icon-picker__icon-button--selected",
                       )}
                       onClick={() => handleIconClick(icon)}
                       title={`${icon.category} - ${icon.n}`}
                       aria-pressed={selectedIcon === icon.className}
                     >
                       <i className={icon.className} aria-hidden="true" />
-                      <span className="icon-picker__icon-name">{icon.n}</span>
+                      <span className="mp-icon-picker__icon-name">{icon.n}</span>
                     </button>
                   ))}
                 </div>

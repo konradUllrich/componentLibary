@@ -92,19 +92,19 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     if (totalPages <= 1 && !showSizeSelector) return null;
 
     return (
-      <div ref={ref} className={clsx("pagination", className)}>
-        <div className="pagination__info">
+      <div ref={ref} className={clsx("mp-pagination", className)}>
+        <div className="mp-pagination__info">
           <span>
             Showing {startItem} to {endItem} of {totalItems} {resourceName}
           </span>
           {showSizeSelector && (
-            <div className="pagination__size-selector">
+            <div className="mp-pagination__size-selector">
               <label htmlFor="pageSize">Show:</label>
               <select
                 id="pageSize"
                 value={pageSize}
                 onChange={(e) => setPageSize(Number(e.target.value))}
-                className="pagination__select"
+                className="mp-pagination__select"
               >
                 {pageSizeOptions.map((size) => (
                   <option key={size} value={size}>
@@ -118,11 +118,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         </div>
 
         {totalPages > 1 && (
-          <div className="pagination__controls">
+          <div className="mp-pagination__controls">
             <button
               onClick={() => setPage(1)}
               disabled={!hasPrevious}
-              className="pagination-button pagination-button--first"
+              className="mp-pagination-button mp-pagination-button--first"
               title="First page"
             >
               «
@@ -130,7 +130,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <button
               onClick={() => setPage(page - 1)}
               disabled={!hasPrevious}
-              className="pagination-button pagination-button--prev"
+              className="mp-pagination-button mp-pagination-button--prev"
               title="Previous page"
             >
               ‹
@@ -144,9 +144,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                 }
                 disabled={typeof pageItem !== "number"}
                 className={clsx(
-                  "pagination-button",
-                  pageItem === page && "pagination-button--active",
-                  typeof pageItem !== "number" && "pagination-button--ellipsis",
+                  "mp-pagination-button",
+                  pageItem === page && "mp-pagination-button--active",
+                  typeof pageItem !== "number" && "mp-pagination-button--ellipsis",
                 )}
               >
                 {pageItem}
@@ -156,7 +156,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <button
               onClick={() => setPage(page + 1)}
               disabled={!hasNext}
-              className="pagination-button pagination-button--next"
+              className="mp-pagination-button mp-pagination-button--next"
               title="Next page"
             >
               ›
@@ -164,7 +164,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <button
               onClick={() => setPage(totalPages)}
               disabled={!hasNext}
-              className="pagination-button pagination-button--last"
+              className="mp-pagination-button mp-pagination-button--last"
               title="Last page"
             >
               »

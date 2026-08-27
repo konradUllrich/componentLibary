@@ -1,7 +1,7 @@
 /* ToggleGroup Styles - Radix UI */
 
 /* Block: ToggleGroup Container */
-.toggle-group {
+.mp-toggle-group {
   display: inline-flex;
   align-items: center;
   border-radius: var(--mp-radius-lg);
@@ -12,7 +12,7 @@
    Variant: Default
    ============================== */
 
-.toggle-group--default {
+.mp-toggle-group--default {
   background-color: var(--mp-color-background);
 }
 
@@ -20,7 +20,7 @@
    Variant: Outline
    ============================== */
 
-.toggle-group--outline {
+.mp-toggle-group--outline {
   background-color: transparent;
   border-color: var(--mp-color-border-dark);
   border: 1px solid var(--mp-color-border);
@@ -30,19 +30,19 @@
    Size Modifiers
    ============================== */
 
-.toggle-group--sm .toggle-group__item {
+.mp-toggle-group--sm .mp-toggle-group__item {
   padding: var(--mp-spacing-1) var(--mp-spacing-2);
   font-size: var(--mp-font-size-sm);
   min-height: 2rem;
 }
 
-.toggle-group--md .toggle-group__item {
+.mp-toggle-group--md .mp-toggle-group__item {
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
   font-size: var(--mp-font-size-base);
   min-height: 2.5rem;
 }
 
-.toggle-group--lg .toggle-group__item {
+.mp-toggle-group--lg .mp-toggle-group__item {
   padding: var(--mp-spacing-3) var(--mp-spacing-4);
   font-size: var(--mp-font-size-lg);
   min-height: 3rem;
@@ -52,7 +52,7 @@
    Element: Toggle Group Item
    ============================== */
 
-.toggle-group__item {
+.mp-toggle-group__item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -73,12 +73,12 @@
   border-right: 1px solid var(--mp-color-border);
 }
 
-.toggle-group__item:last-child {
+.mp-toggle-group__item:last-child {
   border-right: none;
 }
 
 /* Focus visible state */
-.toggle-group__item:focus-visible {
+.mp-toggle-group__item:focus-visible {
   outline: var(--mp-focus-size) solid var(--mp-focus-color);
   outline-offset: var(--mp-focus-offset);
   z-index: 1;
@@ -86,34 +86,34 @@
 }
 
 /* First and last items get the container's rounded corners */
-.toggle-group__item:first-child {
+.mp-toggle-group__item:first-child {
   border-radius: calc(var(--mp-radius-lg) - 1px) 0 0
     calc(var(--mp-radius-lg) - 1px);
 }
 
-.toggle-group__item:last-child {
+.mp-toggle-group__item:last-child {
   border-radius: 0 calc(var(--mp-radius-lg) - 1px)
     calc(var(--mp-radius-lg) - 1px) 0;
 }
 
 /* Hover state (only when not disabled and not pressed) */
-.toggle-group__item:hover:not(:disabled):not([data-state="on"]) {
+.mp-toggle-group__item:hover:not(:disabled):not([data-state="on"]) {
   background-color: var(--mp-color-primary-light);
   color: var(--mp-color-primary);
 }
 
 /* Pressed / active state */
-.toggle-group__item[data-state="on"] {
+.mp-toggle-group__item[data-state="on"] {
   background-color: var(--mp-color-primary);
   color: var(--mp-color-onPrimary);
 }
 
-.toggle-group__item[data-state="on"]:hover:not(:disabled) {
+.mp-toggle-group__item[data-state="on"]:hover:not(:disabled) {
   background-color: var(--mp-color-primary-strong);
 }
 
 /* Disabled state */
-.toggle-group__item:disabled {
+.mp-toggle-group__item:disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
   pointer-events: none;
@@ -123,10 +123,10 @@
    Outline Variant – Item Borders
    ============================== */
 
-.toggle-group--outline .toggle-group__item {
+.mp-toggle-group--outline .mp-toggle-group__item {
   border-right: 1px solid var(--mp-color-border-dark);
 }
 
-.toggle-group--outline .toggle-group__item:last-child {
+.mp-toggle-group--outline .mp-toggle-group__item:last-child {
   border-right: none;
 }

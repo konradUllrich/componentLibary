@@ -123,20 +123,20 @@ export const ReactSelect = ({
         <SelectPrimitive.Trigger
           id={id}
           className={clsx(
-            "select-trigger",
-            `select-trigger--${variant}`,
-            `select-trigger--${size}`,
-            error && "select-trigger--error",
-            disabled && "select-trigger--disabled",
+            "mp-select-trigger",
+            `mp-select-trigger--${variant}`,
+            `mp-select-trigger--${size}`,
+            error && "mp-select-trigger--error",
+            disabled && "mp-select-trigger--disabled",
           )}
         >
           <SelectPrimitive.Value placeholder={placeholder} />
-          <SelectPrimitive.Icon className="select-icon">▼</SelectPrimitive.Icon>
+          <SelectPrimitive.Icon className="mp-select-icon">▼</SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
 
         <SelectPrimitive.Portal>
-          <SelectPrimitive.Content className="select-content">
-            <SelectPrimitive.Viewport className="select-viewport">
+          <SelectPrimitive.Content className="mp-select-content">
+            <SelectPrimitive.Viewport className="mp-select-viewport">
               {children}
             </SelectPrimitive.Viewport>
           </SelectPrimitive.Content>

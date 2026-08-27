@@ -1,13 +1,13 @@
 /* ========================
    Tree Editor
    ======================== */
-.tree-editor {
+.mp-tree-editor {
   background: var(--mp-color-background);
   border-radius: var(--mp-radius-lg);
   padding: var(--mp-spacing-4);
 }
 
-.tree-editor__tree {
+.mp-tree-editor__tree {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -17,14 +17,14 @@
   gap: var(--mp-spacing-1);
 }
 
-.tree-editor__root-item {
+.mp-tree-editor__root-item {
   list-style: none;
 }
 
 /* ========================
    Tree Node
    ======================== */
-.tree-node {
+.mp-tree-node {
   border: 1px solid var(--mp-color-border);
   border-radius: var(--mp-radius-md);
   background: var(--mp-color-background);
@@ -32,33 +32,33 @@
   cursor: pointer;
 }
 
-.tree-node:hover {
+.mp-tree-node:hover {
   border-color: var(--mp-color-primary-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.tree-node:focus-visible {
+.mp-tree-node:focus-visible {
   outline: var(--mp-focus-size) solid var(--mp-focus-color);
   outline-offset: var(--mp-focus-offset);
 }
 
-.tree-node--selected {
+.mp-tree-node--selected {
   border-color: var(--mp-color-primary);
   background: color-mix(in oklch, var(--mp-color-primary), transparent 92%);
 }
 
-.tree-node--dragging {
+.mp-tree-node--dragging {
   opacity: 0.4;
 }
 
-.tree-node--drop-target {
+.mp-tree-node--drop-target {
   background: color-mix(in oklch, var(--mp-color-success), transparent 90%);
   border-color: var(--mp-color-success);
   border-style: dashed;
 }
 
 /* Node content row */
-.tree-node__content {
+.mp-tree-node__content {
   display: flex;
   align-items: center;
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
@@ -67,7 +67,7 @@
   user-select: none;
 }
 
-.tree-node__toggle {
+.mp-tree-node__toggle {
   background: none;
   border: none;
   cursor: pointer;
@@ -83,29 +83,29 @@
   transition: var(--transition-fast);
 }
 
-.tree-node__toggle:hover {
+.mp-tree-node__toggle:hover {
   background: var(--mp-color-background-light);
   color: var(--mp-color-foreground);
 }
 
-.tree-node__toggle:focus-visible {
+.mp-tree-node__toggle:focus-visible {
   outline: 2px solid var(--mp-color-primary);
   outline-offset: 1px;
 }
 
-.tree-node__spacer {
+.mp-tree-node__spacer {
   width: 20px;
   flex-shrink: 0;
 }
 
-.tree-node__label {
+.mp-tree-node__label {
   flex: 1;
   font-size: var(--mp-font-size-sm);
   color: var(--mp-color-foreground);
   font-weight: 500;
 }
 
-.tree-node__count {
+.mp-tree-node__count {
   font-size: var(--mp-font-size-xs);
   color: var(--mp-color-foreground-light);
   background: var(--mp-color-background-light);
@@ -117,7 +117,7 @@
 }
 
 /* Children */
-.tree-node__children {
+.mp-tree-node__children {
   list-style: none;
   padding: var(--mp-spacing-1) var(--mp-spacing-2) var(--mp-spacing-2)
     var(--mp-spacing-4);
@@ -130,14 +130,14 @@
   border-radius: 0 0 var(--mp-radius-md) var(--mp-radius-md);
 }
 
-.tree-node__child-item {
+.mp-tree-node__child-item {
   list-style: none;
 }
 
 /* ========================
    Drop Indicator
    ======================== */
-.drop-indicator {
+.mp-drop-indicator {
   height: 2px;
   background: transparent;
   border-radius: 2px;
@@ -146,13 +146,13 @@
   overflow: hidden;
 }
 
-.drop-indicator--active {
+.mp-drop-indicator--active {
   height: auto;
   background: transparent;
   margin: 2px 0;
 }
 
-.drop-indicator__preview {
+.mp-drop-indicator__preview {
   display: flex;
   align-items: center;
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
@@ -164,12 +164,12 @@
   opacity: 0.8;
 }
 
-.drop-indicator__spacer {
+.mp-drop-indicator__spacer {
   width: 20px;
   flex-shrink: 0;
 }
 
-.drop-indicator__label {
+.mp-drop-indicator__label {
   flex: 1;
   font-size: var(--mp-font-size-sm);
   color: var(--mp-color-primary);
@@ -179,14 +179,14 @@
 /* ========================
    Drag Layer (portal overlay)
    ======================== */
-.tree-drag-layer {
+.mp-tree-drag-layer {
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   inset: 0;
 }
 
-.tree-drag-layer__preview {
+.mp-tree-drag-layer__preview {
   position: absolute;
   top: 0;
   left: 0;
@@ -205,9 +205,9 @@
    Reduced motion
    ======================== */
 @media (prefers-reduced-motion: reduce) {
-  .tree-node,
-  .tree-node__toggle,
-  .drop-indicator {
+  .mp-tree-node,
+  .mp-tree-node__toggle,
+  .mp-drop-indicator {
     transition: none;
   }
 }

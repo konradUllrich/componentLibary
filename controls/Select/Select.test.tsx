@@ -25,7 +25,7 @@ test.describe("Select Component", () => {
     );
 
     // Desktop mode uses Radix UI select
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toBeVisible();
   });
 
@@ -54,10 +54,10 @@ test.describe("Select Component", () => {
       </div>,
     );
 
-    const triggers = component.locator(".select-trigger");
-    await expect(triggers.nth(0)).toHaveClass(/select-trigger--default/);
-    await expect(triggers.nth(1)).toHaveClass(/select-trigger--filled/);
-    await expect(triggers.nth(2)).toHaveClass(/select-trigger--outline/);
+    const triggers = component.locator(".mp-select-trigger");
+    await expect(triggers.nth(0)).toHaveClass(/mp-select-trigger--default/);
+    await expect(triggers.nth(1)).toHaveClass(/mp-select-trigger--filled/);
+    await expect(triggers.nth(2)).toHaveClass(/mp-select-trigger--outline/);
   });
 
   test("should render different variants in mobile mode", async ({ mount }) => {
@@ -70,9 +70,9 @@ test.describe("Select Component", () => {
     );
 
     const selects = component.locator("select");
-    await expect(selects.nth(0)).toHaveClass(/native-select--default/);
-    await expect(selects.nth(1)).toHaveClass(/native-select--filled/);
-    await expect(selects.nth(2)).toHaveClass(/native-select--outline/);
+    await expect(selects.nth(0)).toHaveClass(/mp-native-select--default/);
+    await expect(selects.nth(1)).toHaveClass(/mp-native-select--filled/);
+    await expect(selects.nth(2)).toHaveClass(/mp-native-select--outline/);
   });
 
   test("should render different sizes", async ({ mount }) => {
@@ -84,10 +84,10 @@ test.describe("Select Component", () => {
       </div>,
     );
 
-    const triggers = component.locator(".select-trigger");
-    await expect(triggers.nth(0)).toHaveClass(/select-trigger--sm/);
-    await expect(triggers.nth(1)).toHaveClass(/select-trigger--md/);
-    await expect(triggers.nth(2)).toHaveClass(/select-trigger--lg/);
+    const triggers = component.locator(".mp-select-trigger");
+    await expect(triggers.nth(0)).toHaveClass(/mp-select-trigger--sm/);
+    await expect(triggers.nth(1)).toHaveClass(/mp-select-trigger--md/);
+    await expect(triggers.nth(2)).toHaveClass(/mp-select-trigger--lg/);
   });
 
   test("should render with label", async ({ mount }) => {
@@ -109,7 +109,7 @@ test.describe("Select Component", () => {
       />,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toContainText("Choose a country");
   });
 
@@ -132,11 +132,11 @@ test.describe("Select Component", () => {
       <Select options={testOptions} placeholder="Select" forceMobile={false} />,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
     await page.waitForTimeout(100);
 
-    const items = page.locator(".select-item");
+    const items = page.locator(".mp-select-item");
     await expect(items).toHaveCount(3);
   });
 
@@ -167,12 +167,12 @@ test.describe("Select Component", () => {
       />,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
     await page.waitForTimeout(100);
 
     const ukOption = page
-      .locator(".select-item")
+      .locator(".mp-select-item")
       .filter({ hasText: "United Kingdom" });
     await ukOption.click();
     await page.waitForTimeout(100);
@@ -208,7 +208,7 @@ test.describe("Select Component", () => {
     );
 
     // Desktop mode
-    const trigger = component.locator(".select-trigger").first();
+    const trigger = component.locator(".mp-select-trigger").first();
     await expect(trigger).toHaveAttribute("data-disabled");
 
     // Mobile mode
@@ -226,7 +226,7 @@ test.describe("Select Component", () => {
       />,
     );
 
-    const errorMessage = component.locator(".form-control__message--error");
+    const errorMessage = component.locator(".mp-form-control__message--error");
     await expect(errorMessage).toBeVisible();
     await expect(errorMessage).toHaveText("Please select an option");
   });
@@ -240,7 +240,7 @@ test.describe("Select Component", () => {
       />,
     );
 
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText("Choose your country");
   });
@@ -250,7 +250,7 @@ test.describe("Select Component", () => {
       <Select options={testOptions} defaultValue="uk" forceMobile={false} />,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toContainText("United Kingdom");
   });
 
@@ -269,11 +269,11 @@ test.describe("Select Component", () => {
       />,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
     await page.waitForTimeout(100);
 
-    const disabledItem = page.locator(".select-item--disabled");
+    const disabledItem = page.locator(".mp-select-item--disabled");
     await expect(disabledItem).toBeVisible();
   });
 
@@ -327,11 +327,11 @@ test.describe("Select Component", () => {
     );
 
     // Open the dropdown to render overlay items in the portal
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
 
     // Verify overlay is visible
-    const content = page.locator(".select-content");
+    const content = page.locator(".mp-select-content");
     await expect(content).toBeVisible();
 
     // Check that overlay items meet color contrast requirements
@@ -405,14 +405,14 @@ test.describe("Select Component", () => {
       <Select options={testOptions} placeholder="Select" forceMobile={false} />,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.focus();
     await expect(trigger).toBeFocused();
 
     await page.keyboard.press("Space");
     await page.waitForTimeout(100);
 
-    const content = page.locator(".select-content");
+    const content = page.locator(".mp-select-content");
     await expect(content).toBeVisible();
   });
 

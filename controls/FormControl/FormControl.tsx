@@ -69,17 +69,17 @@ export const FormControl = ({
   htmlFor,
 }: FormControlProps) => {
   return (
-    <div className={clsx("form-control", className)}>
+    <div className={clsx("mp-form-control", className)}>
       {label && (
         <Label htmlFor={htmlFor} required={required}>
           {label}
         </Label>
       )}
-      <div className="form-control__input">{children}</div>
+      <div className="mp-form-control__input">{children}</div>
       {(helperText || (error && errorMessage)) && (
         <div
-          className={clsx("form-control__message", {
-            "form-control__message--error": error,
+          className={clsx("mp-form-control__message", {
+            "mp-form-control__message--error": error,
           })}
         >
           {error && errorMessage ? errorMessage : helperText}

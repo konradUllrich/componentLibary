@@ -20,7 +20,7 @@ test.describe("Textarea Component", () => {
     const component = await mount(
       <Textarea helperText="Max 500 characters" />,
     );
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toContainText("Max 500 characters");
   });
@@ -30,9 +30,9 @@ test.describe("Textarea Component", () => {
       <Textarea error errorMessage="This field is required" />,
     );
     const textarea = component.locator("textarea");
-    await expect(textarea).toHaveClass(/textarea--error/);
+    await expect(textarea).toHaveClass(/mp-textarea--error/);
 
-    const errorMsg = component.locator(".form-control__message--error");
+    const errorMsg = component.locator(".mp-form-control__message--error");
     await expect(errorMsg).toBeVisible();
     await expect(errorMsg).toHaveText("This field is required");
   });
@@ -41,7 +41,7 @@ test.describe("Textarea Component", () => {
     const component = await mount(<Textarea disabled />);
     const textarea = component.locator("textarea");
     await expect(textarea).toBeDisabled();
-    await expect(textarea).toHaveClass(/textarea--disabled/);
+    await expect(textarea).toHaveClass(/mp-textarea--disabled/);
   });
 
   test("should respect rows prop", async ({ mount }) => {

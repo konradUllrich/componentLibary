@@ -49,12 +49,12 @@ export interface TableProps<
  */
 export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
   ({ className, table, caption, ...props }, ref) => (
-    <div className="table-container">
-      <table ref={ref} className={clsx("table", className)} {...props}>
-        {caption && <caption className="table__caption">{caption}</caption>}
-        <thead className="table__head">
+    <div className="mp-table-container">
+      <table ref={ref} className={clsx("mp-table", className)} {...props}>
+        {caption && <caption className="mp-table__caption">{caption}</caption>}
+        <thead className="mp-table__head">
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="table__row table__row--header">
+            <tr key={headerGroup.id} className="mp-table__row mp-table__row--header">
               {headerGroup.headers.map((header) => {
                 const sorted = header.column.getIsSorted();
                 const ariaSort =
@@ -70,10 +70,10 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                     key={header.id}
                     scope="col"
                     aria-sort={ariaSort}
-                    className={clsx("table__cell table__cell--header", {
-                      "table__cell--sortable": header.column.getCanSort(),
-                      "table__cell--first": header.index === 0,
-                      "table__cell--last":
+                    className={clsx("mp-table__cell mp-table__cell--header", {
+                      "mp-table__cell--sortable": header.column.getCanSort(),
+                      "mp-table__cell--first": header.index === 0,
+                      "mp-table__cell--last":
                         header.index === headerGroup.headers.length - 1,
                     })}
                     style={{
@@ -83,7 +83,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                     }}
                     onClick={header.column.getToggleSortingHandler()}
                   >
-                    <div className="table__header-content">
+                    <div className="mp-table__header-content">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -92,7 +92,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                           )}
                       {sorted && (
                         <span
-                          className="table__sort-indicator"
+                          className="mp-table__sort-indicator"
                           aria-hidden="true"
                         >
                           {sorted === "asc" ? " ↑" : " ↓"}
@@ -105,13 +105,13 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
             </tr>
           ))}
         </thead>
-        <tbody className="table__body">
+        <tbody className="mp-table__body">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="table__row">
+            <tr key={row.id} className="mp-table__row">
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className="table__cell"
+                  className="mp-table__cell"
                   style={{
                     width:
                       cell.column.columnDef.meta?.width ??

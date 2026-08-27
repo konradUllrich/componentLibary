@@ -10,7 +10,7 @@ export const Handle = forwardRef<
     <Button
       ref={ref}
       variant="ghost"
-      className={clsx("sortable-tree__drag-handle", className)}
+      className={clsx("mp-sortable-tree__drag-handle", className)}
       {...props}
     >
       <GripHorizontal size={16} />

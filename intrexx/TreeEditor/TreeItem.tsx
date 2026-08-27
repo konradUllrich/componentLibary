@@ -73,13 +73,13 @@ export function TreeItem<T extends Item>({
   return (
     <li
       ref={ref}
-      className="sortable-tree__item"
+      className="mp-sortable-tree__item"
       style={{
         marginLeft: depth * INDENTATION,
       }}
       aria-hidden={isDragSource}
     >
-      <span className="sortable-tree__handle">
+      <span className="mp-sortable-tree__handle">
         <Handle ref={handleRef} />
       </span>
       {renderItem ? (
@@ -90,7 +90,7 @@ export function TreeItem<T extends Item>({
         </>
       )}
       {itemMenu && actions && (
-        <div className="sortable-tree__action">{itemMenu(item, actions)}</div>
+        <div className="mp-sortable-tree__action">{itemMenu(item, actions)}</div>
       )}
     </li>
   );

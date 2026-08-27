@@ -92,23 +92,23 @@ export const NativeSelect = React.forwardRef<
         helperText={helperText}
         className={className}
       >
-        <div className="native-select-container">
+        <div className="mp-native-select-container">
           <select
             ref={ref}
             id={selectId}
             className={clsx(
-              "native-select",
-              `native-select--${variant}`,
-              `native-select--${size}`,
-              error && "native-select--error",
-              disabled && "native-select--disabled",
+              "mp-native-select",
+              `mp-native-select--${variant}`,
+              `mp-native-select--${size}`,
+              error && "mp-native-select--error",
+              disabled && "mp-native-select--disabled",
             )}
             disabled={disabled}
             {...props}
           >
             {children}
           </select>
-          <span className="native-select-icon">▼</span>
+          <span className="mp-native-select-icon">▼</span>
         </div>
       </FormControl>
     );

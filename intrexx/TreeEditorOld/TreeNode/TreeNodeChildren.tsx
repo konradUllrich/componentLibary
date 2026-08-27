@@ -21,9 +21,9 @@ export const TreeNodeChildren = <T extends BaseTreeItem>({
   canDrag,
 }: TreeNodeChildrenProps<T>) => {
   return (
-    <ul className="tree-node__children" role="group">
+    <ul className="mp-tree-node__children" role="group">
       {children.map((child, idx) => (
-        <li key={child.id} className="tree-node__child-item">
+        <li key={child.id} className="mp-tree-node__child-item">
           <TreeNode
             {...(child as T)}
             parentId={parentId}

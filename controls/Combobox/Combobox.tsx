@@ -273,17 +273,17 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       >
         <Popover.Root open={open} onOpenChange={handleOpenChange}>
           <Popover.Anchor asChild>
-            <div className="combobox">
+            <div className="mp-combobox">
               <input
                 ref={inputRef}
                 id={inputId.current}
                 type="text"
                 className={clsx(
-                  "combobox__input",
-                  `combobox__input--${variant}`,
-                  `combobox__input--${size}`,
-                  error && "combobox__input--error",
-                  disabled && "combobox__input--disabled",
+                  "mp-combobox__input",
+                  `mp-combobox__input--${variant}`,
+                  `mp-combobox__input--${size}`,
+                  error && "mp-combobox__input--error",
+                  disabled && "mp-combobox__input--disabled",
                 )}
                 placeholder={placeholder}
                 value={searchValue}
@@ -301,7 +301,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     : undefined
                 }
               />
-              <span className="combobox__icon" aria-hidden="true">
+              <span className="mp-combobox__icon" aria-hidden="true">
                 {open ? "▲" : "▼"}
               </span>
             </div>
@@ -309,19 +309,19 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
           <Popover.Portal>
             <Popover.Content
-              className="combobox__content"
+              className="mp-combobox__content"
               align="start"
               sideOffset={4}
               onOpenAutoFocus={(e) => e.preventDefault()}
             >
               <div
                 ref={listRef}
-                className="combobox__listbox"
+                className="mp-combobox__listbox"
                 role="listbox"
                 id="combobox-listbox"
               >
                 {filteredOptions.length === 0 ? (
-                  <div className="combobox__empty">
+                  <div className="mp-combobox__empty">
                     {allowCreate
                       ? `Press Enter to create "${searchValue}"`
                       : "No options found"}
@@ -336,10 +336,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                       aria-disabled={option.disabled}
                       data-index={index}
                       className={clsx(
-                        "combobox__option",
-                        highlightedIndex === index && "combobox__option--highlighted",
-                        selectedValue === option.value && "combobox__option--selected",
-                        option.disabled && "combobox__option--disabled",
+                        "mp-combobox__option",
+                        highlightedIndex === index && "mp-combobox__option--highlighted",
+                        selectedValue === option.value && "mp-combobox__option--selected",
+                        option.disabled && "mp-combobox__option--disabled",
                       )}
                       onClick={() => {
                         if (!option.disabled) {
@@ -350,7 +350,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     >
                       {option.label}
                       {selectedValue === option.value && (
-                        <span className="combobox__check" aria-hidden="true">
+                        <span className="mp-combobox__check" aria-hidden="true">
                           ✓
                         </span>
                       )}

@@ -148,7 +148,7 @@ const MenuEditorExample: React.FC = () => {
           <span className="flex items-center gap-2">
             {item.title}
             {item.bla && (
-              <span className="text-xs text-gray-500 bg-gray-100 px-1 rounded">
+              <span className="mp-text-xs mp-text-gray-500 bg-gray-100 px-1 rounded">
                 {item.bla}
               </span>
             )}

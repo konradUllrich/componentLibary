@@ -206,8 +206,8 @@ export const CheckboxGroup = React.forwardRef<
       >
         <div
           ref={ref}
-          className={clsx("checkbox-group", `checkbox-group--${direction}`, {
-            "checkbox-group--error": error,
+          className={clsx("mp-checkbox-group", `mp-checkbox-group--${direction}`, {
+            "mp-checkbox-group--error": error,
           })}
           role="group"
           aria-labelledby={groupId}

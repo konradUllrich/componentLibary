@@ -455,7 +455,7 @@ function TreeInner<T extends Item>(
         dragStartMoveContext.current = null;
       }}
     >
-      <ul className="sortable-tree">
+      <ul className="mp-sortable-tree">
         {flattenedItems.map((item, index) => {
           const actions: ItemMenuActions<T> = {
             erase: () => {

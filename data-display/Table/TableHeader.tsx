@@ -34,12 +34,12 @@ export const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   TableHeaderProps<unknown>
 >(({ headerGroup, className, ...props }, ref) => (
-  <thead ref={ref} className={clsx("table__head", className)} {...props}>
-    <tr className="table__row table__row--header">
+  <thead ref={ref} className={clsx("mp-table__head", className)} {...props}>
+    <tr className="mp-table__row mp-table__row--header">
       {headerGroup.headers.map((header) => (
         <th
           key={header.id}
-          className="table__cell table__cell--header"
+          className="mp-table__cell mp-table__cell--header"
           style={{ width: header.getSize() }}
         >
           {header.isPlaceholder

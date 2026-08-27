@@ -19,7 +19,7 @@ test.describe("ToggleGroup Component", () => {
     );
 
     await expect(component).toBeVisible();
-    await expect(component).toHaveClass(/toggle-group/);
+    await expect(component).toHaveClass(/mp-toggle-group/);
 
     const items = component.locator("button");
     await expect(items).toHaveCount(3);
@@ -61,9 +61,9 @@ test.describe("ToggleGroup Component", () => {
       </div>,
     );
 
-    const groups = component.locator(".toggle-group");
-    await expect(groups.nth(0)).toHaveClass(/toggle-group--default/);
-    await expect(groups.nth(1)).toHaveClass(/toggle-group--outline/);
+    const groups = component.locator(".mp-toggle-group");
+    await expect(groups.nth(0)).toHaveClass(/mp-toggle-group--default/);
+    await expect(groups.nth(1)).toHaveClass(/mp-toggle-group--outline/);
   });
 
   test("should render different sizes", async ({ mount }) => {
@@ -87,10 +87,10 @@ test.describe("ToggleGroup Component", () => {
       </div>,
     );
 
-    const groups = component.locator(".toggle-group");
-    await expect(groups.nth(0)).toHaveClass(/toggle-group--sm/);
-    await expect(groups.nth(1)).toHaveClass(/toggle-group--md/);
-    await expect(groups.nth(2)).toHaveClass(/toggle-group--lg/);
+    const groups = component.locator(".mp-toggle-group");
+    await expect(groups.nth(0)).toHaveClass(/mp-toggle-group--sm/);
+    await expect(groups.nth(1)).toHaveClass(/mp-toggle-group--md/);
+    await expect(groups.nth(2)).toHaveClass(/mp-toggle-group--lg/);
   });
 
   test("should select item in single mode", async ({ mount }) => {
@@ -176,7 +176,7 @@ test.describe("ToggleGroup Component", () => {
     );
 
     const item = component.locator("button");
-    await expect(item).toHaveClass(/toggle-group__item/);
+    await expect(item).toHaveClass(/mp-toggle-group__item/);
   });
 
   test("should handle disabled item", async ({ mount }) => {
@@ -232,7 +232,7 @@ test.describe("ToggleGroup Component", () => {
       </ToggleGroup>,
     );
 
-    const firstItem = page.locator(".toggle-group__item").first();
+    const firstItem = page.locator(".mp-toggle-group__item").first();
     await firstItem.focus();
     await expect(firstItem).toBeFocused();
   });
@@ -255,15 +255,15 @@ test.describe("ToggleGroup Component", () => {
       </ToggleGroup>,
     );
 
-    const firstItem = page.locator(".toggle-group__item").first();
+    const firstItem = page.locator(".mp-toggle-group__item").first();
     await firstItem.focus();
 
     await page.keyboard.press("ArrowRight");
-    const secondItem = page.locator(".toggle-group__item").nth(1);
+    const secondItem = page.locator(".mp-toggle-group__item").nth(1);
     await expect(secondItem).toBeFocused();
 
     await page.keyboard.press("ArrowRight");
-    const thirdItem = page.locator(".toggle-group__item").nth(2);
+    const thirdItem = page.locator(".mp-toggle-group__item").nth(2);
     await expect(thirdItem).toBeFocused();
   });
 
@@ -279,7 +279,7 @@ test.describe("ToggleGroup Component", () => {
       </ToggleGroup>,
     );
 
-    const firstItem = page.locator(".toggle-group__item").first();
+    const firstItem = page.locator(".mp-toggle-group__item").first();
     await firstItem.focus();
     await page.keyboard.press("Space");
     await expect(firstItem).toHaveAttribute("data-state", "on");

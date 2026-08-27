@@ -81,9 +81,9 @@ export const Textarea = React.forwardRef<
           ref={ref}
           id={textareaId}
           className={clsx(
-            "textarea",
-            error && "textarea--error",
-            disabled && "textarea--disabled",
+            "mp-textarea",
+            error && "mp-textarea--error",
+            disabled && "mp-textarea--disabled",
           )}
           disabled={disabled}
           rows={rows}

@@ -105,9 +105,9 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
         disabled={disabled}
         aria-label={ariaLabel}
         className={clsx(
-          "toggle",
-          `toggle--${variant}`,
-          `toggle--${size}`,
+          "mp-toggle",
+          `mp-toggle--${variant}`,
+          `mp-toggle--${size}`,
           className,
         )}
         {...props}

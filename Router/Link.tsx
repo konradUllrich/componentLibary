@@ -85,7 +85,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         {...props}
       >
         {children}
-        {isExternal && <span className="sr-only"> (opens in new tab)</span>}
+        {isExternal && <span className="mp-sr-only"> (opens in new tab)</span>}
       </a>
     );
   },

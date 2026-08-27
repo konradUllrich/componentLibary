@@ -1,7 +1,7 @@
 /* Dropdown Component Styles */
 
 /* Content Container */
-.dropdown__content {
+.mp-dropdown__content {
   min-width: 200px;
   background-color: var(--mp-color-background);
   border: 1px solid var(--mp-color-border);
@@ -12,13 +12,13 @@
   animation: dropdown-slide-in var(--duration-200) ease-out;
 }
 
-.dropdown__content:focus-visible {
+.mp-dropdown__content:focus-visible {
   outline: var(--mp-focus-size) solid var(--mp-focus-color);
   outline-offset: var(--mp-focus-offset);
 }
 
 /* Item */
-.dropdown__item {
+.mp-dropdown__item {
   display: flex;
   align-items: center;
   gap: var(--mp-spacing-2);
@@ -32,23 +32,23 @@
   transition: var(--transition-fast);
 }
 
-.dropdown__item:hover:not([data-disabled]) {
+.mp-dropdown__item:hover:not([data-disabled]) {
   background-color: var(--mp-color-gray-100);
 }
 
-.dropdown__item:focus-visible {
+.mp-dropdown__item:focus-visible {
   background-color: var(--mp-color-gray-100);
   outline: 2px solid var(--mp-color-primary);
   outline-offset: -2px;
 }
 
-.dropdown__item[data-disabled] {
+.mp-dropdown__item[data-disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* Label */
-.dropdown__label {
+.mp-dropdown__label {
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
   font-size: var(--mp-font-size-sm);
   font-weight: var(--mp-font-weight-semibold);
@@ -57,7 +57,7 @@
 }
 
 /* Separator */
-.dropdown__separator {
+.mp-dropdown__separator {
   height: 1px;
   background-color: var(--mp-color-border);
   margin: var(--mp-spacing-2) 0;
@@ -77,14 +77,14 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .dropdown__content {
+  .mp-dropdown__content {
     animation: none;
   }
 }
 
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
-  .dropdown__content {
+  .mp-dropdown__content {
     background-color: var(--mp-color-background);
     border-color: var(--mp-color-gray-700);
     box-shadow:
@@ -92,15 +92,15 @@
       0 0 0 1px var(--mp-color-gray-800);
   }
 
-  .dropdown__item:hover:not([data-disabled]) {
+  .mp-dropdown__item:hover:not([data-disabled]) {
     background-color: var(--mp-color-gray-800);
   }
 
-  .dropdown__item:focus-visible {
+  .mp-dropdown__item:focus-visible {
     background-color: var(--mp-color-gray-800);
   }
 
-  .dropdown__separator {
+  .mp-dropdown__separator {
     background-color: var(--mp-color-gray-700);
   }
 }

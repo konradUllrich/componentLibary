@@ -41,10 +41,10 @@ test.describe("FormControl Component", () => {
       </FormControl>,
     );
 
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText("We'll never share your email");
-    await expect(helperText).not.toHaveClass(/form-control__message--error/);
+    await expect(helperText).not.toHaveClass(/mp-form-control__message--error/);
   });
 
   test("should render with error message", async ({ mount }) => {
@@ -54,7 +54,7 @@ test.describe("FormControl Component", () => {
       </FormControl>,
     );
 
-    const errorMessage = component.locator(".form-control__message--error");
+    const errorMessage = component.locator(".mp-form-control__message--error");
     await expect(errorMessage).toBeVisible();
     await expect(errorMessage).toHaveText("This field is required");
   });
@@ -68,7 +68,7 @@ test.describe("FormControl Component", () => {
       </FormControl>,
     );
 
-    const message = component.locator(".form-control__message");
+    const message = component.locator(".mp-form-control__message");
     await expect(message).toBeVisible();
     await expect(message).toHaveText("Error message");
     await expect(message).not.toHaveText("Helper text");
@@ -96,7 +96,7 @@ test.describe("FormControl Component", () => {
       </FormControl>,
     );
 
-    const message = component.locator(".form-control__message");
+    const message = component.locator(".mp-form-control__message");
     await expect(message).not.toBeAttached();
   });
 
@@ -107,7 +107,7 @@ test.describe("FormControl Component", () => {
       </FormControl>,
     );
 
-    await expect(component).toHaveClass(/form-control/);
+    await expect(component).toHaveClass(/mp-form-control/);
     await expect(component).toHaveClass(/custom-form-control/);
   });
 
@@ -189,7 +189,7 @@ test.describe("FormControl Component", () => {
     const input = component.locator("input");
     await expect(input).toBeVisible();
 
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText("Enter your first and last name");
   });

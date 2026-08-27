@@ -1,10 +1,10 @@
 /* CardList Component Styles */
 
-.card-list {
+.mp-card-list {
   width: 100%;
 }
 
-.card-list__grid {
+.mp-card-list__grid {
   display: grid;
   grid-template-columns: repeat(var(--mp-card-list-columns, 3), 1fr);
   gap: var(--mp-card-list-gap, 1rem);
@@ -12,12 +12,12 @@
   padding-bottom: var(--focus-ring-spread);
 }
 
-.card-list__item {
+.mp-card-list__item {
   width: 100%;
 }
 
 /* Loading State */
-.card-list__loading {
+.mp-card-list__loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@
 }
 
 /* Empty State */
-.card-list__empty {
+.mp-card-list__empty {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,13 +38,13 @@
 
 /* Responsive Grid */
 @media (max-width: 1024px) {
-  .card-list__grid {
+  .mp-card-list__grid {
     grid-template-columns: repeat(min(var(--mp-card-list-columns, 3), 2), 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .card-list__grid {
+  .mp-card-list__grid {
     grid-template-columns: 1fr;
   }
 }

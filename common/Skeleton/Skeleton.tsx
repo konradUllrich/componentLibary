@@ -74,7 +74,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
     ref,
   ) => {
     const animationClass =
-      animation !== "none" ? `skeleton--${animation}` : undefined;
+      animation !== "none" ? `mp-skeleton--${animation}` : undefined;
 
     const sizeStyle: React.CSSProperties = {
       width: typeof width === "number" ? `${width}px` : width,
@@ -89,14 +89,14 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           role="status"
           aria-label="Loading"
           aria-busy="true"
-          className={clsx("skeleton__group", className)}
+          className={clsx("mp-skeleton__group", className)}
           {...props}
         >
           {Array.from({ length: lines }, (_, i) => (
             <div
               key={i}
               aria-hidden="true"
-              className={clsx("skeleton", "skeleton--text", animationClass)}
+              className={clsx("mp-skeleton", "mp-skeleton--text", animationClass)}
               style={{
                 width:
                   i === lines - 1
@@ -116,8 +116,8 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         aria-label="Loading"
         aria-busy="true"
         className={clsx(
-          "skeleton",
-          `skeleton--${variant}`,
+          "mp-skeleton",
+          `mp-skeleton--${variant}`,
           animationClass,
           className,
         )}

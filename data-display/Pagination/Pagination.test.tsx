@@ -12,14 +12,14 @@ test.describe("Pagination Component", () => {
     await expect(component).toBeVisible();
 
     // Check pagination info
-    const info = component.locator(".pagination__info");
+    const info = component.locator(".mp-pagination__info");
     await expect(info).toContainText("Showing 1 to 10 of 100 entries");
 
     // Check navigation buttons exist
-    await expect(component.locator(".pagination-button--first")).toBeVisible();
-    await expect(component.locator(".pagination-button--prev")).toBeVisible();
-    await expect(component.locator(".pagination-button--next")).toBeVisible();
-    await expect(component.locator(".pagination-button--last")).toBeVisible();
+    await expect(component.locator(".mp-pagination-button--first")).toBeVisible();
+    await expect(component.locator(".mp-pagination-button--prev")).toBeVisible();
+    await expect(component.locator(".mp-pagination-button--next")).toBeVisible();
+    await expect(component.locator(".mp-pagination-button--last")).toBeVisible();
   });
 
   test("should disable previous buttons on first page", async ({ mount }) => {
@@ -27,8 +27,8 @@ test.describe("Pagination Component", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
 
-    const firstButton = component.locator(".pagination-button--first");
-    const prevButton = component.locator(".pagination-button--prev");
+    const firstButton = component.locator(".mp-pagination-button--first");
+    const prevButton = component.locator(".mp-pagination-button--prev");
 
     await expect(firstButton).toBeDisabled();
     await expect(prevButton).toBeDisabled();
@@ -39,8 +39,8 @@ test.describe("Pagination Component", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} currentPage={10} />,
     );
 
-    const nextButton = component.locator(".pagination-button--next");
-    const lastButton = component.locator(".pagination-button--last");
+    const nextButton = component.locator(".mp-pagination-button--next");
+    const lastButton = component.locator(".mp-pagination-button--last");
 
     await expect(nextButton).toBeDisabled();
     await expect(lastButton).toBeDisabled();
@@ -51,11 +51,11 @@ test.describe("Pagination Component", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
 
-    const nextButton = component.locator(".pagination-button--next");
+    const nextButton = component.locator(".mp-pagination-button--next");
     await nextButton.click();
 
     // Check if page changed
-    const info = component.locator(".pagination__info");
+    const info = component.locator(".mp-pagination__info");
     await expect(info).toContainText("Showing 11 to 20 of 100 entries");
   });
 
@@ -66,12 +66,12 @@ test.describe("Pagination Component", () => {
 
     // Click on page 2 (which is visible on first page)
     const page2Button = component
-      .locator(".pagination-button")
+      .locator(".mp-pagination-button")
       .filter({ hasText: /^2$/ });
     await page2Button.click();
 
     // Check if page changed
-    const info = component.locator(".pagination__info");
+    const info = component.locator(".mp-pagination__info");
     await expect(info).toContainText("Showing 11 to 20 of 100 entries");
   });
 
@@ -81,9 +81,9 @@ test.describe("Pagination Component", () => {
     );
 
     const page3Button = component
-      .locator(".pagination-button")
+      .locator(".mp-pagination-button")
       .filter({ hasText: /^3$/ });
-    await expect(page3Button).toHaveClass(/pagination-button--active/);
+    await expect(page3Button).toHaveClass(/mp-pagination-button--active/);
   });
 
   test("should show ellipsis for large page ranges", async ({ mount }) => {
@@ -93,7 +93,7 @@ test.describe("Pagination Component", () => {
 
     // Should show ellipsis
     const ellipsisButtons = component
-      .locator(".pagination-button")
+      .locator(".mp-pagination-button")
       .filter({ hasText: "..." });
     await expect(ellipsisButtons.first()).toBeVisible();
   });
@@ -105,14 +105,14 @@ test.describe("Pagination Component", () => {
 
     // Check for page 1
     const page1Button = component
-      .locator(".pagination-button")
+      .locator(".mp-pagination-button")
       .filter({ hasText: /^1$/ })
       .first();
     await expect(page1Button).toBeVisible();
 
     // Check for page 20
     const page20Button = component
-      .locator(".pagination-button")
+      .locator(".mp-pagination-button")
       .filter({ hasText: /^20$/ })
       .first();
     await expect(page20Button).toBeVisible();
@@ -129,13 +129,13 @@ test.describe("Pagination Component", () => {
         <PaginationTestWrapper totalItems={200} pageSize={10} currentPage={1} />,
       );
       const pageItems = component.locator(
-        ".pagination__controls .pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)",
+        ".mp-pagination__controls .mp-pagination-button:not(.mp-pagination-button--first):not(.mp-pagination-button--prev):not(.mp-pagination-button--next):not(.mp-pagination-button--last)",
       );
 
       for (let p = 1; p <= 20; p++) {
         await expect(pageItems).toHaveCount(7);
         if (p < 20) {
-          await component.locator(".pagination-button--next").click();
+          await component.locator(".mp-pagination-button--next").click();
         }
       }
     });
@@ -147,20 +147,20 @@ test.describe("Pagination Component", () => {
         <PaginationTestWrapper totalItems={200} pageSize={10} currentPage={2} />,
       );
       // Pattern: [1, 2, 3, 4, 5, ..., 20]
-      const controls = component.locator(".pagination__controls");
+      const controls = component.locator(".mp-pagination__controls");
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^1$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^1$/ }),
       ).toBeVisible();
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^5$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^5$/ }),
       ).toBeVisible();
       await expect(
         controls
-          .locator(".pagination-button--ellipsis")
+          .locator(".mp-pagination-button--ellipsis")
           .filter({ hasText: "..." }),
       ).toHaveCount(1);
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^20$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^20$/ }),
       ).toBeVisible();
     });
 
@@ -173,24 +173,24 @@ test.describe("Pagination Component", () => {
         />,
       );
       // Pattern: [1, ..., 9, 10, 11, ..., 20]
-      const controls = component.locator(".pagination__controls");
+      const controls = component.locator(".mp-pagination__controls");
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^1$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^1$/ }),
       ).toBeVisible();
       await expect(
-        controls.locator(".pagination-button--ellipsis"),
+        controls.locator(".mp-pagination-button--ellipsis"),
       ).toHaveCount(2);
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^9$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^9$/ }),
       ).toBeVisible();
       await expect(
-        controls.locator(".pagination-button--active"),
+        controls.locator(".mp-pagination-button--active"),
       ).toHaveText("10");
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^11$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^11$/ }),
       ).toBeVisible();
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^20$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^20$/ }),
       ).toBeVisible();
     });
 
@@ -205,18 +205,18 @@ test.describe("Pagination Component", () => {
         />,
       );
       // Pattern: [1, ..., 16, 17, 18, 19, 20]
-      const controls = component.locator(".pagination__controls");
+      const controls = component.locator(".mp-pagination__controls");
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^1$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^1$/ }),
       ).toBeVisible();
       await expect(
-        controls.locator(".pagination-button--ellipsis").filter({ hasText: "..." }),
+        controls.locator(".mp-pagination-button--ellipsis").filter({ hasText: "..." }),
       ).toHaveCount(1);
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^16$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^16$/ }),
       ).toBeVisible();
       await expect(
-        controls.locator(".pagination-button").filter({ hasText: /^20$/ }),
+        controls.locator(".mp-pagination-button").filter({ hasText: /^20$/ }),
       ).toBeVisible();
     });
 
@@ -227,14 +227,14 @@ test.describe("Pagination Component", () => {
       const component = await mount(
         <PaginationTestWrapper totalItems={50} pageSize={10} currentPage={3} />,
       );
-      const controls = component.locator(".pagination__controls");
+      const controls = component.locator(".mp-pagination__controls");
       // No ellipsis should appear
-      await expect(controls.locator(".pagination-button--ellipsis")).toHaveCount(
+      await expect(controls.locator(".mp-pagination-button--ellipsis")).toHaveCount(
         0,
       );
       // All 5 page buttons should be present
       const pageItems = controls.locator(
-        ".pagination-button:not(.pagination-button--first):not(.pagination-button--prev):not(.pagination-button--next):not(.pagination-button--last)",
+        ".mp-pagination-button:not(.mp-pagination-button--first):not(.mp-pagination-button--prev):not(.mp-pagination-button--next):not(.mp-pagination-button--last)",
       );
       await expect(pageItems).toHaveCount(5);
     });
@@ -245,7 +245,7 @@ test.describe("Pagination Component", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
 
-    const sizeSelector = component.locator(".pagination__size-selector");
+    const sizeSelector = component.locator(".mp-pagination__size-selector");
     await expect(sizeSelector).toBeVisible();
 
     const select = component.locator("#pageSize");
@@ -263,7 +263,7 @@ test.describe("Pagination Component", () => {
       />,
     );
 
-    const sizeSelector = component.locator(".pagination__size-selector");
+    const sizeSelector = component.locator(".mp-pagination__size-selector");
     await expect(sizeSelector).not.toBeVisible();
   });
 
@@ -276,7 +276,7 @@ test.describe("Pagination Component", () => {
     await select.selectOption("20");
 
     // Check if items per page changed
-    const info = component.locator(".pagination__info");
+    const info = component.locator(".mp-pagination__info");
     await expect(info).toContainText("Showing 1 to 20 of 100 entries");
   });
 
@@ -298,16 +298,16 @@ test.describe("Pagination Component", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
 
-    const firstButton = component.locator(".pagination-button--first");
+    const firstButton = component.locator(".mp-pagination-button--first");
     await expect(firstButton).toHaveAttribute("title", "First page");
 
-    const prevButton = component.locator(".pagination-button--prev");
+    const prevButton = component.locator(".mp-pagination-button--prev");
     await expect(prevButton).toHaveAttribute("title", "Previous page");
 
-    const nextButton = component.locator(".pagination-button--next");
+    const nextButton = component.locator(".mp-pagination-button--next");
     await expect(nextButton).toHaveAttribute("title", "Next page");
 
-    const lastButton = component.locator(".pagination-button--last");
+    const lastButton = component.locator(".mp-pagination-button--last");
     await expect(lastButton).toHaveAttribute("title", "Last page");
   });
 
@@ -324,10 +324,10 @@ test.describe("Pagination Component", () => {
       );
 
       // All navigation buttons should be visible
-      await expect(component.locator(".pagination-button--first")).toBeVisible();
-      await expect(component.locator(".pagination-button--last")).toBeVisible();
-      await expect(component.locator(".pagination-button--prev")).toBeVisible();
-      await expect(component.locator(".pagination-button--next")).toBeVisible();
+      await expect(component.locator(".mp-pagination-button--first")).toBeVisible();
+      await expect(component.locator(".mp-pagination-button--last")).toBeVisible();
+      await expect(component.locator(".mp-pagination-button--prev")).toBeVisible();
+      await expect(component.locator(".mp-pagination-button--next")).toBeVisible();
     });
 
     test("should stack elements vertically on tablet", async ({
@@ -343,8 +343,8 @@ test.describe("Pagination Component", () => {
       await expect(component).toBeVisible();
 
       // All controls should still be present
-      await expect(component.locator(".pagination__info")).toBeVisible();
-      await expect(component.locator(".pagination__controls")).toBeVisible();
+      await expect(component.locator(".mp-pagination__info")).toBeVisible();
+      await expect(component.locator(".mp-pagination__controls")).toBeVisible();
     });
 
     test("should hide first/last buttons on mobile", async ({
@@ -357,15 +357,15 @@ test.describe("Pagination Component", () => {
       );
 
       // First and last buttons should be hidden on mobile
-      const firstButton = component.locator(".pagination-button--first");
-      const lastButton = component.locator(".pagination-button--last");
+      const firstButton = component.locator(".mp-pagination-button--first");
+      const lastButton = component.locator(".mp-pagination-button--last");
 
       await expect(firstButton).not.toBeVisible();
       await expect(lastButton).not.toBeVisible();
 
       // But prev/next should still be visible
-      await expect(component.locator(".pagination-button--prev")).toBeVisible();
-      await expect(component.locator(".pagination-button--next")).toBeVisible();
+      await expect(component.locator(".mp-pagination-button--prev")).toBeVisible();
+      await expect(component.locator(".mp-pagination-button--next")).toBeVisible();
     });
 
     test("should remain functional on small screens", async ({
@@ -378,10 +378,10 @@ test.describe("Pagination Component", () => {
       );
 
       // Should still be able to navigate
-      const nextButton = component.locator(".pagination-button--next");
+      const nextButton = component.locator(".mp-pagination-button--next");
       await nextButton.click();
 
-      const info = component.locator(".pagination__info");
+      const info = component.locator(".mp-pagination__info");
       await expect(info).toContainText("Showing 11 to 20 of 100 entries");
     });
 

@@ -33,7 +33,7 @@ test.describe("TreeEditor", () => {
     await expect(component.getByText("Child 1.1")).not.toBeVisible();
 
     // Click the expand toggle on item 1
-    const toggleBtn = component.locator(".tree-node__toggle").first();
+    const toggleBtn = component.locator(".mp-tree-node__toggle").first();
     await toggleBtn.click();
 
     // Children should now be visible
@@ -45,13 +45,13 @@ test.describe("TreeEditor", () => {
 
     // Find the tree node for Root Item 2 and click it
     const treeNode = component
-      .locator(".tree-node")
+      .locator(".mp-tree-node")
       .filter({ hasText: "Root Item 2" })
       .first();
     await treeNode.click();
 
     // The tree-node should now have the selected class
-    await expect(treeNode).toHaveClass(/tree-node--selected/);
+    await expect(treeNode).toHaveClass(/mp-tree-node--selected/);
   });
 
   test("should have accessible tree role", async ({ mount }) => {

@@ -8,7 +8,7 @@ test.describe("EmptyState Component", () => {
       <EmptyState title="Nothing here yet" />,
     );
     await expect(component).toBeVisible();
-    await expect(component.locator(".empty-state__title")).toHaveText(
+    await expect(component.locator(".mp-empty-state__title")).toHaveText(
       "Nothing here yet",
     );
   });
@@ -20,7 +20,7 @@ test.describe("EmptyState Component", () => {
         description="Try adjusting your search terms."
       />,
     );
-    const description = component.locator(".empty-state__description");
+    const description = component.locator(".mp-empty-state__description");
     await expect(description).toBeVisible();
     await expect(description).toHaveText("Try adjusting your search terms.");
   });
@@ -28,7 +28,7 @@ test.describe("EmptyState Component", () => {
   test("should not render description when omitted", async ({ mount }) => {
     const component = await mount(<EmptyState title="No results" />);
     await expect(
-      component.locator(".empty-state__description"),
+      component.locator(".mp-empty-state__description"),
     ).not.toBeVisible();
   });
 
@@ -39,7 +39,7 @@ test.describe("EmptyState Component", () => {
         icon={<span data-testid="test-icon">🔍</span>}
       />,
     );
-    const icon = component.locator(".empty-state__icon");
+    const icon = component.locator(".mp-empty-state__icon");
     await expect(icon).toBeVisible();
     await expect(icon).toContainText("🔍");
   });
@@ -51,7 +51,7 @@ test.describe("EmptyState Component", () => {
         action={<button type="button">Add item</button>}
       />,
     );
-    const action = component.locator(".empty-state__action");
+    const action = component.locator(".mp-empty-state__action");
     await expect(action).toBeVisible();
     await expect(action.locator("button")).toHaveText("Add item");
   });
@@ -66,12 +66,12 @@ test.describe("EmptyState Component", () => {
         <EmptyState title="No Access" variant="no-access" />
       </div>,
     );
-    const items = component.locator(".empty-state");
-    await expect(items.nth(0)).toHaveClass(/empty-state--default/);
-    await expect(items.nth(1)).toHaveClass(/empty-state--search/);
-    await expect(items.nth(2)).toHaveClass(/empty-state--error/);
-    await expect(items.nth(3)).toHaveClass(/empty-state--no-data/);
-    await expect(items.nth(4)).toHaveClass(/empty-state--no-access/);
+    const items = component.locator(".mp-empty-state");
+    await expect(items.nth(0)).toHaveClass(/mp-empty-state--default/);
+    await expect(items.nth(1)).toHaveClass(/mp-empty-state--search/);
+    await expect(items.nth(2)).toHaveClass(/mp-empty-state--error/);
+    await expect(items.nth(3)).toHaveClass(/mp-empty-state--no-data/);
+    await expect(items.nth(4)).toHaveClass(/mp-empty-state--no-access/);
   });
 
   test("should apply size classes", async ({ mount }) => {
@@ -82,18 +82,18 @@ test.describe("EmptyState Component", () => {
         <EmptyState title="Large" size="lg" />
       </div>,
     );
-    const items = component.locator(".empty-state");
-    await expect(items.nth(0)).toHaveClass(/empty-state--sm/);
-    await expect(items.nth(1)).toHaveClass(/empty-state--md/);
-    await expect(items.nth(2)).toHaveClass(/empty-state--lg/);
+    const items = component.locator(".mp-empty-state");
+    await expect(items.nth(0)).toHaveClass(/mp-empty-state--sm/);
+    await expect(items.nth(1)).toHaveClass(/mp-empty-state--md/);
+    await expect(items.nth(2)).toHaveClass(/mp-empty-state--lg/);
   });
 
   test("should have default variant md when no props given", async ({
     mount,
   }) => {
     const component = await mount(<EmptyState title="Default" />);
-    await expect(component).toHaveClass(/empty-state--default/);
-    await expect(component).toHaveClass(/empty-state--md/);
+    await expect(component).toHaveClass(/mp-empty-state--default/);
+    await expect(component).toHaveClass(/mp-empty-state--md/);
   });
 
   test("should apply custom className", async ({ mount }) => {

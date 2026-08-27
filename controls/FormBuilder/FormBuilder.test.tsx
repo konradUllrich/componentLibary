@@ -216,7 +216,7 @@ test.describe("FormBuilder", () => {
     const input = component.locator('input[type="text"]');
     await input.click();
     await input.evaluate((el) => (el as HTMLInputElement).blur());
-    await expect(component.locator(".form-control__message--error")).toHaveText(
+    await expect(component.locator(".mp-form-control__message--error")).toHaveText(
       "Name is required",
     );
   });
@@ -310,7 +310,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    await expect(component.locator(".form-control__message")).toContainText(
+    await expect(component.locator(".mp-form-control__message")).toContainText(
       "Enter your full name",
     );
   });
@@ -381,7 +381,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    await expect(component).toHaveClass(/form-builder--grid/);
+    await expect(component).toHaveClass(/mp-form-builder--grid/);
   });
 
   test("does not apply grid class when columns is 1", async ({ mount }) => {
@@ -394,7 +394,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    await expect(component).not.toHaveClass(/form-builder--grid/);
+    await expect(component).not.toHaveClass(/mp-form-builder--grid/);
   });
 
   test("field wrapper has gridColumn span style when colSpan > 1", async ({
@@ -411,7 +411,7 @@ test.describe("FormBuilder", () => {
       />,
     );
 
-    const fieldWrapper = component.locator(".form-builder__field").first();
+    const fieldWrapper = component.locator(".mp-form-builder__field").first();
     const style = await fieldWrapper.getAttribute("style");
     expect(style).toContain("grid-column");
   });
@@ -424,7 +424,7 @@ test.describe("FormBuilder", () => {
     const component = await mount(<ZodEmailValidationForm />);
     const input = component.locator('input[type="email"]');
     await input.fill("not-an-email");
-    await expect(component.locator(".form-control__message--error")).toHaveText(
+    await expect(component.locator(".mp-form-control__message--error")).toHaveText(
       "Invalid email address",
     );
   });
@@ -435,10 +435,10 @@ test.describe("FormBuilder", () => {
     const component = await mount(<ZodEmailValidationForm />);
     const input = component.locator('input[type="email"]');
     await input.fill("not-an-email");
-    await expect(component.locator(".form-control__message--error")).toBeVisible();
+    await expect(component.locator(".mp-form-control__message--error")).toBeVisible();
     await input.fill("user@example.com");
     await expect(
-      component.locator(".form-control__message--error"),
+      component.locator(".mp-form-control__message--error"),
     ).not.toBeAttached();
   });
 
@@ -449,7 +449,7 @@ test.describe("FormBuilder", () => {
     const input = component.locator('input[type="text"]');
     // Single character → fails zod min(2) before the validate fn is reached
     await input.fill("a");
-    await expect(component.locator(".form-control__message--error")).toHaveText(
+    await expect(component.locator(".mp-form-control__message--error")).toHaveText(
       "Name must be at least 2 characters",
     );
   });
@@ -459,7 +459,7 @@ test.describe("FormBuilder", () => {
     const input = component.locator('input[type="text"]');
     // "admin" is long enough for zod but rejected by the validate fn
     await input.fill("admin");
-    await expect(component.locator(".form-control__message--error")).toHaveText(
+    await expect(component.locator(".mp-form-control__message--error")).toHaveText(
       "Username 'admin' is reserved",
     );
   });

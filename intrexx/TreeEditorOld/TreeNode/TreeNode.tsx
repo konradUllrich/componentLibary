@@ -234,18 +234,18 @@ export const TreeNode = <T extends BaseTreeItem>(props: TreeNodeProps<T>) => {
         aria-posinset={index + 1}
         tabIndex={isSelected ? 0 : -1}
         className={clsx(
-          "tree-node",
-          isDragging && "tree-node--dragging",
-          isSelected && "tree-node--selected",
+          "mp-tree-node",
+          isDragging && "mp-tree-node--dragging",
+          isSelected && "mp-tree-node--selected",
           canDrop &&
             isOver &&
             dropPosition === "nest" &&
-            "tree-node--drop-target",
+            "mp-tree-node--drop-target",
         )}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
-        <div className="tree-node__content">
+        <div className="mp-tree-node__content">
           {hasChildren ? (
             // Per WAI-ARIA tree widget pattern, expand/collapse is handled via
             // keyboard events on the treeitem itself (Space, ArrowRight, ArrowLeft).
@@ -253,7 +253,7 @@ export const TreeNode = <T extends BaseTreeItem>(props: TreeNodeProps<T>) => {
             // duplicate focus stops. Screen readers access it through the treeitem.
             <button
               type="button"
-              className="tree-node__toggle"
+              className="mp-tree-node__toggle"
               aria-label={isExpanded ? "Collapse" : "Expand"}
               onClick={handleToggleExpanded}
               tabIndex={-1}
@@ -261,15 +261,15 @@ export const TreeNode = <T extends BaseTreeItem>(props: TreeNodeProps<T>) => {
               {isExpanded ? "▼" : "▶"}
             </button>
           ) : (
-            <span className="tree-node__spacer" aria-hidden="true" />
+            <span className="mp-tree-node__spacer" aria-hidden="true" />
           )}
 
-          <span className="tree-node__label">
+          <span className="mp-tree-node__label">
             {renderItem ? renderItem(treeItem) : label}
           </span>
 
           {hasChildren && (
-            <span className="tree-node__count" aria-hidden="true">
+            <span className="mp-tree-node__count" aria-hidden="true">
               {(children as BaseTreeItem[]).length}
             </span>
           )}

@@ -129,29 +129,29 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         helperText={helperText}
         className={className}
       >
-        <div className="radio-container">
+        <div className="mp-radio-container">
           <input
             ref={ref}
             id={radioId}
             type="radio"
-            className={clsx("radio-input", {
-              "radio-input--error": error,
-              "radio-input--disabled": disabled,
+            className={clsx("mp-radio-input", {
+              "mp-radio-input--error": error,
+              "mp-radio-input--disabled": disabled,
             })}
             disabled={disabled}
             required={required}
             {...props}
           />
-          <label htmlFor={radioId} className="radio-label">
+          <label htmlFor={radioId} className="mp-radio-label">
             {children ? (
               <>{children}</>
             ) : (
               <>
                 <span
-                  className={clsx("radio-custom", `radio-custom--${variant}`)}
+                  className={clsx("mp-radio-custom", `mp-radio-custom--${variant}`)}
                 />
                 {inlineLabel && (
-                  <span className="radio-text">{inlineLabel}</span>
+                  <span className="mp-radio-text">{inlineLabel}</span>
                 )}
               </>
             )}

@@ -19,7 +19,7 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} />);
     
     for (const item of mockItems) {
-      const trigger = component.locator('.tabs-trigger', { hasText: item.label as string });
+      const trigger = component.locator('.mp-tabs-trigger', { hasText: item.label as string });
       await expect(trigger).toBeVisible();
     }
   });
@@ -28,11 +28,11 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} activeId="tab2" />);
     
     // Tab 2 trigger should be active
-    const tab2Trigger = component.locator('.tabs-trigger', { hasText: 'Tab 2' });
+    const tab2Trigger = component.locator('.mp-tabs-trigger', { hasText: 'Tab 2' });
     await expect(tab2Trigger).toHaveAttribute('data-state', 'active');
     
     // Tab 2 content should be visible
-    const content = component.locator('.tabs-content', { hasText: 'Content 2' });
+    const content = component.locator('.mp-tabs-content', { hasText: 'Content 2' });
     await expect(content).toBeVisible();
   });
 
@@ -45,10 +45,10 @@ test.describe('Tabs Component', () => {
       </div>
     );
     
-    const tabs = defaultComponent.locator('.tabs');
-    await expect(tabs.nth(0)).toHaveClass(/tabs--default/);
-    await expect(tabs.nth(1)).toHaveClass(/tabs--underline/);
-    await expect(tabs.nth(2)).toHaveClass(/tabs--pills/);
+    const tabs = defaultComponent.locator('.mp-tabs');
+    await expect(tabs.nth(0)).toHaveClass(/mp-tabs--default/);
+    await expect(tabs.nth(1)).toHaveClass(/mp-tabs--underline/);
+    await expect(tabs.nth(2)).toHaveClass(/mp-tabs--pills/);
   });
 
   test('should handle disabled tabs', async ({ mount }) => {
@@ -60,9 +60,9 @@ test.describe('Tabs Component', () => {
     
     const component = await mount(<Tabs items={itemsWithDisabled} activeId="tab1" />);
     
-    const disabledTab = component.locator('.tabs-trigger', { hasText: 'Tab 2' });
+    const disabledTab = component.locator('.mp-tabs-trigger', { hasText: 'Tab 2' });
     await expect(disabledTab).toBeDisabled();
-    await expect(disabledTab).toHaveClass(/tabs-trigger--disabled/);
+    await expect(disabledTab).toHaveClass(/mp-tabs-trigger--disabled/);
   });
 
   test('should apply custom className', async ({ mount }) => {
@@ -70,20 +70,20 @@ test.describe('Tabs Component', () => {
       <Tabs items={mockItems} className="custom-tabs" />
     );
     
-    await expect(component.locator('.tabs')).toHaveClass(/custom-tabs/);
+    await expect(component.locator('.mp-tabs')).toHaveClass(/custom-tabs/);
   });
 
   test('should support keyboard navigation', async ({ mount, page }) => {
     const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
     
     // Focus first tab
-    const firstTab = component.locator('.tabs-trigger').first();
+    const firstTab = component.locator('.mp-tabs-trigger').first();
     await firstTab.focus();
     await expect(firstTab).toBeFocused();
     
     // Press arrow right to move to next tab
     await page.keyboard.press('ArrowRight');
-    const secondTab = component.locator('.tabs-trigger').nth(1);
+    const secondTab = component.locator('.mp-tabs-trigger').nth(1);
     await expect(secondTab).toBeFocused();
     
     // Press arrow left to go back
@@ -95,12 +95,12 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
     
     // Focus first tab
-    const firstTab = component.locator('.tabs-trigger').first();
+    const firstTab = component.locator('.mp-tabs-trigger').first();
     await firstTab.focus();
     
     // Press End to go to last tab
     await page.keyboard.press('End');
-    const lastTab = component.locator('.tabs-trigger').last();
+    const lastTab = component.locator('.mp-tabs-trigger').last();
     await expect(lastTab).toBeFocused();
     
     // Press Home to go to first tab
@@ -112,11 +112,11 @@ test.describe('Tabs Component', () => {
     const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
     
     // Check tablist role
-    const tabList = component.locator('.tabs-list');
+    const tabList = component.locator('.mp-tabs-list');
     await expectAccessibleRole(tabList, 'tablist');
     
     // Check tab roles
-    const firstTab = component.locator('.tabs-trigger').first();
+    const firstTab = component.locator('.mp-tabs-trigger').first();
     await expectAccessibleRole(firstTab, 'tab');
     
     // Check active tab has aria-selected
@@ -160,7 +160,7 @@ test.describe('Tabs Component', () => {
     test('should show active state styling', async ({ mount }) => {
       const component = await mount(<Tabs items={mockItems} activeId="tab1" />);
       
-      const activeTab = component.locator('.tabs-trigger[data-state="active"]');
+      const activeTab = component.locator('.mp-tabs-trigger[data-state="active"]');
       await expect(activeTab).toBeVisible();
       await expect(activeTab).toHaveText('Tab 1');
     });
@@ -173,11 +173,11 @@ test.describe('Tabs Component', () => {
       }));
       
       const component = await mount(<Tabs items={manyItems} />);
-      const tabsList = component.locator('.tabs-list');
+      const tabsList = component.locator('.mp-tabs-list');
       await expect(tabsList).toBeVisible();
       
       // Check that all tabs are rendered
-      const triggers = component.locator('.tabs-trigger');
+      const triggers = component.locator('.mp-tabs-trigger');
       await expect(triggers).toHaveCount(10);
     });
   });

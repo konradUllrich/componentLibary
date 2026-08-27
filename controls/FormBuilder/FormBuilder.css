@@ -1,6 +1,6 @@
 /* FormBuilder – form layout and actions */
 
-.form-builder {
+.mp-form-builder {
   display: flex;
   flex-direction: column;
   gap: var(--mp-spacing-4);
@@ -9,23 +9,23 @@
 
 /* ── Grid layout modifier ───────────────────────────────────── */
 
-.form-builder--grid {
+.mp-form-builder--grid {
   display: grid;
   /* grid-template-columns is set via inline style (repeat(N, 1fr)) */
   align-items: start;
 }
 
-.form-builder--grid .form-builder__field {
+.mp-form-builder--grid .mp-form-builder__field {
   min-width: 0; /* prevent grid blowout */
 }
 
-.form-builder--grid .form-builder__actions {
+.mp-form-builder--grid .mp-form-builder__actions {
   grid-column: 1 / -1; /* always span all columns */
 }
 
 /* ── Actions row ────────────────────────────────────────────── */
 
-.form-builder__actions {
+.mp-form-builder__actions {
   display: flex;
   align-items: center;
   gap: var(--mp-spacing-3);

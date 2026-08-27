@@ -10,7 +10,7 @@ test.describe("IconPicker", () => {
 
   test("should render search input", async ({ mount }) => {
     const component = await mount(<IconPicker />);
-    const input = component.locator(".icon-picker__search-input");
+    const input = component.locator(".mp-icon-picker__search-input");
     await expect(input).toBeVisible();
     await expect(input).toHaveAttribute("placeholder", "Search icons...");
   });
@@ -26,7 +26,7 @@ test.describe("IconPicker", () => {
   test("should activate line style by default", async ({ mount }) => {
     const component = await mount(<IconPicker defaultStyle="line" />);
     const lineBtn = component.locator('[title="Line style icons"]');
-    await expect(lineBtn).toHaveClass(/icon-picker__style-btn--active/);
+    await expect(lineBtn).toHaveClass(/mp-icon-picker__style-btn--active/);
   });
 
   test("should activate solid style when defaultStyle is solid", async ({
@@ -34,12 +34,12 @@ test.describe("IconPicker", () => {
   }) => {
     const component = await mount(<IconPicker defaultStyle="solid" />);
     const solidBtn = component.locator('[title="Solid style icons"]');
-    await expect(solidBtn).toHaveClass(/icon-picker__style-btn--active/);
+    await expect(solidBtn).toHaveClass(/mp-icon-picker__style-btn--active/);
   });
 
   test("should render category toggle button", async ({ mount }) => {
     const component = await mount(<IconPicker />);
-    const categoryBtn = component.locator(".icon-picker__category-toggle");
+    const categoryBtn = component.locator(".mp-icon-picker__category-toggle");
     await expect(categoryBtn).toBeVisible();
     await expect(categoryBtn).toContainText("Categories");
   });
@@ -48,23 +48,23 @@ test.describe("IconPicker", () => {
     mount,
   }) => {
     const component = await mount(<IconPicker />);
-    const categoryBtn = component.locator(".icon-picker__category-toggle");
+    const categoryBtn = component.locator(".mp-icon-picker__category-toggle");
 
     // Panel should not be visible initially
     await expect(
-      component.locator(".icon-picker__category-filter"),
+      component.locator(".mp-icon-picker__category-filter"),
     ).not.toBeVisible();
 
     // Click to open
     await categoryBtn.click();
     await expect(
-      component.locator(".icon-picker__category-filter"),
+      component.locator(".mp-icon-picker__category-filter"),
     ).toBeVisible();
   });
 
   test("should display icon count in results info", async ({ mount }) => {
     const component = await mount(<IconPicker />);
-    const resultsInfo = component.locator(".icon-picker__results-info");
+    const resultsInfo = component.locator(".mp-icon-picker__results-info");
     await expect(resultsInfo).toBeVisible();
     await expect(resultsInfo).toContainText("found");
   });
@@ -73,23 +73,23 @@ test.describe("IconPicker", () => {
     mount,
   }) => {
     const component = await mount(<IconPicker />);
-    const input = component.locator(".icon-picker__search-input");
+    const input = component.locator(".mp-icon-picker__search-input");
     await input.fill("xyzxyzxyznotanicon");
     await expect(
-      component.locator(".icon-picker__no-results"),
+      component.locator(".mp-icon-picker__no-results"),
     ).toBeVisible();
   });
 
   test("should show clear button when search has text", async ({ mount }) => {
     const component = await mount(<IconPicker />);
-    const input = component.locator(".icon-picker__search-input");
+    const input = component.locator(".mp-icon-picker__search-input");
 
     await expect(
-      component.locator(".icon-picker__clear-search"),
+      component.locator(".mp-icon-picker__clear-search"),
     ).not.toBeVisible();
     await input.fill("home");
     await expect(
-      component.locator(".icon-picker__clear-search"),
+      component.locator(".mp-icon-picker__clear-search"),
     ).toBeVisible();
   });
 
@@ -97,9 +97,9 @@ test.describe("IconPicker", () => {
     mount,
   }) => {
     const component = await mount(<IconPicker />);
-    const input = component.locator(".icon-picker__search-input");
+    const input = component.locator(".mp-icon-picker__search-input");
     await input.fill("home");
-    await component.locator(".icon-picker__clear-search").click();
+    await component.locator(".mp-icon-picker__clear-search").click();
     await expect(input).toHaveValue("");
   });
 
@@ -116,7 +116,7 @@ test.describe("IconPicker", () => {
     );
 
     // Click the first icon button
-    const firstIcon = component.locator(".icon-picker__icon-button").first();
+    const firstIcon = component.locator(".mp-icon-picker__icon-button").first();
     await firstIcon.click();
 
     expect(selected.length).toBe(1);
@@ -135,7 +135,7 @@ test.describe("IconPicker", () => {
       <IconPicker defaultStyle="line" selectedIcon={knownIconClass} />,
     );
 
-    const selectedBtn = component.locator(".icon-picker__icon-button--selected");
+    const selectedBtn = component.locator(".mp-icon-picker__icon-button--selected");
     await expect(selectedBtn).toBeVisible();
     await expect(selectedBtn).toHaveAttribute("aria-pressed", "true");
   });
@@ -150,7 +150,7 @@ test.describe("IconPicker", () => {
   test("should pass accessibility checks", async ({ mount, page }) => {
     // Limit rendered icons via search to keep the a11y scan fast
     await mount(<IconPicker />);
-    const input = page.locator(".icon-picker__search-input");
+    const input = page.locator(".mp-icon-picker__search-input");
     await input.fill("home");
     await checkA11y(page, { disableRules: ["color-contrast"] });
   });

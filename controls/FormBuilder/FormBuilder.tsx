@@ -94,8 +94,8 @@ export function FormBuilder<TData extends object>({
   return (
     <form
       className={clsx(
-        "form-builder",
-        isGrid && "form-builder--grid",
+        "mp-form-builder",
+        isGrid && "mp-form-builder--grid",
         className,
       )}
       style={
@@ -118,7 +118,7 @@ export function FormBuilder<TData extends object>({
       {fields.map((field) => (
         <div
           key={field.name}
-          className="form-builder__field"
+          className="mp-form-builder__field"
           style={
             isGrid && (field.colSpan ?? 1) > 1
               ? {
@@ -141,7 +141,7 @@ export function FormBuilder<TData extends object>({
         </div>
       ))}
 
-      <div className="form-builder__actions">
+      <div className="mp-form-builder__actions">
         {resetLabel && (
           <Button type="reset" variant="ghost">
             {resetLabel}

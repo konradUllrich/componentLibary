@@ -63,7 +63,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "1. Drop-in usage" });
 
       await expect(panel).toBeVisible();
-      await expect(panel.locator(".pagination")).toBeVisible();
+      await expect(panel.locator(".mp-pagination")).toBeVisible();
       await expect(panel.getByText(/of 97 entries/)).toBeVisible();
     });
 
@@ -72,11 +72,11 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "1. Drop-in usage" });
 
-      await expect(panel.locator(".pagination__controls")).toBeVisible();
-      await expect(panel.locator(".pagination-button--first")).toBeVisible();
-      await expect(panel.locator(".pagination-button--prev")).toBeVisible();
-      await expect(panel.locator(".pagination-button--next")).toBeVisible();
-      await expect(panel.locator(".pagination-button--last")).toBeVisible();
+      await expect(panel.locator(".mp-pagination__controls")).toBeVisible();
+      await expect(panel.locator(".mp-pagination-button--first")).toBeVisible();
+      await expect(panel.locator(".mp-pagination-button--prev")).toBeVisible();
+      await expect(panel.locator(".mp-pagination-button--next")).toBeVisible();
+      await expect(panel.locator(".mp-pagination-button--last")).toBeVisible();
     });
 
     test("should navigate to the next page", async ({ page }) => {
@@ -86,7 +86,7 @@ test.describe("usePagination Demo Page", () => {
 
       await expect(panel.getByText(/Showing 1 to 10 of 97/)).toBeVisible();
 
-      await panel.locator(".pagination-button--next").click();
+      await panel.locator(".mp-pagination-button--next").click();
 
       await expect(panel.getByText(/Showing 11 to 20 of 97/)).toBeVisible();
     });
@@ -96,8 +96,8 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "1. Drop-in usage" });
 
-      await expect(panel.locator(".pagination-button--prev")).toBeDisabled();
-      await expect(panel.locator(".pagination-button--first")).toBeDisabled();
+      await expect(panel.locator(".mp-pagination-button--prev")).toBeDisabled();
+      await expect(panel.locator(".mp-pagination-button--first")).toBeDisabled();
     });
 
     test("should show page size selector", async ({ page }) => {
@@ -105,8 +105,8 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "1. Drop-in usage" });
 
-      await expect(panel.locator(".pagination__size-selector")).toBeVisible();
-      await expect(panel.locator(".pagination__select")).toBeVisible();
+      await expect(panel.locator(".mp-pagination__size-selector")).toBeVisible();
+      await expect(panel.locator(".mp-pagination__select")).toBeVisible();
     });
 
     test("should persist current page after reload", async ({ page }) => {
@@ -114,7 +114,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "1. Drop-in usage" });
 
-      await panel.locator(".pagination-button--next").click();
+      await panel.locator(".mp-pagination-button--next").click();
       await expect(panel.getByText(/Showing 11 to 20 of 97/)).toBeVisible();
 
       await page.reload();
@@ -138,7 +138,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "2. Custom page size options" });
 
-      await expect(panel.locator(".pagination")).toBeVisible();
+      await expect(panel.locator(".mp-pagination")).toBeVisible();
       await expect(panel.getByText(/of 100 entries/)).toBeVisible();
     });
 
@@ -149,7 +149,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "2. Custom page size options" });
 
-      const select = panel.locator(".pagination__select");
+      const select = panel.locator(".mp-pagination__select");
       await expect(select).toBeVisible();
 
       const options = await select.locator("option").allTextContents();
@@ -162,11 +162,11 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "2. Custom page size options" });
 
       // Navigate to page 2
-      await panel.locator(".pagination-button--next").click();
+      await panel.locator(".mp-pagination-button--next").click();
       await expect(panel.getByText(/Showing 6 to 10 of 100/)).toBeVisible();
 
       // Change page size
-      await panel.locator(".pagination__select").selectOption("25");
+      await panel.locator(".mp-pagination__select").selectOption("25");
 
       // Should reset to page 1 with new page size
       await expect(panel.getByText(/Showing 1 to 25 of 100/)).toBeVisible();
@@ -181,10 +181,10 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "3. Hide size selector" });
 
-      await expect(panel.locator(".pagination")).toBeVisible();
+      await expect(panel.locator(".mp-pagination")).toBeVisible();
       await expect(panel.getByText(/of 80 entries/)).toBeVisible();
       await expect(
-        panel.locator(".pagination__size-selector"),
+        panel.locator(".mp-pagination__size-selector"),
       ).not.toBeVisible();
     });
 
@@ -193,8 +193,8 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "3. Hide size selector" });
 
-      await expect(panel.locator(".pagination__controls")).toBeVisible();
-      await expect(panel.locator(".pagination-button--next")).toBeVisible();
+      await expect(panel.locator(".mp-pagination__controls")).toBeVisible();
+      await expect(panel.locator(".mp-pagination-button--next")).toBeVisible();
     });
   });
 
@@ -210,7 +210,7 @@ test.describe("usePagination Demo Page", () => {
 
       await expect(panel).toBeVisible();
       // No total set initially — pagination should not show controls
-      await expect(panel.locator(".pagination__controls")).not.toBeVisible();
+      await expect(panel.locator(".mp-pagination__controls")).not.toBeVisible();
     });
 
     test("should update pagination when clicking 20 items button", async ({
@@ -224,7 +224,7 @@ test.describe("usePagination Demo Page", () => {
 
       await expect(panel.getByText(/of 20 entries/)).toBeVisible();
       // 20 items / 10 per page = 2 pages — controls should appear
-      await expect(panel.locator(".pagination__controls")).toBeVisible();
+      await expect(panel.locator(".mp-pagination__controls")).toBeVisible();
     });
 
     test("should update pagination when clicking 50 items button", async ({
@@ -300,12 +300,12 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "5. Two tables, one page" });
 
       // Identify the two pagination blocks within the panel
-      const paginations = panel.locator(".pagination");
+      const paginations = panel.locator(".mp-pagination");
       const usersPagination = paginations.nth(0);
       const ordersPagination = paginations.nth(1);
 
       // Navigate users to page 2
-      await usersPagination.locator(".pagination-button--next").click();
+      await usersPagination.locator(".mp-pagination-button--next").click();
       await expect(
         usersPagination.getByText(/Showing 11 to 20 of 85/),
       ).toBeVisible();
@@ -325,7 +325,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "6. sessionStorage, no URL" });
 
-      await expect(panel.locator(".pagination")).toBeVisible();
+      await expect(panel.locator(".mp-pagination")).toBeVisible();
       await expect(panel.getByText(/of 60 entries/)).toBeVisible();
     });
 
@@ -334,7 +334,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "6. sessionStorage, no URL" });
 
-      await panel.locator(".pagination-button--next").click();
+      await panel.locator(".mp-pagination-button--next").click();
       await expect(panel.getByText(/Showing 11 to 20 of 60/)).toBeVisible();
 
       // URL should NOT contain a `page` param set by this instance
@@ -353,7 +353,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "6. sessionStorage, no URL" });
 
-      await panel.locator(".pagination-button--next").click();
+      await panel.locator(".mp-pagination-button--next").click();
       await expect(panel.getByText(/Showing 11 to 20 of 60/)).toBeVisible();
 
       await page.reload();

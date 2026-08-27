@@ -131,35 +131,35 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         helperText={helperText}
         className={className}
       >
-        <div className="checkbox-container">
+        <div className="mp-checkbox-container">
           <input
             ref={ref}
             id={checkboxId}
             type="checkbox"
-            className={clsx("checkbox-input", {
-              "checkbox-input--error": error,
-              "checkbox-input--disabled": disabled,
+            className={clsx("mp-checkbox-input", {
+              "mp-checkbox-input--error": error,
+              "mp-checkbox-input--disabled": disabled,
             })}
             disabled={disabled}
             {...props}
           />
-          <label htmlFor={checkboxId} className="checkbox-label">
+          <label htmlFor={checkboxId} className="mp-checkbox-label">
             {children ? (
               <>{children}</>
             ) : (
               <>
                 {variant === "toggle" ? (
-                  <span className="checkbox-toggle" aria-hidden="true" />
+                  <span className="mp-checkbox-toggle" aria-hidden="true" />
                 ) : (
                   <span
                     className={clsx(
-                      "checkbox-custom",
-                      `checkbox-custom--${variant}`,
+                      "mp-checkbox-custom",
+                      `mp-checkbox-custom--${variant}`,
                     )}
                   />
                 )}
                 {inlineLabel && (
-                  <span className="checkbox-text">{inlineLabel}</span>
+                  <span className="mp-checkbox-text">{inlineLabel}</span>
                 )}
               </>
             )}

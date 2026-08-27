@@ -34,11 +34,11 @@ test.describe("Tree (SortableTree)", () => {
     const component = await mount(<BemClassTree />);
 
     // Root list has sortable-tree class
-    const list = component.locator(".sortable-tree");
+    const list = component.locator(".mp-sortable-tree");
     await expect(list).toBeVisible();
 
     // Individual items have sortable-tree__item class
-    const items = component.locator(".sortable-tree__item");
+    const items = component.locator(".mp-sortable-tree__item");
     await expect(items).toHaveCount(6); // 3 roots + 3 nested children (1-1, 1-2, 3-1)
   });
 
@@ -73,7 +73,7 @@ test.describe("Tree (SortableTree)", () => {
     const component = await mount(<HandleVisibilitySortableTree />);
 
     // Each item has a handle wrapper
-    const handles = component.locator(".sortable-tree__handle");
+    const handles = component.locator(".mp-sortable-tree__handle");
     // 3 root items + 3 children = 6 handles total
     await expect(handles).toHaveCount(6);
   });
@@ -82,7 +82,7 @@ test.describe("Tree (SortableTree)", () => {
     mount,
   }) => {
     const component = await mount(<MenuActionsSortableTree />);
-    const actionContainers = component.locator(".sortable-tree__action");
+    const actionContainers = component.locator(".mp-sortable-tree__action");
     // One action container per item (2 items)
     await expect(actionContainers).toHaveCount(2);
   });
@@ -109,14 +109,14 @@ test.describe("Tree (SortableTree)", () => {
   }) => {
     const component = await mount(<MenuActionsSortableTree />);
 
-    const initialItems = component.locator(".sortable-tree__item");
+    const initialItems = component.locator(".mp-sortable-tree__item");
     await expect(initialItems).toHaveCount(2);
 
     // Click "Add After" on Alpha
     await component.locator('[data-testid="add-after-a"]').click();
 
     // A new item should appear
-    const updatedItems = component.locator(".sortable-tree__item");
+    const updatedItems = component.locator(".mp-sortable-tree__item");
     await expect(updatedItems).toHaveCount(3);
   });
 
@@ -135,7 +135,7 @@ test.describe("Tree (SortableTree)", () => {
     const component = await mount(<SandwichedMovableSortableTree />);
 
     // Initial order: Locked Top, Free, Locked Bottom
-    const items = component.locator(".sortable-tree__item");
+    const items = component.locator(".mp-sortable-tree__item");
     await expect(items).toHaveCount(3);
     await expect(items.nth(0)).toContainText("Locked Top");
     await expect(items.nth(1)).toContainText("Free");
@@ -155,7 +155,7 @@ test.describe("Tree (SortableTree)", () => {
     const component = await mount(<SandwichedMovableSortableTree />);
 
     // Initial order: Locked Top, Free, Locked Bottom
-    const items = component.locator(".sortable-tree__item");
+    const items = component.locator(".mp-sortable-tree__item");
     await expect(items).toHaveCount(3);
 
     // Move "Free" down — it should swap with "Locked Bottom"

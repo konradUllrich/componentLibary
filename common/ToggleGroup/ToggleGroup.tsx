@@ -88,9 +88,9 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
       <RadixToggleGroup.Root
         ref={ref}
         className={clsx(
-          "toggle-group",
-          `toggle-group--${variant}`,
-          `toggle-group--${size}`,
+          "mp-toggle-group",
+          `mp-toggle-group--${variant}`,
+          `mp-toggle-group--${size}`,
           className,
         )}
         {...props}
@@ -119,7 +119,7 @@ export const ToggleGroupItem = React.forwardRef<
     <RadixToggleGroup.Item
       ref={ref}
       aria-label={ariaLabel}
-      className={clsx("toggle-group__item", className)}
+      className={clsx("mp-toggle-group__item", className)}
       {...props}
     >
       {children}

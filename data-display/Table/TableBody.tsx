@@ -40,13 +40,13 @@ export const TableBody = React.forwardRef<
   HTMLTableSectionElement,
   TableBodyProps
 >(({ rows, className, ...props }, ref) => (
-  <tbody ref={ref} className={clsx("table__body", className)} {...props}>
+  <tbody ref={ref} className={clsx("mp-table__body", className)} {...props}>
     {rows.map((row) => (
-      <tr key={row.id} className="table__row">
+      <tr key={row.id} className="mp-table__row">
         {row.getVisibleCells().map((cell) => (
           <td
             key={cell.id}
-            className="table__cell"
+            className="mp-table__cell"
             style={{ width: cell.column.getSize() }}
           >
             {flexRender(

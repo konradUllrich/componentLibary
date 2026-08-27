@@ -1,6 +1,6 @@
 /* Datalist Component Styles */
 
-.datalist-card {
+.mp-datalist-card {
   display: flex;
   flex-direction: column;
   gap: var(--mp-spacing-3);
@@ -12,18 +12,18 @@
   transition: all var(--duration-200) var(--ease-in-out);
 }
 
-.datalist-card:hover {
+.mp-datalist-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-color: var(--mp-color-border-hover, var(--mp-color-border));
 }
 
-.datalist-card__field {
+.mp-datalist-card__field {
   display: flex;
   flex-direction: column;
   gap: var(--mp-spacing-3);
 }
 
-.datalist-card__label {
+.mp-datalist-card__label {
   font-size: var(--mp-font-size-sm);
   font-weight: var(--mp-font-weight-semibold);
   color: var(--mp-color-foreground-light);
@@ -31,7 +31,7 @@
   letter-spacing: 0.5px;
 }
 
-/* .datalist-card__value {
+/* .mp-datalist-card__value {
   font-size: var(--mp-font-size-base);
   color: var(--mp-color-foreground);
   word-break: break-word;
@@ -39,16 +39,16 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .datalist-card {
+  .mp-datalist-card {
     padding: var(--mp-spacing-3);
     gap: var(--mp-spacing-2);
   }
 
-  .datalist-card__label {
+  .mp-datalist-card__label {
     font-size: var(--mp-font-size-xs);
   }
 
-  .datalist-card__value {
+  .mp-datalist-card__value {
     font-size: var(--mp-font-size-sm);
   }
 }

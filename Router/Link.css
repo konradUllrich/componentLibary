@@ -50,7 +50,7 @@
 }
 
 /* button — looks like the primary Button component */
-.mp-link--mp-button {
+.mp-link--button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -61,17 +61,17 @@
   font-weight: var(--mp-button-font-weight);
 }
 
-.mp-link--mp-button:hover {
+.mp-link--button:hover {
   background-color: var(--mp-color-primary-strong);
   color: var(--mp-color-onPrimary);
   text-decoration: none;
 }
 
-.mp-link--mp-button:active {
+.mp-link--button:active {
   color: var(--mp-color-onPrimary);
 }
 
-.mp-link--mp-button:focus-visible {
+.mp-link--button:focus-visible {
   outline: none;
   box-shadow: var(--mp-button-focus-shadow);
 }
@@ -94,7 +94,7 @@
 
 /* ── Accessibility helpers ────────────────────────────────── */
 
-.sr-only {
+.mp-sr-only {
   position: absolute;
   width: 1px;
   height: 1px;

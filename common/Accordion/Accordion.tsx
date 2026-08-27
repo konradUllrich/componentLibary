@@ -155,27 +155,27 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       return (
         <div
           ref={ref}
-          className={clsx("accordion", `accordion--${variant}`, className)}
+          className={clsx("mp-accordion", `mp-accordion--${variant}`, className)}
         >
-          <div className="accordion-tabs-triggers">
+          <div className="mp-accordion-tabs-triggers">
             {items.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleTabClick(item.id)}
                 disabled={item.disabled}
                 className={clsx(
-                  "accordion-trigger",
-                  activeValue === item.id && "accordion-trigger--active",
+                  "mp-accordion-trigger",
+                  activeValue === item.id && "mp-accordion-trigger--active",
                 )}
                 data-state={activeValue === item.id ? "open" : "closed"}
               >
-                <span className="accordion-title">{item.title}</span>
+                <span className="mp-accordion-title">{item.title}</span>
               </button>
             ))}
           </div>
           {activeItem && (
-            <div className="accordion-tabs-content">
-              <div className="accordion-content-inner">
+            <div className="mp-accordion-tabs-content">
+              <div className="mp-accordion-content-inner">
                 {activeItem.content}
               </div>
             </div>
@@ -191,23 +191,23 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           type="multiple"
           value={value as string[]}
           onValueChange={onValueChange as (value: string[]) => void}
-          className={clsx("accordion", `accordion--${variant}`, className)}
+          className={clsx("mp-accordion", `mp-accordion--${variant}`, className)}
         >
           {items.map((item) => (
             <RadixAccordion.Item
               key={item.id}
               value={item.id}
               disabled={item.disabled}
-              className="accordion-item"
+              className="mp-accordion-item"
             >
-              <RadixAccordion.Trigger className="accordion-trigger">
-                <span className="accordion-title">{item.title}</span>
-                <span className="accordion-chevron" aria-hidden="true">
+              <RadixAccordion.Trigger className="mp-accordion-trigger">
+                <span className="mp-accordion-title">{item.title}</span>
+                <span className="mp-accordion-chevron" aria-hidden="true">
                   ▼
                 </span>
               </RadixAccordion.Trigger>
-              <RadixAccordion.Content className="accordion-content">
-                <div className="accordion-content-inner">{item.content}</div>
+              <RadixAccordion.Content className="mp-accordion-content">
+                <div className="mp-accordion-content-inner">{item.content}</div>
               </RadixAccordion.Content>
             </RadixAccordion.Item>
           ))}
@@ -222,23 +222,23 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         value={value as string | undefined}
         onValueChange={onValueChange as (value: string) => void}
         collapsible={collapsible}
-        className={clsx("accordion", `accordion--${variant}`, className)}
+        className={clsx("mp-accordion", `mp-accordion--${variant}`, className)}
       >
         {items.map((item) => (
           <RadixAccordion.Item
             key={item.id}
             value={item.id}
             disabled={item.disabled}
-            className="accordion-item"
+            className="mp-accordion-item"
           >
-            <RadixAccordion.Trigger className="accordion-trigger">
-              <span className="accordion-title">{item.title}</span>
-              <span className="accordion-chevron" aria-hidden="true">
+            <RadixAccordion.Trigger className="mp-accordion-trigger">
+              <span className="mp-accordion-title">{item.title}</span>
+              <span className="mp-accordion-chevron" aria-hidden="true">
                 ▼
               </span>
             </RadixAccordion.Trigger>
-            <RadixAccordion.Content className="accordion-content">
-              <div className="accordion-content-inner">{item.content}</div>
+            <RadixAccordion.Content className="mp-accordion-content">
+              <div className="mp-accordion-content-inner">{item.content}</div>
             </RadixAccordion.Content>
           </RadixAccordion.Item>
         ))}

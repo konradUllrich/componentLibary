@@ -114,19 +114,19 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
         ref={ref}
         open={isOpen}
         onOpenChange={handleOpenChange}
-        className={clsx("disclosure", className)}
+        className={clsx("mp-disclosure", className)}
       >
         <RadixCollapsible.Trigger
-          className={clsx("disclosure-trigger", triggerClassName)}
+          className={clsx("mp-disclosure-trigger", triggerClassName)}
         >
-          {icon && <span className="disclosure-icon">{icon}</span>}
-          <span className="disclosure-label">{label}</span>
-          <span className="disclosure-chevron" aria-hidden="true">
+          {icon && <span className="mp-disclosure-icon">{icon}</span>}
+          <span className="mp-disclosure-label">{label}</span>
+          <span className="mp-disclosure-chevron" aria-hidden="true">
             ▼
           </span>
         </RadixCollapsible.Trigger>
         <RadixCollapsible.Content
-          className={clsx("disclosure-content", contentClassName)}
+          className={clsx("mp-disclosure-content", contentClassName)}
         >
           {children}
         </RadixCollapsible.Content>

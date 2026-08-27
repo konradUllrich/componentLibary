@@ -1,7 +1,7 @@
 /* Tooltip Component Styles */
 
 /* Content */
-.tooltip__content {
+.mp-tooltip__content {
   /* Use explicit dark background for WCAG AA compliance (minimum 4.5:1 contrast with white) */
   background-color: #1e293b; /* gray-800 for better contrast */
   color: white;
@@ -17,7 +17,7 @@
 }
 
 /* Arrow */
-.tooltip__arrow {
+.mp-tooltip__arrow {
   fill: #1e293b; /* Match content background */
 }
 
@@ -35,27 +35,27 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .tooltip__content {
+  .mp-tooltip__content {
     animation: none;
   }
 }
 
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
-  .tooltip__content {
+  .mp-tooltip__content {
     /* Keep same dark background in dark mode */
     background-color: #1e293b;
     border: 1px solid var(--mp-color-gray-700);
   }
 
-  .tooltip__arrow {
+  .mp-tooltip__arrow {
     fill: #1e293b;
   }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .tooltip__content {
+  .mp-tooltip__content {
     max-width: 250px;
     font-size: var(--mp-font-size-xs);
   }

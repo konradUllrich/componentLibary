@@ -18,7 +18,7 @@ test.describe("CheckboxGroup Component", () => {
   test("should render with default props", async ({ mount }) => {
     const component = await mount(<CheckboxGroup options={testOptions} />);
 
-    const group = component.locator(".checkbox-group");
+    const group = component.locator(".mp-checkbox-group");
     await expect(group).toBeVisible();
     await expect(group).toHaveAttribute("role", "group");
   });
@@ -29,7 +29,7 @@ test.describe("CheckboxGroup Component", () => {
     const checkboxes = component.locator('input[type="checkbox"]');
     await expect(checkboxes).toHaveCount(3);
 
-    const labels = component.locator(".checkbox-text");
+    const labels = component.locator(".mp-checkbox-text");
     await expect(labels.nth(0)).toHaveText("Option 1");
     await expect(labels.nth(1)).toHaveText("Option 2");
     await expect(labels.nth(2)).toHaveText("Option 3");
@@ -74,7 +74,7 @@ test.describe("CheckboxGroup Component", () => {
     await expect(firstCheckbox).not.toBeChecked();
 
     // Click on the label to trigger the checkbox (since input may be visually hidden)
-    const firstLabel = component.locator(".checkbox-label").first();
+    const firstLabel = component.locator(".mp-checkbox-label").first();
     await firstLabel.click();
 
     // Verify onChange was called with the correct value
@@ -114,8 +114,8 @@ test.describe("CheckboxGroup Component", () => {
   test("should render in vertical direction by default", async ({ mount }) => {
     const component = await mount(<CheckboxGroup options={testOptions} />);
 
-    const group = component.locator(".checkbox-group");
-    await expect(group).toHaveClass(/checkbox-group--vertical/);
+    const group = component.locator(".mp-checkbox-group");
+    await expect(group).toHaveClass(/mp-checkbox-group--vertical/);
   });
 
   test("should render in horizontal direction", async ({ mount }) => {
@@ -123,8 +123,8 @@ test.describe("CheckboxGroup Component", () => {
       <CheckboxGroup options={testOptions} direction="horizontal" />,
     );
 
-    const group = component.locator(".checkbox-group");
-    await expect(group).toHaveClass(/checkbox-group--horizontal/);
+    const group = component.locator(".mp-checkbox-group");
+    await expect(group).toHaveClass(/mp-checkbox-group--horizontal/);
   });
 
   test("should handle error state", async ({ mount }) => {
@@ -136,10 +136,10 @@ test.describe("CheckboxGroup Component", () => {
       />,
     );
 
-    const group = component.locator(".checkbox-group");
-    await expect(group).toHaveClass(/checkbox-group--error/);
+    const group = component.locator(".mp-checkbox-group");
+    await expect(group).toHaveClass(/mp-checkbox-group--error/);
 
-    const errorMessage = component.locator(".form-control__message--error");
+    const errorMessage = component.locator(".mp-form-control__message--error");
     await expect(errorMessage).toBeVisible();
     await expect(errorMessage).toHaveText("Please select at least one option");
   });
@@ -152,7 +152,7 @@ test.describe("CheckboxGroup Component", () => {
       />,
     );
 
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText("Select all that apply");
   });
@@ -276,7 +276,7 @@ test.describe("CheckboxGroup Component", () => {
     const component = await mount(<CheckboxGroup options={testOptions} />);
 
     const checkboxes = component.locator('input[type="checkbox"]');
-    const labels = component.locator(".checkbox-label");
+    const labels = component.locator(".mp-checkbox-label");
 
     for (let i = 0; i < 3; i++) {
       const checkboxId = await checkboxes.nth(i).getAttribute("id");
@@ -290,7 +290,7 @@ test.describe("CheckboxGroup Component", () => {
       <CheckboxGroup options={testOptions} className="custom-checkbox-group" />,
     );
 
-    await expect(component).toHaveClass(/form-control/);
+    await expect(component).toHaveClass(/mp-form-control/);
     await expect(component).toHaveClass(/custom-checkbox-group/);
   });
 

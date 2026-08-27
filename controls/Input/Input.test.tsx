@@ -27,9 +27,9 @@ test.describe('Input Component', () => {
     );
     
     const inputs = component.locator('input');
-    await expect(inputs.nth(0)).toHaveClass(/input--default/);
-    await expect(inputs.nth(1)).toHaveClass(/input--filled/);
-    await expect(inputs.nth(2)).toHaveClass(/input--outline/);
+    await expect(inputs.nth(0)).toHaveClass(/mp-input--default/);
+    await expect(inputs.nth(1)).toHaveClass(/mp-input--filled/);
+    await expect(inputs.nth(2)).toHaveClass(/mp-input--outline/);
   });
 
   test('should render different sizes', async ({ mount }) => {
@@ -43,9 +43,9 @@ test.describe('Input Component', () => {
     );
     
     const inputs = component.locator('input');
-    await expect(inputs.nth(0)).toHaveClass(/input--sm/);
-    await expect(inputs.nth(1)).toHaveClass(/input--md/);
-    await expect(inputs.nth(2)).toHaveClass(/input--lg/);
+    await expect(inputs.nth(0)).toHaveClass(/mp-input--sm/);
+    await expect(inputs.nth(1)).toHaveClass(/mp-input--md/);
+    await expect(inputs.nth(2)).toHaveClass(/mp-input--lg/);
   });
 
   test('should handle error state', async ({ mount }) => {
@@ -53,9 +53,9 @@ test.describe('Input Component', () => {
       <Input error errorMessage="This field is required" />
     );
     const input = component.locator('input');
-    await expect(input).toHaveClass(/input--error/);
+    await expect(input).toHaveClass(/mp-input--error/);
     
-    const errorMsg = component.locator('.form-control__message--error');
+    const errorMsg = component.locator('.mp-form-control__message--error');
     await expect(errorMsg).toBeVisible();
     await expect(errorMsg).toHaveText('This field is required');
   });
@@ -64,7 +64,7 @@ test.describe('Input Component', () => {
     const component = await mount(
       <Input helperText="We'll never share your email" />
     );
-    const helperText = component.locator('.form-control__message');
+    const helperText = component.locator('.mp-form-control__message');
     await expect(helperText).toBeVisible();
     await expect(helperText).toContainText("We'll never share your email");
   });
@@ -73,7 +73,7 @@ test.describe('Input Component', () => {
     const component = await mount(<Input disabled />);
     const input = component.locator('input');
     await expect(input).toBeDisabled();
-    await expect(input).toHaveClass(/input--disabled/);
+    await expect(input).toHaveClass(/mp-input--disabled/);
   });
 
   test('should accept user input', async ({ mount }) => {

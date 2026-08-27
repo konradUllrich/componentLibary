@@ -20,8 +20,8 @@ test.describe('NativeSelect Component', () => {
     
     const select = component.locator('select');
     await expect(select).toBeVisible();
-    await expect(select).toHaveClass(/native-select--default/);
-    await expect(select).toHaveClass(/native-select--md/);
+    await expect(select).toHaveClass(/mp-native-select--default/);
+    await expect(select).toHaveClass(/mp-native-select--md/);
   });
 
   test('should render different variants', async ({ mount }) => {
@@ -40,9 +40,9 @@ test.describe('NativeSelect Component', () => {
     );
     
     const selects = component.locator('select');
-    await expect(selects.nth(0)).toHaveClass(/native-select--default/);
-    await expect(selects.nth(1)).toHaveClass(/native-select--filled/);
-    await expect(selects.nth(2)).toHaveClass(/native-select--outline/);
+    await expect(selects.nth(0)).toHaveClass(/mp-native-select--default/);
+    await expect(selects.nth(1)).toHaveClass(/mp-native-select--filled/);
+    await expect(selects.nth(2)).toHaveClass(/mp-native-select--outline/);
   });
 
   test('should render different sizes', async ({ mount }) => {
@@ -61,9 +61,9 @@ test.describe('NativeSelect Component', () => {
     );
     
     const selects = component.locator('select');
-    await expect(selects.nth(0)).toHaveClass(/native-select--sm/);
-    await expect(selects.nth(1)).toHaveClass(/native-select--md/);
-    await expect(selects.nth(2)).toHaveClass(/native-select--lg/);
+    await expect(selects.nth(0)).toHaveClass(/mp-native-select--sm/);
+    await expect(selects.nth(1)).toHaveClass(/mp-native-select--md/);
+    await expect(selects.nth(2)).toHaveClass(/mp-native-select--lg/);
   });
 
   test('should render with label', async ({ mount }) => {
@@ -119,7 +119,7 @@ test.describe('NativeSelect Component', () => {
     
     const select = component.locator('select');
     await expect(select).toBeDisabled();
-    await expect(select).toHaveClass(/native-select--disabled/);
+    await expect(select).toHaveClass(/mp-native-select--disabled/);
   });
 
   test('should handle error state', async ({ mount }) => {
@@ -131,9 +131,9 @@ test.describe('NativeSelect Component', () => {
     );
     
     const select = component.locator('select');
-    await expect(select).toHaveClass(/native-select--error/);
+    await expect(select).toHaveClass(/mp-native-select--error/);
     
-    const errorMessage = component.locator('.form-control__message--error');
+    const errorMessage = component.locator('.mp-form-control__message--error');
     await expect(errorMessage).toBeVisible();
     await expect(errorMessage).toHaveText('Please select an option');
   });
@@ -145,7 +145,7 @@ test.describe('NativeSelect Component', () => {
       </NativeSelect>
     );
     
-    const helperText = component.locator('.form-control__message');
+    const helperText = component.locator('.mp-form-control__message');
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText('Choose your preferred option');
   });
@@ -194,7 +194,7 @@ test.describe('NativeSelect Component', () => {
       </NativeSelect>
     );
     
-    const icon = component.locator('.native-select-icon');
+    const icon = component.locator('.mp-native-select-icon');
     await expect(icon).toBeVisible();
     await expect(icon).toHaveText('▼');
   });

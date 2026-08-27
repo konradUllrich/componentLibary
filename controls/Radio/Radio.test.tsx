@@ -33,7 +33,7 @@ test.describe('Radio Component', () => {
       <Radio name="test" value="option1" inlineLabel="Option 1" />
     );
     
-    const inlineLabel = component.locator('.radio-text', { hasText: 'Option 1' });
+    const inlineLabel = component.locator('.mp-radio-text', { hasText: 'Option 1' });
     await expect(inlineLabel).toBeVisible();
   });
 
@@ -47,7 +47,7 @@ test.describe('Radio Component', () => {
       />
     );
     
-    const helperText = component.locator('.form-control__message', { hasText: 'This is a helpful hint' });
+    const helperText = component.locator('.mp-form-control__message', { hasText: 'This is a helpful hint' });
     await expect(helperText).toBeVisible();
   });
 
@@ -63,9 +63,9 @@ test.describe('Radio Component', () => {
     );
     
     const input = component.locator('input[type="radio"]');
-    await expect(input).toHaveClass(/radio-input--error/);
+    await expect(input).toHaveClass(/mp-radio-input--error/);
     
-    const errorMsg = component.locator('.form-control__message--error', { hasText: 'This field is required' });
+    const errorMsg = component.locator('.mp-form-control__message--error', { hasText: 'This field is required' });
     await expect(errorMsg).toBeVisible();
   });
 
@@ -76,7 +76,7 @@ test.describe('Radio Component', () => {
     
     const input = component.locator('input[type="radio"]');
     await expect(input).toBeDisabled();
-    await expect(input).toHaveClass(/radio-input--disabled/);
+    await expect(input).toHaveClass(/mp-radio-input--disabled/);
   });
 
   test('should be checkable', async ({ mount }) => {
@@ -88,7 +88,7 @@ test.describe('Radio Component', () => {
     await expect(input).not.toBeChecked();
     
     // Click the label to check
-    const label = component.locator('.radio-label');
+    const label = component.locator('.mp-radio-label');
     await label.click();
     
     await expect(input).toBeChecked();
@@ -130,7 +130,7 @@ test.describe('Radio Component', () => {
       </Radio>
     );
     
-    const badge = component.locator('.badge');
+    const badge = component.locator('.mp-badge');
     await expect(badge).toBeVisible();
     await expect(badge).toContainText('Active');
   });
@@ -141,7 +141,7 @@ test.describe('Radio Component', () => {
     );
     
     const input = component.locator('input[type="radio"]');
-    const labelFor = await component.locator('.radio-label').getAttribute('for');
+    const labelFor = await component.locator('.mp-radio-label').getAttribute('for');
     const inputId = await input.getAttribute('id');
     
     expect(labelFor).toBe(inputId);
@@ -245,7 +245,7 @@ test.describe('Radio Component', () => {
         <Radio name="test" value="option1" inlineLabel="Option 1" />
       );
       
-      const customRadio = component.locator('.radio-custom');
+      const customRadio = component.locator('.mp-radio-custom');
       await expect(customRadio).toBeVisible();
     });
 
@@ -258,10 +258,10 @@ test.describe('Radio Component', () => {
         </div>
       );
       
-      const radios = component.locator('.radio-custom');
-      await expect(radios.nth(0)).toHaveClass(/radio-custom--default/);
-      await expect(radios.nth(1)).toHaveClass(/radio-custom--filled/);
-      await expect(radios.nth(2)).toHaveClass(/radio-custom--outline/);
+      const radios = component.locator('.mp-radio-custom');
+      await expect(radios.nth(0)).toHaveClass(/mp-radio-custom--default/);
+      await expect(radios.nth(1)).toHaveClass(/mp-radio-custom--filled/);
+      await expect(radios.nth(2)).toHaveClass(/mp-radio-custom--outline/);
     });
 
     test('should work as radio group', async ({ mount }) => {
@@ -274,7 +274,7 @@ test.describe('Radio Component', () => {
       );
       
       const inputs = component.locator('input[type="radio"]');
-      const labels = component.locator('.radio-label');
+      const labels = component.locator('.mp-radio-label');
       
       // Click first radio label
       await labels.nth(0).click();

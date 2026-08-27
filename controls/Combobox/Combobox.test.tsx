@@ -36,9 +36,9 @@ test.describe("Combobox Component", () => {
     );
 
     const inputs = component.locator('input[role="combobox"]');
-    await expect(inputs.nth(0)).toHaveClass(/combobox__input--default/);
-    await expect(inputs.nth(1)).toHaveClass(/combobox__input--filled/);
-    await expect(inputs.nth(2)).toHaveClass(/combobox__input--outline/);
+    await expect(inputs.nth(0)).toHaveClass(/mp-combobox__input--default/);
+    await expect(inputs.nth(1)).toHaveClass(/mp-combobox__input--filled/);
+    await expect(inputs.nth(2)).toHaveClass(/mp-combobox__input--outline/);
   });
 
   test("should render different sizes", async ({ mount }) => {
@@ -51,9 +51,9 @@ test.describe("Combobox Component", () => {
     );
 
     const inputs = component.locator('input[role="combobox"]');
-    await expect(inputs.nth(0)).toHaveClass(/combobox__input--sm/);
-    await expect(inputs.nth(1)).toHaveClass(/combobox__input--md/);
-    await expect(inputs.nth(2)).toHaveClass(/combobox__input--lg/);
+    await expect(inputs.nth(0)).toHaveClass(/mp-combobox__input--sm/);
+    await expect(inputs.nth(1)).toHaveClass(/mp-combobox__input--md/);
+    await expect(inputs.nth(2)).toHaveClass(/mp-combobox__input--lg/);
   });
 
   test("should render with label", async ({ mount }) => {
@@ -71,7 +71,7 @@ test.describe("Combobox Component", () => {
       <Combobox options={testOptions} helperText="Select your country" />,
     );
 
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText("Select your country");
   });
@@ -86,9 +86,9 @@ test.describe("Combobox Component", () => {
     );
 
     const input = component.locator('input[role="combobox"]');
-    await expect(input).toHaveClass(/combobox__input--error/);
+    await expect(input).toHaveClass(/mp-combobox__input--error/);
 
-    const errorMessage = component.locator(".form-control__message--error");
+    const errorMessage = component.locator(".mp-form-control__message--error");
     await expect(errorMessage).toBeVisible();
     await expect(errorMessage).toHaveText("This field is required");
   });
@@ -157,7 +157,7 @@ test.describe("Combobox Component", () => {
     await input.fill("xyz");
     await page.waitForTimeout(100);
 
-    const empty = page.locator(".combobox__empty");
+    const empty = page.locator(".mp-combobox__empty");
     await expect(empty).toBeVisible();
     await expect(empty).toHaveText("No options found");
   });
@@ -195,14 +195,14 @@ test.describe("Combobox Component", () => {
     await page.waitForTimeout(200);
 
     // Initial highlighted should be first option (index 0)
-    let highlightedOption = page.locator(".combobox__option--highlighted");
+    let highlightedOption = page.locator(".mp-combobox__option--highlighted");
     await expect(highlightedOption).toHaveText("United States");
 
     // Press down arrow once to move to second option (index 1)
     await input.press("ArrowDown");
     await page.waitForTimeout(100);
 
-    highlightedOption = page.locator(".combobox__option--highlighted");
+    highlightedOption = page.locator(".mp-combobox__option--highlighted");
     await expect(highlightedOption).toHaveText("United Kingdom");
   });
 
@@ -268,7 +268,7 @@ test.describe("Combobox Component", () => {
     await input.press("ArrowUp");
     await page.waitForTimeout(100);
 
-    const highlightedOption = page.locator(".combobox__option--highlighted");
+    const highlightedOption = page.locator(".mp-combobox__option--highlighted");
     await expect(highlightedOption).toHaveText("Canada");
   });
 
@@ -279,7 +279,7 @@ test.describe("Combobox Component", () => {
 
     const input = component.locator('input[role="combobox"]');
     await expect(input).toBeDisabled();
-    await expect(input).toHaveClass(/combobox__input--disabled/);
+    await expect(input).toHaveClass(/mp-combobox__input--disabled/);
   });
 
   test("should render disabled options", async ({ mount, page }) => {
@@ -297,7 +297,7 @@ test.describe("Combobox Component", () => {
     await input.focus();
     await page.waitForTimeout(100);
 
-    const disabledOption = page.locator(".combobox__option--disabled");
+    const disabledOption = page.locator(".mp-combobox__option--disabled");
     await expect(disabledOption).toBeVisible();
     await expect(disabledOption).toHaveText("United Kingdom");
   });
@@ -324,7 +324,7 @@ test.describe("Combobox Component", () => {
     await page.waitForTimeout(200);
 
     // Try to click disabled option
-    const disabledOption = page.locator(".combobox__option--disabled");
+    const disabledOption = page.locator(".mp-combobox__option--disabled");
     await disabledOption.click({ force: true });
     await page.waitForTimeout(100);
 
@@ -358,11 +358,11 @@ test.describe("Combobox Component", () => {
     await input.focus();
     await page.waitForTimeout(100);
 
-    const selectedOption = page.locator(".combobox__option--selected");
+    const selectedOption = page.locator(".mp-combobox__option--selected");
     await expect(selectedOption).toBeVisible();
     await expect(selectedOption).toHaveText(/Australia/);
 
-    const checkmark = selectedOption.locator(".combobox__check");
+    const checkmark = selectedOption.locator(".mp-combobox__check");
     await expect(checkmark).toBeVisible();
   });
 
@@ -379,7 +379,7 @@ test.describe("Combobox Component", () => {
     await thirdOption.hover();
     await page.waitForTimeout(50);
 
-    await expect(thirdOption).toHaveClass(/combobox__option--highlighted/);
+    await expect(thirdOption).toHaveClass(/mp-combobox__option--highlighted/);
   });
 
   test("should close dropdown on Tab key", async ({ mount, page }) => {
@@ -529,7 +529,7 @@ test.describe("Combobox Component", () => {
     await input.fill("New Country");
     await page.waitForTimeout(100);
 
-    const empty = page.locator(".combobox__empty");
+    const empty = page.locator(".mp-combobox__empty");
     await expect(empty).toBeVisible();
     await expect(empty).toContainText('Press Enter to create "New Country"');
   });

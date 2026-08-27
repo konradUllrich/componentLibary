@@ -74,16 +74,16 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
       <div
         ref={ref}
         className={clsx(
-          "badge",
-          `badge--${variant}`,
-          `badge--${size}`,
-          `badge--${badgeStyle}`,
+          "mp-badge",
+          `mp-badge--${variant}`,
+          `mp-badge--${size}`,
+          `mp-badge--${badgeStyle}`,
           className,
         )}
         {...props}
       >
-        {icon && <span className="badge__icon">{icon}</span>}
-        <span className="badge__text">{children}</span>
+        {icon && <span className="mp-badge__icon">{icon}</span>}
+        <span className="mp-badge__text">{children}</span>
       </div>
     );
   },

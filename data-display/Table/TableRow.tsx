@@ -47,14 +47,14 @@ export const TableRow = React.forwardRef(function TableRow<T>(
     <tr
       ref={ref}
       className={clsx(
-        "table__row",
-        isSelected && "table__row--selected",
+        "mp-table__row",
+        isSelected && "mp-table__row--selected",
         className,
       )}
       {...props}
     >
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id} className="table__cell">
+        <td key={cell.id} className="mp-table__cell">
           {cell.getValue() as React.ReactNode}
         </td>
       ))}

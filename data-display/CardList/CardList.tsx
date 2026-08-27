@@ -93,7 +93,7 @@ function CardListInner<T>(
   const content = (() => {
     if (isLoading) {
       return (
-        <div className="card-list__loading" role="status" aria-live="polite">
+        <div className="mp-card-list__loading" role="status" aria-live="polite">
           <span>Loading...</span>
         </div>
       );
@@ -101,18 +101,18 @@ function CardListInner<T>(
 
     if (!hasItems) {
       return (
-        <div className="card-list__empty" role="status" aria-live="polite">
+        <div className="mp-card-list__empty" role="status" aria-live="polite">
           <span>{emptyMessage}</span>
         </div>
       );
     }
 
     return (
-      <div className={clsx("card-list__grid", className)}>
+      <div className={clsx("mp-card-list__grid", className)}>
         {items.map((item, index) => (
           <div
             key={getKey ? getKey(item, index) : index}
-            className="card-list__item"
+            className="mp-card-list__item"
           >
             {renderCard(item, index)}
           </div>
@@ -124,7 +124,7 @@ function CardListInner<T>(
   return (
     <div
       ref={ref}
-      className="card-list"
+      className="mp-card-list"
       data-state={isLoading ? "loading" : hasItems ? "ready" : "empty"}
       style={
         {

@@ -93,11 +93,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={clsx(
-            "input",
-            `input--${variant}`,
-            `input--${size}`,
-            error && "input--error",
-            disabled && "input--disabled",
+            "mp-input",
+            `mp-input--${variant}`,
+            `mp-input--${size}`,
+            error && "mp-input--error",
+            disabled && "mp-input--disabled",
           )}
           disabled={disabled}
           {...props}

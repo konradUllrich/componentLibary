@@ -15,9 +15,9 @@ export const TreeDragLayer = () => {
   const { x, y } = currentOffset;
 
   return (
-    <div className="tree-drag-layer" aria-hidden="true">
+    <div className="mp-tree-drag-layer" aria-hidden="true">
       <div
-        className="tree-drag-layer__preview"
+        className="mp-tree-drag-layer__preview"
         style={{ transform: `translate(${x}px, ${y}px)` }}
       >
         {item?.label ?? "Item"}

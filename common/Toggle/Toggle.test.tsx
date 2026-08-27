@@ -22,8 +22,8 @@ test.describe("Toggle Component", () => {
     );
 
     const buttons = component.locator("button");
-    await expect(buttons.nth(0)).toHaveClass(/toggle--default/);
-    await expect(buttons.nth(1)).toHaveClass(/toggle--outline/);
+    await expect(buttons.nth(0)).toHaveClass(/mp-toggle--default/);
+    await expect(buttons.nth(1)).toHaveClass(/mp-toggle--outline/);
   });
 
   test("should render different sizes", async ({ mount }) => {
@@ -42,9 +42,9 @@ test.describe("Toggle Component", () => {
     );
 
     const buttons = component.locator("button");
-    await expect(buttons.nth(0)).toHaveClass(/toggle--sm/);
-    await expect(buttons.nth(1)).toHaveClass(/toggle--md/);
-    await expect(buttons.nth(2)).toHaveClass(/toggle--lg/);
+    await expect(buttons.nth(0)).toHaveClass(/mp-toggle--sm/);
+    await expect(buttons.nth(1)).toHaveClass(/mp-toggle--md/);
+    await expect(buttons.nth(2)).toHaveClass(/mp-toggle--lg/);
   });
 
   test("should toggle pressed state when clicked", async ({ mount }) => {

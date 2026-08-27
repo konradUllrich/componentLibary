@@ -10,10 +10,10 @@ interface Props {
 
 export function TreeItemOverlay({ id, count }: Props) {
   return (
-    <div className="sortable-tree__item" data-overlay>
+    <div className="mp-sortable-tree__item" data-overlay>
       <Handle />
       {id}
-      {count > 0 ? <span className="sortable-tree__badge">{count}</span> : null}
+      {count > 0 ? <span className="mp-sortable-tree__badge">{count}</span> : null}
     </div>
   );
 }

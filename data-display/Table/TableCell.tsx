@@ -46,7 +46,7 @@ export const TableCell = React.forwardRef<
 >(({ cell, align = "left", className, ...props }, ref) => (
   <td
     ref={ref}
-    className={clsx("table__cell", `table__cell--align-${align}`, className)}
+    className={clsx("mp-table__cell", `mp-table__cell--align-${align}`, className)}
     {...props}
   >
     {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -1,7 +1,7 @@
 /* Toggle Styles - Radix UI */
 
 /* Block: Toggle Base */
-.toggle {
+.mp-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -20,13 +20,13 @@
 }
 
 /* Focus visible state */
-.toggle:focus-visible {
+.mp-toggle:focus-visible {
   outline: var(--mp-focus-size) solid var(--mp-focus-color);
   outline-offset: var(--mp-focus-offset);
 }
 
 /* Disabled state */
-.toggle:disabled {
+.mp-toggle:disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
   pointer-events: none;
@@ -36,19 +36,19 @@
    Size Modifiers
    ============================== */
 
-.toggle--sm {
+.mp-toggle--sm {
   padding: var(--mp-spacing-1) var(--mp-spacing-2);
   font-size: var(--mp-font-size-sm);
   min-height: 2rem;
 }
 
-.toggle--md {
+.mp-toggle--md {
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
   font-size: var(--mp-font-size-base);
   min-height: 2.5rem;
 }
 
-.toggle--lg {
+.mp-toggle--lg {
   padding: var(--mp-spacing-3) var(--mp-spacing-4);
   font-size: var(--mp-font-size-lg);
   min-height: 3rem;
@@ -58,24 +58,24 @@
    Variant: Default
    ============================== */
 
-.toggle--default {
+.mp-toggle--default {
   background-color: transparent;
   color: var(--mp-color-onPrimary);
   border-color: transparent;
 }
 
-.toggle--default:hover:not(:disabled):not([data-state="on"]) {
+.mp-toggle--default:hover:not(:disabled):not([data-state="on"]) {
   background-color: var(--mp-color-primary-light);
   color: var(--mp-color-primary);
 }
 
-.toggle--default[data-state="on"] {
+.mp-toggle--default[data-state="on"] {
   background-color: var(--mp-color-primary);
   color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 
-.toggle--default[data-state="on"]:hover:not(:disabled) {
+.mp-toggle--default[data-state="on"]:hover:not(:disabled) {
   background-color: var(--mp-color-primary-strong);
   border-color: var(--mp-color-primary-strong);
 }
@@ -84,24 +84,24 @@
    Variant: Outline
    ============================== */
 
-.toggle--outline {
+.mp-toggle--outline {
   background-color: transparent;
   color: var(--mp-color-foreground-light);
   border-color: var(--mp-color-border);
 }
 
-.toggle--outline:hover:not(:disabled):not([data-state="on"]) {
+.mp-toggle--outline:hover:not(:disabled):not([data-state="on"]) {
   background-color: var(--mp-color-primary-light);
   color: var(--mp-color-primary);
 }
 
-.toggle--outline[data-state="on"] {
+.mp-toggle--outline[data-state="on"] {
   background-color: var(--mp-color-primary);
   color: var(--mp-color-onPrimary);
   border-color: var(--mp-color-primary);
 }
 
-.toggle--outline[data-state="on"]:hover:not(:disabled) {
+.mp-toggle--outline[data-state="on"]:hover:not(:disabled) {
   background-color: var(--mp-color-primary-strong);
   border-color: var(--mp-color-primary-strong);
 }

@@ -70,7 +70,7 @@ test.describe("usePaginationSync", () => {
       <PaginationSyncTestWrapper totalItems={100} />,
     );
 
-    await expect(component.locator(".pagination__info")).toContainText(
+    await expect(component.locator(".mp-pagination__info")).toContainText(
       "Showing 31 to 40 of 100 entries",
     );
   });
@@ -86,7 +86,7 @@ test.describe("usePaginationSync", () => {
       <PaginationSyncTestWrapper totalItems={60} pageSize={10} />,
     );
 
-    await expect(component.locator(".pagination__info")).toContainText(
+    await expect(component.locator(".mp-pagination__info")).toContainText(
       "Showing 41 to 60 of 60 entries",
     );
   });
@@ -102,7 +102,7 @@ test.describe("usePaginationSync", () => {
     );
 
     // Invalid values → store stays on page 1 with default pageSize 10
-    await expect(component.locator(".pagination__info")).toContainText(
+    await expect(component.locator(".mp-pagination__info")).toContainText(
       "Showing 1 to 10 of 100 entries",
     );
   });
@@ -119,7 +119,7 @@ test.describe("usePaginationSync", () => {
       <PaginationSyncTestWrapper totalItems={100} />,
     );
 
-    await component.locator(".pagination-button--next").click();
+    await component.locator(".mp-pagination-button--next").click();
 
     expect(await getUrlParam(page, "page")).toBe("2");
   });
@@ -147,8 +147,8 @@ test.describe("usePaginationSync", () => {
 
     const historyBefore = await page.evaluate(() => window.history.length);
 
-    await component.locator(".pagination-button--next").click();
-    await component.locator(".pagination-button--next").click();
+    await component.locator(".mp-pagination-button--next").click();
+    await component.locator(".mp-pagination-button--next").click();
 
     // history.length must not grow (replace: true)
     expect(await page.evaluate(() => window.history.length)).toBe(
@@ -168,7 +168,7 @@ test.describe("usePaginationSync", () => {
       <PaginationSyncTestWrapper totalItems={100} syncKey="tableA" />,
     );
 
-    await component.locator(".pagination-button--next").click();
+    await component.locator(".mp-pagination-button--next").click();
 
     expect(await getUrlParam(page, "tableA_page")).toBe("2");
     expect(await getUrlParam(page, "page")).toBeNull();
@@ -179,7 +179,7 @@ test.describe("usePaginationSync", () => {
     page,
   }) => {
     const component = await mount(<TwoSyncedPaginationsWrapper />);
-    const nextButtons = component.locator(".pagination-button--next");
+    const nextButtons = component.locator(".mp-pagination-button--next");
 
     await nextButtons.first().click();
     await nextButtons.last().click();
@@ -201,7 +201,7 @@ test.describe("usePaginationSync", () => {
     });
 
     const component = await mount(<TwoSyncedPaginationsWrapper />);
-    const infos = component.locator(".pagination__info");
+    const infos = component.locator(".mp-pagination__info");
 
     await expect(infos.nth(0)).toContainText("Showing 21 to 30 of 100 entries");
     await expect(infos.nth(1)).toContainText("Showing 6 to 10 of 60 entries");
@@ -223,7 +223,7 @@ test.describe("usePaginationSync", () => {
       />,
     );
 
-    await component.locator(".pagination-button--next").click();
+    await component.locator(".mp-pagination-button--next").click();
 
     expect(await getUrlParam(page, "p")).toBe("2");
     expect(await getUrlParam(page, "page")).toBeNull();
@@ -243,7 +243,7 @@ test.describe("usePaginationSync", () => {
       />,
     );
 
-    await expect(component.locator(".pagination__info")).toContainText(
+    await expect(component.locator(".mp-pagination__info")).toContainText(
       "Showing 41 to 50 of 100 entries",
     );
   });
@@ -260,7 +260,7 @@ test.describe("usePaginationSync", () => {
       <PaginationTestWrapper totalItems={100} pageSize={10} />,
     );
 
-    await component.locator(".pagination-button--next").click();
+    await component.locator(".mp-pagination-button--next").click();
 
     expect(await getUrlParam(page, "page")).toBeNull();
   });

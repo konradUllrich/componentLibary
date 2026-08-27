@@ -88,25 +88,25 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         role="status"
         aria-label={title}
         className={clsx(
-          "empty-state",
-          `empty-state--${variant}`,
-          `empty-state--${size}`,
+          "mp-empty-state",
+          `mp-empty-state--${variant}`,
+          `mp-empty-state--${size}`,
           className,
         )}
         {...props}
       >
         {icon && (
-          <div className="empty-state__icon" aria-hidden="true">
+          <div className="mp-empty-state__icon" aria-hidden="true">
             {icon}
           </div>
         )}
-        <Text weight="bold" size="xl" className="empty-state__title">
+        <Text weight="bold" size="xl" className="mp-empty-state__title">
           {title}
         </Text>
         {description && (
-          <Text className="empty-state__description">{description}</Text>
+          <Text className="mp-empty-state__description">{description}</Text>
         )}
-        {action && <div className="empty-state__action">{action}</div>}
+        {action && <div className="mp-empty-state__action">{action}</div>}
       </div>
     );
   },

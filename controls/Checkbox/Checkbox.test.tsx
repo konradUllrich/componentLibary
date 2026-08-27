@@ -8,7 +8,7 @@ test.describe('Checkbox Component', () => {
     const checkbox = component.locator('input[type="checkbox"]');
     // Checkbox input may be visually hidden but still in DOM
     await expect(checkbox).toBeAttached();
-    const label = component.locator('.checkbox-label');
+    const label = component.locator('.mp-checkbox-label');
     await expect(label).toBeVisible();
   });
 
@@ -18,7 +18,7 @@ test.describe('Checkbox Component', () => {
     );
     const labels = component.locator('label');
     await expect(labels.first()).toContainText('Notifications');
-    await expect(component.locator('.checkbox-text')).toContainText('Email me updates');
+    await expect(component.locator('.mp-checkbox-text')).toContainText('Email me updates');
   });
 
   test('should handle checked state', async ({ mount }) => {
@@ -32,7 +32,7 @@ test.describe('Checkbox Component', () => {
   test('should toggle on click', async ({ mount }) => {
     const component = await mount(<Checkbox inlineLabel="Toggle me" />);
     const checkbox = component.locator('input[type="checkbox"]');
-    const label = component.locator('.checkbox-label');
+    const label = component.locator('.mp-checkbox-label');
     
     await expect(checkbox).not.toBeChecked();
     // Click the label which is the visible part
@@ -48,7 +48,7 @@ test.describe('Checkbox Component', () => {
     );
     const checkbox = component.locator('input[type="checkbox"]');
     await expect(checkbox).toBeDisabled();
-    await expect(checkbox).toHaveClass(/checkbox-input--disabled/);
+    await expect(checkbox).toHaveClass(/mp-checkbox-input--disabled/);
   });
 
   test('should handle error state', async ({ mount }) => {
@@ -61,9 +61,9 @@ test.describe('Checkbox Component', () => {
       />
     );
     const checkbox = component.locator('input[type="checkbox"]');
-    await expect(checkbox).toHaveClass(/checkbox-input--error/);
+    await expect(checkbox).toHaveClass(/mp-checkbox-input--error/);
     
-    const errorMsg = component.locator('.form-control__message--error');
+    const errorMsg = component.locator('.mp-form-control__message--error');
     await expect(errorMsg).toBeVisible();
     await expect(errorMsg).toContainText('You must accept the terms');
   });
@@ -73,7 +73,7 @@ test.describe('Checkbox Component', () => {
       <Checkbox inlineLabel="Click me" id="custom-checkbox" />
     );
     const checkbox = component.locator('input[type="checkbox"]');
-    const label = component.locator('.checkbox-label');
+    const label = component.locator('.mp-checkbox-label');
     
     const checkboxId = await checkbox.getAttribute('id');
     const labelFor = await label.getAttribute('for');
@@ -129,7 +129,7 @@ test.describe('Checkbox Toggle Variant', () => {
     const component = await mount(
       <Checkbox variant="toggle" inlineLabel="Enable notifications" />
     );
-    await expect(component.locator('.checkbox-toggle')).toBeVisible();
+    await expect(component.locator('.mp-checkbox-toggle')).toBeVisible();
     await expect(component.locator('input[type="checkbox"]')).toBeAttached();
   });
 
@@ -138,7 +138,7 @@ test.describe('Checkbox Toggle Variant', () => {
       <Checkbox variant="toggle" inlineLabel="Toggle me" />
     );
     const checkbox = component.locator('input[type="checkbox"]');
-    const label = component.locator('.checkbox-label');
+    const label = component.locator('.mp-checkbox-label');
 
     await expect(checkbox).not.toBeChecked();
     await label.click();
@@ -171,7 +171,7 @@ test.describe('Checkbox Toggle Variant', () => {
         errorMessage="This setting is required"
       />
     );
-    const errorMsg = component.locator('.form-control__message--error');
+    const errorMsg = component.locator('.mp-form-control__message--error');
     await expect(errorMsg).toBeVisible();
     await expect(errorMsg).toContainText('This setting is required');
   });

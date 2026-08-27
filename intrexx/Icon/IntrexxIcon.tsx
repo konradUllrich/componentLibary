@@ -47,10 +47,10 @@ export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
       <i
         ref={ref}
         className={clsx(
-          "intrexx-icon",
-          `intrexx-icon--${size}`,
-          `intrexx-icon--${color}`,
-          { "intrexx-icon--fix-position": fixPosition },
+          "mp-intrexx-icon",
+          `mp-intrexx-icon--${size}`,
+          `mp-intrexx-icon--${color}`,
+          { "mp-intrexx-icon--fix-position": fixPosition },
           iconClass,
           className,
         )}

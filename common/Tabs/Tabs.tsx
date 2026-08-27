@@ -109,17 +109,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       <RadixTabs.Root value={value} onValueChange={onActiveChange}>
         <div
           ref={ref}
-          className={clsx("tabs", `tabs--${variant}`, className)}
+          className={clsx("mp-tabs", `mp-tabs--${variant}`, className)}
           {...props}
         >
-          <RadixTabs.List className="tabs-list">
+          <RadixTabs.List className="mp-tabs-list">
             {items.map((item) => (
               <RadixTabs.Trigger
                 key={item.id}
                 value={item.id}
                 disabled={item.disabled}
-                className={clsx("tabs-trigger", {
-                  "tabs-trigger--disabled": item.disabled,
+                className={clsx("mp-tabs-trigger", {
+                  "mp-tabs-trigger--disabled": item.disabled,
                 })}
               >
                 {item.label}
@@ -130,7 +130,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
             <RadixTabs.Content
               key={item.id}
               value={item.id}
-              className="tabs-content"
+              className="mp-tabs-content"
             >
               {item.content}
             </RadixTabs.Content>

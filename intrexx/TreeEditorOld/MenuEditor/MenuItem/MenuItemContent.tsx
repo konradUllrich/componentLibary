@@ -17,10 +17,10 @@ export const MenuItemContent = <T extends BaseMenuItem>(
     props;
   const { title, children } = item;
   return (
-    <div className="menu-editor-item__content">
+    <div className="mp-menu-editor-item__content">
       {hasChildren && (
         <button
-          className="menu-editor-item__expand-button"
+          className="mp-menu-editor-item__expand-button"
           onClick={handleToggleExpanded}
           style={{
             background: "none",
@@ -34,9 +34,9 @@ export const MenuItemContent = <T extends BaseMenuItem>(
           {isExpanded ? "▼" : "▶"}
         </button>
       )}
-      <span className="menu-editor-item__name">{title}</span>
+      <span className="mp-menu-editor-item__name">{title}</span>
       {hasChildren && (
-        <span className="menu-editor-item__count">({children!.length})</span>
+        <span className="mp-menu-editor-item__count">({children!.length})</span>
       )}
 
       {renderItem ? renderItem(item) : null}

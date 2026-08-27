@@ -26,14 +26,14 @@ export const TreeEditor = <T extends BaseTreeItem>({
   return (
     <DndProvider backend={HTML5Backend}>
       <TreeDragLayer />
-      <div className={clsx("tree-editor", className)}>
+      <div className={clsx("mp-tree-editor", className)}>
         <ul
-          className="tree-editor__tree"
+          className="mp-tree-editor__tree"
           role="tree"
           aria-label="Tree editor"
         >
           {treeItems.map((item, index) => (
-            <li key={item.id} className="tree-editor__root-item">
+            <li key={item.id} className="mp-tree-editor__root-item">
               <TreeNode
                 {...(item as T)}
                 index={index}

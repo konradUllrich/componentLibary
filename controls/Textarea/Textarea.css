@@ -1,7 +1,7 @@
 /* Textarea Styles */
 
 /* Block: Textarea */
-.textarea {
+.mp-textarea {
   display: block;
   width: 100%;
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
@@ -17,31 +17,31 @@
   outline: none;
 }
 
-.textarea::placeholder {
+.mp-textarea::placeholder {
   color: var(--mp-color-foreground-light);
 }
 
-.textarea:hover:not(:disabled) {
+.mp-textarea:hover:not(:disabled) {
   border-color: var(--mp-color-primary);
 }
 
-.textarea:focus {
+.mp-textarea:focus {
   outline: var(--mp-focus-size) solid var(--mp-focus-color);
   outline-offset: var(--mp-focus-offset);
 }
 
 /* Modifier: Error */
-.textarea--error {
+.mp-textarea--error {
   border-color: var(--mp-color-error);
 }
 
-.textarea--error:focus {
+.mp-textarea--error:focus {
   border-color: var(--mp-color-destructive);
   box-shadow: var(--focus-shadow-error);
 }
 
 /* Modifier: Disabled */
-.textarea--disabled {
+.mp-textarea--disabled {
   opacity: 0.6;
   cursor: not-allowed;
   resize: none;

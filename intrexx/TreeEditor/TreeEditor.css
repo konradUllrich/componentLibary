@@ -4,14 +4,14 @@
    ============================================================ */
 
 /* ── Block ──────────────────────────────────────────────── */
-.sortable-tree {
+.mp-sortable-tree {
   list-style: none;
   margin: 0;
   padding: var(--mp-spacing-2);
 }
 
 /* ── Item ───────────────────────────────────────────────── */
-.sortable-tree__item {
+.mp-sortable-tree__item {
   position: relative;
   display: flex;
   align-items: center;
@@ -24,17 +24,17 @@
   box-sizing: border-box;
 }
 
-.sortable-tree__item:first-child {
+.mp-sortable-tree__item:first-child {
   border-top-left-radius: var(--mp-radius-md);
   border-top-right-radius: var(--mp-radius-md);
 }
 
-.sortable-tree__item:last-child {
+.mp-sortable-tree__item:last-child {
   border-bottom-left-radius: var(--mp-radius-md);
   border-bottom-right-radius: var(--mp-radius-md);
 }
 
-.sortable-tree__item[data-overlay] {
+.mp-sortable-tree__item[data-overlay] {
   width: max-content !important;
   padding-right: var(--mp-spacing-6);
   border-radius: var(--mp-radius-md);
@@ -42,22 +42,22 @@
 }
 
 /* Ghost / placeholder while dragging */
-.sortable-tree__item[aria-hidden="true"] {
+.mp-sortable-tree__item[aria-hidden="true"] {
   opacity: 0.4;
 }
 
-.sortable-tree__item[aria-hidden="true"] .sortable-tree__handle {
+.mp-sortable-tree__item[aria-hidden="true"] .mp-sortable-tree__handle {
   visibility: hidden;
 }
 
 /* ── Handle wrapper (span) ──────────────────────────────── */
-.sortable-tree__handle {
+.mp-sortable-tree__handle {
   display: flex;
   flex: 0 0 auto;
 }
 
 /* ── Drag-handle button (rendered via Button ghost variant) ─ */
-.sortable-tree__drag-handle {
+.mp-sortable-tree__drag-handle {
   color: var(--mp-color-foreground-light);
   display: flex;
   width: auto;
@@ -78,18 +78,18 @@
   transition: var(--transition-fast);
 }
 
-.sortable-tree__drag-handle:hover:not(:disabled) {
+.mp-sortable-tree__drag-handle:hover:not(:disabled) {
   color: var(--mp-color-foreground);
   background-color: var(--mp-color-background-secondary);
 }
 
-.sortable-tree__drag-handle:focus-visible {
+.mp-sortable-tree__drag-handle:focus-visible {
   outline: 2px solid var(--mp-color-ring);
   outline-offset: 2px;
 }
 
 /* ── Action area (item menu) ────────────────────────────── */
-.sortable-tree__action {
+.mp-sortable-tree__action {
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -97,7 +97,7 @@
 }
 
 /* ── Badge (descendant count shown in drag overlay) ──────── */
-.sortable-tree__badge {
+.mp-sortable-tree__badge {
   position: absolute;
   top: -10px;
   right: -10px;
@@ -115,7 +115,7 @@
 
 /* ── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .sortable-tree__drag-handle {
+  .mp-sortable-tree__drag-handle {
     transition: none;
   }
 }

@@ -54,9 +54,9 @@ test.describe("CardList Component", () => {
       <CardList items={mockItems.slice(0, 3)} renderCard={renderCard} />,
     );
 
-    await expect(component).toHaveClass(/card-list/);
+    await expect(component).toHaveClass(/mp-card-list/);
 
-    const cards = component.locator(".card-list__item");
+    const cards = component.locator(".mp-card-list__item");
     await expect(cards).toHaveCount(3);
   });
 
@@ -70,7 +70,7 @@ test.describe("CardList Component", () => {
     await expect(component).toHaveAttribute("data-state", "loading");
     await expect(component).toContainText("Loading...");
 
-    const cards = component.locator(".card-list__item");
+    const cards = component.locator(".mp-card-list__item");
     await expect(cards).toHaveCount(0);
   });
 
@@ -146,7 +146,7 @@ test.describe("CardList Component", () => {
       />,
     );
 
-    const grid = component.locator(".card-list__grid");
+    const grid = component.locator(".mp-card-list__grid");
     await expect(grid).toHaveClass(/custom-grid-class/);
   });
 
@@ -160,7 +160,7 @@ test.describe("CardList Component", () => {
       />,
     );
 
-    await expect(component.locator(".card-list__item")).toHaveCount(2);
+    await expect(component.locator(".mp-card-list__item")).toHaveCount(2);
   });
 
   test("should use index as fallback key when getKey not provided", async ({
@@ -170,7 +170,7 @@ test.describe("CardList Component", () => {
       <CardList items={mockItems.slice(0, 2)} renderCard={renderCard} />,
     );
 
-    await expect(component.locator(".card-list__item")).toHaveCount(2);
+    await expect(component.locator(".mp-card-list__item")).toHaveCount(2);
   });
 
   test("should have correct BEM class structure", async ({ mount }) => {
@@ -179,14 +179,14 @@ test.describe("CardList Component", () => {
     );
 
     // Check root element has card-list class
-    await expect(component).toHaveClass(/card-list/);
+    await expect(component).toHaveClass(/mp-card-list/);
 
     // Check grid exists
-    const grid = component.locator(".card-list__grid");
+    const grid = component.locator(".mp-card-list__grid");
     await expect(grid).toHaveCount(1);
 
     // Check items exist
-    const items = grid.locator(".card-list__item");
+    const items = grid.locator(".mp-card-list__item");
     await expect(items).toHaveCount(2);
   });
 
@@ -233,7 +233,7 @@ test.describe("CardList Component", () => {
         <CardList items={mockItems.slice(0, 1)} renderCard={renderCard} />,
       );
 
-      await expect(component.locator(".card-list__item")).toHaveCount(1);
+      await expect(component.locator(".mp-card-list__item")).toHaveCount(1);
     });
 
     test("should handle large dataset", async ({ mount }) => {
@@ -247,7 +247,7 @@ test.describe("CardList Component", () => {
         <CardList items={largeDataset} renderCard={renderCard} />,
       );
 
-      await expect(component.locator(".card-list__item")).toHaveCount(100);
+      await expect(component.locator(".mp-card-list__item")).toHaveCount(100);
     });
 
     test("should handle columns=1 (single column layout)", async ({

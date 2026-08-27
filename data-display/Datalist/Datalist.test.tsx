@@ -114,7 +114,7 @@ test.describe("Datalist Component", () => {
     );
 
     // Should use CardList component
-    const cardList = page.locator(".card-list");
+    const cardList = page.locator(".mp-card-list");
     await expect(cardList).toBeVisible();
 
     // Note: Can't test card content due to renderCard serialization issue
@@ -135,7 +135,7 @@ test.describe("Datalist Component", () => {
     );
 
     // Default renderer should still display data
-    const cardList = page.locator(".card-list");
+    const cardList = page.locator(".mp-card-list");
     await expect(cardList).toBeVisible();
 
     // Note: Default card renderer implementation details may vary
@@ -199,7 +199,7 @@ test.describe("Datalist Component", () => {
       />,
     );
 
-    const cardGrid = page.locator(".card-list__grid");
+    const cardGrid = page.locator(".mp-card-list__grid");
     await expect(cardGrid).toHaveClass(/custom-card-class/);
   });
 
@@ -216,7 +216,7 @@ test.describe("Datalist Component", () => {
       />,
     );
 
-    const cardList = page.locator(".card-list");
+    const cardList = page.locator(".mp-card-list");
     await expect(cardList).toBeVisible();
     // CardList should receive the columns prop
   });
@@ -234,7 +234,7 @@ test.describe("Datalist Component", () => {
       />,
     );
 
-    const cardList = page.locator(".card-list");
+    const cardList = page.locator(".mp-card-list");
     await expect(cardList).toBeVisible();
     // CardList should receive the gap prop
   });
@@ -479,7 +479,7 @@ test.describe("Datalist Component", () => {
       );
 
       // Should still render without errors
-      const cardList = page.locator(".card-list");
+      const cardList = page.locator(".mp-card-list");
       await expect(cardList).toBeVisible();
     });
   });

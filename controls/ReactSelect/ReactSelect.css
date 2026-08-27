@@ -1,7 +1,7 @@
 /* Select Styles */
 
 /* Block: Select Trigger */
-.select-trigger {
+.mp-select-trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,92 +17,92 @@
   cursor: pointer;
 }
 
-.select-trigger:hover:not(:disabled) {
+.mp-select-trigger:hover:not(:disabled) {
   border-color: var(--mp-color-primary);
 }
 
-.select-trigger:focus {
+.mp-select-trigger:focus {
   outline: var(--mp-focus-size) solid var(--mp-focus-color);
   outline-offset: var(--mp-focus-offset);
 }
 
-.select-trigger[data-placeholder] {
+.mp-select-trigger[data-placeholder] {
   color: var(--mp-color-foreground-light);
 }
 
 /* Variant: Default */
-.select-trigger--default {
+.mp-select-trigger--default {
   background-color: var(--mp-color-background);
 }
 
 /* Variant: Filled */
-.select-trigger--filled {
+.mp-select-trigger--filled {
   background-color: var(--mp-color-background-secondary);
   border-color: transparent;
 }
 
-.select-trigger--filled:hover:not(:disabled) {
+.mp-select-trigger--filled:hover:not(:disabled) {
   background-color: var(--mp-color-background);
   border-color: var(--mp-color-border);
 }
 
-.select-trigger--filled:focus {
+.mp-select-trigger--filled:focus {
   background-color: var(--mp-color-background);
   border-color: var(--mp-color-primary);
 }
 
 /* Variant: Outline */
-.select-trigger--outline {
+.mp-select-trigger--outline {
   border-width: 2px;
 }
 
 /* Size: Small */
-.select-trigger--sm {
+.mp-select-trigger--sm {
   padding: var(--mp-spacing-1) var(--mp-spacing-2);
   font-size: var(--mp-font-size-sm);
 }
 
 /* Size: Medium */
-.select-trigger--md {
+.mp-select-trigger--md {
   padding: var(--mp-spacing-2) var(--mp-spacing-3);
   font-size: var(--mp-font-size-base);
 }
 
 /* Size: Large */
-.select-trigger--lg {
+.mp-select-trigger--lg {
   padding: var(--mp-spacing-3) var(--mp-spacing-4);
   font-size: var(--mp-font-size-lg);
 }
 
 /* Modifier: Error */
-.select-trigger--error {
+.mp-select-trigger--error {
   border-color: var(--mp-color-error);
 }
 
-.select-trigger--error:focus {
+.mp-select-trigger--error:focus {
   border-color: var(--mp-color-error);
   box-shadow: 0 0 0 3px var(--mp-color-error-light);
 }
 
 /* Modifier: Disabled */
-.select-trigger--disabled {
+.mp-select-trigger--disabled {
   opacity: 0.6;
   cursor: not-allowed;
   background-color: var(--mp-color-background-secondary);
 }
 
 /* Element: Select Icon */
-.select-icon {
+.mp-select-icon {
   font-size: 0.8em;
   transition: transform var(--duration-200) var(--ease-in-out);
 }
 
-.select-trigger[data-state="open"] .select-icon {
+.mp-select-trigger[data-state="open"] .mp-select-icon {
   transform: rotate(180deg);
 }
 
 /* Block: Select Content */
-.select-content {
+.mp-select-content {
   background-color: var(--mp-color-background);
   border: 1px solid var(--mp-color-border);
   border-radius: var(--mp-radius-md);
@@ -112,12 +112,12 @@
 }
 
 /* Element: Select Viewport */
-.select-viewport {
+.mp-select-viewport {
   padding: var(--mp-spacing-1);
 }
 
 /* Block: Select Item */
-.select-item {
+.mp-select-item {
   position: relative;
   display: flex;
   align-items: center;
@@ -131,29 +131,29 @@
   user-select: none;
 }
 
-.select-item:hover {
+.mp-select-item:hover {
   background-color: var(--mp-color-background-secondary);
 }
 
-.select-item:focus {
+.mp-select-item:focus {
   background-color: var(--mp-color-background-secondary);
 }
 
-.select-item[data-state="checked"] {
+.mp-select-item[data-state="checked"] {
   background-color: var(--mp-color-primary-light);
   color: var(--mp-color-foreground);
   font-weight: var(--mp-font-weight-medium);
 }
 
 /* Modifier: Disabled Item */
-.select-item--disabled {
+.mp-select-item--disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 /* Element: Item Indicator */
-.select-item-indicator {
+.mp-select-item-indicator {
   position: absolute;
   right: var(--mp-spacing-2);
   display: flex;

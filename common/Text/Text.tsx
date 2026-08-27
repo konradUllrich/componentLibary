@@ -104,12 +104,12 @@ export const Text = React.forwardRef<HTMLElement, TextProps>((props, ref) => {
     {
       ref,
       className: clsx(
-        "text",
-        `text--${size}`,
-        `text--${weight}`,
-        align && `text--${align}`,
-        `text--${color}`,
-        truncate && "text--truncate",
+        "mp-text",
+        `mp-text--${size}`,
+        `mp-text--${weight}`,
+        align && `mp-text--${align}`,
+        `mp-text--${color}`,
+        truncate && "mp-text--truncate",
         className,
       ),
       style: {

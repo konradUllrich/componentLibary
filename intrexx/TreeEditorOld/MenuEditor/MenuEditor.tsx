@@ -25,8 +25,8 @@ const MenuEditor = <T extends BaseMenuItem>({
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="menu-editor">
-        <div className="menu-editor__tree">
+      <div className="mp-menu-editor">
+        <div className="mp-menu-editor__tree">
           {menuItems.map((menu, index) => (
             <MenuEditorItem
               isLast={index === menuItems.length - 1}

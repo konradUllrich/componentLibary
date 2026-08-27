@@ -49,11 +49,11 @@ export const createDefaultCardRenderer = <T,>(table: TanstackTable<T>) => {
             }
 
             return (
-              <div key={column.id} className="datalist-card__field">
+              <div key={column.id} className="mp-datalist-card__field">
                 {headerText && (
-                  <span className="datalist-card__label">{headerText}</span>
+                  <span className="mp-datalist-card__label">{headerText}</span>
                 )}
-                <div className="datalist-card__value">{renderedValue}</div>
+                <div className="mp-datalist-card__value">{renderedValue}</div>
               </div>
             );
           })}

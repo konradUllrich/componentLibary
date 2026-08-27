@@ -20,10 +20,10 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toBeVisible();
-    await expect(trigger).toHaveClass(/select-trigger--default/);
-    await expect(trigger).toHaveClass(/select-trigger--md/);
+    await expect(trigger).toHaveClass(/mp-select-trigger--default/);
+    await expect(trigger).toHaveClass(/mp-select-trigger--md/);
   });
 
   test("should render different variants", async ({ mount }) => {
@@ -41,10 +41,10 @@ test.describe("ReactSelect Component", () => {
       </div>,
     );
 
-    const triggers = component.locator(".select-trigger");
-    await expect(triggers.nth(0)).toHaveClass(/select-trigger--default/);
-    await expect(triggers.nth(1)).toHaveClass(/select-trigger--filled/);
-    await expect(triggers.nth(2)).toHaveClass(/select-trigger--outline/);
+    const triggers = component.locator(".mp-select-trigger");
+    await expect(triggers.nth(0)).toHaveClass(/mp-select-trigger--default/);
+    await expect(triggers.nth(1)).toHaveClass(/mp-select-trigger--filled/);
+    await expect(triggers.nth(2)).toHaveClass(/mp-select-trigger--outline/);
   });
 
   test("should render different sizes", async ({ mount }) => {
@@ -62,10 +62,10 @@ test.describe("ReactSelect Component", () => {
       </div>,
     );
 
-    const triggers = component.locator(".select-trigger");
-    await expect(triggers.nth(0)).toHaveClass(/select-trigger--sm/);
-    await expect(triggers.nth(1)).toHaveClass(/select-trigger--md/);
-    await expect(triggers.nth(2)).toHaveClass(/select-trigger--lg/);
+    const triggers = component.locator(".mp-select-trigger");
+    await expect(triggers.nth(0)).toHaveClass(/mp-select-trigger--sm/);
+    await expect(triggers.nth(1)).toHaveClass(/mp-select-trigger--md/);
+    await expect(triggers.nth(2)).toHaveClass(/mp-select-trigger--lg/);
   });
 
   test("should render with label", async ({ mount }) => {
@@ -87,7 +87,7 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toContainText("Choose an option");
   });
 
@@ -99,13 +99,13 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
 
     // Wait for dropdown to open
     await page.waitForTimeout(100);
 
-    const content = page.locator(".select-content");
+    const content = page.locator(".mp-select-content");
     await expect(content).toBeVisible();
   });
 
@@ -123,13 +123,13 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
 
     await page.waitForTimeout(100);
 
     const option2 = page
-      .locator(".select-item")
+      .locator(".mp-select-item")
       .filter({ hasText: "Option 2" });
     await option2.click();
 
@@ -146,9 +146,9 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toHaveAttribute("data-disabled");
-    await expect(trigger).toHaveClass(/select-trigger--disabled/);
+    await expect(trigger).toHaveClass(/mp-select-trigger--disabled/);
   });
 
   test("should handle error state", async ({ mount }) => {
@@ -162,10 +162,10 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
-    await expect(trigger).toHaveClass(/select-trigger--error/);
+    const trigger = component.locator(".mp-select-trigger");
+    await expect(trigger).toHaveClass(/mp-select-trigger--error/);
 
-    const errorMessage = component.locator(".form-control__message--error");
+    const errorMessage = component.locator(".mp-form-control__message--error");
     await expect(errorMessage).toBeVisible();
     await expect(errorMessage).toHaveText("Please select an option");
   });
@@ -180,7 +180,7 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const helperText = component.locator(".form-control__message");
+    const helperText = component.locator(".mp-form-control__message");
     await expect(helperText).toBeVisible();
     await expect(helperText).toHaveText("Choose your preferred option");
   });
@@ -193,7 +193,7 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await expect(trigger).toContainText("Option 2");
   });
 
@@ -204,7 +204,7 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const icon = component.locator(".select-icon");
+    const icon = component.locator(".mp-select-icon");
     await expect(icon).toBeVisible();
     await expect(icon).toHaveText("▼");
   });
@@ -220,14 +220,14 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.focus();
     await expect(trigger).toBeFocused();
 
     await page.keyboard.press("Space");
     await page.waitForTimeout(100);
 
-    const content = page.locator(".select-content");
+    const content = page.locator(".mp-select-content");
     await expect(content).toBeVisible();
   });
 
@@ -242,13 +242,13 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.focus();
 
     await page.keyboard.press("Enter");
     await page.waitForTimeout(100);
 
-    const content = page.locator(".select-content");
+    const content = page.locator(".mp-select-content");
     await expect(content).toBeVisible();
   });
 
@@ -263,14 +263,14 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
     await page.waitForTimeout(100);
 
     await page.keyboard.press("Escape");
     await page.waitForTimeout(100);
 
-    const content = page.locator(".select-content");
+    const content = page.locator(".mp-select-content");
     await expect(content).not.toBeVisible();
   });
 
@@ -285,11 +285,11 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
     await page.waitForTimeout(100);
 
-    const disabledItem = page.locator(".select-item--disabled");
+    const disabledItem = page.locator(".mp-select-item--disabled");
     await expect(disabledItem).toBeVisible();
     await expect(disabledItem).toHaveAttribute("data-disabled");
   });
@@ -350,7 +350,7 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.focus();
     await expect(trigger).toBeFocused();
   });
@@ -366,12 +366,12 @@ test.describe("ReactSelect Component", () => {
       </ReactSelect>,
     );
 
-    const trigger = component.locator(".select-trigger");
+    const trigger = component.locator(".mp-select-trigger");
     await trigger.click();
     await page.waitForTimeout(100);
 
     // The selected item should have an indicator
-    const indicator = page.locator(".select-item-indicator");
+    const indicator = page.locator(".mp-select-item-indicator");
     await expect(indicator).toBeVisible();
     await expect(indicator).toHaveText("✓");
   });

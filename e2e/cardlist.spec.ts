@@ -39,7 +39,7 @@ test.describe("CardList Component", () => {
   test("should display product details correctly", async ({ page }) => {
     // Check first product card details
     const firstCard = page
-      .locator(".card-list__item")
+      .locator(".mp-card-list__item")
       .filter({ hasText: "Wireless Headphones" })
       .first();
 
@@ -65,7 +65,7 @@ test.describe("CardList Component", () => {
 
   test("should have interactive buttons on product cards", async ({ page }) => {
     const firstCard = page
-      .locator(".card-list__item")
+      .locator(".mp-card-list__item")
       .filter({ hasText: "Wireless Headphones" })
       .first();
 
@@ -88,7 +88,7 @@ test.describe("CardList Component", () => {
     page,
   }) => {
     const outOfStockCard = page
-      .locator(".card-list__item")
+      .locator(".mp-card-list__item")
       .filter({ hasText: "Laptop Stand" })
       .first();
 
@@ -113,7 +113,7 @@ test.describe("CardList Component", () => {
 
   test("should display blog post details correctly", async ({ page }) => {
     const firstPost = page
-      .locator(".card-list__item")
+      .locator(".mp-card-list__item")
       .filter({ hasText: "Getting Started with React" });
 
     await expect(
@@ -128,7 +128,7 @@ test.describe("CardList Component", () => {
 
   test("should display blog post tags", async ({ page }) => {
     const firstPost = page
-      .locator(".card-list__item")
+      .locator(".mp-card-list__item")
       .filter({ hasText: "Getting Started with React" });
 
     // Check tags
@@ -139,7 +139,7 @@ test.describe("CardList Component", () => {
 
   test("should have Read More button on blog cards", async ({ page }) => {
     const firstPost = page
-      .locator(".card-list__item")
+      .locator(".mp-card-list__item")
       .filter({ hasText: "Getting Started with React" });
 
     const readMoreBtn = firstPost.getByRole("button", { name: /Read More/i });
@@ -242,7 +242,7 @@ test.describe("CardList Component", () => {
     const productCards = page
       .locator(".section")
       .filter({ hasText: "Product Cards (3 columns)" })
-      .locator(".card-list__item");
+      .locator(".mp-card-list__item");
 
     await expect(productCards).toHaveCount(6);
   });
@@ -252,7 +252,7 @@ test.describe("CardList Component", () => {
     const blogCards = page
       .locator(".section")
       .filter({ hasText: "Blog Posts (2 columns)" })
-      .locator(".card-list__item");
+      .locator(".mp-card-list__item");
 
     await expect(blogCards).toHaveCount(3);
   });

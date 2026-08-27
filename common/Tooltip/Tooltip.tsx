@@ -167,7 +167,7 @@ export const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentPro
       <TooltipPrimitive.Portal>
         <TooltipPrimitive.Content
           ref={ref}
-          className={clsx("tooltip__content", className)}
+          className={clsx("mp-tooltip__content", className)}
           side={side}
           align={align}
           sideOffset={4}
@@ -175,7 +175,7 @@ export const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentPro
           {...props}
         >
           {children}
-          <TooltipPrimitive.Arrow className="tooltip__arrow" />
+          <TooltipPrimitive.Arrow className="mp-tooltip__arrow" />
         </TooltipPrimitive.Content>
       </TooltipPrimitive.Portal>
     );

@@ -46,13 +46,13 @@ export const ReactSelectItem = React.forwardRef<
       value={value}
       disabled={disabled}
       className={clsx(
-        "select-item",
-        disabled && "select-item--disabled",
+        "mp-select-item",
+        disabled && "mp-select-item--disabled",
         className,
       )}
     >
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-      <SelectPrimitive.ItemIndicator className="select-item-indicator">
+      <SelectPrimitive.ItemIndicator className="mp-select-item-indicator">
         ✓
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>

@@ -80,7 +80,7 @@ test.describe("Link", () => {
         </Link>
       </Router>,
     );
-    const srOnly = page.locator(".sr-only");
+    const srOnly = page.locator(".mp-sr-only");
     await expect(srOnly).toBeAttached();
     await expect(srOnly).toHaveText(" (opens in new tab)");
   });

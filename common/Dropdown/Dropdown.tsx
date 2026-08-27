@@ -125,7 +125,7 @@ export const DropdownContent = React.forwardRef<HTMLDivElement, DropdownContentP
       <DropdownMenuPrimitive.Portal>
         <DropdownMenuPrimitive.Content
           ref={ref}
-          className={clsx("dropdown__content", className)}
+          className={clsx("mp-dropdown__content", className)}
           align={align}
           side={side}
           sideOffset={4}
@@ -150,7 +150,7 @@ export const DropdownItem = React.forwardRef<HTMLDivElement, DropdownItemProps>(
     return (
       <DropdownMenuPrimitive.Item
         ref={ref}
-        className={clsx("dropdown__item", className)}
+        className={clsx("mp-dropdown__item", className)}
         disabled={disabled}
         onSelect={onSelect}
         {...props}
@@ -173,7 +173,7 @@ export const DropdownLabel = React.forwardRef<HTMLDivElement, DropdownLabelProps
     return (
       <DropdownMenuPrimitive.Label
         ref={ref}
-        className={clsx("dropdown__label", className)}
+        className={clsx("mp-dropdown__label", className)}
         {...props}
       >
         {children}
@@ -194,7 +194,7 @@ export const DropdownSeparator = React.forwardRef<HTMLDivElement, DropdownSepara
     return (
       <DropdownMenuPrimitive.Separator
         ref={ref}
-        className={clsx("dropdown__separator", className)}
+        className={clsx("mp-dropdown__separator", className)}
         {...props}
       />
     );
