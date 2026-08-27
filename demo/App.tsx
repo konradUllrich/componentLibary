@@ -40,6 +40,8 @@ import {
   UsePaginationPage,
   UseFilterPage,
   ThemeProviderPage,
+  ColorPickerPage,
+  SliderPage,
 } from "./pages";
 
 import "./App.css";
@@ -119,6 +121,8 @@ export const App: React.FC = () => {
         <Route path="/components/checkbox-group" component={CheckboxGroupPage} />
         <Route path="/components/select" component={SelectPage} />
         <Route path="/components/combobox" component={ComboboxPage} />
+        <Route path="/components/color-picker" component={ColorPickerPage} />
+        <Route path="/components/slider" component={SliderPage} />
         <Route path="/components/panel" component={PanelPage} />
         <Route path="/components/accordion" component={AccordionPage} />
         <Route path="/components/checkbox" component={CheckBoxPage} />

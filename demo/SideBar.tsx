@@ -42,6 +42,8 @@ import {
   GitBranch,
   Circle,
   Palette,
+  Pipette,
+  SlidersHorizontal,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 import { Logo } from "./components/Logo";
@@ -170,6 +172,16 @@ const SIDEBAR_ELEMENTS = {
         name: "Form Builder",
         icon: <FormInput size={16} />,
         link: "/components/form-builder",
+      },
+      {
+        name: "Color Picker",
+        icon: <Pipette size={16} />,
+        link: "/components/color-picker",
+      },
+      {
+        name: "Slider",
+        icon: <SlidersHorizontal size={16} />,
+        link: "/components/slider",
       },
     ],
     dataDisplay: [
