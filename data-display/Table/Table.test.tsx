@@ -39,7 +39,7 @@
  * in real application scenarios.
  */
 
-import { test } from '@playwright/experimental-ct-react';
+import { test } from "../../playwright/coverage-fixtures";
 
 test.describe('Table Component', () => {
   test('placeholder - Table requires integration testing', async () => {

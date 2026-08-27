@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/experimental-ct-react";
+import { test, expect } from "../playwright/coverage-fixtures";
 import { Router, Route, Link } from "./index";
 
 test.describe("Router Component", () => {

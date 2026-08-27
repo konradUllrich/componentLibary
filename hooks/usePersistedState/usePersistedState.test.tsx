@@ -17,7 +17,7 @@
  *   Reads the route key from the given storage backend and returns a
  *   parsed URLSearchParams object so individual params can be asserted.
  */
-import { test, expect } from "@playwright/experimental-ct-react";
+import { test, expect } from "../../playwright/coverage-fixtures";
 import {
   PersistedStateDisplay,
   PersistedObjectState,

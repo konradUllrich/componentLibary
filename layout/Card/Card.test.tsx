@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/experimental-ct-react';
+import { test, expect } from "../../playwright/coverage-fixtures";
 import { Card, CardHeader, CardContent, CardFooter } from './index';
 import { checkA11y } from '../../playwright/test-utils';
 import React from 'react';

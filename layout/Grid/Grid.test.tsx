@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/experimental-ct-react";
+import { test, expect } from "../../playwright/coverage-fixtures";
 import { Grid } from "./Grid";
 import { GridItem } from "./GridItem";
 import { checkA11y } from "../../playwright/test-utils";

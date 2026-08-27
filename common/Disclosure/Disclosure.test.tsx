@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/experimental-ct-react";
+import { test, expect } from "../../playwright/coverage-fixtures";
 import { Disclosure } from "./Disclosure";
 import { checkA11y } from "../../playwright/test-utils";
 

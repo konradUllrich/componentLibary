@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/experimental-ct-react';
+import { test, expect } from "../../playwright/coverage-fixtures";
 import { Radio } from './Radio';
 import { checkA11y, expectAccessibleRole } from '../../playwright/test-utils';
 import React from 'react';

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/experimental-ct-react";
+import { test, expect } from "../playwright/coverage-fixtures";
 import React from "react";
 import { Router } from "./index";
 import { Link } from "./Link";
