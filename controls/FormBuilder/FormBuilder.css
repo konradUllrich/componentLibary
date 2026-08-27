@@ -31,3 +31,22 @@
   gap: var(--mp-spacing-3);
   padding-top: var(--mp-spacing-2);
 }
+
+/* ── Radio group field ──────────────────────────────────────── */
+
+.mp-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-spacing-3);
+}
+
+.mp-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mp-spacing-2);
+}
+
+.mp-radio-group .mp-form-control {
+  margin-bottom: 0;
+}

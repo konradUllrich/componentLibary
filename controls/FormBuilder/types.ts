@@ -16,6 +16,7 @@
 
 import type React from "react";
 import { CheckboxProps } from "../Checkbox";
+import { RadioProps } from "../Radio";
 
 // ─── Key-type helpers ─────────────────────────────────────────────────────────
 
@@ -34,6 +35,12 @@ export type NumberKeys<TData> = {
 /** Keys of TData whose values extend `boolean` */
 export type BooleanKeys<TData> = {
   [K in keyof TData]: TData[K] extends boolean ? K : never;
+}[keyof TData] &
+  string;
+
+/** Keys of TData whose values extend `string[]` */
+export type StringArrayKeys<TData> = {
+  [K in keyof TData]: TData[K] extends string[] ? K : never;
 }[keyof TData] &
   string;
 
@@ -174,6 +181,89 @@ export type CheckboxField<TData extends object> = BaseField<
   schema?: FieldSchema<boolean>;
 };
 
+/** Slider (range input) – `name` must map to a `number` value */
+export type SliderField<TData extends object> = BaseField<
+  TData,
+  NumberKeys<TData>
+> & {
+  fieldType: "slider";
+  min?: number;
+  max?: number;
+  step?: number;
+  validate?: FieldValidation<number>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<number>;
+};
+
+/** Hex color swatch + text field – `name` must map to a `string` value */
+export type ColorPickerField<TData extends object> = BaseField<
+  TData,
+  StringKeys<TData>
+> & {
+  fieldType: "colorPicker";
+  validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
+};
+
+/** Searchable autocomplete dropdown – `name` must map to a `string` value */
+export type ComboboxField<TData extends object> = BaseField<
+  TData,
+  StringKeys<TData>
+> & {
+  fieldType: "combobox";
+  options: SelectOption[];
+  placeholder?: string;
+  /** Allow creating new options when no match is found */
+  allowCreate?: boolean;
+  /** Called when the user creates a new option (requires `allowCreate`) */
+  onCreate?: (value: string) => void;
+  validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
+};
+
+/** Styled Radix-based dropdown – `name` must map to a `string` value */
+export type ReactSelectField<TData extends object> = BaseField<
+  TData,
+  StringKeys<TData>
+> & {
+  fieldType: "reactSelect";
+  options: SelectOption[];
+  placeholder?: string;
+  validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
+};
+
+/** Group of checkboxes – `name` must map to a `string[]` value */
+export type CheckboxGroupField<TData extends object> = BaseField<
+  TData,
+  StringArrayKeys<TData>
+> & {
+  fieldType: "checkboxGroup";
+  options: SelectOption[];
+  direction?: "vertical" | "horizontal";
+  variant?: "default" | "filled" | "outline";
+  validate?: FieldValidation<string[]>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string[]>;
+};
+
+/** Group of radio buttons – `name` must map to a `string` value */
+export type RadioGroupField<TData extends object> = BaseField<
+  TData,
+  StringKeys<TData>
+> & {
+  fieldType: "radioGroup";
+  options: SelectOption[];
+  direction?: "vertical" | "horizontal";
+  variant?: RadioProps["variant"];
+  validate?: FieldValidation<string>;
+  /** Zod schema (or any object with a compatible `safeParse` method) */
+  schema?: FieldSchema<string>;
+};
+
 // ─── Custom field ─────────────────────────────────────────────────────────────
 
 /**
@@ -222,6 +312,12 @@ export type FieldDef<TData extends object> =
   | NumberField<TData>
   | SelectField<TData>
   | CheckboxField<TData>
+  | SliderField<TData>
+  | ColorPickerField<TData>
+  | ComboboxField<TData>
+  | ReactSelectField<TData>
+  | CheckboxGroupField<TData>
+  | RadioGroupField<TData>
   | CustomField<TData>;
 
 // ─── FormBuilder props ────────────────────────────────────────────────────────

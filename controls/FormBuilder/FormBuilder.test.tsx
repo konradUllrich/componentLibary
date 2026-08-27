@@ -121,6 +121,173 @@ test.describe("FormBuilder", () => {
     await expect(component.locator("option[value='us']")).toBeAttached();
   });
 
+  test("number field falls back to 0 when input is cleared", async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ age: 5 }}
+        fields={[{ name: "age", fieldType: "number", label: "Age" }]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    const input = component.locator('input[type="number"]');
+    await input.fill("");
+    await expect(input).toHaveValue("0");
+  });
+
+  test("renders slider field", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ volume: 50 }}
+        fields={[
+          {
+            name: "volume",
+            fieldType: "slider",
+            label: "Volume",
+            min: 0,
+            max: 100,
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.locator('input[type="range"]')).toHaveValue("50");
+  });
+
+  test("renders colorPicker field", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ color: "#7c3aed" }}
+        fields={[
+          { name: "color", fieldType: "colorPicker", label: "Color" },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.locator('input[type="color"]')).toHaveValue(
+      "#7c3aed",
+    );
+  });
+
+  test("renders combobox field with options", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ country: "" }}
+        fields={[
+          {
+            name: "country",
+            fieldType: "combobox",
+            label: "Country",
+            options: [
+              { label: "Germany", value: "de" },
+              { label: "USA", value: "us" },
+            ],
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.getByRole("combobox")).toBeVisible();
+  });
+
+  test("renders reactSelect field with options", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ country: "" }}
+        fields={[
+          {
+            name: "country",
+            fieldType: "reactSelect",
+            label: "Country",
+            options: [
+              { label: "Germany", value: "de" },
+              { label: "USA", value: "us" },
+            ],
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.getByRole("combobox")).toBeVisible();
+  });
+
+  test("renders checkboxGroup field with options", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ tags: [] as string[] }}
+        fields={[
+          {
+            name: "tags",
+            fieldType: "checkboxGroup",
+            label: "Tags",
+            options: [
+              { label: "Tag 1", value: "tag1" },
+              { label: "Tag 2", value: "tag2" },
+            ],
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.locator('input[type="checkbox"]')).toHaveCount(2);
+  });
+
+  test("renders radioGroup field with options", async ({ mount }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ plan: "" }}
+        fields={[
+          {
+            name: "plan",
+            fieldType: "radioGroup",
+            label: "Plan",
+            options: [
+              { label: "Basic", value: "basic" },
+              { label: "Pro", value: "pro" },
+            ],
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await expect(component.locator('input[type="radio"]')).toHaveCount(2);
+    await expect(component.locator('[role="radiogroup"]')).toBeVisible();
+  });
+
+  test("selecting a radioGroup option updates the checked state", async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <FormBuilder
+        defaultValues={{ plan: "" }}
+        fields={[
+          {
+            name: "plan",
+            fieldType: "radioGroup",
+            label: "Plan",
+            options: [
+              { label: "Basic", value: "basic" },
+              { label: "Pro", value: "pro" },
+            ],
+          },
+        ]}
+        onSubmit={() => {}}
+      />,
+    );
+
+    await component.getByText("Pro").click();
+    await expect(component.getByLabel("Pro")).toBeChecked();
+    await expect(component.getByLabel("Basic")).not.toBeChecked();
+  });
+
   test("renders checkbox field", async ({ mount }) => {
     const component = await mount(
       <FormBuilder

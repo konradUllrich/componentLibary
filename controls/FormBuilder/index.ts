@@ -7,6 +7,12 @@ export type {
   NumberField,
   SelectField,
   CheckboxField,
+  SliderField,
+  ColorPickerField,
+  ComboboxField,
+  ReactSelectField,
+  CheckboxGroupField,
+  RadioGroupField,
   CustomField,
   CustomFieldRenderProps,
   SelectOption,
@@ -15,4 +21,5 @@ export type {
   StringKeys,
   NumberKeys,
   BooleanKeys,
+  StringArrayKeys,
 } from "./types";
