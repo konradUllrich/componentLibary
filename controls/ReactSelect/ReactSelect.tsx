@@ -104,6 +104,8 @@ export const ReactSelect = ({
   className,
 }: ReactSelectProps) => {
   const id = useId();
+  const messageId = `${id}-message`;
+  const hasMessage = Boolean(helperText || (error && errorMessage));
 
   return (
     <FormControl
@@ -113,6 +115,7 @@ export const ReactSelect = ({
       helperText={helperText}
       className={className}
       htmlFor={id}
+      messageId={messageId}
     >
       <SelectPrimitive.Root
         value={value}
@@ -122,6 +125,8 @@ export const ReactSelect = ({
       >
         <SelectPrimitive.Trigger
           id={id}
+          aria-invalid={error || undefined}
+          aria-describedby={hasMessage ? messageId : undefined}
           className={clsx(
             "mp-select-trigger",
             `mp-select-trigger--${variant}`,

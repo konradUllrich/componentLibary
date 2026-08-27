@@ -82,6 +82,8 @@ export const NativeSelect = React.forwardRef<
     ref,
   ) => {
     const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${selectId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -91,6 +93,7 @@ export const NativeSelect = React.forwardRef<
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <div className="mp-native-select-container">
           <select
@@ -104,6 +107,8 @@ export const NativeSelect = React.forwardRef<
               disabled && "mp-native-select--disabled",
             )}
             disabled={disabled}
+            aria-invalid={error || undefined}
+            aria-describedby={hasMessage ? messageId : undefined}
             {...props}
           >
             {children}

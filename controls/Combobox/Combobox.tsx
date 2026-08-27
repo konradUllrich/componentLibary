@@ -133,6 +133,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const inputId = useRef(`combobox-input-${Math.random().toString(36).substr(2, 9)}`);
+    const messageId = `${inputId.current}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     // Combine external ref with internal ref
     useEffect(() => {
@@ -270,6 +272,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         helperText={helperText}
         className={className}
         htmlFor={inputId.current}
+        messageId={messageId}
       >
         <Popover.Root open={open} onOpenChange={handleOpenChange}>
           <Popover.Anchor asChild>
@@ -295,6 +298,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 aria-expanded={open}
                 aria-controls="combobox-listbox"
                 aria-autocomplete="list"
+                aria-invalid={error || undefined}
+                aria-describedby={hasMessage ? messageId : undefined}
                 aria-activedescendant={
                   open && filteredOptions[highlightedIndex]
                     ? `combobox-option-${filteredOptions[highlightedIndex].value}`

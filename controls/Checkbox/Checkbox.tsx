@@ -120,6 +120,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const checkboxId =
       id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${checkboxId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -130,6 +132,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <div className="mp-checkbox-container">
           <input
@@ -141,6 +144,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               "mp-checkbox-input--disabled": disabled,
             })}
             disabled={disabled}
+            aria-invalid={error || undefined}
+            aria-describedby={hasMessage ? messageId : undefined}
             {...props}
           />
           <label htmlFor={checkboxId} className="mp-checkbox-label">

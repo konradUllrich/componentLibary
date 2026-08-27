@@ -118,6 +118,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     ref,
   ) => {
     const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${radioId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -128,6 +130,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <div className="mp-radio-container">
           <input
@@ -140,6 +143,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             })}
             disabled={disabled}
             required={required}
+            aria-invalid={error || undefined}
+            aria-describedby={hasMessage ? messageId : undefined}
             {...props}
           />
           <label htmlFor={radioId} className="mp-radio-label">

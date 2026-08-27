@@ -49,6 +49,8 @@ export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     ref,
   ) => {
     const sliderId = id || `slider-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${sliderId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -58,6 +60,7 @@ export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <input
           ref={ref}
@@ -70,6 +73,8 @@ export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
             disabled && "mp-slider--disabled",
           )}
           disabled={disabled}
+          aria-invalid={error || undefined}
+          aria-describedby={hasMessage ? messageId : undefined}
           {...props}
         />
       </FormControl>

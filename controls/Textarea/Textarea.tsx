@@ -66,6 +66,8 @@ export const Textarea = React.forwardRef<
   ) => {
     const textareaId =
       id || `textarea-${Math.random().toString(36).substring(2, 11)}`;
+    const messageId = `${textareaId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -76,6 +78,7 @@ export const Textarea = React.forwardRef<
         helperText={helperText}
         className={className}
         required={props.required}
+        messageId={messageId}
       >
         <textarea
           ref={ref}
@@ -87,6 +90,8 @@ export const Textarea = React.forwardRef<
           )}
           disabled={disabled}
           rows={rows}
+          aria-invalid={error || undefined}
+          aria-describedby={hasMessage ? messageId : undefined}
           {...props}
         />
       </FormControl>

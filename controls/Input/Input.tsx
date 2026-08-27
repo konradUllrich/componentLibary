@@ -79,6 +79,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${inputId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -88,6 +90,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <input
           ref={ref}
@@ -100,6 +103,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             disabled && "mp-input--disabled",
           )}
           disabled={disabled}
+          aria-invalid={error || undefined}
+          aria-describedby={hasMessage ? messageId : undefined}
           {...props}
         />
       </FormControl>

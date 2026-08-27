@@ -56,6 +56,8 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
   ) => {
     const swatchId =
       id || `color-picker-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${swatchId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     return (
       <FormControl
@@ -65,6 +67,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <div className="mp-color-picker">
           <input
@@ -75,6 +78,8 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             value={value}
             onChange={(e) => onChange(e.target.value)}
             disabled={disabled}
+            aria-invalid={error || undefined}
+            aria-describedby={hasMessage ? messageId : undefined}
             className={clsx(
               "mp-color-picker__swatch",
               disabled && "mp-color-picker__swatch--disabled",
@@ -86,6 +91,8 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             onChange={(e) => onChange(e.target.value)}
             disabled={disabled}
             aria-label={label ? `${label} hex value` : "Color hex value"}
+            aria-invalid={error || undefined}
+            aria-describedby={hasMessage ? messageId : undefined}
             className={clsx(
               "mp-input",
               "mp-color-picker__text",

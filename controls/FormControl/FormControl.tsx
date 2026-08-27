@@ -43,6 +43,13 @@ export interface FormControlProps {
    * HTML id for label association
    */
   htmlFor?: string;
+
+  /**
+   * HTML id for the helper/error message element.
+   * Pass this same id as `aria-describedby` on the wrapped control so
+   * assistive tech associates the message with the field (WCAG 3.3.1).
+   */
+  messageId?: string;
 }
 
 /**
@@ -67,6 +74,7 @@ export const FormControl = ({
   children,
   className,
   htmlFor,
+  messageId,
 }: FormControlProps) => {
   return (
     <div className={clsx("mp-form-control", className)}>
@@ -78,6 +86,7 @@ export const FormControl = ({
       <div className="mp-form-control__input">{children}</div>
       {(helperText || (error && errorMessage)) && (
         <div
+          id={messageId}
           className={clsx("mp-form-control__message", {
             "mp-form-control__message--error": error,
           })}

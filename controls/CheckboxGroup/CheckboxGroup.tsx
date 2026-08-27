@@ -187,6 +187,8 @@ export const CheckboxGroup = React.forwardRef<
     ref,
   ) => {
     const groupId = `checkbox-group-${Math.random().toString(36).substr(2, 9)}`;
+    const messageId = `${groupId}-message`;
+    const hasMessage = Boolean(helperText || (error && errorMessage));
 
     const handleCheckboxChange = (optionValue: string, checked: boolean) => {
       const newValue = checked
@@ -203,6 +205,7 @@ export const CheckboxGroup = React.forwardRef<
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
+        messageId={messageId}
       >
         <div
           ref={ref}
@@ -211,6 +214,8 @@ export const CheckboxGroup = React.forwardRef<
           })}
           role="group"
           aria-labelledby={groupId}
+          aria-invalid={error || undefined}
+          aria-describedby={hasMessage ? messageId : undefined}
           {...props}
         >
           {options.map((option) => (
