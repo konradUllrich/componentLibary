@@ -30,29 +30,15 @@ All Done
 
 ## 4. `data-display/` & `layout/`
 
-Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Card, Grid, Panel, Sidebar, HorizontalNav).
+All Done
 
 ## 5. Router, hooks, stores, intrexx
 
-The shared foundation most other components build on — bugs here have the widest blast radius of anything in the audit.
-
-### 🟢 Low — Duplicated path-parsing logic
-
-`getCurrentPath()`/`getCurrentSearch()` re-implement the same parsing that `getAppRoute()`/`getAppRouteSearchParams()` already do one file over — one of these should just call the other.
-
-`Router/routeStateStorage.ts:19-39` vs `Router/appRouteLocation.ts:15-28`
-
----
+All Done
 
 ## 6. Build, CI & npm publish
 
 Beyond the two critical items already listed above (broken publish workflow, unbundled peer deps), these determine whether the package actually installs and behaves correctly for someone outside this repo.
-
-### 🟠 High — A filesystem-relative dependency that can't resolve from the registry
-
-`"utilities": "link:@dnd-kit/dom/utilities"` only works inside this monorepo checkout. Anyone installing from npm gets a resolution failure unless this is proven to inline correctly at build time — worth a real `npm pack && npm install` smoke test from a scratch project before the next release.
-
-`package.json:68`
 
 ### 🟡 Medium — The 70% coverage gate never runs in CI
 
@@ -62,9 +48,7 @@ Beyond the two critical items already listed above (broken publish workflow, unb
 
 ### 🟢 Low — Stale config and docs
 
-No `CHANGELOG.md` despite conventional-commit messages that would support generating one. `package.json`'s `files` field lists a `src` directory that doesn't exist (components live at repo root). README links to a `QUICK_REFERENCE.md` that isn't in the repo. No `"sideEffects": false` in package.json.
-
-`package.json:16-21` · `README.md`
+Done. `package.json`'s `files` field no longer lists the nonexistent `src` directory, `"sideEffects": false"` was added (safe — Vite's lib build already extracts all per-component CSS into `dist/style.css`, leaving no residual `.css` side-effect imports in `dist/index.js`), and the README's dead `QUICK_REFERENCE.md` link was removed. Still open: no `CHANGELOG.md` despite conventional-commit messages that would support generating one.
 
 ---
 

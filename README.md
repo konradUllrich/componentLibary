@@ -115,7 +115,6 @@ See [TESTING.md](./TESTING.md) for detailed testing guidelines.
 **Quick Links:**
 
 - 📖 [Full Guidelines](./mpComponents.instructions.md)
-- ⚡ [Quick Reference](./QUICK_REFERENCE.md)
 - 🤝 [Contributing Guide](./CONTRIBUTING.md)
 
 ---
