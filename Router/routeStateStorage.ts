@@ -17,6 +17,7 @@
  *
  * NOT exported from the Router public index.
  */
+import { getAppRoute, getAppRouteSearchParams } from "./appRouteLocation";
 
 /**
  * Returns the current app route path (without its search portion).
@@ -24,10 +25,7 @@
  */
 export function getCurrentPath(): string {
   if (typeof window === "undefined") return "/";
-  const params = new URLSearchParams(window.location.search);
-  const appRoute = params.get("appRoute");
-  if (!appRoute) return "/";
-  return appRoute.split("?")[0];
+  return getAppRoute();
 }
 
 /**
@@ -38,10 +36,7 @@ export function getCurrentPath(): string {
  */
 export function getCurrentSearch(): string {
   if (typeof window === "undefined") return "";
-  const params = new URLSearchParams(window.location.search);
-  const appRoute = params.get("appRoute");
-  if (!appRoute) return "";
-  return appRoute.split("?")[1] ?? "";
+  return getAppRouteSearchParams();
 }
 
 /**

@@ -12,14 +12,19 @@ import type { BaseSearchHook, BaseLocationHook } from "wouter";
 
 const APP_ROUTE_KEY = "appRoute";
 
-function getAppRoute() {
+/**
+ * Parses the `appRoute` search parameter into its path/search parts. Also
+ * used by `Router/routeStateStorage.ts` (`getCurrentPath`/`getCurrentSearch`)
+ * so route-scoped storage stays in sync with the location hooks below.
+ */
+export function getAppRoute() {
   const params = new URLSearchParams(window.location.search);
   const appRoute = params.get(APP_ROUTE_KEY);
   if (!appRoute) return "/";
   return appRoute.split("?")[0];
 }
 
-function getAppRouteSearchParams() {
+export function getAppRouteSearchParams() {
   const params = new URLSearchParams(window.location.search);
   const appRoute = params.get(APP_ROUTE_KEY);
   if (!appRoute) return "";
