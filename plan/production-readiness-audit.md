@@ -2,7 +2,7 @@
 
 Full pass over every component, the shared infrastructure (Router/hooks/stores), the build/CI/publish pipeline, and how legible the codebase is to an AI coding agent working on it cold. Compiled from six independent source reads; every finding is verified against current file contents (not inferred from CLAUDE.md alone) and cited as `file:line`.
 
-**Totals:** 6 critical · 11 high · 13 medium · 8 low/cleanup.
+**Totals:** 6 critical · 11 high · 12 medium · 8 low/cleanup.
 
 ## Contents
 
@@ -35,12 +35,6 @@ Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Car
 ## 5. Router, hooks, stores, intrexx
 
 The shared foundation most other components build on — bugs here have the widest blast radius of anything in the audit.
-
-### 🟡 Medium — `TreeEditorOld` ships in the published bundle as dead weight
-
-The legacy react-dnd-based tree editor is still exported from `intrexx/index.ts` alongside the new `SortableTree`. Nothing in `demo/` references it. Its own `MenuEditor` subtree isn't even re-exported from its own folder — genuinely unreachable code. Beyond the dead weight, having both `TreeEditor` (old) and `SortableTree` (new, actively maintained) both importable creates a real risk of consumers grabbing the wrong one.
-
-`intrexx/index.ts:3` · `intrexx/TreeEditorOld/`
 
 ### 🟢 Low — Duplicated path-parsing logic
 
