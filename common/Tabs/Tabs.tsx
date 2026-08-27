@@ -103,10 +103,21 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     },
     ref,
   ) => {
-    const value = activeId || items[0]?.id || "";
+    const isControlled = activeId !== undefined;
+    const [internalValue, setInternalValue] = React.useState(
+      () => activeId || items[0]?.id || "",
+    );
+    const value = isControlled ? activeId || items[0]?.id || "" : internalValue;
+
+    const handleValueChange = (newValue: string) => {
+      if (!isControlled) {
+        setInternalValue(newValue);
+      }
+      onActiveChange?.(newValue);
+    };
 
     return (
-      <RadixTabs.Root value={value} onValueChange={onActiveChange}>
+      <RadixTabs.Root value={value} onValueChange={handleValueChange}>
         <div
           ref={ref}
           className={clsx("mp-tabs", `mp-tabs--${variant}`, className)}
