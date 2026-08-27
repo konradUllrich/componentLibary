@@ -70,10 +70,22 @@ export const getThemeCssVariables = (
     "--mp-color-primary-strong": colors.primaryStrong,
     "--mp-color-onPrimary": colors.onPrimary,
 
-    "--mp-color-secondary-base": colors.secondary,
+    // `colors.secondary` is intentionally unused here — secondary is no longer an
+    // independently themable color. It always tracks the muted foreground tone so
+    // callers that still set `colors.secondary` (kept in the type for backward
+    // compatibility) keep working with no visible change.
+    "--mp-color-secondary-base": "var(--mp-color-foreground-light)",
     "--mp-color-secondary": "var(--mp-color-secondary-base)",
-    "--mp-color-secondary-light": colorMix(colors.secondary, "white", 20),
-    "--mp-color-secondary-dark": colorMix(colors.secondary, "black", 15),
+    "--mp-color-secondary-light": colorMix(
+      "var(--mp-color-foreground-light)",
+      "white",
+      20,
+    ),
+    "--mp-color-secondary-dark": colorMix(
+      "var(--mp-color-foreground-light)",
+      "black",
+      15,
+    ),
     "--mp-color-secondary-foreground": colors.onPrimary,
 
     "--mp-color-success-base": colors.success,

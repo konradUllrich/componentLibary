@@ -14,7 +14,6 @@ const COLOR_ROWS: {
   onKey?: keyof ThemeColors;
 }[] = [
   { key: "primary", label: "Primary Color", onKey: "onPrimary" },
-  { key: "secondary", label: "Secondary Color" },
   { key: "success", label: "Success Color", onKey: "onSuccess" },
   { key: "warning", label: "Warning Color", onKey: "onWarning" },
   { key: "destructive", label: "Destructive Color", onKey: "onDestructive" },

@@ -9,7 +9,11 @@ export interface ThemeColors {
   /** Darker shade of `primary`, used for active/pressed states. */
   primaryStrong: string;
 
-  /** Secondary accent color. */
+  /**
+   * @deprecated No longer used to compute any CSS custom property — the
+   * secondary color always tracks `onBackgroundLight` instead. Kept only so
+   * existing theme configs that set it don't fail to type-check.
+   */
   secondary: string;
   /** Success state color (e.g. positive Badge, success Toast). */
   success: string;
