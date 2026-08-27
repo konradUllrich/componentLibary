@@ -30,6 +30,9 @@ export type IntrexxIconProps = React.HTMLAttributes<HTMLElement> & {
  *
  * @example
  * <IntrexxIcon iconClass="icon54-l_Animals-Bee" size={16} />
+ *
+ * See {@link ./IntrexxIcon.example.tsx} for the live, greppable version of
+ * this snippet.
  */
 export const IntrexxIcon = forwardRef<HTMLElement, IntrexxIconProps>(
   (

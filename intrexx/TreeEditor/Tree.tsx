@@ -72,6 +72,30 @@ interface Props<T extends Item> {
   onAction?(action: Action<T>): void;
 }
 
+/**
+ * Tree — drag-and-drop sortable tree editor built on `@dnd-kit/react`.
+ * Supports keyboard navigation, arbitrary nesting, and a fully customisable
+ * item renderer and per-item action menu.
+ *
+ * @example
+ * ```tsx
+ * interface NavItem extends Item {
+ *   label: string;
+ *   children: NavItem[];
+ * }
+ *
+ * const [items, setItems] = useState<NavItem[]>([...]);
+ *
+ * <Tree<NavItem>
+ *   items={items}
+ *   onChange={setItems}
+ *   renderItem={(item) => <span>{item.label}</span>}
+ * />
+ * ```
+ *
+ * See {@link ./Tree.example.tsx} for the live, greppable version of this
+ * snippet.
+ */
 function TreeInner<T extends Item>(
   {
     items,

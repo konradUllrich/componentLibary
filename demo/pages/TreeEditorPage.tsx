@@ -3,6 +3,7 @@ import { Button, Text } from "../../common";
 import { Page, Panel, Section } from "../../layout";
 import { Tree } from "../../intrexx/TreeEditor";
 import type { Item, FlattenedItem } from "../../intrexx/TreeEditor";
+import { usageSource } from "../../intrexx/TreeEditor/Tree.example";
 
 interface MyTreeItem extends Item {
   label: string;
@@ -270,53 +271,7 @@ export const TreeEditorPage: React.FC = () => {
       {/* ── API reference ────────────────────────────────── */}
       <Section title="Usage">
         <pre className="code-block">
-          <code>{`import { SortableTree } from '@mp-ku/mp-components/intrexx';
-import type { SortableTreeItem, SortableTreeFlattenedItem } from '@mp-ku/mp-components/intrexx';
-
-// 1. Define your custom item type (must extend SortableTreeItem)
-interface NavItem extends SortableTreeItem {
-  label: string;
-  icon?: string;
-  children: NavItem[];
-}
-
-// 2. Control state yourself
-const [items, setItems] = useState<NavItem[]>([...]);
-
-// 3. Render the tree
-<SortableTree<NavItem>
-  items={items}
-  onChange={setItems}
-
-  // Custom renderer for each item
-  renderItem={(item: SortableTreeFlattenedItem<NavItem>) => (
-    <span>{item.icon} {item.label}</span>
-  )}
-
-  // Action menu per item
-  itemMenu={(item, actions) => (
-    <div>
-      <button onClick={actions.moveUp}>↑</button>
-      <button onClick={actions.moveDown}>↓</button>
-      <button onClick={() => actions.addItemAfter({ id: 'new-1', label: 'New' })}>
-        Add After
-      </button>
-      <button onClick={() => actions.addChild({ id: 'child-1', label: 'Child' })}>
-        Add Child
-      </button>
-      <button onClick={actions.erase}>Delete</button>
-    </div>
-  )}
-
-  // Optional: prevent certain items from being moved
-  canMove={(item) => item.id !== 'locked-item'}
-
-  // Optional: prevent certain items from receiving children
-  canReceiveChildren={(item) => item.id !== 'leaf-node'}
-
-  // Optional: override indentation (default: 50px per level)
-  indentation={40}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

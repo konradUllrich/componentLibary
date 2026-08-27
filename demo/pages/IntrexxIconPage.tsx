@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Text } from "../../common";
 import { Panel, Page, Section, Flex } from "../../layout";
 import { IntrexxIcon, type IntrexxIconProps } from "../../intrexx";
+import { UsageExample, usageSource } from "../../intrexx/Icon/IntrexxIcon.example";
+import { u } from "../../utils";
 
 const iconOptions = [
   { label: "Bee", baseClass: "Animals-Bee" },
@@ -191,18 +193,11 @@ export const IntrexxIconPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { IntrexxIcon } from '@mp-ku/mp-components/intrexx';
-
-function Toolbar() {
-  return (
-    <IntrexxIcon
-      iconClass="icon54-l_Animals-Butterfly"
-      size={24}
-      color="primary"
-    />
-  );
-}`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

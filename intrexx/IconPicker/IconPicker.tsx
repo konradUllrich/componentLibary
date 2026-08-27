@@ -25,6 +25,9 @@ export interface IconPickerProps extends React.HTMLAttributes<HTMLDivElement> {
  *
  * @example
  * <IconPicker onSelectIcon={(icon) => console.log(icon.className)} />
+ *
+ * See {@link ./IconPicker.example.tsx} for the live, greppable version of a
+ * controlled `selectedIcon`/`onSelectIcon` usage.
  */
 export const IconPicker = forwardRef<HTMLDivElement, IconPickerProps>(
   (

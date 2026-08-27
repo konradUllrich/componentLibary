@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text } from "../../common";
 import { Page, Section, Panel } from "../../layout";
 import { IconPicker } from "../../intrexx/IconPicker";
+import { usageSource } from "../../intrexx/IconPicker/IconPicker.example";
 
 export const IconPickerPage: React.FC = () => {
   const [selectedIcon, setSelectedIcon] = useState<string>("");
@@ -77,20 +78,7 @@ export const IconPickerPage: React.FC = () => {
 
       <Section title="Usage">
         <pre className="code-block">
-          <code>{`import { IconPicker } from '@mp-ku/mp-components/intrexx';
-
-function MyComponent() {
-  const [selectedIcon, setSelectedIcon] = useState('');
-
-  return (
-    <IconPicker
-      selectedIcon={selectedIcon}
-      onSelectIcon={(icon) => setSelectedIcon(icon.className)}
-      defaultStyle="line"
-      maxHeight="600px"
-    />
-  );
-}`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>
