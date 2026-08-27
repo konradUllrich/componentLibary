@@ -13,7 +13,7 @@ test.describe("Pagination Component", () => {
 
     // Check pagination info
     const info = component.locator(".mp-pagination__info");
-    await expect(info).toContainText("Showing 1 to 10 of 100 entries");
+    await expect(info).toContainText("1 bis 10 von 100 Einträge");
 
     // Check navigation buttons exist
     await expect(component.locator(".mp-pagination-button--first")).toBeVisible();
@@ -56,7 +56,7 @@ test.describe("Pagination Component", () => {
 
     // Check if page changed
     const info = component.locator(".mp-pagination__info");
-    await expect(info).toContainText("Showing 11 to 20 of 100 entries");
+    await expect(info).toContainText("11 bis 20 von 100 Einträge");
   });
 
   test("should navigate to specific page", async ({ mount }) => {
@@ -72,7 +72,7 @@ test.describe("Pagination Component", () => {
 
     // Check if page changed
     const info = component.locator(".mp-pagination__info");
-    await expect(info).toContainText("Showing 11 to 20 of 100 entries");
+    await expect(info).toContainText("11 bis 20 von 100 Einträge");
   });
 
   test("should highlight active page", async ({ mount }) => {
@@ -277,7 +277,75 @@ test.describe("Pagination Component", () => {
 
     // Check if items per page changed
     const info = component.locator(".mp-pagination__info");
-    await expect(info).toContainText("Showing 1 to 20 of 100 entries");
+    await expect(info).toContainText("1 bis 20 von 100 Einträge");
+  });
+
+  test("should render German text by default", async ({ mount }) => {
+    const component = await mount(
+      <PaginationTestWrapper totalItems={30} pageSize={10} />,
+    );
+
+    const info = component.locator(".mp-pagination__info");
+    await expect(info).toContainText("1 bis 10 von 30 Einträge");
+    await expect(component.getByText("Anzeigen:")).toBeVisible();
+
+    await expect(component.locator(".mp-pagination-button--first")).toHaveAttribute(
+      "title",
+      "Erste Seite",
+    );
+    await expect(component.locator(".mp-pagination-button--prev")).toHaveAttribute(
+      "title",
+      "Vorherige Seite",
+    );
+    await expect(component.locator(".mp-pagination-button--next")).toHaveAttribute(
+      "title",
+      "Nächste Seite",
+    );
+    await expect(component.locator(".mp-pagination-button--last")).toHaveAttribute(
+      "title",
+      "Letzte Seite",
+    );
+  });
+
+  test("should allow overriding the default German text via the labels prop", async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <PaginationTestWrapper
+        totalItems={30}
+        pageSize={10}
+        resourceName="entries"
+        labels={{
+          info: "Showing {start} to {end} of {total} {resource}",
+          sizeSelector: "Show:",
+          firstPage: "First page",
+          previousPage: "Previous page",
+          nextPage: "Next page",
+          lastPage: "Last page",
+        }}
+      />,
+    );
+
+    const info = component.locator(".mp-pagination__info");
+    await expect(info).toContainText("Showing 1 to 10 of 30 entries");
+    await expect(component.getByText("Show:")).toBeVisible();
+
+    await expect(component.locator(".mp-pagination-button--first")).toHaveAttribute(
+      "title",
+      "First page",
+    );
+    await expect(component.locator(".mp-pagination-button--prev")).toHaveAttribute(
+      "title",
+      "Previous page",
+    );
+    await expect(component.locator(".mp-pagination-button--next")).toHaveAttribute(
+      "title",
+      "Next page",
+    );
+    await expect(component.locator(".mp-pagination-button--last")).toHaveAttribute(
+      "title",
+      "Last page",
+    );
   });
 
   test("should apply custom className", async ({ mount }) => {
@@ -299,16 +367,16 @@ test.describe("Pagination Component", () => {
     );
 
     const firstButton = component.locator(".mp-pagination-button--first");
-    await expect(firstButton).toHaveAttribute("title", "First page");
+    await expect(firstButton).toHaveAttribute("title", "Erste Seite");
 
     const prevButton = component.locator(".mp-pagination-button--prev");
-    await expect(prevButton).toHaveAttribute("title", "Previous page");
+    await expect(prevButton).toHaveAttribute("title", "Vorherige Seite");
 
     const nextButton = component.locator(".mp-pagination-button--next");
-    await expect(nextButton).toHaveAttribute("title", "Next page");
+    await expect(nextButton).toHaveAttribute("title", "Nächste Seite");
 
     const lastButton = component.locator(".mp-pagination-button--last");
-    await expect(lastButton).toHaveAttribute("title", "Last page");
+    await expect(lastButton).toHaveAttribute("title", "Letzte Seite");
   });
 
   test("should pass accessibility checks", async ({ mount, page }) => {
@@ -382,7 +450,7 @@ test.describe("Pagination Component", () => {
       await nextButton.click();
 
       const info = component.locator(".mp-pagination__info");
-      await expect(info).toContainText("Showing 11 to 20 of 100 entries");
+      await expect(info).toContainText("11 bis 20 von 100 Einträge");
     });
 
     test("should maintain accessibility on mobile", async ({

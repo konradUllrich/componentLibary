@@ -71,7 +71,7 @@ test.describe("usePaginationSync", () => {
     );
 
     await expect(component.locator(".mp-pagination__info")).toContainText(
-      "Showing 31 to 40 of 100 entries",
+      "31 bis 40 von 100 Einträge",
     );
   });
 
@@ -87,7 +87,7 @@ test.describe("usePaginationSync", () => {
     );
 
     await expect(component.locator(".mp-pagination__info")).toContainText(
-      "Showing 41 to 60 of 60 entries",
+      "41 bis 60 von 60 Einträge",
     );
   });
 
@@ -103,7 +103,7 @@ test.describe("usePaginationSync", () => {
 
     // Invalid values → store stays on page 1 with default pageSize 10
     await expect(component.locator(".mp-pagination__info")).toContainText(
-      "Showing 1 to 10 of 100 entries",
+      "1 bis 10 von 100 Einträge",
     );
   });
 
@@ -203,8 +203,8 @@ test.describe("usePaginationSync", () => {
     const component = await mount(<TwoSyncedPaginationsWrapper />);
     const infos = component.locator(".mp-pagination__info");
 
-    await expect(infos.nth(0)).toContainText("Showing 21 to 30 of 100 entries");
-    await expect(infos.nth(1)).toContainText("Showing 6 to 10 of 60 entries");
+    await expect(infos.nth(0)).toContainText("21 bis 30 von 100 Einträge");
+    await expect(infos.nth(1)).toContainText("6 bis 10 von 60 Einträge");
   });
 
   // -------------------------------------------------------------------------
@@ -244,7 +244,7 @@ test.describe("usePaginationSync", () => {
     );
 
     await expect(component.locator(".mp-pagination__info")).toContainText(
-      "Showing 41 to 50 of 100 entries",
+      "41 bis 50 von 100 Einträge",
     );
   });
 

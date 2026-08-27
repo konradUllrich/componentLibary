@@ -64,7 +64,7 @@ test.describe("usePagination Demo Page", () => {
 
       await expect(panel).toBeVisible();
       await expect(panel.locator(".mp-pagination")).toBeVisible();
-      await expect(panel.getByText(/of 97 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 97 Einträge/)).toBeVisible();
     });
 
     test("should show page navigation controls", async ({ page }) => {
@@ -84,11 +84,11 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "1. Drop-in usage" });
 
-      await expect(panel.getByText(/Showing 1 to 10 of 97/)).toBeVisible();
+      await expect(panel.getByText(/1 bis 10 von 97/)).toBeVisible();
 
       await panel.locator(".mp-pagination-button--next").click();
 
-      await expect(panel.getByText(/Showing 11 to 20 of 97/)).toBeVisible();
+      await expect(panel.getByText(/11 bis 20 von 97/)).toBeVisible();
     });
 
     test("should disable the prev button on page 1", async ({ page }) => {
@@ -115,7 +115,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "1. Drop-in usage" });
 
       await panel.locator(".mp-pagination-button--next").click();
-      await expect(panel.getByText(/Showing 11 to 20 of 97/)).toBeVisible();
+      await expect(panel.getByText(/11 bis 20 von 97/)).toBeVisible();
 
       await page.reload();
       await page.waitForLoadState("networkidle");
@@ -125,7 +125,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "1. Drop-in usage" });
 
       await expect(
-        panelAfter.getByText(/Showing 11 to 20 of 97/),
+        panelAfter.getByText(/11 bis 20 von 97/),
       ).toBeVisible();
     });
   });
@@ -139,7 +139,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "2. Custom page size options" });
 
       await expect(panel.locator(".mp-pagination")).toBeVisible();
-      await expect(panel.getByText(/of 100 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 100 Einträge/)).toBeVisible();
     });
 
     test("should show custom page size options [5, 10, 25, 50]", async ({
@@ -163,13 +163,13 @@ test.describe("usePagination Demo Page", () => {
 
       // Navigate to page 2
       await panel.locator(".mp-pagination-button--next").click();
-      await expect(panel.getByText(/Showing 6 to 10 of 100/)).toBeVisible();
+      await expect(panel.getByText(/6 bis 10 von 100/)).toBeVisible();
 
       // Change page size
       await panel.locator(".mp-pagination__select").selectOption("25");
 
       // Should reset to page 1 with new page size
-      await expect(panel.getByText(/Showing 1 to 25 of 100/)).toBeVisible();
+      await expect(panel.getByText(/1 bis 25 von 100/)).toBeVisible();
     });
   });
 
@@ -182,7 +182,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "3. Hide size selector" });
 
       await expect(panel.locator(".mp-pagination")).toBeVisible();
-      await expect(panel.getByText(/of 80 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 80 Einträge/)).toBeVisible();
       await expect(
         panel.locator(".mp-pagination__size-selector"),
       ).not.toBeVisible();
@@ -222,7 +222,7 @@ test.describe("usePagination Demo Page", () => {
 
       await panel.getByRole("button", { name: "20 items" }).click();
 
-      await expect(panel.getByText(/of 20 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 20 Einträge/)).toBeVisible();
       // 20 items / 10 per page = 2 pages — controls should appear
       await expect(panel.locator(".mp-pagination__controls")).toBeVisible();
     });
@@ -235,7 +235,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "4. Dynamic total items" });
 
       await panel.getByRole("button", { name: "50 items" }).click();
-      await expect(panel.getByText(/of 50 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 50 Einträge/)).toBeVisible();
     });
 
     test("should update pagination when clicking 100 items button", async ({
@@ -246,7 +246,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "4. Dynamic total items" });
 
       await panel.getByRole("button", { name: "100 items" }).click();
-      await expect(panel.getByText(/of 100 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 100 Einträge/)).toBeVisible();
     });
 
     test("should update pagination when clicking 200 items button", async ({
@@ -257,7 +257,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "4. Dynamic total items" });
 
       await panel.getByRole("button", { name: "200 items" }).click();
-      await expect(panel.getByText(/of 200 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 200 Einträge/)).toBeVisible();
     });
 
     test("should clamp current page when total shrinks", async ({ page }) => {
@@ -267,16 +267,16 @@ test.describe("usePagination Demo Page", () => {
 
       // Set 200 items (20 pages), navigate to page 5 via next button presses
       await panel.getByRole("button", { name: "200 items" }).click();
-      await expect(panel.getByText(/of 200 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 200 Einträge/)).toBeVisible();
 
       // Use the page 5 button (rendered as a numbered button in the controls)
       await panel.getByRole("button", { name: "5", exact: true }).click();
-      await expect(panel.getByText(/Showing 41 to 50/)).toBeVisible();
+      await expect(panel.getByText(/41 bis 50/)).toBeVisible();
 
       // Shrink to 20 items (only 2 pages) — page should clamp to 2
       await panel.getByRole("button", { name: "20 items" }).click();
-      await expect(panel.getByText(/of 20 entries/)).toBeVisible();
-      await expect(panel.getByText(/Showing 11 to 20/)).toBeVisible();
+      await expect(panel.getByText(/von 20 Einträge/)).toBeVisible();
+      await expect(panel.getByText(/11 bis 20/)).toBeVisible();
     });
   });
 
@@ -290,8 +290,8 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "5. Two tables, one page" });
 
-      await expect(panel.getByText(/of 85 entries/)).toBeVisible();
-      await expect(panel.getByText(/of 43 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 85 Einträge/)).toBeVisible();
+      await expect(panel.getByText(/von 43 Einträge/)).toBeVisible();
     });
 
     test("should navigate users and orders independently", async ({ page }) => {
@@ -307,12 +307,12 @@ test.describe("usePagination Demo Page", () => {
       // Navigate users to page 2
       await usersPagination.locator(".mp-pagination-button--next").click();
       await expect(
-        usersPagination.getByText(/Showing 11 to 20 of 85/),
+        usersPagination.getByText(/11 bis 20 von 85/),
       ).toBeVisible();
 
       // Orders should still be on page 1
       await expect(
-        ordersPagination.getByText(/Showing 1 to 5 of 43/),
+        ordersPagination.getByText(/1 bis 5 von 43/),
       ).toBeVisible();
     });
   });
@@ -326,7 +326,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "6. sessionStorage, no URL" });
 
       await expect(panel.locator(".mp-pagination")).toBeVisible();
-      await expect(panel.getByText(/of 60 entries/)).toBeVisible();
+      await expect(panel.getByText(/von 60 Einträge/)).toBeVisible();
     });
 
     test("should not sync page to URL", async ({ page }) => {
@@ -335,7 +335,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "6. sessionStorage, no URL" });
 
       await panel.locator(".mp-pagination-button--next").click();
-      await expect(panel.getByText(/Showing 11 to 20 of 60/)).toBeVisible();
+      await expect(panel.getByText(/11 bis 20 von 60/)).toBeVisible();
 
       // URL should NOT contain a `page` param set by this instance
       // (the sessionStorage example has syncUrl: false)
@@ -359,7 +359,7 @@ test.describe("usePagination Demo Page", () => {
         .filter({ hasText: "6. sessionStorage, no URL" });
 
       await panel.locator(".mp-pagination-button--next").click();
-      await expect(panel.getByText(/Showing 11 to 20 of 60/)).toBeVisible();
+      await expect(panel.getByText(/11 bis 20 von 60/)).toBeVisible();
 
       await page.reload();
       await page.waitForLoadState("networkidle");
@@ -368,7 +368,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "6. sessionStorage, no URL" });
 
-      await expect(panelAfter.getByText(/Showing 1 to 10 of 60/)).toBeVisible();
+      await expect(panelAfter.getByText(/1 bis 10 von 60/)).toBeVisible();
     });
   });
 

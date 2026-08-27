@@ -3,6 +3,48 @@ import clsx from "clsx";
 import type { PaginationState } from "../../hooks/usePagination/createPagination";
 import "./pagination.css";
 
+export interface PaginationLabels {
+  /**
+   * Info text template shown next to the size selector. Supports the
+   * placeholders `{start}`, `{end}`, `{total}`, and `{resource}`.
+   * @default "{start} bis {end} von {total} {resource}"
+   */
+  info?: string;
+  /** Label in front of the page size `<select>`. @default "Anzeigen:" */
+  sizeSelector?: string;
+  /** `title` attribute on the "jump to first page" button. @default "Erste Seite" */
+  firstPage?: string;
+  /** `title` attribute on the "previous page" button. @default "Vorherige Seite" */
+  previousPage?: string;
+  /** `title` attribute on the "next page" button. @default "Nächste Seite" */
+  nextPage?: string;
+  /** `title` attribute on the "jump to last page" button. @default "Letzte Seite" */
+  lastPage?: string;
+}
+
+const defaultLabels: Required<PaginationLabels> = {
+  info: "{start} bis {end} von {total} {resource}",
+  sizeSelector: "Anzeigen:",
+  firstPage: "Erste Seite",
+  previousPage: "Vorherige Seite",
+  nextPage: "Nächste Seite",
+  lastPage: "Letzte Seite",
+};
+
+function formatInfo(
+  template: string,
+  startItem: number,
+  endItem: number,
+  totalItems: number,
+  resourceName: string,
+): string {
+  return template
+    .replace("{start}", String(startItem))
+    .replace("{end}", String(endItem))
+    .replace("{total}", String(totalItems))
+    .replace("{resource}", resourceName);
+}
+
 export interface PaginationProps {
   pagination: PaginationState;
   showSizeSelector?: boolean;
@@ -14,10 +56,31 @@ export interface PaginationProps {
   hideOnEmpty?: boolean;
   /**
    * Name of the resource being paginated, used in the info text and size selector.
-   * @example "products", "users", "entries"
-   * @default "entries"
+   * @example "Produkte", "Benutzer", "Einträge"
+   * @default "Einträge"
    */
   resourceName?: string;
+  /**
+   * Overrides for the component's built-in text, which defaults to German.
+   * Only the keys you pass are overridden — everything else keeps the
+   * German default.
+   * @example
+   * ```tsx
+   * <Pagination
+   *   pagination={pagination}
+   *   resourceName="entries"
+   *   labels={{
+   *     info: "Showing {start} to {end} of {total} {resource}",
+   *     sizeSelector: "Show:",
+   *     firstPage: "First page",
+   *     previousPage: "Previous page",
+   *     nextPage: "Next page",
+   *     lastPage: "Last page",
+   *   }}
+   * />
+   * ```
+   */
+  labels?: PaginationLabels;
   className?: string;
 }
 
@@ -39,11 +102,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       showSizeSelector = true,
       pageSizeOptions = [5, 10, 20, 50, 100],
       hideOnEmpty = true,
-      resourceName = "entries",
+      resourceName = "Einträge",
+      labels,
       className,
     },
     ref,
   ) => {
+    const mergedLabels = { ...defaultLabels, ...labels };
     const {
       page,
       totalPages,
@@ -95,11 +160,17 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       <div ref={ref} className={clsx("mp-pagination", className)}>
         <div className="mp-pagination__info">
           <span>
-            Showing {startItem} to {endItem} of {totalItems} {resourceName}
+            {formatInfo(
+              mergedLabels.info,
+              startItem,
+              endItem,
+              totalItems,
+              resourceName,
+            )}
           </span>
           {showSizeSelector && (
             <div className="mp-pagination__size-selector">
-              <label htmlFor="pageSize">Show:</label>
+              <label htmlFor="pageSize">{mergedLabels.sizeSelector}</label>
               <select
                 id="pageSize"
                 value={pageSize}
@@ -123,7 +194,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               onClick={() => setPage(1)}
               disabled={!hasPrevious}
               className="mp-pagination-button mp-pagination-button--first"
-              title="First page"
+              title={mergedLabels.firstPage}
             >
               «
             </button>
@@ -131,7 +202,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               onClick={() => setPage(page - 1)}
               disabled={!hasPrevious}
               className="mp-pagination-button mp-pagination-button--prev"
-              title="Previous page"
+              title={mergedLabels.previousPage}
             >
               ‹
             </button>
@@ -157,7 +228,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               onClick={() => setPage(page + 1)}
               disabled={!hasNext}
               className="mp-pagination-button mp-pagination-button--next"
-              title="Next page"
+              title={mergedLabels.nextPage}
             >
               ›
             </button>
@@ -165,7 +236,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               onClick={() => setPage(totalPages)}
               disabled={!hasNext}
               className="mp-pagination-button mp-pagination-button--last"
-              title="Last page"
+              title={mergedLabels.lastPage}
             >
               »
             </button>

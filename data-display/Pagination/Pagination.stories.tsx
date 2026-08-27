@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination } from "./Pagination";
+import { Pagination, type PaginationLabels } from "./Pagination";
 import { createPagination } from "../../hooks/usePagination/createPagination";
 
 /**
@@ -12,6 +12,8 @@ export const PaginationTestWrapper: React.FC<{
   currentPage?: number;
   showSizeSelector?: boolean;
   pageSizeOptions?: number[];
+  resourceName?: string;
+  labels?: PaginationLabels;
   className?: string;
 }> = (props) => {
   const {
@@ -20,6 +22,8 @@ export const PaginationTestWrapper: React.FC<{
     currentPage = 1,
     showSizeSelector,
     pageSizeOptions,
+    resourceName,
+    labels,
     className,
   } = props;
 
@@ -51,6 +55,8 @@ export const PaginationTestWrapper: React.FC<{
       pagination={pagination}
       showSizeSelector={showSizeSelector}
       pageSizeOptions={pageSizeOptions}
+      resourceName={resourceName}
+      labels={labels}
       className={className}
     />
   );
