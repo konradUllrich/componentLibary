@@ -1,23 +1,29 @@
 import React from "react";
 import clsx from "clsx";
+import { Button } from "../Button";
+import { Slider } from "../../controls";
 import { useTheme } from "./useTheme";
 import { useThemeEditor } from "./useThemeEditor";
+import { ThemeConfig, ThemeColors } from "./types";
+import { ThemePanelColors } from "./ThemePanelColors";
+import { ThemePanelActions } from "./ThemePanelActions";
 import "./ThemePanel.css";
 
 export const ThemePanel: React.FC = () => {
   const { theme, updateTheme, resetTheme } = useTheme();
   const { isOpen, toggle } = useThemeEditor();
 
-  const handleColorChange = (
-    colorKey: keyof typeof theme.colors,
-    value: string,
-  ) => {
+  const handleColorChange = (colorKey: keyof ThemeColors, value: string) => {
     updateTheme({
       colors: {
         ...theme.colors,
         [colorKey]: value,
       },
     });
+  };
+
+  const handleApplyTheme = (nextTheme: ThemeConfig) => {
+    updateTheme(nextTheme);
   };
 
   const handleTypographyChange = (
@@ -42,6 +48,9 @@ export const ThemePanel: React.FC = () => {
     });
   };
 
+  const borderRadiusBase = theme.borderRadius.base;
+  const isBorderRadiusScale = typeof borderRadiusBase === "number";
+
   return (
     <div className={clsx("mp-theme-panel", !isOpen && "mp-theme-panel--collapsed")}>
       <button
@@ -57,88 +66,17 @@ export const ThemePanel: React.FC = () => {
       </div>
 
       <div className="mp-theme-panel__content">
-        <section className="mp-theme-panel__section">
-          <h3 className="mp-theme-panel__section-title">Colors</h3>
-
-          <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">Primary Color</label>
-            <input
-              type="color"
-              className="mp-theme-panel__input theme-panel__color-picker"
-              value={theme.colors.primary}
-              onChange={(e) => handleColorChange("primary", e.target.value)}
-            />
-            <span className="mp-theme-panel__value">{theme.colors.primary}</span>
-          </div>
-
-          <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">Secondary Color</label>
-            <input
-              type="color"
-              className="mp-theme-panel__input theme-panel__color-picker"
-              value={theme.colors.secondary}
-              onChange={(e) => handleColorChange("secondary", e.target.value)}
-            />
-            <span className="mp-theme-panel__value">{theme.colors.secondary}</span>
-          </div>
-
-          <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">Success Color</label>
-            <input
-              type="color"
-              className="mp-theme-panel__input theme-panel__color-picker"
-              value={theme.colors.success}
-              onChange={(e) => handleColorChange("success", e.target.value)}
-            />
-            <span className="mp-theme-panel__value">{theme.colors.success}</span>
-          </div>
-
-          <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">Warning Color</label>
-            <input
-              type="color"
-              className="mp-theme-panel__input theme-panel__color-picker"
-              value={theme.colors.warning}
-              onChange={(e) => handleColorChange("warning", e.target.value)}
-            />
-            <span className="mp-theme-panel__value">{theme.colors.warning}</span>
-          </div>
-
-          <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">Destructive Color</label>
-            <input
-              type="color"
-              className="mp-theme-panel__input theme-panel__color-picker"
-              value={theme.colors.destructive}
-              onChange={(e) => handleColorChange("destructive", e.target.value)}
-            />
-            <span className="mp-theme-panel__value">
-              {theme.colors.destructive}
-            </span>
-          </div>
-
-          <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">Info Color</label>
-            <input
-              type="color"
-              className="mp-theme-panel__input theme-panel__color-picker"
-              value={theme.colors.info}
-              onChange={(e) => handleColorChange("info", e.target.value)}
-            />
-            <span className="mp-theme-panel__value">{theme.colors.info}</span>
-          </div>
-        </section>
+        <ThemePanelColors
+          colors={theme.colors}
+          onColorChange={handleColorChange}
+        />
 
         <section className="mp-theme-panel__section">
           <h3 className="mp-theme-panel__section-title">Typography</h3>
 
           <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">
-              Base Font Size: {theme.typography.baseFontSize}px
-            </label>
-            <input
-              type="range"
-              className="mp-theme-panel__range"
+            <Slider
+              label={`Base Font Size: ${theme.typography.baseFontSize}px`}
               value={theme.typography.baseFontSize}
               onChange={(e) =>
                 handleTypographyChange("baseFontSize", parseInt(e.target.value))
@@ -150,12 +88,8 @@ export const ThemePanel: React.FC = () => {
           </div>
 
           <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">
-              Base Line Height: {theme.typography.baseLineHeight.toFixed(2)}
-            </label>
-            <input
-              type="range"
-              className="mp-theme-panel__range"
+            <Slider
+              label={`Base Line Height: ${theme.typography.baseLineHeight.toFixed(2)}`}
               value={theme.typography.baseLineHeight}
               onChange={(e) =>
                 handleTypographyChange(
@@ -174,28 +108,31 @@ export const ThemePanel: React.FC = () => {
           <h3 className="mp-theme-panel__section-title">Border Radius</h3>
 
           <div className="mp-theme-panel__control">
-            <label className="mp-theme-panel__label">
-              Border Radius Scale: {theme.borderRadius.base.toFixed(2)}x
-            </label>
-            <input
-              type="range"
-              className="mp-theme-panel__range"
-              value={theme.borderRadius.base}
-              onChange={(e) =>
-                handleBorderRadiusChange(parseFloat(e.target.value))
-              }
-              min="0"
-              max="2"
-              step="0.1"
-            />
+            {isBorderRadiusScale ? (
+              <Slider
+                label={`Border Radius Scale: ${borderRadiusBase.toFixed(2)}x`}
+                value={borderRadiusBase}
+                onChange={(e) =>
+                  handleBorderRadiusChange(parseFloat(e.target.value))
+                }
+                min="0"
+                max="2"
+                step="0.1"
+              />
+            ) : (
+              <span className="mp-theme-panel__label">
+                Border Radius: {borderRadiusBase}
+              </span>
+            )}
           </div>
         </section>
       </div>
 
       <div className="mp-theme-panel__footer">
-        <button className="mp-theme-panel__reset-button" onClick={resetTheme}>
+        <ThemePanelActions theme={theme} onApplyTheme={handleApplyTheme} />
+        <Button variant="secondary" className="mp-theme-panel__reset-button" onClick={resetTheme}>
           Reset to Default
-        </button>
+        </Button>
       </div>
     </div>
   );
