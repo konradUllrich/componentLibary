@@ -1,0 +1,55 @@
+/* Block: Color Picker */
+.mp-color-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--mp-spacing-2);
+}
+
+/* Element: Swatch */
+.mp-color-picker__swatch {
+  width: 36px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
+  background: var(--mp-color-background);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mp-color-picker__swatch::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.mp-color-picker__swatch::-webkit-color-swatch {
+  border: none;
+  border-radius: var(--mp-radius-sm);
+}
+
+.mp-color-picker__swatch::-moz-color-swatch {
+  border: none;
+  border-radius: var(--mp-radius-sm);
+}
+
+.mp-color-picker__swatch:hover:not(:disabled) {
+  border-color: var(--mp-color-primary);
+}
+
+.mp-color-picker__swatch:focus-visible {
+  outline: var(--mp-focus-size) solid var(--mp-focus-color);
+  outline-offset: var(--mp-focus-offset);
+}
+
+.mp-color-picker__swatch--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Element: Text field */
+.mp-color-picker__text {
+  flex: 1;
+  min-width: 0;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: var(--mp-font-size-sm);
+  padding: var(--mp-spacing-2) var(--mp-spacing-3);
+}

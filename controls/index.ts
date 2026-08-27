@@ -11,3 +11,4 @@ export * from "./Radio";
 export * from "./Combobox";
 export * from "./Textarea";
 export * from "./Slider";
+export * from "./ColorPicker";

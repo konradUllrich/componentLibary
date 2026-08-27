@@ -106,6 +106,8 @@ export {
   type TextareaProps,
   Slider,
   type SliderProps,
+  ColorPicker,
+  type ColorPickerProps,
 } from "./controls";
 // export { useForm } from './controls';
 
