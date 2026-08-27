@@ -19,7 +19,7 @@
   border: none;
   outline: none;
   text-decoration: none;
-  color: var(--mp-color-primary);
+  color: var(--mp-color-primary-strong);
   font-family: inherit;
   line-height: inherit;
   letter-spacing: inherit;
@@ -38,7 +38,7 @@
 
 .mp-horizontal-nav-item:hover:not(.mp-horizontal-nav-item--active) {
   background-color: var(--mp-color-primary-light);
-  color: var(--mp-color-primary);
+  color: var(--mp-color-primary-strong);
 }
 
 .mp-horizontal-nav-item:focus-visible {
@@ -48,7 +48,7 @@
 
 /* Modifier: Active state */
 .mp-horizontal-nav-item--active {
-  background-color: var(--mp-color-primary);
+  background-color: var(--mp-color-primary-strong);
   color: var(--mp-color-onPrimary);
 }
 

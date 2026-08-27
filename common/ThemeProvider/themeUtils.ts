@@ -66,8 +66,8 @@ export const getThemeCssVariables = (
     "--mp-color-border": colors.border,
     "--mp-color-border-light": colors.borderLight,
     "--mp-color-border-strong": colors.borderStrong,
-    "--mp-radius-md": borderRadius.base,
-    "--mp-radius-sm": `calc(borderRadius.base * 0.5)`,
+    "--mp-radius-md": `${0.25 * borderRadius.base}rem`,
+    "--mp-radius-sm": `${0.125 * borderRadius.base}rem`,
 
     "--mp-focus-size": focus.size,
     "--mp-focus-color": focus.color,

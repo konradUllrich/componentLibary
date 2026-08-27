@@ -39,7 +39,7 @@ test.describe("Link", () => {
       </Router>,
     );
     const anchor = page.locator("a.mp-link");
-    await expect(anchor).toHaveClass(/mp-link--mp-button/);
+    await expect(anchor).toHaveClass(/mp-link--button/);
     await expect(anchor).toHaveClass(/mp-link--md/);
   });
 
@@ -52,7 +52,7 @@ test.describe("Link", () => {
       </Router>,
     );
     const anchor = page.locator("a.mp-link");
-    await expect(anchor).toHaveClass(/mp-link--mp-button/);
+    await expect(anchor).toHaveClass(/mp-link--button/);
     await expect(anchor).toHaveClass(/mp-link--lg/);
   });
 

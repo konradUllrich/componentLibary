@@ -215,7 +215,11 @@ export const DeserializationErrorComponent = ({
     },
   });
 
-  return <span data-testid="error-fallback-value">{state}</span>;
+  return (
+    <div>
+      <span data-testid="error-fallback-value">{state}</span>
+    </div>
+  );
 };
 DeserializationErrorComponent.displayName = "DeserializationErrorComponent";
 

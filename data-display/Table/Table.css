@@ -85,7 +85,7 @@
 
 /* Sortable Header */
 .table__cell--sortable {
-  color: var(--mp-color-primary);
+  color: var(--mp-color-foreground);
   cursor: pointer;
   transition: background-color var(--duration-200) var(--ease-in-out);
 }

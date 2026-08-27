@@ -100,10 +100,12 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
             {icon}
           </div>
         )}
-        <Text weight="bold" size="xl">
+        <Text weight="bold" size="xl" className="empty-state__title">
           {title}
         </Text>
-        {description && <Text>{description}</Text>}
+        {description && (
+          <Text className="empty-state__description">{description}</Text>
+        )}
         {action && <div className="empty-state__action">{action}</div>}
       </div>
     );

@@ -32,7 +32,7 @@ export interface ThemeConfig {
     baseLineHeight: number;
   };
   borderRadius: {
-    base: string; // Multiplier for radius scale
+    base: number; // Multiplier for radius scale
   };
   focus: {
     size: string; // Optional focus ring size
@@ -71,7 +71,7 @@ export const defaultTheme: ThemeConfig = {
     baseLineHeight: 1.5,
   },
   borderRadius: {
-    base: "0.25rem",
+    base: 1,
   },
   focus: {
     size: "3px",
