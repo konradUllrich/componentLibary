@@ -2,6 +2,7 @@ import React from "react";
 import { UserAvatar, UserAvatars, Text } from "../../common";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
+import { UsageExample, usageSource } from "../../common/UserAvatars/UserAvatars.example";
 
 const sampleUsers = [
   { id: 1, fullName: "John Doe", initials: "JD" },
@@ -55,25 +56,11 @@ export const UserAvatarsPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { UserAvatar, UserAvatars } from '@konradullrich/mp-components';
-
-// Single avatar
-<UserAvatar 
-  user={{ id: 1, fullName: 'John Doe', initials: 'JD' }} 
-  size="md" 
-/>
-
-// Avatar group
-<UserAvatars 
-  users={[
-    { id: 1, fullName: 'John Doe', initials: 'JD' },
-    { id: 2, fullName: 'Jane Smith', initials: 'JS' },
-    { id: 3, fullName: 'Bob Johnson', initials: 'BJ' },
-  ]} 
-  maxVisible={3}
-  size="sm"
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

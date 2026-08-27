@@ -14,6 +14,19 @@ export interface UserAvatarsProps {
  * UserAvatars Component
  *
  * Displays multiple user avatars in a group with overflow indicator.
+ *
+ * @example
+ * ```tsx
+ * <UserAvatars
+ *   users={[
+ *     { id: 1, fullName: 'John Doe', initials: 'JD' },
+ *     { id: 2, fullName: 'Jane Smith', initials: 'JS' },
+ *     { id: 3, fullName: 'Bob Johnson', initials: 'BJ' },
+ *   ]}
+ *   maxVisible={3}
+ *   size="sm"
+ * />
+ * ```
  */
 export const UserAvatars = React.forwardRef<HTMLDivElement, UserAvatarsProps>(
   ({ users, maxVisible = 3, size = "sm", className }, ref) => {

@@ -79,12 +79,17 @@ export interface TextProps extends React.HTMLAttributes<HTMLElement> {
  *
  * @example
  * ```tsx
- * <Text size="lg" weight="semibold">Heading Text</Text>
- * <Text as="h1" size="3xl" weight="bold">Page Title</Text>
- * <Text color="secondary">Secondary text</Text>
- * <Text truncate={1}>Long text that will be truncated...</Text>
- * <Text truncate={3}>Multi-line text truncated after 3 lines...</Text>
+ * <Text as="h1" size="3xl" weight="bold">
+ *   Page Title
+ * </Text>
+ *
+ * <Text as="p" color="secondary">
+ *   Secondary paragraph text
+ * </Text>
  * ```
+ *
+ * See {@link ./Text.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Text = React.forwardRef<HTMLElement, TextProps>((props, ref) => {
   const {

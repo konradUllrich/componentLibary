@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "../../common";
 import { Flex, Page, Section } from "../../layout";
+import { UsageExample, usageSource } from "../../common/Text/Text.example";
 import { u } from "../../utils";
 
 export const TextPage: React.FC = () => {
@@ -47,16 +48,11 @@ export const TextPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap direction="column" className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Text } from '@konradullrich/mp-components';
-
-<Text as="h1" size="3xl" weight="bold">
-  Page Title
-</Text>
-
-<Text as="p" color="secondary">
-  Secondary paragraph text
-</Text>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

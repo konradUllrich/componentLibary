@@ -83,6 +83,8 @@ export interface DropdownSeparatorProps {
  *
  * @example
  * ```tsx
+ * import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSeparator } from '@mp-ku/mp-components';
+ *
  * <Dropdown>
  *   <DropdownTrigger asChild>
  *     <Button>Open Menu</Button>

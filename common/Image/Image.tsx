@@ -33,8 +33,12 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
  * aspect ratio helpers, and optional fallback on error.
  *
  * @example
+ * ```tsx
+ * import { Image } from '@mp-ku/mp-components';
+ *
  * <Image src="/photo.jpg" alt="A scenic view" rounded="md" aspectRatio="video" />
  * <Image src="/avatar.jpg" alt="User avatar" rounded="full" objectFit="cover" fallbackSrc="/default-avatar.jpg" />
+ * ```
  */
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (

@@ -3,6 +3,7 @@ import { Toggle, Text } from "../../common";
 import { Page, Section, Flex } from "../../layout";
 import { Bold, Italic, Underline } from "lucide-react";
 import { u } from "../../utils";
+import { UsageExample, usageSource } from "../../common/Toggle/Toggle.example";
 
 export const TogglePage: React.FC = () => {
   const [isBold, setIsBold] = useState(false);
@@ -149,35 +150,11 @@ export const TogglePage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Toggle } from '@konradullrich/mp-components';
-
-// Uncontrolled – default variant
-<Toggle aria-label="Bold" defaultPressed>
-  B
-</Toggle>
-
-// Controlled
-<Toggle
-  pressed={isBold}
-  onPressedChange={setIsBold}
-  aria-label="Bold"
->
-  B
-</Toggle>
-
-// Outline variant, small size
-<Toggle variant="outline" size="sm" aria-label="Italic">
-  I
-</Toggle>
-
-// Disabled
-<Toggle disabled aria-label="Underline">
-  U
-</Toggle>
-
-// Sizes: "sm" | "md" (default) | "lg"
-// Variants: "default" | "outline"`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

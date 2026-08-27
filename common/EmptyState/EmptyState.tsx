@@ -60,6 +60,10 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
  *
  * @example
  * ```tsx
+ * import { EmptyState } from '@mp-ku/mp-components';
+ *
+ * <EmptyState title="Nothing here yet" />
+ *
  * <EmptyState
  *   variant="search"
  *   title="No results found"

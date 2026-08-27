@@ -59,27 +59,10 @@ export interface DisclosureProps {
  *
  * @example
  * ```tsx
- * // Basic usage
+ * import { Disclosure } from '@mp-ku/mp-components';
+ *
  * <Disclosure label="Click to expand">
- *   <p>Hidden content</p>
- * </Disclosure>
- *
- * // With controlled state
- * const [open, setOpen] = useState(false);
- * <Disclosure
- *   label="Show/Hide"
- *   open={open}
- *   onOpenChange={setOpen}
- * >
- *   Content here
- * </Disclosure>
- *
- * // With custom icon
- * <Disclosure
- *   label="Details"
- *   icon={<ChevronIcon />}
- * >
- *   Detailed information
+ *   <p>Hidden content that can be toggled</p>
  * </Disclosure>
  * ```
  */

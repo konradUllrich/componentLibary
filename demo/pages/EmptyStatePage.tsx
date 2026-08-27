@@ -12,6 +12,7 @@ import {
   RefreshCw,
   Mail,
 } from "lucide-react";
+import { UsageExample, usageSource } from "../../common/EmptyState/EmptyState.example";
 import { u } from "../../utils";
 
 export const EmptyStatePage: React.FC = () => {
@@ -152,40 +153,11 @@ export const EmptyStatePage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { EmptyState } from '@konradullrich/mp-components';
-
-// Basic
-<EmptyState title="Nothing here yet" />
-
-// With description
-<EmptyState
-  title="No results found"
-  description="Try adjusting your search terms."
-/>
-
-// With icon
-<EmptyState
-  variant="search"
-  title="No results found"
-  description="Try a different query."
-  icon={<SearchX size={48} />}
-/>
-
-// With action button
-<EmptyState
-  variant="default"
-  title="No items"
-  description="Create your first item to get started."
-  icon={<FolderOpen size={48} />}
-  action={<Button onClick={onCreate}>New item</Button>}
-/>
-
-// Sizes: "sm" | "md" (default) | "lg"
-<EmptyState size="sm" title="Empty" />
-
-// Variants: "default" | "search" | "error" | "no-data" | "no-access"
-<EmptyState variant="error" title="Something went wrong" />`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

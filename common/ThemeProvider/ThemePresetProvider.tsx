@@ -15,6 +15,16 @@ export interface ThemePresetProviderProps {
  *
  * Applies a static theme preset to CSS variables.
  * Unlike ThemeProvider, this provider does not persist values or expose editing state.
+ *
+ * @example
+ * ```tsx
+ * <ThemePresetProvider theme={{ colors: { primary: "#7c3aed" } }}>
+ *   <App />
+ * </ThemePresetProvider>
+ * ```
+ *
+ * See {@link ./ThemeProvider.example.tsx} for the live, greppable version of
+ * this snippet — it also drives the demo site's "Usage" section.
  */
 export const ThemePresetProvider: React.FC<ThemePresetProviderProps> = ({
   children,

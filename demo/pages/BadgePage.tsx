@@ -1,5 +1,6 @@
 import React from "react";
 import { Badge, Text } from "../../common";
+import { UsageExample, usageSource } from "../../common/Badge/Badge.example";
 import { Page, Section, Flex } from "../../layout";
 import { u } from "../../utils";
 
@@ -35,12 +36,11 @@ export const BadgePage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Badge } from '@konradullrich/mp-components';
-
-<Badge variant="success">Active</Badge>
-<Badge variant="warning" appearance="outline">Pending</Badge>
-<Badge variant="destructive">Error</Badge>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

@@ -75,32 +75,21 @@ export interface AccordionProps {
  *
  * @example
  * ```tsx
- * // Basic usage
- * const [value, setValue] = useState("item1");
  * <Accordion
  *   items={[
- *     { id: "item1", title: "Section 1", content: <div>Content 1</div> },
- *     { id: "item2", title: "Section 2", content: <div>Content 2</div> },
+ *     { id: "1", title: "Section 1", content: <div>Content 1</div> },
+ *     { id: "2", title: "Section 2", content: <div>Content 2</div> },
  *   ]}
  *   value={value}
  *   onValueChange={setValue}
  * />
  *
- * // Multiple items open
- * const [values, setValues] = useState<string[]>(["item1"]);
  * <Accordion
- *   multiple
- *   items={[...]}
- *   value={values}
- *   onValueChange={setValues}
- * />
- *
- * // Cannot close all items
- * <Accordion
- *   collapsible={false}
- *   items={[...]}
- *   value={value}
- *   onValueChange={setValue}
+ *   variant="horizontal"
+ *   items={[
+ *     { id: "1", title: "Section 1", content: <div>Content 1</div> },
+ *     { id: "2", title: "Section 2", content: <div>Content 2</div> },
+ *   ]}
  * />
  * ```
  */

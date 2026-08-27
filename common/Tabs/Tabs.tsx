@@ -62,7 +62,6 @@ export interface TabsProps {
  *
  * @example
  * ```tsx
- * // Basic usage with state
  * const [activeTab, setActiveTab] = useState("tab1");
  *
  * <Tabs
@@ -74,22 +73,12 @@ export interface TabsProps {
  *   onActiveChange={setActiveTab}
  * />
  *
- * // Underline variant
- * <Tabs
- *   variant="underline"
- *   items={[...]}
- *   activeId={activeTab}
- *   onActiveChange={setActiveTab}
- * />
- *
- * // Pills variant
- * <Tabs
- *   variant="pills"
- *   items={[...]}
- *   activeId={activeTab}
- *   onActiveChange={setActiveTab}
- * />
+ * <Tabs variant="underline" items={[...]} />
+ * <Tabs variant="pills" items={[...]} />
  * ```
+ *
+ * See {@link ./Tabs.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   (

@@ -46,18 +46,15 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
  *
  * @example
  * ```tsx
- * // Single text line
- * <Skeleton variant="text" width="80%" />
+ * <Skeleton variant="text" lines={3} />
  *
- * // Avatar placeholder
  * <Skeleton variant="circle" width={40} height={40} />
  *
- * // Card placeholder
- * <Skeleton variant="rectangle" width="100%" height={200} />
- *
- * // Multiple text lines
- * <Skeleton variant="text" lines={3} />
+ * <Skeleton variant="rectangle" height={200} />
  * ```
+ *
+ * See {@link ./Skeleton.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   (

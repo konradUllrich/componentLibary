@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Tabs, Text } from "../../common";
 import { Flex, Page, Section } from "../../layout";
 import { useParamState } from "../../Router/hooks";
+import { UsageExample, usageSource } from "../../common/Tabs/Tabs.example";
 import { u } from "../../utils";
 
 export const TabsPage: React.FC = () => {
@@ -141,32 +142,11 @@ export const TabsPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Tabs } from '@konradullrich/mp-components';
-
-// Basic usage
-const [activeTab, setActiveTab] = useState('tab1');
-
-<Tabs
-  items={[
-    { id: 'tab1', label: 'Tab 1', content: <div>Content 1</div> },
-    { id: 'tab2', label: 'Tab 2', content: <div>Content 2</div> },
-  ]}
-  activeId={activeTab}
-  onActiveChange={setActiveTab}
-/>
-
-// Underline variant
-<Tabs
-  variant="underline"
-  items={[...]}
-/>
-
-// Pills variant
-<Tabs
-  variant="pills"
-  items={[...]}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

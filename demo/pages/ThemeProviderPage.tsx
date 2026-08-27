@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Text, useTheme, useThemeEditor } from "../../common";
+import { UsageExample, usageSource } from "../../common/ThemeProvider/ThemeProvider.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 import "./ThemeProviderPage.css";
@@ -63,20 +64,11 @@ export const ThemeProviderPage: React.FC = () => {
           </div>
         </div>
 
+        <Flex gap="md" wrap direction="column" className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="theme-provider-page__code-block">
-          <code>{`import { ThemeContextProvider, ThemePanel } from "@mp-ku/mp-components";
-
-<ThemeContextProvider theme={{}}>
-  <App />
-  <ThemePanel />
-</ThemeContextProvider>
-
-// Or, to apply a fixed theme without an editor:
-import { ThemePresetProvider } from "@mp-ku/mp-components";
-
-<ThemePresetProvider theme={{ colors: { primary: "#7c3aed" } }}>
-  <App />
-</ThemePresetProvider>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
 

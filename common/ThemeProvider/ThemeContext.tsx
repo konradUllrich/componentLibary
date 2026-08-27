@@ -15,6 +15,24 @@ export interface ThemeContextProviderProps {
   theme: ThemePresetInput;
 }
 
+/**
+ * ThemeContextProvider
+ *
+ * Interactive theme provider. Holds theme state, persists edits to
+ * `localStorage`, and exposes `useTheme()` for reading/updating it —
+ * pair with `ThemePanel` for an in-app theme editor.
+ *
+ * @example
+ * ```tsx
+ * <ThemeContextProvider theme={{ colors: { primary: "#7c3aed" } }}>
+ *   <App />
+ *   <ThemePanel />
+ * </ThemeContextProvider>
+ * ```
+ *
+ * See {@link ./ThemeProvider.example.tsx} for the live, greppable version of
+ * this snippet — it also drives the demo site's "Usage" section.
+ */
 export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
   children,
   theme: themeInput,

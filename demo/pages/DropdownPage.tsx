@@ -10,6 +10,7 @@ import {
   Button,
   Text,
 } from "../../common";
+import { UsageExample, usageSource } from "../../common/Dropdown/Dropdown.example";
 import { u } from "../../utils";
 
 export const DropdownPage: React.FC = () => {
@@ -204,51 +205,11 @@ export const DropdownPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { 
-  Dropdown, 
-  DropdownTrigger, 
-  DropdownContent, 
-  DropdownItem,
-  DropdownLabel,
-  DropdownSeparator
-} from '@konradullrich/mp-components';
-
-// Basic dropdown
-<Dropdown>
-  <DropdownTrigger asChild>
-    <Button>Open Menu</Button>
-  </DropdownTrigger>
-  <DropdownContent>
-    <DropdownItem onSelect={() => console.log('Edit')}>
-      Edit
-    </DropdownItem>
-    <DropdownItem onSelect={() => console.log('Delete')}>
-      Delete
-    </DropdownItem>
-  </DropdownContent>
-</Dropdown>
-
-// With groups and separators
-<Dropdown>
-  <DropdownTrigger asChild>
-    <Button>Actions</Button>
-  </DropdownTrigger>
-  <DropdownContent>
-    <DropdownLabel>File</DropdownLabel>
-    <DropdownItem onSelect={...}>New</DropdownItem>
-    <DropdownItem onSelect={...}>Open</DropdownItem>
-    <DropdownSeparator />
-    <DropdownLabel>Edit</DropdownLabel>
-    <DropdownItem onSelect={...}>Cut</DropdownItem>
-    <DropdownItem onSelect={...}>Copy</DropdownItem>
-  </DropdownContent>
-</Dropdown>
-
-// Positioning
-<DropdownContent side="top" align="start">
-  ...
-</DropdownContent>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

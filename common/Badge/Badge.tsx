@@ -52,9 +52,8 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
  * @example
  * ```tsx
  * <Badge variant="success">Active</Badge>
- * <Badge variant="warning" size="sm">Pending</Badge>
- * <Badge variant="destructive" appearance="outline">Error</Badge>
- * <Badge icon={<CheckIcon />}>Verified</Badge>
+ * <Badge variant="warning" appearance="outline">Pending</Badge>
+ * <Badge variant="destructive">Error</Badge>
  * ```
  */
 export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(

@@ -1,5 +1,6 @@
 import React from "react";
 import { Disclosure, Text } from "../../common";
+import { UsageExample, usageSource } from "../../common/Disclosure/Disclosure.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -29,12 +30,11 @@ export const DisclosurePage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Disclosure } from '@konradullrich/mp-components';
-
-<Disclosure label="Click to expand">
-  <p>Hidden content that can be toggled</p>
-</Disclosure>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

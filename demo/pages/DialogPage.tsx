@@ -9,6 +9,7 @@ import {
   Button,
   Text,
 } from "../../common";
+import { UsageExample, usageSource } from "../../common/Dialog/Dialog.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -144,46 +145,11 @@ export const DialogPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { 
-  Dialog, 
-  DialogTrigger, 
-  DialogContent, 
-  DialogTitle, 
-  DialogDescription, 
-  DialogClose 
-} from '@konradullrich/mp-components';
-
-// Basic usage with title and description props
-<Dialog open={isOpen} onOpenChange={setIsOpen}>
-  <DialogTrigger asChild>
-    <Button>Open</Button>
-  </DialogTrigger>
-  <DialogContent 
-    title="Dialog Title" 
-    description="Dialog description"
-  >
-    <p>Dialog content</p>
-    <DialogClose asChild>
-      <Button>Close</Button>
-    </DialogClose>
-  </DialogContent>
-</Dialog>
-
-// Custom structure with composed components
-<Dialog open={isOpen} onOpenChange={setIsOpen}>
-  <DialogTrigger asChild>
-    <Button>Open</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogTitle>Custom Title</DialogTitle>
-    <DialogDescription>Custom Description</DialogDescription>
-    <div>Custom content</div>
-    <DialogClose asChild>
-      <Button>Close</Button>
-    </DialogClose>
-  </DialogContent>
-</Dialog>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

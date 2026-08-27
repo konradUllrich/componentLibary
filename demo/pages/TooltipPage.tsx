@@ -9,6 +9,7 @@ import {
 } from "../../common";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
+import { UsageExample, usageSource } from "../../common/Tooltip/Tooltip.example";
 
 export const TooltipPage: React.FC = () => {
   return (
@@ -188,47 +189,11 @@ export const TooltipPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { 
-  TooltipProvider, 
-  Tooltip, 
-  TooltipTrigger, 
-  TooltipContent 
-} from '@konradullrich/mp-components';
-
-// Wrap your app or section with TooltipProvider
-<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Button>Hover me</Button>
-    </TooltipTrigger>
-    <TooltipContent>
-      Helpful information
-    </TooltipContent>
-  </Tooltip>
-</TooltipProvider>
-
-// Custom positioning
-<Tooltip>
-  <TooltipTrigger asChild>
-    <Button>Hover</Button>
-  </TooltipTrigger>
-  <TooltipContent side="right" align="start">
-    Tooltip text
-  </TooltipContent>
-</Tooltip>
-
-// Custom delay
-<TooltipProvider delayDuration={0}>
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Button>Instant</Button>
-    </TooltipTrigger>
-    <TooltipContent>
-      Appears immediately
-    </TooltipContent>
-  </Tooltip>
-</TooltipProvider>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

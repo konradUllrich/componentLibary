@@ -11,6 +11,7 @@ import {
   Underline,
 } from "lucide-react";
 import { u } from "../../utils";
+import { UsageExample, usageSource } from "../../common/ToggleGroup/ToggleGroup.example";
 
 export const ToggleGroupPage: React.FC = () => {
   const [alignment, setAlignment] = useState<string>("left");
@@ -337,41 +338,11 @@ export const ToggleGroupPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { ToggleGroup, ToggleGroupItem } from '@konradullrich/mp-components';
-
-// Single selection (exclusive)
-<ToggleGroup type="single" defaultValue="left" aria-label="Text alignment">
-  <ToggleGroupItem value="left" aria-label="Align left">Left</ToggleGroupItem>
-  <ToggleGroupItem value="center" aria-label="Align center">Center</ToggleGroupItem>
-  <ToggleGroupItem value="right" aria-label="Align right">Right</ToggleGroupItem>
-</ToggleGroup>
-
-// Multiple selection (controlled)
-<ToggleGroup
-  type="multiple"
-  value={formatting}
-  onValueChange={setFormatting}
-  aria-label="Text formatting"
->
-  <ToggleGroupItem value="bold" aria-label="Bold">B</ToggleGroupItem>
-  <ToggleGroupItem value="italic" aria-label="Italic">I</ToggleGroupItem>
-  <ToggleGroupItem value="underline" aria-label="Underline">U</ToggleGroupItem>
-</ToggleGroup>
-
-// Outline variant, small size
-<ToggleGroup type="single" variant="outline" size="sm" aria-label="Alignment">
-  <ToggleGroupItem value="left" aria-label="Left">L</ToggleGroupItem>
-  <ToggleGroupItem value="right" aria-label="Right">R</ToggleGroupItem>
-</ToggleGroup>
-
-// Disable the entire group
-<ToggleGroup type="single" disabled aria-label="Disabled group">
-  <ToggleGroupItem value="a">A</ToggleGroupItem>
-</ToggleGroup>
-
-// Sizes: "sm" | "md" (default) | "lg"
-// Variants: "default" | "outline"`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

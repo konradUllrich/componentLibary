@@ -1,5 +1,6 @@
 import React from "react";
 import { DateComponent, Text } from "../../common";
+import { UsageExample, usageSource } from "../../common/Date/Date.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -105,30 +106,11 @@ export const DatePage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { DateComponent } from '@konradullrich/mp-components';
-
-// Basic usage (short format, German locale)
-<DateComponent date={new Date()} />
-
-// Long format with US locale
-<DateComponent 
-  date={new Date()} 
-  format="long" 
-  locale="en-US" 
-/>
-
-// DateTime format
-<DateComponent 
-  date={new Date()} 
-  format="datetime" 
-/>
-
-// With custom fallback for null dates
-<DateComponent 
-  date={null} 
-  fallback="No date available" 
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

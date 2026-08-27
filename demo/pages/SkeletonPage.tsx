@@ -2,6 +2,7 @@ import React from "react";
 import { Skeleton } from "../../common";
 import { Flex, Page, Section } from "../../layout";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../common/Skeleton/Skeleton.example";
 import { u } from "../../utils";
 
 export const SkeletonPage: React.FC = () => {
@@ -179,30 +180,11 @@ export const SkeletonPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Skeleton } from '@konradullrich/mp-components';
-
-// Text placeholder
-<Skeleton variant="text" />
-<Skeleton variant="text" lines={3} />
-
-// Avatar placeholder
-<Skeleton variant="circle" width={40} height={40} />
-
-// Image / card placeholder
-<Skeleton variant="rectangle" height={200} />
-
-// Wave animation
-<Skeleton animation="wave" height={40} />
-
-// Compose for a profile card
-<div style={{ display: 'flex', gap: '1rem' }}>
-  <Skeleton variant="circle" width={48} height={48} />
-  <div style={{ flex: 1 }}>
-    <Skeleton variant="text" width="40%" />
-    <Skeleton variant="text" width="60%" />
-  </div>
-</div>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

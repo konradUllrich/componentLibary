@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Accordion, Text } from "../../common";
+import { UsageExample, usageSource } from "../../common/Accordion/Accordion.example";
 import { Page, Panel, Section } from "../../layout";
 
 export const AccordionPage: React.FC = () => {
@@ -82,25 +83,11 @@ export const AccordionPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Panel variant="subtle">
+          <UsageExample />
+        </Panel>
         <pre className="code-block">
-          <code>{`import { Accordion } from '@mp-ku/mp-components';
-
-<Accordion
-  items={[
-    { id: '1', title: 'Section 1', content: <div>Content 1</div> },
-    { id: '2', title: 'Section 2', content: <div>Content 2</div> },
-  ]}
-  value={value}
-  onValueChange={setValue}
-/>
-
-<Accordion
-  variant="horizontal"
-  items={[
-    { id: '1', title: 'Section 1', content: <div>Content 1</div> },
-    { id: '2', title: 'Section 2', content: <div>Content 2</div> },
-  ]}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

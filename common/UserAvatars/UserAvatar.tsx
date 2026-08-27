@@ -21,6 +21,14 @@ export interface UserAvatarProps {
  * UserAvatar Component
  *
  * Displays a single user avatar with initials or image.
+ *
+ * @example
+ * ```tsx
+ * <UserAvatar
+ *   user={{ id: 1, fullName: 'John Doe', initials: 'JD' }}
+ *   size="md"
+ * />
+ * ```
  */
 export const UserAvatar = React.forwardRef<HTMLDivElement, UserAvatarProps>(
   ({ user, size = "sm", showTooltip = true, className }, ref) => {
