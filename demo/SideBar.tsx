@@ -279,15 +279,6 @@ export const DemoSideBar = () => {
             navigate("/");
           }}
         />
-        {/* <SidebarItem
-          label="Documentation"
-          icon={<BookOpen size={18} />}
-          isActive={location === "/hooks/use-persisted-state"}
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/hooks/use-persisted-state");
-          }}
-        /> */}
 
         <SidebarDivider label="Components" />
         <SidebarItem label="Common" icon={<Sparkles size={18} />}>

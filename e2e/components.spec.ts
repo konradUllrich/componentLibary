@@ -17,7 +17,7 @@ test.describe("Component Navigation", () => {
     await page.goto("/componentLibary/");
 
     // Check that component grid is visible
-    await expect(page.locator(".grid")).toBeVisible();
+    await expect(page.getByTestId("componentGrid")).toBeVisible();
   });
 
   test("should navigate to Button component via card", async ({ page }) => {
@@ -62,15 +62,11 @@ test.describe("Component Navigation", () => {
   test("should navigate to Table component via card", async ({ page }) => {
     await page.goto("/componentLibary/");
 
-    // Use JavaScript to click the Table card
-    await page.evaluate(() => {
-      const heading = Array.from(
-        document.querySelectorAll(".component-grid h3"),
-      ).find((h) => h.textContent?.trim() === "Table");
-      if (heading) {
-        (heading as HTMLElement).click();
-      }
-    });
+    // Click on Table card
+    const tableCard = page
+      .getByTestId("componentGrid")
+      .getByRole("heading", { name: "Table", exact: true });
+    await tableCard.click();
 
     // Verify Table component page is displayed
     await expect(page.locator("main")).toContainText("Table");

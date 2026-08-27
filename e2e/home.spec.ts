@@ -49,7 +49,7 @@ test.describe("Home Page", () => {
 
     // Click on Home in sidebar
     await page
-      .getByRole("navigation")
+      .locator(".mp-sidebar")
       .getByRole("link", { name: /^Home$/i })
       .click();
 

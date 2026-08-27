@@ -12,7 +12,9 @@ test.describe("Sidebar Navigation", () => {
     ).toBeVisible();
 
     // Check main navigation items - sidebar items are links
-    await expect(page.getByRole("link", { name: /Home/i })).toBeVisible();
+    await expect(
+      page.locator(".mp-sidebar").getByRole("link", { name: /Home/i }),
+    ).toBeVisible();
     await expect(
       page.getByRole("navigation").getByText(/^Components$/i),
     ).toBeVisible();
@@ -30,7 +32,10 @@ test.describe("Sidebar Navigation", () => {
     ).toBeVisible();
 
     // Navigate back to home
-    await page.getByRole("link", { name: /^Home$/i }).click();
+    await page
+      .locator(".mp-sidebar")
+      .getByRole("link", { name: /^Home$/i })
+      .click();
     await expect(
       page.getByRole("heading", { name: /Component Library/i }),
     ).toBeVisible();
@@ -85,14 +90,21 @@ test.describe("Sidebar Navigation", () => {
     // Find and click the sidebar toggle button
     // The SidebarToggle component renders a button with aria-label
     const toggleButton = page.getByRole("button", { name: /Toggle sidebar/i });
+
+    await expect(
+      page.getByRole("heading", { name: "mpComponents", level: 2 }),
+    ).toBeVisible();
+
     await toggleButton.click();
 
     // Wait a moment for animation
     await page.waitForTimeout(300);
 
-    // The sidebar should still be in the DOM but might be collapsed
+    // The sidebar should still be in the DOM but collapsed — the logo
+    // switches to its short "mp" form when collapsed.
+    await expect(page.locator(".mp-sidebar--collapsed")).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "mpComponents", level: 2 }),
+      page.getByRole("heading", { name: "mp", level: 2, exact: true }),
     ).toBeVisible();
   });
 

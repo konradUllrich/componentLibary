@@ -57,8 +57,6 @@ export const App: React.FC = () => {
   const [location, navigate] = useLocation(); // Ensure the router's location hook is initialized at the top level of the app
   const { isOpen, toggle } = useThemeEditor();
 
-  console.log({ location });
-
   return (
     <>
       <AppLayout
@@ -97,10 +95,6 @@ export const App: React.FC = () => {
                 ]}
               />
             </Flex>
-
-            {/* <Text as="h1" size="xl" weight="bold">
-            mpComponents
-          </Text> */}
           </>
         }
         sidebar={<DemoSideBar />}

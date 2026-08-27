@@ -208,7 +208,7 @@ test.describe("CardList Component", () => {
 
   test("should have interactive cards with hover state", async ({ page }) => {
     const productCard = page
-      .locator(".card--interactive")
+      .locator(".mp-card--interactive")
       .filter({ hasText: "Wireless Headphones" })
       .first();
 
@@ -224,14 +224,14 @@ test.describe("CardList Component", () => {
   test("should render cards with different variants", async ({ page }) => {
     // Product cards should have elevated variant
     const elevatedCard = page
-      .locator(".card--elevated")
+      .locator(".mp-card--elevated")
       .filter({ hasText: "Wireless Headphones" })
       .first();
     await expect(elevatedCard).toBeVisible();
 
     // Blog cards should have outlined variant
     const outlinedCard = page
-      .locator(".card--outlined")
+      .locator(".mp-card--outlined")
       .filter({ hasText: "Getting Started with React" })
       .first();
     await expect(outlinedCard).toBeVisible();
@@ -240,7 +240,7 @@ test.describe("CardList Component", () => {
   test("should display all 6 product cards", async ({ page }) => {
     // Count product cards in the first section
     const productCards = page
-      .locator(".section")
+      .locator(".mp-section")
       .filter({ hasText: "Product Cards (3 columns)" })
       .locator(".mp-card-list__item");
 
@@ -250,7 +250,7 @@ test.describe("CardList Component", () => {
   test("should display all 3 blog post cards", async ({ page }) => {
     // Count blog post cards
     const blogCards = page
-      .locator(".section")
+      .locator(".mp-section")
       .filter({ hasText: "Blog Posts (2 columns)" })
       .locator(".mp-card-list__item");
 
@@ -260,7 +260,7 @@ test.describe("CardList Component", () => {
   test("should have accessible card structure", async ({ page }) => {
     // Check that cards are properly structured with semantic elements
     const productSection = page
-      .locator(".section")
+      .locator(".mp-section")
       .filter({ hasText: "Product Cards (3 columns)" });
 
     // Verify headings are present

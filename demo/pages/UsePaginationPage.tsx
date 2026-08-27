@@ -384,8 +384,11 @@ setTotalItems(count: number)  // clamps current page if needed
 reset()                       // restores all defaults`}</code>
         </pre>
         <Text as="p" size="sm" color="secondary">
-          Priority order on load: URL param → localStorage/sessionStorage →
-          default.
+          Priority order on load: URL param → default. Web Storage is only
+          consulted for in-app recovery when navigating via the Router's{" "}
+          <code>navigate()</code>/<code>&lt;Link&gt;</code> — a full page
+          reload with no URL param (e.g. <code>syncUrl: false</code>) resets
+          to the default.
         </Text>
       </Section>
     </Page>

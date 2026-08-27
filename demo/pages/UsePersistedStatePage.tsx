@@ -6,12 +6,18 @@ import { useSearch } from "../../Router/hooks";
 import { usePersistedState } from "../../hooks/usePersistedState/usePersistedState";
 import "./UsePersistedStatePage.css";
 
+// State is persisted in a single route-scoped blob (URLSearchParams
+// serialized as a string), not under its own top-level storage key — see
+// usePersistedState's storage model in CLAUDE.md.
+const ROUTE_STORAGE_KEY = "mp-route:/hooks/use-persisted-state";
+
 const readStorage = (key: string) => {
   if (typeof window === "undefined" || typeof localStorage === "undefined") {
     return "(not available)";
   }
 
-  const stored = localStorage.getItem(key);
+  const blob = localStorage.getItem(ROUTE_STORAGE_KEY);
+  const stored = blob ? new URLSearchParams(blob).get(key) : null;
   return stored ?? "(empty)";
 };
 

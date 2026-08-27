@@ -346,9 +346,14 @@ test.describe("usePagination Demo Page", () => {
       expect(url).not.toContain("page=2");
     });
 
-    test("should persist page in sessionStorage (survives reload in same tab)", async ({
+    test("should reset to page 1 on a full page reload (no URL sync)", async ({
       page,
     }) => {
+      // With syncUrl: false, Web Storage is only consulted by the Router's
+      // own navigate()/<Link> for in-app recovery — not on a native full
+      // page reload. usePersistedState's init only reads the URL param
+      // (which this example deliberately omits) before falling back to the
+      // default, so this example intentionally does not survive a reload.
       const panel = page
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "6. sessionStorage, no URL" });
@@ -363,9 +368,7 @@ test.describe("usePagination Demo Page", () => {
         .locator(".use-persisted-state-page__example")
         .filter({ hasText: "6. sessionStorage, no URL" });
 
-      await expect(
-        panelAfter.getByText(/Showing 11 to 20 of 60/),
-      ).toBeVisible();
+      await expect(panelAfter.getByText(/Showing 1 to 10 of 60/)).toBeVisible();
     });
   });
 

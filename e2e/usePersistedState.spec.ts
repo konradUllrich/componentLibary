@@ -1,4 +1,18 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
+
+// usePersistedState writes into one route-scoped blob (a serialized
+// URLSearchParams string) rather than its own top-level storage key —
+// see usePersistedState's storage model in CLAUDE.md.
+const ROUTE_STORAGE_KEY = "mp-route:/hooks/use-persisted-state";
+
+const readRouteParam = (page: Page, storageKey: string) =>
+  page.evaluate(
+    ({ routeKey, storageKey }) => {
+      const blob = localStorage.getItem(routeKey);
+      return blob ? new URLSearchParams(blob).get(storageKey) : null;
+    },
+    { routeKey: ROUTE_STORAGE_KEY, storageKey },
+  );
 
 test.describe("usePersistedState Demo Page", () => {
   test.beforeEach(async ({ page }) => {
@@ -32,7 +46,7 @@ test.describe("usePersistedState Demo Page", () => {
     await expect(input).toHaveValue("hello persisted");
 
     await expect
-      .poll(async () => page.evaluate(() => localStorage.getItem("docs-query")))
+      .poll(async () => readRouteParam(page, "docs-query"))
       .toBe('"hello persisted"');
 
     await page.reload();
@@ -41,9 +55,7 @@ test.describe("usePersistedState Demo Page", () => {
     const inputAfterReload = page.getByLabel("Search Query");
     await expect(inputAfterReload).toHaveValue("hello persisted");
 
-    const storedValue = await page.evaluate(() =>
-      localStorage.getItem("docs-query"),
-    );
+    const storedValue = await readRouteParam(page, "docs-query");
     expect(storedValue).toBe('"hello persisted"');
   });
 
@@ -57,7 +69,7 @@ test.describe("usePersistedState Demo Page", () => {
     await expect(input).toHaveValue("to-be-cleared");
 
     await expect
-      .poll(async () => page.evaluate(() => localStorage.getItem("docs-query")))
+      .poll(async () => readRouteParam(page, "docs-query"))
       .toBe('"to-be-cleared"');
 
     await queryCard.getByRole("button", { name: "Reset" }).click();
@@ -65,7 +77,7 @@ test.describe("usePersistedState Demo Page", () => {
     await expect(input).toHaveValue("");
 
     await expect
-      .poll(async () => page.evaluate(() => localStorage.getItem("docs-query")))
+      .poll(async () => readRouteParam(page, "docs-query"))
       .toBeNull();
   });
 });
