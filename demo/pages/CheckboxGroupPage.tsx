@@ -29,7 +29,7 @@ export const CheckboxGroupPage: React.FC = () => {
               { value: "option3", label: "Option 3" },
             ]}
             value={checkboxGroup}
-            onChange={setCheckboxGroup}
+            onValueChange={setCheckboxGroup}
           />
         </Flex>
       </Section>
@@ -45,7 +45,7 @@ export const CheckboxGroupPage: React.FC = () => {
               { value: "inactive", label: "Inactive" },
             ]}
             value={checkboxGroup}
-            onChange={setCheckboxGroup}
+            onValueChange={setCheckboxGroup}
           />
         </Flex>
       </Section>
@@ -62,7 +62,7 @@ export const CheckboxGroupPage: React.FC = () => {
               { value: "c", label: "Option C" },
             ]}
             value={checkboxGroup}
-            onChange={setCheckboxGroup}
+            onValueChange={setCheckboxGroup}
           />
         </Flex>
       </Section>
@@ -76,7 +76,7 @@ export const CheckboxGroupPage: React.FC = () => {
               { value: "updates", label: "Product updates" },
             ]}
             value={checkboxGroup}
-            onChange={setCheckboxGroup}
+            onValueChange={setCheckboxGroup}
             error
             errorMessage="You must select at least one option"
           />
@@ -93,7 +93,7 @@ export const CheckboxGroupPage: React.FC = () => {
               { value: "feature3", label: "Feature 3" },
             ]}
             value={checkboxGroup}
-            onChange={setCheckboxGroup}
+            onValueChange={setCheckboxGroup}
           />
         </Flex>
       </Section>
@@ -112,7 +112,7 @@ const [selected, setSelected] = useState<string[]>([]);
     { value: "option2", label: "Option 2" },
   ]}
   value={selected}
-  onChange={setSelected}
+  onValueChange={setSelected}
 />
 
 // Horizontal with variant
@@ -125,7 +125,7 @@ const [selected, setSelected] = useState<string[]>([]);
     { value: "b", label: "Option B" },
   ]}
   value={selected}
-  onChange={setSelected}
+  onValueChange={setSelected}
 />`}</code>
         </pre>
       </Section>

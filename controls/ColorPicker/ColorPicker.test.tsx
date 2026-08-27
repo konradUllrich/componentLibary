@@ -7,7 +7,7 @@ test.describe("ColorPicker Component", () => {
     mount,
   }) => {
     const component = await mount(
-      <ColorPicker label="Primary" value="#7c3aed" onChange={() => {}} />,
+      <ColorPicker label="Primary" value="#7c3aed" onValueChange={() => {}} />,
     );
     await expect(component.locator("input[type='color']")).toHaveValue(
       "#7c3aed",
@@ -17,13 +17,13 @@ test.describe("ColorPicker Component", () => {
     );
   });
 
-  test("should call onChange when the swatch changes", async ({ mount }) => {
+  test("should call onValueChange when the swatch changes", async ({ mount }) => {
     let lastValue = "";
     const component = await mount(
       <ColorPicker
         label="Primary"
         value="#7c3aed"
-        onChange={(v) => {
+        onValueChange={(v) => {
           lastValue = v;
         }}
       />,
@@ -43,7 +43,7 @@ test.describe("ColorPicker Component", () => {
       .toBe("#ff0000");
   });
 
-  test("should call onChange when the text field changes", async ({
+  test("should call onValueChange when the text field changes", async ({
     mount,
   }) => {
     let lastValue = "";
@@ -51,7 +51,7 @@ test.describe("ColorPicker Component", () => {
       <ColorPicker
         label="Primary"
         value="#7c3aed"
-        onChange={(v) => {
+        onValueChange={(v) => {
           lastValue = v;
         }}
       />,
@@ -62,7 +62,7 @@ test.describe("ColorPicker Component", () => {
 
   test("should render disabled state", async ({ mount }) => {
     const component = await mount(
-      <ColorPicker label="Primary" value="#7c3aed" onChange={() => {}} disabled />,
+      <ColorPicker label="Primary" value="#7c3aed" onValueChange={() => {}} disabled />,
     );
     await expect(component.locator("input[type='color']")).toBeDisabled();
     await expect(component.locator("input[type='text']")).toBeDisabled();
@@ -70,7 +70,7 @@ test.describe("ColorPicker Component", () => {
 
   test("should pass accessibility checks", async ({ mount, page }) => {
     await mount(
-      <ColorPicker label="Primary" value="#7c3aed" onChange={() => {}} />,
+      <ColorPicker label="Primary" value="#7c3aed" onValueChange={() => {}} />,
     );
     await checkA11y(page);
   });

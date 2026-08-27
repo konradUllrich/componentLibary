@@ -33,7 +33,7 @@ export const ThemePanelColors: React.FC<ThemePanelColorsProps> = ({
         <ColorPicker
           label={label}
           value={colors[key]}
-          onChange={(value) => onColorChange(key, value)}
+          onValueChange={(value) => onColorChange(key, value)}
           className="mp-theme-panel__color-picker"
         />
         {onKey && (

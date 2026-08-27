@@ -24,7 +24,7 @@ export const ColorPickerPage: React.FC = () => {
           <ColorPicker
             label="Primary Color"
             value={color}
-            onChange={setColor}
+            onValueChange={setColor}
           />
         </Flex>
       </Section>
@@ -34,7 +34,7 @@ export const ColorPickerPage: React.FC = () => {
           <ColorPicker
             label="Accent Color"
             value={color}
-            onChange={setColor}
+            onValueChange={setColor}
             helperText="Used for buttons and links"
           />
         </Flex>
@@ -45,7 +45,7 @@ export const ColorPickerPage: React.FC = () => {
           <ColorPicker
             label="Brand Color"
             value={errorColor}
-            onChange={setErrorColor}
+            onValueChange={setErrorColor}
             error
             errorMessage="This color does not meet contrast requirements"
           />
@@ -57,7 +57,7 @@ export const ColorPickerPage: React.FC = () => {
           <ColorPicker
             label="Disabled"
             value="#94a3b8"
-            onChange={() => {}}
+            onValueChange={() => {}}
             disabled
           />
         </Flex>
@@ -73,14 +73,14 @@ const [color, setColor] = useState("#7c3aed");
 <ColorPicker
   label="Primary Color"
   value={color}
-  onChange={setColor}
+  onValueChange={setColor}
 />
 
 // With error
 <ColorPicker
   label="Brand Color"
   value={color}
-  onChange={setColor}
+  onValueChange={setColor}
   error
   errorMessage="This color does not meet contrast requirements"
 />`}</code>

@@ -8,7 +8,7 @@ export interface ColorPickerProps {
   value: string;
 
   /** Called with the new hex string when the swatch or text field changes */
-  onChange: (value: string) => void;
+  onValueChange: (value: string) => void;
 
   /** Label for the color picker */
   label?: string;
@@ -35,14 +35,14 @@ export interface ColorPickerProps {
  *
  * @example
  * ```tsx
- * <ColorPicker label="Primary Color" value={color} onChange={setColor} />
+ * <ColorPicker label="Primary Color" value={color} onValueChange={setColor} />
  * ```
  */
 export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
   (
     {
       value,
-      onChange,
+      onValueChange,
       label,
       helperText,
       error = false,
@@ -76,7 +76,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             name={name}
             type="color"
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onValueChange(e.target.value)}
             disabled={disabled}
             aria-invalid={error || undefined}
             aria-describedby={hasMessage ? messageId : undefined}
@@ -88,7 +88,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
           <input
             type="text"
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onValueChange(e.target.value)}
             disabled={disabled}
             aria-label={label ? `${label} hex value` : "Color hex value"}
             aria-invalid={error || undefined}

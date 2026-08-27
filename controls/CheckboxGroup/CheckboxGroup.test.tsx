@@ -56,12 +56,12 @@ test.describe("CheckboxGroup Component", () => {
     await expect(checkboxes.nth(2)).toBeChecked();
   });
 
-  test("should handle onChange events", async ({ mount }) => {
+  test("should handle onValueChange events", async ({ mount }) => {
     let changedValues: string[] | undefined;
     const component = await mount(
       <CheckboxGroup
         options={testOptions}
-        onChange={(values) => {
+        onValueChange={(values) => {
           changedValues = values;
         }}
       />,
@@ -77,7 +77,7 @@ test.describe("CheckboxGroup Component", () => {
     const firstLabel = component.locator(".mp-checkbox-label").first();
     await firstLabel.click();
 
-    // Verify onChange was called with the correct value
+    // Verify onValueChange was called with the correct value
     expect(changedValues).toEqual(["option1"]);
   });
 

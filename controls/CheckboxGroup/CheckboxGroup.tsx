@@ -29,7 +29,7 @@ export interface CheckboxOption {
 
 export interface CheckboxGroupProps extends Omit<
   React.HTMLAttributes<HTMLDivElement>,
-  "onChange"
+  "onChange" | "onValueChange"
 > {
   /**
    * Group label displayed above all checkboxes
@@ -49,7 +49,7 @@ export interface CheckboxGroupProps extends Omit<
   /**
    * Callback when selection changes
    */
-  onChange?: (values: string[]) => void;
+  onValueChange?: (values: string[]) => void;
 
   /**
    * Checkbox variant for all items
@@ -107,7 +107,7 @@ export interface CheckboxGroupProps extends Omit<
  *     { value: "option2", label: "Option 2" },
  *   ]}
  *   value={selected}
- *   onChange={setSelected}
+ *   onValueChange={setSelected}
  * />
  *
  * // Horizontal layout
@@ -119,7 +119,7 @@ export interface CheckboxGroupProps extends Omit<
  *     { value: "inactive", label: "Inactive" },
  *   ]}
  *   value={selected}
- *   onChange={setSelected}
+ *   onValueChange={setSelected}
  * />
  *
  * // With error state
@@ -127,7 +127,7 @@ export interface CheckboxGroupProps extends Omit<
  *   label="Preferences"
  *   options={[...]}
  *   value={selected}
- *   onChange={setSelected}
+ *   onValueChange={setSelected}
  *   error
  *   errorMessage="You must select at least one option"
  * />
@@ -143,7 +143,7 @@ export interface CheckboxGroupProps extends Omit<
  *     },
  *   ]}
  *   value={selected}
- *   onChange={setSelected}
+ *   onValueChange={setSelected}
  * />
  *
  * // With custom triggers as function (showing state)
@@ -161,7 +161,7 @@ export interface CheckboxGroupProps extends Omit<
  *     },
  *   ]}
  *   value={selected}
- *   onChange={setSelected}
+ *   onValueChange={setSelected}
  * />
  * ```
  */
@@ -174,7 +174,7 @@ export const CheckboxGroup = React.forwardRef<
       label,
       options,
       value = [],
-      onChange,
+      onValueChange,
       variant = "default",
       helperText,
       error = false,
@@ -194,7 +194,7 @@ export const CheckboxGroup = React.forwardRef<
       const newValue = checked
         ? [...value, optionValue]
         : value.filter((v) => v !== optionValue);
-      onChange?.(newValue);
+      onValueChange?.(newValue);
     };
 
     return (
