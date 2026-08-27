@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ThemeProvider } from "../common/ThemeProvider";
+import { ThemeProvider } from "./theme/ThemeProvider";
 
 import "./index.css";
 import "./iconFont/icon54-line.css";

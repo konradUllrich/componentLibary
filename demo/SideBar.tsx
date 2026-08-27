@@ -14,6 +14,7 @@ import {
   ChevronDown,
   Tag,
   MousePointer,
+  CheckIcon,
   Calendar,
   MessageSquare,
   EyeOff,
@@ -39,6 +40,7 @@ import {
   ToggleLeft,
   Layers,
   GitBranch,
+  Circle,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 import { Logo } from "./components/Logo";
@@ -76,6 +78,11 @@ const SIDEBAR_ELEMENTS = {
         name: "Button",
         icon: <MousePointer size={16} />,
         link: "/components/button",
+      },
+      {
+        name: "CheckBox",
+        icon: <CheckIcon size={16} />,
+        link: "/components/checkbox",
       },
       { name: "Date", icon: <Calendar size={16} />, link: "/components/date" },
       {
@@ -129,9 +136,29 @@ const SIDEBAR_ELEMENTS = {
     ],
     controls: [
       {
-        name: "Form Controls",
+        name: "Input",
         icon: <FormInput size={16} />,
-        link: "/components/form-controls",
+        link: "/components/input",
+      },
+      {
+        name: "Select",
+        icon: <ChevronDown size={16} />,
+        link: "/components/select",
+      },
+      {
+        name: "Combobox",
+        icon: <ChevronDown size={16} />,
+        link: "/components/combobox",
+      },
+      {
+        name: "Radio",
+        icon: <Circle size={16} />,
+        link: "/components/radio",
+      },
+      {
+        name: "Checkbox Group",
+        icon: <CheckIcon size={16} />,
+        link: "/components/checkbox-group",
       },
       {
         name: "Form Builder",

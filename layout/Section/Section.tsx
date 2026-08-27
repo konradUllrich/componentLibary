@@ -61,7 +61,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
         {(subtitle || title) && (
           <Flex justify="space-between" align="center" className={u({ mb: 6 })}>
             <div>
-              <Text as="h2" size="lg" weight="bold">
+              <Text as="h2" size="2xl" weight="bold">
                 {title}
               </Text>
               <Text color="secondary">{subtitle}</Text>

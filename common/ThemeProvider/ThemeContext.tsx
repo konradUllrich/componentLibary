@@ -1,42 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { ThemeConfig, defaultTheme } from "./types";
-import { applyThemeToDOM, mergeThemeWithDefaults } from "./themeUtils";
+import {
+  removeThemeFromStorage,
+  ThemePresetInput,
+  getThemeCssVariables,
+  mergeThemeWithDefaults,
+} from "./themeUtils";
 import { ThemeContext } from "./ThemeProviderContext";
 
-const THEME_STORAGE_KEY = "mp-components-theme";
-
-const loadThemeFromStorage = (): ThemeConfig | null => {
-  try {
-    const stored = localStorage.getItem(THEME_STORAGE_KEY);
-    if (stored) {
-      return mergeThemeWithDefaults(JSON.parse(stored));
-    }
-  } catch (error) {
-    console.error("Failed to load theme from storage:", error);
-  }
-  return null;
-};
-
-const saveThemeToStorage = (theme: ThemeConfig): void => {
-  try {
-    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(theme));
-  } catch (error) {
-    console.error("Failed to save theme to storage:", error);
-  }
-};
-
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const ThemeContextProvider: React.FC<{
+  children: React.ReactNode;
+  theme: ThemePresetInput;
+}> = ({ children, theme: themeInput }) => {
   const [theme, setTheme] = useState<ThemeConfig>(() => {
-    const stored = loadThemeFromStorage();
-    return stored || defaultTheme;
+    return mergeThemeWithDefaults(themeInput);
   });
-
-  useEffect(() => {
-    applyThemeToDOM(theme);
-    saveThemeToStorage(theme);
-  }, [theme]);
 
   const updateTheme = useCallback((updates: Partial<ThemeConfig>) => {
     setTheme((prev) => {
@@ -57,7 +35,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
           ...updates.borderRadius,
         };
       }
-
       return newTheme;
     });
   }, []);
@@ -65,15 +42,23 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   const resetTheme = useCallback(() => {
     setTheme(defaultTheme);
     try {
-      localStorage.removeItem(THEME_STORAGE_KEY);
+      removeThemeFromStorage();
     } catch (error) {
       console.error("Failed to remove theme from storage:", error);
     }
   }, []);
 
+  const resolvedTheme = useMemo(() => mergeThemeWithDefaults(theme), [theme]);
+  const cssVars = useMemo(
+    () => getThemeCssVariables(resolvedTheme),
+    [resolvedTheme],
+  );
+
   return (
-    <ThemeContext.Provider value={{ theme, updateTheme, resetTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <div style={{ display: "contents", ...cssVars } as React.CSSProperties}>
+      <ThemeContext.Provider value={{ theme, updateTheme, resetTheme }}>
+        {children}
+      </ThemeContext.Provider>
+    </div>
   );
 };

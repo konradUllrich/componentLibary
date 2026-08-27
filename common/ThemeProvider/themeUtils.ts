@@ -137,3 +137,33 @@ export const clearThemeFromElement = (element: HTMLElement): void => {
     element.style.removeProperty(name);
   }
 };
+
+const THEME_STORAGE_KEY = "mp-components-theme";
+
+export const loadThemeFromStorage = (): ThemeConfig | null => {
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored) {
+      return mergeThemeWithDefaults(JSON.parse(stored));
+    }
+  } catch (error) {
+    console.error("Failed to load theme from storage:", error);
+  }
+  return null;
+};
+
+export const saveThemeToStorage = (theme: ThemeConfig): void => {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(theme));
+  } catch (error) {
+    console.error("Failed to save theme to storage:", error);
+  }
+};
+
+export const removeThemeFromStorage = (): void => {
+  try {
+    localStorage.removeItem(THEME_STORAGE_KEY);
+  } catch (error) {
+    console.error("Failed to remove theme from storage:", error);
+  }
+};

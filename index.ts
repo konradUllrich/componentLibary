@@ -82,6 +82,7 @@ export {
   UserAvatars,
   type UserAvatarsProps,
   ThemePresetProvider,
+  type ThemePresetInput,
 } from "./common";
 
 // ========================================

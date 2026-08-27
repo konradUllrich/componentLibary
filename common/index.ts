@@ -76,7 +76,7 @@ export {
 } from "./EmptyState";
 
 export {
-  ThemeProvider,
+  ThemeContextProvider,
   ThemePresetProvider,
   useTheme,
   ThemePanel,
