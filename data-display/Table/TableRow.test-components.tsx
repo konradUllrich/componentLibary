@@ -11,13 +11,13 @@ import {
 } from "@tanstack/react-table";
 import { TableRow } from "./TableRow";
 
-export interface Person {
+interface Person {
   id: number;
   name: string;
   email: string;
 }
 
-export const people: Person[] = [
+const people: Person[] = [
   { id: 1, name: "Alice", email: "alice@example.com" },
   { id: 2, name: "Bob", email: "bob@example.com" },
 ];
