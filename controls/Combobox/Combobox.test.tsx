@@ -433,7 +433,8 @@ test.describe("Combobox Component", () => {
     await expect(input).toHaveAttribute("role", "combobox");
     await expect(input).toHaveAttribute("aria-expanded", "false");
     await expect(input).toHaveAttribute("aria-autocomplete", "list");
-    await expect(input).toHaveAttribute("aria-controls", "combobox-listbox");
+    const ariaControls = await input.getAttribute("aria-controls");
+    expect(ariaControls).toMatch(/-listbox$/);
 
     await input.focus();
     await page.waitForTimeout(100);
@@ -532,5 +533,48 @@ test.describe("Combobox Component", () => {
     const empty = page.locator(".mp-combobox__empty");
     await expect(empty).toBeVisible();
     await expect(empty).toContainText('Press Enter to create "New Country"');
+  });
+
+  test("should call onCreate when pressing Enter with no match", async ({
+    mount,
+    page,
+  }) => {
+    const created: string[] = [];
+    const component = await mount(
+      <Combobox
+        options={testOptions}
+        allowCreate
+        onCreate={(value) => created.push(value)}
+      />,
+    );
+
+    const input = component.locator('input[role="combobox"]');
+    await input.fill("New Country");
+    await page.waitForTimeout(100);
+    await input.press("Enter");
+
+    expect(created).toEqual(["New Country"]);
+  });
+
+  test("should not collide aria-controls/option ids across multiple instances", async ({
+    mount,
+    page,
+  }) => {
+    const component = await mount(
+      <div>
+        <Combobox options={testOptions} placeholder="First" />
+        <Combobox options={testOptions} placeholder="Second" />
+      </div>,
+    );
+
+    const inputs = component.locator('input[role="combobox"]');
+    const firstControls = await inputs.nth(0).getAttribute("aria-controls");
+    const secondControls = await inputs.nth(1).getAttribute("aria-controls");
+
+    expect(firstControls).not.toEqual(secondControls);
+
+    await inputs.nth(0).focus();
+    await page.waitForTimeout(100);
+    await expect(page.locator(`#${firstControls}`)).toBeVisible();
   });
 });

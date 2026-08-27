@@ -2,6 +2,7 @@ import React, { forwardRef, useState, useMemo, useRef, useEffect } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
 import { FormControl } from "../FormControl";
+import { useFieldId } from "../../hooks/useFieldId";
 import "./Combobox.css";
 
 export interface ComboboxOption {
@@ -82,6 +83,13 @@ export interface ComboboxProps {
    * Allow creating new options when no match is found
    */
   allowCreate?: boolean;
+
+  /**
+   * Called when the user presses Enter with `allowCreate` on and no option
+   * matches the current search text. Receives the typed text; the caller is
+   * responsible for adding it to `options` and/or updating `value`.
+   */
+  onCreate?: (value: string) => void;
 }
 
 /**
@@ -121,6 +129,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       options,
       className,
       allowCreate = false,
+      onCreate,
     },
     ref,
   ) => {
@@ -132,8 +141,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const [highlightedIndex, setHighlightedIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
-    const inputId = useRef(`combobox-input-${Math.random().toString(36).substr(2, 9)}`);
-    const messageId = `${inputId.current}-message`;
+    const inputId = useFieldId();
+    const listboxId = `${inputId}-listbox`;
+    const messageId = `${inputId}-message`;
     const hasMessage = Boolean(helperText || (error && errorMessage));
 
     // Combine external ref with internal ref
@@ -223,6 +233,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             if (option && !option.disabled) {
               handleSelect(option.value);
             }
+          } else if (allowCreate && filteredOptions.length === 0 && searchValue.trim()) {
+            onCreate?.(searchValue.trim());
+            setOpen(false);
           }
           break;
         case "Escape":
@@ -271,7 +284,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         errorMessage={errorMessage}
         helperText={helperText}
         className={className}
-        htmlFor={inputId.current}
+        htmlFor={inputId}
         messageId={messageId}
       >
         <Popover.Root open={open} onOpenChange={handleOpenChange}>
@@ -279,7 +292,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             <div className="mp-combobox">
               <input
                 ref={inputRef}
-                id={inputId.current}
+                id={inputId}
                 type="text"
                 className={clsx(
                   "mp-combobox__input",
@@ -296,13 +309,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 disabled={disabled}
                 role="combobox"
                 aria-expanded={open}
-                aria-controls="combobox-listbox"
+                aria-controls={listboxId}
                 aria-autocomplete="list"
                 aria-invalid={error || undefined}
                 aria-describedby={hasMessage ? messageId : undefined}
                 aria-activedescendant={
                   open && filteredOptions[highlightedIndex]
-                    ? `combobox-option-${filteredOptions[highlightedIndex].value}`
+                    ? `${inputId}-option-${filteredOptions[highlightedIndex].value}`
                     : undefined
                 }
               />
@@ -323,7 +336,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 ref={listRef}
                 className="mp-combobox__listbox"
                 role="listbox"
-                id="combobox-listbox"
+                id={listboxId}
               >
                 {filteredOptions.length === 0 ? (
                   <div className="mp-combobox__empty">
@@ -335,7 +348,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   filteredOptions.map((option, index) => (
                     <div
                       key={option.value}
-                      id={`combobox-option-${option.value}`}
+                      id={`${inputId}-option-${option.value}`}
                       role="option"
                       aria-selected={selectedValue === option.value}
                       aria-disabled={option.disabled}
