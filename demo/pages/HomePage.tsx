@@ -42,10 +42,10 @@ const COMPONENTS = [
     link: "text",
   },
   {
-    name: "Form Controls",
+    name: "Form Builder",
     teaser: "Input, checkbox, radio, and select components",
     icon: <FormInput size={24} />,
-    link: "form-controls",
+    link: "form-builder",
   },
   {
     name: "Panel",
