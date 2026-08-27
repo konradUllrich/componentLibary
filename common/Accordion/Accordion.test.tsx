@@ -74,14 +74,12 @@ test.describe('Accordion Component', () => {
       <div>
         <Accordion variant="vertical" items={mockItems} />
         <Accordion variant="horizontal" items={mockItems} />
-        <Accordion variant="tabs" items={mockItems} />
       </div>
     );
-    
+
     const accordions = component.locator('.mp-accordion');
     await expect(accordions.nth(0)).toHaveClass(/mp-accordion--vertical/);
     await expect(accordions.nth(1)).toHaveClass(/mp-accordion--horizontal/);
-    await expect(accordions.nth(2)).toHaveClass(/mp-accordion--tabs/);
   });
 
   test('should handle disabled items', async ({ mount }) => {
@@ -183,11 +181,6 @@ test.describe('Accordion Component', () => {
     await checkA11y(page);
   });
 
-  test('should pass accessibility checks with tabs variant', async ({ mount, page }) => {
-    await mount(<Accordion items={mockItems} variant="tabs" />);
-    await checkA11y(page);
-  });
-
   test.describe('Controlled Mode', () => {
     test('should work in controlled mode', async ({ mount }) => {
       let value = 'item1';
@@ -219,36 +212,6 @@ test.describe('Accordion Component', () => {
       
       await expect(content1).toBeVisible();
       await expect(content2).toBeVisible();
-    });
-  });
-
-  test.describe('Tabs Variant', () => {
-    test('should render triggers in a row for tabs variant', async ({ mount }) => {
-      const component = await mount(<Accordion items={mockItems} variant="tabs" />);
-      
-      const triggersContainer = component.locator('.mp-accordion-tabs-triggers');
-      await expect(triggersContainer).toBeVisible();
-      
-      const triggers = component.locator('.mp-accordion-trigger');
-      await expect(triggers).toHaveCount(3);
-    });
-
-    test('should show active state for tabs variant', async ({ mount }) => {
-      const component = await mount(<Accordion items={mockItems} variant="tabs" value="item1" />);
-      
-      const activeTab = component.locator('.mp-accordion-trigger--active');
-      await expect(activeTab).toBeVisible();
-      await expect(activeTab).toHaveAttribute('data-state', 'open');
-    });
-
-    test('should display content below triggers for tabs variant', async ({ mount }) => {
-      const component = await mount(<Accordion items={mockItems} variant="tabs" value="item1" />);
-      
-      const contentContainer = component.locator('.mp-accordion-tabs-content');
-      await expect(contentContainer).toBeVisible();
-      
-      const content = component.locator('.mp-accordion-content-inner', { hasText: 'Content 1' });
-      await expect(content).toBeVisible();
     });
   });
 });

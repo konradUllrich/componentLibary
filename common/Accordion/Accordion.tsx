@@ -56,10 +56,10 @@ export interface AccordionProps {
   collapsible?: boolean;
 
   /**
-   * Layout variant: 'vertical' (stacked), 'horizontal' (side-by-side), or 'tabs' (tab-like appearance)
+   * Layout variant: 'vertical' (stacked) or 'horizontal' (side-by-side)
    * @default 'vertical'
    */
-  variant?: "vertical" | "horizontal" | "tabs";
+  variant?: "vertical" | "horizontal";
 
   /**
    * Additional CSS classes
@@ -117,73 +117,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     },
     ref,
   ) => {
-    const isTabsVariant = variant === "tabs";
-    const [internalValue, setInternalValue] = React.useState<
-      string | undefined
-    >(items[0]?.id);
-
-    if (isTabsVariant) {
-      // Tabs variant: render triggers in a row, then content below
-      const isControlled = value !== undefined;
-      const activeValue = multiple
-        ? (value as string[])?.[0]
-        : isControlled
-          ? (value as string | undefined)
-          : internalValue;
-
-      const handleValueChange = (newValue: string) => {
-        if (!isControlled) {
-          setInternalValue(newValue);
-        }
-        if (onValueChange) {
-          onValueChange(newValue);
-        }
-      };
-
-      const handleTabClick = (itemId: string) => {
-        if (collapsible && activeValue === itemId) {
-          handleValueChange("");
-        } else {
-          handleValueChange(itemId);
-        }
-      };
-
-      const activeItem = activeValue
-        ? items.find((item) => item.id === activeValue)
-        : null;
-
-      return (
-        <div
-          ref={ref}
-          className={clsx("mp-accordion", `mp-accordion--${variant}`, className)}
-        >
-          <div className="mp-accordion-tabs-triggers">
-            {items.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleTabClick(item.id)}
-                disabled={item.disabled}
-                className={clsx(
-                  "mp-accordion-trigger",
-                  activeValue === item.id && "mp-accordion-trigger--active",
-                )}
-                data-state={activeValue === item.id ? "open" : "closed"}
-              >
-                <span className="mp-accordion-title">{item.title}</span>
-              </button>
-            ))}
-          </div>
-          {activeItem && (
-            <div className="mp-accordion-tabs-content">
-              <div className="mp-accordion-content-inner">
-                {activeItem.content}
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-
     if (multiple) {
       return (
         <RadixAccordion.Root

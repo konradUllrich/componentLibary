@@ -12,7 +12,7 @@ export const AccordionPage: React.FC = () => {
           Accordion Component
         </Text>
         <Text color="secondary">
-          Collapsible content sections with vertical or tabs layout
+          Collapsible content sections with vertical or horizontal layout
         </Text>
       </Section>
 
@@ -46,32 +46,44 @@ export const AccordionPage: React.FC = () => {
         </Panel>
       </Section>
 
-      <Section title="Tabs Variant" subtitle="Horizontal tabs layout">
-        <Accordion
-          variant="tabs"
-          items={[
-            {
-              id: "tab1",
-              title: "Tab 1",
-              content: <Text>Content for tab 1</Text>,
-            },
-            {
-              id: "tab2",
-              title: "Tab 2",
-              content: <Text>Content for tab 2</Text>,
-            },
-            {
-              id: "tab3",
-              title: "Tab 3",
-              content: <Text>Content for tab 3</Text>,
-            },
-          ]}
-        />
+      <Section title="Horizontal" subtitle="Side-by-side collapsible sections">
+        <Panel variant="subtle">
+          <Accordion
+            variant="horizontal"
+            items={[
+              {
+                id: "h1",
+                title: "Section 1",
+                content: <Text>Content for section 1</Text>,
+              },
+              {
+                id: "h2",
+                title: "Section 2",
+                content: <Text>Content for section 2</Text>,
+              },
+              {
+                id: "h3",
+                title: "Section 3",
+                content: <Text>Content for section 3</Text>,
+              },
+            ]}
+          />
+        </Panel>
+      </Section>
+
+      <Section
+        title="Looking for tabs?"
+        subtitle="Use the dedicated Tabs component instead of Accordion for tab-style navigation."
+      >
+        <Text color="secondary">
+          See the <code>Tabs</code> component (built on Radix UI Tabs) for a
+          proper tabbed interface with ARIA roles and keyboard navigation.
+        </Text>
       </Section>
 
       <Section title="Usage">
         <pre className="code-block">
-          <code>{`import { Accordion } from '@konradullrich/mp-components';
+          <code>{`import { Accordion } from '@mp-ku/mp-components';
 
 <Accordion
   items={[
@@ -83,10 +95,10 @@ export const AccordionPage: React.FC = () => {
 />
 
 <Accordion
-  variant="tabs"
+  variant="horizontal"
   items={[
-    { id: '1', title: 'Tab 1', content: <div>Content 1</div> },
-    { id: '2', title: 'Tab 2', content: <div>Content 2</div> },
+    { id: '1', title: 'Section 1', content: <div>Content 1</div> },
+    { id: '2', title: 'Section 2', content: <div>Content 2</div> },
   ]}
 />`}</code>
         </pre>
