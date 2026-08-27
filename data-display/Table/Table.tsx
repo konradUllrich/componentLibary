@@ -57,21 +57,40 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
             <tr key={headerGroup.id} className="mp-table__row mp-table__row--header">
               {headerGroup.headers.map((header) => {
                 const sorted = header.column.getIsSorted();
+                const canSort = header.column.getCanSort();
                 const ariaSort =
                   sorted === "asc"
                     ? "ascending"
                     : sorted === "desc"
                       ? "descending"
-                      : header.column.getCanSort()
+                      : canSort
                         ? "none"
                         : undefined;
+                const headerContent = (
+                  <>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                    {sorted && (
+                      <span
+                        className="mp-table__sort-indicator"
+                        aria-hidden="true"
+                      >
+                        {sorted === "asc" ? " ↑" : " ↓"}
+                      </span>
+                    )}
+                  </>
+                );
                 return (
                   <th
                     key={header.id}
                     scope="col"
                     aria-sort={ariaSort}
                     className={clsx("mp-table__cell mp-table__cell--header", {
-                      "mp-table__cell--sortable": header.column.getCanSort(),
+                      "mp-table__cell--sortable": canSort,
                       "mp-table__cell--first": header.index === 0,
                       "mp-table__cell--last":
                         header.index === headerGroup.headers.length - 1,
@@ -81,24 +100,20 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
                         header.column.columnDef.meta?.width ?? header.getSize(),
                       minWidth: header.column.columnDef.meta?.minWidth,
                     }}
-                    onClick={header.column.getToggleSortingHandler()}
                   >
-                    <div className="mp-table__header-content">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
-                      {sorted && (
-                        <span
-                          className="mp-table__sort-indicator"
-                          aria-hidden="true"
-                        >
-                          {sorted === "asc" ? " ↑" : " ↓"}
-                        </span>
-                      )}
-                    </div>
+                    {canSort ? (
+                      <button
+                        type="button"
+                        className="mp-table__header-content mp-table__sort-button"
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {headerContent}
+                      </button>
+                    ) : (
+                      <div className="mp-table__header-content">
+                        {headerContent}
+                      </div>
+                    )}
                   </th>
                 );
               })}
