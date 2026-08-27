@@ -36,12 +36,6 @@ Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Car
 
 The shared foundation most other components build on — bugs here have the widest blast radius of anything in the audit.
 
-### 🟠 High — `useUrlSort` has zero test coverage
-
-101 lines, exported from the public `hooks/index.ts`, drives sort state through the URL — and has no test file anywhere in the repo.
-
-`hooks/useUrlSort/useUrlSort.ts`
-
 ### 🟡 Medium — `TreeEditorOld` ships in the published bundle as dead weight
 
 The legacy react-dnd-based tree editor is still exported from `intrexx/index.ts` alongside the new `SortableTree`. Nothing in `demo/` references it. Its own `MenuEditor` subtree isn't even re-exported from its own folder — genuinely unreachable code. Beyond the dead weight, having both `TreeEditor` (old) and `SortableTree` (new, actively maintained) both importable creates a real risk of consumers grabbing the wrong one.
