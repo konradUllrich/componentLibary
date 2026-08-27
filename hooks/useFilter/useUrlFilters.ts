@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useUrlState } from "../useUrlState/useUrlSate";
 import type { StorageType } from "../useUrlState/useUrlSate";
-import type { FilterRecord, FilterState } from "./useFilter";
+import type { FilterRecord, FilterState } from "./types";
 
 export type UseUrlFiltersOptions<TFilter extends FilterRecord> = {
   /** Initial filter values applied on creation and restored when reset() is called. */

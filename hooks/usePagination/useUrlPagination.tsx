@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useMemo } from "react";
 import { useUrlState } from "../useUrlState/useUrlSate";
 import type { StorageType } from "../useUrlState/useUrlSate";
-import type { PaginationState } from "./usePagination";
+import type { PaginationState } from "./types";
 
 export type UseUrlPaginationOptions = {
   /** Initial page (1-based). Defaults to 1. */

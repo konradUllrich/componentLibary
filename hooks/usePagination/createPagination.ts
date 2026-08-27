@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { createStore, useStore, type StoreApi } from "zustand";
 import { useStoreUrlSync } from "../useStoreUrlSync";
+import type { PaginationState } from "./types";
+
+export type { PaginationState } from "./types";
 
 export type UsePaginationOptions = {
   /** Unique key used as a URL param namespace. Defaults to "pagination". */
@@ -11,21 +14,6 @@ export type UsePaginationOptions = {
   defaultPageSize?: number;
   /** Set to false to disable URL search-param synchronisation. Defaults to true. */
   syncUrl?: boolean;
-};
-
-export type PaginationState = {
-  page: number;
-  pageSize: number;
-  totalItems: number;
-  totalPages: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-  setPage: (page: number) => void;
-  nextPage: () => void;
-  prevPage: () => void;
-  setPageSize: (size: number) => void;
-  setTotalItems: (count: number) => void;
-  reset: () => void;
 };
 
 // Internal store shape

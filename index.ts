@@ -207,12 +207,8 @@ export {
   usePersistedState,
   type StorageType,
   createFilter,
-  usePagination,
   type FilterState,
   type CreateFilterOptions,
-  type FilterRefactorState,
-  type UseFilterRefactorOptions,
-  useFilterRefactor,
 } from "./hooks";
 
 // ========================================

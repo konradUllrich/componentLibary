@@ -6,9 +6,3 @@ export {
 } from "./useFilter";
 
 export { useUrlFilters, type UseUrlFiltersOptions } from "./useUrlFilters";
-
-export {
-  type FilterRefactorState,
-  type UseFilterRefactorOptions,
-  useFilterRefactor,
-} from "./useFilterRefactor";
