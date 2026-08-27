@@ -109,18 +109,18 @@
 .mp-button--ghost {
   background-color: transparent;
   color: var(--mp-color-foreground);
-  border-color: transparent;
+  border-color: var(--mp-color-border);
 }
 .mp-button--ghost:hover:not(:disabled) {
-  background-color: var(--mp-color-gray-200);
+  background-color: var(--mp-color-border-light);
   color: var(--mp-color-foreground);
-  border-color: var(--mp-color-gray-300);
+  border-color: var(--mp-color-border);
 }
 
 .mp-button--ghost:active:not(:disabled) {
-  background-color: var(--mp-color-gray-200);
+  background-color: var(--mp-color-border);
   color: var(--mp-color-foreground);
-  border-color: var(--mp-color-gray-400);
+  border-color: var(--mp-color-border);
 }
 
 /* Modifier: Loading State */
