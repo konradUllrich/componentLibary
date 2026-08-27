@@ -152,7 +152,7 @@ export const App: React.FC = () => {
           component={ThemeProviderPage}
         />
       </AppLayout>
-      <ThemePanel />
+      <ThemePanel showToggle={false} />
     </>
   );
 };

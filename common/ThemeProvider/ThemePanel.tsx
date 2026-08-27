@@ -9,7 +9,19 @@ import { ThemePanelColors } from "./ThemePanelColors";
 import { ThemePanelActions } from "./ThemePanelActions";
 import "./ThemePanel.css";
 
-export const ThemePanel: React.FC = () => {
+export interface ThemePanelProps {
+  /**
+   * Whether to render the panel's own floating open/close button. Set to
+   * `false` when the host app already provides its own trigger wired to
+   * `useThemeEditor().toggle()` (e.g. a nav item) — the panel's open state is
+   * shared through that hook either way, so both stay in sync.
+   */
+  showToggle?: boolean;
+}
+
+export const ThemePanel: React.FC<ThemePanelProps> = ({
+  showToggle = true,
+}) => {
   const { theme, updateTheme, resetTheme } = useTheme();
   const { isOpen, toggle } = useThemeEditor();
 
@@ -53,13 +65,15 @@ export const ThemePanel: React.FC = () => {
 
   return (
     <div className={clsx("mp-theme-panel", !isOpen && "mp-theme-panel--collapsed")}>
-      <button
-        className="mp-theme-panel__toggle"
-        onClick={toggle}
-        aria-label={isOpen ? "Close theme panel" : "Open theme panel"}
-      >
-        {isOpen ? "✕" : "🎨"}
-      </button>
+      {showToggle && (
+        <button
+          className="mp-theme-panel__toggle"
+          onClick={toggle}
+          aria-label={isOpen ? "Close theme panel" : "Open theme panel"}
+        >
+          {isOpen ? "✕" : "🎨"}
+        </button>
+      )}
 
       <div className="mp-theme-panel__header">
         <h2 className="mp-theme-panel__title">Theme Customizer</h2>
