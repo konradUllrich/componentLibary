@@ -60,6 +60,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  *   Saving...
  * </Button>
  * ```
+ *
+ * See {@link ./Button.example.tsx} for the live, greppable version of this
+ * snippet — it also drives the demo site's "Usage" section.
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (

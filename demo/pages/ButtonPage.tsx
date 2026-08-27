@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../../common";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../common/Button/Button.example";
 import { Flex, Page, Section } from "../../layout";
 import { u } from "../../utils";
 
@@ -59,20 +60,11 @@ export const ButtonPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Button } from '@konradullrich/mp-components';
-
-<Button variant="primary" size="md">
-  Click me
-</Button>
-
-<Button variant="destructive" disabled>
-  Can't click
-</Button>
-
-<Button isLoading>
-  Processing...
-</Button>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>
