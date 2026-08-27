@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import type { StoreApi } from "zustand";
 import { useSearchParams } from "../Router/hooks";
+import { useRouterConfig } from "../Router/RouterConfigContext";
+import { getCurrentPath } from "../Router/routeStateStorage";
 
 export interface RouterSyncOptions<T extends object> {
   /**
@@ -45,6 +47,11 @@ export interface RouterSyncOptions<T extends object> {
  *   the result of `deserialize` to the store via `setState`.
  * - **Store → URL** (on every change): calls `serialize` with the latest state
  *   and updates the search params, using `replace` by default.
+ *
+ * Also persists store→URL updates to route-scoped sessionStorage (same
+ * `${routeStatePrefix}:${path}` key format as `useStoreUrlSync`), so
+ * navigating away and back via `<Link>` restores this store's state the
+ * same way `useFilter`/`usePagination` already do.
  *
  * Ping-pong is prevented by a ref-based `isSyncingFromUrl` guard identical to
  * the one used in `usePaginationSync`.
@@ -91,10 +98,14 @@ export function useRouterSync<T extends object>(
   { serialize, deserialize, replace = true }: RouterSyncOptions<T>,
 ): void {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { routeStatePrefix } = useRouterConfig();
 
   // Keep a ref to the latest setter so the subscriber closure never goes stale.
   const setSearchParamsRef = useRef(setSearchParams);
   setSearchParamsRef.current = setSearchParams;
+
+  const routeStatePrefixRef = useRef(routeStatePrefix);
+  routeStatePrefixRef.current = routeStatePrefix;
 
   // Keep a ref to the latest searchParams for the initialisation effect.
   const searchParamsRef = useRef(searchParams);
@@ -143,6 +154,25 @@ export function useRouterSync<T extends object>(
         },
         { replace },
       );
+
+      // Also persist to route-scoped sessionStorage so navigation surfaces
+      // (useLocation/Link) can restore this state when the user returns to
+      // this route — same key format as useStoreUrlSync.
+      const key = `${routeStatePrefixRef.current}:${getCurrentPath()}`;
+      const stored = new URLSearchParams(sessionStorage.getItem(key) ?? "");
+      for (const [k, v] of Object.entries(entries)) {
+        if (v === "") {
+          stored.delete(k);
+        } else {
+          stored.set(k, v);
+        }
+      }
+      const str = stored.toString();
+      if (str) {
+        sessionStorage.setItem(key, str);
+      } else {
+        sessionStorage.removeItem(key);
+      }
     });
 
     return unsubscribe;

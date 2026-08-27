@@ -37,6 +37,14 @@ async function clearUrlParams(page: Page, ...names: string[]) {
   }, names);
 }
 
+/**
+ * Read the route-scoped sessionStorage entry. CT mounts have no `appRoute`
+ * param, so `getCurrentPath()` resolves to `"/"` and the key is fixed.
+ */
+async function getRouteSessionStorage(page: Page) {
+  return page.evaluate(() => sessionStorage.getItem("mp-route:/"));
+}
+
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
@@ -44,6 +52,7 @@ async function clearUrlParams(page: Page, ...names: string[]) {
 test.describe("useRouterSync", () => {
   test.afterEach(async ({ page }) => {
     await clearUrlParams(page, "status", "category", "sort", "theme");
+    await page.evaluate(() => sessionStorage.clear());
   });
 
   // -------------------------------------------------------------------------
@@ -90,6 +99,33 @@ test.describe("useRouterSync", () => {
     await mount(<RouterSyncValueWrapper />);
     await page.getByText("set dark").click();
     expect(await getUrlParam(page, "theme")).toBe("dark");
+  });
+
+  // -------------------------------------------------------------------------
+  // Store → route-scoped sessionStorage
+  // -------------------------------------------------------------------------
+
+  test("persists store state to route-scoped sessionStorage (filterStore)", async ({
+    mount,
+    page,
+  }) => {
+    await mount(<RouterSyncFilterWrapper />);
+    await page.getByText("set status=inactive").click();
+    const stored = await getRouteSessionStorage(page);
+    expect(stored).toContain("status=inactive");
+  });
+
+  test("removes empty params from sessionStorage on clear", async ({
+    mount,
+    page,
+  }) => {
+    const component = await mount(<RouterSyncFilterWrapper />);
+    await component.getByText("set status=inactive").click();
+    expect(await getRouteSessionStorage(page)).toContain("status=inactive");
+
+    await component.getByText("clear").click();
+    const stored = await getRouteSessionStorage(page);
+    expect(stored === null || !stored.includes("status")).toBe(true);
   });
 
   // -------------------------------------------------------------------------
