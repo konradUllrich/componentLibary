@@ -80,10 +80,17 @@ export {
   ThemePresetProvider,
   useTheme,
   ThemePanel,
+  useThemeEditor,
+  themePresets,
+  lightPreset,
+  darkPreset,
+  getContrastRatio,
+  WCAG_AA_MIN_CONTRAST,
   type ThemeConfig,
   type ThemeColors,
   type ThemePresetInput,
   type ThemePresetProviderProps,
+  type NamedThemePreset,
   defaultTheme,
 } from "./ThemeProvider";
 
