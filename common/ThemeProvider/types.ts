@@ -32,7 +32,7 @@ export interface ThemeConfig {
     baseLineHeight: number;
   };
   borderRadius: {
-    base: number; // Multiplier for radius scale
+    base: number | string; // Multiplier for radius scale, or an explicit CSS value (e.g. "8px")
   };
   focus: {
     size: string; // Optional focus ring size
@@ -53,15 +53,15 @@ export const defaultTheme: ThemeConfig = {
     onBackground: "#000000",
     onBackgroundLight: "#6b7280",
     secondary: "#64748b",
-    success: "#22c55e",
+    success: "#10b981",
     warning: "#f59e0b",
-    destructive: "#ef4444",
+    destructive: "#dc2626",
     info: "#3b82f6",
     background: "#ffffff",
 
     border: "#e5e7eb",
     borderLight: "#f3f4f6",
-    borderStrong: "#9ca3af",
+    borderStrong: "#cbd5e0",
   },
   spacing: {
     base: 1,

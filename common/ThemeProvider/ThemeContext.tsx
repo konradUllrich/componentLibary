@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { ThemeConfig, defaultTheme } from "./types";
 import {
+  loadThemeFromStorage,
   removeThemeFromStorage,
+  saveThemeToStorage,
   ThemePresetInput,
   getThemeCssVariables,
   mergeThemeWithDefaults,
@@ -13,7 +15,7 @@ export const ThemeContextProvider: React.FC<{
   theme: ThemePresetInput;
 }> = ({ children, theme: themeInput }) => {
   const [theme, setTheme] = useState<ThemeConfig>(() => {
-    return mergeThemeWithDefaults(themeInput);
+    return loadThemeFromStorage() ?? mergeThemeWithDefaults(themeInput);
   });
 
   const updateTheme = useCallback((updates: Partial<ThemeConfig>) => {
@@ -35,6 +37,7 @@ export const ThemeContextProvider: React.FC<{
           ...updates.borderRadius,
         };
       }
+      saveThemeToStorage(newTheme);
       return newTheme;
     });
   }, []);

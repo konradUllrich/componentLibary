@@ -45,12 +45,23 @@ export const applyThemeToDOM = (theme: ThemeConfig): void => {
   applyThemeToElement(document.documentElement, theme);
 };
 
+const colorMix = (base: string, mixColor: string, percent: number): string =>
+  `color-mix(in oklch, ${base}, ${mixColor} ${percent}%)`;
+
+const radiusValue = (
+  base: ThemeConfig["borderRadius"]["base"],
+  scale: number,
+): string =>
+  typeof base === "string" ? `calc(${base} * ${scale})` : `${0.25 * scale * base}rem`;
+
 export const getThemeCssVariables = (
   theme: ThemeConfig,
 ): Record<string, string> => {
   const colors = theme.colors;
   const borderRadius = theme.borderRadius;
   const focus = theme.focus;
+  const typography = theme.typography;
+  const spacing = theme.spacing;
 
   return {
     "--mp-color-primary-base": colors.primary,
@@ -59,65 +70,57 @@ export const getThemeCssVariables = (
     "--mp-color-primary-strong": colors.primaryStrong,
     "--mp-color-onPrimary": colors.onPrimary,
 
+    "--mp-color-secondary-base": colors.secondary,
+    "--mp-color-secondary": "var(--mp-color-secondary-base)",
+    "--mp-color-secondary-light": colorMix(colors.secondary, "white", 20),
+    "--mp-color-secondary-dark": colorMix(colors.secondary, "black", 15),
+    "--mp-color-secondary-foreground": colors.onPrimary,
+
+    "--mp-color-success-base": colors.success,
+    "--mp-color-success": "var(--mp-color-success-base)",
+    "--mp-color-success-light": colorMix(colors.success, "white", 30),
+    "--mp-color-success-dark": colorMix(colors.success, "black", 20),
+    "--mp-color-success-foreground": colors.onSuccess,
+
+    "--mp-color-warning-base": colors.warning,
+    "--mp-color-warning": "var(--mp-color-warning-base)",
+    "--mp-color-warning-light": colorMix(colors.warning, "white", 15),
+    "--mp-color-warning-dark": colorMix(colors.warning, "black", 20),
+    "--mp-color-warning-foreground": colors.onWarning,
+
+    "--mp-color-destructive-base": colors.destructive,
+    "--mp-color-destructive": "var(--mp-color-destructive-base)",
+    "--mp-color-destructive-light": colorMix(colors.destructive, "white", 20),
+    "--mp-color-destructive-dark": colorMix(colors.destructive, "black", 15),
+    "--mp-color-destructive-foreground": colors.onDestructive,
+
+    "--mp-color-info-base": colors.info,
+    "--mp-color-info": "var(--mp-color-info-base)",
+    "--mp-color-info-light": colorMix(colors.info, "white", 30),
+    "--mp-color-info-dark": colorMix(colors.info, "black", 20),
+    "--mp-color-info-foreground": colors.onPrimary,
+
     "--mp-color-background": colors.background,
     "--mp-color-foreground": colors.onBackground,
     "--mp-color-foreground-light": colors.onBackgroundLight,
 
     "--mp-color-border": colors.border,
     "--mp-color-border-light": colors.borderLight,
-    "--mp-color-border-strong": colors.borderStrong,
-    "--mp-radius-md": `${0.25 * borderRadius.base}rem`,
-    "--mp-radius-sm": `${0.125 * borderRadius.base}rem`,
+    "--mp-color-border-dark": colors.borderStrong,
+
+    "--mp-radius-sm": radiusValue(borderRadius.base, 0.5),
+    "--mp-radius-md": radiusValue(borderRadius.base, 1),
+    "--mp-radius-lg": radiusValue(borderRadius.base, 2),
+    "--mp-radius-xl": radiusValue(borderRadius.base, 3),
+    "--mp-radius-2xl": radiusValue(borderRadius.base, 4),
 
     "--mp-focus-size": focus.size,
     "--mp-focus-color": focus.color,
-    "--mp-focus-offset:": focus.offset,
+    "--mp-focus-offset": focus.offset,
 
-    // "--mp-color-secondary-base": secondaryColor,
-    // "--mp-color-secondary": "var(--mp-color-secondary-base)",
-    // "--mp-color-secondary-light":
-    //   "color-mix(in oklch, var(--mp-color-secondary-base), white 20%)",
-    // "--mp-color-secondary-dark":
-    //   "color-mix(in oklch, var(--mp-color-secondary-base), black 15%)",
-    // "--mp-color-secondary-foreground": "white",
-    // "--mp-color-success-base": theme.colors.success,
-    // "--mp-color-success": "var(--mp-color-success-base)",
-    // "--mp-color-success-light":
-    //   "color-mix(in oklch, var(--mp-color-success-base), white 30%)",
-    // "--mp-color-success-dark":
-    //   "color-mix(in oklch, var(--mp-color-success-base), black 20%)",
-    // "--mp-color-success-foreground": "white",
-    // "--mp-color-warning-base": theme.colors.warning,
-    // "--mp-color-warning": "var(--mp-color-warning-base)",
-    // "--mp-color-warning-light":
-    //   "color-mix(in oklch, var(--mp-color-warning-base), white 15%)",
-    // "--mp-color-warning-dark":
-    //   "color-mix(in oklch, var(--mp-color-warning-base), black 20%)",
-    // "--mp-color-warning-foreground": "black",
-    // "--mp-color-destructive-base": theme.colors.destructive,
-    // "--mp-color-destructive": "var(--mp-color-destructive-base)",
-    // "--mp-color-destructive-light":
-    //   "color-mix(in oklch, var(--mp-color-destructive-base), white 20%)",
-    // "--mp-color-destructive-dark":
-    //   "color-mix(in oklch, var(--mp-color-destructive-base), black 15%)",
-    // "--mp-color-destructive-foreground": "white",
-    // "--mp-color-info-base": theme.colors.info,
-    // "--mp-color-info": "var(--mp-color-info-base)",
-    // "--mp-color-info-light":
-    //   "color-mix(in oklch, var(--mp-color-info-base), white 30%)",
-    // "--mp-color-info-dark":
-    //   "color-mix(in oklch, var(--mp-color-info-base), black 20%)",
-    // "--mp-color-info-foreground": "white",
-    // "--mp-color-primary-gradient": `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`,
-    // "--mp-color-ring": "var(--mp-color-primary-light)",
-    // "--spacing-base": `${theme.spacing.base}`,
-    // "--mp-font-size-base": `${theme.typography.baseFontSize}px`,
-    // "--line-height-normal": theme.typography.baseLineHeight.toString(),
-    // "--mp-radius-sm": `${0.25 * radiusBase}rem`,
-    // "--mp-radius-md": `${0.375 * radiusBase}rem`,
-    // "--mp-radius-lg": `${0.5 * radiusBase}rem`,
-    // "--mp-radius-xl": `${0.75 * radiusBase}rem`,
-    // "--mp-radius-2xl": `${1 * radiusBase}rem`,
+    "--mp-spacing-base": `${spacing.base}`,
+    "--mp-font-size-base": `${typography.baseFontSize}px`,
+    "--line-height-normal": typography.baseLineHeight.toString(),
   };
 };
 
