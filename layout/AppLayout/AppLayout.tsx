@@ -52,10 +52,15 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
     return (
       <SidebarProvider>
         <div ref={ref} className={clsx("mp-app-layout", className)}>
-          {header && <div className="mp-app-layout__header">{header}</div>}
+          <a href="#mp-app-layout-main" className="mp-app-layout__skip-link">
+            Skip to main content
+          </a>
+          {header && <header className="mp-app-layout__header">{header}</header>}
           <div className="mp-app-layout__container">
-            {sidebar && <div className="mp-app-layout__sidebar">{sidebar}</div>}
-            <main className="mp-app-layout__main">{children}</main>
+            {sidebar && <aside className="mp-app-layout__sidebar">{sidebar}</aside>}
+            <main id="mp-app-layout-main" className="mp-app-layout__main">
+              {children}
+            </main>
           </div>
         </div>
       </SidebarProvider>

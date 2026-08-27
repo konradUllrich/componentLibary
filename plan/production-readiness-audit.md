@@ -32,15 +32,9 @@ All Done
 
 Table, Pagination, Datalist, CardList, and the layout primitives (AppLayout, Card, Grid, Panel, Sidebar, HorizontalNav).
 
-### 🟠 High — Table.tsx and its exported subcomponents have drifted
-
-`Table.tsx` duplicates rendering already implemented in `TableHeader`/`TableBody`/`TableRow`/`TableCell` — all separately exported — and the two paths have diverged: `Table.tsx` sets `aria-sort` and `scope="col"`, `TableHeader.tsx` sets neither. A consumer who reaches for the subcomponents gets a measurably less accessible table with no indication why.
-
-`data-display/Table/TableHeader.tsx:40-49`
-
 ### 🟡 Medium — Landmark and keyboard gaps in the layout shell
 
-`AppLayout` renders its header and sidebar as bare `<div>`s (no `<header>`/`<aside>`, no skip link); `HorizontalNav`'s mobile fallback drops the `<nav>` landmark entirely in favor of a bare `<select>`.
+Done. `AppLayout` header/sidebar now render as `<header>`/`<aside>` with a skip link to `<main>`; `HorizontalNav`'s mobile fallback now wraps the `<select>` in a `<nav>` landmark instead of a bare `<div>`. All changes are class-based only (no tag-selector CSS existed for either component), so consumers styling via `.mp-app-layout__*` / `.mp-horizontal-nav*` classes are unaffected — verified against `kanban`, whose only DOM-shape coupling was the `nav.mp-horizontal-nav` test selector, which still matches.
 
 `layout/AppLayout/AppLayout.tsx:53,55` · `layout/HorizontalNav/HorizontalNav.tsx:117-144`
 

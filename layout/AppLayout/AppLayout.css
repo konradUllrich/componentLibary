@@ -11,6 +11,23 @@
   color: var(--mp-color-foreground);
 }
 
+/* Element: Skip Link */
+.mp-app-layout__skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--mp-spacing-4, 1rem);
+  z-index: var(--z-notification);
+  padding: var(--mp-spacing-2, 0.5rem) var(--mp-spacing-4, 1rem);
+  background-color: var(--mp-color-background);
+  color: var(--mp-color-foreground);
+  border: 1px solid var(--mp-color-border);
+  border-radius: var(--mp-radius-md);
+}
+
+.mp-app-layout__skip-link:focus {
+  top: var(--mp-spacing-2, 0.5rem);
+}
+
 /* Element: Header Container */
 .mp-app-layout__header {
   background: var(--mp-color-background);

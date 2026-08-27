@@ -116,15 +116,18 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
 
     if (isMobile) {
       return (
-        <div
+        <nav
+          ref={ref}
           className={clsx(
             "mp-horizontal-nav",
             "mp-horizontal-nav--mobile",
             className,
           )}
+          {...props}
         >
           <select
             className="mp-horizontal-nav__select"
+            aria-label="Navigation"
             value={activeValue}
             onChange={handleMobileChange}
           >
@@ -139,7 +142,7 @@ export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
               );
             })}
           </select>
-        </div>
+        </nav>
       );
     }
 
