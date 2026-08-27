@@ -1,27 +1,22 @@
-import { useSearchParams } from "../../Router/hooks";
+import { create } from "zustand";
+
+interface ThemeEditorState {
+  isOpen: boolean;
+  toggle: () => void;
+}
 
 /**
- * Custom hook for managing theme editor state in URL
+ * Shared open/closed state for the ThemePanel, so any component (e.g. a nav
+ * toggle button) stays in sync with the panel itself. Plain module state
+ * instead of URL sync — keeps ThemePanel usable outside a <Router>.
  */
+const useThemeEditorStore = create<ThemeEditorState>((set) => ({
+  isOpen: false,
+  toggle: () => set((state) => ({ isOpen: !state.isOpen })),
+}));
+
 export function useThemeEditor() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const isOpen =
-    new URLSearchParams(searchParams).get("themeEditor") === "open";
-
-  const toggle = () => {
-    if (isOpen) {
-      setSearchParams((prev) => {
-        prev.set("themeEditor", "");
-        return prev;
-      });
-    } else {
-      setSearchParams((prev) => {
-        prev.set("themeEditor", "open");
-        return prev;
-      });
-    }
-  };
-
+  const isOpen = useThemeEditorStore((state) => state.isOpen);
+  const toggle = useThemeEditorStore((state) => state.toggle);
   return { isOpen, toggle };
 }
