@@ -48,7 +48,7 @@
 
 /* Modifier: Active state */
 .mp-horizontal-nav-item--active {
-  background-color: var(--mp-color-primary-strong);
+  background-color: var(--mp-color-primary);
   color: var(--mp-color-onPrimary);
 }
 
