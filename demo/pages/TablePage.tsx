@@ -10,8 +10,10 @@ import {
   type SortingState,
   type GroupingState,
 } from "../../data-display/Table";
+import { UsageExample, usageSource } from "../../data-display/Table/Table.example";
 import { Text } from "../../common";
-import { Page, Panel, Section } from "../../layout";
+import { Flex, Page, Panel, Section } from "../../layout";
+import { u } from "../../utils";
 
 interface User {
   id: number;
@@ -245,35 +247,11 @@ export const TablePage: React.FC = () => {
       </Section>
 
       <Section title="Basic Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { 
-  Table, 
-  useReactTable, 
-  getCoreRowModel, 
-  ColumnDef 
-} from '@konradullrich/mp-components';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
-
-const columns: ColumnDef<User>[] = [
-  { accessorKey: 'id', header: 'ID' },
-  { accessorKey: 'name', header: 'Name' },
-  { accessorKey: 'email', header: 'Email' },
-  { accessorKey: 'role', header: 'Role' },
-];
-
-const table = useReactTable({
-  data: sampleData,
-  columns,
-  getCoreRowModel: getCoreRowModel(),
-});
-
-<Table table={table} />`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
 
@@ -286,7 +264,7 @@ const table = useReactTable({
   getSortedRowModel,
   SortingState,
   ColumnDef 
-} from '@konradullrich/mp-components';
+} from '@mp-ku/mp-components';
 
 const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -320,7 +298,7 @@ const table = useReactTable({
   getExpandedRowModel,
   GroupingState,
   ColumnDef 
-} from '@konradullrich/mp-components';
+} from '@mp-ku/mp-components';
 
 const [grouping, setGrouping] = useState<GroupingState>(['department']);
 

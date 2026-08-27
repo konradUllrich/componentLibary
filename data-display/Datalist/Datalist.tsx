@@ -85,22 +85,11 @@ export interface DatalistProps<T> {
 }
 
 /**
- * Helper function to create strongly typed columns
- *
- * @example
- * ```tsx
- * const columns = createTableColumns<User>([
- *   { key: 'name', label: 'Name' },
- *   { key: 'email', label: 'Email' },
- * ]);
- * ```
- */
-
-/**
  * Datalist Component
  *
  * Flexible data display component that supports both table and card variants.
- * Wraps TanStack Table for data management and sorting functionality.
+ * Wraps TanStack Table for data management and sorting functionality. Use
+ * {@link createColumns} (in `./createColumns`) to build its `columns` prop.
  *
  * @example
  * ```tsx
@@ -116,6 +105,9 @@ export interface DatalistProps<T> {
  *   renderCard={(user) => <UserCard user={user} />}
  * />
  * ```
+ *
+ * See {@link ./Datalist.example.tsx} for the live, greppable version of the
+ * table-variant snippet.
  */
 const DatalistComponent = <T,>(
   {

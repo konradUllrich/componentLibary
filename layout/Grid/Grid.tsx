@@ -130,6 +130,9 @@ function resolveResponsiveColVar(
  *   <div>Cell</div>
  * </Grid>
  * ```
+ *
+ * See {@link ./Grid.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   (

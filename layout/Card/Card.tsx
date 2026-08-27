@@ -82,6 +82,9 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
  *   <CardContent>Click to navigate</CardContent>
  * </Card>
  * ```
+ *
+ * See {@link ./Card.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 export const Card = React.forwardRef<HTMLElement, CardProps>(
   (

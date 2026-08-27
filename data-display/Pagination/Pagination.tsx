@@ -94,6 +94,9 @@ export interface PaginationProps {
  * const pagination = usePagination({ storageKey: "my-table" });
  * pagination.setTotalItems(totalCount);
  * <Pagination pagination={pagination} />
+ *
+ * See {@link ./Pagination.example.tsx} for the live, greppable version of
+ * this snippet.
  */
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (

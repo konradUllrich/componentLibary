@@ -74,6 +74,9 @@ export interface HorizontalNavProps extends React.HTMLAttributes<HTMLElement> {
  *   ]}
  * />
  * ```
+ *
+ * See {@link ./HorizontalNav.example.tsx} for the live, greppable version of
+ * this snippet.
  */
 export const HorizontalNav = React.forwardRef<HTMLElement, HorizontalNavProps>(
   (

@@ -46,6 +46,9 @@ export interface AppLayoutProps {
  *   <MainContent />
  * </AppLayout>
  * ```
+ *
+ * See {@link ./AppLayout.example.tsx} for the live, greppable version of a
+ * full header+sidebar+main composition.
  */
 export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
   ({ header, sidebar, children, className = "" }: AppLayoutProps, ref) => {

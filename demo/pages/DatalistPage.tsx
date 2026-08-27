@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Datalist, createColumns } from "../../data-display/Datalist";
+import { usageSource } from "../../data-display/Datalist/Datalist.example";
 import { Button } from "../../common";
 import { Flex, Page, Section } from "../../layout";
 import { Text } from "../../common";
@@ -124,22 +125,7 @@ export const DatalistPage: React.FC = () => {
           <Datalist data={employees} columns={basicColumns} />
         </Flex>
         <pre className="code-block">
-          <code>{`import { Datalist, createColumns } from '@konradullrich/mp-components';
-
-interface Employee {
-  id: number;
-  name: string;
-  email: string;
-  department: string;
-}
-
-const columns = createColumns<Employee>([
-  { key: 'name',       header: 'Name' },
-  { key: 'email',      header: 'Email' },
-  { key: 'department', header: 'Department', enableSorting: true },
-]);
-
-<Datalist data={employees} columns={columns} />`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
 

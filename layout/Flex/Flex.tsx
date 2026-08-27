@@ -79,6 +79,9 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
  *   <div>Item 3</div>
  * </Flex>
  * ```
+ *
+ * See {@link ./Flex.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
   (

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { HorizontalNav, Page, Section } from "../../layout";
+import { HorizontalNav, Page, Section, Flex } from "../../layout";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../layout/HorizontalNav/HorizontalNav.example";
+import { u } from "../../utils";
 
 export const HorizontalNavPage: React.FC = () => {
   const [activeId, setActiveId] = useState("home");
@@ -76,35 +78,11 @@ export const HorizontalNavPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { HorizontalNav } from '@konradullrich/mp-components';
-
-const [activeId, setActiveId] = useState('home');
-
-const navItems = [
-  {
-    id: 'home',
-    label: 'Home',
-    href: '/home',
-    isActive: activeId === 'home',
-    onClick: (e) => {
-      e.preventDefault();
-      setActiveId('home');
-    },
-  },
-  {
-    id: 'about',
-    label: 'About',
-    href: '/about',
-    isActive: activeId === 'about',
-    onClick: (e) => {
-      e.preventDefault();
-      setActiveId('about');
-    },
-  },
-];
-
-<HorizontalNav items={navItems} />`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

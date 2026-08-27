@@ -11,6 +11,7 @@ import {
 } from "../../layout";
 import { u } from "../../utils/styleProps";
 import { Text, Button, Badge } from "../../common";
+import { UsageExample, usageSource } from "../../data-display/CardList/CardList.example";
 
 interface Product {
   id: number;
@@ -252,36 +253,11 @@ export const CardListPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { CardList } from '@konradullrich/mp-components';
-import { Card, CardHeader, CardContent } from '@konradullrich/mp-components';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
-
-const products: Product[] = [
-  { id: 1, name: 'Product 1', price: 99.99 },
-  { id: 2, name: 'Product 2', price: 149.99 },
-];
-
-<CardList
-  items={products}
-  renderCard={(product) => (
-    <Card variant="elevated">
-      <CardHeader>
-        <h3>{product.name}</h3>
-      </CardHeader>
-      <CardContent>
-        <p>$\{product.price}</p>
-      </CardContent>
-    </Card>
-  )}
-  getKey={(product) => product.id}
-  columns={3}
-/>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

@@ -32,9 +32,8 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
  *
  * @example
  * ```tsx
- * <Section>
- *   <h2>Section Title</h2>
- *   <p>Content</p>
+ * <Section title="Variants" subtitle="Different styles for various contexts">
+ *   <p>Section content</p>
  * </Section>
  *
  * <Section variant="hero">
@@ -42,6 +41,9 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
  *   <p>Page description</p>
  * </Section>
  * ```
+ *
+ * See {@link ./Section.example.tsx} for the live, greppable version of the
+ * title/subtitle snippet.
  */
 export const Section = React.forwardRef<HTMLElement, SectionProps>(
   (props, ref) => {

@@ -8,6 +8,7 @@ import {
   Page,
   Section,
 } from "../../layout";
+import { UsageExample, usageSource } from "../../layout/Sidebar/Sidebar.example";
 import { Text } from "../../common";
 
 export const SidebarPage: React.FC = () => {
@@ -79,46 +80,9 @@ export const SidebarPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <UsageExample />
         <pre className="code-block">
-          <code>{`import { 
-  Sidebar, 
-  SidebarToggle, 
-  SidebarNav, 
-  SidebarItem 
-} from '@konradullrich/mp-components';
-
-<Sidebar defaultOpen={true} width="250px">
-  <SidebarToggle />
-  <SidebarNav>
-    <SidebarItem 
-      label="Dashboard" 
-      icon="📊" 
-      isActive 
-    />
-    <SidebarItem label="Users" icon="👥">
-      <SidebarItem label="All Users" href="/users" />
-      <SidebarItem label="Add User" href="/users/add" />
-    </SidebarItem>
-    <SidebarItem label="Settings" icon="⚙️" />
-  </SidebarNav>
-</Sidebar>
-
-// Use the useSidebar hook to control sidebar state
-import { useSidebar } from '@konradullrich/mp-components';
-
-const { isCollapsed, toggleCollapsed } = useSidebar();
-
-// Each Sidebar owns its own open/collapsed state by default, so multiple
-// Sidebars on one page never interfere with each other. To share state
-// between a Sidebar and a toggle rendered outside its subtree (e.g. a
-// mobile menu button in the header), wrap both in a SidebarProvider —
-// AppLayout does this automatically for its header/sidebar/main slots.
-import { SidebarProvider, SidebarMobileToggle } from '@konradullrich/mp-components';
-
-<SidebarProvider>
-  <SidebarMobileToggle />
-  <Sidebar>...</Sidebar>
-</SidebarProvider>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

@@ -123,7 +123,7 @@ export const RouterPage: React.FC = () => {
 
       <Section title="Usage">
         <pre className="code-block">
-          <code>{`import { Router, Route, Link, useLocation } from '@konradullrich/mp-components';
+          <code>{`import { Router, Route, Link, useLocation } from '@mp-ku/mp-components';
 
 function App() {
   return (

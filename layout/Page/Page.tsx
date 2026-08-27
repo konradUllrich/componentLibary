@@ -28,15 +28,13 @@ export interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
  *
  * @example
  * ```tsx
- * <Page>
- *   <Section variant="heroooo">
- *     <h1>Title</h1>
- *   </Section>
- *   <Section>
- *     <p>Content</p>
- *   </Section>
+ * <Page title="Dashboard" subHeader="Overview of your account" maxWidth="lg">
+ *   <p>Page content</p>
  * </Page>
  * ```
+ *
+ * See {@link ./Page.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 export const Page = React.forwardRef<HTMLDivElement, PageProps>(
   (

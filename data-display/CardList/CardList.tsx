@@ -73,6 +73,9 @@ export interface CardListProps<T> {
  *   getKey={(product) => product.id}
  * />
  * ```
+ *
+ * See {@link ./CardList.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 
 function CardListInner<T>(

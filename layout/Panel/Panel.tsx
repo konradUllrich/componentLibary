@@ -76,6 +76,9 @@ export interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
  *   <div>Centered with responsive margin</div>
  * </Panel>
  * ```
+ *
+ * See {@link ./Panel.example.tsx} for the live, greppable version of the
+ * variant/spacing snippet.
  */
 export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
   (

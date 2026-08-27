@@ -32,6 +32,20 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
  * Responsive sidebar with:
  * - Mobile: drawer that opens/closes
  * - Desktop: collapsible sidebar
+ *
+ * @example
+ * ```tsx
+ * <Sidebar defaultOpen={true} width="250px">
+ *   <SidebarToggle />
+ *   <SidebarNav>
+ *     <SidebarItem label="Dashboard" icon="📊" isActive />
+ *     <SidebarItem label="Settings" icon="⚙️" />
+ *   </SidebarNav>
+ * </Sidebar>
+ * ```
+ *
+ * See {@link ./Sidebar.example.tsx} for the live, greppable version of this
+ * snippet, plus the `SidebarProvider`/`useSidebar` composition pattern.
  */
 export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
   (

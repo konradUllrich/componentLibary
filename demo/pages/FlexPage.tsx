@@ -1,6 +1,8 @@
 import React from "react";
 import { Flex, Page, Section } from "../../layout";
 import { Text, Button } from "../../common";
+import { UsageExample, usageSource } from "../../layout/Flex/Flex.example";
+import { u } from "../../utils";
 
 export const FlexPage: React.FC = () => {
   return (
@@ -286,26 +288,11 @@ export const FlexPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { Flex } from '@konradullrich/mp-components';
-
-// Basic row layout
-<Flex direction="row" justify="space-between" align="center" gap="md">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Flex>
-
-// Column layout
-<Flex direction="column" gap="sm">
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Flex>
-
-// With wrapping
-<Flex wrap gap="md">
-  {items.map(item => <div key={item.id}>{item.name}</div>)}
-</Flex>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

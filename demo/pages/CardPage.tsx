@@ -9,6 +9,8 @@ import {
   Flex,
 } from "../../layout";
 import { Text, Button } from "../../common";
+import { UsageExample, usageSource } from "../../layout/Card/Card.example";
+import { u } from "../../utils";
 
 export const CardPage: React.FC = () => {
   return (
@@ -122,31 +124,11 @@ export const CardPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Flex gap="md" wrap className={u({ pt: 4 })}>
+          <UsageExample />
+        </Flex>
         <pre className="code-block">
-          <code>{`import { 
-  Card, 
-  CardHeader, 
-  CardContent, 
-  CardFooter 
-} from '@konradullrich/mp-components';
-
-// Basic card
-<Card variant="elevated" padding="md">
-  <CardHeader>
-    <h3>Card Title</h3>
-  </CardHeader>
-  <CardContent>
-    Card content goes here
-  </CardContent>
-  <CardFooter>
-    <Button>Action</Button>
-  </CardFooter>
-</Card>
-
-// Interactive card
-<Card variant="elevated" interactive>
-  Content
-</Card>`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

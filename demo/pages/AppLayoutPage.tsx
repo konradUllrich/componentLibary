@@ -9,6 +9,7 @@ import {
   Panel,
 } from "../../layout";
 import { Text } from "../../common";
+import { UsageExample, usageSource } from "../../layout/AppLayout/AppLayout.example";
 
 export const AppLayoutPage: React.FC = () => {
   return (
@@ -83,36 +84,21 @@ export const AppLayoutPage: React.FC = () => {
       </Section>
 
       <Section title="Usage">
+        <Panel variant="subtle">
+          <div
+            style={{
+              height: "300px",
+              position: "relative",
+              border: "1px solid #e0e0e0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+          >
+            <UsageExample />
+          </div>
+        </Panel>
         <pre className="code-block">
-          <code>{`import { 
-  AppLayout,
-  AppHeader,
-  AppSidebar,
-  AppMain
-} from '@konradullrich/mp-components';
-
-function App() {
-  return (
-    <AppLayout>
-      <AppHeader>
-        <div>
-          <h1>My App</h1>
-          <nav>{/* Navigation items */}</nav>
-        </div>
-      </AppHeader>
-      
-      <AppSidebar>
-        {/* Sidebar navigation content */}
-      </AppSidebar>
-      
-      <AppMain>
-        {/* Main application content */}
-        <h2>Welcome</h2>
-        <p>Your content here</p>
-      </AppMain>
-    </AppLayout>
-  );
-}`}</code>
+          <code>{usageSource}</code>
         </pre>
       </Section>
     </Page>

@@ -46,6 +46,9 @@ export interface TableProps<
  *
  * <Table table={table} />
  * ```
+ *
+ * See {@link ./Table.example.tsx} for the live, greppable version of this
+ * snippet.
  */
 export const Table = React.forwardRef<HTMLTableElement, TableProps<unknown>>(
   ({ className, table, caption, ...props }, ref) => (
