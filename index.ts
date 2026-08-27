@@ -6,14 +6,14 @@
  *
  * @example
  * ```tsx
- * // Import specific category
- * import { Button } from '@/mpComponents/common';
- * import { FormField, FormInput } from '@/mpComponents/controls';
- * import { DataTable, Table } from '@/mpComponents/data-display';
- * import { Container, Stack } from '@/mpComponents/layout';
+ * // All components are exported from the package root
+ * import { Button, Input, Table, Sidebar } from '@mp-ku/mp-components';
  *
- * // Or import from styles
- * import '@/mpComponents/styles/variables.css';
+ * // Compiled styles
+ * import '@mp-ku/mp-components/styles';
+ *
+ * // Design tokens (for consumers customizing CSS variables directly)
+ * import '@mp-ku/mp-components/variables.css';
  * ```
  */
 

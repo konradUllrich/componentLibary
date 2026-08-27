@@ -1,43 +1,73 @@
+/** Hex color values used to compute the theme's CSS custom properties. All fields are required — pass a partial theme to {@link ThemeProvider} and it is merged with `defaultTheme`. */
 export interface ThemeColors {
-  // Base hex colors (easy to customize)
+  /** Primary brand color. */
   primary: string;
+  /** Text/icon color placed on top of `primary`. */
   onPrimary: string;
+  /** Lighter tint of `primary`, used for hover/subtle backgrounds. */
   primaryLight: string;
+  /** Darker shade of `primary`, used for active/pressed states. */
   primaryStrong: string;
 
+  /** Secondary accent color. */
   secondary: string;
+  /** Success state color (e.g. positive Badge, success Toast). */
   success: string;
+  /** Text/icon color placed on top of `success`. */
   onSuccess: string;
+  /** Warning state color. */
   warning: string;
+  /** Text/icon color placed on top of `warning`. */
   onWarning: string;
+  /** Destructive/error state color. */
   destructive: string;
+  /** Text/icon color placed on top of `destructive`. */
   onDestructive: string;
+  /** Informational state color. */
   info: string;
-  background: string; // Optional background color
-  onBackground: string; // Optional foreground color
-  onBackgroundLight: string; // Optional foreground color
+  /** Page/surface background color. */
+  background: string;
+  /** Primary text/icon color placed on top of `background`. */
+  onBackground: string;
+  /** Muted/secondary text color placed on top of `background`. */
+  onBackgroundLight: string;
 
-  border: string; // Optional border color
-  borderLight: string; // Optional light border color
-  borderStrong: string; // Optional strong border color
+  /** Default border color. */
+  border: string;
+  /** Lighter border color, for subtle dividers. */
+  borderLight: string;
+  /** Stronger border color, for emphasized outlines. */
+  borderStrong: string;
 }
 
+/**
+ * Full theme shape consumed by {@link ThemeProvider}. Passed as a deep partial
+ * (`Partial<ThemeConfig>`-like) and merged with `defaultTheme`; see
+ * `themeUtils.ts` for how each field maps to computed CSS custom properties.
+ */
 export interface ThemeConfig {
   colors: ThemeColors;
   spacing: {
-    base: number; // Multiplier for spacing scale
+    /** Multiplier applied to the base spacing scale (1 = default spacing). */
+    base: number;
   };
   typography: {
-    baseFontSize: number; // in px
+    /** Base font size, in px. */
+    baseFontSize: number;
+    /** Base line height (unitless multiplier). */
     baseLineHeight: number;
   };
   borderRadius: {
-    base: number | string; // Multiplier for radius scale, or an explicit CSS value (e.g. "8px")
+    /** Multiplier for the radius scale, or an explicit CSS value (e.g. `"8px"`). */
+    base: number | string;
   };
   focus: {
-    size: string; // Optional focus ring size
-    color: string; // Optional focus ring color defaults to primary color if not provided
-    offset: string; // Optional focus ring offset
+    /** Focus ring size, as a CSS length (e.g. `"2px"`). */
+    size: string;
+    /** Focus ring color. Defaults to the theme's primary color if not provided. */
+    color: string;
+    /** Focus ring offset, as a CSS length (e.g. `"2px"`). */
+    offset: string;
   };
 }
 

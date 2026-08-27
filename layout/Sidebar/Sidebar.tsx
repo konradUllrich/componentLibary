@@ -5,10 +5,24 @@ import { SidebarStoreContext, useOptionalSidebarStoreContext } from "./SidebarCo
 import "./Sidebar.css";
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Initial expanded/collapsed state on desktop (ignored on mobile, which
+   * always starts closed).
+   * @default false
+   */
   defaultOpen?: boolean;
   children?: React.ReactNode;
   className?: string;
+  /**
+   * Width of the sidebar on desktop, as a CSS length.
+   * @default "250px"
+   */
   width?: string;
+  /**
+   * Viewport width (in px) below which the sidebar switches to the mobile
+   * drawer behavior.
+   * @default 768
+   */
   mobileBreakpoint?: number;
 }
 

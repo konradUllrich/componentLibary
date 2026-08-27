@@ -38,31 +38,26 @@ All Done
 
 ## 6. Build, CI & npm publish
 
-Beyond the two critical items already listed above (broken publish workflow, unbundled peer deps), these determine whether the package actually installs and behaves correctly for someone outside this repo.
-
-### 🟡 Medium — The 70% coverage gate never runs in CI
-
-`playwright/coverage.config.ts` throws on unmet thresholds, but `test:ct:coverage` is never invoked by any workflow — only the uninstrumented `test:ct` runs. The gate exists only if someone remembers to run it by hand.
-
-`.github/workflows/test.yml`
-
-### 🟢 Low — Stale config and docs
-
-Done. `package.json`'s `files` field no longer lists the nonexistent `src` directory, `"sideEffects": false"` was added (safe — Vite's lib build already extracts all per-component CSS into `dist/style.css`, leaving no residual `.css` side-effect imports in `dist/index.js`), and the README's dead `QUICK_REFERENCE.md` link was removed. Still open: no `CHANGELOG.md` despite conventional-commit messages that would support generating one.
+All Done
 
 ---
 
 ## 7. Making it agent-friendly
 
-The good news first: CLAUDE.md is already a genuine onboarding document, JSDoc on exported props is consistently present with `@default` notes, prop patterns are predictable enough across most controls to pattern-match from, and the TypeScript is precise (no stray `any`/`@ts-ignore` in the sampled files, tight generics on the shared hooks) — so `tsc` feedback is trustworthy for an agent's repair loop. The gaps are specific and mostly cheap to close.
+The good news first: CLAUDE.md is already a genuine onboarding document, JSDoc on exported props is consistently present with `@default` notes, prop patterns are predictable enough across most controls to pattern-match from, and the TypeScript is precise (no stray `any`/`@ts-ignore` in the sampled files, tight generics on the shared hooks) — so `tsc` feedback is trustworthy for an agent's repair loop.
+
+Done:
+
+- Root [`AGENTS.md`](../AGENTS.md) catalog — one line per component: folder path, purpose, demo link (or `—` where no demo page exists yet).
+- Fixed `index.ts`'s top-level `@example` — was importing from `@/mpComponents/common`, doesn't match the real published import path; now shows `@mp-ku/mp-components`.
+- Pagination's German-default labels were already documented (`@default` values + an English override example on the `labels` prop) — no change needed.
+- `onChange` / `onValueChange` split across `controls/` is already consistent (all value-changing controls use `onValueChange`) — no change needed.
+- Machine-readable component manifest — `scripts/generate-manifest.mjs` runs `react-docgen-typescript` over `common/`, `controls/`, `data-display/`, `layout/`, `intrexx/` and writes `dist/component-manifest.json` (name, props, types, required/default, JSDoc descriptions) as part of `pnpm build`, so it ships inside the published package and can't drift from source.
+- Backfilled JSDoc on `SidebarProps` and `ThemeConfig`/`ThemeColors` (were bare or `//`-commented).
+
+Not done (deferred, lower ROI relative to effort):
 
 | Recommendation                                                                                                                                                                                                                                            | Effort | Impact |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------ |
-| **Add a root `AGENTS.md` catalog** — one line per component: folder path, one-sentence purpose, link to its demo page. Solves "no single fetchable overview" without touching component code.                                                             | Low    | High   |
-| **Fix `index.ts`'s top-level `@example`** — it currently imports from `@/mpComponents/common`, which doesn't match the real published import path (`@mp-ku/mp-components`) and would actively mislead an agent consuming the package.                     | Low    | High   |
-| **Document the German-default strings explicitly** — Pagination's default labels are German. An agent unaware of this can silently ship German UI text into an English-language consumer app.                                                             | Low    | Medium |
-| **Standardize the `onChange` / `onValueChange` split** across `controls/` (see §3) — this is the pattern an agent is most likely to copy wrong when adding a new field.                                                                                   | Medium | High   |
-| **Generate a machine-readable component manifest** (via `react-docgen-typescript`, which already reads JSDoc + defaults) at build time — name, props, types, defaults, descriptions, regenerated in CI so it can't drift from source.                     | Medium | High   |
-| **Backfill JSDoc** on the stragglers — `SidebarProps` has none, `ThemeConfig`/`ThemeColors` use `//` comments that don't surface in IDE hovers the way `/** */` does.                                                                                     | Medium | Medium |
 | **Co-locate a short `.example.tsx` per component**, or expand the current 8-file `.stories.tsx` coverage — cheaper than full Storybook and greppable without hitting a live URL.                                                                          | Medium | Medium |
-| **Ship `demo/pages` (or the manifest) inside the published npm package** — right now usage examples exist only on the GitHub Pages site, not in `node_modules`, so an agent working purely from the installed package sees typed source with no examples. | High   | Medium |
+| **Ship `demo/pages` inside the published npm package** — usage examples still only live on the GitHub Pages site, not in `node_modules`; the new component manifest covers props/types but not worked examples.                                          | High   | Medium |
