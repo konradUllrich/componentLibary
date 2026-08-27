@@ -39,6 +39,7 @@ import {
   ComboboxPage,
   UsePaginationPage,
   UseFilterPage,
+  ThemeProviderPage,
 } from "./pages";
 
 import "./App.css";
@@ -46,7 +47,7 @@ import { DemoSideBar } from "./SideBar";
 import { HomePage } from "./pages/HomePage";
 import { UsePersistedStatePage } from "./pages/UsePersistedStatePage";
 import { Github, Palette, Home } from "lucide-react";
-import { useThemeEditor } from "../common/ThemeProvider";
+import { useThemeEditor, ThemePanel } from "../common/ThemeProvider";
 import { Route } from "../Router";
 import { useLocation } from "../Router/hooks";
 
@@ -148,7 +149,12 @@ export const App: React.FC = () => {
         <Route path="/components/tree-editor" component={TreeEditorPage} />
         <Route path="/components/intrexx-icon" component={IntrexxIconPage} />
         <Route path="/components/icon-picker" component={IconPickerPage} />
+        <Route
+          path="/components/theme-provider"
+          component={ThemeProviderPage}
+        />
       </AppLayout>
+      <ThemePanel />
     </>
   );
 };

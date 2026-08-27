@@ -56,4 +56,28 @@ test.describe("Theme Functionality", () => {
       await page.waitForLoadState("networkidle");
     }
   });
+
+  test("Theme Provider docs page opens the live theme editor panel", async ({
+    page,
+  }) => {
+    await page.goto("/componentLibary/");
+    await page.waitForLoadState("networkidle");
+
+    const commonSection = page.getByRole("link", { name: /Common/i });
+    await commonSection.click();
+    await page.getByRole("link", { name: "Theme Provider" }).click();
+    await page.waitForLoadState("networkidle");
+
+    await expect(
+      page.getByRole("heading", { name: "Theme Provider" }),
+    ).toBeVisible();
+
+    await page.getByRole("button", { name: "Open theme editor" }).click();
+    await expect(page.locator(".mp-theme-panel")).not.toHaveClass(
+      /mp-theme-panel--collapsed/,
+    );
+    await expect(
+      page.getByRole("heading", { name: "Theme Customizer" }),
+    ).toBeVisible();
+  });
 });

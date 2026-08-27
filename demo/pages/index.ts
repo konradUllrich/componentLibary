@@ -29,6 +29,7 @@ export { SkeletonPage } from "./SkeletonPage";
 export { TablePage } from "./TablePage";
 export { TabsPage } from "./TabsPage";
 export { TextPage } from "./TextPage";
+export { ThemeProviderPage } from "./ThemeProviderPage";
 export { ToggleGroupPage } from "./ToggleGroupPage";
 export { TogglePage } from "./TogglePage";
 export { TooltipPage } from "./TooltipPage";

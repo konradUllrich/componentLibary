@@ -41,6 +41,7 @@ import {
   Layers,
   GitBranch,
   Circle,
+  Palette,
 } from "lucide-react";
 import { useLocation } from "../Router/hooks";
 import { Logo } from "./components/Logo";
@@ -113,6 +114,11 @@ const SIDEBAR_ELEMENTS = {
         link: "/components/user-avatars",
       },
       { name: "Router", icon: <Route size={16} />, link: "/components/router" },
+      {
+        name: "Theme Provider",
+        icon: <Palette size={16} />,
+        link: "/components/theme-provider",
+      },
       {
         name: "Skeleton",
         icon: <RectangleHorizontal size={16} />,
