@@ -1,0 +1,107 @@
+{
+  "projectId": "7dfc8ac3-8d6d-497d-9959-f55d35162d96",
+  "shape": "package",
+  "pkg": "@mp-ku/mp-components",
+  "globalName": "MpComponents",
+  "buildCmd": "pnpm build && { sed \"/^ \\* @import/d\" styles/variables.css; cat .design-sync/base.css; sed \"/@font-face/,/^}/d\" demo/iconFont/icon54-line.css demo/iconFont/icon54-solid.css; cat dist/style.css; } > .design-sync/.cache/ds-styles.css",
+  "srcDir": ".",
+  "tsconfig": "tsconfig.json",
+  "cssEntry": ".design-sync/.cache/ds-styles.css",
+  "docsMap": {
+    "Router": ".design-sync/groups/router.md",
+    "Route": ".design-sync/groups/router.md",
+    "Switch": ".design-sync/groups/router.md",
+    "DialogClose": ".design-sync/groups/common.md",
+    "DialogContent": ".design-sync/groups/common.md",
+    "DialogDescription": ".design-sync/groups/common.md",
+    "DialogTitle": ".design-sync/groups/common.md",
+    "DialogTrigger": ".design-sync/groups/common.md",
+    "DropdownContent": ".design-sync/groups/common.md",
+    "DropdownItem": ".design-sync/groups/common.md",
+    "DropdownLabel": ".design-sync/groups/common.md",
+    "DropdownSeparator": ".design-sync/groups/common.md",
+    "DropdownTrigger": ".design-sync/groups/common.md",
+    "ToggleGroupItem": ".design-sync/groups/common.md",
+    "TooltipContent": ".design-sync/groups/common.md",
+    "TooltipProvider": ".design-sync/groups/common.md",
+    "TooltipTrigger": ".design-sync/groups/common.md"
+  },
+  "libOverrides": {
+    "source-kit.mjs": "group components by top-level category folder instead of their own subfolder"
+  },
+  "runtimeFontPrefixes": [
+    "Ubuntu Mono"
+  ],
+  "overrides": {
+    "Dialog": {
+      "cardMode": "single",
+      "viewport": "720x480"
+    },
+    "Dropdown": {
+      "cardMode": "single",
+      "viewport": "480x360"
+    },
+    "Tooltip": {
+      "cardMode": "single",
+      "viewport": "480x240"
+    },
+    "Table": {
+      "cardMode": "column"
+    },
+    "Datalist": {
+      "cardMode": "column"
+    },
+    "Pagination": {
+      "cardMode": "column"
+    },
+    "HorizontalNav": {
+      "cardMode": "column"
+    },
+    "AppLayout": {
+      "cardMode": "single",
+      "viewport": "960x560"
+    },
+    "Sidebar": {
+      "cardMode": "column"
+    },
+    "SortableTree": {
+      "cardMode": "column"
+    },
+    "FormBuilder": {
+      "cardMode": "column"
+    },
+    "Accordion": {
+      "cardMode": "column"
+    },
+    "EmptyState": {
+      "cardMode": "column"
+    },
+    "Toggle": {
+      "cardMode": "column"
+    },
+    "Flex": {
+      "cardMode": "column"
+    },
+    "Grid": {
+      "cardMode": "column"
+    },
+    "Page": {
+      "cardMode": "column"
+    },
+    "Panel": {
+      "cardMode": "column"
+    },
+    "Section": {
+      "cardMode": "column"
+    }
+  },
+  "extraFonts": [
+    "demo/iconFont/icon54-line.css",
+    "demo/iconFont/icon54-solid.css"
+  ],
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "DateComponent": "common/Date/Date.tsx",
+    "SortableTree": "intrexx/TreeEditor/Tree.tsx"
+  }
+}

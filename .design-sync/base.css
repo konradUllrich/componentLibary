@@ -1,0 +1,10 @@
+/* design-sync base layer: the library sets no document font/colour itself (host apps do,
+   see demo/index.css). Ship the host-level defaults so designs and previews render in
+   the DS font instead of browser-default serif. */
+body {
+  font-family: var(--font-family-base);
+  color: var(--mp-color-foreground);
+  background-color: var(--mp-color-background);
+  -webkit-font-smoothing: antialiased;
+}
+*, *::before, *::after { box-sizing: border-box; }
